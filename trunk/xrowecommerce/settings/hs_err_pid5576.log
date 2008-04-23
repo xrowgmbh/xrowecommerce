@@ -1,0 +1,181 @@
+#
+# An unexpected error has been detected by HotSpot Virtual Machine:
+#
+#  EXCEPTION_ACCESS_VIOLATION (0xc0000005) at pc=0x6d78ddcc, pid=5576, tid=304
+#
+# Java VM: Java HotSpot(TM) Client VM (1.5.0_08-b03 mixed mode)
+# Problematic frame:
+# V  [jvm.dll+0xcddcc]
+#
+
+---------------  T H R E A D  ---------------
+
+Current thread (0x0213cdb8):  VMThread [id=304]
+
+siginfo: ExceptionCode=0xc0000005, reading address 0x10cb0298
+
+Registers:
+EAX=0x149424bc, EBX=0x00000000, ECX=0x149424b8, EDX=0x6d7f5688
+ESP=0x049cfbb0, EBP=0x049cfc04, ESI=0x10cb0298, EDI=0x149424d4
+EIP=0x6d78ddcc, EFLAGS=0x00010202
+
+Top of Stack: (sp=0x049cfbb0)
+0x049cfbb0:   149424bc 6d796bda 149424bc 6d83b448
+0x049cfbc0:   300202f0 6d78de9c 14942480 6d78de60
+0x049cfbd0:   6d83b448 6d78e0c0 6d83f944 6d7d6781
+0x049cfbe0:   6d83f944 6d83b448 021025d8 6d72f7e2
+0x049cfbf0:   6d83b448 00000000 00000001 021025d8
+0x049cfc00:   00000000 049cfc6c 6d730ad1 00000001
+0x049cfc10:   00000000 00000001 00000002 6d83b448
+0x049cfc20:   6d83b448 00000001 021025d8 00000000 
+
+Instructions: (pc=0x6d78ddcc)
+0x6d78ddbc:   00 00 00 5e c3 8b 44 24 04 56 8b 30 85 f6 74 1d
+0x6d78ddcc:   8b 06 83 e0 03 3c 03 74 14 56 e8 21 03 00 00 8b 
+
+
+Stack: [0x048d0000,0x049d0000),  sp=0x049cfbb0,  free space=1022k
+Native frames: (J=compiled Java code, j=interpreted, Vv=VM code, C=native code)
+V  [jvm.dll+0xcddcc]
+V  [jvm.dll+0x70ad1]
+V  [jvm.dll+0x7084d]
+V  [jvm.dll+0x73ebb]
+V  [jvm.dll+0x10dc75]
+V  [jvm.dll+0x6f5df]
+V  [jvm.dll+0x6fd00]
+V  [jvm.dll+0x128c54]
+V  [jvm.dll+0x128a8b]
+V  [jvm.dll+0x128559]
+V  [jvm.dll+0x128702]
+V  [jvm.dll+0x128467]
+C  [MSVCRT.dll+0x262b6]
+C  [MSVCRT.dll+0x263de]
+C  [kernel32.dll+0x819f1]
+C  [ntdll.dll+0x7d109]
+
+VM_Operation (0x0017e16c): full generation collection, mode: safepoint, requested by thread 0x001ea098
+
+
+---------------  P R O C E S S  ---------------
+
+Java Threads: ( => current thread )
+  0x05c57960 JavaThread "Worker-1" [_thread_blocked, id=5068]
+  0x05bd5620 JavaThread "Thread-2" [_thread_blocked, id=5800]
+  0x05c125c0 JavaThread "Worker-0" [_thread_blocked, id=5296]
+  0x05a502a8 JavaThread "Start Level Event Dispatcher" daemon [_thread_blocked, id=4860]
+  0x0598cb08 JavaThread "Framework Event Dispatcher" daemon [_thread_blocked, id=5532]
+  0x0598c980 JavaThread "State Data Manager" daemon [_thread_blocked, id=5564]
+  0x051001b8 JavaThread "Thread-1" [_thread_in_native, id=4032]
+  0x0214e9d8 JavaThread "Low Memory Detector" daemon [_thread_blocked, id=4616]
+  0x0214eed8 JavaThread "CompilerThread0" daemon [_thread_blocked, id=5512]
+  0x0214e050 JavaThread "Signal Dispatcher" daemon [_thread_blocked, id=5784]
+  0x02142390 JavaThread "Finalizer" daemon [_thread_blocked, id=5568]
+  0x02140db8 JavaThread "Reference Handler" daemon [_thread_blocked, id=3456]
+  0x001ea098 JavaThread "main" [_thread_blocked, id=516]
+
+Other Threads:
+=>0x0213cdb8 VMThread [id=304]
+  0x020e8b38 WatcherThread [id=5636]
+
+VM state:at safepoint (normal execution)
+
+VM Mutex/Monitor currently owned by a thread:  ([mutex/lock_event])
+[0x001e9628/0x00000144] Threads_lock - owner thread: 0x0213cdb8
+[0x001e89a0/0x00000180] Heap_lock - owner thread: 0x001ea098
+
+Heap
+ def new generation   total 9152K, used 6434K [0x10020000, 0x10a00000, 0x12780000)
+  eden space 8192K,  78% used [0x10020000, 0x10668860, 0x10820000)
+  from space 960K,   0% used [0x10910000, 0x10910000, 0x10a00000)
+  to   space 960K,   0% used [0x10820000, 0x10820000, 0x10910000)
+ tenured generation   total 121024K, used 36080K [0x12780000, 0x19db0000, 0x30020000)
+   the space 121024K,  29% used [0x12780000, 0x14abc338, 0x14abc400, 0x19db0000)
+ compacting perm gen  total 12288K, used 12287K [0x30020000, 0x30c20000, 0x40020000)
+   the space 12288K,  99% used [0x30020000, 0x30c1ff08, 0x30c20000, 0x30c20000)
+No shared spaces configured.
+
+Dynamic libraries:
+0x00400000 - 0x0040d000 	C:\Program Files (x86)\Zend\Zend Studio Neon - Beta\ZendNeon.exe
+0x773a0000 - 0x774f0000 	C:\Windows\SysWOW64\ntdll.dll
+0x75a90000 - 0x75ba0000 	C:\Windows\syswow64\kernel32.dll
+0x769f0000 - 0x76ac0000 	C:\Windows\syswow64\USER32.dll
+0x76810000 - 0x768a0000 	C:\Windows\syswow64\GDI32.dll
+0x76750000 - 0x7680f000 	C:\Windows\syswow64\ADVAPI32.dll
+0x75830000 - 0x75920000 	C:\Windows\syswow64\RPCRT4.dll
+0x755a0000 - 0x75600000 	C:\Windows\syswow64\Secur32.dll
+0x74650000 - 0x746d6000 	C:\Windows\WinSxS\x86_microsoft.windows.common-controls_6595b64144ccf1df_5.82.6000.16386_none_87e0cb09378714f1\COMCTL32.dll
+0x75780000 - 0x7582a000 	C:\Windows\syswow64\MSVCRT.dll
+0x75920000 - 0x75980000 	C:\Windows\system32\IMM32.DLL
+0x76f10000 - 0x76fd7000 	C:\Windows\syswow64\MSCTF.dll
+0x75720000 - 0x75729000 	C:\Windows\syswow64\LPK.DLL
+0x75630000 - 0x756ad000 	C:\Windows\syswow64\USP10.dll
+0x10000000 - 0x10011000 	C:\Program Files (x86)\Zend\Zend Studio Neon - Beta\plugins\org.eclipse.equinox.launcher.win32.win32.x86_1.0.0.v20070523\eclipse_1017a.dll
+0x75280000 - 0x75288000 	C:\Windows\system32\VERSION.dll
+0x74d00000 - 0x74d80000 	C:\Windows\system32\uxtheme.dll
+0x6d6c0000 - 0x6d85b000 	C:\Program Files (x86)\Zend\Zend Studio Neon - Beta\jre\bin\client\jvm.dll
+0x74fd0000 - 0x75003000 	C:\Windows\system32\WINMM.dll
+0x768a0000 - 0x769e4000 	C:\Windows\syswow64\ole32.dll
+0x75a00000 - 0x75a8c000 	C:\Windows\syswow64\OLEAUT32.dll
+0x75010000 - 0x75048000 	C:\Windows\system32\OLEACC.dll
+0x751f0000 - 0x7521c000 	C:\Windows\system32\apphelp.dll
+0x6d280000 - 0x6d288000 	C:\Program Files (x86)\Zend\Zend Studio Neon - Beta\jre\bin\hpi.dll
+0x77370000 - 0x77377000 	C:\Windows\syswow64\PSAPI.DLL
+0x6d690000 - 0x6d69c000 	C:\Program Files (x86)\Zend\Zend Studio Neon - Beta\jre\bin\verify.dll
+0x6d300000 - 0x6d31d000 	C:\Program Files (x86)\Zend\Zend Studio Neon - Beta\jre\bin\java.dll
+0x6d6b0000 - 0x6d6bf000 	C:\Program Files (x86)\Zend\Zend Studio Neon - Beta\jre\bin\zip.dll
+0x6d4c0000 - 0x6d4d3000 	C:\Program Files (x86)\Zend\Zend Studio Neon - Beta\jre\bin\net.dll
+0x76ac0000 - 0x76aed000 	C:\Windows\syswow64\WS2_32.dll
+0x756b0000 - 0x756b6000 	C:\Windows\syswow64\NSI.dll
+0x753e0000 - 0x7541b000 	C:\Windows\system32\mswsock.dll
+0x75260000 - 0x75266000 	C:\Windows\System32\wship6.dll
+0x752b0000 - 0x752db000 	C:\Windows\system32\DNSAPI.dll
+0x73ee0000 - 0x73ee8000 	C:\Windows\System32\winrnr.dll
+0x76670000 - 0x766b9000 	C:\Windows\syswow64\WLDAP32.dll
+0x73ef0000 - 0x73eff000 	C:\Windows\system32\NLAapi.dll
+0x75320000 - 0x75339000 	C:\Windows\system32\IPHLPAPI.DLL
+0x752e0000 - 0x75315000 	C:\Windows\system32\dhcpcsvc.DLL
+0x75500000 - 0x75507000 	C:\Windows\system32\WINNSI.DLL
+0x75290000 - 0x752b0000 	C:\Windows\system32\dhcpcsvc6.DLL
+0x73ed0000 - 0x73edf000 	C:\Windows\system32\napinsp.dll
+0x739c0000 - 0x739d2000 	C:\Windows\system32\pnrpnsp.dll
+0x73ec0000 - 0x73ecc000 	C:\Windows\system32\wshbth.dll
+0x76cf0000 - 0x76e78000 	C:\Windows\syswow64\SETUPAPI.dll
+0x00230000 - 0x00249000 	C:\Program Files (x86)\Bonjour\mdnsNSP.dll
+0x75270000 - 0x75276000 	C:\Windows\system32\wshtcpip.dll
+0x749c0000 - 0x749c6000 	C:\Windows\system32\rasadhlp.dll
+0x766c0000 - 0x76744000 	C:\Windows\syswow64\CLBCatQ.DLL
+0x6d4e0000 - 0x6d4e9000 	C:\Program Files (x86)\Zend\Zend Studio Neon - Beta\jre\bin\nio.dll
+0x06040000 - 0x0608f000 	C:\Program Files (x86)\Zend\Zend Studio Neon - Beta\configuration\org.eclipse.osgi\bundles\387\1\.cp\swt-win32-3346.dll
+0x74b30000 - 0x74cc4000 	C:\Windows\WinSxS\x86_microsoft.windows.common-controls_6595b64144ccf1df_6.0.6000.16386_none_5d07289e07e1d100\COMCTL32.dll
+0x756c0000 - 0x75715000 	C:\Windows\syswow64\SHLWAPI.dll
+0x75980000 - 0x759f4000 	C:\Windows\syswow64\comdlg32.dll
+0x75ba0000 - 0x7666e000 	C:\Windows\syswow64\SHELL32.dll
+0x76af0000 - 0x76bbf000 	C:\Windows\syswow64\WININET.dll
+0x77380000 - 0x77383000 	C:\Windows\syswow64\Normaliz.dll
+0x75730000 - 0x75775000 	C:\Windows\syswow64\iertutil.dll
+0x05690000 - 0x05698000 	C:\Program Files (x86)\Zend\Zend Studio Neon - Beta\configuration\org.eclipse.osgi\bundles\157\1\.cp\os\win32\x86\localfile_1_0_0.dll
+
+VM Arguments:
+jvm_args: -Xms128M -Xmx512M -XX:MaxPermSize=256m
+java_command: <unknown>
+Launcher Type: generic
+
+Environment Variables:
+CLASSPATH=.;C:\Program Files (x86)\Java\jre1.6.0_02\lib\ext\QTJava.zip
+PATH=C:\Program Files (x86)\Zend\Zend Studio Neon - Beta\jre\bin\client;C:\Program Files (x86)\Zend\Zend Studio Neon - Beta\jre\bin;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\php\cli;c:\php;C:\Program Files (x86)\QuickTime\QTSystem\
+USERNAME=christian
+OS=Windows_NT
+PROCESSOR_IDENTIFIER=EM64T Family 6 Model 15 Stepping 6, GenuineIntel
+
+
+
+---------------  S Y S T E M  ---------------
+
+OS: Windows Vista Build 6000 
+
+CPU:total 2 (cores per cpu 2, threads per core 1) family 6 model 15 stepping 6, cmov, cx8, fxsr, mmx, sse, sse2
+
+Memory: 4k page, physical 2095680k(904320k free), swap 4194303k(2357320k free)
+
+vm_info: Java HotSpot(TM) Client VM (1.5.0_08-b03) for windows-x86, built on Jul 26 2006 01:10:50 by "java_re" with MS VC++ 6.0
+
