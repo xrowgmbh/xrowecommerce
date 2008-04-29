@@ -26,16 +26,12 @@
 // ## END COPYRIGHT, LICENSE AND WARRANTY NOTICE ##
 //
 
-$http =& eZHTTPTool::instance();
+$http = eZHTTPTool::instance();
 $module =& $Params["Module"];
 
 include_once( 'kernel/common/template.php' );
-include_once( 'lib/ezutils/classes/ezhttptool.php' );
-include_once( 'kernel/classes/ezbasket.php' );
-include_once( 'lib/ezxml/classes/ezxml.php' );
-include_once( 'lib/ezutils/classes/ezmail.php' );
-include_once( 'extension/coupon/classes/xrowcoupon.php' );
-$tpl =& templateInit();
+
+$tpl = templateInit();
 
 if ( $module->isCurrentAction( 'Cancel' ) )
 {
@@ -43,7 +39,7 @@ if ( $module->isCurrentAction( 'Cancel' ) )
     return;
 }
 
-$user =& eZUser::currentUser();
+$user = eZUser::currentUser();
 
 $firstName = '';
 $lastName = '';
@@ -196,9 +192,9 @@ if ( $module->isCurrentAction( 'Store' ) )
     if ( $inputIsValid == true )
     {
         // Check for validation
-        $basket =& eZBasket::currentBasket();
+        $basket = eZBasket::currentBasket();
 
-        $db =& eZDB::instance();
+        $db = eZDB::instance();
         $db->begin();
         $order = $basket->createOrder();
 
@@ -323,7 +319,7 @@ if ( $module->isCurrentAction( 'Store' ) )
         } /* Shippingaddress is equal or not */
 
         $order->setAttribute( 'data_text_1', $doc->toString() );
-        $shopAccountINI =& eZINI::instance( 'shopaccount.ini' );
+        $shopAccountINI = eZINI::instance( 'shopaccount.ini' );
         
         $order->setAttribute( 'account_identifier', $shopAccountINI->variable( 'AccountSettings', 'Handler' ) );
  
@@ -332,7 +328,7 @@ if ( $module->isCurrentAction( 'Store' ) )
         $order->store();
         $db->commit();
 
-        eZHTTPTool::setSessionVariable( 'MyTemporaryOrderID', $order->attribute( 'id' ) );
+        $http->setSessionVariable( 'MyTemporaryOrderID', $order->attribute( 'id' ) );
 
         $module->redirectTo( '/shop/confirmorder/' );
         return;

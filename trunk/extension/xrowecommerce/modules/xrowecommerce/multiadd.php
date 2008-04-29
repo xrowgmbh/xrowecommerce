@@ -26,7 +26,7 @@
 // ## END COPYRIGHT, LICENSE AND WARRANTY NOTICE ##
 //
 
-$http =& eZHTTPTool::instance();
+$http = eZHTTPTool::instance();
 $module =& $Params["Module"];
 
 include_once( "kernel/classes/ezcontentobject.php" );
@@ -41,7 +41,7 @@ include_once( "kernel/classes/ezproductcollectionitemoption.php" );
 include_once( "kernel/common/template.php" );
 include_once( 'lib/ezutils/classes/ezhttptool.php' );
 
-$basket =& eZBasket::currentBasket();
+$basket = eZBasket::currentBasket();
 $basket->updatePrices(); // Update the prices. Transaction not necessary.
 
 if ( $http->hasPostVariable( "ActionAddToBasket" ) )
