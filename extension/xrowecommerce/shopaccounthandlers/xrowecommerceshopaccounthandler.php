@@ -93,11 +93,11 @@ class xrowECommerceShopAccountHandler
     function transactionID( $order )
     {
         $xml = new eZXML();
-        $xmlDoc =& $order->attribute( 'data_text_1' );
+        $xmlDoc = $order->attribute( 'data_text_1' );
         if( $xmlDoc != null )
         {
-                $dom =& $xml->domTree( $xmlDoc );
-                $id =& $dom->elementsByName( "ezauthorize-transaction-id" );
+                $dom = $xml->domTree( $xmlDoc );
+                $id = $dom->elementsByName( "ezauthorize-transaction-id" );
                 return $id[0]->textContent();
         }
         else
@@ -110,11 +110,11 @@ class xrowECommerceShopAccountHandler
     function email( $order )
     {
         $xml = new eZXML();
-        $xmlDoc =& $order->attribute( 'data_text_1' );
+        $xmlDoc = $order->attribute( 'data_text_1' );
         if( $xmlDoc != null )
         {
-            $dom =& $xml->domTree( $xmlDoc );
-            $email =& $dom->elementsByName( "email" );
+            $dom = $xml->domTree( $xmlDoc );
+            $email = $dom->elementsByName( "email" );
             if ( isset( $email[0] ) )
             {
                 return $email[0]->textContent();
@@ -133,7 +133,7 @@ class xrowECommerceShopAccountHandler
     {
         $accountName = "";
         $xml = new eZXML();
-        $xmlDoc =& $order->attribute( 'data_text_1' );
+        $xmlDoc = $order->attribute( 'data_text_1' );
         if( $xmlDoc != null )
         {
             $dom =& $xml->domTree( $xmlDoc );
@@ -161,41 +161,41 @@ class xrowECommerceShopAccountHandler
     function accountInformation( $order )
     {
         $xml = new eZXML();
-        $xmlDoc =& $order->attribute( 'data_text_1' );
-        $dom =& $xml->domTree( $xmlDoc );
+        $xmlDoc = $order->attribute( 'data_text_1' );
+        $dom = $xml->domTree( $xmlDoc );
 
-        $firstName =& $dom->elementsByName( "first-name" );
-        $mi =& $dom->elementsByName( "mi" );
-        $lastName =& $dom->elementsByName( "last-name" );
+        $firstName = $dom->elementsByName( "first-name" );
+        $mi = $dom->elementsByName( "mi" );
+        $lastName = $dom->elementsByName( "last-name" );
 
-        $address1 =& $dom->elementsByName( "address1" );
-        $address2 =& $dom->elementsByName( "address2" );
+        $address1 = $dom->elementsByName( "address1" );
+        $address2 = $dom->elementsByName( "address2" );
 
-        $city =& $dom->elementsByName( "city" );
-        $state =& $dom->elementsByName( "state" );
-        $zip =& $dom->elementsByName( "zip" );
-        $country =& $dom->elementsByName( "country" );
+        $city = $dom->elementsByName( "city" );
+        $state = $dom->elementsByName( "state" );
+        $zip = $dom->elementsByName( "zip" );
+        $country = $dom->elementsByName( "country" );
 
-        $phone =& $dom->elementsByName( "phone" );
-        $email =& $dom->elementsByName( "email" );
+        $phone = $dom->elementsByName( "phone" );
+        $email = $dom->elementsByName( "email" );
 
-        $shipping =& $dom->elementsByName( "shipping" );
-        $shippingtype =& $dom->elementsByName( "shippingtype" );
+        $shipping = $dom->elementsByName( "shipping" );
+        $shippingtype = $dom->elementsByName( "shippingtype" );
 
-        $s_firstName =& $dom->elementsByName( "s_first-name" );
-        $s_mi =& $dom->elementsByName( "s_mi" );
-        $s_lastName =& $dom->elementsByName( "s_last-name" );
+        $s_firstName = $dom->elementsByName( "s_first-name" );
+        $s_mi = $dom->elementsByName( "s_mi" );
+        $s_lastName = $dom->elementsByName( "s_last-name" );
 
-        $s_address1 =& $dom->elementsByName( "s_address1" );
-        $s_address2 =& $dom->elementsByName( "s_address2" );
+        $s_address1 = $dom->elementsByName( "s_address1" );
+        $s_address2 = $dom->elementsByName( "s_address2" );
 
-        $s_city =& $dom->elementsByName( "s_city" );
-        $s_state =& $dom->elementsByName( "s_state" );
-        $s_zip =& $dom->elementsByName( "s_zip" );
-        $s_country =& $dom->elementsByName( "s_country" );
+        $s_city = $dom->elementsByName( "s_city" );
+        $s_state = $dom->elementsByName( "s_state" );
+        $s_zip = $dom->elementsByName( "s_zip" );
+        $s_country = $dom->elementsByName( "s_country" );
 
-        $s_phone =& $dom->elementsByName( "s_phone" );
-        $s_email =& $dom->elementsByName( "s_email" );
+        $s_phone = $dom->elementsByName( "s_phone" );
+        $s_email = $dom->elementsByName( "s_email" );
 
         // $comment =& $dom->elementsByName( "comment" );
 
@@ -322,7 +322,7 @@ class xrowECommerceShopAccountHandler
         /**
          * Coupon extension
          */
-        $CouponNode =& $dom->elementsByName( "coupon-code" );
+        $CouponNode = $dom->elementsByName( "coupon-code" );
         $CouponCode = "";
         if ( array_key_exists( 0, $CouponNode ) and is_object( $CouponNode[0] ) )
             $CouponCode = $CouponNode[0]->textContent();
@@ -330,11 +330,11 @@ class xrowECommerceShopAccountHandler
         /*
          eZ Authorize - Support Display of Payment information
         */
-        $s_ezauthorize_transaction_id =& $dom->elementsByName( "ezauthorize-transaction-id" );
-        $s_ezauthorize_card_name =& $dom->elementsByName( "ezauthorize-card-name" );
-        $s_ezauthorize_card_number =& $dom->elementsByName( "ezauthorize-card-number" );
-        $s_ezauthorize_card_date =& $dom->elementsByName( "ezauthorize-card-date" );
-        $s_ezauthorize_card_type =& $dom->elementsByName( "ezauthorize-card-type" );
+        $s_ezauthorize_transaction_id = $dom->elementsByName( "ezauthorize-transaction-id" );
+        $s_ezauthorize_card_name = $dom->elementsByName( "ezauthorize-card-name" );
+        $s_ezauthorize_card_number = $dom->elementsByName( "ezauthorize-card-number" );
+        $s_ezauthorize_card_date = $dom->elementsByName( "ezauthorize-card-date" );
+        $s_ezauthorize_card_type = $dom->elementsByName( "ezauthorize-card-type" );
 
         if ( isset( $s_ezauthorize_transaction_id[0] ) ){
             $s_ezauthorize_transaction_idText = "";

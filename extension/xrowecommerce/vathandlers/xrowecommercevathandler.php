@@ -15,8 +15,8 @@ class xrowECommerceVATHandler
     }
     function getVatPercent( $object, $country )
     {
-        $orderID = eZHTTPTool::sessionVariable( 'MyTemporaryOrderID' );
-        $http=eZHTTPTool::instance();
+    	$http = eZHTTPTool::instance();
+        $orderID = $http->sessionVariable( 'MyTemporaryOrderID' );
 
         if ($orderID > 0)
             $order = eZOrder::fetch( $orderID );
