@@ -1,5 +1,5 @@
 <div>
-   <h1>Basket</h1>
+   <h1>Basket<//h1>
 </div>
 
 <form class="qbasketform" method="post" action={"/shop/basket"|ezurl}>
@@ -24,7 +24,7 @@
 		  <td rowspan="2">{$item.item_count|mul($item.price_inc_vat)|l10n(currency)}</td>
         </tr>      
         <tr>
-            <td>{$item.item_object.contentobject.current.data_map.product_id.content|wash()*}
+            <td>{$item.item_object.contentobject.current.data_map.product_id.content|wash()}{$item.item_object.option_list.0.value|wash()}
             </td>
             <td><input type="text" name="ProductItemCountList[]" value="{$item.item_count}" size="3" /></td>
         </tr>
@@ -36,7 +36,7 @@
             <td rowspan="2">{$item.item_count|mul($item.price_inc_vat)|l10n(currency)}</td>
         </tr>      
         <tr>
-            <td>{$item.item_object.contentobject.current.data_map.product_id.content|wash()}
+            <td>{$item.item_object.contentobject.current.data_map.product_id.content|wash()}{$item.item_object.contentobject.current.contentobject_attributes.11.value.name|wash()}
             {foreach $item.item_object.option_list as $option}
             {/foreach}
             </td>

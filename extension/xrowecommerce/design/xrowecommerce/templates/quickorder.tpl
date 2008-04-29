@@ -31,7 +31,8 @@
 				            <input type="hidden" name="AddToBasketList[{$i}][variations][{$child.data_map.variation.id}]" value="{$option.id}">
 				            <input type="text" name="AddToBasketList[{$i}][quantity]" value="0" />
 			            </td>
-			            <td>{$option.additional_price|l10n(currency)}</td>
+			            <td>{$child.data_map.price.data_float|sum($option.additional_price)|l10n(currency)}
+			            </td>
 			        </tr>
 			        {set $i=$i|sum(1)}
                 {/foreach}
