@@ -109,6 +109,7 @@
 	                    <td>
 	                    no Options
 	                    </td>
+	                    <td>{attribute_view_gui attribute=$node.object.data_map.description}</td>
 	                    <td align="right">
 	                        <input type="hidden" name="AddToBasketList[{$Options.index}][object_id]" value="{$node.object.id}" />
 	                        <input type="hidden" name="AddToBasketList[{$Options.index}][variations][{$node.data_map.variation.id}]" value="{$Options.item.id}" />
