@@ -10,9 +10,6 @@
 	            <div class="attribute-header">
 		        <h1>{$node.name|wash()}</h1>
 		        </div>
-            
-            
-            
             <div class="image-description-wrap">
             {if $node.data_map.image.has_content}
             <div class="attribute-image">
@@ -23,7 +20,7 @@
                 </div>
 		        {/if}
             </div>
-		            
+
             <div class="description-wrap">
 	                <div class="attribute-short">
 	                   {attribute_view_gui attribute=$node.object.data_map.short_description}
@@ -40,8 +37,6 @@
             </div>
             {/if}
         </div>
-        
-        
 
         <div class="productwrapper">
             <div class="attribute-short-wide">
