@@ -4,7 +4,7 @@
 <span class="topheading">My Account</span><br />
 
 <br />
-<div style="border: 1px solid #ebeeef; width: 320px; float: left; display: inline; margin:5px; padding: 8px;">
+<div class="xrow-loginbox">
 <span class="heading1">Already Registered?</span><br />
 <p>
 Enter your E-mail address and password below to sign-in.
@@ -58,7 +58,7 @@ Enter your E-mail address and password below to sign-in.
 {/section}
 
 </div>
-<div style="border: 1px solid #ebeeef; width: 320px; float: left; display: inline; margin:5px; padding: 8px;">
+<div class="xrow-registerbox">
 <span class="heading1">New Customer?</span><br />
 <p>
 Create an account to save your shipping and billing information.<br />
