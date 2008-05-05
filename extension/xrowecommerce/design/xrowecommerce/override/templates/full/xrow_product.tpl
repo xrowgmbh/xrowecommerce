@@ -39,38 +39,7 @@
         </div>
 
         <div class="productwrapper">
-            <div class="attribute-short-wide">
-            {def $user=fetch( 'user', 'current_user' )}
-            {if and($node.data_map.recurring.content|not(), $user.is_logged_in)}
-                <p>Add your selections to <a id="show_auto_tip">Automatic Delivery</a>?</p>
-                <input class="flat-right2 block" type="submit" onclick="document.buy.action='{"recurringorders/add"|ezurl(no)}'; document.buy.submit(); return true;" name="ActionAddToRecurring" value="{"Add to Automatic Delivery"|i18n("design/base")}" />
-            {elseif $node.data_map.recurring.content|not()}
-                <div id="headingp2">**Note**</div>
-                <p>This product is available for <a id="show_auto_tip">Automatic Delivery</a>. To add this product to your Automatic Delivery you have to <a href={'user/login'|ezurl}>login</a>.</p>
-            {/if}
-            </div>
-    	
-            <div id="overlay1" style="visibility:hidden;">
-                <h3>What is Automatic Delivery?</h3>
-                <p>Use our Automatic Delivery service to have this item sent to you as often as you like.  You’ll get priority on our inventory and save time.</p>
-                <p>By placing your initial Automatic Delivery order and setting up an Automatic Delivery schedule, you authorize us to charge the same credit card for future Automatic Delivery orders until you cancel.</p>
-                <p>Since the accuracy of your credit card, shipping and billing information is vital to Automatic Delivery, please promptly submit changes through the my account section.</p>
-            </div>
-            
-    {* Related products. *}
-            
-            {def $related_purchase=fetch( 'shop', 'related_purchase', hash( 'contentobject_id', $node.object.id, 'limit', 2 ) )}
-            {if $related_purchase}
-            <div class="attribute-short-wide">
-                <h2 class="uppercase">{'People who bought this also bought'|i18n( 'design/ezwebin/full/product' )}</h2>
-                {foreach $related_purchase as $product}
-                    <span>{content_view_gui view=text_linked content_object=$product}</span>
-                    <p class="price">{attribute_view_gui attribute=$product.data_map.price}</p>
-                {/foreach}
-            </div>
-	        {/if}
-	        {undef $related_purchase}
-            <div>
+<div>
                 <table class="list">
 	                <tr>
 	                    <th>Options</th>
@@ -125,6 +94,37 @@
                 <div class="attribute-multi-options">
                 </div>
 	        </div>
+            <div class="attribute-short-wide">
+            {def $user=fetch( 'user', 'current_user' )}
+            {if and($node.data_map.recurring.content|not(), $user.is_logged_in)}
+                <p>Add your selections to <a id="show_auto_tip">Automatic Delivery</a>?</p>
+                <input class="flat-right2 block" type="submit" onclick="document.buy.action='{"recurringorders/add"|ezurl(no)}'; document.buy.submit(); return true;" name="ActionAddToRecurring" value="{"Add to Automatic Delivery"|i18n("design/base")}" />
+            {elseif $node.data_map.recurring.content|not()}
+                <div id="headingp2">**Note**</div>
+                <p>This product is available for <a id="show_auto_tip">Automatic Delivery</a>. To add this product to your Automatic Delivery you have to <a href={'user/login'|ezurl}>login</a>.</p>
+            {/if}
+            </div>
+    	
+            <div id="overlay1" style="visibility:hidden;">
+                <h3>What is Automatic Delivery?</h3>
+                <p>Use our Automatic Delivery service to have this item sent to you as often as you like.  You’ll get priority on our inventory and save time.</p>
+                <p>By placing your initial Automatic Delivery order and setting up an Automatic Delivery schedule, you authorize us to charge the same credit card for future Automatic Delivery orders until you cancel.</p>
+                <p>Since the accuracy of your credit card, shipping and billing information is vital to Automatic Delivery, please promptly submit changes through the my account section.</p>
+            </div>
+            
+    {* Related products. *}
+            
+            {def $related_purchase=fetch( 'shop', 'related_purchase', hash( 'contentobject_id', $node.object.id, 'limit', 2 ) )}
+            {if $related_purchase}
+            <div class="attribute-short-wide">
+                <h2 class="uppercase">{'People who bought this also bought'|i18n( 'design/ezwebin/full/product' )}</h2>
+                {foreach $related_purchase as $product}
+                    <span>{content_view_gui view=text_linked content_object=$product}</span>
+                    <p class="price">{attribute_view_gui attribute=$product.data_map.price}</p>
+                {/foreach}
+            </div>
+	        {/if}
+	        {undef $related_purchase}
 	    </div>
 	    
 
