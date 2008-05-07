@@ -77,7 +77,6 @@
 {attribute_view_gui attribute=$child.data_map.image image_class=tooltip}
 <p>{attribute_view_gui attribute=$child.data_map.short_description}</p>
 <p>{attribute_view_gui attribute=$child.data_map.description}</p>
-<p>(no Options)</p>
 <span class="row-hr"><span>Weight</span><span>Price</span></span>
 <span class="row-td"><span>{$child.data_map.weight.data_float|wash} LBS</span><span>{$child.data_map.price.data_float|sum($option.additional_price)|l10n(currency)}</span></span>
 </div>
@@ -98,7 +97,6 @@
         {/foreach}
         {undef $i}
 </table>
-
 {/if}
 <input type="submit" class="flat-right" name="ActionAddToBasket" value="{"Add to basket"|i18n("design/ezwebin/full/product")}" />
 </form>
