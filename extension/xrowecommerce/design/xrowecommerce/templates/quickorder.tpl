@@ -43,11 +43,10 @@
 <p>Option:</p>
 <h4>{$option.comment|wash()}</h4>
 <p>{$option.description|wash()}</p>
-
-
-{*$option|attribute(show, 2)*}
+<span class="row-hr"><span>Weight</span><span>Price</span></span>
+<span class="row-td"><span>{$option.weight|wash}</span><span>{$child.data_map.price.data_float|sum($option.additional_price)|l10n(currency)}</span></span>
 </div>
-							<script>
+							<script type="text/javascript">
 						            YAHOO.namespace("example.container");
 						            function init() {ldelim}
 						                // Build overlay1 based on markup, initially hidden, fixed to the center of the viewport, and 300px wide
@@ -79,10 +78,11 @@
 <p>{attribute_view_gui attribute=$child.data_map.short_description}</p>
 <p>{attribute_view_gui attribute=$child.data_map.description}</p>
 <p>(no Options)</p>
-
-{*$option|attribute(show, 2)*}
+<span class="row-hr"><span>Weight</span><span>Price</span></span>
+<span class="row-td"><span>{$child.data_map.weight.data_float|wash}LBS</span><span>{$child.data_map.price.data_float|sum($option.additional_price)|l10n(currency)}</span></span>
+{*$child.data_map|attribute(show, 2)*}
 </div>
-                            <script>
+                            <script type="text/javascript">
                                     YAHOO.namespace("example.container");
                                     function init() {ldelim}
                                         // Build overlay1 based on markup, initially hidden, fixed to the center of the viewport, and 300px wide
