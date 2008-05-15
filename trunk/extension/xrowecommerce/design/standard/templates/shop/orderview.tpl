@@ -80,8 +80,6 @@
                     </tr>
                     <tr>
                         <td>
-                        {*if or(ne($vary.weight, false()), ne($vary.weight, "0"))}Weight: {$vary.weight} lbs
-                        {/if*}
                         Weight: {$vary.weight|wash()} lbs
                         </td>
                     </tr>
@@ -108,40 +106,12 @@
                     </tr>
                     <tr>
                         <td>
-                        {*if or(ne($vary.weight, false()), ne($vary.weight, "0"))}Weight: {$vary.weight} lbs
-                        {/if}
-                        {$prod.data_map|attribute(show)*}
                         Weight: {attribute_view_gui attribute=$prod.data_map.weight} lbs
                         </td>
                     </tr>
                     {/if}
                 </table>
 
-
-
-        {*section show=$product_item.item.item_object.option_list}
-              <table class="shop-option_list">
-         {section var=option_item loop=$product_item.item_object.option_list}
-         <tr>
-         {<td class="shop-option_name">{$option_item.name}</td>}
-             <td class="shop-option_value">
-                 {def $vary=$product_item.item_object.contentobject.data_map.variation.content.option_list[$product_item.item_object.option_list.0.option_item_id]}
-                 {$option_item.value}<br />
-                 <b>{$vary.comment}</b><br />
-                 {if or(ne($vary.weight, false()), ne($vary.weight, "0"))}Weight:{$vary.weight} lbs</b><br />{/if}
-             </td>
-         </tr>
-         {/section}
-         </table>
-         {section-else}
-             <table class="shop-option_list">
-                 <tr>
-                    {def $prod=fetch( 'content', 'node', hash( 'node_id', $product_item.node_id ) )}
-                     <td class="shop-option_value">{$prod.data_map.product_id.content}</td>
-                 </tr>
-            </table>
-
-         {/section*}
         </td>
         <td valign="top" class="basketspace">
         {$product_item.vat_value} %
@@ -223,12 +193,6 @@
 {def $user_state=wrap_user_func('getXMLString', array('state', $order.data_text_1))}
 
 {def $user_country=wrap_user_func('getXMLString', array('country', $order.data_text_1))}
-
-{* Format:
-    UTM:T|[order-id]|[affiliation]|
-    [total]|[tax]| [shipping]|[city]|[state]|[country] UTM:I|[order-id]|[sku/code]|[productname]|[category]|[price]|
-    [quantity]
-*}
 
     <form style="display:none;" name="utmform">
     <textarea id="utmtrans">UTM:T|[{$order.order_nr}]|[alconeco]|

@@ -43,7 +43,7 @@ for (i = 0; i < field.length; i++)
 </script>
 <div class="shop-basket">
     <form method="post" name="basket" action={"/shop/basket/"|ezurl}>
-        <h2>{"Basket"|i18n("design/base/shop")}</h2>
+        <h2>{"Shopping Cart"|i18n("design/base/shop")}</h2>
         <div class="shopping_cart_path">
             <div class="shopping_cart_path_select">1. Cart</div>
             <div class="shopping_cart_path_text">2. Billing, Shipping and Coupons</div>
@@ -55,7 +55,7 @@ for (i = 0; i < field.length; i++)
         <div class="break"></div>
         {section show=$removed_items}
             <div class="warning">
-            <h2>{"The following items were removed from your basket, because the products were changed"|i18n("design/base/shop",,)}</h2>
+            <h2>{"The following items were removed from your cart, because the products were changed"|i18n("design/base/shop",,)}</h2>
                 <ul>
                     {section name=RemovedItem loop=$removed_items}
                     <li>
@@ -335,7 +335,7 @@ for (i = 0; i < field.length; i++)
                         <input type="image" class="standard" name="ContinueShoppingButton" value="Continue" src={"images/continue_shopping.gif"|ezdesign()}/>
                     </td>
                     <td>
-                        <b>{"You have no products in your basket"|i18n("design/base/shop")}</b>
+                        <b>{"You have no products in your cart"|i18n("design/base/shop")}</b>
                     </td>
                 </tr>
             </table>

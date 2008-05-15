@@ -360,7 +360,7 @@ if (document.register.Shipping.checked == false)
         </td>
         <td>
             <p>
-            My billing and shipping addresses are identical <b>(please leave form blank below)</b>. <span class="required">* Required field</span>
+            My billing and shipping addresses are identical. <span class="required">* Required field</span>
         </p>
         </td>
         </tr>

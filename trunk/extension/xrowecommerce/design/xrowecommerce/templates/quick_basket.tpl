@@ -1,5 +1,5 @@
 <div>
-   <h1>Basket<//h1>
+   <h1>Cart<//h1>
 </div>
 
 <form class="qbasketform" method="post" action={"/shop/basket"|ezurl}>
@@ -54,7 +54,7 @@
     <input type="submit" class="flat-right" name="CheckoutButton" value="{"Check out"|i18n("design/base")}" />
 </form>
 {else}
-<p class="price">Your basket is empty.</p><br />
+<p class="price">Your cart is empty.</p><br />
 <p>Please <b>select the product-cathegories</b> on the left to view and order products.</p>
 {/if}
 {/def}

@@ -1,5 +1,5 @@
 <form method="post" action={"xrowecommerce/multiadd"|ezurl}>
-<input type="submit" class="flat-right" name="ActionAddToBasket" value="{"Add to basket"|i18n("design/ezwebin/full/product")}" />
+<input type="submit" class="flat-right" name="ActionAddToBasket" value="{"Add to cart"|i18n("design/ezwebin/full/product")}" />
 <input type="hidden" name="ContentNodeID" value="{$node.node_id}" />
 <input type="hidden" name="ContentObjectID" value="{$node.object.id}" />
 <input type="hidden" name="ViewMode" value="full" />
@@ -98,7 +98,7 @@
         {undef $i}
 </table>
 {/if}
-<input type="submit" class="flat-right" name="ActionAddToBasket" value="{"Add to basket"|i18n("design/ezwebin/full/product")}" />
+<input type="submit" class="flat-right" name="ActionAddToBasket" value="{"Add to cart"|i18n("design/ezwebin/full/product")}" />
 </form>
 {undef}
 
