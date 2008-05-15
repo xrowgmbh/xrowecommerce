@@ -57,9 +57,6 @@
                     <th>
                         {"Unit Price"|i18n("design/base/shop")}
                     </th>
-                    {*<th>
-                        {"Discount"|i18n("design/base/shop")}
-                    </th>*}
                     <th align="right">
                         {"Total Price"|i18n("design/base/shop")}
                     </th>
@@ -102,8 +99,6 @@
                     </tr>
                     <tr>
                         <td>
-                        {*if or(ne($vary.weight, false()), ne($vary.weight, "0"))}Weight: {$vary.weight} lbs
-                        {/if*}
                         Weight: {$vary.weight|wash()} lbs
                         </td>
                     </tr>
@@ -130,9 +125,6 @@
                     </tr>
                     <tr>
                         <td>
-                        {*if or(ne($vary.weight, false()), ne($vary.weight, "0"))}Weight: {$vary.weight} lbs
-                        {/if}
-                        {$prod.data_map|attribute(show)*}
                         Weight: {attribute_view_gui attribute=$prod.data_map.weight} lbs
                         </td>
                     </tr>
@@ -143,38 +135,12 @@
                         {else}
                             <img src={"images/no_pic.jpg"|ezdesign} /></td>
                         {/if}
-{*                  <td>
-                        {section show=$product_item.item.item_object.option_list}
-                        <table class="shop-option_list">
-                            {section var=option_item loop=$product_item.item_object.option_list}
-                            <tr>
-                                <td class="shop-option_value">
-                                   {def $vary=$product_item.item_object.contentobject.data_map.variation.content.option_list[$product_item.item_object.option_list.0.option_item_id]}
-                                    {$option_item.value}
-                                    <b>{$vary.comment}</b>
-                                    {if or(ne($vary.weight, false()), ne($vary.weight, "0"))}Weight:{$vary.weight} lbs</b><br />{/if}
-                                </td>
-                            </tr>
-                        </table>
-                         {/section}
-                         {section-else}
-                            <table class="shop-option_list">
-                                <tr>
-                                    <td class="shop-option_value"></td>
-                                </tr>
-                            </table>
-                         {/section}
-                    </td>
-*}
             <td class="{$product_item.sequence} product-name basketspace">
                {$product_item.vat_value} %
             </td>
             <td class="{$product_item.sequence} product-name basketspace">
                {$product_item.price_ex_vat|l10n( 'currency', $locale, $symbol )}
             </td>
-            {*<td class="{$product_item.sequence} product-name">
-                {$product_item.discount_percent}%
-            </td>*}
             <td class="{$product_item.sequence} product-name basketspace">
                 {$product_item.total_price_ex_vat|l10n( 'currency', $locale, $symbol )}
             </td>
@@ -227,7 +193,6 @@
     </tr>
     <tr>
         <td class="{$OrderItem:sequence} line">
-        {* Tax ( {$percentage} % ):*}
         {"Tax"|i18n("design/base/shop")}:
         </td>
         <td class="{$OrderItem:sequence} line align_right">
@@ -248,25 +213,9 @@
         </td>
     </tr>
     </table>
-    {else}{* If the shopping cart is empty after removing hazardous items... *}
+    {else}
     <h3>Sorry, there are no items left in your cart.</h3>
     {/if}
-    {*
-        <div class="buttonblock">
-    <table>
-        <tr>
-            <td>
-                <input class="button" type="submit" name="CancelButton" value="{'Cancel'|i18n('design/base/shop')}" /> &nbsp;
-                <input type="image" type="submit" name="CancelButton" src={"images/cancel_small.gif"|ezdesign()} value="Cancel"> &nbsp;
-            </td>
-            <td>
-                <input class="button" type="submit" name="ConfirmOrderButton" value="{'Confirm'|i18n('design/base/shop')}" /> &nbsp;
-                <input type="image" type="submit" name="ConfirmOrderButton" src={"images/continue_small.gif"|ezdesign()} value="Confirm"> &nbsp;
-            </td>
-        </tr>
-    </table>
-        </div>
-    *}
     </form>
 
 </div>
