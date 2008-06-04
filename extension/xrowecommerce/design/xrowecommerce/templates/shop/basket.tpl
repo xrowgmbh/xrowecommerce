@@ -117,9 +117,6 @@ for (i = 0; i < field.length; i++)
             <th align="right">
                 {"Unit Price"|i18n("design/base/shop")}
             </th>
-            {*<th align="right">
-                {"Discount"|i18n("design/base/shop")}
-            </th>*}
             <th align="right">
                 {"Total Price"|i18n("design/base/shop")}
             </th>
@@ -160,8 +157,6 @@ for (i = 0; i < field.length; i++)
                     </tr>
                     <tr>
                         <td>
-                        {*if or(ne($vary.weight, false()), ne($vary.weight, "0"))}Weight: {$vary.weight} lbs
-                        {/if*}
                         Weight: {$vary.weight|wash()} lbs
                         </td>
                     </tr>
@@ -188,39 +183,12 @@ for (i = 0; i < field.length; i++)
                     </tr>
                     <tr>
                         <td>
-                        {*if or(ne($vary.weight, false()), ne($vary.weight, "0"))}Weight: {$vary.weight} lbs
-                        {/if}
-                        {$prod.data_map|attribute(show)*}
                         Weight: {attribute_view_gui attribute=$prod.data_map.weight} lbs
                         </td>
                     </tr>
                     {/if}
                     
                 </table>
-                
-                
-                {*section show=$product_item.item.item_object.option_list}
-        <table>
-            <tr>
-                <td class="{$product_item.sequence}">
-                    <table class="shop-option_list">
-                    {section var=option_item loop=$product_item.item_object.option_list}
-                </td>
-            </tr>
-            <tr>
-                <td class="shop-option_value">
-                    {def $vary=$product_item.item_object.contentobject.data_map.variation.content.option_list[$product_item.item_object.option_list.0.option_item_id]}
-                    {$option_item.value}
-                    <b>{$vary.comment}</b>
-                    {if or(ne($vary.weight, false()), ne($vary.weight, "0"))}Weight:{$vary.weight} lbs</b>
-                    {/if}
-                </td>
-            </tr>
-         {/section}
-         </table>
-     </table>
-     {/section}
-</td>*}
         <td class="basketspace">
             {if ne( $product_item.vat_value, -1 )}
                 {$product_item.vat_value} %
@@ -268,17 +236,8 @@ for (i = 0; i < field.length; i++)
     </tr>
 {def $taxpercent = mul( div(sub($basket.total_inc_vat, $basket.total_ex_vat), $basket.total_ex_vat), 100)
      $percentage = mul( div(sub($basket.total_inc_vat, $basket.total_ex_vat), $basket.total_ex_vat), 100)|l10n('number') }
-{*if $taxpercent|eq(0)|not}
 
-     <tr>
-         <td colspan="6" class="align_right">
-         {"Tax"|i18n("design/base/shop")}:
-         <b class="price">{$basket.total_inc_vat|sub($basket.total_ex_vat)|l10n( 'currency', $locale, $symbol )}</b>
-         </td>
-     </tr>
-{/if*}
     {if is_set( $shipping_info )}
-    {* Show shipping type/cost. *}
     <tr>
         <td class="product-subtotal" colspan="5"><a href={$shipping_info.management_link|ezurl}>{'Shipping'|i18n( 'design/admin/shop/basket' )}{if $shipping_info.description} ({$shipping_info.description}){/if}</a>:
             {$shipping_info.cost|l10n( 'currency', $locale, $symbol )}
@@ -287,7 +246,6 @@ for (i = 0; i < field.length; i++)
             &nbsp;
         </td>
     </tr>
-    {* Show order total *}
     <tr>
         <td class="product-subtotal" colspan="5"><b>{'Order total'|i18n( 'design/admin/shop/basket' )}</b>:
             {$total_inc_shipping_inc_vat|l10n( 'currency', $locale, $symbol )}
@@ -332,10 +290,10 @@ for (i = 0; i < field.length; i++)
             <table>
                 <tr>
                     <td>
-                        <input type="image" class="standard" name="ContinueShoppingButton" value="Continue" src={"images/continue_shopping.gif"|ezdesign()}/>
+                        <a href="../"><input type="submit" class="standard" name="ContinueShoppingButton" value="Continue" src={"images/continue_shopping.gif"|ezdesign()}/></a>
                     </td>
                     <td>
-                        <b>{"You have no products in your cart"|i18n("design/base/shop")}</b>
+                        <b>{"You have no products in your cart"|i18n("design/base/shop")}</b>               
                     </td>
                 </tr>
             </table>

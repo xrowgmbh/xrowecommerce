@@ -289,6 +289,7 @@ function initShowHideDivs()
 }
 {/literal}
 </script>
+<div class="question_answer_div">
 <div class="dhtmlgoodies_question">Q: What are the advantages of security code verification?</div>
 
 <div class="dhtmlgoodies_answer">
@@ -303,6 +304,7 @@ function initShowHideDivs()
 			<li>Deters fraud</li>
 		</ul>
 	</div>
+</div>
 </div>
 
 <script type="text/javascript">
