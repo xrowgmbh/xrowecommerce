@@ -7,8 +7,8 @@
     <div>1. Cart</div>
     <div>2. Billing, Shipping and Coupons</div>
     <div>3. Confirmation</div>
-    <div class="shopping_cart_path_select">4. Payment info</div>
-    <div>5. Order completed</div>
+    <div>4. Payment info</div>
+    <div class="shopping_cart_path_select">5. Order completed</div>
     <div>6. Review order</div>
     </div>
     <div class="break"></div>
