@@ -128,14 +128,15 @@ body{
 }
 .dhtmlgoodies_question{	/* Styling question */
 	/* Start layout CSS */
-	color:#FFF;
+	color: #365638;
+	font-weight: bold;
 	font-size:0.9em;
 	background-color:#317082;
 	width:401px;
-        margin-left:12px;
+    margin-left:12px;
 	margin-bottom:2px;
 	margin-top:-62px;
-        padding-top:2px;
+    padding-top:2px;
 	padding-left:2px;
 	background-image:url('images/bg_answer.gif');
 	background-repeat:no-repeat;
@@ -152,7 +153,7 @@ body{
 	border:1px solid #317082;
 	background-color:#E2EBED;
 	width:400px;
-        margin-left:12px;
+    margin-left:12px;
 
 	/* End layout CSS */
 

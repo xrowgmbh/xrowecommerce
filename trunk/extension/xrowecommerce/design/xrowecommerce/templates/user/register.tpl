@@ -268,7 +268,8 @@
     <div class="labelbreak"></div>
     {def $country_default_ini=ezini( 'ShopAccountHandlerDefaults', 'DefaultCountryCode', 'site.ini' )}
     {def $country_default=$country_default_ini}
-    {def $countries=wrap_user_func('getCountryList', array(false, false))}
+    {def $countries=fetch( 'xrowecommerce', 'get_country_list', hash() )}
+    {*$countries|attribute(show,2)*}
     {def $is_set_b=is_set($country)}
     {if $is_set_b}{def $country=$country_default_ini}{else}{def $country=''}{/if}
 
