@@ -1,6 +1,5 @@
 {* User - Edit *}
 
-{*<h1>Login, Billing and Shipping Information</h1>*}
     <form enctype="multipart/form-data" method="post" action={concat( "/content/edit/", $object.id, "/", $edit_version, "/", $edit_language|not|choose( concat( $edit_language, "/" ), '' ) )|ezurl}>
     <input type="hidden" name="ContentLanguageCode" value="eng-US" />
         <br />

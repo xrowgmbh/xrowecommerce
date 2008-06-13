@@ -7,8 +7,7 @@ class xrowECommerceFunctionCollection
     }
 	function getCountryList()
 	{
-        $countryType = new eZCountryType();
-        return array( 'result' => $countryType->fetchCountryList() );
+        return array( 'result' => eZCountryType::fetchCountryList() );
 	}
 }
 
