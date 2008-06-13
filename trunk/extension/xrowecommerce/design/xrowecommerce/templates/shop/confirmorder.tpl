@@ -57,9 +57,6 @@
                     <th>
                         {"Unit Price"|i18n("design/base/shop")}
                     </th>
-                    {*<th>
-                        {"Discount"|i18n("design/base/shop")}
-                    </th>*}
                     <th align="right">
                         {"Total Price"|i18n("design/base/shop")}
                     </th>
@@ -143,29 +140,7 @@
                         {else}
                             <img src={"images/no_pic.jpg"|ezdesign} /></td>
                         {/if}
-{*                  <td>
-                        {section show=$product_item.item.item_object.option_list}
-                        <table class="shop-option_list">
-                            {section var=option_item loop=$product_item.item_object.option_list}
-                            <tr>
-                                <td class="shop-option_value">
-                                   {def $vary=$product_item.item_object.contentobject.data_map.variation.content.option_list[$product_item.item_object.option_list.0.option_item_id]}
-                                    {$option_item.value}
-                                    <b>{$vary.comment}</b>
-                                    {if or(ne($vary.weight, false()), ne($vary.weight, "0"))}Weight:{$vary.weight} lbs</b><br />{/if}
-                                </td>
-                            </tr>
-                        </table>
-                         {/section}
-                         {section-else}
-                            <table class="shop-option_list">
-                                <tr>
-                                    <td class="shop-option_value"></td>
-                                </tr>
-                            </table>
-                         {/section}
-                    </td>
-*}
+
             <td class="{$product_item.sequence} product-name basketspace">
                {$product_item.vat_value} %
             </td>

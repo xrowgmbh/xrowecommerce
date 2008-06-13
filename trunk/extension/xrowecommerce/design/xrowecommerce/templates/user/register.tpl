@@ -1,15 +1,14 @@
 {def $ca=$content_attributes_data_map
      $castring="ContentObjectAttribute_ezstring_data_text_"}
 
-     
 <div class="shop-basket">
     <form enctype="multipart/form-data"  action={"/user/register/"|ezurl} method="post" name="Register">
     <input type="hidden" name="RedirectAfterUserRegister" value={"/"|ezurl()} />
     <h2>{"Register user"|i18n("design/standard/user")}</h2>
     <br />
-    
+
     {* left frame *}
-        
+
         <div style="border: 1px solid #ebeeef; width: 290px; float: left; display: inline; margin:5px; padding: 8px;">
             <span class="heading1">Account Information</span>
             <br />
@@ -17,16 +16,16 @@
                 Enter your email address, login and password.<br /> <span class="required">* Required field</span><br />
             </p>
             <br />
-            
+
             <div class="block">
             <label><span class="required">*</span>Login</label>
             	<div class="labelbreak"></div>
             	<input type="hidden" name="ContentObjectAttribute_id[]" value="{$ca.user_account.id}" />
             	<input type="text" name="ContentObjectAttribute_data_user_login_{$ca.user_account.id}" value="{$ca.user_account.content.login}" size="20">
-            	
+
             </div>
             <div class="break"></div>
-            
+
             <div class="block">
             	<label><span class="required">*</span>E-mail</label>
             	<div class="labelbreak"></div>
@@ -34,14 +33,14 @@
             	<input type="hidden" name="ContentObjectAttribute_id[]" value="{$ca.user_account.id}" />
             </div>
             <div class="break"></div>
-            
+
             <div class="block">
             	<label><span class="required">*</span>Password</label>
             	<div class="labelbreak"></div>
             	<input class="box" type="password" name="ContentObjectAttribute_data_user_password_{$ca.user_account.id}" value="{section show=$ca.user_account.content.original_password}{$ca.user_account.content.original_password}{section-else}{section show=$ca.user_account.content.has_stored_login}_ezpassword{/section}{/section}" size="20" />
             </div>
             <div class="break"></div>
-            
+
             <div class="block">
             	<label><span class="required">*</span>Confirm Password</label>
             	<div class="labelbreak"></div>
@@ -49,10 +48,6 @@
             </div>
             <div class="break"></div>        
             <br />
-            {*<div class="buttonblock" style="text-align: right;">
-                <input type="image" src={"images/cancel_small.gif"|ezdesign()} name="DCancelButton" value="{'Cancel'|i18n('design/base')}" />
-                <input type="image" src={"images/update.gif"|ezdesign()} name="PublishButton" value="Update">
-            </div>*}
         </div>
         
         {* end of left frame *}
@@ -274,11 +269,11 @@
     {if $is_set_b}{def $country=$country_default_ini}{else}{def $country=''}{/if}
 
         <input type="hidden" name="ContentObjectAttribute_id[]" value="{$ca.country.id}" />
-            <select name="{$castring}{$ca.country.id}" style="width: 17 0px;">
+            <select name="ContentObjectAttribute_country_{$ca.country.id}" style="width: 17 0px;">
                 <option value=""></option>
                 {foreach $countries as $country_list_item}
                  {def $country_list_item_code=''}
-                 {if $country_list_item.Alpha3|eq('')}{set $country_list_item_code=$country_list_item.Alpha2}{else}{set $country_list_item_code=$country_list_item.Alpha3}{/if}
+                 {set $country_list_item_code=$country_list_item.Alpha2}
                  <option value="{$country_list_item_code}"{if eq( $country_default, $country_list_item_code )} selected="selected"{/if}{if eq( $country, $country_list_item_code)} selected="selected"{/if}>{$country_list_item.Name}</option>
                   {undef $country_list_item_code}
                 {/foreach}
@@ -295,9 +290,6 @@
             </div>
         </div>
         <div style="width: 390px; float: left; display: inline; margin:5px; padding: 8px;">
-            {*<div style="text-align: right;">
-                <input type="image" src={"images/update.gif"|ezdesign()} name="PublishButton" value="Update">
-            </div>*}
         </div>
     
         <div style="border: 1px solid #ebeeef; width: 390px; float: left; display: inline; margin:5px; padding: 8px;">
@@ -305,18 +297,18 @@
             <table border="0">
                 <tr>
                     <td>
-                        <input name="ContentObjectAttribute_data_boolean_{$ca.shippingaddress.id}" value="" type="checkbox" {$ca.shippingaddress.data_int|choose( '', 'checked="checked"' )} >
+                        <input onchange="change(this.checked);" name="ContentObjectAttribute_data_boolean_{$ca.shippingaddress.id}" value="" type="checkbox" {$ca.shippingaddress.data_int|choose( '', 'checked="checked"' )} />
                         <input type="hidden" name="ContentObjectAttribute_id[]" value="{$ca.shippingaddress.id}" />
                     </td>
                     <td>
                         <p>
-                            My billing and shipping addresses are identical (please leave form blank below).
+                            My billing and shipping addresses are identical.
                         </p>
                     </td>
                 </tr>
             </table>
 
-            <div class="block">
+            <div class="block" id="shippinginfo")}>
     
             	<div style="width: 180px; display: inline; float: left;">
                 	<label><span class="required">*</span>First name</label>
@@ -497,20 +489,17 @@
     {if $is_set_s}{def $s_country=$country_default_ini}{else}{def $s_country=''}{/if}
 
         <input type="hidden" name="ContentObjectAttribute_id[]" value="{$ca.s_country.id}" />
-            <select name="{$castring}{$ca.s_country.id}" style="width: 17 0px;">
-            {* <select name="s_Country" style="width: 17 0px;"> *}
+            <select name="ContentObjectAttribute_country_{$ca.s_country.id}" style="width: 17 0px;">
                 <option value=""></option>
                 {foreach $countries as $country_list_item}
                  {def $country_list_item_code=''}
-                 {if $country_list_item.Alpha3|eq('')}{set $country_list_item_code=$country_list_item.Alpha2}{else}{set $country_list_item_code=$country_list_item.Alpha3}{/if}
+                 {set $country_list_item_code=$country_list_item.Alpha2}
                  <option value="{$country_list_item_code}"{if eq( $country_default, $country_list_item_code )} selected="selected"{/if}{if eq( $s_country, $country_list_item_code)} selected="selected"{/if}>{$country_list_item.Name}</option>
                   {undef $country_list_item_code}
                 {/foreach}
             </select>
 </div>
     <div class="break"></div>
-
-
                 <div class="block">
                 	<label><span class="required">*</span>Phone</label>
                 	<div class="labelbreak"></div>
@@ -531,72 +520,32 @@
                     <div style="text-align: right;">
                     <input class="button" type="submit" name="DCancelButton" value="{'Cancel'|i18n('design/base')}" />
                     <input class="right-arrow" type="submit" name="PublishButton" value="Update">
-                    {*<input type="image" src={"images/update.gif"|ezdesign()} name="PublishButton" value="Update">*}
                     </div>
                     </div>
-{*
-                    <div style="border: 1px solid #ebeeef; width: 390px; float: left; display: inline; margin:5px; padding: 8px;">
-                <span class="heading1">My Colors</span><br />
-                <br />
-                
-                <table>
-                    <tr>
-                        <td>Eyes:</td>
-                        <td>
-                            {def $selected_id_array=$ca.eyes.content
-                                $attribute=$ca.eyes
-                                $attribute_base=ContentObjectAttribute}
-                            
-                                    <input type="hidden" name="{$attribute_base}_ezselect_selected_array_{$attribute.id}" value="">
-                                    <select style="width: 200px;" id="ezcoa-{if ne( $attribute_base, 'ContentObjectAttribute' )}{$attribute_base}-{/if}{$attribute.contentclassattribute_id}_{$attribute.contentclass_attribute_identifier}" class="ezcc-{$attribute.object.content_class.identifier} ezcca-{$attribute.object.content_class.identifier}_{$attribute.contentclass_attribute_identifier}" name="{$attribute_base}_ezselect_selected_array_{$attribute.id}[]" {section show=$attribute.class_content.is_multiselect}multiple{/section}>
-                                    {section var=Options loop=$attribute.class_content.options}
-                                    <option value="{$Options.item.id}" {section show=$selected_id_array|contains( $Options.item.id )}selected="selected"{/section}>{$Options.item.name|wash( xhtml )}</option>
-                                    {/section}
-                                    </select>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Hair:</td>
-                        <td>
-                            {def $selected_id_array=$ca.hair.content
-                                $attribute=$ca.hair
-                                $attribute_base=ContentObjectAttribute}
-                            
-                                    <input type="hidden" name="{$attribute_base}_ezselect_selected_array_{$attribute.id}" value="">
-                                    <select style="width: 200px;" id="ezcoa-{if ne( $attribute_base, 'ContentObjectAttribute' )}{$attribute_base}-{/if}{$attribute.contentclassattribute_id}_{$attribute.contentclass_attribute_identifier}" class="ezcc-{$attribute.object.content_class.identifier} ezcca-{$attribute.object.content_class.identifier}_{$attribute.contentclass_attribute_identifier}" name="{$attribute_base}_ezselect_selected_array_{$attribute.id}[]" {section show=$attribute.class_content.is_multiselect}multiple{/section}>
-                                    {section var=Options loop=$attribute.class_content.options}
-                                    <option value="{$Options.item.id}" {section show=$selected_id_array|contains( $Options.item.id )}selected="selected"{/section}>{$Options.item.name|wash( xhtml )}</option>
-                                    {/section}
-                                    </select>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Skin Type:</td>
-                        <td>
-                            {def $selected_id_array=$ca.skin_type.content
-                                $attribute=$ca.skin_type
-                                $attribute_base=ContentObjectAttribute}
-                        
-                                <input type="hidden" name="{$attribute_base}_ezselect_selected_array_{$attribute.id}" value="">
-                                <select style="width: 200px;" id="ezcoa-{if ne( $attribute_base, 'ContentObjectAttribute' )}{$attribute_base}-{/if}{$attribute.contentclassattribute_id}_{$attribute.contentclass_attribute_identifier}" class="ezcc-{$attribute.object.content_class.identifier} ezcca-{$attribute.object.content_class.identifier}_{$attribute.contentclass_attribute_identifier}" name="{$attribute_base}_ezselect_selected_array_{$attribute.id}[]" {section show=$attribute.class_content.is_multiselect}multiple{/section}>
-                                {section var=Options loop=$attribute.class_content.options}
-                                <option value="{$Options.item.id}" {section show=$selected_id_array|contains( $Options.item.id )}selected="selected"{/section}>{$Options.item.name|wash( xhtml )}</option>
-                                {/section}
-                                </select>
-                        </td>
-                    </tr>
-                </table>
-                <br />
-
-            </div>
-            <div style="width: 390px; float: left; display: inline; margin:5px; padding: 8px;">
-                <div style="text-align: right;">
-                    <input type="image" src={"images/update.gif"|ezdesign()} name="PublishButton" value="Update">
-                </div>
-            </div>
-*}                
-        </div>
+       </div>
         {* end of right frame *}
        
     </form>        
 </div>
+
+<script type="text/javascript">
+function change(status)
+{ldelim}
+if (status)
+    {ldelim}
+    document.getElementById("shippinginfo").style.display = 'none';
+    {rdelim}
+    else
+    {ldelim}
+            document.getElementById("shippinginfo").style.display = 'block';
+    {rdelim}
+{rdelim}
+
+function shipping(status)
+{ldelim}
+if (document.register.Shipping.checked == false)
+    {ldelim}
+        status = document.register.scountry.value;
+    {rdelim}
+{rdelim}
+</script>

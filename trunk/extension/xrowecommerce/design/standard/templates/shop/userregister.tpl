@@ -22,7 +22,8 @@
 {/section}
 <div class="userreg_left">{* LEFT COL START *}
 <div class="userreg_left_div">
-<span class="headingur">Billing Information</span><br /><p>
+<span class="headingur">Billing Information</span><br />
+<p>
 Please enter your billing address exactly as it appears on your credit card statement.
 <div class="labelbreak"></div>
 <span class="required">* Required field</span></p>
@@ -354,8 +355,8 @@ if (document.register.Shipping.checked == false)
 <table border="0">
         <tr>
         <td>
-            <input name="Shipping" value="1" type="checkbox" {$shipping|choose( '', 'checked="checked"' )}
-            onchange="change(this.checked); shipping(document.register.country.value);"
+            <input name="Shipping" value="1" type="checkbox" $shipping|choose( '', 'checked="checked"' )
+            {onchange="change(this.checked); shipping(document.register.country.value);"
             />
         </td>
         <td>
@@ -364,16 +365,6 @@ if (document.register.Shipping.checked == false)
         </p>
         </td>
         </tr>
-{*
-        <tr>
-        <td>
-            <input name="SaveShopAccountToUser" value="1" type="checkbox" {$saveaddress|choose( '', 'checked="checked"' )} />
-        </td>
-        <td>
-            <p>Save changes to my address(es) into my account for use <i>next</i> order.</p>
-        </td>
-        </tr>
-*}
         </table>
 <div class="block" id="shippinginfo" {$shipping|choose( "style='display: block;'", "style='display: none;'")}>
 
@@ -584,14 +575,10 @@ if (document.register.Shipping.checked == false)
     <div class="break"></div>
 
     </div>
-    {* <br /> *}
-
   <br />
 <div class="buttonblock">
     <input class="left-arrow" type="submit" name="CancelButton" value="{'Cancel'|i18n('design/base/shop')}" />
     <input class="right-arrow" type="submit" name="StoreButton" value="{'Continue'|i18n('design/base/shop')}" />
-
-    
 </div>
 
 <br />

@@ -8,14 +8,9 @@
 {/if}
 {if ezhttp( 'print', 'get' )|eq('1')}
 
-{*
-{if is_set( ezhttp( 'print', 'get' ) )}
-|eq('1')
-*}
-
 {include uri="design:shop/invoicepart.tpl"}
 <p style="clear:both;page-break-after:always">&nbsp;</p>
-{include uri="design:shop/invoicepart.tpl"  packingslip=1}
+{include uri="design:shop/invoicepart.tpl" packingslip=true()}
 {else}
 
 <div class="context-block">
