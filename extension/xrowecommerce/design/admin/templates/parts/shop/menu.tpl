@@ -26,10 +26,8 @@
 {section-else}
 
 <ul>
-{*  <li><div><a href={'/shop/discountgroup/'|ezurl}>{'Discounts'|i18n( 'design/admin/parts/shop/menu' )}</a></div></li> *}
     <li><div><a href={'/shop/orderlist/'|ezurl}>{'Orders'|i18n( 'design/admin/parts/shop/menu' )}</a></div></li>
 
-{*  <li><div><a href={'/shop/status/'|ezurl}>{'Order status'|i18n( 'design/admin/parts/shop/menu' )}</a></div></li> *}
     <li><div><a href={'/shop/statistics/'|ezurl}>{'Product statistics'|i18n( 'design/admin/parts/shop/menu' )}</a></div></li>
     <li><div><a href={'/layout/set/print/orderedit/taxes/'|ezurl} target="_blank">{'Order statistics'|i18n( 'design/admin/parts/shop/menu' )}</a></div></li>
 
@@ -40,15 +38,6 @@
 
     <li><div><a href={'https://account.authorize.net/ui/themes/anet/merch.aspx?page=history&sub=unsettled'}>{'Payments Pending'|i18n( 'design/admin/parts/shop/menu' )}</a></div></li>
     <li><div><a href={'https://account.authorize.net/ui/themes/anet/merch.aspx?page=terminal'}>{'Payment Terminal'|i18n( 'design/admin/parts/shop/menu' )}</a></div></li>
-
-{*
-    <li><div><a href={'/shop/vattype/'|ezurl}>{'VAT types'|i18n( 'design/admin/parts/shop/menu' )}</a></div></li>
-    <li><div><a href={'/shop/vatrules/'|ezurl}>{'VAT rules'|i18n( 'design/admin/parts/shop/menu' )}</a></div></li>
-    <li><div><a href={'/shop/productcategories/'|ezurl}>{'Product categories'|i18n( 'design/admin/parts/shop/menu' )}</a></div></li>
-    <li><div><a href={'/shop/currencylist/'|ezurl}>{'Currencies'|i18n( 'design/admin/parts/shop/menu' )}</a></div></li>
-    <li><div><a href={'/shop/preferredcurrency/'|ezurl}>{'Preferred currency'|i18n( 'design/admin/parts/shop/menu' )}</a></div></li>
-    <li><div><a href={'/shop/productsoverview/'|ezurl}>{'Products overview'|i18n( 'design/admin/parts/shop/menu' )}</a></div></li>
-*}
 
     <li><div><a href={'/shop/archivelist/'|ezurl}>{'Archive'|i18n( 'design/admin/parts/shop/menu' )}</a></div></li>
     <li><div><a href={'/orderedit/product/'|ezurl}>{'Zero weight prods'|i18n( 'design/admin/parts/shop/menu' )}</a></div></li>

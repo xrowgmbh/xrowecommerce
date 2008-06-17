@@ -1,6 +1,5 @@
 {def $ca=$content_attributes_data_map
      $castring="ContentObjectAttribute_ezstring_data_text_"}
-
      {* left frame start *}    
     <div style="border: 1px solid #ebeeef; width: 290px; float: left; display: inline; margin:5px; padding: 8px;">
         <span class="heading1">Account Information</span>
@@ -16,14 +15,12 @@
         	<input name="ContentObjectAttribute_data_user_login_{$ca.user_account.id}" value="{$ca.user_account.content.login}" type="text" disabled="disabled" />
         </div>
         <div class="break"></div>
-        
         <div class="block">
         	<label><span class="required">*</span>E-mail</label>
         	<div class="labelbreak"></div>
         	<input class="box" type="text" name="ContentObjectAttribute_data_user_email_{$ca.user_account.id}" value="{$ca.user_account.content.email|wash()}" size="20"  />
         </div>
         <div class="break"></div>
-
         <div class="block">
         	<label>Password</label>
         	<div class="labelbreak"></div>
@@ -37,12 +34,8 @@
         </div>
         <div class="break"></div>
         <br />
-        
     </div>
-    
-    
-    
-    
+
 {* left frame end *}
      <div style="float: left;">
 
@@ -91,7 +84,6 @@
         		<input type="hidden" name="ContentObjectAttribute_id[]" value="{$ca.address2.id}" />
         	</div>
         
-        
         	<div style="width: 240px; display: inline; float: left;">
             	<label><span class="required">*</span>City / Town</label>
             	<div class="labelbreak"></div>
@@ -121,19 +113,15 @@
     {attribute_edit_gui attribute_base=$attribute_base attribute=$ca.country}
 </div>
     <div class="break"></div>
-
-            
-
             <div class="block">
             	<label><span class="required">*</span>Phone</label>
             	<div class="labelbreak"></div>
             	<input class="box" type="text" name="{$castring}{$ca.phone.id}" value="{$ca.phone.content|wash()}" style="width: 170px;" />
             	<input type="hidden" name="ContentObjectAttribute_id[]" value="{$ca.phone.id}" />
             </div>
-            
+
             <div class="break"></div>
-            
-            
+
             <div class="block">
             	<label><span class="required">*</span>Shipping</label>
             	<div class="labelbreak"></div>
@@ -145,7 +133,7 @@
 
     <div style="width: 390px; float: left; display: inline; margin:5px; padding: 8px;">
     </div>
-    
+
     <div style="border: 1px solid #ebeeef; width: 390px; float: left; display: inline; margin:5px; padding: 8px;">
         <span class="heading1">Shipping Information</span><br />
         <table border="0">
@@ -227,14 +215,13 @@
 </div>
     <div class="break"></div>
 
-
             <div class="block">
             	<label><span class="required">*</span>Phone</label>
             	<div class="labelbreak"></div>
             	<input class="box" type="text" name="{$castring}{$ca.s_phone.id}" value="{$ca.s_phone.content|wash()}" style="width: 170px;" />
             	<input type="hidden" name="ContentObjectAttribute_id[]" value="{$ca.s_phone.id}" />
             </div>
-            
+
             <div class="block">
             	<label><span class="required">*</span>E-mail</label>
             	<div class="labelbreak"></div>
@@ -266,7 +253,7 @@
             <br/>
         </div>
     </div>
-    
+
 {* right frame end *}
 
 <script type="text/javascript">

@@ -48,17 +48,39 @@ $user =& eZUser::currentUser();
 $firstName = '';
 $lastName = '';
 $email = '';
+// Initialize variables
+$address1 = $address2 = $zip = $city = $state = $phone = $mi = '';
+
 if ( $user->isLoggedIn() )
 {
     $userObject = $user->attribute( 'contentobject' );
     $userMap = $userObject->dataMap();
     $firstName = $userMap['first_name']->content();
+    $mi = $userMap['mi']->content();
     $lastName = $userMap['last_name']->content();
+    $address1 = $userMap['address1']->content();
+    $address2 = $userMap['address2']->content();
+    $city = $userMap['city']->content();
+    $state = $userMap['state']->content();
+    $zip = $userMap['zip']->content();
+    $phone = $userMap['phone']->content();
     $email = $user->attribute( 'email' );
+    
+    $sfirstName = $userMap['s_first_name']->content();
+    $smi = $userMap['s_mi']->content();
+    $slastName = $userMap['s_last_name']->content();
+    $saddress1 = $userMap['s_address1']->content();
+    $saddress2 = $userMap['s_address2']->content();
+    $scity = $userMap['s_city']->content();
+    $sstate = $userMap['s_state']->content();
+    $szip = $userMap['s_zip']->content();
+    $scountry = $userMap['s_country']->content();
+    $sphone = $userMap['s_phone']->content();
+    $slastName = $userMap['s_last_name']->content();
+    $email = $user->attribute( 's_email' );
 }
 
-// Initialize variables
-$address1 = $address2 = $zip = $city = $state = $phone = $mi = '';
+
 
 
 // Check if user has an earlier order, copy order info from that one
@@ -199,6 +221,18 @@ $tpl->setVariable( "zip", $zip );
 $tpl->setVariable( "city", $city );
 $tpl->setVariable( "state", $state );
 $tpl->setVariable( "phone", $phone );
+
+$tpl->setVariable( "s_first_name", $sfirstName );
+$tpl->setVariable( "s_mi", $smi );
+$tpl->setVariable( "s_last_name", $slastName );
+$tpl->setVariable( "s_email", $semail );
+
+$tpl->setVariable( "s_address1", $saddress1 );
+$tpl->setVariable( "s_address2", $saddress2 );
+$tpl->setVariable( "s_zip", $szip );
+$tpl->setVariable( "s_city", $scity );
+$tpl->setVariable( "s_state", $sstate );
+$tpl->setVariable( "s_phone", $sphone );
 
 $Result = array();
 $Result['content'] =& $tpl->fetch( "design:shop/userregister.tpl" );

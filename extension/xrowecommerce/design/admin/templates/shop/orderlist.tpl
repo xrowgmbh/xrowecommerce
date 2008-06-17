@@ -36,16 +36,13 @@
         </form>  
     </td>
   </tr>
-  <form name="contentserver" method="post" action={'customersearch/search'|ezurl}>
-  <th scope="row">E-mail address or Order No</th>
-    <td>
-        <input name="E-mail" type="text" 
-{if is_set($email)}
-value="{$email}"
-{else}
-value="{$E-mail}"
-{/if} size="50" />
-    </td>
+<form name="contentserver" method="post" action={'customersearch/search'|ezurl}>
+    <tr>
+        <th scope="row">E-mail address or Order No</th>
+        <td>
+            <input name="E-mail" type="text" {if is_set($email)}value="{$email}"{else}value="{$E-mail}"{/if} size="50" />
+            <input class="button" name="Search" type="submit" value="Search" />
+        </td>
   </tr>
 </table>
 {if and(is_set($emails),$emails|eq(2))}
@@ -66,14 +63,10 @@ value="{$E-mail}"
 
 <div class="controlbar">
 {* DESIGN: Control bar START *}<div class="box-bc"><div class="box-ml"><div class="box-mr"><div class="box-tc"><div class="box-bl"><div class="box-br">
-<div class="block">
-    <input class="button" name="Search" type="submit" value="Search" />
-</div>
+
 {* DESIGN: Control bar END *}</div></div></div></div></div></div>
 </div>
-
 </div>
-
 </form>
 
 

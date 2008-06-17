@@ -47,7 +47,7 @@ $email = '';
 // Initialize variables
 $shippingtype = $shipping = $s_email = $s_lastName = $s_firstName = $s_address1 = $s_address2 = $s_zip = $s_city = $s_state = $s_country = $s_phone = $s_mi = $address1 = $address2 = $zip = $city = $state = $country = $phone = $mi = '';
 $userobject = $user->attribute( 'contentobject' );
-if ( $user->isLoggedIn() and $userobject->attribute( 'class_identifier' ) == 'xrow_user' )
+if ( $user->isLoggedIn() and $userobject->attribute( 'class_identifier' ) == 'xrow_client' )
 {
     $userObject = $user->attribute( 'contentobject' );
     $userMap = $userObject->dataMap();
@@ -59,13 +59,13 @@ if ( $user->isLoggedIn() and $userobject->attribute( 'class_identifier' ) == 'xr
     $state = $userMap['state']->content();
     $zip = $userMap['zip_code']->content();
     $city = $userMap['city']->content();
-    $country = $userMap['country']->content();
+    $x_country = $userMap['country']->attribute( 'data_text' );
     $phone = $userMap['phone']->content();
     $shipping = $userMap['shippingaddress']->content();
     $shippingtype = $userMap['shippingtype']->content();
     $email = $user->attribute( 'email' );
 
-    if ($shipping !="1")
+    if ( $shipping != "1" )
     {
         $s_firstName = $userMap['s_first_name']->content();
         $s_lastName = $userMap['s_last_name']->content();
@@ -75,7 +75,7 @@ if ( $user->isLoggedIn() and $userobject->attribute( 'class_identifier' ) == 'xr
         $s_state = $userMap['s_state']->content();
         $s_city = $userMap['s_city']->content();
         $s_zip = $userMap['s_zip_code']->content();
-        $s_country = $userMap['s_country']->content();
+        $xs_country = $userMap['s_country']->attribute( 'data_text' );
         $s_phone = $userMap['s_phone']->content();
         $s_email = $userMap['s_email']->content();
     }
@@ -349,7 +349,7 @@ $tpl->setVariable( "address2", $address2 );
 $tpl->setVariable( "city", $city );
 $tpl->setVariable( "state", $state );
 $tpl->setVariable( "zip", $zip );
-$tpl->setVariable( "country", $country );
+$tpl->setVariable( "x_country", $x_country );
 $tpl->setVariable( "phone", $phone );
 $tpl->setVariable( "shipping", $shipping );
 $tpl->setVariable( "shippingtype", $shippingtype );
@@ -364,7 +364,7 @@ $tpl->setVariable( "s_address2", $s_address2 );
 $tpl->setVariable( "s_city", $s_city );
 $tpl->setVariable( "s_state", $s_state );
 $tpl->setVariable( "s_zip", $s_zip );
-$tpl->setVariable( "s_country", $s_country );
+$tpl->setVariable( "xs_country", $xs_country );
 $tpl->setVariable( "s_phone", $s_phone );
 
 $tpl->setVariable( "coupon_code", $coupon_code );

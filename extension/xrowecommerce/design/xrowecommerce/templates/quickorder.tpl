@@ -1,3 +1,4 @@
+{def $node=fetch( 'content', 'node', hash( 'node_id', $node_id ) )}
 <form method="post" action={"xrowecommerce/multiadd"|ezurl}>
 <input type="submit" class="flat-right" name="ActionAddToBasket" value="{"Add to cart"|i18n("design/ezwebin/full/product")}" />
 <input type="hidden" name="ContentNodeID" value="{$node.node_id}" />

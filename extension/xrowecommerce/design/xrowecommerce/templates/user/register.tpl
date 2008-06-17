@@ -121,7 +121,6 @@
             		<input type="hidden" name="ContentObjectAttribute_id[]" value="{$ca.address2.id}" />
             	</div>
 
-                
                 <div style="width: 240px; display: inline; float: left;">
                 	<label><span class="required">*</span>City / Town</label>
                 	<div class="labelbreak"></div>
@@ -133,119 +132,7 @@
                 	<label><span class="required">*</span>State / Province</label>
                 	<div class="labelbreak"></div>
                 	<input type="hidden" name="ContentObjectAttribute_id[]" value="{$ca.state.id}" />
-                    <select name="ContentObjectAttribute_ezstring_data_text_{$ca.state.id}" style="width: 80px;">
-                    	{def $state=$ca.state.content|wash()}
-<option value=""></option>
-	    	<optgroup label="USA">
-    			<option  {if eq($state,'AL')} selected {/if} >AL</option>
-    			<option  {if eq($state,'AK')} selected {/if} >AK</option>
-    			<option  {if eq($state,'AS')} selected {/if} >AS</option>
-    			<option  {if eq($state,'AZ')} selected {/if} >AZ</option>
-    			<option  {if eq($state,'AR')} selected {/if} >AR</option>
-    			<option  {if eq($state,'CA')} selected {/if} >CA</option>
-    			<option  {if eq($state,'CO')} selected {/if} >CO</option>
-    			<option  {if eq($state,'CT')} selected {/if} >CT</option>
-    			<option  {if eq($state,'DE')} selected {/if} >DE</option>
-    			<option  {if eq($state,'DC')} selected {/if} >DC</option>
-    			<option  {if eq($state,'FM')} selected {/if} >FM</option>
-    			<option  {if eq($state,'FL')} selected {/if} >FL</option>
-    			<option  {if eq($state,'GA')} selected {/if} >GA</option>
-    			<option  {if eq($state,'GU')} selected {/if} >GU</option>
-    			<option  {if eq($state,'HI')} selected {/if} >HI</option>
-    			<option  {if eq($state,'ID')} selected {/if} >ID</option>
-    			<option  {if eq($state,'IL')} selected {/if} >IL</option>
-    			<option  {if eq($state,'IN')} selected {/if} >IN</option>
-    			<option  {if eq($state,'IA')} selected {/if} >IA</option>
-    			<option  {if eq($state,'KS')} selected {/if} >KS</option>
-    			<option  {if eq($state,'KY')} selected {/if} >KY</option>
-    			<option  {if eq($state,'LA')} selected {/if} >LA</option>
-    			<option  {if eq($state,'ME')} selected {/if} >ME</option>
-    			<option  {if eq($state,'MH')} selected {/if} >MH</option>
-    			<option  {if eq($state,'MD')} selected {/if} >MD</option>
-    			<option  {if eq($state,'MA')} selected {/if} >MA</option>
-    			<option  {if eq($state,'MI')} selected {/if} >MI</option>
-    			<option  {if eq($state,'MN')} selected {/if} >MN</option>
-    			<option  {if eq($state,'MS')} selected {/if} >MS</option>
-    			<option  {if eq($state,'MO')} selected {/if} >MO</option>
-    			<option  {if eq($state,'MT')} selected {/if} >MT</option>
-    			<option  {if eq($state,'NE')} selected {/if} >NE</option>
-    			<option  {if eq($state,'NV')} selected {/if} >NV</option>
-    			<option  {if eq($state,'NH')} selected {/if} >NH</option>
-    			<option  {if eq($state,'NJ')} selected {/if} >NJ</option>
-    			<option  {if eq($state,'NM')} selected {/if} >NM</option>
-    			<option  {if eq($state,'NY')} selected {/if} >NY</option>
-    			<option  {if eq($state,'NC')} selected {/if} >NC</option>
-    			<option  {if eq($state,'ND')} selected {/if} >ND</option>
-    			<option  {if eq($state,'MP')} selected {/if} >MP</option>
-    			<option  {if eq($state,'OH')} selected {/if} >OH</option>
-    			<option  {if eq($state,'OK')} selected {/if} >OK</option>
-    			<option  {if eq($state,'OR')} selected {/if} >OR</option>
-    			<option  {if eq($state,'PW')} selected {/if} >PW</option>
-    			<option  {if eq($state,'PA')} selected {/if} >PA</option>
-    			<option  {if eq($state,'PR')} selected {/if} >PR</option>
-    			<option  {if eq($state,'RI')} selected {/if} >RI</option>
-    			<option  {if eq($state,'SC')} selected {/if} >SC</option>
-    			<option  {if eq($state,'SD')} selected {/if} >SD</option>
-    			<option  {if eq($state,'TN')} selected {/if} >TN</option>
-    			<option  {if eq($state,'TX')} selected {/if} >TX</option>
-    			<option  {if eq($state,'UT')} selected {/if} >UT</option>
-    			<option  {if eq($state,'VT')} selected {/if} >VT</option>
-    			<option  {if eq($state,'VI')} selected {/if} >VI</option>
-    			<option  {if eq($state,'VA')} selected {/if} >VA</option>
-    			<option  {if eq($state,'WA')} selected {/if} >WA</option>
-    			<option  {if eq($state,'WV')} selected {/if} >WV</option>
-    			<option  {if eq($state,'WI')} selected {/if} >WI</option>
-    			<option  {if eq($state,'WY')} selected {/if} >WY</option>
-			 </optgroup>
-		     <optgroup label="Canada">
-		        <option  {if eq($state,'AB')} selected {/if} >AB</option>
-		        <option  {if eq($state,'BC')} selected {/if} >BC</option>
-    			<option  {if eq($state,'MB')} selected {/if} >MB</option>
-    			<option  {if eq($state,'NB')} selected {/if} >NB</option>
-		        <option  {if eq($state,'NF')} selected {/if} >NF</option>
-		        <option  {if eq($state,'NS')} selected {/if} >NS</option>
-		        <option  {if eq($state,'NT')} selected {/if} >NT</option>
-    			<option  {if eq($state,'ON')} selected {/if} >ON</option>
-		        <option  {if eq($state,'PE')} selected {/if} >PE</option>
-    			<option  {if eq($state,'PQ')} selected {/if} >PQ</option>
-    			<option  {if eq($state,'SK')} selected {/if} >SK</option>
-    			<option  {if eq($state,'YT')} selected {/if} >YT</option>
-		     </optgroup>
-		     <optgroup label="Mexico">
-		        <option  {if eq($state,'AG')} selected {/if} >AG</option>
-		        <option  {if eq($state,'BC')} selected {/if} >BC</option>
-    			<option  {if eq($state,'BS')} selected {/if} >BS</option>
-    			<option  {if eq($state,'CH')} selected {/if} >CH</option>
-		        <option  {if eq($state,'CL')} selected {/if} >CL</option>
-		        <option  {if eq($state,'CM')} selected {/if} >CM</option>
-		        <option  {if eq($state,'CO')} selected {/if} >CO</option>
-    			<option  {if eq($state,'CS')} selected {/if} >CS</option>
-		        <option  {if eq($state,'DF')} selected {/if} >DF</option>
-    			<option  {if eq($state,'DG')} selected {/if} >DG</option>
-    			<option  {if eq($state,'GR')} selected {/if} >GR</option>
-    			<option  {if eq($state,'GT')} selected {/if} >GT</option>
-    			<option  {if eq($state,'HG')} selected {/if} >HG</option>
-		        <option  {if eq($state,'JA')} selected {/if} >JA</option>
-    			<option  {if eq($state,'MI')} selected {/if} >MI</option>
-    			<option  {if eq($state,'MO')} selected {/if} >MO</option>
-		        <option  {if eq($state,'MX')} selected {/if} >MX</option>
-		        <option  {if eq($state,'NA')} selected {/if} >NA</option>
-		        <option  {if eq($state,'NL')} selected {/if} >NL</option>
-    			<option  {if eq($state,'OA')} selected {/if} >OA</option>
-		        <option  {if eq($state,'PU')} selected {/if} >PU</option>
-    			<option  {if eq($state,'QR')} selected {/if} >QR</option>
-    			<option  {if eq($state,'QT')} selected {/if} >QT</option>
-    			<option  {if eq($state,'SI')} selected {/if} >SI</option>
-    			<option  {if eq($state,'SL')} selected {/if} >SL</option>
-		        <option  {if eq($state,'SO')} selected {/if} >SO</option>
-    			<option  {if eq($state,'TB')} selected {/if} >TB</option>
-    			<option  {if eq($state,'TL')} selected {/if} >TL</option>
-		        <option  {if eq($state,'TM')} selected {/if} >TM</option>
-		        <option  {if eq($state,'VE')} selected {/if} >VE</option>
-		        <option  {if eq($state,'YU')} selected {/if} >YU</option>
-    			<option  {if eq($state,'ZA')} selected {/if} >ZA</option>
-		     </optgroup>
-            	    </select>
+                    {attribute_edit_gui attribute_base=$attribute_base attribute=$ca.s_state}
                 </div>
                 <div class="break"></div>
                 {undef $state}
@@ -345,7 +232,6 @@
             		<input type="hidden" name="ContentObjectAttribute_id[]" value="{$ca.s_address2.id}" />
             	</div>
             
-            
             	<div style="width: 240px; display: inline; float: left;">
                 	<label><span class="required">*</span>City / Town</label>
                 	<div class="labelbreak"></div>
@@ -357,119 +243,7 @@
                 	<label><span class="required">*</span>State / Province</label>
                 	<div class="labelbreak"></div>
                 	<input type="hidden" name="ContentObjectAttribute_id[]" value="{$ca.s_state.id}" />
-                	<select name="ContentObjectAttribute_ezstring_data_text_{$ca.s_state.id}" style="width: 80px;">
-            	    	{def $state=$ca.s_state.content|wash()}
-            			<option value=""></option>
-	    	<optgroup label="USA">
-    			<option  {if eq($state,'AL')} selected {/if} >AL</option>
-    			<option  {if eq($state,'AK')} selected {/if} >AK</option>
-    			<option  {if eq($state,'AS')} selected {/if} >AS</option>
-    			<option  {if eq($state,'AZ')} selected {/if} >AZ</option>
-    			<option  {if eq($state,'AR')} selected {/if} >AR</option>
-    			<option  {if eq($state,'CA')} selected {/if} >CA</option>
-    			<option  {if eq($state,'CO')} selected {/if} >CO</option>
-    			<option  {if eq($state,'CT')} selected {/if} >CT</option>
-    			<option  {if eq($state,'DE')} selected {/if} >DE</option>
-    			<option  {if eq($state,'DC')} selected {/if} >DC</option>
-    			<option  {if eq($state,'FM')} selected {/if} >FM</option>
-    			<option  {if eq($state,'FL')} selected {/if} >FL</option>
-    			<option  {if eq($state,'GA')} selected {/if} >GA</option>
-    			<option  {if eq($state,'GU')} selected {/if} >GU</option>
-    			<option  {if eq($state,'HI')} selected {/if} >HI</option>
-    			<option  {if eq($state,'ID')} selected {/if} >ID</option>
-    			<option  {if eq($state,'IL')} selected {/if} >IL</option>
-    			<option  {if eq($state,'IN')} selected {/if} >IN</option>
-    			<option  {if eq($state,'IA')} selected {/if} >IA</option>
-    			<option  {if eq($state,'KS')} selected {/if} >KS</option>
-    			<option  {if eq($state,'KY')} selected {/if} >KY</option>
-    			<option  {if eq($state,'LA')} selected {/if} >LA</option>
-    			<option  {if eq($state,'ME')} selected {/if} >ME</option>
-    			<option  {if eq($state,'MH')} selected {/if} >MH</option>
-    			<option  {if eq($state,'MD')} selected {/if} >MD</option>
-    			<option  {if eq($state,'MA')} selected {/if} >MA</option>
-    			<option  {if eq($state,'MI')} selected {/if} >MI</option>
-    			<option  {if eq($state,'MN')} selected {/if} >MN</option>
-    			<option  {if eq($state,'MS')} selected {/if} >MS</option>
-    			<option  {if eq($state,'MO')} selected {/if} >MO</option>
-    			<option  {if eq($state,'MT')} selected {/if} >MT</option>
-    			<option  {if eq($state,'NE')} selected {/if} >NE</option>
-    			<option  {if eq($state,'NV')} selected {/if} >NV</option>
-    			<option  {if eq($state,'NH')} selected {/if} >NH</option>
-    			<option  {if eq($state,'NJ')} selected {/if} >NJ</option>
-    			<option  {if eq($state,'NM')} selected {/if} >NM</option>
-    			<option  {if eq($state,'NY')} selected {/if} >NY</option>
-    			<option  {if eq($state,'NC')} selected {/if} >NC</option>
-    			<option  {if eq($state,'ND')} selected {/if} >ND</option>
-    			<option  {if eq($state,'MP')} selected {/if} >MP</option>
-    			<option  {if eq($state,'OH')} selected {/if} >OH</option>
-    			<option  {if eq($state,'OK')} selected {/if} >OK</option>
-    			<option  {if eq($state,'OR')} selected {/if} >OR</option>
-    			<option  {if eq($state,'PW')} selected {/if} >PW</option>
-    			<option  {if eq($state,'PA')} selected {/if} >PA</option>
-    			<option  {if eq($state,'PR')} selected {/if} >PR</option>
-    			<option  {if eq($state,'RI')} selected {/if} >RI</option>
-    			<option  {if eq($state,'SC')} selected {/if} >SC</option>
-    			<option  {if eq($state,'SD')} selected {/if} >SD</option>
-    			<option  {if eq($state,'TN')} selected {/if} >TN</option>
-    			<option  {if eq($state,'TX')} selected {/if} >TX</option>
-    			<option  {if eq($state,'UT')} selected {/if} >UT</option>
-    			<option  {if eq($state,'VT')} selected {/if} >VT</option>
-    			<option  {if eq($state,'VI')} selected {/if} >VI</option>
-    			<option  {if eq($state,'VA')} selected {/if} >VA</option>
-    			<option  {if eq($state,'WA')} selected {/if} >WA</option>
-    			<option  {if eq($state,'WV')} selected {/if} >WV</option>
-    			<option  {if eq($state,'WI')} selected {/if} >WI</option>
-    			<option  {if eq($state,'WY')} selected {/if} >WY</option>
-			 </optgroup>
-		     <optgroup label="Canada">
-		        <option  {if eq($state,'AB')} selected {/if} >AB</option>
-		        <option  {if eq($state,'BC')} selected {/if} >BC</option>
-    			<option  {if eq($state,'MB')} selected {/if} >MB</option>
-    			<option  {if eq($state,'NB')} selected {/if} >NB</option>
-		        <option  {if eq($state,'NF')} selected {/if} >NF</option>
-		        <option  {if eq($state,'NS')} selected {/if} >NS</option>
-		        <option  {if eq($state,'NT')} selected {/if} >NT</option>
-    			<option  {if eq($state,'ON')} selected {/if} >ON</option>
-		        <option  {if eq($state,'PE')} selected {/if} >PE</option>
-    			<option  {if eq($state,'PQ')} selected {/if} >PQ</option>
-    			<option  {if eq($state,'SK')} selected {/if} >SK</option>
-    			<option  {if eq($state,'YT')} selected {/if} >YT</option>
-		     </optgroup>
-		     <optgroup label="Mexico">
-		        <option  {if eq($state,'AG')} selected {/if} >AG</option>
-		        <option  {if eq($state,'BC')} selected {/if} >BC</option>
-    			<option  {if eq($state,'BS')} selected {/if} >BS</option>
-    			<option  {if eq($state,'CH')} selected {/if} >CH</option>
-		        <option  {if eq($state,'CL')} selected {/if} >CL</option>
-		        <option  {if eq($state,'CM')} selected {/if} >CM</option>
-		        <option  {if eq($state,'CO')} selected {/if} >CO</option>
-    			<option  {if eq($state,'CS')} selected {/if} >CS</option>
-		        <option  {if eq($state,'DF')} selected {/if} >DF</option>
-    			<option  {if eq($state,'DG')} selected {/if} >DG</option>
-    			<option  {if eq($state,'GR')} selected {/if} >GR</option>
-    			<option  {if eq($state,'GT')} selected {/if} >GT</option>
-    			<option  {if eq($state,'HG')} selected {/if} >HG</option>
-		        <option  {if eq($state,'JA')} selected {/if} >JA</option>
-    			<option  {if eq($state,'MI')} selected {/if} >MI</option>
-    			<option  {if eq($state,'MO')} selected {/if} >MO</option>
-		        <option  {if eq($state,'MX')} selected {/if} >MX</option>
-		        <option  {if eq($state,'NA')} selected {/if} >NA</option>
-		        <option  {if eq($state,'NL')} selected {/if} >NL</option>
-    			<option  {if eq($state,'OA')} selected {/if} >OA</option>
-		        <option  {if eq($state,'PU')} selected {/if} >PU</option>
-    			<option  {if eq($state,'QR')} selected {/if} >QR</option>
-    			<option  {if eq($state,'QT')} selected {/if} >QT</option>
-    			<option  {if eq($state,'SI')} selected {/if} >SI</option>
-    			<option  {if eq($state,'SL')} selected {/if} >SL</option>
-		        <option  {if eq($state,'SO')} selected {/if} >SO</option>
-    			<option  {if eq($state,'TB')} selected {/if} >TB</option>
-    			<option  {if eq($state,'TL')} selected {/if} >TL</option>
-		        <option  {if eq($state,'TM')} selected {/if} >TM</option>
-		        <option  {if eq($state,'VE')} selected {/if} >VE</option>
-		        <option  {if eq($state,'YU')} selected {/if} >YU</option>
-    			<option  {if eq($state,'ZA')} selected {/if} >ZA</option>
-		     </optgroup>
-            	    </select>
+                    {attribute_edit_gui attribute_base=$attribute_base attribute=$ca.s_state}
                 </div>
                 <div class="break"></div>
     
@@ -524,7 +298,6 @@
                     </div>
        </div>
         {* end of right frame *}
-       
     </form>        
 </div>
 
