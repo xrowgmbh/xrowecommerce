@@ -8,9 +8,9 @@
     <div class="attribute-header">
         <h1>{$node.name|wash()}</h1>
     </div>
-                {if eq(ezpreference( 'quick_order' ), 1)}
-                    {include uri='design:quickorder.tpl'}
-                {else}
+{if eq(ezpreference( 'quick_order' ), 1)}
+    {include uri='design:quickorder.tpl' node_id=$node.node_id}
+{else}
                 
     {def $name_pattern = $node.object.content_class.contentobject_name|explode('>')|implode(',')
          $name_pattern_array = array('enable_comments', 'enable_tipafriend', 'show_children', 'image', 'show_children_exclude', 'show_children_pr_page')}
