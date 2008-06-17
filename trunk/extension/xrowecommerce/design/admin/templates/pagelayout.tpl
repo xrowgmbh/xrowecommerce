@@ -160,9 +160,7 @@ div#maincontent {ldelim} margin-left: {sum( $left_menu_width, 0.5 )}em; {rdelim}
 <h3 class="hide">Top menu</h3>
 <ul>
 {section var=Menu loop=topmenu($ui_context)}
-
     {include uri='design:page_topmenuitem.tpl' menu_item=$Menu navigationpart_identifier=$navigation_part.identifier}
-
 {/section}
 </ul>
 <div class="break"></div>

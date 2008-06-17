@@ -79,7 +79,6 @@ else
 }
 {/literal}"}>Remove</a>
 
-
 {* $ProductItem:item|attribute(show,1) *}
 {*
 <b>* {concat('/remove/remove/item/', $ProductItem:item.id, '/order/', $order.order_nr, '/collection/', $order.productcollection_id)|ezurl()}</b>

@@ -1,3 +1,4 @@
+{def $current_user=fetch( 'user', 'current_user' )}
 <div class="shop-basket">
 
 <form method="post" action={"xrowecommerce/userregister/"|ezurl} name='register' >
@@ -26,7 +27,6 @@
 Please enter your billing address exactly as it appears on your credit card statement.
 <div class="labelbreak"></div>
 <span class="required">* Required field</span></p>
-
 <div class="block">
 	<div class="ur_firstname">
     	<label><span class="required">*</span>First name</label>
@@ -58,7 +58,6 @@ Please enter your billing address exactly as it appears on your credit card stat
 		<input class="box" type="text" name="Address2" size="20" value="{$address2|wash}" />
 	</div>
 
-
 	<div class="city">
     	<label><span class="required">*</span>City / Town</label>
     	<div class="labelbreak"></div>
@@ -66,7 +65,7 @@ Please enter your billing address exactly as it appears on your credit card stat
     </div>
 
     <div class="state">
-    	<label><span class="required">*</span>State / Province</label>
+    	<label>State / Province</label>
     	<div class="labelbreak"></div>
 	    <select class="state" name="State">
 	    <option value="">&nbsp;</option>
@@ -212,14 +211,15 @@ Please enter your billing address exactly as it appears on your credit card stat
             <select name="Country" id="country" style="width: 170px;" onchange="shipping(this.value);">
                 <option value="">&nbsp;</option>
                 {foreach $countries as $country_list_item}
-                 {if $country_list_item.Alpha3|eq('')}{set $country_list_item_code=$country_list_item.Alpha2}{else}{set $country_list_item_code=$country_list_item.Alpha3}{/if}
-                 <option value="{$country_list_item_code}"{if eq( $country, $country_list_item_code )} selected="selected"{/if}>{$country_list_item.Name}</option>
+                {if $country_list_item.Alpha3|eq('')}{set $country_list_item_code=$country_list_item.Alpha2}{else}{set $country_list_item_code=$country_list_item.Alpha3}{/if}
+                 <option value="{$country_list_item_code}" {if $current_user.is_logged_in}{if eq( $x_country, $country_list_item.Alpha2 )} selected="selected"{/if}{else}{if eq( $country, $country_list_item_code )} selected="selected"{/if}{/if}>
+                    {$country_list_item.Name}
+                </option>
                 {/foreach}
             </select>
+
 </div>
     <div class="break"></div>
-
-
 
 <div class="block">
 	<label><span class="required">*</span>Phone</label>
@@ -429,7 +429,7 @@ if (document.register.Shipping.checked == false)
     </div>
 
     <div class="state">
-    	<label><span class="required">*</span>State / Province</label>
+    	<label>State / Province</label>
     	<div class="labelbreak"></div>
     	<input type="hidden" name="sik_state" id="sik_state" value="" />
     <select name="s_State" id="sstate">
@@ -571,17 +571,18 @@ if (document.register.Shipping.checked == false)
     {if and($s_country|eq(''),$country|not)}
             {set $s_country=$country_default_ini|wash()}
     {/if}
-    {def $countries=fetch( 'content', 'country_list', array(false, false))}
-    <input type="hidden" name="sik_country" id="sik_country" value="" />
+    {def $countries=fetch( 'content', 'country_list', array(false, false))
+     def $country_list_item_code=''}
+    <input type="hidden" name="sik_country" id="sik_country" value="USA" />
             <select name="s_Country" id="scountry" onchange="shipping(document.register.country.value);">
                 <option value="">&nbsp;</option>
-                {foreach $countries as $country_list_item}
+                {foreach $countries as $country_id => $country_list_item}
                  {if $country_list_item.Alpha3|eq('')}
-                 {def $country_list_item_code=$country_list_item.Alpha2}
+                 {set $country_list_item_code=$country_list_item.Alpha2}
                  {else}
-                 {def $country_list_item_code=$country_list_item.Alpha3}
+                 {set $country_list_item_code=$country_list_item.Alpha3}
                  {/if}
-                 <option value="{$country_list_item_code}"{if eq( $s_country, $country_list_item_code )} selected="selected"{/if}>{$country_list_item.Name}</option>
+                 <option value="{$country_list_item_code}" {if $current_user.is_logged_in}{if eq($xs_country,$country_id)} selected="selected"{/if}{else}{if eq($s_country,$country_list_item )} selected="selected"{/if}{/if}>{$country_list_item.Name}({$country_id})</option>
                 {/foreach}
             </select>
 </div>
