@@ -61,7 +61,7 @@ class xrowECommerceVATHandler
         $user = eZUser::currentUser();
         if ( $order === false and !$user->isAnonymous() )
         {
-            $object = $user->attribute( 'object' );
+            $object = $user->attribute( 'contentobject' );
             $country = eZVATManager::getUserCountry( $user, false );
             $percentage = xrowECommerceVATHandler::getTAX( $country, false, false );
             if( is_object( $object ) )
@@ -87,7 +87,7 @@ class xrowECommerceVATHandler
         $account = eZShopAccountHandler::instance();
         $merchant = $account->merchantsLocations();
         
-        if ( array_key_exists( $merchant[0], $taxmap ) and ( ( $merchant[0] == $country ) or ( $merchant[0] != $country and !$taxid ) ) )
+        if ( ( array_key_exists( $merchant[0], $taxmap ) and $merchant[0] == $country ) or ( $merchant[0] != $country and !$taxid  ) )
         {
             
             if ( is_numeric( $taxmap[$merchant[0]] ) )
