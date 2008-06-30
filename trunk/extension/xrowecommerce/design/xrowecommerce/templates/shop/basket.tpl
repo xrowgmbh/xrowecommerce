@@ -172,8 +172,7 @@ for (i = 0; i < field.length; i++)
                     </tr>
                     <tr>
                         <td>
-                        {$prod.data_map.product_id.content|wash()}{$option_item.value}
-                        </td>
+                        {$prod.data_map.product_id.content|wash()}{$prod.data_map.variation.content.name}
                     </tr>
                     <tr>
                         <td>

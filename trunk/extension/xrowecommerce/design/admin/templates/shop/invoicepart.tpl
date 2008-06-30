@@ -49,7 +49,9 @@ thead {
         </td>
         {/section}
     {section-else}
-    <td align="left">{$ProductItem:item.item_object.contentobject.data_map.product_id.content}</td>
+    <td align="left">{$ProductItem:item.item_object.contentobject.data_map.product_id.content}{$ProductItem:item.item_object.contentobject.data_map.variation.data_text}
+</div>
+    </td>
     <td>{$ProductItem:item.item_object.name|wash}</td>
     {/section}
     {if $packingslip|not}
