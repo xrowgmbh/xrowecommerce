@@ -88,7 +88,7 @@
                     </tr>
                     <tr>
                         <td>
-                        {$prod.data_map.product_id.content|wash()}{$option_item.value}
+                        {$prod.data_map.product_id.content|wash()}{$prod.data_map.variation.data_text|wash()}
                         </td>
                     </tr>
                     <tr>
@@ -116,7 +116,7 @@
                     </tr>
                     <tr>
                         <td>
-                        {$prod.data_map.product_id.content|wash()}{$option_item.value}
+                        {$prod.data_map.product_id.content|wash()}{$prod.data_map.variation.data_text}
                         </td>
                     </tr>
                     <tr>
