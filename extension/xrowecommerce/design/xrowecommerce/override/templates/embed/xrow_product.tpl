@@ -6,7 +6,8 @@
     	{/if}
     	<p><a href={$object.main_node.url_alias|ezurl}>{$object.name|wash}</a></p>
     	<div class="attribute-short">
-    		{attribute_view_gui attribute=$object.data_map.short_description}
+    		{*attribute_view_gui attribute=$object.data_map.short_description*}
+    		{$object.data_map.short_description.content.output.output_text|shorten(85)}
     	</div>
     	<div class="attribute-price">
 {undef $var_price}
