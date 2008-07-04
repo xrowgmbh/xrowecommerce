@@ -72,8 +72,7 @@
                         {attribute_view_gui alignment=center image_class=productthumbnail attribute=$prod.data_map.image_link.content.current.contentobject_attributes.2}                     
                         {elseif $prod.data_map.image.content.is_valid}
                         {def $prod=fetch( 'content', 'node', hash( 'node_id', $product_item.node_id ) )}
-                 
-                 
+
 <table>
                  {def $prod=fetch( 'content', 'node', hash( 'node_id', $product_item.node_id ) )}
                  {if $prod.data_map.variation.content.option_list|count|gt(0)}
@@ -88,13 +87,13 @@
                     </tr>
                     <tr>
                         <td>
-                        {$prod.data_map.product_id.content|wash()}{$prod.data_map.variation.data_text|wash()}
+                        {$prod.data_map.product_id.content|wash()}-{$option_item.value}
                         </td>
                     </tr>
                     <tr>
                         <td>
                         {def $vary=$product_item.item_object.contentobject.data_map.variation.content.option_list[$product_item.item_object.option_list.0.option_item_id]}
-                        {$vary.comment}                        
+                        {$vary.comment}
                         </td>
                     </tr>
                     <tr>
@@ -116,7 +115,7 @@
                     </tr>
                     <tr>
                         <td>
-                        {$prod.data_map.product_id.content|wash()}{$prod.data_map.variation.data_text}
+                         {$prod.data_map.product_id.content|wash()}-{$prod.data_map.unicode.data_text|wash()}
                         </td>
                     </tr>
                     <tr>
@@ -128,8 +127,7 @@
                     <tr>
                         <td>
                         {*if or(ne($vary.weight, false()), ne($vary.weight, "0"))}Weight: {$vary.weight} lbs
-                        {/if}
-                        {$prod.data_map|attribute(show)*}
+                        {/if*}
                         Weight: {attribute_view_gui attribute=$prod.data_map.weight} lbs
                         </td>
                     </tr>
