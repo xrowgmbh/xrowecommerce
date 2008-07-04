@@ -19,4 +19,5 @@ $ViewList["multiadd"] = array(
     "params" => array(  ) );
 
 $FunctionList['buy'] = array( );
+$FunctionList['administrate'] = array( );
 ?>
