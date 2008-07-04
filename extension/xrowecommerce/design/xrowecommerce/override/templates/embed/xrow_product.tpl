@@ -4,10 +4,10 @@
     	{if $object.data_map.image.has_content}
     		{attribute_view_gui image_class=listitem attribute=$object.data_map.image href=$object.main_node.url_alias|ezurl}
     	{/if}
-    	<p><a href={$object.main_node.url_alias|ezurl}>{$object.name|wash}</a></p>
+    	<p><a href={$object.main_node.url_alias|ezurl}>{$object.name|wash()|shorten(40)}</a></p>
     	<div class="attribute-short">
     		{*attribute_view_gui attribute=$object.data_map.short_description*}
-    		{$object.data_map.short_description.content.output.output_text|shorten(85)}
+    		{$object.data_map.short_description.content.output.output_text|shorten(80)}
     	</div>
     	<div class="attribute-price">
 {undef $var_price}
@@ -32,7 +32,6 @@
            {else}
            {attribute_view_gui attribute=$object.data_map.price}
            {/if}
-
     	</div>
     </div>
 </div>
