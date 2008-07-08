@@ -3,11 +3,12 @@
     <div class="class-xrow-product">
     	{if $object.data_map.image.has_content}
     		{attribute_view_gui image_class=listitem attribute=$object.data_map.image href=$object.main_node.url_alias|ezurl}
+    	{else}
+    	   <div class="nopic">&nbsp;</div>
     	{/if}
     	<p><a href={$object.main_node.url_alias|ezurl}>{$object.name|wash()|shorten(40)}</a></p>
     	<div class="attribute-short">
-    		{*attribute_view_gui attribute=$object.data_map.short_description*}
-    		{$object.data_map.short_description.content.output.output_text|shorten(80)}
+    		{$object.data_map.short_description.content.input.input_xml|shorten(70)}
     	</div>
     	<div class="attribute-price">
 {undef $var_price}
