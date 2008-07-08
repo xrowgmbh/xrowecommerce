@@ -59,7 +59,7 @@
             {/if}
         </div>
 
-        <div class="productwrapper">
+        <div class="productwrapper float-break">
 <div>
                 <table class="list">
 	                <tr>
