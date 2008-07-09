@@ -1,12 +1,12 @@
 <div class="productline">
 	<div class="productline-img">
 	{def $node_name=$node.main_node.name node_url=$node.main_node.url_alias}
-	
-		
-		{if $node.data_map.image.content}
+		{if $node.data_map.image.has_content}
 		<div class="productline-img">
-			{attribute_view_gui image_class=product_line attribute=$node.data_map.image href=$node.main_node.url_alias|ezurl}
+			{attribute_view_gui image_class=product_line attribute=$node.data_map.image href=$node.url_alias|ezurl('no')}
 		</div>
+		{else}
+		<a href={$object.main_node.url_alias|ezurl}><div class="nopic">&nbsp;</div></a>
 		{/if}
 	</div>
 	<div class="productline-text">
