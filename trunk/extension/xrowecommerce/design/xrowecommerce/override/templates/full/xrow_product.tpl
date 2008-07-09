@@ -20,7 +20,9 @@
                 </div>
 		        {/if}
             </div>
-
+            {else}
+            <div class="nopic attribute-image">&nbsp;</div>
+            {/if}
             <div class="description-wrap">
 	                <div class="attribute-short">
 	                   {attribute_view_gui attribute=$node.object.data_map.short_description}
@@ -56,7 +58,6 @@
 	                </p>
 	                </div>
             </div>
-            {/if}
         </div>
 
         <div class="productwrapper float-break">

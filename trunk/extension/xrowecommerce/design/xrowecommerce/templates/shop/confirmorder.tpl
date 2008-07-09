@@ -27,8 +27,8 @@
             $locale = false()
             $symbol = false()}
         {if $currency}
-        {set locale = $currency.locale
-            symbol = $currency.symbol}
+            {set locale = $currency.locale
+                 symbol = $currency.symbol}
         {/if}
         {if count($hazardous)|gt(0)}
             <b style="color: red;">Hazardous item(s) found in your cart</b>
@@ -40,6 +40,7 @@
                     {/foreach}
                 </ul><br />
         {/if}
+        
         {if count( $order.product_items )|gt(0)}
         <h3>{"Product items"|i18n("design/base/shop")}</h3>
         <div class="content-basket">
@@ -69,17 +70,22 @@
                    <td class="{$product_item.sequence} product-name basketspace">
                         {def $prod=fetch( 'content', 'node', hash( 'node_id', $product_item.node_id ) )}
                         {if $prod.data_map.image_link.content.current.contentobject_attributes.2.content.is_valid}
-                        {attribute_view_gui alignment=center image_class=productthumbnail attribute=$prod.data_map.image_link.content.current.contentobject_attributes.2}                     
+                            {attribute_view_gui alignment=center image_class=productthumbnail attribute=$prod.data_map.image_link.content.current.contentobject_attributes.2}
                         {elseif $prod.data_map.image.content.is_valid}
-                        {def $prod=fetch( 'content', 'node', hash( 'node_id', $product_item.node_id ) )}
+                            {attribute_view_gui alignment=center image_class=productthumbnail attribute=$prod.data_map.image_link.content.object}
+                          {/if}  
 
-<table>
-                 {def $prod=fetch( 'content', 'node', hash( 'node_id', $product_item.node_id ) )}
+                 
                  {if $prod.data_map.variation.content.option_list|count|gt(0)}
+                 <table>
                  {section var=option_item loop=$product_item.item_object.option_list}
                     <tr>
                         <td rowspan="4" width="120">
+                        {if $product_item.item_object.contentobject.data_map.image.has_content}
                         {attribute_view_gui image_class=small attribute=$product_item.item_object.contentobject.data_map.image}
+                        {else}
+                        <div class="nopic">&nbsp;</div>
+                        {/if}
                         </td>
                         <td>
                         <p><a class="basketlink" href={concat("/content/view/full/",$prod.node_id)|ezurl}>{$prod.name|wash()}</a></p>
@@ -98,16 +104,19 @@
                     </tr>
                     <tr>
                         <td>
-                        {*if or(ne($vary.weight, false()), ne($vary.weight, "0"))}Weight: {$vary.weight} lbs
-                        {/if*}
                         Weight: {$vary.weight|wash()} lbs
                         </td>
                     </tr>
                     {/section}
                  {else}
+                 <table>
                     <tr>
                         <td rowspan="4" width="120">
+                        {if $product_item.item_object.contentobject.data_map.image.has_content}
                         {attribute_view_gui image_class=small attribute=$product_item.item_object.contentobject.data_map.image}
+                        {else}
+                        <div class="nopic">&nbsp;</div>
+                        {/if}
                         </td>
                         <td>
                         <p><a class="basketlink" href={concat("/content/view/full/",$prod.node_id)|ezurl}>{$prod.name|wash()}</a></p>
@@ -132,12 +141,8 @@
                         </td>
                     </tr>
                     {/if}
-                    
                 </table>
                     </td>
-                        {else}
-                            <img src={"images/no_pic.jpg"|ezdesign} /></td>
-                        {/if}
 
             <td class="{$product_item.sequence} product-name basketspace">
                {$product_item.vat_value} %

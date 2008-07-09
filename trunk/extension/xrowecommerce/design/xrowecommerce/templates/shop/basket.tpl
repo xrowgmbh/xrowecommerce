@@ -138,7 +138,11 @@ for (i = 0; i < field.length; i++)
                  {section var=option_item loop=$product_item.item_object.option_list}
                     <tr>
                         <td rowspan="4" width="120">
+                        {if $product_item.item_object.contentobject.data_map.image.has_content}
                         {attribute_view_gui image_class=small attribute=$product_item.item_object.contentobject.data_map.image}
+                        {else}
+                        <div class="nopic">&nbsp;</div>
+                        {/if}
                         </td>
                         <td>
                         <p><a class="basketlink" href={concat("/content/view/full/",$prod.node_id)|ezurl}>{$prod.name|wash()}</a></p>
@@ -164,7 +168,11 @@ for (i = 0; i < field.length; i++)
                  {else}
                     <tr>
                         <td rowspan="4" width="120">
+                        {if $product_item.item_object.contentobject.data_map.image.has_content}
                         {attribute_view_gui image_class=small attribute=$product_item.item_object.contentobject.data_map.image}
+                        {else}
+                        <div class="nopic">&nbsp;</div>
+                        {/if}
                         </td>
                         <td>
                         <p><a class="basketlink" href={concat("/content/view/full/",$prod.node_id)|ezurl}>{$prod.name|wash()}</a></p>
