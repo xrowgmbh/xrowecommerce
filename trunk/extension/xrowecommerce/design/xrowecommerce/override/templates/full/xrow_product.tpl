@@ -62,19 +62,19 @@
 <div>
                 <table class="list">
 	                <tr>
+	                    <th>Number</th>
 	                    <th>Item</th>
-	                    <th>Description</th>
 	                    <th>Quantity</th>
 	                    <th>Price</th>
 	                </tr>
-	
 	                {if $node.data_map.variation.content.option_list|count|gt(0)}
 	                {section var=Options loop=$node.data_map.variation.content.option_list}
                     <tr>
 	                   <td>
-	                   {$Options.item.comment|wash}
+	                   {$Options.item.value}
 	                   </td>
 	                   <td>
+	                   {$Options.item.comment|wash()}
 	                   {$Options.item.description|wash|nl2br}
 	                   </td>
 	                   <td align="right">
@@ -93,7 +93,9 @@
 	                    <td>
 	                    {$node.object.data_map.product_id.data_text}
 	                    </td>
-	                    <td>{attribute_view_gui attribute=$node.object.data_map.description}</td>
+	                    <td>
+	                    {attribute_view_gui attribute=$node.object.data_map.description}
+	                    </td>
 	                    <td align="right">
 	                        <input type="hidden" name="AddToBasketList[{$Options.index}][object_id]" value="{$node.object.id}" />
 	                        <input type="hidden" name="AddToBasketList[{$Options.index}][variations][{$node.data_map.variation.id}]" value="{$Options.item.id}" />
