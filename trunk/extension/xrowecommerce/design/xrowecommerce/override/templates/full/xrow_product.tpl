@@ -3,7 +3,6 @@
         <input type="hidden" name="ContentNodeID" value="{$node.node_id}" />
         <input type="hidden" name="ContentObjectID" value="{$node.object.id}" />
         <input type="hidden" name="ViewMode" value="full" />
-
         <div class="content-view-full">
             <div class="class-xrow-commerce">
 	            
@@ -59,7 +58,6 @@
 	                </div>
             </div>
         </div>
-
         <div class="productwrapper float-break">
 <div>
                 <table class="list">
@@ -106,7 +104,6 @@
 	                    </td>
 	                </tr>
 	                {/if}
-
 	            </table>
                 <div class="block">
 	                <div class="right">
@@ -156,14 +153,14 @@
 </div>
 
 {literal}
-    <style>
+    <style type="text/css">
     .yui-overlay { position:absolute;background:#fff;border:1px dotted black;padding:5px;margin:10px; }
     #overlay1 { 
         background-color: white;
         border: 1px solid grey; 
     }
             </style>
-            <script>
+            <script language="javascript" type="text/javascript">
             YAHOO.namespace("example.container");
     
             function init() {
