@@ -55,6 +55,6 @@
 </form>
 {else}
 <p class="price">Your cart is empty.</p><br />
-<p>Please <b>select the product-cathegories</b> on the left to view and order products.</p>
+<p>Please <b>select the product-categories</b> on the left to view and order products.</p>
 {/if}
 {/def}
