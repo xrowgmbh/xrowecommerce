@@ -13,8 +13,8 @@
 <table class="list" cellspacing="0">
 <tr>
     <th class="tight">&nbsp;</th>
-    <th>{'Option'|i18n( 'design/standard/content/datatype' )}</th>
-    <th>{'Comment'|i18n( 'design/standard/content/datatype' )}</th>
+    <th>{'No'|i18n( 'design/standard/content/datatype' )}</th>
+    <th>{'Name'|i18n( 'design/standard/content/datatype' )}</th>
     <th>{'Description'|i18n( 'design/standard/content/datatype' )}</th>
     {section show=$attribute.is_information_collector|not}
     <th>{'Additional price'|i18n( 'design/standard/content/datatype' )}</th>
