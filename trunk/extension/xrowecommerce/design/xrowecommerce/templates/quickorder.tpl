@@ -13,19 +13,19 @@
 {if $products|count|gt(0)}        
 <table class="quickorder_products">
 		<tr>
-    		<th>Item No.</th>
-    		<th>Item Name</th>
-    		<th>Option</th>
+    		<th>Number</th>
+    		<th>Name</th>
+    		<th>Item</th>
     		<th>Qty</th>
     		<th>Price</th>
 		</tr>
 		{def $i=0}
 		{foreach $products as $key => $child}
 			{if $child.data_map.variation.content.option_list|count|gt(0)}
-                {foreach $child.data_map.variation.content.option_list as $option}
+                {foreach $child.data_map.variation.content.option_list as $option sequence array( 'quickbasket_light', 'quickbasket_dark' ) as $style}
                 {set $i=$i|sum(1)}
-			        <tr>
-			            <td>{attribute_view_gui attribute=$child.data_map.product_id}{$option.value|wash()}</td>
+			        <tr class="{$style}">
+			            <td>{attribute_view_gui attribute=$child.data_map.product_id}{$option.value|wash()} </td>
 			            <td><a href="/{$child.path_identification_string}" id="show_auto_tip_{$i}">{$child.name|wash()}</td>
 			            <td>{$option.comment|wash()}</td>
 			            <td class="quickbasket">
@@ -35,10 +35,14 @@
 			            </td>
 			            <td>{$child.data_map.price.data_float|sum($option.additional_price)|l10n(currency)}
 			            </td>
-			        </tr>        
+			        </tr>
 <div class="overlay" id="overlay{$i}" style="visibility:hidden;">
 <h3>{$child.name|wash()}</h3>
+{if $child.data_map.image.has_content}
 {attribute_view_gui attribute=$child.data_map.image image_class=tooltip}
+{else}
+<div class="nopic attribute-image">&nbsp;</div>
+{/if}
 <p>{attribute_view_gui attribute=$child.data_map.short_description}</p>
 <p>{attribute_view_gui attribute=$child.data_map.description}</p>
 <p>Option:</p>
@@ -60,7 +64,6 @@
 						            {rdelim}
 						            YAHOO.util.Event.addListener(window, "load", init);
 						    </script>
-						
                 {/foreach}
             {else}{set $i=$i|sum(1)}
 		        <tr>
@@ -69,13 +72,17 @@
 		            <td>-</td>
 		            <td class="quickbasket">
 			            <input type="hidden" name="AddToBasketList[{$i}][object_id]" value="{$child.object.id}" />
-			            <input type="text" name="AddToBasketList[{$i}][quantity]" value="0">
+			            <input class="qb_halfbox" type="text" name="AddToBasketList[{$i}][quantity]" value="0">
 		            </td>
 		            <td>{$child.data_map.price.data_float|l10n(currency)}</td>
 		        </tr>
 <div class="overlay" id="overlay{$i}" style="visibility:hidden;">
 <h3>{$child.name|wash()}</h3>
+{if $node.data_map.image.has_content}
 {attribute_view_gui attribute=$child.data_map.image image_class=tooltip}
+{else}
+<div class="nopic attribute-image">&nbsp;</div>
+{/if}
 <p>{attribute_view_gui attribute=$child.data_map.short_description}</p>
 <p>{attribute_view_gui attribute=$child.data_map.description}</p>
 <span class="row-hr"><span>Weight</span><span>Price</span></span>
