@@ -63,7 +63,10 @@
                 <table class="list">
 	                <tr>
 	                    <th>Number</th>
+	                    {if $node.data_map.variation.content.option_list|count|gt(0)}
 	                    <th>Item</th>
+	                    <th>Description</th>
+	                    {/if}
 	                    <th>Quantity</th>
 	                    <th>Price</th>
 	                </tr>
@@ -75,6 +78,8 @@
 	                   </td>
 	                   <td>
 	                   {$Options.item.comment|wash()}
+	                   </td>
+	                   <td>
 	                   {$Options.item.description|wash|nl2br}
 	                   </td>
 	                   <td align="right">
@@ -92,9 +97,6 @@
 	                <tr>
 	                    <td>
 	                    {$node.object.data_map.product_id.data_text}
-	                    </td>
-	                    <td>
-	                    {attribute_view_gui attribute=$node.object.data_map.description}
 	                    </td>
 	                    <td align="right">
 	                        <input type="hidden" name="AddToBasketList[{$Options.index}][object_id]" value="{$node.object.id}" />
@@ -115,8 +117,8 @@
                 <div class="attribute-multi-options">
                 </div>
 	        </div>
+{if eq(ezini( 'AutomaticDeliverySettings', 'AutomaticDelivery', 'automaticdelivery.ini' ), 'enabled' )}
             <div class="attribute-short-wide">
-            <span class="automatic_delivery">
             {def $user=fetch( 'user', 'current_user' )}
             {if and($node.data_map.recurring.content|not(), $user.is_logged_in)}
                 <p>Add your selections to <a id="show_auto_tip">Automatic Delivery</a>?</p>
@@ -124,7 +126,7 @@
             {elseif $node.data_map.recurring.content|not()}
                 <div id="headingp2">**Note**</div>
                 <p>This product is available for <a id="show_auto_tip">Automatic Delivery</a>. To add this product to your Automatic Delivery you have to <a href={'user/login'|ezurl}>login</a>.</p>
-            {/if}</span>
+            {/if}
             </div>
     	
             <div id="overlay1" style="visibility:hidden;">
@@ -133,8 +135,8 @@
                 <p>By placing your initial Automatic Delivery order and setting up an Automatic Delivery schedule, you authorize us to charge the same credit card for future Automatic Delivery orders until you cancel.</p>
                 <p>Since the accuracy of your credit card, shipping and billing information is vital to Automatic Delivery, please promptly submit changes through the my account section.</p>
             </div>
-    {* Related products. *}
-            
+{/if}
+            {* Related products. *}
             {def $related_purchase=fetch( 'shop', 'related_purchase', hash( 'contentobject_id', $node.object.id, 'limit', 2 ) )}
             {if $related_purchase}
             <div class="attribute-short-wide">
@@ -146,6 +148,8 @@
             </div>
 	        {/if}
 	        {undef $related_purchase}
+
+
 	    </div>
 	    
 
