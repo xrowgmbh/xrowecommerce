@@ -55,6 +55,10 @@ if ( $user->isLoggedIn() )
 {
     $userObject = $user->attribute( 'contentobject' );
     $userMap = $userObject->dataMap();
+
+    $companyName = $userMap['company_name']->content();
+    $companyAdditional = $userMap['company_additional']->content();
+    $taxid = $userMap['tax_id']->content();
     $firstName = $userMap['first_name']->content();
     $mi = $userMap['mi']->content();
     $lastName = $userMap['last_name']->content();
@@ -65,7 +69,11 @@ if ( $user->isLoggedIn() )
     $zip = $userMap['zip']->content();
     $phone = $userMap['phone']->content();
     $email = $user->attribute( 'email' );
-    
+
+    $scompanyName = $userMap['s_company_name']->content();
+    $scompanyAdditional = $userMap['s_company_additional']->content();
+    $staxid = $userMap['s_tax_id']->content();
+    $scompanytName = $userMap['s_company_name']->content();
     $sfirstName = $userMap['s_first_name']->content();
     $smi = $userMap['s_mi']->content();
     $slastName = $userMap['s_last_name']->content();
@@ -100,7 +108,20 @@ if ( count( $orderList ) > 0 and  $user->isLoggedIn() )
 $tpl->setVariable( "input_error", false );
 if ( $module->isCurrentAction( 'Store' ) )
 {
-    $inputIsValid = true;
+    
+        $inputIsValid = true;
+    $companyName = $http->postVariable( "CompanyName" );
+    if ( trim( $companyName ) == "" )
+        $inputIsValid = true;
+    $companyAdditional = $http->postVariable( "CompanyAdditional" );
+    if ( trim( $companyAdditional ) == "" )
+        $inputIsValid = true;
+    $taxId = $http->postVariable( "TaxId" );
+    if ( trim( $taxId ) == "" )
+        $inputIsValid = true;
+    $companyName = $http->postVariable( "CompanyName" );
+    if ( trim( $companyName ) == "" )
+        $inputIsValid = true;
     $firstName = $http->postVariable( "FirstName" );
     if ( trim( $firstName ) == "" )
         $inputIsValid = false;
@@ -149,6 +170,18 @@ if ( $module->isCurrentAction( 'Store' ) )
         $root = $doc->createElementNode( "shop_account" );
         $doc->setRoot( $root );
 
+        $companyNameNode = $doc->createElementNode( "company_name" );
+        $companyNameNode->appendChild( $doc->createTextNode( $companyName ) );
+        $root->appendChild( $companyNameNode );
+
+        $companyAdditionalNode = $doc->createElementNode( "company_additional" );
+        $companyAdditionalNode->appendChild( $doc->createTextNode( $companyAdditional ) );
+        $root->appendChild( $companyAdditionalNode );
+        
+        $taxIdNode = $doc->createElementNode( "tax_id" );
+        $taxIdNode->appendChild( $doc->createTextNode( $taxId ) );
+        $root->appendChild( $taxIdNode );
+        
         $firstNameNode = $doc->createElementNode( "first-name" );
         $firstNameNode->appendChild( $doc->createTextNode( $firstName ) );
         $root->appendChild( $firstNameNode );
@@ -210,6 +243,9 @@ if ( $module->isCurrentAction( 'Store' ) )
     }
 }
 
+$tpl->setVariable( "company_name", $companyName );
+$tpl->setVariable( "company_additional", $companyAdditional );
+$tpl->setVariable( "tax_id", $taxId );
 $tpl->setVariable( "first_name", $firstName );
 $tpl->setVariable( "mi", $mi );
 $tpl->setVariable( "last_name", $lastName );
@@ -222,6 +258,8 @@ $tpl->setVariable( "city", $city );
 $tpl->setVariable( "state", $state );
 $tpl->setVariable( "phone", $phone );
 
+$tpl->setVariable( "s_company_name", $scompanyName );
+$tpl->setVariable( "s_company_additional", $scompanyAdditional );
 $tpl->setVariable( "s_first_name", $sfirstName );
 $tpl->setVariable( "s_mi", $smi );
 $tpl->setVariable( "s_last_name", $slastName );

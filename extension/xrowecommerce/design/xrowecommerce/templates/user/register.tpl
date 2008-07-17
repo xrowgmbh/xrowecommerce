@@ -12,9 +12,7 @@
         <div style="border: 1px solid #ebeeef; width: 290px; float: left; display: inline; margin:5px; padding: 8px;">
             <span class="heading1">Account Information</span>
             <br />
-            <p>
-                Enter your email address, login and password.<br /> <span class="required">* Required field</span><br />
-            </p>
+            <p>Enter your email address, login and password.<br /> <span class="required">* Required field</span><br /></p>
             <br />
 
             <div class="block">
@@ -22,8 +20,8 @@
             	<div class="labelbreak"></div>
             	<input type="hidden" name="ContentObjectAttribute_id[]" value="{$ca.user_account.id}" />
             	<input type="text" name="ContentObjectAttribute_data_user_login_{$ca.user_account.id}" value="{$ca.user_account.content.login}" size="20">
-
             </div>
+
             <div class="break"></div>
 
             <div class="block">
@@ -85,7 +83,30 @@
             {/section}        
 
             <div class="block">
-    
+{if eq(ezini( 'DisplayFieldSettings', 'DisplayCompanyName', 'fieldsettings.ini' ), 'enabled' )}
+                <div class="block">
+                    <label>Company name</label>
+                    <div class="labelbreak"></div>
+                    <input type="text" name="ContentObjectAttribute_ezstring_data_text_{$ca.company_name.id}" value="{$ca.company_name.content|wash()}" style="width: 170px;" />
+                    <input type="hidden" name="ContentObjectAttribute_id[]" value="{$ca.company_name.id}" />
+                </div>
+{/if}
+{if eq(ezini( 'DisplayFieldSettings', 'DisplayCompanyForm', 'fieldsettings.ini' ), 'enabled' )}
+                <div cstyle="width: 180px; display: inline; float: left;">
+                    <label>Form of company</label>
+                    <div class="labelbreak"></div>
+                    <input type="text" name="ContentObjectAttribute_ezstring_data_text_{$ca.company_name.id}" value="{$ca.company_name.content|wash()}" style="width: 170px;" />
+                    <input type="hidden" name="ContentObjectAttribute_id[]" value="{$ca.company_name.id}" />
+                </div>
+{/if}
+{if eq(ezini( 'DisplayFieldSettings', 'DisplayTaxId', 'fieldsettings.ini' ), 'enabled' )}
+                <div cstyle="width: 180px; display: inline; float: left;">
+                    <label>Tax ID</label>
+                    <div class="labelbreak"></div>
+                    <input type="text" name="ContentObjectAttribute_ezstring_data_text_{$ca.company_name.id}" value="{$ca.company_name.content|wash()}" style="width: 170px;" />
+                    <input type="hidden" name="ContentObjectAttribute_id[]" value="{$ca.company_name.id}" />
+                </div>
+{/if}
             	<div style="width: 180px; display: inline; float: left;">
                 	<label><span class="required">*</span>First name</label>
                 	<div class="labelbreak"></div>
@@ -174,6 +195,17 @@
                 	<input class="box" type="text" name="{$castring}{$ca.phone.id}" value="{$ca.phone.content|wash()}" style="width: 170px;" />
                 	<input type="hidden" name="ContentObjectAttribute_id[]" value="{$ca.phone.id}" />
                 </div>
+                
+{if eq(ezini( 'DisplayFieldSettings', 'DisplayFax', 'fieldsettings.ini' ), 'enabled' )}
+
+                <div class="block">
+                    <label><span class="required">*</span>Fax</label>
+                    <div class="labelbreak"></div>
+                    <input class="box" type="text" name="{$castring}{$ca.fax.id}" value="{$ca.fax.content|wash()}" style="width: 170px;" />
+                    <input type="hidden" name="ContentObjectAttribute_id[]" value="{$ca.fax.id}" />
+                </div>
+
+{/if}
             </div>
         </div>
         <div style="width: 390px; float: left; display: inline; margin:5px; padding: 8px;">
@@ -196,7 +228,22 @@
             </table>
 
             <div class="block" id="shippinginfo")}>
-    
+{if eq(ezini( 'DisplayFieldSettings', 'DisplayCompanyName', 'fieldsettings.ini' ), 'enabled' )}
+                <div class="block">
+                    <label>Company name</label>
+                    <div class="labelbreak"></div>
+                    <input type="text" name="ContentObjectAttribute_ezstring_data_text_{$ca.s_company_name.id}" value="{$ca.s_company_name.content|wash()}" style="width: 170px;" />
+                    <input type="hidden" name="ContentObjectAttribute_id[]" value="{$ca.s_company_name.id}" />
+                </div>
+{/if}
+{if eq(ezini( 'DisplayFieldSettings', 'DisplayCompanyForm', 'fieldsettings.ini' ), 'enabled' )}
+                <div class="block">
+                    <label>Form of company</label>
+                    <div class="labelbreak"></div>
+                    <input type="text" name="ContentObjectAttribute_ezstring_data_text_{$ca.s_company_additional.id}" value="{$ca.s_company_additional.content|wash()}" style="width: 170px;" />
+                    <input type="hidden" name="ContentObjectAttribute_id[]" value="{$ca.s_company_additional.id}" />
+                </div>
+{/if}
             	<div style="width: 180px; display: inline; float: left;">
                 	<label><span class="required">*</span>First name</label>
                 	<div class="labelbreak"></div>
