@@ -39,6 +39,7 @@ class xrowECommerceShopAccountHandler
         $userObject = $user->attribute( 'contentobject' );
         $userMap = $userObject->dataMap();
         $billing = array();
+        $billing['company_name'] = $userMap['company_name']->content();
         $billing['first-name'] = $userMap['first_name']->content();
         $billing['mi'] = $userMap['mi']->content();
         $billing['last-name'] = $userMap['last_name']->content();
@@ -55,6 +56,7 @@ class xrowECommerceShopAccountHandler
         $shipping = array();
         if ( $shipping !="1" )
         {
+            $shipping['company_name'] = $userMap['company_name']->content();
             $shipping['s_first-name'] = $userMap['s_first_name']->content();
             $shipping['s_mi'] = $userMap['s_last_name']->content();
             $shipping['s_last-name'] = $userMap['s_mi']->content();
@@ -164,6 +166,9 @@ class xrowECommerceShopAccountHandler
         $xmlDoc = $order->attribute( 'data_text_1' );
         $dom = $xml->domTree( $xmlDoc );
 
+        $companyName = $dom->elementsByName( "company_name" );
+        $companyAdditional = $dom->elementsByName( "company_additional" );
+        $taxId = $dom->elementsByName( "tax_id" );
         $firstName = $dom->elementsByName( "first-name" );
         $mi = $dom->elementsByName( "mi" );
         $lastName = $dom->elementsByName( "last-name" );
@@ -182,6 +187,8 @@ class xrowECommerceShopAccountHandler
         $shipping = $dom->elementsByName( "shipping" );
         $shippingtype = $dom->elementsByName( "shippingtype" );
 
+        $s_companyName = $dom->elementsByName( "s_company_name" );
+        $s_companyAdditional = $dom->elementsByName( "s_company_additional" );
         $s_firstName = $dom->elementsByName( "s_first-name" );
         $s_mi = $dom->elementsByName( "s_mi" );
         $s_lastName = $dom->elementsByName( "s_last-name" );
@@ -199,6 +206,18 @@ class xrowECommerceShopAccountHandler
 
         // $comment =& $dom->elementsByName( "comment" );
 
+        $companyNameText = "";
+        if ( isset( $companyName[0] ) )
+            $companyNameText = $companyName[0]->textContent();
+            
+        $companyAdditionalText = "";
+        if ( isset( $companyAdditional[0] ) )
+            $companyAdditionalText = $companyAdditional[0]->textContent();
+            
+        $companyNameText = "";
+        if ( isset( $taxId[0] ) )
+            $taxIdText = $taxId[0]->textContent();
+        
         $firstNameText = "";
         if ( isset( $firstName[0] ) )
             $firstNameText = $firstName[0]->textContent();
@@ -258,6 +277,14 @@ class xrowECommerceShopAccountHandler
 
         // ezDebug::writeDebug( count($s_firstName), 'eZUser Information'  );
 
+        $s_companyNameText = "";
+        if ( count($s_firstName) > 0 and isset( $s_companyName[0] ) )
+            $s_companyNameText = $s_companyName[0]->textContent();
+            
+        $s_companyAdditionalText = "";
+        if ( count($s_firstName) > 0 and isset( $s_companyAdditional[0] ) )
+            $s_companyAdditionalText = $s_companyAdditional[0]->textContent();
+            
         $s_firstNameText = "";
         if ( count($s_firstName) > 0 and isset( $s_firstName[0] ) )
             $s_firstNameText = $s_firstName[0]->textContent();
@@ -369,7 +396,10 @@ class xrowECommerceShopAccountHandler
         // print_r( $s_ezauthorize_transaction_id );
         // die( $s_ezauthorize_card_name[0]->textContent() .'<hr />' );
 
-        return array( 'first_name' => $firstNameText,
+        return array( 'company_name' => $companyNameText,
+                      'company_additional' => $companyAdditionalText,
+                      'tax_id' => $taxIdText,
+                      'first_name' => $firstNameText,
                       'mi' => $miText,
                       'last_name' => $lastNameText,
                       'address1' => $address1Text,

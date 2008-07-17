@@ -27,7 +27,7 @@
 //
 
 $http = eZHTTPTool::instance();
-$module =& $Params["Module"];
+$module = $Params["Module"];
 
 include_once( 'kernel/common/template.php' );
 
@@ -47,10 +47,14 @@ $email = '';
 // Initialize variables
 $shippingtype = $shipping = $s_email = $s_lastName = $s_firstName = $s_address1 = $s_address2 = $s_zip = $s_city = $s_state = $s_country = $s_phone = $s_mi = $address1 = $address2 = $zip = $city = $state = $country = $phone = $mi = '';
 $userobject = $user->attribute( 'contentobject' );
-if ( $user->isLoggedIn() and $userobject->attribute( 'class_identifier' ) == 'xrow_client' )
+
+if ( $user->isLoggedIn() and $userobject->attribute( 'class_identifier' ) == 'client' )
 {
     $userObject = $user->attribute( 'contentobject' );
     $userMap = $userObject->dataMap();
+    $companyName = $userMap['company_name']->content();
+    $companyAdditional = $userMap['company_additional']->content();
+    $taxId = $userMap['tax_id']->content();
     $firstName = $userMap['first_name']->content();
     $lastName = $userMap['last_name']->content();
     $mi = $userMap['mi']->content();
@@ -59,7 +63,7 @@ if ( $user->isLoggedIn() and $userobject->attribute( 'class_identifier' ) == 'xr
     $state = $userMap['state']->content();
     $zip = $userMap['zip_code']->content();
     $city = $userMap['city']->content();
-    $x_country = $userMap['country']->attribute( 'data_text' );
+    $country = $userMap['country']->attribute( 'data_text' );
     $phone = $userMap['phone']->content();
     $shipping = $userMap['shippingaddress']->content();
     $shippingtype = $userMap['shippingtype']->content();
@@ -67,6 +71,8 @@ if ( $user->isLoggedIn() and $userobject->attribute( 'class_identifier' ) == 'xr
 
     if ( $shipping != "1" )
     {
+        $s_companyName = $userMap['s_company_name']->content();
+        $s_companyAdditional = $userMap['s_company_additional']->content();
         $s_firstName = $userMap['s_first_name']->content();
         $s_lastName = $userMap['s_last_name']->content();
         $s_mi = $userMap['s_mi']->content();
@@ -75,7 +81,7 @@ if ( $user->isLoggedIn() and $userobject->attribute( 'class_identifier' ) == 'xr
         $s_state = $userMap['s_state']->content();
         $s_city = $userMap['s_city']->content();
         $s_zip = $userMap['s_zip_code']->content();
-        $xs_country = $userMap['s_country']->attribute( 'data_text' );
+        $s_country = $userMap['s_country']->attribute( 'data_text' );
         $s_phone = $userMap['s_phone']->content();
         $s_email = $userMap['s_email']->content();
     }
@@ -93,6 +99,20 @@ $tpl->setVariable( "input_error", false );
 if ( $module->isCurrentAction( 'Store' ) )
 {
     $inputIsValid = true;
+    if( $http->hasPostVariable( "CompanyName" ) )
+    {
+        $companyName = $http->postVariable( "CompanyName" );
+    }
+    if ( trim( $companyName ) == "" )
+        $inputIsValid = false;
+
+    $companyAdditional = $http->postVariable( "CompanyAdditional" );
+    if ( trim( $companyAdditional ) == "" )
+        $inputIsValid = false;
+
+    $taxId = $http->postVariable( "TaxId" );
+    if ( trim( $taxId ) == "" )
+        $inputIsValid = false;
 
     $firstName = $http->postVariable( "FirstName" );
     if ( trim( $firstName ) == "" )
@@ -143,6 +163,12 @@ if ( $module->isCurrentAction( 'Store' ) )
 
     if ($shipping != "1")
     {
+        $s_companyName = $http->postVariable( "s_CompanyName" );
+        if ( trim( $s_companyName ) == "" )
+            $inputIsValid = false;
+        $s_companyAdditional = $http->postVariable( "s_CompanyAdditional" );
+        if ( trim( $s_companyAdditional ) == "" )
+            $inputIsValid = false;
         $s_firstName = $http->postVariable( "s_FirstName" );
         if ( trim( $s_firstName ) == "" )
             $inputIsValid = false;
@@ -202,7 +228,21 @@ if ( $module->isCurrentAction( 'Store' ) )
 
         $root = $doc->createElementNode( "shop_account" );
         $doc->setRoot( $root );
-
+        
+        if( isset( $companyName ) )
+        {
+            $companyNameNode = $doc->createElementNode( "company_name" );
+            $companyNameNode->appendChild( $doc->createTextNode( $companyName ) );
+            $root->appendChild( $companyNameNode );
+            
+            $companyAdditionalNode = $doc->createElementNode( "company_additional" );
+            $companyAdditionalNode->appendChild( $doc->createTextNode( $companyAdditional ) );
+            $root->appendChild( $companyAdditionalNode );
+            
+            $taxIdNode = $doc->createElementNode( "tax_id" );
+            $taxIdNode->appendChild( $doc->createTextNode( $taxId ) );
+            $root->appendChild( $textIdNode );
+        }
         $firstNameNode = $doc->createElementNode( "first-name" );
         $firstNameNode->appendChild( $doc->createTextNode( $firstName ) );
         $root->appendChild( $firstNameNode );
@@ -271,6 +311,14 @@ if ( $module->isCurrentAction( 'Store' ) )
         {
             /* Shipping address*/
 
+            $s_companyNameNode = $doc->createElementNode( "s_company_name" );
+            $s_companyNameNode->appendChild( $doc->createTextNode( $s_companyName ) );
+            $root->appendChild( $s_companyNameNode );
+            
+            $s_companyAdditionalNode = $doc->createElementNode( "s_company_additional" );
+            $s_companyAdditionalNode->appendChild( $doc->createTextNode( $s_companyAdditional ) );
+            $root->appendChild( $s_companyAdditionalNode );
+            
             $s_firstNameNode = $doc->createElementNode( "s_first-name" );
             $s_firstNameNode->appendChild( $doc->createTextNode( $s_firstName ) );
             $root->appendChild( $s_firstNameNode );
@@ -339,6 +387,9 @@ if ( $module->isCurrentAction( 'Store' ) )
     }
 }
 
+$tpl->setVariable( "company_name", $companyName );
+$tpl->setVariable( "company_additional", $companyAdditional );
+$tpl->setVariable( "tax_id", $taxId );
 $tpl->setVariable( "first_name", $firstName );
 $tpl->setVariable( "mi", $mi );
 $tpl->setVariable( "last_name", $lastName );
@@ -349,12 +400,13 @@ $tpl->setVariable( "address2", $address2 );
 $tpl->setVariable( "city", $city );
 $tpl->setVariable( "state", $state );
 $tpl->setVariable( "zip", $zip );
-$tpl->setVariable( "x_country", $x_country );
+$tpl->setVariable( "country", $country );
 $tpl->setVariable( "phone", $phone );
 $tpl->setVariable( "shipping", $shipping );
 $tpl->setVariable( "shippingtype", $shippingtype );
 
-
+$tpl->setVariable( "s_company_name", $s_companyName );
+$tpl->setVariable( "s_company_additional", $s_companyAdditional );
 $tpl->setVariable( "s_first_name", $s_firstName );
 $tpl->setVariable( "s_mi", $s_mi );
 $tpl->setVariable( "s_last_name", $s_lastName );
@@ -364,13 +416,13 @@ $tpl->setVariable( "s_address2", $s_address2 );
 $tpl->setVariable( "s_city", $s_city );
 $tpl->setVariable( "s_state", $s_state );
 $tpl->setVariable( "s_zip", $s_zip );
-$tpl->setVariable( "xs_country", $xs_country );
+$tpl->setVariable( "s_country", $s_country );
 $tpl->setVariable( "s_phone", $s_phone );
 
 $tpl->setVariable( "coupon_code", $coupon_code );
 
 $Result = array();
-$Result['content'] =& $tpl->fetch( "design:shop/userregister.tpl" );
+$Result['content'] = $tpl->fetch( "design:shop/userregister.tpl" );
 $Result['path'] = array( array( 'url' => false,
                                 'text' => ezi18n( 'kernel/shop', 'Enter account information' ) ) );
 ?>

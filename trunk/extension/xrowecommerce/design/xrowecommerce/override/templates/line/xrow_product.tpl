@@ -6,7 +6,7 @@
 			{attribute_view_gui image_class=product_line attribute=$node.data_map.image href=$node.url_alias|ezurl('no')}
 		</div>
 		{else}
-		<a href={$object.main_node.url_alias|ezurl}><div class="nopic">&nbsp;</div></a>
+		<a href={$node.url_alias|ezurl('no')}><div class="nopic">&nbsp;</div></a>
 		{/if}
 	</div>
 	<div class="productline-text">

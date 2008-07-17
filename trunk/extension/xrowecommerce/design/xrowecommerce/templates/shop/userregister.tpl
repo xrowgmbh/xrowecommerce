@@ -23,11 +23,18 @@
 {/section}
 <div class="userreg_left">{* LEFT COL START *}
 <div class="userreg_left_div">
-<span class="headingur">Billing Information</span><br /><p>
-Please enter your billing address exactly as it appears on your credit card statement.
+<span class="headingur">Billing Information</span><br />
+<p>Please enter your billing address exactly as it appears on your credit card statement.
 <div class="labelbreak"></div>
 <span class="required">* Required field</span></p>
 <div class="block">
+
+    <div class="ur_companyname">
+        <label>Company name</label>
+        <div class="labelbreak"></div>
+        <input type="text" name="CompanyName" value="{$company_name|wash}" />
+    </div>
+
 	<div class="ur_firstname">
     	<label><span class="required">*</span>First name</label>
     	<div class="labelbreak"></div>
@@ -192,7 +199,6 @@ Please enter your billing address exactly as it appears on your credit card stat
 <div class="country">
     <label><span class="required">*</span>Country</label>
     <div class="labelbreak"></div>
-
     {def $country_default_ini=ezini( 'ShopAccountHandlerDefaults', 'DefaultCountryCode' )}
     {def $country_default=''}
     {def $country_list_item_code=''}
@@ -200,9 +206,9 @@ Please enter your billing address exactly as it appears on your credit card stat
     {def $is_set=is_set($country)}
     {if $is_set}
         {if $country|ne('')}
-            {def $country=$country|wash()}
+            {set $country=$country|wash()}
         {else}
-            {def $country=$country_default_ini}
+            {set $country=$country_default_ini}
         {/if}
     {else}
         {def $country=$country_default_ini}
@@ -212,7 +218,7 @@ Please enter your billing address exactly as it appears on your credit card stat
                 <option value="">&nbsp;</option>
                 {foreach $countries as $country_list_item}
                 {if $country_list_item.Alpha3|eq('')}{set $country_list_item_code=$country_list_item.Alpha2}{else}{set $country_list_item_code=$country_list_item.Alpha3}{/if}
-                 <option value="{$country_list_item_code}" {if $current_user.is_logged_in}{if eq( $x_country, $country_list_item.Alpha2 )} selected="selected"{/if}{else}{if eq( $country, $country_list_item_code )} selected="selected"{/if}{/if}>
+                 <option value="{$country_list_item_code}" {if $current_user.is_logged_in}{if eq( $country, $country_list_item.Alpha3 )} selected="selected"{/if}{else}{if eq( $country, $country_list_item_code )} selected="selected"{/if}{/if}>
                     {$country_list_item.Name}
                 </option>
                 {/foreach}
@@ -384,6 +390,12 @@ if (document.register.Shipping.checked == false)
 *}
         </table>
 <div class="block" id="shippinginfo" {$shipping|choose( "style='display: block;'", "style='display: none;'")}>
+
+    <div class="ur_companyname">
+        <label>Company name</label>
+        <div class="labelbreak"></div>
+        <input type="text" name="s_CompanyName" value="{$s_company_name|wash}" />
+    </div>
 
 	<div class="ur_firstname">
     	<label><span class="required">*</span>First name</label>
@@ -562,7 +574,7 @@ if (document.register.Shipping.checked == false)
 
     {set $country_default=''}
     {def $is_set=is_set($s_country)}
-    {if is_set( $s_country)|not )}
+    {if is_set($s_country)|not}
         {def $s_country=''}
     {/if}
     {if and($s_country|eq(''),$country)}
@@ -582,7 +594,7 @@ if (document.register.Shipping.checked == false)
                  {else}
                  {set $country_list_item_code=$country_list_item.Alpha3}
                  {/if}
-                 <option value="{$country_list_item_code}" {if $current_user.is_logged_in}{if eq($xs_country,$country_id)} selected="selected"{/if}{else}{if eq($s_country,$country_list_item )} selected="selected"{/if}{/if}>{$country_list_item.Name}({$country_id})</option>
+                 <option value="{$country_list_item_code}" {if $current_user.is_logged_in}{if eq($s_country,$country_id)} selected="selected"{/if}{else}{if eq($s_country,$country_list_item )} selected="selected"{/if}{/if}>{$country_list_item.Name}({$country_id})</option>
                 {/foreach}
             </select>
 </div>

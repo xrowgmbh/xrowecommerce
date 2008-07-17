@@ -14,5 +14,4 @@ Subdir=templates
 #Match[class_identifier]=xrow_client
 #Match[attribute_identifier]=state
 
-
 */ ?>
