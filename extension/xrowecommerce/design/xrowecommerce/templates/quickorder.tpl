@@ -5,12 +5,28 @@
 <input type="hidden" name="ContentObjectID" value="{$node.object.id}" />
 <input type="hidden" name="ViewMode" value="full" />
 <input type="hidden" name="RedirectURI" value="{$node.url_alias}" />
-{def $products=fetch( content, tree,
+{def $page_limit=15
+$products=fetch( content, tree,
+        hash( 'parent_node_id', $node.node_id,
+        'offset', $view_parameters.offset,
+        'sort_by', $node.sort_array,
+        'limit', $page_limit,
+        'class_filter_type', include,
+        'class_filter_array', array( 'xrow_product' )
+        ) )
+        $products_count=fetch( content, tree_count,
         hash( parent_node_id, $node.node_id,
         class_filter_type, include,
         class_filter_array, array( 'xrow_product' )
-        ) )}
-{if $products|count|gt(0)}        
+        ) )
+        }
+{if $products|count|gt(0)}
+{include name=navigator
+                         uri='design:navigator/google.tpl'
+                         page_uri=$node.url_alias
+                         item_count=$products_count
+                         view_parameters=$view_parameters
+                         item_limit=$page_limit}
 <table class="quickorder_products">
 		<tr>
     		<th>Number</th>
@@ -24,10 +40,14 @@
 			{if $child.data_map.variation.content.option_list|count|gt(0)}
                 {foreach $child.data_map.variation.content.option_list as $option sequence array( 'quickbasket_light', 'quickbasket_dark' ) as $style}
                 {set $i=$i|sum(1)}
-			        <tr class="{$style}">
+                {if mod( $i, 2)|eq(1)}
+			        <tr class="quickbasket_light">
+			    {else}
+			        <tr class="quickbasket_dark">
+			    {/if}
 			            <td>{attribute_view_gui attribute=$child.data_map.product_id}{$option.value|wash()} </td>
 			            <td><a href="/{$child.path_identification_string}" id="show_auto_tip_{$i}">{$child.name|wash()}</td>
-			            <td>{$option.comment|wash()}</td>
+			            <td>{$option.comment|wash()}<br />{$option.description|wash()}</td>
 			            <td class="quickbasket">
 				            <input type="hidden" name="AddToBasketList[{$i}][object_id]" value="{$child.object.id}" />
 				            <input type="hidden" name="AddToBasketList[{$i}][variations][{$child.data_map.variation.id}]" value="{$option.id}">
@@ -65,8 +85,13 @@
 						            YAHOO.util.Event.addListener(window, "load", init);
 						    </script>
                 {/foreach}
-            {else}{set $i=$i|sum(1)}
-		        <tr>
+            {else}
+            {set $i=$i|sum(1)}
+		        {if mod( $i, 2)|eq(1)}
+                    <tr class="quickbasket_light">
+                {else}
+                    <tr class="quickbasket_dark">
+                {/if}
 		            <td>{attribute_view_gui attribute=$child.data_map.product_id}{$child.data_map.variation.content.name|wash()}</td>
 		            <td><a href="/{$child.path_identification_string}" id="show_auto_tip_{$i}">{$child.name|wash()}</a></td>
 		            <td>-</td>
@@ -106,6 +131,12 @@
         {undef $i}
 </table>
 {/if}
+{include name=navigator
+                         uri='design:navigator/google.tpl'
+                         page_uri=$node.url_alias
+                         item_count=$products_count
+                         view_parameters=$view_parameters
+                         item_limit=$page_limit}
 <input type="submit" class="flat-right" name="ActionAddToBasket" value="{"Add to cart"|i18n("design/ezwebin/full/product")}" />
 </form>
 {undef}
