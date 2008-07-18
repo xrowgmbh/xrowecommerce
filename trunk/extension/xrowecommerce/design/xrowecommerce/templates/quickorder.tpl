@@ -53,7 +53,7 @@ $products=fetch( content, tree,
 				            <input type="hidden" name="AddToBasketList[{$i}][variations][{$child.data_map.variation.id}]" value="{$option.id}">
 				            <input type="text" name="AddToBasketList[{$i}][quantity]" value="0" />
 			            </td>
-			            <td>{$child.data_map.price.data_float|sum($option.additional_price)|l10n(currency)}
+			            <td class="quickprice">{$child.data_map.price.data_float|sum($option.additional_price)|l10n(currency)}
 			            </td>
 			        </tr>
 <div class="overlay" id="overlay{$i}" style="visibility:hidden;">
