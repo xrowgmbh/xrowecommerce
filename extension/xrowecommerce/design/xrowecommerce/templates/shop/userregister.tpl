@@ -29,11 +29,11 @@
 <span class="required">* Required field</span></p>
 <div class="block">
 
-    <div class="ur_companyname">
+    {*<div class="ur_companyname">
         <label>Company name</label>
         <div class="labelbreak"></div>
         <input type="text" name="CompanyName" value="{$company_name|wash}" />
-    </div>
+    </div>*}
 
 	<div class="ur_firstname">
     	<label><span class="required">*</span>First name</label>
