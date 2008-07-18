@@ -584,7 +584,7 @@ if (document.register.Shipping.checked == false)
             {set $s_country=$country_default_ini|wash()}
     {/if}
     {def $countries=fetch( 'content', 'country_list', array(false, false))
-     def $country_list_item_code=''}
+     $country_list_item_code=''}
     <input type="hidden" name="sik_country" id="sik_country" value="USA" />
             <select name="s_Country" id="scountry" onchange="shipping(document.register.country.value);">
                 <option value="">&nbsp;</option>
@@ -594,7 +594,7 @@ if (document.register.Shipping.checked == false)
                  {else}
                  {set $country_list_item_code=$country_list_item.Alpha3}
                  {/if}
-                 <option value="{$country_list_item_code}" {if $current_user.is_logged_in}{if eq($s_country,$country_id)} selected="selected"{/if}{else}{if eq($s_country,$country_list_item )} selected="selected"{/if}{/if}>{$country_list_item.Name}({$country_id})</option>
+                 <option value="{$country_list_item_code}" {if $current_user.is_logged_in}{if eq($s_country,$country_list_item_code)} selected="selected"{/if}{else}{if eq($s_country,$country_list_item_code)} selected="selected"{/if}{/if}>{$country_list_item.Name}({$country_list_item_code})</option>
                 {/foreach}
             </select>
 </div>
