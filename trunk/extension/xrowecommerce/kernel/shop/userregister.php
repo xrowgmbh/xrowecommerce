@@ -111,17 +111,8 @@ if ( $module->isCurrentAction( 'Store' ) )
     
         $inputIsValid = true;
     $companyName = $http->postVariable( "CompanyName" );
-    if ( trim( $companyName ) == "" )
-        $inputIsValid = true;
     $companyAdditional = $http->postVariable( "CompanyAdditional" );
-    if ( trim( $companyAdditional ) == "" )
-        $inputIsValid = true;
     $taxId = $http->postVariable( "TaxId" );
-    if ( trim( $taxId ) == "" )
-        $inputIsValid = true;
-    $companyName = $http->postVariable( "CompanyName" );
-    if ( trim( $companyName ) == "" )
-        $inputIsValid = true;
     $firstName = $http->postVariable( "FirstName" );
     if ( trim( $firstName ) == "" )
         $inputIsValid = false;
