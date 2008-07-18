@@ -13,7 +13,7 @@
 	<a href="{$node.url_alias|ezurl('no')}" title="{$node.name|wash()}">{$node.name|wash()}</a>
 	{attribute_view_gui attribute=$node.data_map.short_description}
 		<div class="price">
-{undef $var_price}
+                {undef $var_price}
                 {undef $allprice}
                 {undef $partprice}
                 {if count($node.data_map.variation.content.option_list)|eq(1)}
