@@ -391,11 +391,11 @@ if (document.register.Shipping.checked == false)
         </table>
 <div class="block" id="shippinginfo" {$shipping|choose( "style='display: block;'", "style='display: none;'")}>
 
-    <div class="ur_companyname">
+    {*<div class="ur_companyname">
         <label>Company name</label>
         <div class="labelbreak"></div>
         <input type="text" name="s_CompanyName" value="{$s_company_name|wash}" />
-    </div>
+    </div>*}
 
 	<div class="ur_firstname">
     	<label><span class="required">*</span>First name</label>
