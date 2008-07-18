@@ -594,7 +594,7 @@ if (document.register.Shipping.checked == false)
                  {else}
                  {set $country_list_item_code=$country_list_item.Alpha3}
                  {/if}
-                 <option value="{$country_list_item_code}" {if $current_user.is_logged_in}{if eq($s_country,$country_list_item_code)} selected="selected"{/if}{else}{if eq($s_country,$country_list_item_code)} selected="selected"{/if}{/if}>{$country_list_item.Name}({$country_list_item_code})</option>
+                 <option value="{$country_list_item_code}" {if $current_user.is_logged_in}{if eq($s_country,$country_list_item_code)} selected="selected"{/if}{else}{if eq($s_country,$country_list_item_code)} selected="selected"{/if}{/if}>{$country_list_item.Name}</option>
                 {/foreach}
             </select>
 </div>
