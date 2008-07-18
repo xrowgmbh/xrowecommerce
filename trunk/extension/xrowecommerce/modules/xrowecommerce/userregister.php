@@ -155,11 +155,9 @@ if ( $module->isCurrentAction( 'Store' ) )
     if ($shipping != "1")
     {
         $s_companyName = $http->postVariable( "s_CompanyName" );
-        if ( trim( $s_companyName ) == "" )
-            $inputIsValid = false;
+        
         $s_companyAdditional = $http->postVariable( "s_CompanyAdditional" );
-        if ( trim( $s_companyAdditional ) == "" )
-            $inputIsValid = false;
+   
         $s_firstName = $http->postVariable( "s_FirstName" );
         if ( trim( $s_firstName ) == "" )
             $inputIsValid = false;
