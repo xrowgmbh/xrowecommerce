@@ -99,20 +99,11 @@ $tpl->setVariable( "input_error", false );
 if ( $module->isCurrentAction( 'Store' ) )
 {
     $inputIsValid = true;
-    if( $http->hasPostVariable( "CompanyName" ) )
-    {
         $companyName = $http->postVariable( "CompanyName" );
-    }
-    if ( trim( $companyName ) == "" )
-        $inputIsValid = false;
 
     $companyAdditional = $http->postVariable( "CompanyAdditional" );
-    if ( trim( $companyAdditional ) == "" )
-        $inputIsValid = false;
 
     $taxId = $http->postVariable( "TaxId" );
-    if ( trim( $taxId ) == "" )
-        $inputIsValid = false;
 
     $firstName = $http->postVariable( "FirstName" );
     if ( trim( $firstName ) == "" )
