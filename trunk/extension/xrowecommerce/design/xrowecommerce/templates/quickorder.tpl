@@ -103,7 +103,7 @@ $products=fetch( content, tree,
 		        </tr>
 <div class="overlay" id="overlay{$i}" style="visibility:hidden;">
 <h3>{$child.name|wash()}</h3>
-{if $node.data_map.image.has_content}
+{if $child.data_map.image.has_content}
 {attribute_view_gui attribute=$child.data_map.image image_class=tooltip}
 {else}
 <div class="nopic attribute-image">&nbsp;</div>
