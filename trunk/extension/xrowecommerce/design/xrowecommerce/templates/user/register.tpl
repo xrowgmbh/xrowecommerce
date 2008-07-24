@@ -150,7 +150,7 @@
                 </div>    
                 
                 <div style="width: 90px; display: inline; float: left;">
-                	<label><span class="required">*</span>State / Province</label>
+                	<label>State / Province</label>
                 	<div class="labelbreak"></div>
                 	<input type="hidden" name="ContentObjectAttribute_id[]" value="{$ca.state.id}" />
                     {attribute_edit_gui attribute_base=$attribute_base attribute=$ca.s_state}
@@ -166,13 +166,12 @@
                 </div>
                     <div class="break"></div>
 
-<div style="width: 180px; display: inline; float: left;">
+{*<div style="width: 180px; display: inline; float: left;">
     <label><span class="required">*</span>Country</label>
     <div class="labelbreak"></div>
     {def $country_default_ini=ezini( 'ShopAccountHandlerDefaults', 'DefaultCountryCode', 'site.ini' )}
     {def $country_default=$country_default_ini}
     {def $countries=fetch( 'xrowecommerce', 'get_country_list', hash() )}
-    {*$countries|attribute(show,2)*}
     {def $is_set_b=is_set($country)}
     {if $is_set_b}{def $country=$country_default_ini}{else}{def $country=''}{/if}
 
@@ -186,6 +185,37 @@
                   {undef $country_list_item_code}
                 {/foreach}
             </select>
+</div>*}
+
+<div class="country">
+    <label><span class="required">*</span>Country</label>
+    <div class="labelbreak"></div>
+    {def $country_default_ini=ezini( 'ShopAccountHandlerDefaults', 'DefaultCountryCode' )}
+    {def $country_default=''}
+    {def $country_list_item_code=''}
+
+    {def $is_set=is_set($country)}
+    {if $is_set}
+        {if $country|ne('')}
+            {set $country=$country|wash()}
+        {else}
+            {set $country=$country_default_ini}
+        {/if}
+    {else}
+        {def $country=$country_default_ini}
+    {/if}
+    {def $countries=fetch( 'content', 'country_list', array(false, false))}
+     <input type="hidden" name="ContentObjectAttribute_id[]" value="{$ca.country.id}" />
+            <select name="Country" id="country" style="width: 170px;" onchange="shipping(this.value);">
+                <option value="">&nbsp;</option>
+                {foreach $countries as $country_list_item}
+                {if $country_list_item.Alpha3|eq('')}{set $country_list_item_code=$country_list_item.Alpha2}{else}{set $country_list_item_code=$country_list_item.Alpha3}{/if}
+                 <option value="{$country_list_item_code}" {if $current_user.is_logged_in}{if eq( $country, $country_list_item.Alpha3 )} selected="selected"{/if}{else}{if eq( $country, $country_list_item_code )} selected="selected"{/if}{/if}>
+                    {$country_list_item.Name}
+                </option>
+                {/foreach}
+            </select>
+
 </div>
     <div class="break"></div>
     
@@ -287,7 +317,7 @@
                 </div>    
 
                 <div style="width: 90px; display: inline; float: left;">
-                	<label><span class="required">*</span>State / Province</label>
+                	<label>State / Province</label>
                 	<div class="labelbreak"></div>
                 	<input type="hidden" name="ContentObjectAttribute_id[]" value="{$ca.s_state.id}" />
                     {attribute_edit_gui attribute_base=$attribute_base attribute=$ca.s_state}
@@ -302,7 +332,7 @@
                 </div>
                 <div class="break"></div>
 
-<div style="width: 90px; display: inline; float: left;">
+{*<div style="width: 90px; display: inline; float: left;">
     <label><span class="required">*</span>Country</label>
     <div class="labelbreak"></div>
 
@@ -317,6 +347,38 @@
                  {set $country_list_item_code=$country_list_item.Alpha2}
                  <option value="{$country_list_item_code}"{if eq( $country_default, $country_list_item_code )} selected="selected"{/if}{if eq( $s_country, $country_list_item_code)} selected="selected"{/if}>{$country_list_item.Name}</option>
                   {undef $country_list_item_code}
+                {/foreach}
+            </select>
+</div>*}
+
+<div class="country">
+    <label><span class="required">*</span>Country</label>
+    <div class="labelbreak"></div>
+
+
+    {set $country_default=''}
+    {def $is_set=is_set($s_country)}
+    {if is_set($s_country)|not}
+        {def $s_country=''}
+    {/if}
+    {if and($s_country|eq(''),$country)}
+            {set $s_country=$country|wash()}
+    {/if}
+    {if and($s_country|eq(''),$country|not)}
+            {set $s_country=$country_default_ini|wash()}
+    {/if}
+    {def $countries=fetch( 'content', 'country_list', array(false, false))
+     $country_list_item_code=''}
+    <input type="hidden" name="sik_country" id="sik_country" value="USA" />
+           <select name="s_Country" id="scountry" onchange="shipping(document.register.country.value);">
+                <option value="">&nbsp;</option>
+                {foreach $countries as $country_id => $country_list_item}
+                 {if $country_list_item.Alpha3|eq('')}
+                 {set $country_list_item_code=$country_list_item.Alpha2}
+                 {else}
+                 {set $country_list_item_code=$country_list_item.Alpha3}
+                 {/if}
+                 <option value="{$country_list_item_code}" {if $current_user.is_logged_in}{if eq($s_country,$country_list_item_code)} selected="selected"{/if}{else}{if eq($s_country,$country_list_item_code)} selected="selected"{/if}{/if}>{$country_list_item.Name}</option>
                 {/foreach}
             </select>
 </div>

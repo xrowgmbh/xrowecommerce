@@ -29,12 +29,13 @@
 <span class="required">* Required field</span></p>
 <div class="block">
 
-    {*<div class="ur_companyname">
+{if eq(ezini( 'DisplayFieldSettings', 'DisplayCompanyName', 'fieldsettings.ini' ), 'enabled' )}
+    <div class="ur_companyname">
         <label>Company name</label>
         <div class="labelbreak"></div>
         <input type="text" name="CompanyName" value="{$company_name|wash}" />
-    </div>*}
-
+    </div>
+{/if}
 	<div class="ur_firstname">
     	<label><span class="required">*</span>First name</label>
     	<div class="labelbreak"></div>
@@ -234,6 +235,12 @@
 </div>
 
 <div class="block">
+    <label>Fax</label>
+    <div class="labelbreak"></div>
+    <input type="text" name="Fax" class="phone" value="{$phone|wash}" />
+</div>
+
+<div class="block">
 	<label><span class="required">*</span>E-mail</label>
 	<div class="labelbreak"></div>
 	<input class="phone" type="text" name="EMail" value="{$email|wash}" />
@@ -278,6 +285,14 @@ function change(status)
 {ldelim}
 if (status)
     {ldelim}
+{if eq(ezini( 'DisplayFieldSettings', 'DisplayCompanyName', 'fieldsettings.ini' ), 'enabled' )}
+        document.register.sik_companyname.value = document.register.scompanyname.value;
+        document.register.scompanyname.value = '';
+{/if}
+{if eq(ezini( 'DisplayFieldSettings', 'DisplayCompanyForm', 'fieldsettings.ini' ), 'enabled' )}
+        document.register.sik_companyform.value = document.register.scompanyform.value;
+        document.register.scompanyform.value = '';
+{/if}
         document.register.sik_firstname.value = document.register.sfirstname.value;
         document.register.sfirstname.value = '';
         document.register.sik_lastname.value = document.register.slastname.value;
@@ -286,8 +301,12 @@ if (status)
         document.register.smi.value = '';
         document.register.sik_zip.value = document.register.szip.value;
         document.register.szip.value = '';
+{if eq(ezini( 'DisplayFieldSettings', 'DisplayFax', 'fieldsettings.ini' ), 'enabled' )}
         document.register.sik_phone.value = document.register.sphone.value;
         document.register.sphone.value = '';
+{/if}
+        document.register.sik_fax.value = document.register.sfax.value;
+        document.register.sfax.value = '';
         document.register.sik_email.value = document.register.semail.value;
         document.register.semail.value = '';
         document.register.sik_address1.value = document.register.saddress1.value;
@@ -305,6 +324,14 @@ if (status)
     {rdelim}
     else
     {ldelim}
+{if eq(ezini( 'DisplayFieldSettings', 'DisplayCompanyName', 'fieldsettings.ini' ), 'enabled' )}
+        document.register.scompanyname.value = document.register.scompanyname.value;
+        document.register.sik_companyname.value = '';
+{/if}
+{if eq(ezini( 'DisplayFieldSettings', 'DisplayCompanyForm', 'fieldsettings.ini' ), 'enabled' )}
+        document.register.scompanyform.value = document.register.scompanyform.value;
+        document.register.sik_companyform.value = '';
+{/if}
         document.register.sfirstname.value = document.register.sik_firstname.value;
         document.register.sik_firstname.value = '';
         document.register.slastname.value = document.register.sik_lastname.value;
@@ -315,6 +342,10 @@ if (status)
         document.register.sik_zip.value = '';
         document.register.sphone.value = document.register.sik_phone.value;
         document.register.sik_phone.value = '';
+{if eq(ezini( 'DisplayFieldSettings', 'DisplayFax', 'fieldsettings.ini' ), 'enabled' )}        
+        document.register.sfax.value = document.register.sik_fax.value;
+        document.register.sik_fax.value = '';
+{/if}
         document.register.semail.value = document.register.sik_email.value;
         document.register.sik_email.value = '';
         document.register.saddress1.value = document.register.sik_address1.value;
@@ -375,7 +406,7 @@ if (document.register.Shipping.checked == false)
         <td>
             <p>
             My billing and shipping addresses are identical. <span class="required">* Required field</span>
-        </p>
+            </p>
         </td>
         </tr>
 {*
@@ -391,12 +422,13 @@ if (document.register.Shipping.checked == false)
         </table>
 <div class="block" id="shippinginfo" {$shipping|choose( "style='display: block;'", "style='display: none;'")}>
 
-    {*<div class="ur_companyname">
+{if eq(ezini( 'DisplayFieldSettings', 'DisplayCompanyName', 'fieldsettings.ini' ), 'enabled' )}
+    <div class="ur_companyname">
         <label>Company name</label>
         <div class="labelbreak"></div>
         <input type="text" name="s_CompanyName" value="{$s_company_name|wash}" />
-    </div>*}
-
+    </div>
+{/if}
 	<div class="ur_firstname">
     	<label><span class="required">*</span>First name</label>
     	<div class="labelbreak"></div>
@@ -605,6 +637,13 @@ if (document.register.Shipping.checked == false)
 	<div class="labelbreak"></div>
 	<input class="phone" type="text" id="sphone" name="s_Phone" value="{$s_phone|wash}" />
 	<input type="hidden" name="sik_phone" id="sik_phone" value="" />
+</div>
+
+<div class="block">
+    <label>Fax</label>
+    <div class="labelbreak"></div>
+    <input class="phone" type="text" id="sfax" name="s_Fax" value="{$s_fax|wash}" />
+    <input type="hidden" name="sik_phone" id="sik_phone" value="" />
 </div>
 
 <div class="block">
