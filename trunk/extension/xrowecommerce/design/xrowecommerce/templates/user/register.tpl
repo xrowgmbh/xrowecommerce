@@ -1,3 +1,4 @@
+{def $current_user=fetch( 'user', 'current_user' )}
 {def $ca=$content_attributes_data_map
      $castring="ContentObjectAttribute_ezstring_data_text_"}
 
@@ -206,7 +207,7 @@
     {/if}
     {def $countries=fetch( 'content', 'country_list', array(false, false))}
      <input type="hidden" name="ContentObjectAttribute_id[]" value="{$ca.country.id}" />
-            <select name="Country" id="country" style="width: 170px;" onchange="shipping(this.value);">
+            <select name=ContentObjectAttribute_country_{$ca.country.id} id="country" style="width: 170px;" onchange="shipping(this.value);">
                 <option value="">&nbsp;</option>
                 {foreach $countries as $country_list_item}
                 {if $country_list_item.Alpha3|eq('')}{set $country_list_item_code=$country_list_item.Alpha2}{else}{set $country_list_item_code=$country_list_item.Alpha3}{/if}
@@ -260,7 +261,7 @@
             <div class="block" id="shippinginfo")}>
 {if eq(ezini( 'DisplayFieldSettings', 'DisplayCompanyName', 'fieldsettings.ini' ), 'enabled' )}
                 <div class="block">
-                    <label>Company name</label>
+                    <label><span class="required">*</span>Company name</label>
                     <div class="labelbreak"></div>
                     <input type="text" name="ContentObjectAttribute_ezstring_data_text_{$ca.s_company_name.id}" value="{$ca.s_company_name.content|wash()}" style="width: 170px;" />
                     <input type="hidden" name="ContentObjectAttribute_id[]" value="{$ca.s_company_name.id}" />
@@ -369,8 +370,9 @@
     {/if}
     {def $countries=fetch( 'content', 'country_list', array(false, false))
      $country_list_item_code=''}
+     <input type="hidden" name="ContentObjectAttribute_id[]" value="{$ca.s_country.id}" />
     <input type="hidden" name="sik_country" id="sik_country" value="USA" />
-           <select name="s_Country" id="scountry" onchange="shipping(document.register.country.value);">
+           <select name="ContentObjectAttribute_country_{$ca.s_country.id}" id="scountry" onchange="shipping(document.register.country.value);">
                 <option value="">&nbsp;</option>
                 {foreach $countries as $country_id => $country_list_item}
                  {if $country_list_item.Alpha3|eq('')}

@@ -40,6 +40,8 @@ class xrowECommerceShopAccountHandler
         $userMap = $userObject->dataMap();
         $billing = array();
         $billing['company_name'] = $userMap['company_name']->content();
+        $billing['company_additional'] = $userMap['company_additional']->content();
+        $billing['tax_id'] = $userMap['tax_id']->content();
         $billing['first-name'] = $userMap['first_name']->content();
         $billing['mi'] = $userMap['mi']->content();
         $billing['last-name'] = $userMap['last_name']->content();
@@ -57,7 +59,9 @@ class xrowECommerceShopAccountHandler
         $shipping = array();
         if ( $shipping !="1" )
         {
-            $shipping['company_name'] = $userMap['company_name']->content();
+            $shipping['s_company_name'] = $userMap['s_company_name']->content();
+            $shipping['s_company_additional'] = $userMap['s_company_additional']->content();
+            $shipping['s_tax_id'] = $userMap['s_tax_id']->content();
             $shipping['s_first-name'] = $userMap['s_first_name']->content();
             $shipping['s_mi'] = $userMap['s_last_name']->content();
             $shipping['s_last-name'] = $userMap['s_mi']->content();
@@ -218,7 +222,7 @@ class xrowECommerceShopAccountHandler
         if ( isset( $companyAdditional[0] ) )
             $companyAdditionalText = $companyAdditional[0]->textContent();
             
-        $companyNameText = "";
+        $taxIdText = "";
         if ( isset( $taxId[0] ) )
             $taxIdText = $taxId[0]->textContent();
         

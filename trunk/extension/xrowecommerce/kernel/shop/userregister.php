@@ -74,7 +74,6 @@ if ( $user->isLoggedIn() )
     $scompanyName = $userMap['s_company_name']->content();
     $scompanyAdditional = $userMap['s_company_additional']->content();
     $staxid = $userMap['s_tax_id']->content();
-    $scompanytName = $userMap['s_company_name']->content();
     $sfirstName = $userMap['s_first_name']->content();
     $smi = $userMap['s_mi']->content();
     $slastName = $userMap['s_last_name']->content();
