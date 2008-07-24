@@ -106,7 +106,7 @@
             
             <table valign="top" class="order_box" border="0"  cellspacing="0" cellpadding="0">
                 <tr><th colspan="2">{"Shipping Address"|i18n("design/standard/shop")}</th></tr>
-                <tr><td class="bold">Company:</td><td>{$order.account_information.s_company_name}</td></tr>
+                {*<tr><td class="bold">Company:</td><td>{$order.account_information.s_company_name}</td></tr>*}
                 <tr><td class="bold">Name:</td><td>{$order.account_information.s_first_name} {$order.account_information.s_last_name}</td></tr>
                 <tr><td class="bold">MI:</td><td>{$order.account_information.s_mi}</td></tr>
                 <tr><td class="bold">{'Address'|i18n('design/standard/shop')}:</td><td>{$order.account_information.s_address1}</td></tr>

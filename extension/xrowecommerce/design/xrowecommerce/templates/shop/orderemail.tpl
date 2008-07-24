@@ -1,8 +1,8 @@
-+{set-block scope=root variable=subject}Alcone Company {"Order"|i18n("design/standard/shop")} #{$order.order_nr}{/set-block}
-Thank you for ordering from Alcone, professional makeup artists' go-to spot for the best cosmetics.
++{set-block scope=root variable=subject}{ezini( 'InvoiceSettings', 'CompanyName', 'order.ini'  )} {"Order"|i18n("design/standard/shop")} #{$order.order_nr}{/set-block}
+Thank you for ordering from {ezini( 'InvoiceSettings', 'CompanyName', 'order.ini'  )}.
 
 The details of the order are below.  If you have a question, please do not reply to this email.
-Rather, email info@alconeco.com or call 800-466-7446.
+Rather, email {ezini( 'InvoiceSettings', 'CompanyEmail', 'order.ini'  )} or call {ezini( 'InvoiceSettings', 'CompanyPhone', 'order.ini'  )}.
 Thank you again, and have a wonderful day!
 ----------------------------------------------
 
@@ -60,6 +60,6 @@ The Staff at Alcone Company
 
 ----------------------------
 Contact Us:
-Phone: 800-466-7446
-Shop: http://www.alconeco.com
+Phone: {ezini( 'InvoiceSettings', 'CompanyPhone', 'order.ini'  )}
+Shop: {ezini( 'InvoiceSettings', 'CompanyWebsite', 'order.ini'  )}
 ----------------------------

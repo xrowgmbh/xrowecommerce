@@ -5,9 +5,9 @@
 
 <br />
 <div class="xrow-loginbox">
-<span class="heading1">Already Registered?</span><br />
+<span class="heading1">{'Already Registered?'|i18n("design/standard/user")}</span><br />
 <p>
-Enter your E-mail address and password below to sign-in.
+{'Enter your username or email address and password below to sign-in.'|i18n("design/standard/user")}
 </p>
 
 {section show=$User:warning.bad_login}
@@ -38,7 +38,7 @@ Enter your E-mail address and password below to sign-in.
 <label for="id2">{"Password"|i18n("design/standard/user")}</label><div class="labelbreak"></div>
 <input class="halfbox" type="password" size="10" name="Password" id="id2" value="" tabindex="1" />
 </div>
-<p><a href={"/user/forgotpassword"|ezurl()}>Forgot Password?</a></p>
+<p><a href={"/user/forgotpassword"|ezurl()}>{'Forgot Password?'|i18n("design/standard/user")}</a></p>
 <br />
 
 <div class="buttonblock" style="text-align: right;">
@@ -59,9 +59,9 @@ Enter your E-mail address and password below to sign-in.
 
 </div>
 <div class="xrow-registerbox">
-<span class="heading1">New Customer?</span><br />
+<span class="heading1">{'New Customer?'|i18n("design/standard/user")}</span><br />
 <p>
-Create an account to save your shipping and billing information.<br />
+{'Create an account to save your shipping and billing information.'|i18n("design/standard/user")}<br />
 </p>
 <div class="buttonblock" style="text-align: right;">
 <input class="button" type="submit" name="RegisterButton" value="{'Sign Up'|i18n('design/standard/user','Button')}" tabindex="1">

@@ -68,6 +68,7 @@ if ( $user->isLoggedIn() )
     $state = $userMap['state']->content();
     $zip = $userMap['zip']->content();
     $phone = $userMap['phone']->content();
+    $fax = $userMap['fax']->content();
     $email = $user->attribute( 'email' );
 
     $scompanyName = $userMap['s_company_name']->content();
@@ -84,6 +85,7 @@ if ( $user->isLoggedIn() )
     $szip = $userMap['s_zip']->content();
     $scountry = $userMap['s_country']->content();
     $sphone = $userMap['s_phone']->content();
+    $sfax = $userMap['s_fax']->content();
     $slastName = $userMap['s_last_name']->content();
     $email = $user->attribute( 's_email' );
 }
@@ -102,6 +104,7 @@ if ( count( $orderList ) > 0 and  $user->isLoggedIn() )
     $city = $accountInfo['city'];
     $state = $accountInfo['state'];
     $phone = $accountInfo['phone'];
+    $fax = $accountInfo['fax'];
     $mi = $accountInfo['mi'];
 }
 
@@ -146,6 +149,8 @@ if ( $module->isCurrentAction( 'Store' ) )
     $phone = $http->postVariable( "Phone" );
     if ( trim( $phone ) == "" )
         $inputIsValid = false;
+        
+    $fax = $http->postVariable( "Fax" );
 
     if ( $inputIsValid == true )
     {
@@ -208,6 +213,10 @@ if ( $module->isCurrentAction( 'Store' ) )
         $phoneNode = $doc->createElementNode( "phone" );
         $phoneNode->appendChild( $doc->createTextNode( $phone ) );
         $root->appendChild( $phoneNode );
+
+        $faxNode = $doc->createElementNode( "fax" );
+        $faxNode->appendChild( $doc->createTextNode( $fax ) );
+        $root->appendChild( $phoneNode );
         
 		$emailNode = $doc->createElementNode( "email" );
         $emailNode->appendChild( $doc->createTextNode( $email ) );
@@ -248,6 +257,7 @@ $tpl->setVariable( "zip", $zip );
 $tpl->setVariable( "city", $city );
 $tpl->setVariable( "state", $state );
 $tpl->setVariable( "phone", $phone );
+$tpl->setVariable( "fax", $fax );
 
 $tpl->setVariable( "s_company_name", $scompanyName );
 $tpl->setVariable( "s_company_additional", $scompanyAdditional );
@@ -262,6 +272,7 @@ $tpl->setVariable( "s_zip", $szip );
 $tpl->setVariable( "s_city", $scity );
 $tpl->setVariable( "s_state", $sstate );
 $tpl->setVariable( "s_phone", $sphone );
+$tpl->setVariable( "s_fax", $sfax );
 
 $Result = array();
 $Result['content'] =& $tpl->fetch( "design:shop/userregister.tpl" );

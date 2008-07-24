@@ -161,7 +161,7 @@ for (i = 0; i < field.length; i++)
                     </tr>
                     <tr>
                         <td>
-                        Weight: {$vary.weight|wash()} lbs
+                        {'Weight'|i18n("design/ezwebin/shop/basket")}: {$vary.weight|wash()} {'lbs'|i18n("design/ezwebin/shop/basket")}
                         </td>
                     </tr>
                     {/section}
@@ -190,7 +190,7 @@ for (i = 0; i < field.length; i++)
                     </tr>
                     <tr>
                         <td>
-                        Weight: {attribute_view_gui attribute=$prod.data_map.weight} lbs
+                        {'Weight'|i18n("design/ezwebin/shop/basket")}: {attribute_view_gui attribute=$prod.data_map.weight} {'lbs'|i18n("design/ezwebin/shop/basket")}
                         </td>
                     </tr>
                     {/if}
@@ -271,17 +271,17 @@ for (i = 0; i < field.length; i++)
             <div>
                 <div class="loginbox">
                     <p>Already a member?</p>
-                    <form method="post" action="../user/login/">
+                    <form method="post" action={"user/login"|ezurl}">
                     <div class="loginbox_wrap">
                         <label for="id1">{"Username"|i18n("design/standard/user",'User name')}</label><div class="labelbreak"></div>
                         <input type="text" name="Login" id="id1" value="{$User:login|wash}" tabindex="1" />
                     </div>
                     <div class="loginbox_wrap">
                         <label for="id2">{"Password"|i18n("design/standard/user")}</label><div class="labelbreak"></div>
-                        <input type="password"  name="Password" id="id2" value="" tabindex="1" />
+                        <input type="password" name="Password" id="id2" value="" tabindex="1" />
                     </div>
                     <div>
-                        <input class="standard" type="image" src={"images/continue.gif"|ezdesign()} name="LoginButton" value="{'Login'|i18n('design/standard/user','Button')}" tabindex="1">
+                        <input class="standard" type="submit" name="LoginButton" value="{'Login'|i18n('design/standard/user','Button')}" tabindex="1">
                     </div>
                     <input type="hidden" name="RedirectURI" value="../shop/userregister" />
                 </div>

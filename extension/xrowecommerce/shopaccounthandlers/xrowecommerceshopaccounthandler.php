@@ -50,6 +50,7 @@ class xrowECommerceShopAccountHandler
         $billing['city'] = $userMap['city']->content();
         $billing['country'] = $userMap['country']->content();
         $billing['phone'] = $userMap['phone']->content();
+        $billing['fax'] = $userMap['fax']->content();
         $billing['shipping'] = $userMap['shippingaddress']->content();
         $billing['shippingtype'] = $userMap['shippingtype']->content();
         $billing['email'] = $user->attribute( 'email' );
@@ -67,7 +68,8 @@ class xrowECommerceShopAccountHandler
             $shipping['s_zip'] = $userMap['s_zip_code']->content();
             $shipping['s_country'] = $userMap['s_country']->content();
             $shipping['s_phone'] = $userMap['s_phone']->content();
-            $shipping['s_phone'] = $userMap['s_email']->content();
+            $shipping['s_fax'] = $userMap['s_fax']->content();
+            $shipping['s_enail'] = $userMap['s_email']->content();
         }
         $tmpcreditcard = $userMap['creditcard']->content();
         if ( file_exists( eZExtension::baseDirectory() . '/ezauthorize' ) )
@@ -182,6 +184,7 @@ class xrowECommerceShopAccountHandler
         $country = $dom->elementsByName( "country" );
 
         $phone = $dom->elementsByName( "phone" );
+        $fax = $dom->elementsByName( "fax" );
         $email = $dom->elementsByName( "email" );
 
         $shipping = $dom->elementsByName( "shipping" );
@@ -202,6 +205,7 @@ class xrowECommerceShopAccountHandler
         $s_country = $dom->elementsByName( "s_country" );
 
         $s_phone = $dom->elementsByName( "s_phone" );
+        $s_fax = $dom->elementsByName( "s_fax" );
         $s_email = $dom->elementsByName( "s_email" );
 
         // $comment =& $dom->elementsByName( "comment" );
@@ -260,6 +264,10 @@ class xrowECommerceShopAccountHandler
         $phoneText = "";
         if ( isset( $phone[0] ) )
             $phoneText = $phone[0]->textContent();
+            
+        $faxText = "";
+        if ( isset( $fax[0] ) )
+            $faxText = $fax[0]->textContent();
 
         $emailText = "";
         if ( isset( $email[0] ) )
@@ -328,6 +336,10 @@ class xrowECommerceShopAccountHandler
         $s_phoneText = "";
         if ( count($s_firstName) > 0 and isset( $s_phone[0] ) )
             $s_phoneText = $s_phone[0]->textContent();
+
+        $s_faxText = "";
+        if ( count($s_firstName) > 0 and isset( $s_fax[0] ) )
+            $s_faxText = $s_fax[0]->textContent();
 
         $s_emailText = "";
         if ( count($s_firstName) > 0 and isset( $s_email[0] ) )
@@ -409,6 +421,7 @@ class xrowECommerceShopAccountHandler
                       'zip' => $zipText,
                       'country' => $countryText,
                       'phone' => $phoneText,
+                      'fax' => $faxText,
                       'email' => $emailText,
                       'shipping' => $shippingText,
                       'shippingtype' => $shippingTypeText,
@@ -422,6 +435,7 @@ class xrowECommerceShopAccountHandler
                       's_zip' => $s_zipText,
                       's_country' => $s_countryText,
                       's_phone' => $s_phoneText,
+                      's_fax' => $s_faxText,
                       'coupon_code' => $CouponCode,
                       'ezauthorize_transaction_id' => $s_ezauthorize_transaction_idText,
                       'ezauthorize_card_name' => $s_ezauthorize_card_nameText,

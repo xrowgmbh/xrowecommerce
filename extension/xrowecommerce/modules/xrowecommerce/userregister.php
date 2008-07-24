@@ -65,6 +65,7 @@ if ( $user->isLoggedIn() and $userobject->attribute( 'class_identifier' ) == 'cl
     $city = $userMap['city']->content();
     $country = $userMap['country']->attribute( 'data_text' );
     $phone = $userMap['phone']->content();
+    $fax = $userMap['fax']->content();
     $shipping = $userMap['shippingaddress']->content();
     $shippingtype = $userMap['shippingtype']->content();
     $email = $user->attribute( 'email' );
@@ -83,6 +84,7 @@ if ( $user->isLoggedIn() and $userobject->attribute( 'class_identifier' ) == 'cl
         $s_zip = $userMap['s_zip_code']->content();
         $s_country = $userMap['s_country']->attribute( 'data_text' );
         $s_phone = $userMap['s_phone']->content();
+        $s_fax = $userMap['s_fax']->content();
         $s_email = $userMap['s_email']->content();
     }
 }
@@ -99,7 +101,8 @@ $tpl->setVariable( "input_error", false );
 if ( $module->isCurrentAction( 'Store' ) )
 {
     $inputIsValid = true;
-        $companyName = $http->postVariable( "CompanyName" );
+
+    $companyName = $http->postVariable( "CompanyName" );
 
     $companyAdditional = $http->postVariable( "CompanyAdditional" );
 
@@ -142,7 +145,9 @@ if ( $module->isCurrentAction( 'Store' ) )
     $phone = $http->postVariable( "Phone" );
     if ( trim( $phone ) == "" )
         $inputIsValid = false;
-
+        
+    $fax = $http->postVariable( "Fax" );
+    
     $shipping = $http->postVariable( "Shipping" );
     $shippingtype = $http->postVariable( "ShippingType" );
     
@@ -194,6 +199,8 @@ if ( $module->isCurrentAction( 'Store' ) )
         $s_phone = $http->postVariable( "s_Phone" );
         if ( trim( $s_phone ) == "" )
             $inputIsValid = false;
+
+        $s_fax = $http->postVariable( "s_Fax" );
             
         if ($s_country !="USA" and $shippingtype <= "5" )
             $inputIsValid = false;
@@ -272,6 +279,10 @@ if ( $module->isCurrentAction( 'Store' ) )
         $phoneNode->appendChild( $doc->createTextNode( $phone ) );
         $root->appendChild( $phoneNode );
 
+        $faxNode = $doc->createElementNode( "fax" );
+        $faxNode->appendChild( $doc->createTextNode( $fax ) );
+        $root->appendChild( $faxNode );
+
         $emailNode = $doc->createElementNode( "email" );
         $emailNode->appendChild( $doc->createTextNode( $email ) );
         $root->appendChild( $emailNode );
@@ -348,6 +359,10 @@ if ( $module->isCurrentAction( 'Store' ) )
             $s_phoneNode->appendChild( $doc->createTextNode( $s_phone ) );
             $root->appendChild( $s_phoneNode );
 
+            $s_faxNode = $doc->createElementNode( "s_fax" );
+            $s_faxNode->appendChild( $doc->createTextNode( $s_fax ) );
+            $root->appendChild( $s_faxNode );
+
             $s_emailNode = $doc->createElementNode( "s_email" );
             $s_emailNode->appendChild( $doc->createTextNode( $s_email ) );
             $root->appendChild( $s_emailNode );
@@ -391,6 +406,7 @@ $tpl->setVariable( "state", $state );
 $tpl->setVariable( "zip", $zip );
 $tpl->setVariable( "country", $country );
 $tpl->setVariable( "phone", $phone );
+$tpl->setVariable( "fax", $fax );
 $tpl->setVariable( "shipping", $shipping );
 $tpl->setVariable( "shippingtype", $shippingtype );
 
@@ -407,6 +423,7 @@ $tpl->setVariable( "s_state", $s_state );
 $tpl->setVariable( "s_zip", $s_zip );
 $tpl->setVariable( "s_country", $s_country );
 $tpl->setVariable( "s_phone", $s_phone );
+$tpl->setVariable( "s_fax", $s_fax );
 
 $tpl->setVariable( "coupon_code", $coupon_code );
 

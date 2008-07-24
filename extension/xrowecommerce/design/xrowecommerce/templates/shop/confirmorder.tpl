@@ -33,7 +33,7 @@
         {if count($hazardous)|gt(0)}
             <b style="color: red;">Hazardous item(s) found in your cart</b>
                 Dear Customer,<br />
-                We've removed the following hazardous items from your shopping cart since we are NOT allowed to ship these items to your destination. For further questions please contact AlconeCO.<br />
+                We've removed the following hazardous items from your shopping cart since we are NOT allowed to ship these items to your destination. For further questions please contact {ezini( 'InvoiceSettings', 'CompanyName', 'order.ini'  )}.<br />
                 <ul style="background: white;">
                     {foreach $hazardous as $item}
                     <li>{$item.item_count} x <a href={concat("/content/view/full/", $item.contentobject.main_node_id)|ezurl()}>{$item.name}</a></li>
@@ -234,12 +234,12 @@
     <table>
         <tr>
             <td>
-                <input class="button" type="submit" name="CancelButton" value="{'Cancel'|i18n('design/base/shop')}" /> &nbsp;
-                <input type="image" type="submit" name="CancelButton" src={"images/cancel_small.gif"|ezdesign()} value="Cancel"> &nbsp;
+                <input class="button" type="submit" name="CancelButton" value="{'Cancel'|i18n('design/base/shop')}" />&nbsp;
+                <input type="image" type="submit" name="CancelButton" src={"images/cancel_small.gif"|ezdesign()} value="Cancel">&nbsp;
             </td>
             <td>
-                <input class="button" type="submit" name="ConfirmOrderButton" value="{'Confirm'|i18n('design/base/shop')}" /> &nbsp;
-                <input type="image" type="submit" name="ConfirmOrderButton" src={"images/continue_small.gif"|ezdesign()} value="Confirm"> &nbsp;
+                <input class="button" type="submit" name="ConfirmOrderButton" value="{'Confirm'|i18n('design/base/shop')}" />&nbsp;
+                <input type="image" type="submit" name="ConfirmOrderButton" src={"images/continue_small.gif"|ezdesign()} value="Confirm">&nbsp;
             </td>
         </tr>
     </table>
