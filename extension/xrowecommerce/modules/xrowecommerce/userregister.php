@@ -225,20 +225,18 @@ if ( $module->isCurrentAction( 'Store' ) )
         $root = $doc->createElementNode( "shop_account" );
         $doc->setRoot( $root );
         
-        if( isset( $companyName ) )
-        {
-            $companyNameNode = $doc->createElementNode( "company_name" );
-            $companyNameNode->appendChild( $doc->createTextNode( $companyName ) );
-            $root->appendChild( $companyNameNode );
+        $companyNameNode = $doc->createElementNode( "company_name" );
+        $companyNameNode->appendChild( $doc->createTextNode( $companyName ) );
+        $root->appendChild( $companyNameNode );
             
-            $companyAdditionalNode = $doc->createElementNode( "company_additional" );
-            $companyAdditionalNode->appendChild( $doc->createTextNode( $companyAdditional ) );
-            $root->appendChild( $companyAdditionalNode );
+        $companyAdditionalNode = $doc->createElementNode( "company_additional" );
+        $companyAdditionalNode->appendChild( $doc->createTextNode( $companyAdditional ) );
+        $root->appendChild( $companyAdditionalNode );
             
-            $taxIdNode = $doc->createElementNode( "tax_id" );
-            $taxIdNode->appendChild( $doc->createTextNode( $taxId ) );
-            $root->appendChild( $textIdNode );
-        }
+        $taxIdNode = $doc->createElementNode( "tax_id" );
+        $taxIdNode->appendChild( $doc->createTextNode( $taxId ) );
+        $root->appendChild( $taxIdNode );
+
         $firstNameNode = $doc->createElementNode( "first-name" );
         $firstNameNode->appendChild( $doc->createTextNode( $firstName ) );
         $root->appendChild( $firstNameNode );
