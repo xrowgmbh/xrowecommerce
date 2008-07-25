@@ -429,6 +429,8 @@ class xrowECommerceShopAccountHandler
                       'email' => $emailText,
                       'shipping' => $shippingText,
                       'shippingtype' => $shippingTypeText,
+                      's_company_name' => $s_companyNameText,
+                      's_company_additional' => $s_companyAdditionalText,
                       's_first_name' => $s_firstNameText,
                       's_mi' => $s_miText,
                       's_last_name' => $s_lastNameText,

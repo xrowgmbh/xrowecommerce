@@ -56,7 +56,9 @@
     
             <table border="0"  cellspacing="0" cellpadding="0" class="order_box">
                 <tr><th colspan="2">{"Delivery & Shipping Address"|i18n("design/standard/shop")}</th></tr>
-                {*<tr><td class="bold">{'Company'|i18n('design/standard/shop')}:</td><td>{$order.account_information.company_name}</td></tr>*}
+{if eq(ezini( 'DisplayFieldSettings', 'DisplayCompanyName', 'fieldsettings.ini' ), 'enabled' )}                
+                <tr><td class="bold">{'Company'|i18n('design/standard/shop')}:</td><td>{$order.account_information.company_name}</td></tr>
+{/if}
                 <tr><td class="bold">{'Address'|i18n('design/standard/shop')}:</td><td>{$order.account_information.address1}</td></tr>
                 {if gt(count($order.account_information.address2),0)}
                 <tr><td>&nbsp;</td><td>{$order.account_information.address2}</td></tr>
@@ -114,9 +116,9 @@
             
             <table valign="top" class="order_box" border="0"  cellspacing="0" cellpadding="0">
                 <tr><th colspan="2">{"Shipping Address"|i18n("design/standard/shop")}</th></tr>
-                {if eq(ezini( 'DisplayFieldSettings', 'DisplayCompanyName', 'fieldsettings.ini' ), 'enabled' )}
+{if eq(ezini( 'DisplayFieldSettings', 'DisplayCompanyName', 'fieldsettings.ini' ), 'enabled' )}
                 <tr><td class="bold">Company:</td><td>{$order.account_information.s_company_name}</td></tr>
-                {/if}
+{/if}
                 <tr><td class="bold">Name:</td><td>{$order.account_information.s_first_name} {$order.account_information.s_last_name}</td></tr>
                 <tr><td class="bold">MI:</td><td>{$order.account_information.s_mi}</td></tr>
                 <tr><td class="bold">{'Address'|i18n('design/standard/shop')}:</td><td>{$order.account_information.s_address1}</td></tr>

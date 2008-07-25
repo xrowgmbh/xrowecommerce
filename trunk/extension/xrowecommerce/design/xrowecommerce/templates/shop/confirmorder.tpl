@@ -2,12 +2,12 @@
     <form method="post" action={"/shop/confirmorder/"|ezurl}>
         <h2>{"Confirm order"|i18n("design/base/shop")}</h2>
         <div class="shopping_cart_path">
-            <div>1. Cart</div>
-            <div>2. Billing, Shipping and Coupons</div>
-            <div class="shopping_cart_path_select">3. Confirmation</div>
-            <div>4. Payment info</div>
-            <div>5. Order completed</div>
-            <div>6. Review reciept</div>
+            <div>{'1. Cart'|i18n('design/base/shop')}</div>
+            <div>{'2. Billing, Shipping and Coupons'|i18n('design/base/shop')}</div>
+            <div class="shopping_cart_path_select">{'3. Confirmation'|i18n('design/base/shop')}</div>
+            <div>{'4. Payment info'|i18n('design/base/shop')}</div>
+            <div>{'5. Order completed'|i18n('design/base/shop')}</div>
+            <div>{'6. Review reciept'|i18n('design/base/shop')}</div>
         </div>
         <div class="break"></div>
         <div class="buttonblock">
@@ -31,9 +31,9 @@
                  symbol = $currency.symbol}
         {/if}
         {if count($hazardous)|gt(0)}
-            <b style="color: red;">Hazardous item(s) found in your cart</b>
-                Dear Customer,<br />
-                We've removed the following hazardous items from your shopping cart since we are NOT allowed to ship these items to your destination. For further questions please contact {ezini( 'InvoiceSettings', 'CompanyName', 'order.ini'  )}.<br />
+            <b style="color: red;">{'Hazardous item(s) found in your cart'|i18n('design/base/shop')}</b>
+                {'Dear Customer,'|i18n('design/base/shop')}<br />
+                {'We've removed the following hazardous items from your shopping cart since we are NOT allowed to ship these items to your destination. For further questions please contact'|i18n('design/base/shop')} {ezini( 'InvoiceSettings', 'CompanyName', 'order.ini'  )}.<br />
                 <ul style="background: white;">
                     {foreach $hazardous as $item}
                     <li>{$item.item_count} x <a href={concat("/content/view/full/", $item.contentobject.main_node_id)|ezurl()}>{$item.name}</a></li>
@@ -104,7 +104,7 @@
                     </tr>
                     <tr>
                         <td>
-                        Weight: {$vary.weight|wash()} lbs
+                        {'Weight'|i18n('design/base/shop')}: {$vary.weight|wash()} {'lbs'|i18n('design/base/shop')}
                         </td>
                     </tr>
                     {/section}
@@ -137,7 +137,7 @@
                         <td>
                         {*if or(ne($vary.weight, false()), ne($vary.weight, "0"))}Weight: {$vary.weight} lbs
                         {/if*}
-                        Weight: {attribute_view_gui attribute=$prod.data_map.weight} lbs
+                        {'Weight'|i18n('design/base/shop')}: {attribute_view_gui attribute=$prod.data_map.weight} {'lbs'|i18n('design/base/shop')}
                         </td>
                     </tr>
                     {/if}
@@ -205,7 +205,6 @@
     </tr>
     <tr>
         <td class="{$OrderItem:sequence} line">
-        {* Tax ( {$percentage} % ):*}
         {"Tax"|i18n("design/base/shop")}:
         </td>
         <td class="{$OrderItem:sequence} line align_right">
@@ -229,22 +228,6 @@
     {else}{* If the shopping cart is empty after removing hazardous items... *}
     <h3>Sorry, there are no items left in your cart.</h3>
     {/if}
-    {*
-        <div class="buttonblock">
-    <table>
-        <tr>
-            <td>
-                <input class="button" type="submit" name="CancelButton" value="{'Cancel'|i18n('design/base/shop')}" />&nbsp;
-                <input type="image" type="submit" name="CancelButton" src={"images/cancel_small.gif"|ezdesign()} value="Cancel">&nbsp;
-            </td>
-            <td>
-                <input class="button" type="submit" name="ConfirmOrderButton" value="{'Confirm'|i18n('design/base/shop')}" />&nbsp;
-                <input type="image" type="submit" name="ConfirmOrderButton" src={"images/continue_small.gif"|ezdesign()} value="Confirm">&nbsp;
-            </td>
-        </tr>
-    </table>
-        </div>
-    *}
     </form>
 
 </div>

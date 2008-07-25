@@ -27,7 +27,7 @@
                 {/if}
            {if or( $partprice|gt(0), $allprice|gt(0) ) }
                 {if $partprice|gt(0)}
-                    <span class="currentprice">from {$partprice|l10n( 'currency' )}</span>
+                    <span class="currentprice">{'starting at'|i18n('design/base/shop')}{$partprice|l10n( 'currency' )}</span>
                 {/if}
                 {if $allprice|gt(0)}
                     <span class="currentprice">{$allprice|l10n( 'currency' )}</span>
