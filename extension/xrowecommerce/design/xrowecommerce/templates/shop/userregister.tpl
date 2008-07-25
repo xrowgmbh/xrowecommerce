@@ -233,13 +233,13 @@
 	<div class="labelbreak"></div>
 	<input type="text" name="Phone" class="phone" value="{$phone|wash}" />
 </div>
-
+{if eq(ezini( 'DisplayFieldSettings', 'DisplayFax', 'fieldsettings.ini' ), 'enabled' )}
 <div class="block">
     <label>Fax</label>
     <div class="labelbreak"></div>
     <input type="text" name="Fax" class="phone" value="{$phone|wash}" />
 </div>
-
+{/if}
 <div class="block">
 	<label><span class="required">*</span>E-mail</label>
 	<div class="labelbreak"></div>
@@ -301,12 +301,13 @@ if (status)
         document.register.smi.value = '';
         document.register.sik_zip.value = document.register.szip.value;
         document.register.szip.value = '';
-{if eq(ezini( 'DisplayFieldSettings', 'DisplayFax', 'fieldsettings.ini' ), 'enabled' )}
+
         document.register.sik_phone.value = document.register.sphone.value;
         document.register.sphone.value = '';
-{/if}
+{if eq(ezini( 'DisplayFieldSettings', 'DisplayFax', 'fieldsettings.ini' ), 'enabled' )}
         document.register.sik_fax.value = document.register.sfax.value;
         document.register.sfax.value = '';
+{/if}
         document.register.sik_email.value = document.register.semail.value;
         document.register.semail.value = '';
         document.register.sik_address1.value = document.register.saddress1.value;
@@ -638,14 +639,14 @@ if (document.register.Shipping.checked == false)
 	<input class="phone" type="text" id="sphone" name="s_Phone" value="{$s_phone|wash}" />
 	<input type="hidden" name="sik_phone" id="sik_phone" value="" />
 </div>
-
+{if eq(ezini( 'DisplayFieldSettings', 'DisplayFax', 'fieldsettings.ini' ), 'enabled' )}
 <div class="block">
     <label>Fax</label>
     <div class="labelbreak"></div>
     <input class="phone" type="text" id="sfax" name="s_Fax" value="{$s_fax|wash}" />
     <input type="hidden" name="sik_phone" id="sik_phone" value="" />
 </div>
-
+{/if}
 <div class="block">
 	<label><span class="required">*</span>E-mail</label>
 	<div class="labelbreak"></div>
