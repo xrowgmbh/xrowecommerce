@@ -18,6 +18,12 @@ $ViewList["multiadd"] = array(
     "default_navigation_part" => 'ezshopnavigationpart',
     "params" => array(  ) );
 
+$ViewList["statistics"] = array(
+    "functions" => array( 'administrate' ),
+    "script" => "orderstatistics.php",
+    "default_navigation_part" => 'ezshopnavigationpart',
+    "params" => array( 'StartYear', 'StartMonth', 'StopMonth', 'StartDay', 'StopDay' ) );
+
 $FunctionList['buy'] = array( );
 $FunctionList['administrate'] = array( );
 ?>
