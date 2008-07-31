@@ -4,30 +4,27 @@
                '%order_status', $order.status_name ) )}</h2>
  <br />
     <div class="shopping_cart_path">
-    <div>1. Cart</div>
-    <div>2. Billing, Shipping and Coupons</div>
-    <div>3. Confirmation</div>
-    <div>4. Payment info</div>
-    <div class="shopping_cart_path_select">5. Order completed</div>
-    <div>6. Review order</div>
+	    <div>{'1. Cart'|i18n('design/standard/shop')}</div>
+	    <div>{'2. Billing, Shipping and Coupons'|i18n('design/standard/shop')}</div>
+	    <div>{'3. Confirmation'|i18n('design/standard/shop')}</div>
+	    <div>{'4. Payment info'|i18n('design/standard/shop')}</div>
+	    <div class="shopping_cart_path_select">{'5. Order completed'|i18n('design/standard/shop')}</div>
+	    <div>6. Review order</div>
     </div>
     <div class="break"></div>
     <br />
     {shop_account_view_gui view=html order=$order}
-
     {def $currency = fetch( 'shop', 'currency', hash( 'code', $order.productcollection.currency_code ) )
          $locale = false()
          $symbol = false()}
-
     {if $currency}
         {set locale = $currency.locale
              symbol = $currency.symbol}
     {/if}
-
     <div class="content-basket">
     <table cellspacing="0" border="0">
     <tr class="lightbg">
-    <th>
+        <th>
         {"Quantity"|i18n("design/base/shop")}
         </th>
         <th>
@@ -86,7 +83,7 @@
                         <td>
                         {*if or(ne($vary.weight, false()), ne($vary.weight, "0"))}Weight: {$vary.weight} lbs
                         {/if*}
-                        Weight: {$vary.weight|wash()} lbs
+                        {'Weight'|i18n('design/standard/shop')}: {$vary.weight|wash()} {'lbs'|i18n('design/standard/shop')}
                         </td>
                     </tr>
                     {/section}
@@ -116,40 +113,12 @@
                     </tr>
                     <tr>
                         <td>
-                        {*if or(ne($vary.weight, false()), ne($vary.weight, "0"))}Weight: {$vary.weight} lbs
-                        {/if}
-                        {$prod.data_map|attribute(show)*}
-                        Weight: {attribute_view_gui attribute=$prod.data_map.weight} lbs
+
+                        {'Weight'|i18n('design/standard/shop')}: {attribute_view_gui attribute=$prod.data_map.weight} {'lbs'|i18n('design/standard/shop')}
                         </td>
                     </tr>
                     {/if}
                 </table>
-
-
-
-        {*section show=$product_item.item.item_object.option_list}
-              <table class="shop-option_list">
-         {section var=option_item loop=$product_item.item_object.option_list}
-         <tr>
-         {<td class="shop-option_name">{$option_item.name}</td>}
-             <td class="shop-option_value">
-                 {def $vary=$product_item.item_object.contentobject.data_map.variation.content.option_list[$product_item.item_object.option_list.0.option_item_id]}
-                 {$option_item.value}<br />
-                 <b>{$vary.comment}</b><br />
-                 {if or(ne($vary.weight, false()), ne($vary.weight, "0"))}Weight:{$vary.weight} lbs</b><br />{/if}
-             </td>
-         </tr>
-         {/section}
-         </table>
-         {section-else}
-             <table class="shop-option_list">
-                 <tr>
-                    {def $prod=fetch( 'content', 'node', hash( 'node_id', $product_item.node_id ) )}
-                     <td class="shop-option_value">{$prod.data_map.product_id.content}</td>
-                 </tr>
-            </table>
-
-         {/section*}
         </td>
         <td valign="top" class="basketspace">
         {$product_item.vat_value} %
@@ -168,7 +137,7 @@
      {/section}
      <tr>
          <td colspan='6' class="line3 line2 align_right">
-         Subtotal Ex. TAX:
+         {'Subtotal Ex. TAX'|i18n('design/standard/shop')}:
          <b class="price">{$order.product_total_ex_vat|l10n( 'currency', $locale, $symbol )}</b>
          </td>
      </tr>
@@ -206,7 +175,7 @@
 </tr>
 <tr>
     <td class="{$OrderItem:sequence}<!--[if IE]> line3<![endif]-->">
-    Tax{if or( $percentage|eq(8.25), $percentage|eq(6.00) )} ( {$percentage} % ){/if}:
+    {'Tax'|i18n('design/standard/shop')}{if or( $percentage|eq(8.25), $percentage|eq(6.00) )} ( {$percentage} % ){/if}:
     </td>
     <td class="{$OrderItem:sequence} align_right<!--[if IE]> line3<![endif]-->">
     {sub($order.total_inc_vat, $order.total_ex_vat)|l10n( 'currency', $locale, $symbol )}
@@ -232,19 +201,55 @@
 
 {def $user_country=wrap_user_func('getXMLString', array('country', $order.data_text_1))}
 
-{* Format:
-    UTM:T|[order-id]|[affiliation]|
-    [total]|[tax]| [shipping]|[city]|[state]|[country] UTM:I|[order-id]|[sku/code]|[productname]|[category]|[price]|
-    [quantity]
-*}
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
 
-    <form style="display:none;" name="utmform">
-    <textarea id="utmtrans">UTM:T|[{$order.order_nr}]|[alconeco]|
-    [{$order.total_ex_vat}]|[{sub($order.total_inc_vat,$order.total_ex_vat)}]| [{section name=OrderItem loop=$order.order_items show=$order.order_items sequence=array(bglight,bgdark)}{$OrderItem:item.price_inc_vat}{/section}]|[{$user_city}]|[{$user_state}]|[{$user_country}] {section var=product_item loop=$order.product_items sequence=array(bglight,bgdark)}UTM:I|[{$order.order_nr}]|[{$product_item.node_id}]|[{$product_item.object_name}]|[{$product_item.item_object.contentobject.main_node.parent.name}]|[{$product_item.price_inc_vat}]|[{$product_item.item_count}]</textarea>{/section}
-    </form>
+<script type="text/javascript">
+  var pageTracker = _gat._getTracker("{ezini( 'GoogleAnalyticsWorkflow', 'Urchin', 'googleanalytics.ini'  )}");
+  pageTracker._initData();
+  pageTracker._trackPageview();
 
-    <script language="text/javascript">
-    __utmSetTrans();
-    </script>
+  pageTracker._addTrans(
+    "{$order.order_nr}",                                                    // Order ID
+    "{ezini( 'InvoiceSettings', 'CompanyName', 'order.ini'  )}",           // Affiliation
+    "{$order.total_ex_vat}",                                              // Total
+    "{$order.order_info.total_price_info.total_price_vat}",              // Tax
+    "{$order.account_information.shipping}",                            // Shipping
+    "{$user_city}",                                                    // City
+    "{$user_state}",                                                  // State
+    "{$user_country}"                                                // Country
+  );
+  {section var=product_item loop=$order.product_items sequence=array(bglight,bgdark)}
+ {def $prod=fetch( 'content', 'node', hash( 'node_id', $product_item.node_id ) )}
+ {def $prod=fetch( 'content', 'node', hash( 'node_id', $product_item.node_id ) )}
+    {if $prod.data_map.variation.content.option_list|count|gt(0)}
+        {section var=option_item loop=$product_item.item_object.option_list}
+        {def $vary=$product_item.item_object.contentobject.data_map.variation.content.option_list[$product_item.item_object.option_list.0.option_item_id]}
+
+                    "{$order.order_nr}",                                                     // Order ID
+                    "{$option_item.value} - {$prod.name|wash()}",                           // SKU
+                    "{$vary.comment}    ",                                                 // Product Name
+                    "{$product_item.item_object.contentobject.main_node.parent.name}",    // Category
+                    "{$product_item.price_ex_vat|l10n( 'currency', $locale, $symbol )}", // Price
+                    "{$product_item.item_count}"                                        // Quantity
+                  );
+        {/section}
+    {else}
+                  pageTracker._addItem(
+                    "{$order.order_nr}",                                                     // Order ID
+                    "{$prod.data_map.product_id.content|wash()} - {$prod.name|wash()}",     // SKU
+                    "{$prod.name|wash()}",                                                 // Product Name 
+                    "{$product_item.item_object.contentobject.main_node.parent.name}",    // Category
+                    "{$product_item.price_ex_vat|l10n( 'currency', $locale, $symbol )}", // Price
+                    "{$product_item.item_count}"                                        // Quantity
+                  );
+    {/if}
+{/section}
+
+  pageTracker._trackTrans();
+</script>
+
 
 </div>

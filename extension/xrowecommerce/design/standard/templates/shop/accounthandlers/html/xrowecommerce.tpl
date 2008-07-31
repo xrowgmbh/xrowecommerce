@@ -9,15 +9,13 @@
     	<tr><th colspan="2">{"Customer"|i18n("design/standard/shop")}</th></tr>
     	<tr><td class="bold">{'Name'|i18n('design/standard/shop')}: </td><td>{$order.account_information.first_name} {$order.account_information.last_name}</td></tr>
     	<tr><td class="bold">{'Email'|i18n('design/standard/shop')}: </td><td>{$order.account_information.email}</td></tr>
-    	</table>
+    </table>
     
         {if and( eq( $fetchStoredTransaction, true), ne( $order.account_information.ezauthorize_card_date, '') )}
         {def $key = ezini( 'eZGPGSettings', 'KeyID', 'ezgpg.ini' )}
         
         <fieldset>
         <legend>{'Payment information'|i18n( 'design/admin/shop/accounthandlers/html/ez' )}</legend>
-    
-    
         <table class="list" cellspacing="0">
             <tr>
                 <td>{'Card Holder\'s Name'|i18n( 'design/admin/shop/accounthandlers/html/ez' )}</td>
@@ -32,10 +30,8 @@
                 <td>{$order.account_information.ezauthorize_card_date}</td>
             </tr>
         </table>
-    </td><td>
-    
-    
         </fieldset>
+    </td><td>   
         {/if}
         
         </td>
@@ -43,9 +39,7 @@
 </td><td></td></tr>
 <tr><td>  
             {if eq($order.account_information.shipping,1)}
-            
-     
-    
+
             <table border="0"  cellspacing="0" cellpadding="0" class="order_box">
                 <tr><th colspan="2">{"Delivery & Shipping Address"|i18n("design/standard/shop")}</th></tr>
                 <tr><td class="bold">{'Address'|i18n('design/standard/shop')}:</td><td>{$order.account_information.address1}</td></tr>
@@ -72,7 +66,6 @@
                 </td></tr>
             </table>
     {else}
-             
             <table class="order_box" border="0"  cellspacing="0" cellpadding="0">
                 <tr><th colspan="2">{"Billing Address"|i18n("design/standard/shop")}</th></tr>
                 <tr><td class="bold">{'Address'|i18n('design/standard/shop')}:</td><td>{$order.account_information.address1}</td></tr>
@@ -85,7 +78,6 @@
                 <tr><td class="bold">{'Country'|i18n('design/standard/shop')}:</td><td>{$order.account_information.country}</td></tr>
                 <tr><td class="bold">{'Phone'|i18n('design/standard/shop')}:</td><td>{$order.account_information.phone}</td></tr>
                 <tr><td class="bold">{'Shipping'|i18n('design/standard/shop')}:</td>
-                
                 <td>
                 {switch match=$order.account_information.shippingtype}
                 {case match="1"}
@@ -101,8 +93,6 @@
                 </td></tr>
             </table>
 
-
-            
             <table valign="top" class="order_box" border="0"  cellspacing="0" cellpadding="0">
                 <tr><th colspan="2">{"Shipping Address"|i18n("design/standard/shop")}</th></tr>
                 <tr><td class="bold">Name:</td><td>{$order.account_information.s_first_name} {$order.account_information.s_last_name}</td></tr>
@@ -118,9 +108,6 @@
                 <tr><td class="bold">{'Phone'|i18n('design/standard/shop')}:</td><td>{$order.account_information.s_phone}</td></tr>
                 <tr><td class="bold">{'Email'|i18n('design/standard/shop')}:</td><td>{$order.account_information.s_email}</td></tr>
             </table>
-
-
     {/if}
-    
     </td><td>&nbsp</td></tr>
 </table>
