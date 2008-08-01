@@ -212,16 +212,16 @@ document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.
   pageTracker._trackPageview();
 
   pageTracker._addTrans(
-    "{$order.order_nr}",                                                    // Order ID
-    "{ezini( 'InvoiceSettings', 'CompanyName', 'order.ini'  )}",           // Affiliation
-    "{$order.total_ex_vat}",                                              // Total
-    "{$order.order_info.total_price_info.total_price_vat}",              // Tax
-    "{$order.account_information.shipping}",                            // Shipping
-    "{$user_city}",                                                    // City
-    "{$user_state}",                                                  // State
-    "{$user_country}"                                                // Country
+    "{$order.order_nr}",                                          // Order ID
+    "{ezini( 'InvoiceSettings', 'CompanyName', 'order.ini'  )}", // Affiliation
+    "{$order.total_ex_vat}",                                    // Total
+    "{$order.order_info.total_price_info.total_price_vat}",    // Tax
+    "{$order.account_information.shipping}",                  // Shipping
+    "{$user_city}",                                          // City
+    "{$user_state}",                                        // State
+    "{$user_country}"                                      // Country
   );
-  {section var=product_item loop=$order.product_items sequence=array(bglight,bgdark)}
+ {section var=product_item loop=$order.product_items sequence=array(bglight,bgdark)}
  {def $prod=fetch( 'content', 'node', hash( 'node_id', $product_item.node_id ) )}
  {def $prod=fetch( 'content', 'node', hash( 'node_id', $product_item.node_id ) )}
     {if $prod.data_map.variation.content.option_list|count|gt(0)}
@@ -247,9 +247,6 @@ document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.
                   );
     {/if}
 {/section}
-
   pageTracker._trackTrans();
 </script>
-
-
 </div>
