@@ -13,9 +13,6 @@
 {if eq(ezini( 'DisplayFieldSettings', 'DisplayCompanyAdditional', 'fieldsettings.ini' ), 'enabled' )}
         <tr><td class="bold">{'Form'|i18n('design/standard/shop')}: </td><td>{$order.account_information.company_additional}</td></tr>
 {/if}
-{if eq(ezini( 'DisplayFieldSettings', 'DisplayTaxId', 'fieldsettings.ini' ), 'enabled' )}
-        <tr><td class="bold">{'TaxID'|i18n('design/standard/shop')}: </td><td>{$order.account_information.tax_id}</td></tr>
-{/if}
     	<tr><td class="bold">{'Name'|i18n('design/standard/shop')}: </td><td>{$order.account_information.first_name} {$order.account_information.last_name}</td></tr>
     	<tr><td class="bold">{'Email'|i18n('design/standard/shop')}: </td><td>{$order.account_information.email}</td></tr>
     	</table>
@@ -56,9 +53,6 @@
     
             <table border="0"  cellspacing="0" cellpadding="0" class="order_box">
                 <tr><th colspan="2">{"Delivery & Shipping Address"|i18n("design/standard/shop")}</th></tr>
-{if eq(ezini( 'DisplayFieldSettings', 'DisplayCompanyName', 'fieldsettings.ini' ), 'enabled' )}                
-                <tr><td class="bold">{'Company'|i18n('design/standard/shop')}:</td><td>{$order.account_information.company_name}</td></tr>
-{/if}
                 <tr><td class="bold">{'Address'|i18n('design/standard/shop')}:</td><td>{$order.account_information.address1}</td></tr>
                 {if gt(count($order.account_information.address2),0)}
                 <tr><td>&nbsp;</td><td>{$order.account_information.address2}</td></tr>
@@ -80,6 +74,7 @@
                     Standard Shipping
                 {/case}
                 {/switch}
+                
                 </td></tr>
             </table>
     {else}
@@ -109,6 +104,9 @@
                     Standard Shipping
                 {/case}
                 {/switch}
+                {if eq(ezini( 'DisplayFieldSettings', 'DisplayTaxId', 'fieldsettings.ini' ), 'enabled' )}
+                    <tr><td class="bold">{'TaxID'|i18n('design/standard/shop')}: </td><td>{$order.account_information.tax_id}</td></tr>
+                {/if}
                 </td></tr>
             </table>
 
