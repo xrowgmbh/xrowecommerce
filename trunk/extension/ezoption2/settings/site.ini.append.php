@@ -1,2 +1,0 @@
-[TemplateSettings]
-ExtensionAutoloadPath[]=ezoption2
