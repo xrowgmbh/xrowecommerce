@@ -79,11 +79,14 @@
 
 </div>
 {/default}
+{def $url='/'|ezurl('no','full')}
+{run-once}
 {literal}
 <script type="text/javascript">
 function variationupload (id, version, type, varname, varid) {
-  NewWindow = window.open("http://mutual.example.com/mutual_admin/variationupload/upload/"+ id +"/"+ version +"/"+ type +"/" +  varname + "/" + varid, "Uploadwindow", "width=400,height=400,left=100,top=200");
+  NewWindow = window.open("{/literal}{$url}{literal}/variationupload/upload/"+ id +"/"+ version +"/"+ type +"/" +  varname + "/" + varid, "Uploadwindow", "width=400,height=400,left=100,top=200");
   NewWindow.focus();
 }
 </script>
 {/literal}
+{/run-once}
