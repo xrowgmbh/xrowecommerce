@@ -83,6 +83,8 @@ class eZOption2
         $value = isset( $valueArray['value'] ) ? $valueArray['value'] : '';
         $comment = isset( $valueArray['comment'] ) ? $valueArray['comment'] : '';
         $weight = isset( $valueArray['weight'] ) ? $valueArray['weight'] : '';
+        #$image = isset( $valueArray['image'] ) ? eZContentObject::fetch($valueArray['image']) : null;
+        $image = isset( $valueArray['image'] ) ? $valueArray['image'] : null;
         $description = isset( $valueArray['description'] ) ? $valueArray['description'] : '';
         $additionalPrice = isset( $valueArray['additional_price'] ) ? $valueArray['additional_price'] : '';
         $this->Options[] = array( "id" => $this->OptionCount,
@@ -90,6 +92,7 @@ class eZOption2
                                   "description" => $description,
                                   "comment" => $comment,
                                   "weight" => $weight,
+        						  "image" => $image,
                                   'additional_price' => $additionalPrice,
                                   "is_default" => false );
 
@@ -103,6 +106,7 @@ class eZOption2
                                                                     "description" => $valueArray['description'],
                                                                     "comment" => $valueArray['comment'],
                                                                     "weight" => $valueArray['weight'],
+        															"image" => $valueArray['image'],
                                                                     'additional_price' => $valueArray['additional_price'],
                                                                     "is_default" => false ) ) );
         $this->OptionCount += 1;
@@ -140,6 +144,14 @@ class eZOption2
             }break;
             case "option_list" :
             {
+            	// put code in here!
+            foreach( $this->Options as $index => $options )
+			{
+				if( is_numeric( $options["image"] ) && $options["image"] > 0 )
+				{
+					$this->Options[$index]["image"] = eZContentObject::fetch($options["image"]);
+				}
+			}
                 return $this->Options;
             }break;
             default:
@@ -173,6 +185,7 @@ class eZOption2
                                          'description' => $optionNode->getAttribute( 'description' ),
                                          'comment' => $optionNode->getAttribute( 'comment' ),
                                          'weight' => $optionNode->getAttribute( 'weight' ),
+                					     'image' => $optionNode->getAttribute( 'image' ),
                                          'additional_price' => $optionNode->getAttribute( 'additional_price' ) ) );
             }
         }
@@ -208,6 +221,7 @@ class eZOption2
             $optionNode->setAttribute( "description", $option['description'] );
             $optionNode->setAttribute( "comment", $option['comment'] );
             $optionNode->setAttribute( "weight", $option['weight'] );
+            $optionNode->setAttribute( "image", $option['image'] );
             $optionNode->setAttribute( 'additional_price', $option['additional_price'] );
             $options->appendChild( $optionNode );
         }

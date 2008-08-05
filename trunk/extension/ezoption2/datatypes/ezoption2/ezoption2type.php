@@ -134,7 +134,6 @@ class eZOption2Type extends eZDataType
         $option = new eZOption2( "" );
 
         $option->decodeXML( $contentObjectAttribute->attribute( "data_text" ) );
-
         return $option;
     }
 
@@ -182,6 +181,11 @@ class eZOption2Type extends eZDataType
             $optionWeightArray = $http->postVariable( $base . "_data_option_weight_" . $contentObjectAttribute->attribute( "id" ) );
         else
             $optionWeightArray = array();
+            
+        if ( $http->hasPostVariable( $base . "_data_option_image_" . $contentObjectAttribute->attribute( "id" ) ) )
+            $optionImageArray = $http->postVariable( $base . "_data_option_image_" . $contentObjectAttribute->attribute( "id" ) );
+        else
+            $optionImageArray = array();
         $option = new eZOption2( $optionName );
 
         $i = 0;
@@ -191,6 +195,7 @@ class eZOption2Type extends eZDataType
                                        'comment' => $optionCommentArray[$i],
                                        'weight' => $optionWeightArray[$i],
                                        'description' => $optionDescriptionArray[$i],
+            					       'image' => $optionImageArray[$i],
                                        'additional_price' => ( isset( $optionAdditionalPriceArray[$i] ) ? $optionAdditionalPriceArray[$i] : 0 ) ) );
             $i++;
         }
@@ -220,12 +225,13 @@ class eZOption2Type extends eZDataType
     */
     function customObjectAttributeHTTPAction( $http, $action, $contentObjectAttribute, $parameters )
     {
-        switch ( $action )
+    	$params = explode( '-', $action );
+    	
+        switch ( $params[0] )
         {
             case "new_option" :
             {
                 $option = $contentObjectAttribute->content( );
-
                 $postvarname = "ContentObjectAttribute" . "_data_option_remove_" . $contentObjectAttribute->attribute( "id" );
                 if ( $http->hasPostVariable( $postvarname ) )
                 {
@@ -259,6 +265,67 @@ class eZOption2Type extends eZDataType
                 $option->decodeXML( $contentObjectAttribute->attribute( "data_text" ) );
                 $contentObjectAttribute->setContent( $option );
             }break;
+            case "set_object_relation" :
+            {
+                if ( $http->hasPostVariable( 'BrowseActionName' ) and
+                          $http->postVariable( 'BrowseActionName' ) == ( 'AddRelatedObject_' . $contentObjectAttribute->attribute( 'id' ) ) and
+                          $http->hasPostVariable( "SelectedObjectIDArray" ) )
+                {
+                    if ( !$http->hasPostVariable( 'BrowseCancelButton' ) )
+                    {
+                        $selectedObjectArray = $http->hasPostVariable( "SelectedObjectIDArray" );
+                        $selectedObjectIDArray = $http->postVariable( "SelectedObjectIDArray" );
+
+                        // Delete the old version from ezcontentobject_link if count of translations > 1
+                        #$this->removeContentObjectRelation( $contentObjectAttribute );
+					    $option = $contentObjectAttribute->content( );
+					    $optionarray = $option->Options;
+                        $objectID = $selectedObjectIDArray[0];
+                        $optionarray[$params[1]]["image"] = $objectID;
+                        $option->Options = $optionarray;
+                        $contentObjectAttribute->setAttribute( 'data_Text', $option );
+                        $contentObjectAttribute->store();
+                    }
+                }
+            } break;
+            case "browse_object" :
+            {
+                $module = $parameters['module'];
+                $redirectionURI = $parameters['current-redirection-uri'];
+                $ini = eZINI::instance( 'content.ini' );
+
+                //include_once( 'kernel/classes/ezcontentbrowse.php' );
+                $browseType = 'AddRelatedObjectToDataType';
+                $browseTypeINIVariable = $ini->variable( 'ObjectRelationDataTypeSettings', 'ClassAttributeStartNode' );
+                foreach( $browseTypeINIVariable as $value )
+                {
+                    list( $classAttributeID, $type ) = explode( ';',$value );
+                    if ( $classAttributeID == $contentObjectAttribute->attribute( 'contentclassattribute_id' ) && strlen( $type ) > 0 )
+                    {
+                        $browseType = $type;
+                        break;
+                    }
+                }
+                eZContentBrowse::browse( array( 'action_name' => 'AddRelatedObject_' . $contentObjectAttribute->attribute( 'id' ),
+                                                'type' =>  $browseType,
+                                                'browse_custom_action' => array( 'name' => 'CustomActionButton[' . $contentObjectAttribute->attribute( 'id' ) . '_set_object_relation-' . $params[1] . ']',
+                                                                                 'value' => $contentObjectAttribute->attribute( 'id' ) ),
+                                                'persistent_data' => array( 'HasObjectInput' => 0 ),
+                                                'from_page' => $redirectionURI ),
+                                         $module );
+            } break;
+
+            case "remove_object" :
+            {
+                // Delete the old version from ezcontentobject_link if count of translations > 1
+                $option = $contentObjectAttribute->content( );
+					    $optionarray = $option->Options;
+                        $objectID = $selectedObjectIDArray[0];
+                        $optionarray[$params[1]]["image"] = "";
+                        $option->Options = $optionarray;
+                        $contentObjectAttribute->setAttribute( 'data_Text', $option );
+                        $contentObjectAttribute->store();
+            } break;
             default :
             {
                 eZDebug::writeError( "Unknown custom HTTP action: " . $action, "eZOptionType" );
@@ -282,6 +349,7 @@ class eZOption2Type extends eZDataType
                               'value' => $optionArray['value'],
                               'comment' => $optionArray['comment'],
                               'weight' => $optionArray['weight'],
+                			  'image' => $optionArray['image'],
                               'additional_price' => $optionArray['additional_price'] );
             }
         }
