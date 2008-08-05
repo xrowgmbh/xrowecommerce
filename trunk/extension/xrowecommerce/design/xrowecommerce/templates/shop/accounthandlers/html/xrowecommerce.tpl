@@ -41,7 +41,7 @@
         </td>
         <td valign="top" class="order_left">
 </td><td></td></tr>
-<tr><td>  
+<tr><td>
             {if eq($order.account_information.shipping,1)}
             <table border="0"  cellspacing="0" cellpadding="0" class="order_box">
                 <tr><th colspan="2">{"Delivery & Shipping Address"|i18n("design/standard/shop")}</th></tr>
