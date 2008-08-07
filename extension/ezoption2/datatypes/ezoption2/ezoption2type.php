@@ -35,19 +35,17 @@
 
 */
 
-include_once( "kernel/classes/ezdatatype.php" );
-
-include_once( "extension/ezoption2/datatypes/ezoption2/ezoption.php" );
-
-define( "EZ_OPTION_DEFAULT_NAME_VARIABLE", "_ezoption_default_name_" );
-
-define( "EZ_DATATYPESTRING_OPTION2", "ezoption2" );
+#include_once( "kernel/classes/ezdatatype.php" );
+#include_once( "extension/ezoption2/datatypes/ezoption2/ezoption.php" );
 
 class eZOption2Type extends eZDataType
 {
+    const DEFAULT_NAME_VARIABLE = "_ezoption_default_name_";
+    const OPTION2 = "ezoption2";
+
     function eZOption2Type()
     {
-        $this->eZDataType( EZ_DATATYPESTRING_OPTION2, ezi18n( 'kernel/classes/datatypes', "Option2", 'Datatype name' ),
+        $this->eZDataType( self::OPTION2, ezi18n( 'kernel/classes/datatypes', "Option2", 'Datatype name' ),
                            array( 'serialize_supported' => true ) );
     }
 
@@ -80,7 +78,7 @@ class eZOption2Type extends eZDataType
             {
                 $contentObjectAttribute->setValidationError( ezi18n( 'kernel/classes/datatypes',
                                                                      'NAME is required.' ) );
-                return EZ_INPUT_VALIDATOR_STATE_INVALID;
+                return eZInputValidator::STATE_INVALID;
             }
             if ( $count != 0 )
             {
@@ -91,7 +89,7 @@ class eZOption2Type extends eZDataType
                     {
                         $contentObjectAttribute->setValidationError( ezi18n( 'kernel/classes/datatypes',
                                                                              'The option value must be provided.' ) );
-                        return EZ_INPUT_VALIDATOR_STATE_INVALID;
+                        return eZInputValidator::STATE_INVALID;
                     }
                     if ( isset( $optionAdditionalPriceList[$i] ) &&
                          strlen( $optionAdditionalPriceList[$i] ) &&
@@ -99,7 +97,7 @@ class eZOption2Type extends eZDataType
                     {
                         $contentObjectAttribute->setValidationError( ezi18n( 'kernel/classes/datatypes',
                                                                              'The Additional price value is not valid.' ) );
-                        return EZ_INPUT_VALIDATOR_STATE_INVALID;
+                        return eZInputValidator::STATE_INVALID;
                     }
                 }
             }
@@ -111,10 +109,10 @@ class eZOption2Type extends eZDataType
             {
                 $contentObjectAttribute->setValidationError( ezi18n( 'kernel/classes/datatypes',
                                                                      'At least one option is required.' ) );
-                return EZ_INPUT_VALIDATOR_STATE_INVALID;
+                return eZInputValidator::STATE_INVALID;
             }
         }
-        return EZ_INPUT_VALIDATOR_STATE_ACCEPTED;
+        return eZInputValidator::STATE_ACCEPTED;
     }
 
     /*!
@@ -151,37 +149,37 @@ class eZOption2Type extends eZDataType
     function fetchObjectAttributeHTTPInput( $http, $base, $contentObjectAttribute )
     {
         $optionName = $http->postVariable( $base . "_data_option_name_" . $contentObjectAttribute->attribute( "id" ) );
-        
+
         if ( $http->hasPostVariable( $base . "_data_option_id_" . $contentObjectAttribute->attribute( "id" ) ) )
             $optionIDArray = $http->postVariable( $base . "_data_option_id_" . $contentObjectAttribute->attribute( "id" ) );
         else
             $optionIDArray = array();
-            
+
         if ( $http->hasPostVariable( $base . "_data_option_value_" . $contentObjectAttribute->attribute( "id" ) ) )
             $optionValueArray = $http->postVariable( $base . "_data_option_value_" . $contentObjectAttribute->attribute( "id" ) );
         else
             $optionValueArray = array();
-            
+
         if ( $http->hasPostVariable( $base . "_data_option_additional_price_" . $contentObjectAttribute->attribute( "id" ) ) )
             $optionAdditionalPriceArray = $http->postVariable( $base . "_data_option_additional_price_" . $contentObjectAttribute->attribute( "id" ) );
         else
             $optionAdditionalPriceArray = array();
-            
+
         if ( $http->hasPostVariable( $base . "_data_option_comment_" . $contentObjectAttribute->attribute( "id" ) ) )
             $optionCommentArray = $http->postVariable( $base . "_data_option_comment_" . $contentObjectAttribute->attribute( "id" ) );
         else
             $optionCommentArray = array();
-            
+
         if ( $http->hasPostVariable( $base . "_data_option_description_" . $contentObjectAttribute->attribute( "id" ) ) )
             $optionDescriptionArray = $http->postVariable( $base . "_data_option_description_" . $contentObjectAttribute->attribute( "id" ) );
         else
             $optionDescriptionArray = array();
-            
+
         if ( $http->hasPostVariable( $base . "_data_option_weight_" . $contentObjectAttribute->attribute( "id" ) ) )
             $optionWeightArray = $http->postVariable( $base . "_data_option_weight_" . $contentObjectAttribute->attribute( "id" ) );
         else
             $optionWeightArray = array();
-            
+
         if ( $http->hasPostVariable( $base . "_data_option_image_" . $contentObjectAttribute->attribute( "id" ) ) )
             $optionImageArray = $http->postVariable( $base . "_data_option_image_" . $contentObjectAttribute->attribute( "id" ) );
         else
@@ -226,7 +224,7 @@ class eZOption2Type extends eZDataType
     function customObjectAttributeHTTPAction( $http, $action, $contentObjectAttribute, $parameters )
     {
     	$params = explode( '-', $action );
-    	
+
         switch ( $params[0] )
         {
             case "new_option" :
@@ -407,7 +405,7 @@ class eZOption2Type extends eZDataType
     */
     function fetchClassAttributeHTTPInput( $http, $base, $classAttribute )
     {
-        $defaultValueName = $base . EZ_OPTION_DEFAULT_NAME_VARIABLE . $classAttribute->attribute( 'id' );
+        $defaultValueName = $base . eZOption2Type::DEFAULT_NAME_VARIABLE . $classAttribute->attribute( 'id' );
         if ( $http->hasPostVariable( $defaultValueName ) )
         {
             $defaultValueValue = $http->postVariable( $defaultValueName );
@@ -473,6 +471,6 @@ class eZOption2Type extends eZDataType
     }
 }
 
-eZDataType::register( EZ_DATATYPESTRING_OPTION2, "ezoption2type" );
+eZDataType::register( eZOption2Type::OPTION2, "ezoption2type" );
 
 ?>
