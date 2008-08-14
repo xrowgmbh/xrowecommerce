@@ -14,9 +14,8 @@ State: {$order.account_information.state}
 Country: {$order.account_information.country}
 Zip code: {$order.account_information.zip}
 Phone: {$order.account_information.phone}
-Shipping: {switch match=$order.account_information.shippingtype}{case match="1"}Next Day Service{/case}{case match="2"}2nd Day Service{/case}{case}Standard Shipping{/case}{/switch}
-
-
+Shipping: {switch match=$order.account_information.shippingtype}
+{case match="1"}Next Day Service{/case}{case match="2"}2nd Day Service{/case}{case match="3"}UPS Ground (USA only){/case}{case match="4"}UPS Next Business Day Air (USA only){/case}{case match="5"}UPS 2nd Business Day Air (USA only){/case}{case match="6"}USPS Express Mail International (EMS) (Intl. only){/case}{case match="7"}USPS Global Express Guaranteed (Intl. only){/case}{case}Standard Shipping{/case}{/switch}
 
 {if eq($order.account_information.shipping,0)}
 Shipped to:

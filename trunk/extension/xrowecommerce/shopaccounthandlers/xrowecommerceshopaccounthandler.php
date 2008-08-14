@@ -11,12 +11,32 @@ class xrowECommerceShopAccountHandler
 
     }
     /**
+     * [MerchantLocations]
+     * Locations[]=USA
+     * Locations[]=GER
+     * USA[]=CT
+     * USA[]=NY
+     * 
      * \public
      * @return array First element country, Second state
      */
     function merchantsLocations()
     {
-        return array( 'USA', array( 'NY', 'CT' ) );
+    	$ini = eZINI::instance( 'xrowecommerce.ini' );
+		$LocationArray = array();
+    	foreach ( $ini->variable( 'MerchantLocations', 'Location' ) as $location )
+    	{
+    		if( $ini->hasVariable( 'MerchantLocations', $location ) )
+    		{
+    			$LocationArray[] = array( $location , $ini->variable( 'MerchantLocations', $location ) );
+    		}
+    		else
+    		{
+    			$LocationArray[] = $location;
+    		}
+    	}
+    	return $LocationArray;
+        #return array( 'USA', array( 'NY', 'CT' ) );
     }
     /*!
      Will verify that the user has supplied the correct user information.
@@ -144,7 +164,7 @@ class xrowECommerceShopAccountHandler
         $xmlDoc = $order->attribute( 'data_text_1' );
         if( $xmlDoc != null )
         {
-            $dom =& $xml->domTree( $xmlDoc );
+            $dom = $xml->domTree( $xmlDoc );
             $firstName = $dom->elementsByName( "first-name" );
             $mi = $dom->elementsByName( "mi" );
 

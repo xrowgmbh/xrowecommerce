@@ -56,17 +56,15 @@
                 <tr><td class="bold">{'Phone'|i18n('design/standard/shop')}:</td><td>{$order.account_information.phone}</td></tr>
                 <tr><td class="bold">{'Shipping'|i18n('design/standard/shop')}:</td><td>
                 {switch match=$order.account_information.shippingtype}
-                {case match="1"}
-                    Next Day Service
-                {/case}
-                {case match="2"}
-                    2nd Day Service
-                {/case}
-                {case}
-                    Standard Shipping
-                {/case}
+                	{case match="1"}Next Day Service{/case}
+	                {case match="2"}2nd Day Service{/case}
+	                {case match="3"}UPS Ground (USA only){/case}
+					{case match="4"}UPS Next Business Day Air (USA only){/case}
+					{case match="5"}UPS 2nd Business Day Air (USA only){/case}
+					{case match="6"}USPS Express Mail International (EMS) (Intl. only){/case}
+					{case match="7"}USPS Global Express Guaranteed (Intl. only){/case}
+                	{case}Standard Shipping{/case}
                 {/switch}
-                
                 </td></tr>
             </table>
     {else}
@@ -84,15 +82,14 @@
                 <tr><td class="bold">{'Shipping'|i18n('design/standard/shop')}:</td>
                 <td>
                 {switch match=$order.account_information.shippingtype}
-                {case match="1"}
-                    Next Day Service
-                {/case}
-                {case match="2"}
-                    2nd Day Service
-                {/case}
-                {case}
-                    Standard Shipping
-                {/case}
+                	{case match="1"}Next Day Service{/case}
+	                {case match="2"}2nd Day Service{/case}
+	                {case match="3"}UPS Ground (USA only){/case}
+					{case match="4"}UPS Next Business Day Air (USA only){/case}
+					{case match="5"}UPS 2nd Business Day Air (USA only){/case}
+					{case match="6"}USPS Express Mail International (EMS) (Intl. only){/case}
+					{case match="7"}USPS Global Express Guaranteed (Intl. only){/case}
+                	{case}Standard Shipping{/case}
                 {/switch}
                 {if eq(ezini( 'DisplayFieldSettings', 'DisplayTaxId', 'fieldsettings.ini' ), 'enabled' )}
                     <tr><td class="bold">{'TaxID'|i18n('design/standard/shop')}: </td><td>{$order.account_information.tax_id}</td></tr>

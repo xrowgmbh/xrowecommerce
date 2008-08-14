@@ -1,8 +1,8 @@
 <?php
-include_once( "kernel/classes/ezorder.php" );
-include_once( 'lib/ezutils/classes/ezoperationhandler.php' );
-include_once( 'lib/ezxml/classes/ezxml.php' );
-include_once( 'kernel/classes/ezshopaccounthandler.php' );
+#include_once( "kernel/classes/ezorder.php" );
+#include_once( 'lib/ezutils/classes/ezoperationhandler.php' );
+#include_once( 'lib/ezxml/classes/ezxml.php' );
+#include_once( 'kernel/classes/ezshopaccounthandler.php' );
 class xrowECommerceVATHandler
 {
     function taxMapping()
@@ -23,8 +23,7 @@ class xrowECommerceVATHandler
             $order = eZOrder::fetch( $orderID );
         else
             $order = false;
-
-        if ( get_class( $order ) == 'ezorder' )
+        if ( get_class( $order ) == 'eZOrder' )
         {
             $xml = new eZXML();
             $xmlDoc = $order->attribute( 'data_text_1' );
@@ -54,8 +53,8 @@ class xrowECommerceVATHandler
                 if ( array_key_exists( 0, $statedom ) and is_object( $statedom[0] ) ) 
                     $state = $statedom[0]->textContent();
                 if ( array_key_exists( 0, $countrydom ) and is_object( $countrydom[0] ) ) 
-                    $country = $countrydom[0]->textContent();
-                $percentage = xrowECommerceVATHandler::getTAX( $country, $state = false, $taxid = false );
+                    $country = $countrydom[0]->textContent();    
+                $percentage = xrowECommerceVATHandler::getTAX( $country, $state, $taxid );
             }
             eZDebug::writeError( 'XML is broken', 'xrowECommerceVATHandler' );
         }
@@ -81,13 +80,67 @@ class xrowECommerceVATHandler
         $percentage = 0;
         if ( $state !== false )
         {
-            $state = strtolower( $state );
+            $state = strtoupper( $state );
         }
-        $country = strtolower( $country );
+        $country = strtoupper( $country );
         $taxmap = xrowECommerceVATHandler::taxMapping();
         $account = eZShopAccountHandler::instance();
         $merchant = $account->merchantsLocations();
+#var_dump( $merchant );    	
+/*
+    	 * array(3) {
+     		array(2) { 
+				[0]=>  string(3) "USA" 
+				[1]=>  array(2) 
+				{ 
+				  [0]=>  string(2) "CT" 
+				  [1]=>  string(2) "NY" 
+				} 
+			} 
+			string(3) "GER"
+			array(2) { 
+				[0]=>  string(3) "USE"
+				[1]=>  array(2) 
+                   { 
+					[0]=>  string(2) "CT" 
+					[1]=>  string(2) "NY" 
+				   } 
+			}
+		*/
+        $matched = FALSE;
+        foreach ( $merchant as $merchantitem )
+        {
+        	if( !$matched )
+        	{
+        		if( !is_array( $merchantitem ) AND $merchantitem == $country )
+        		{
+        			$percentage = $taxmap[$merchantitem];
+	                $matched = TRUE;
+        		}
+	        	elseif ( ( array_key_exists( $merchantitem[0], $taxmap ) and $merchantitem[0] == $country ) or ( $merchantitem[0] != $country and !$taxid  ) )
+		        {
+		            
+		            if ( is_numeric( $taxmap[$merchantitem[0]] ) )
+		            {
+		                $percentage = $taxmap[$merchantitem[0]];
+		                $matched = TRUE;
+		            }
+		            elseif ( !is_array( $merchantitem[1] ) and is_array( $taxmap[$merchantitem[0]] ) and array_key_exists( $merchantitem[1], $taxmap[$merchantitem[0]] ) and $merchantitem[1] == $state )
+		            {
+		                $percentage = $taxmap[$merchantitem[0]][$merchantitem[1]];
+		                $matched = TRUE;
+		            }
+		            elseif ( is_array( $merchantitem[1] ) and is_array( $taxmap[$merchantitem[0]] ) and array_key_exists( $state, $taxmap[$merchantitem[0]] ) and in_array( $state, $merchantitem[1] ) )
+		            {
+		                $percentage = $taxmap[$merchantitem[0]][$state];
+		                $matched = TRUE;
+		            }
+		        }
+        	}
+        }
         
+        
+/*        
         if ( ( array_key_exists( $merchant[0], $taxmap ) and $merchant[0] == $country ) or ( $merchant[0] != $country and !$taxid  ) )
         {
             
@@ -95,15 +148,20 @@ class xrowECommerceVATHandler
             {
                 $percentage = $taxmap[$merchant[0]];
             }
-            elseif ( is_array( $taxmap[$merchant[0]] ) and array_key_exists( $merchant[1], $taxmap[$merchant[0]] ) and $merchant[1] == $state )
+            elseif ( !is_array( $merchant[1] ) and is_array( $taxmap[$merchant[0]] ) and array_key_exists( $merchant[1], $taxmap[$merchant[0]] ) and $merchant[1] == $state )
             {
                 $percentage = $taxmap[$merchant[0]][$merchant[1]];
+            }
+            elseif ( is_array( $merchant[1] ) and is_array( $taxmap[$merchant[0]] ) and array_key_exists( $state, $taxmap[$merchant[0]] ) and in_array( $state, $merchant[1] ) )
+            {
+                $percentage = $taxmap[$merchant[0]][$state];
             }
             else
             {
                 $percentage = 0;
             }
         }
+*/
         return $percentage;
     }
 }
