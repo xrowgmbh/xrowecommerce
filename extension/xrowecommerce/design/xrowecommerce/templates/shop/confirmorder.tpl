@@ -33,7 +33,7 @@
         {if count($hazardous)|gt(0)}
             <b style="color: red;">{'Hazardous item(s) found in your cart'|i18n('design/base/shop')}</b>
                 {'Dear Customer,'|i18n('design/base/shop')}<br />
-                {'We've removed the following hazardous items from your shopping cart since we are NOT allowed to ship these items to your destination. For further questions please contact'|i18n('design/base/shop')} {ezini( 'InvoiceSettings', 'CompanyName', 'order.ini'  )}.<br />
+                {"We've removed the following hazardous items from your shopping cart since we are NOT allowed to ship these items to your destination. For further questions please contact"|i18n('design/base/shop')} {ezini( 'InvoiceSettings', 'CompanyName', 'order.ini'  )}.<br />
                 <ul style="background: white;">
                     {foreach $hazardous as $item}
                     <li>{$item.item_count} x <a href={concat("/content/view/full/", $item.contentobject.main_node_id)|ezurl()}>{$item.name}</a></li>
@@ -229,5 +229,4 @@
     <h3>Sorry, there are no items left in your cart.</h3>
     {/if}
     </form>
-
 </div>
