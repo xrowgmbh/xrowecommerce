@@ -536,6 +536,27 @@
     {* <br /> *}
 
   <br />
+
+{* Recaptcha *}                
+<div class="block">        
+        <label><span class="required">*</span>{'Verification'|i18n('design/standard/user')}</label>
+        <div class="labelbreak"></div>  
+{def $lang=ezini('Display','OverrideLang','recaptcha.ini')}
+{if $lang|eq('')}{set $lang="en"}{/if}
+<script type="text/javascript">             
+RecaptchaTheme='{ezini('Display','Theme','recaptcha.ini')}';
+RecaptchaLang='{$lang}';
+{literal}
+var RecaptchaOptions = {        
+theme: RecaptchaTheme,
+lang: RecaptchaLang,
+};
+{/literal}
+</script>
+{recaptcha_get_html()}
+</div>                 
+{* Recaptcha *}
+
 <div class="buttonblock">
     <input class="left-arrow" type="submit" name="CancelButton" value="{'Cancel'|i18n('design/base/shop')}" />
     <input class="right-arrow" type="submit" name="StoreButton" value="{'Continue'|i18n('design/base/shop')}" />
@@ -544,6 +565,9 @@
 </div>
 
 <br />
+
+
+
 {* / left column *}
 </div>
 {literal}
