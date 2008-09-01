@@ -20,20 +20,6 @@
 #PublicKey[hostname]=Enter your Public Key here for hostname
 #PublicKey[localhost]=Enter your Public Key here for localhost
 
-PublicKey[mutual.example.com]=6LcZ8QIAAAAAAOkfWSmDmkAEdryiPazb7yr8Ek5I 
-PrivateKey[mutual.example.com]=6LcZ8QIAAAAAAMwOsYBY5m7A88nP7WWTTKfwuoV3
-
-PublicKey[mutualhardware.com]=6Lca8QIAAAAAANSUZudzmnUPakp9LZG30my28yha 
-PrivateKey[mutualhardware.com]=6Lca8QIAAAAAAKK8fzGNlQKIX3y8msyYAjxg4Jn7 
-
-PublicKey[alcone.example.com]=6Lcc8QIAAAAAAAUxdGoQsbSRziWMSDMTOyTss5dZ 
-PrivateKey[alcone.example.com]=6Lcc8QIAAAAAAAunowHQY6yrOqlyxvlLBf9jTIm9 
-
-PublicKey[alconeco.com]=6Lcb8QIAAAAAAB381ryagTg5oaEj46fSZymXMFuR 
-PrivateKey[alconeco.com]=6Lcb8QIAAAAAACUquURIiQfcaeGliV-beuBzWX38 
-
-
-
 #PrivateKey[hostname]=Enter your Private Key here for hostname
 #PrivateKey[localhost]=Enter your Private Key here for localhost
 #PrivateKey=Enter your Private Key here

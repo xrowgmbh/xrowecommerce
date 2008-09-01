@@ -45,7 +45,7 @@ $firstName = '';
 $lastName = '';
 $email = '';
 // Initialize variables
-$shippingtype = $shipping = $s_email = $s_lastName = $s_firstName = $s_address1 = $s_address2 = $s_zip = $s_city = $s_state = $s_country = $s_phone = $s_mi = $address1 = $address2 = $zip = $city = $state = $country = $phone = $mi = '';
+$shippingtype = $shipping = $s_email = $s_lastName = $s_firstName = $s_address1 = $s_address2 = $s_zip = $s_city = $s_state = $s_country = $s_phone = $s_mi = $address1 = $address2 = $zip = $city = $state = $country = $phone =   $recaptcha = $mi = '';
 $userobject = $user->attribute( 'contentobject' );
 
 if ( $user->isLoggedIn() and $userobject->attribute( 'class_identifier' ) == 'client' )
@@ -210,6 +210,20 @@ if ( $module->isCurrentAction( 'Store' ) )
     }
     $coupon = new xrowCoupon( $http->postVariable( "coupon_code" ) );
     $coupon_code = $coupon->code;
+
+    ###### Recaptcha check start
+    
+    $recaptcha = true;
+    $verification = new xrowVerification();
+    $answer = $verification->verify( $http );
+    if( $answer != true )
+    {
+    	$recaptcha = false;
+    	$inputIsValid = false;
+    }
+   
+    ###### Recaptcha check end
+
     
     if ( $inputIsValid == true )
     {
@@ -407,6 +421,7 @@ $tpl->setVariable( "phone", $phone );
 $tpl->setVariable( "fax", $fax );
 $tpl->setVariable( "shipping", $shipping );
 $tpl->setVariable( "shippingtype", $shippingtype );
+$tpl->setVariable( "recaptcha", $recaptcha );
 
 $tpl->setVariable( "s_company_name", $s_companyName );
 $tpl->setVariable( "s_company_additional", $s_companyAdditional );
