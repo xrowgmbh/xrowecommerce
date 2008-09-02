@@ -4,21 +4,19 @@
 # eZ publish configuration file for workflows.
 
 [EventSettings]
-RepositoryDirectories[]=extension/googleanalytics/workflowtypes
-ExtensionDirectories[]=googleanalytics
+RepositoryDirectories[]=extension/xrowecommerce/workflowtypes
+ExtensionDirectories[]=xrowecommerce
 AvailableEventTypes[]=event_ezreceipt
-
-[EventSettings]
-RepositoryDirectories[]=extension/alcone/workflowtypes
-# ExtensionDirectories[]=alcone
-ExtensionDirectories[]=staticshipping
-
+AvailableEventTypes[]=event_xrowpaymentgateway
 AvailableEventTypes[]=event_ezproductcount
-AvailableEventTypes[]=event_ezadvancedshipping
 
-[EventSettings]
-ExtensionDirectories[]=coupon
-AvailableEventTypes[]=event_ezcouponworkflow
+#[EventSettings]
+
+#AvailableEventTypes[]=event_ezadvancedshipping
+
+
+#ExtensionDirectories[]=coupon
+#AvailableEventTypes[]=event_ezcouponworkflow
 
 [CouponWorkflow]
 Description=Coupon
@@ -32,23 +30,5 @@ ShippingVendorName=AlconeCo
 DefaultStandardShipping=9.00
 Debug=Disabled
 
-# Deprecated
-FreeShippingWeightDiscount=5.00
-
-[1OperationSettings]
-# Depricated : AvailableOperations. Use AvailableOperationList instead.
-# AvailableOperations=content_publish;before_shop_confirmorder;shop_checkout
-# AvailableOperations=content_publish;content_read;shop_confirmorder;shop_checkout
-AvailableOperations=
-
-# List of available trigger operations.
-AvailableOperationList[]
-# AvailableOperationList[]=shop_checkout
-AvailableOperationList[]=before_shop_checkout
-AvailableOperationList[]=after_shop_checkout
-AvailableOperationList[]=before_shop_confirmorder
-AvailableOperationList[]=shop_addtobasket
-AvailableOperationList[]=shop_updatebasket
-AvailableOperationList[]=content_publish
 
 */ ?>

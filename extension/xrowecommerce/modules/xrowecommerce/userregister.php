@@ -68,6 +68,10 @@ if ( $user->isLoggedIn() and $userobject->attribute( 'class_identifier' ) == 'cl
     $fax = $userMap['fax']->content();
     $shipping = $userMap['shippingaddress']->content();
     $shippingtype = $userMap['shippingtype']->content();
+    if( array_key_exists( 'payment_method', $userMap ) )
+    {
+        $paymentMethod = $userMap['payment_method']->content();
+    }
     $email = $user->attribute( 'email' );
 
     if ( $shipping != "1" )
@@ -147,9 +151,18 @@ if ( $module->isCurrentAction( 'Store' ) )
         $inputIsValid = false;
         
     $fax = $http->postVariable( "Fax" );
-    
+    if ( $http->hasPostVariable( "PaymentMethod" ) )
+    {
+        $paymentMethod = $http->postVariable( "PaymentMethod" );
+    }
+    if ( trim( $paymentMethod ) == "" )
+    {
+        $inputIsValid = false;
+    }
+
     $shipping = $http->postVariable( "Shipping" );
     $shippingtype = $http->postVariable( "ShippingType" );
+
     
     if ($shipping == "1" and $country !="USA" and $shippingtype <= "5" )
         $inputIsValid = false;
@@ -307,6 +320,13 @@ if ( $module->isCurrentAction( 'Store' ) )
         $shippingTypeNode->appendChild( $doc->createTextNode( $shippingtype ) );
         $root->appendChild( $shippingTypeNode );
         
+        $paymentMethodNode = $doc->createElementNode( xrowECommerce::ACCOUNT_KEY_PAYMENTMETHOD );
+        $paymentMethodNode->appendChild( $doc->createTextNode( $paymentMethod ) );
+        $root->appendChild( $paymentMethodNode );
+        
+        #$paymentMethodNode = $doc->createElementNode( xrowECommerce::ACCOUNT_KEY_PAYMENTMETHOD, $paymentMethod );
+        #$root->appendChild( $paymentMethodNode );
+        
         if ( $coupon_code )
         {
             $coupon_codeNode = $doc->createElementNode( "coupon_code" );
@@ -421,6 +441,7 @@ $tpl->setVariable( "phone", $phone );
 $tpl->setVariable( "fax", $fax );
 $tpl->setVariable( "shipping", $shipping );
 $tpl->setVariable( "shippingtype", $shippingtype );
+$tpl->setVariable( "payment_method", $paymentMethod );
 $tpl->setVariable( "recaptcha", $recaptcha );
 
 $tpl->setVariable( "s_company_name", $s_companyName );
