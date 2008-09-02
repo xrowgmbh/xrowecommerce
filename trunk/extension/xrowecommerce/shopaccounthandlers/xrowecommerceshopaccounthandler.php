@@ -75,6 +75,7 @@ class xrowECommerceShopAccountHandler
         $billing['fax'] = $userMap['fax']->content();
         $billing['shipping'] = $userMap['shippingaddress']->content();
         $billing['shippingtype'] = $userMap['shippingtype']->content();
+        $billing['paymentmethod'] = $userMap['paymentmethod']->content();
         $billing['email'] = $user->attribute( 'email' );
         $shipping = array();
         if ( $shipping !="1" )
@@ -213,6 +214,8 @@ class xrowECommerceShopAccountHandler
 
         $shipping = $dom->elementsByName( "shipping" );
         $shippingtype = $dom->elementsByName( "shippingtype" );
+        
+        $paymentMethod = $dom->elementsByName( "paymentmethod" );
 
         $s_companyName = $dom->elementsByName( "s_company_name" );
         $s_companyAdditional = $dom->elementsByName( "s_company_additional" );
@@ -306,6 +309,10 @@ class xrowECommerceShopAccountHandler
         $shippingTypeText = "";
         if ( isset( $shippingtype[0] ) )
             $shippingTypeText = $shippingtype[0]->textContent();
+
+        $paymentMethodText = "";
+        if ( isset( $paymentMethod[0] ) )
+            $paymentMethodText = $paymentMethod[0]->textContent();
 
         // ezDebug::writeDebug( count($s_firstName), 'eZUser Information'  );
 
@@ -449,6 +456,7 @@ class xrowECommerceShopAccountHandler
                       'email' => $emailText,
                       'shipping' => $shippingText,
                       'shippingtype' => $shippingTypeText,
+                      'paymentmethod' => $paymentMethodText,
                       's_company_name' => $s_companyNameText,
                       's_company_additional' => $s_companyAdditionalText,
                       's_first_name' => $s_firstNameText,
