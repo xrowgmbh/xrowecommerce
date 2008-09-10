@@ -155,10 +155,10 @@ if ( $module->isCurrentAction( 'Store' ) )
     {
         $paymentMethod = $http->postVariable( "PaymentMethod" );
     }
-    if ( trim( $paymentMethod ) == "" )
-    {
-        $inputIsValid = false;
-    }
+    #if ( trim( $paymentMethod ) == "" )
+    #{
+    #    $inputIsValid = false;
+    #}
 
     $shipping = $http->postVariable( "Shipping" );
     $shippingtype = $http->postVariable( "ShippingType" );
