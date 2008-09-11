@@ -56,7 +56,7 @@ class eZOption2Type extends eZDataType
     function validateObjectAttributeHTTPInput( $http, $base, $contentObjectAttribute )
     {
         $count = 0;
-        $classAttribute =& $contentObjectAttribute->contentClassAttribute();
+        $classAttribute = $contentObjectAttribute->contentClassAttribute();
         if ( $http->hasPostVariable( $base . "_data_option_id_" . $contentObjectAttribute->attribute( "id" ) ) )
         {
             $idList = $http->postVariable( $base . "_data_option_id_" . $contentObjectAttribute->attribute( "id" ) );
@@ -93,7 +93,7 @@ class eZOption2Type extends eZDataType
                     }
                     if ( isset( $optionAdditionalPriceList[$i] ) &&
                          strlen( $optionAdditionalPriceList[$i] ) &&
-                         !preg_match( "#^[-|+]?[0-9]+(\.){0,1}[0-9]{0,2}$#", $optionAdditionalPriceList[$i] ) )
+                         !preg_match( "#^[-|+]?[0-9]+(\.){0,1}[0-9]{0,2}$#", trim( $optionAdditionalPriceList[$i] ) ) )
                     {
                         $contentObjectAttribute->setValidationError( ezi18n( 'kernel/classes/datatypes',
                                                                              'The Additional price value is not valid.' ) );
@@ -185,7 +185,15 @@ class eZOption2Type extends eZDataType
         else
             $optionImageArray = array();
         $option = new eZOption2( $optionName );
-
+		
+        foreach ( $optionAdditionalPriceArray as $index => $additionalPrice )
+        {
+        	if( isset( $additionalPrice ) )
+        	{
+        		$optionAdditionalPriceArray[$index] = trim( $additionalPrice );
+        	}
+        }
+        
         $i = 0;
         foreach ( $optionIDArray as $id )
         {
