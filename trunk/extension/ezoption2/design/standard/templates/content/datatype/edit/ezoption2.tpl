@@ -84,7 +84,7 @@
 {literal}
 <script type="text/javascript">
 function variationupload (id, version, type, varname, varid) {
-  NewWindow = window.open("{/literal}{$url}{literal}/variationupload/upload/"+ id +"/"+ version +"/"+ type +"/" +  varname + "/" + varid, "Uploadwindow", "width=400,height=400,left=100,top=200");
+  NewWindow = window.open("http://" + window.location.hostname + "/mutual_admin/variationupload/upload/"+ id +"/"+ version +"/"+ type +"/" + varname + "/" + varid, "Uploadwindow", "width=400,height=400,left=100,top=200");
   NewWindow.focus();
 }
 </script>

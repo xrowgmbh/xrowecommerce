@@ -17,7 +17,6 @@
 <script type="text/javascript">
 function updateobject() 
 {ldelim}
-	opener.document.getElementById('variation_weight_{$variationName}').value='{$newObject.id}';
 	opener.document.getElementById('variation_image_id_{$variationName}_{$variationID}').value='{$newObject.id}';
 	var d = opener.document.getElementById('variation_image_div_{$variationName}_{$variationID}');
 	if( d.hasChildNodes() )
@@ -30,7 +29,7 @@ function updateobject()
     	var olddiv = opener.document.getElementById('variation_noimage_div_{$variationName}_{$variationID}');
        	olddiv.parentNode.removeChild(olddiv);
     {rdelim}
-	var newdiv = document.createElement('a');
+	var newdiv = opener.document.createElement('a');
   newdiv.setAttribute('id','variation_image_link_{$variationName}_{$variationID}');
   newdiv.setAttribute('href','{$newObject.main_node.url_alias|ezurl('no')}');
   newdiv.setAttribute('target','_blank');
