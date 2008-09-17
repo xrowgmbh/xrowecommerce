@@ -135,8 +135,6 @@
                     </tr>
                     <tr>
                         <td>
-                        {*if or(ne($vary.weight, false()), ne($vary.weight, "0"))}Weight: {$vary.weight} lbs
-                        {/if*}
                         {'Weight'|i18n('design/base/shop')}: {attribute_view_gui attribute=$prod.data_map.weight} {'lbs'|i18n('design/base/shop')}
                         </td>
                     </tr>
@@ -150,15 +148,10 @@
             <td class="{$product_item.sequence} product-name basketspace">
                {$product_item.price_ex_vat|l10n( 'currency', $locale, $symbol )}
             </td>
-            {*<td class="{$product_item.sequence} product-name">
-                {$product_item.discount_percent}%
-            </td>*}
             <td class="{$product_item.sequence} product-name basketspace">
                 {$product_item.total_price_ex_vat|l10n( 'currency', $locale, $symbol )}
             </td>
          </tr>
-
-    
          {delimiter}
             <tr><td colspan="5" /></tr>
          {/delimiter}
