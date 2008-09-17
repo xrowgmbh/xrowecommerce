@@ -62,6 +62,7 @@
 <div>
                 <table class="list">
 	                <tr>
+	                    <th>Image</th>
 	                    <th>Number</th>
 	                    {if $node.data_map.variation.content.option_list|count|gt(0)}
 	                    <th>Item</th>
@@ -73,8 +74,15 @@
 	                {if $node.data_map.variation.content.option_list|count|gt(0)}
 	                {section var=Options loop=$node.data_map.variation.content.option_list}
                     <tr>
+                        <td>
+	                       {if $Options.item.image|is_object(true)}
+	                       {attribute_view_gui image_class=galleryline attribute=$Options.item.image.current.data_map.image}
+	                       {else}
+	                       <div class="s_nopic">&nbsp;</div>
+	                       {/if}
+                        </td>
 	                   <td>
-	                   {$Options.item.value}
+	                   {$Options.item.value}                  
 	                   </td>
 	                   <td>
 	                   {$Options.item.comment|wash()}

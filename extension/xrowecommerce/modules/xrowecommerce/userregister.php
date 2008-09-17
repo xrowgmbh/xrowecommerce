@@ -320,6 +320,10 @@ if ( $module->isCurrentAction( 'Store' ) )
         $shippingTypeNode->appendChild( $doc->createTextNode( $shippingtype ) );
         $root->appendChild( $shippingTypeNode );
         
+        $recaptacheNode = $doc->createElementNode( "recaptcha" ); 
+        $recaptacheNode->appendChild( $doc->createTextNode( $recaptcha ) ); 
+        $root->appendChild( $recaptacheNode );
+        
         $paymentMethodNode = $doc->createElementNode( xrowECommerce::ACCOUNT_KEY_PAYMENTMETHOD );
         $paymentMethodNode->appendChild( $doc->createTextNode( $paymentMethod ) );
         $root->appendChild( $paymentMethodNode );

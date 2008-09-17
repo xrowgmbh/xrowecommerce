@@ -135,13 +135,20 @@ for (i = 0; i < field.length; i++)
             <table>
                  {def $prod=fetch( 'content', 'node', hash( 'node_id', $product_item.node_id ) )}
                  {if $prod.data_map.variation.content.option_list|count|gt(0)}
+                 {def $vary=$product_item.item_object.contentobject.data_map.variation.content.option_list[$product_item.item_object.option_list.0.option_item_id]}
                  {section var=option_item loop=$product_item.item_object.option_list}
                     <tr>
                         <td rowspan="4" width="120">
-                        {if $product_item.item_object.contentobject.data_map.image.has_content}
-                        {attribute_view_gui image_class=small attribute=$product_item.item_object.contentobject.data_map.image}
+                        {if $vary.image|is_object(true)}
+                            {if $vary.image.current.data_map.image.has_content}
+                            {attribute_view_gui image_class=small attribute=$vary.image.current.data_map.image}
+                            {/if}
                         {else}
-                        <div class="nopic">&nbsp;</div>
+                            {if $product_item.item_object.contentobject.data_map.image.has_content}
+                            {attribute_view_gui image_class=small attribute=$product_item.item_object.contentobject.data_map.image}
+                            {else}
+                            <div class="nopic">&nbsp;</div>
+                            {/if}
                         {/if}
                         </td>
                         <td>
@@ -155,8 +162,7 @@ for (i = 0; i < field.length; i++)
                     </tr>
                     <tr>
                         <td>
-                        {def $vary=$product_item.item_object.contentobject.data_map.variation.content.option_list[$product_item.item_object.option_list.0.option_item_id]}
-                        {$vary.comment}                        
+                        {$vary.comment}
                         </td>
                     </tr>
                     <tr>

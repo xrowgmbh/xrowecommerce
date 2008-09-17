@@ -81,8 +81,6 @@
                     </tr>
                     <tr>
                         <td>
-                        {*if or(ne($vary.weight, false()), ne($vary.weight, "0"))}Weight: {$vary.weight} lbs
-                        {/if*}
                         {'Weight'|i18n('design/standard/shop')}: {$vary.weight|wash()} {'lbs'|i18n('design/standard/shop')}
                         </td>
                     </tr>
