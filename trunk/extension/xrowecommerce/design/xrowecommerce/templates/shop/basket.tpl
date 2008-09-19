@@ -91,7 +91,7 @@ for (i = 0; i < field.length; i++)
         </div>
     {/section}
     {section show=$basket.items}
-    <a href="../"><input type="submit" class="left-arrow2" name="ContinueShoppingButton" value="Continue" /></a>
+        <a href={'/'|ezurl()}><input type="submit" class="left-arrow2" name="ContinueShoppingButton" value="Continue" /></a>
         <input type="submit" class="right-arrow2" name="CheckoutButton" value="Checkout" />
         <input type="submit" class="right-arrow" name="StoreChangesButton" value="Update" />
         <input type="submit" class="flat-right2" name="RemoveProductItemButton" value="Delete" />
@@ -303,7 +303,7 @@ for (i = 0; i < field.length; i++)
             <table>
                 <tr>
                     <td>
-                        <a href="../"><input type="submit" class="standard" name="ContinueShoppingButton" value="Continue" src={"images/continue_shopping.gif"|ezdesign()}/></a>
+                        <a href={'/'|ezurl()}><input type="submit" class="standard" name="ContinueShoppingButton" value="Continue" src={"images/continue_shopping.gif"|ezdesign()}/></a>
                     </td>
                     <td>
                         <b>{"You have no products in your cart"|i18n("design/base/shop")}</b>               
