@@ -91,9 +91,9 @@ for (i = 0; i < field.length; i++)
         </div>
     {/section}
     {section show=$basket.items}
-        <input type="submit" class="left-arrow2" name="ContinueShoppingButton" value="Continue" />
+    <a href="../"><input type="submit" class="left-arrow2" name="ContinueShoppingButton" value="Continue" /></a>
         <input type="submit" class="right-arrow2" name="CheckoutButton" value="Checkout" />
-        <input type="submit" class="right-arrow" name="StoreChangesButton" value="Store" />
+        <input type="submit" class="right-arrow" name="StoreChangesButton" value="Update" />
         <input type="submit" class="flat-right2" name="RemoveProductItemButton" value="Delete" />
     {def $currency = fetch( 'shop', 'currency', hash( 'code', $basket.productcollection.currency_code ) )
          $locale = false()
