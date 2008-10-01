@@ -27,8 +27,9 @@ class xrowPaymentGatewayType extends eZWorkflowEventType
 
     function execute( $process, $event )
     {
+    	$GLOBALS['xrowPaymentGatewayFailedAttempt'] = true;
         $this->logger->writeTimedString( 'execute' );
-		// Recaptcha check begin
+		// Captcha check begin
         $parameters = $process->attribute( 'parameters' );
         $parameters = unserialize( $parameters );
         $order = eZOrder::fetch( $parameters["order_id"] );
@@ -37,7 +38,7 @@ class xrowPaymentGatewayType extends eZWorkflowEventType
         if( $xmlDoc != null )
         {
             $dom = $xml->domTree( $xmlDoc );
-            $recaptchaNode = $dom->elementsByName( "recaptcha" );
+            $recaptchaNode = $dom->elementsByName( "captcha" );
             $recaptcha = false;
         	if ( isset( $recaptchaNode[0] ) )
         	{
@@ -72,7 +73,30 @@ class xrowPaymentGatewayType extends eZWorkflowEventType
         $theGateway = $this->getCurrentGateway( $event );
         if( $theGateway != null )
         {
-            return $theGateway->execute( $process, $event );
+            $status = $theGateway->execute( $process, $event );
+            /* 
+             * Fraud detection
+             * 
+             * Gateway must use  $GLOBALS['xrowPaymentGatewayFailedAttempt'] = true on declient transactions
+			 */
+            if ( $status == eZWorkflowType::STATUS_FETCH_TEMPLATE_REPEAT and $GLOBALS['xrowPaymentGatewayFailedAttempt'] )
+            {
+            	$oldtime = time() - 60 * 60 * 24;
+            	if ( !array_key_exists( 'xrowPaymentGatewayFailedAttemptCount', $_SESSION ) or $oldtime > $_SESSION['xrowPaymentGatewayFailedAttemptCountTime'] )
+            	{
+            		$_SESSION['xrowPaymentGatewayFailedAttemptCount'] = 0;
+            		$_SESSION['xrowPaymentGatewayFailedAttemptCountTime'] = time();
+            	}
+            	$_SESSION['xrowPaymentGatewayFailedAttemptCount']++;
+            	if ( $_SESSION['xrowPaymentGatewayFailedAttemptCount'] > 5 )
+            	{
+            		$process->Template = array();
+            		$process->Template['templateName'] = 'design:workflow/fraud.tpl';
+            		$process->Template['templateVars'] = array ( 'event' => $event );
+            		return eZWorkflowType::STATUS_FETCH_TEMPLATE_REPEAT;
+            	}
+            }
+            return $status;
         }
 
         $this->logger->writeTimedString( 'execute: something wrong' );

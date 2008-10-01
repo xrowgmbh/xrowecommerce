@@ -26,4 +26,6 @@ $ViewList["statistics"] = array(
 
 $FunctionList['buy'] = array( );
 $FunctionList['administrate'] = array( );
+$FunctionList['bypass_captcha'] = array( );
+
 ?>

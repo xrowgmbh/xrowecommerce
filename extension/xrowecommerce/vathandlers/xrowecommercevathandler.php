@@ -1,14 +1,12 @@
 <?php
-#include_once( "kernel/classes/ezorder.php" );
-#include_once( 'lib/ezutils/classes/ezoperationhandler.php' );
-#include_once( 'lib/ezxml/classes/ezxml.php' );
-#include_once( 'kernel/classes/ezshopaccounthandler.php' );
+
 class xrowECommerceVATHandler
 {
     function taxMapping()
     {
         return array(
         'DEU' => 19,
+        'AUT' => 20,
         'IRL' => 21,
         'USA' => array( 'NY' => 8.375, 'CT' => 6.00 )
         );

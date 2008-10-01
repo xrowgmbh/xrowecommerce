@@ -1,30 +1,4 @@
 <?php
-//
-// Created on: <04-Mar-2003 10:22:42 bf>
-//
-// ## BEGIN COPYRIGHT, LICENSE AND WARRANTY NOTICE ##
-// SOFTWARE NAME: eZ publish
-// SOFTWARE RELEASE: 3.8.x
-// COPYRIGHT NOTICE: Copyright (C) 1999-2006 eZ systems AS
-// SOFTWARE LICENSE: GNU General Public License v2.0
-// NOTICE: >
-//   This program is free software; you can redistribute it and/or
-//   modify it under the terms of version 2.0  of the GNU General
-//   Public License as published by the Free Software Foundation.
-//
-//   This program is distributed in the hope that it will be useful,
-//   but WITHOUT ANY WARRANTY; without even the implied warranty of
-//   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-//   GNU General Public License for more details.
-//
-//   You should have received a copy of version 2.0 of the GNU General
-//   Public License along with this program; if not, write to the Free
-//   Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
-//   MA 02110-1301, USA.
-//
-//
-// ## END COPYRIGHT, LICENSE AND WARRANTY NOTICE ##
-//
 
 $http = eZHTTPTool::instance();
 $module = $Params["Module"];
@@ -163,7 +137,7 @@ if ( $module->isCurrentAction( 'Store' ) )
     $shipping = $http->postVariable( "Shipping" );
     $shippingtype = $http->postVariable( "ShippingType" );
 
-    
+    /*
     if ($shipping == "1" and $country !="USA" and $shippingtype <= "5" )
         $inputIsValid = false;
         
@@ -193,9 +167,6 @@ if ( $module->isCurrentAction( 'Store' ) )
         if ( trim( $s_address1 ) == "" )
             $inputIsValid = false;
 
-        $s_state = $http->postVariable( "s_State" );
-        /* if ( trim( $s_state ) == "" )
-            $inputIsValid = false; */
 
         $s_city = $http->postVariable( "s_City" );
         if ( trim( $s_city ) == "" )
@@ -221,22 +192,27 @@ if ( $module->isCurrentAction( 'Store' ) )
         if ($s_country =="USA" and $shippingtype >= "6" )
             $inputIsValid = false;
     }
-    $coupon = new xrowCoupon( $http->postVariable( "coupon_code" ) );
-    $coupon_code = $coupon->code;
-
-    ###### Recaptcha check start
-    
-    $recaptcha = true;
-    $verification = new xrowVerification();
-    $answer = $verification->verify( $http );
-    if( $answer != true )
+    */
+    /* Coupon check */
+    if ( class_exists( 'xrowCoupon' ) and eZINI::instance( 'xrowecommerce.ini' )->variable('Settings', 'Coupon' ) == 'enabled' )
     {
-    	$recaptcha = false;
-    	$inputIsValid = false;
+    	$coupon = new xrowCoupon( $http->postVariable( "coupon_code" ) );
+    	$coupon_code = $coupon->code;
     }
-   
-    ###### Recaptcha check end
-
+    $currentUser = eZUser::currentUser();
+    $accessAllowed = $currentUser->hasAccessTo( 'xrowecommerce', 'bypass_captcha' );
+    /* Captcha check */
+    if ( class_exists( 'xrowVerification' ) and eZINI::instance( 'xrowecommerce.ini' )->variable('Settings', 'Captcha' ) == 'enabled' and $accessAllowed["accessWord"] != 'yes' )
+    {
+    	$captcha = true;
+    	$verification = new xrowVerification();
+    	$answer = $verification->verify( $http );
+    	if( $answer != true )
+    	{
+    		$captcha = false;
+    		$inputIsValid = false;
+    	}
+    }
     
     if ( $inputIsValid == true )
     {
@@ -320,8 +296,8 @@ if ( $module->isCurrentAction( 'Store' ) )
         $shippingTypeNode->appendChild( $doc->createTextNode( $shippingtype ) );
         $root->appendChild( $shippingTypeNode );
         
-        $recaptacheNode = $doc->createElementNode( "recaptcha" ); 
-        $recaptacheNode->appendChild( $doc->createTextNode( $recaptcha ) ); 
+        $recaptacheNode = $doc->createElementNode( "captcha" ); 
+        $recaptacheNode->appendChild( $doc->createTextNode( $captcha ) ); 
         $root->appendChild( $recaptacheNode );
         
         $paymentMethodNode = $doc->createElementNode( xrowECommerce::ACCOUNT_KEY_PAYMENTMETHOD );
@@ -330,7 +306,7 @@ if ( $module->isCurrentAction( 'Store' ) )
         
         #$paymentMethodNode = $doc->createElementNode( xrowECommerce::ACCOUNT_KEY_PAYMENTMETHOD, $paymentMethod );
         #$root->appendChild( $paymentMethodNode );
-        
+
         if ( $coupon_code )
         {
             $coupon_codeNode = $doc->createElementNode( "coupon_code" );
