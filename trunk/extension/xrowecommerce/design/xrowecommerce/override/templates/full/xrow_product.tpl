@@ -74,7 +74,7 @@
 	                {if $node.data_map.variation.content.option_list|count|gt(0)}
 	                {section var=Options loop=$node.data_map.variation.content.option_list}
                     <tr>
-                        <td>
+                        <td>test
 	                       {if $Options.item.image|is_object(true)}
 	                       {attribute_view_gui image_class=galleryline attribute=$Options.item.image.current.data_map.image}
 	                       {else}
@@ -103,6 +103,7 @@
                     </tr>{/section}
 	                {else}
 	                <tr>
+	                   <td>-</td>
 	                    <td>
 	                    {$node.object.data_map.product_id.data_text}
 	                    </td>
