@@ -74,7 +74,7 @@
 	                {if $node.data_map.variation.content.option_list|count|gt(0)}
 	                {section var=Options loop=$node.data_map.variation.content.option_list}
                     <tr>
-                        <td>test
+                        <td>
 	                       {if $Options.item.image|is_object(true)}
 	                       {attribute_view_gui image_class=galleryline attribute=$Options.item.image.current.data_map.image}
 	                       {else}
@@ -174,7 +174,7 @@
         background-color: white;
         border: 1px solid grey; 
     }
-            </style>
+    </style>
             <script language="javascript" type="text/javascript">
             YAHOO.namespace("example.container");
     
