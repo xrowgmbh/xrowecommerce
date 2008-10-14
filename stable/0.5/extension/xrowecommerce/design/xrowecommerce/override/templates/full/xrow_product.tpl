@@ -169,7 +169,6 @@
 
 {literal}
     <style type="text/css">
-    .yui-overlay { position:absolute;background:#fff;border:1px dotted black;padding:5px;margin:10px; }
     #overlay1 { 
         background-color: white;
         border: 1px solid grey; 
