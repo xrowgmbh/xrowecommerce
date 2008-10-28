@@ -46,7 +46,7 @@
                 {/if}
                 {if or( $partprice|gt(0), $allprice|gt(0) ) }
                 {if $partprice|gt(0)}
-                    <span class="currentprice">{'starting at'|i18n('design/base/shop')} {$partprice|l10n( 'currency' )}</span>
+                    <span class="currentprice">{'starting at '|i18n('design/base/shop')} {$partprice|l10n( 'currency' )}</span>
                 {/if}
                 {if $allprice|gt(0)}
                     <span class="currentprice">{$allprice|l10n( 'currency' )}</span>
@@ -157,11 +157,7 @@
             </div>
 	        {/if}
 	        {undef $related_purchase}
-
-
 	    </div>
-	    
-
     </div>
     </div>
 	</form>
@@ -169,8 +165,7 @@
 
 {literal}
     <style type="text/css">
-    .yui-overlay { position:absolute;background:#fff;border:1px dotted black;padding:5px;margin:10px; }
-    #overlay1 { 
+    #overlay1 {
         background-color: white;
         border: 1px solid grey; 
     }
