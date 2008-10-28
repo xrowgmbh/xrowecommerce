@@ -157,11 +157,7 @@
             </div>
 	        {/if}
 	        {undef $related_purchase}
-
-
 	    </div>
-	    
-
     </div>
     </div>
 	</form>
@@ -169,7 +165,7 @@
 
 {literal}
     <style type="text/css">
-    #overlay1 { 
+    #overlay1 {
         background-color: white;
         border: 1px solid grey; 
     }
