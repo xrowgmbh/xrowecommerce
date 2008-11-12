@@ -8,7 +8,7 @@
     	{/if}
     	<p><a href={$object.main_node.url_alias|ezurl}>{$object.name|wash()|shorten(40)}</a></p>
     	<div class="attribute-short">
-    		{$object.data_map.short_description.content.output.output_text|shorten(70)|xmlwash}
+    		{$object.data_map.short_description.content.output.output_text|striptags()|shorten(70)}
     	</div>
     	<div class="attribute-price">
 {undef $var_price}
