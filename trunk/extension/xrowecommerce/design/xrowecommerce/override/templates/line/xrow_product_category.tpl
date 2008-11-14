@@ -12,9 +12,8 @@
 	<div class="productline-text">
 	<div class="product_title"><a href="{$node.url_alias|ezurl('no')}" title="{$node.name|wash()}">{$node.name|wash()}</a></div>
 	{*attribute_view_gui attribute=$node.data_map.short_description*}
-	
-	<p>{$node.data_map.short_description.data_text|striptags|shorten( 90 )} <a class="read_more" href="{$node.url_alias|ezurl('no')}" title="{$node.name|wash()}">{'read more'|i18n('design/base/shop')} »</a></p>
-	
+	<p>{$node.data_map.description.data_text|striptags|shorten( 110 )}</p>
+	<p class="read_more"><a class="read_more" href="{$node.url_alias|ezurl('no')}" title="{$node.name|wash()}">{'read more'|i18n('design/base/shop')} »</a></p>
 		<div class="price">
                 {undef $var_price}
                 {undef $allprice}

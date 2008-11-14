@@ -12,6 +12,6 @@ Filters[]=geometry/scaledownonly=400;300
 [product_line]
 Reference=
 Filters[]
-Filters[]=geometry/scale=125;94
+Filters[]=geometry/scaledownonly=170;94
 
 */ ?>

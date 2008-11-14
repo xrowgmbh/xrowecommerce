@@ -30,10 +30,18 @@
             {/if}
         {/if}
     {/foreach}
-                {def $page_limit = first_set($node.data_map.show_children_pr_page.data_int, 4)
-                     $classes = array( 'xrow_product' )
+                {def $page_limit = first_set($node.data_map.show_children_pr_page.data_int, 16)
                      $children = array()
                      $children_count = ''}
+	            {if $node.children.0.class_identifier|eq( xrow_product_category )}
+	                {def $classes = array( 'xrow_product_category' ) }
+	            {elseif $node.children.0.class_identifier|eq( xrow_product )}
+	                {def $classes = array( 'xrow_product' ) }
+	            {else}
+	            {/if}
+                
+                
+                     
                 {if is_set( $node.data_map.show_children_exclude )}
                     {set $classes = $node.data_map.show_children_exclude.content|explode(',')}
                 {/if}
@@ -65,9 +73,6 @@
                          item_count=$children_count
                          view_parameters=$view_parameters
                          item_limit=$page_limit}
-
-
-                    
        {/if}
     </div>
 </div>
