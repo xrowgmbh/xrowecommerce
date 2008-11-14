@@ -40,7 +40,7 @@ Invoice
 <div class="break" style="clear:both;"></div>
 <div style="width:40%;float: left;">
 <table  class="list" width="100%" cellspacing="0" cellpadding="0" border="0" align="right">
-<caption style="font-size: 12pt;"><b>Bill to</b></caption>
+<caption style="font-size: 12pt;"><b>{'Bill to'|i18n( 'design/admin/shop/orderview' )}</b></caption>
 <tr>
     <th class="tight">{'Name'|i18n( 'design/admin/shop/orderview' )}</th>
     <td>{$order.account_information.first_name} {$order.account_information.mi} {$order.account_information.last_name}</td>
@@ -73,7 +73,7 @@ Invoice
 {if $order.account_information.shipping|not}
 
 <table  class="list" width="100%" cellspacing="0" cellpadding="0" border="0" align="right">
-<caption style="font-size: 12pt;"><b>Ship to</b></caption>
+<caption style="font-size: 12pt;"><b>{'Ship to'|i18n( 'design/admin/shop/orderview' )}</b></caption>
 <tr>
     <th class="tight">{'Name'|i18n( 'design/admin/shop/orderview' )}</th>
     <td>{$order.account_information.s_first_name} {$order.account_information.s_mi} {$order.account_information.s_last_name}</td>
@@ -101,7 +101,7 @@ Invoice
 {else}
 
 <table  class="list" width="100%" cellspacing="0" cellpadding="0" border="0" align="right">
-<caption style="font-size: 12pt;"><b>Ship to</b></caption>
+<caption style="font-size: 12pt;"><b>{'Ship to'|i18n( 'design/admin/shop/orderview' )}</b></caption>
 <tr>
     <th class="tight">{'Name'|i18n( 'design/admin/shop/orderview' )}</th>
     <td>{$order.account_information.first_name} {$order.account_information.mi} {$order.account_information.last_name}</td>
