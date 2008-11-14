@@ -143,7 +143,7 @@ if ( $module->isCurrentAction( 'Store' ) )
         
     if ($shipping == "1" and $country =="USA" and $shippingtype >= "6" )
         $inputIsValid = false;
-
+*/
     if ($shipping != "1")
     {
         $s_companyName = $http->postVariable( "s_CompanyName" );
@@ -185,14 +185,15 @@ if ( $module->isCurrentAction( 'Store' ) )
             $inputIsValid = false;
 
         $s_fax = $http->postVariable( "s_Fax" );
-            
+            /*
         if ($s_country !="USA" and $shippingtype <= "5" )
             $inputIsValid = false;
         
         if ($s_country =="USA" and $shippingtype >= "6" )
             $inputIsValid = false;
+*/
     }
-    */
+    
     /* Coupon check */
     if ( class_exists( 'xrowCoupon' ) and eZINI::instance( 'xrowecommerce.ini' )->variable('Settings', 'Coupon' ) == 'enabled' )
     {
