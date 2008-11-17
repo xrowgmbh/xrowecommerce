@@ -46,7 +46,7 @@
                     {set $classes = $node.data_map.show_children_exclude.content|explode(',')}
                 {/if}
 
-                {set $children=fetch( 'content', 'tree', hash( 'parent_node_id', $node.node_id,
+                {set $children=fetch( 'content', 'list', hash( 'parent_node_id', $node.node_id,
                                                               'offset', $view_parameters.offset,
                                                               'sort_by', $node.sort_array,
                                                               'class_filter_type', 'include',
