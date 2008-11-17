@@ -1,4 +1,5 @@
 <div class="productline">
+<div class="product_title"><a href="{$node.url_alias|ezurl('no')}" title="{$node.name|wash()}">{$node.name|wash()}</a></div>
 	<div class="productline-img">
 	{def $node_name=$node.main_node.name node_url=$node.main_node.url_alias}
 		{if $node.data_map.image.has_content}
@@ -6,12 +7,10 @@
 			{attribute_view_gui image_class=product_line attribute=$node.data_map.image href=$node.url_alias|ezurl('no')}
 		</div>
 		{else}
-		<a href={$node.url_alias|ezurl('no')}><div class="nopic">&nbsp;</div></a>
+		<a href={$node.url_alias|ezurl('no')}><div class="nopic"><p>{'no Image'|i18n('design/base/shop')}</p></div></a>
 		{/if}
 	</div>
 	<div class="productline-text">
-	<div class="product_title"><a href="{$node.url_alias|ezurl('no')}" title="{$node.name|wash()}">{$node.name|wash()}</a></div>
-	{*attribute_view_gui attribute=$node.data_map.short_description*}
 	
 	<p>{$node.data_map.short_description.data_text|striptags|shorten( 90 )}</p>
 	<p class="read_more"><a href="{$node.url_alias|ezurl('no')}" title="{$node.name|wash()}">{'read more'|i18n('design/base/shop')} »</a></p>
