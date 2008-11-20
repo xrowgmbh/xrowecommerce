@@ -2,9 +2,9 @@
 <div class="content-view-embed">
     <div class="class-xrow-product">
     	{if $object.data_map.image.has_content}
-    		{attribute_view_gui image_class=listitem attribute=$object.data_map.image href=$object.main_node.url_alias|ezurl}
+    		{attribute_view_gui image_class=listitem attribute=$object.data_map.image href=$object.main_node.url_alias|ezurl()}
     	{else}
-    	   <a href={$object.main_node.url_alias|ezurl}><div class="nopic">&nbsp;</div></a>
+    	   <a href={$object.main_node.url_alias|ezurl}><div class="nopic"><p>{'no Image'|i18n('design/base/shop')}</p></div></a>
     	{/if}
     	<p><a href={$object.main_node.url_alias|ezurl}>{$object.name|wash()|shorten(40)}</a></p>
     	<div class="attribute-short">

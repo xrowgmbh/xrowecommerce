@@ -20,7 +20,7 @@
 		        {/if}
             </div>
             {else}
-            <div class="nopic attribute-image">&nbsp;</div>
+            <div class="nopic attribute-image"><p>{'no Image'|i18n('design/base/shop')}</p></div>
             {/if}
             <div class="description-wrap">
 	                <div class="attribute-short">
@@ -60,7 +60,7 @@
         </div>
         <div class="productwrapper float-break">
 <div>
-                <table class="list">
+                <table class="list" summary="This table contains information about the product, like image, product number, description and the form to orderthe product.">
 	                <tr>
 	                    <th>Image</th>
 	                    <th>Number</th>
@@ -78,7 +78,7 @@
 	                       {if $Options.item.image|is_object(true)}
 	                       {attribute_view_gui image_class=galleryline attribute=$Options.item.image.current.data_map.image}
 	                       {else}
-	                       <div class="s_nopic">&nbsp;</div>
+	                       <div class="s_nopic"><p>{'no Image'|i18n('design/base/shop')}</p></div>
 	                       {/if}
                         </td>
 	                   <td>
@@ -163,7 +163,7 @@
 	</form>
 </div>
 
-{literal}
+{*literal}
     <style type="text/css">
     #overlay1 {
         background-color: white;
@@ -186,5 +186,5 @@
     
             YAHOO.util.Event.addListener(window, "load", init);
     </script>
-{/literal}
+{/literal*}
                 
