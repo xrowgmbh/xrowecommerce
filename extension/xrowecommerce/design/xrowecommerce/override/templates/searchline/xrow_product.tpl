@@ -4,10 +4,9 @@
             <tr>
                 <td rowspan="2">
 	                <div class="searchline-img">
-		                {def $node_name=$node.main_node.name $node_url=$node.main_node.url_alias}
 		                {if $node.data_map.image.has_content}
 		                    <div class="search-productline-img">
-		                        {attribute_view_gui image_class=product_line attribute=$node.data_map.image}
+		                        {attribute_view_gui image_class=product_thumb attribute=$node.data_map.image}
 		                    </div>
 		                {else}
 		                    <div class="nopic"><p><a href="{$node.url_alias|ezurl('no')}">{'no Image'|i18n('design/base/shop')}</a></p></div>
