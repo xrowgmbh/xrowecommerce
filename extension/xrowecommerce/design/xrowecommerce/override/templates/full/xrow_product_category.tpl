@@ -45,7 +45,7 @@
                                                               'class_filter_type', 'include',
                                                               'class_filter_array', $classes,
                                                               'limit', $page_limit ) )
-                     $children_count=fetch( 'content', 'tree_count', hash( 'parent_node_id', $node.node_id,
+                     $children_count=fetch( 'content', 'list_count', hash( 'parent_node_id', $node.node_id,
                                                                           'class_filter_type', 'include',
                                                                           'class_filter_array', $classes ) )}
                 {include name=navigator
@@ -59,7 +59,6 @@
                         {node_view_gui view='line' content_node=$child}
                     {/foreach}
                 </div>
-
                 {include name=navigator
                          uri='design:navigator/google.tpl'
                          page_uri=$node.url_alias
