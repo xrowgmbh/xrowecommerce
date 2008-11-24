@@ -27,10 +27,8 @@
 		   </p>
 	   </td>
 		<td class="details_light">
-			<p class="price">
-                {'3,00 €'|wash()}
-            </p>
-            <p><input type="submit" class="details" name="ActionAddToBasket" value="{"Basket"|i18n("design/ezwebin/full/product")}" /></p>
+			<p class="price">{'3,00 €'|wash()}</p>
+            <p><input type="submit" class="details" name="ActionAddToBasket" value="{'Basket'|i18n('design/ezwebin/full/product')}" /></p>
 		</td>
 		<td class="details"><p><a class="details" href="{$node.url_alias|ezurl('no')}" title="{$node.name|wash()}">{'Details'|i18n('design/ezwebin/full/product')}</a></p></td>
 	</tr>
