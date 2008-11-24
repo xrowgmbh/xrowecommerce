@@ -17,7 +17,7 @@
     <th>{'Name'|i18n( 'design/standard/content/datatype' )}</th>
     <th>{'Description'|i18n( 'design/standard/content/datatype' )}</th>
     {section show=$attribute.is_information_collector|not}
-    	<th>{'Additional price'|i18n( 'design/standard/content/datatype' )}</th>
+        <th>{'Additional price'|i18n( 'design/standard/content/datatype' )}</th>
     {/section}
     <th>{'Weight'|i18n( 'design/standard/content/datatype' )}</th>
     <th>{'Image'|i18n( 'design/standard/content/datatype' )}</th>
@@ -81,10 +81,12 @@
 {/default}
 {def $url='/'|ezurl('no','full')}
 {run-once}
+
+
 {literal}
 <script type="text/javascript">
 function variationupload (id, version, type, varname, varid) {
-  NewWindow = window.open("http://" + window.location.hostname + "/mutual_admin/variationupload/upload/"+ id +"/"+ version +"/"+ type +"/" + varname + "/" + varid, "Uploadwindow", "width=400,height=400,left=100,top=200");
+  NewWindow = window.open("http://" + window.location.hostname + "/{/literal}{$access_type.name}{literal}/variationupload/upload/"+ id +"/"+ version +"/"+ type +"/" + varname + "/" + varid, "Uploadwindow", "width=700,height=500,left=100,top=200");
   NewWindow.focus();
 }
 </script>
