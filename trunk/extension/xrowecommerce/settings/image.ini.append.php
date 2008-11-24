@@ -33,6 +33,6 @@ Filters[]=geometry/scalewidth=95
 Reference=
 Filters[]
 Filters[]=geometry/scalewidth=170
-Filters[]=geometry/crop=170;96
+Filters[]=kaiser/crop=170;96
 
 */ ?>
