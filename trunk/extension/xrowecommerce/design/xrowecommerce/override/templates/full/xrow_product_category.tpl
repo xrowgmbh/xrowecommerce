@@ -10,25 +10,30 @@
 {if eq(ezpreference( 'quick_order' ), 1)}
     {include uri='design:quickorder.tpl' node_id=$node.node_id}
 {else}
-
     {def $name_pattern = $node.object.content_class.contentobject_name|explode('>')|implode(',')
-         $name_pattern_array = array('enable_comments', 'enable_tipafriend', 'show_children', 'image', 'show_children_exclude', 'show_children_pr_page')}
+         $name_pattern_array = array('enable_comments', 'enable_tipafriend', 'show_children', 'show_children_exclude', 'show_children_pr_page')}
     {set $name_pattern  = $name_pattern|explode('|')|implode(',')}
     {set $name_pattern  = $name_pattern|explode('<')|implode(',')}
     {set $name_pattern  = $name_pattern|explode(',')}
     {foreach $name_pattern  as $name_pattern_string}
         {set $name_pattern_array = $name_pattern_array|append( $name_pattern_string|trim() )}
     {/foreach}
-    {foreach $node.object.contentobject_attributes as $attribute}
-        {if $name_pattern_array|contains($attribute.contentclass_attribute_identifier)|not()}
-        {if and($attribute.contentclass_attribute_identifier|eq('image'),$attribute.is_valid|not)}
-        {else}
-            <div class="attribute-{$attribute.contentclass_attribute_identifier}">
-                {attribute_view_gui attribute=$attribute}
+            {if $node.data_map.image.has_content}
+            <div class="attribute-image">
+				<a href="javascript:;" onclick="return enlargeImage('/{$node.data_map.image.content.reference.full_path}',{$node.data_map.image.content.reference.width},{$node.data_map.image.content.reference.height},'{$node.data_map.image.content.reference.text|wash(javascript)}');" title="{$node.data_map.image.content.reference.text|wash} | {"A click on the image enlarges the image in a popup"|i18n( 'kaiser')}">
+				    {attribute_view_gui
+				            attribute=$node.data_map.image
+				            image_class=product_large
+				            show_alt=false()
+				    }
+				</a>
             </div>
+            {else}
+            <div class="nopic attribute-image"><p>{'no Image'|i18n('design/base/shop')}</p></div>
             {/if}
-        {/if}
-    {/foreach}
+            <div class="attribute-description">
+                {attribute_view_gui attribute=$node.data_map.description}
+            </div>
                 {def $page_limit = first_set($node.data_map.show_children_pr_page.data_int, 16)
                      $children = array()
                      $children_count = ''}
@@ -53,7 +58,7 @@
                          item_count=$children_count
                          view_parameters=$view_parameters
                          item_limit=$page_limit}
-                <div class="content-view-children float-break">
+                <div class="content-view-children">
                     {foreach $children as $child }
                         {node_view_gui view='line' content_node=$child}
                     {/foreach}
@@ -64,7 +69,7 @@
                          item_count=$children_count
                          view_parameters=$view_parameters
                          item_limit=$page_limit}
-       {/if}
+{/if}
     </div>
 </div>
 </div></div></div>
