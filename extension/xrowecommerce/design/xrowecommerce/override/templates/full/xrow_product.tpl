@@ -12,7 +12,13 @@
             <div class="image-description-wrap">
             {if $node.data_map.image.has_content}
             <div class="attribute-image">
-		            {attribute_view_gui image_class=product attribute=$node.data_map.image}
+                <a href="javascript:;" onclick="return enlargeImage('/{$node.data_map.image.content.reference.full_path}',{$node.data_map.image.content.reference.width},{$node.data_map.image.content.reference.height},'{$node.data_map.image.content.reference.text|wash(javascript)}');" title="{$node.data_map.image.content.reference.text|wash} | {"A click on the image enlarges the image in a popup"|i18n( 'kaiser')}">
+                    {attribute_view_gui
+                            attribute=$node.data_map.image
+                            image_class=product
+                            show_alt=false()
+                    }
+                </a>
 		        {if $node.data_map.caption.has_content}
                 <div class="caption">
                     {attribute_view_gui attribute=$node.data_map.caption}

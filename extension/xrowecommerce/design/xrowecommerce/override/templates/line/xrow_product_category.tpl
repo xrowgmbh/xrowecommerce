@@ -12,7 +12,7 @@
 		{/if}
 	</div>
 	<div class="productline-text">
-		<p>{$node.data_map.description.data_text|striptags|shorten( 110 )}&nbsp;</p>
+		<p>{$node.data_map.description.data_text|striptags|shorten( 210 )}&nbsp;</p>
 		<p class="read_more"><a class="read_more" href={$node.url_alias|ezurl()} title="{$node.name|wash()}">{'read more'|i18n('design/base/shop')} »</a></p>
 	</div>
 </div>

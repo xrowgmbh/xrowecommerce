@@ -42,16 +42,40 @@ for (i = 0; i < field.length; i++)
 //  End -->
 </script>
 <div class="shop-basket">
-    <form method="post" name="basket" action={"/shop/basket/"|ezurl}>
-        <h2>{"Shopping Cart"|i18n("design/base/shop")}</h2>
         <div class="shopping_cart_path">
-            <div class="shopping_cart_path_select">1. Cart</div>
-            <div class="shopping_cart_path_text">2. Billing, Shipping and Coupons</div>
-            <div class="shopping_cart_path_text">3. Confirmation</div>
-            <div class="shopping_cart_path_text">4. Payment info</div>
-            <div class="shopping_cart_path_text">5. Order completed</div>
-            <div class="shopping_cart_path_text">6. Review reciept</div>
+            <div class="shopping_cart_path_select">{"1. Cart"|i18n("design/base/shop")}</div>
+            <div class="shopping_cart_path_text">{"2. Billing, Shipping and Coupons"|i18n("design/base/shop")}</div>
+            <div class="shopping_cart_path_text">{"3. Confirmation"|i18n("design/base/shop")}</div>
+            <div class="shopping_cart_path_text">{"4. Payment info"|i18n("design/base/shop")}</div>
+            <div class="shopping_cart_path_text">{"5. Order completed"|i18n("design/base/shop")}</div>
+            <div class="shopping_cart_path_text">{"6. Review reciept"|i18n("design/base/shop")}</div>
         </div>
+        <div class="break"></div>
+
+<h1>{"Add Catalogue Order"|i18n("design/base/shop")}</h1>
+
+<table class="shop-basket">
+    <tr>
+        <th><p>{"Article Number"|i18n("design/base/shop")}</p></th>
+        <th class="optional"><p>{"Search"|i18n("design/base/shop")}</p></th>
+        <th><p>{"Quantity"|i18n("design/base/shop")}</p></th>
+        <th><p>{"Notation"|i18n("design/base/shop")}</p></th>
+        <th class="price"><p>{"Price in €"|i18n("design/base/shop")}</p></th>
+        <th class="optional"><p>{"Delete"|i18n("design/base/shop")}</p></th>
+    </tr>
+    <tr>
+        <td><input type="text" size="12" value="" name="KatalogueSearchText" id="kalaogue_searchtext"/></td>
+        <td><input id="catalogue_button" class="smallbutton" type="submit" alt="Submit" value="{"Search"|i18n("design/base/shop")}"/></td>
+        <td><input type="text" class="halfbox" size="12" value="" name="KatalogueQuantity" id="kalaogue_quantity"/></td>
+        <td><p class="optional">{"please type in an article number"|i18n("design/base/shop")}</p></td>
+        <td><p class="optional">{"please type in an article number"|i18n("design/base/shop")}</p></td>
+        <td><input id="catalogue_delete_button" class="button" type="submit" alt="Submit" value="{"Add Catalogue Item"|i18n("design/base/shop")}"/></td>
+    </tr>
+</table>
+
+
+    <form method="post" name="basket" action={"/shop/basket/"|ezurl}>
+        <h2>{"Your Basket"|i18n("design/base/shop")}</h2>
         <div class="break"></div>
         {section show=$removed_items}
             <div class="warning">
@@ -70,7 +94,7 @@ for (i = 0; i < field.length; i++)
 
     {if not( $vat_is_known )}
         <div class="message-warning">
-            <h2>{'Tax is unknown'|i18n( 'design/base/shop' )}</h2>
+            <h2>{'Tax is unknown'|i18n('design/base/shop')}</h2>
             {'Tax percentage is not yet known for some of the items being purchased.'|i18n( 'design/base/shop' )}
             {'This probably means that some information about you is not yet available and will be obtained during checkout.'|i18n( 'design/base/shop' )}
         </div>
@@ -91,10 +115,10 @@ for (i = 0; i < field.length; i++)
         </div>
     {/section}
     {section show=$basket.items}
-        <a href={'/'|ezurl()}><input type="submit" class="left-arrow2" name="ContinueShoppingButton" value="Continue" /></a>
-        <input type="submit" class="right-arrow2" name="CheckoutButton" value="Checkout" />
-        <input type="submit" class="right-arrow" name="StoreChangesButton" value="Update" />
-        <input type="submit" class="flat-right2" name="RemoveProductItemButton" value="Delete" />
+        <a href={'/'|ezurl()}><input type="submit" class="left-arrow2 smallbutton" name="ContinueShoppingButton" value="Continue" /></a>
+        <input type="submit" class="right-arrow2 smallbutton" name="CheckoutButton" value="Checkout" />
+        <input type="submit" class="right-arrow smallbutton" name="StoreChangesButton" value="Update" />
+        <input type="submit" class="flat-right2 smallbutton" name="RemoveProductItemButton" value="Delete" />
     {def $currency = fetch( 'shop', 'currency', hash( 'code', $basket.productcollection.currency_code ) )
          $locale = false()
          $symbol = false()}
@@ -272,11 +296,13 @@ for (i = 0; i < field.length; i++)
    </div>
  </form>
 
+{* ####### Login Box ########
+
  {def $user=fetch( 'user', 'current_user' )}
  {if $user.contentobject.id|eq(10)}
             <div>
                 <div class="loginbox">
-                    <p>Already a member?</p>
+                    <p>{'Already a member?"|i18n("design/standard/user",'User name')}</p>
                     <form method="post" action={"user/login"|ezurl}">
                     <div class="loginbox_wrap">
                         <label for="id1">{"Username"|i18n("design/standard/user",'User name')}</label><div class="labelbreak"></div>
@@ -289,11 +315,11 @@ for (i = 0; i < field.length; i++)
                     <div>
                         <input class="standard" type="submit" name="LoginButton" value="{'Login'|i18n('design/standard/user','Button')}" tabindex="1">
                     </div>
-                    <input type="hidden" name="RedirectURI" value="../shop/userregister" />
+                        <input type="hidden" name="RedirectURI" value="../shop/userregister" />
                 </div>
             </div>
  </form>
-{/if}
+{/if*}
     {undef $currency $locale $symbol}
     {section-else}
 </form>
