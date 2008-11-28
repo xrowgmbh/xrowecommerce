@@ -18,18 +18,19 @@
     {foreach $name_pattern  as $name_pattern_string}
         {set $name_pattern_array = $name_pattern_array|append( $name_pattern_string|trim() )}
     {/foreach}
-            {if $node.data_map.image.has_content}
-            <div class="attribute-image">
-				<a href="javascript:;" onclick="return enlargeImage('/{$node.data_map.image.content.reference.full_path}',{$node.data_map.image.content.reference.width},{$node.data_map.image.content.reference.height},'{$node.data_map.image.content.reference.text|wash(javascript)}');" title="{$node.data_map.image.content.reference.text|wash} | {"A click on the image enlarges the image in a popup"|i18n( 'kaiser')}">
-				    {attribute_view_gui
-				            attribute=$node.data_map.image
-				            image_class=product_large
-				            show_alt=false()
-				    }
-				</a>
-            </div>
+            {if $node.data_map.description.object.embedded_contentobject_array.0.current.data_map.image.content.is_valid|eq('1')}
+            {elseif $node.data_map.image.has_content}
+	            <div class="attribute-image">
+	                <a href="javascript:;" onclick="return enlargeImage('/{$node.data_map.image.content.reference.full_path}',{$node.data_map.image.content.reference.width},{$node.data_map.image.content.reference.height},'{$node.data_map.image.content.reference.text|wash(javascript)}');" title="{$node.data_map.image.content.reference.text|wash} | {"A click on the image enlarges the image in a popup"|i18n( 'kaiser')}">
+	                    {attribute_view_gui
+	                            attribute=$node.data_map.image
+	                            image_class=product_large
+	                            show_alt=false()
+	                    }
+	                </a>
+	            </div>
             {else}
-            <div class="nopic attribute-image"><p>{'no Image'|i18n('design/base/shop')}</p></div>
+                <div class="nopic attribute-image"><p>{'no Image'|i18n('design/base/shop')}</p></div>
             {/if}
             <div class="attribute-description">
                 {attribute_view_gui attribute=$node.data_map.description}
@@ -70,6 +71,7 @@
                          view_parameters=$view_parameters
                          item_limit=$page_limit}
 {/if}
+
     </div>
 </div>
 </div></div></div>
