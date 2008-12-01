@@ -28,18 +28,18 @@
 {/if}
 <table class="list" cellspacing="0">
 
-{if eq(ezini( 'DisplayFieldSettings', 'DisplayCompanyName', 'fieldsettings.ini' ), 'enabled' )}
+{if eq(ezini( 'DisplayFieldSettings', 'DisplayCompanyName', 'xrowecommerce.ini' ), 'enabled' )}
 <tr>
     <td>{'Company name'|i18n( 'design/admin/shop/accounthandlers/html/ez' )}</td>
     <td>{$order.account_information.company_name}</td>
 </tr>
 {/if}
-{if eq(ezini( 'DisplayFieldSettings', 'DisplayCompanyAdditional', 'fieldsettings.ini' ), 'enabled' )}
+{if eq(ezini( 'DisplayFieldSettings', 'DisplayCompanyAdditional', 'xrowecommerce.ini' ), 'enabled' )}
 <tr>
     <td>{'Form of enterprise'|i18n( 'design/admin/shop/accounthandlers/html/ez' )}</td>
     <td>{$order.account_information.first_name}</td>
 </tr>
-{/if}{if eq(ezini( 'DisplayFieldSettings', 'DisplayTaxId', 'fieldsettings.ini' ), 'enabled' )}
+{/if}{if eq(ezini( 'DisplayFieldSettings', 'DisplayTaxId', 'xrowecommerce.ini' ), 'enabled' )}
 <tr>
     <td>{'Tax ID'|i18n( 'design/admin/shop/accounthandlers/html/ez' )}</td>
     <td>{$order.account_information.first_name}</td>
@@ -81,7 +81,7 @@
     <td>{'Country'|i18n( 'design/admin/shop/accounthandlers/html/ez' )}</td>
     <td>{$order.account_information.country}</td>
 </tr>
-{if eq(ezini( 'DisplayFieldSettings', 'DisplayFax', 'fieldsettings.ini' ), 'enabled' )}
+{if eq(ezini( 'DisplayFieldSettings', 'DisplayFax', 'xrowecommerce.ini' ), 'enabled' )}
 <tr>
     <td>{'Fax'|i18n( 'design/admin/shop/accounthandlers/html/ez' )}</td>
     <td>{$order.account_information.fax}</td>
@@ -113,13 +113,13 @@
 <td>
 <table class="list" cellspacing="0">
 
-{if eq(ezini( 'DisplayFieldSettings', 'DisplayCompanyName', 'fieldsettings.ini' ), 'enabled' )}
+{if eq(ezini( 'DisplayFieldSettings', 'DisplayCompanyName', 'xrowecommerce.ini' ), 'enabled' )}
 <tr>
     <td>{'Company name'|i18n( 'design/admin/shop/accounthandlers/html/ez' )}</td>
     <td>{$order.account_information.s_company_name}</td>
 </tr>
 {/if}
-{if eq(ezini( 'DisplayFieldSettings', 'DisplayCompanyAdditional', 'fieldsettings.ini' ), 'enabled' )}
+{if eq(ezini( 'DisplayFieldSettings', 'DisplayCompanyAdditional', 'xrowecommerce.ini' ), 'enabled' )}
 <tr>
     <td>{'Form of enterprise'|i18n( 'design/admin/shop/accounthandlers/html/ez' )}</td>
     <td>{$order.account_information.s_company_additional}</td>
@@ -161,7 +161,7 @@
     <td>{'Country'|i18n( 'design/admin/shop/accounthandlers/html/ez' )}</td>
     <td>{$order.account_information.s_country}</td>
 </tr>
-{if eq(ezini( 'DisplayFieldSettings', 'DisplayFax', 'fieldsettings.ini' ), 'enabled' )}
+{if eq(ezini( 'DisplayFieldSettings', 'DisplayFax', 'xrowecommerce.ini' ), 'enabled' )}
 <tr>
     <td>{'Fax'|i18n( 'design/admin/shop/accounthandlers/html/ez' )}</td>
     <td>{$order.account_information.s_fax}</td>

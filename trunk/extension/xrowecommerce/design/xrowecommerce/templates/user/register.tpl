@@ -84,7 +84,7 @@
             {/section}        
 
             <div class="block">
-{if eq(ezini( 'DisplayFieldSettings', 'DisplayCompanyName', 'fieldsettings.ini' ), 'enabled' )}
+{if eq(ezini( 'DisplayFieldSettings', 'DisplayCompanyName', 'xrowecommerce.ini' ), 'enabled' )}
                 <div class="block">
                     <label>{'Company name'|i18n('design/standard/user')}</label>
                     <div class="labelbreak"></div>
@@ -92,7 +92,7 @@
                     <input type="hidden" name="ContentObjectAttribute_id[]" value="{$ca.company_name.id}" />
                 </div>
 {/if}
-{if eq(ezini( 'DisplayFieldSettings', 'DisplayCompanyForm', 'fieldsettings.ini' ), 'enabled' )}
+{if eq(ezini( 'DisplayFieldSettings', 'DisplayCompanyForm', 'xrowecommerce.ini' ), 'enabled' )}
                 <div cstyle="width: 180px; display: inline; float: left;">
                     <label>{'Form of company'|i18n('design/standard/user')}</label>
                     <div class="labelbreak"></div>
@@ -100,7 +100,7 @@
                     <input type="hidden" name="ContentObjectAttribute_id[]" value="{$ca.company_name.id}" />
                 </div>
 {/if}
-{if eq(ezini( 'DisplayFieldSettings', 'DisplayTaxId', 'fieldsettings.ini' ), 'enabled' )}
+{if eq(ezini( 'DisplayFieldSettings', 'DisplayTaxId', 'xrowecommerce.ini' ), 'enabled' )}
                 <div cstyle="width: 180px; display: inline; float: left;">
                     <label>{'Tax ID'|i18n('design/standard/user')}</label>
                     <div class="labelbreak"></div>
@@ -206,7 +206,7 @@
                 	<input type="hidden" name="ContentObjectAttribute_id[]" value="{$ca.phone.id}" />
                 </div>
                 
-{if eq(ezini( 'DisplayFieldSettings', 'DisplayFax', 'fieldsettings.ini' ), 'enabled' )}
+{if eq(ezini( 'DisplayFieldSettings', 'DisplayFax', 'xrowecommerce.ini' ), 'enabled' )}
 
                 <div class="block">
                     <label><span class="required">*</span>{'Fax'|i18n('design/standard/user')}</label>
@@ -238,7 +238,7 @@
             </table>
 
             <div class="block" id="shippinginfo")}>
-{if eq(ezini( 'DisplayFieldSettings', 'DisplayCompanyName', 'fieldsettings.ini' ), 'enabled' )}
+{if eq(ezini( 'DisplayFieldSettings', 'DisplayCompanyName', 'xrowecommerce.ini' ), 'enabled' )}
                 <div class="block">
                     <label><span class="required">*</span>{'Company name'|i18n('design/standard/user')}</label>
                     <div class="labelbreak"></div>
@@ -246,7 +246,7 @@
                     <input type="hidden" name="ContentObjectAttribute_id[]" value="{$ca.s_company_name.id}" />
                 </div>
 {/if}
-{if eq(ezini( 'DisplayFieldSettings', 'DisplayCompanyForm', 'fieldsettings.ini' ), 'enabled' )}
+{if eq(ezini( 'DisplayFieldSettings', 'DisplayCompanyForm', 'xrowecommerce.ini' ), 'enabled' )}
                 <div class="block">
                     <label>{'Form of company'|i18n('design/standard/user')}</label>
                     <div class="labelbreak"></div>

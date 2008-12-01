@@ -115,7 +115,7 @@ for (i = 0; i < field.length; i++)
         </div>
     {/section}
     {section show=$basket.items}
-        <a href={'/'|ezurl()}><input type="submit" class="left-arrow2 smallbutton" name="ContinueShoppingButton" value="Continue" /></a>
+        <a href={'/'|ezurl()} class="details">{'Continue'|i18n("design/ezwebin/shop/basket")}</a>
         <input type="submit" class="right-arrow2 smallbutton" name="CheckoutButton" value="Checkout" />
         <input type="submit" class="right-arrow smallbutton" name="StoreChangesButton" value="Update" />
         <input type="submit" class="flat-right2 smallbutton" name="RemoveProductItemButton" value="Delete" />
@@ -135,9 +135,11 @@ for (i = 0; i < field.length; i++)
             <th>
                 {"Item"|i18n("design/base/shop")}
             </th>
+          {if eq(ezini( 'BasketInformation', 'DisplayTax', 'xrowecommerce.ini' ), 'enabled' )}
             <th align="right">
                 {"Tax"|i18n("design/base/shop")}
             </th>
+          {/if}
             <th align="right">
                 {"Unit Price"|i18n("design/base/shop")}
             </th>
@@ -171,7 +173,7 @@ for (i = 0; i < field.length; i++)
                             {if $product_item.item_object.contentobject.data_map.image.has_content}
                             {attribute_view_gui image_class=small attribute=$product_item.item_object.contentobject.data_map.image}
                             {else}
-                            <div class="nopic">&nbsp;</div>
+                            <div class="nopic"><p>{'no image'|i18n("design/ezwebin/shop/basket")}</p></div>
                             {/if}
                         {/if}
                         </td>
@@ -201,7 +203,7 @@ for (i = 0; i < field.length; i++)
                         {if $product_item.item_object.contentobject.data_map.image.has_content}
                         {attribute_view_gui image_class=small attribute=$product_item.item_object.contentobject.data_map.image}
                         {else}
-                        <div class="nopic">&nbsp;</div>
+                        <div class="nopic">{'no image'|i18n("design/ezwebin/shop/basket")}</div>
                         {/if}
                         </td>
                         <td>
@@ -226,13 +228,16 @@ for (i = 0; i < field.length; i++)
                     {/if}
                     
                 </table>
+        {if eq(ezini( 'BasketInformation', 'DisplayTax', 'xrowecommerce.ini' ), 'enabled' )}
         <td class="basketspace">
+        
             {if ne( $product_item.vat_value, -1 )}
                 {$product_item.vat_value} %
             {else}
                 {'unknown'|i18n( 'design/base/shop' )}
             {/if}
         </td>
+        {/if}
         <td class="basketspace">
             {$product_item.price_ex_vat|l10n( 'currency', $locale, $symbol )}
         </td>

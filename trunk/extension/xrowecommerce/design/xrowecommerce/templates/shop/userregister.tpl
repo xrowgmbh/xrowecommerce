@@ -29,7 +29,7 @@
 <span class="required">* {'Required field'|i18n('design/standard/user')}</span></p>
 <div class="block">
 
-{if eq(ezini( 'DisplayFieldSettings', 'DisplayCompanyName', 'fieldsettings.ini' ), 'enabled' )}
+{if eq(ezini( 'DisplayFieldSettings', 'DisplayCompanyName', 'xrowecommerce.ini' ), 'enabled' )}
     <div class="ur_companyname">
         <label>{'Company name'|i18n('design/standard/user')}</label>
         <div class="labelbreak"></div>
@@ -233,7 +233,7 @@
 	<div class="labelbreak"></div>
 	<input type="text" name="Phone" class="phone" value="{$phone|wash}" />
 </div>
-{if eq(ezini( 'DisplayFieldSettings', 'DisplayFax', 'fieldsettings.ini' ), 'enabled' )}
+{if eq(ezini( 'DisplayFieldSettings', 'DisplayFax', 'xrowecommerce.ini' ), 'enabled' )}
 <div class="block">
     <label>{'Fax'|i18n('design/standard/user')}</label>
     <div class="labelbreak"></div>
@@ -299,7 +299,7 @@
         </table>
 <div class="block" id="shippinginfo" {$shipping|choose( "style='display: block;'", "style='display: none;'")}>
 
-{if eq(ezini( 'DisplayFieldSettings', 'DisplayCompanyName', 'fieldsettings.ini' ), 'enabled' )}
+{if eq(ezini( 'DisplayFieldSettings', 'DisplayCompanyName', 'xrowecommerce.ini' ), 'enabled' )}
     <div class="ur_companyname">
         <label>{'Company name'|i18n('design/standard/user')}</label>
         <div class="labelbreak"></div>
@@ -516,7 +516,7 @@
 	<input class="phone" type="text" id="sphone" name="s_Phone" value="{$s_phone|wash}" />
 	<input type="hidden" name="sik_phone" id="sik_phone" value="" />
 </div>
-{if eq(ezini( 'DisplayFieldSettings', 'DisplayFax', 'fieldsettings.ini' ), 'enabled' )}
+{if eq(ezini( 'DisplayFieldSettings', 'DisplayFax', 'xrowecommerce.ini' ), 'enabled' )}
 <div class="block">
     <label>Fax</label>
     <div class="labelbreak"></div>
@@ -612,11 +612,11 @@ function change(status)
 {ldelim}
 if (status)
     {ldelim}
-{if eq(ezini( 'DisplayFieldSettings', 'DisplayCompanyName', 'fieldsettings.ini' ), 'enabled' )}
+{if eq(ezini( 'DisplayFieldSettings', 'DisplayCompanyName', 'xrowecommerce.ini' ), 'enabled' )}
         document.register.sik_companyname.value = document.register.scompanyname.value;
         document.register.scompanyname.value = '';
 {/if}
-{if eq(ezini( 'DisplayFieldSettings', 'DisplayCompanyForm', 'fieldsettings.ini' ), 'enabled' )}
+{if eq(ezini( 'DisplayFieldSettings', 'DisplayCompanyForm', 'xrowecommerce.ini' ), 'enabled' )}
         document.register.sik_companyform.value = document.register.scompanyform.value;
         document.register.scompanyform.value = '';
 {/if}
@@ -631,7 +631,7 @@ if (status)
 
         document.register.sik_phone.value = document.register.sphone.value;
         document.register.sphone.value = '';
-{if eq(ezini( 'DisplayFieldSettings', 'DisplayFax', 'fieldsettings.ini' ), 'enabled' )}
+{if eq(ezini( 'DisplayFieldSettings', 'DisplayFax', 'xrowecommerce.ini' ), 'enabled' )}
         document.register.sik_fax.value = document.register.sfax.value;
         document.register.sfax.value = '';
 {/if}
@@ -652,11 +652,11 @@ if (status)
     {rdelim}
     else
     {ldelim}
-{if eq(ezini( 'DisplayFieldSettings', 'DisplayCompanyName', 'fieldsettings.ini' ), 'enabled' )}
+{if eq(ezini( 'DisplayFieldSettings', 'DisplayCompanyName', 'xrowecommerce.ini' ), 'enabled' )}
         document.register.scompanyname.value = document.register.scompanyname.value;
         document.register.sik_companyname.value = '';
 {/if}
-{if eq(ezini( 'DisplayFieldSettings', 'DisplayCompanyForm', 'fieldsettings.ini' ), 'enabled' )}
+{if eq(ezini( 'DisplayFieldSettings', 'DisplayCompanyForm', 'xrowecommerce.ini' ), 'enabled' )}
         document.register.scompanyform.value = document.register.scompanyform.value;
         document.register.sik_companyform.value = '';
 {/if}
@@ -670,7 +670,7 @@ if (status)
         document.register.sik_zip.value = '';
         document.register.sphone.value = document.register.sik_phone.value;
         document.register.sik_phone.value = '';
-{if eq(ezini( 'DisplayFieldSettings', 'DisplayFax', 'fieldsettings.ini' ), 'enabled' )}        
+{if eq(ezini( 'DisplayFieldSettings', 'DisplayFax', 'xrowecommerce.ini' ), 'enabled' )}        
         document.register.sfax.value = document.register.sik_fax.value;
         document.register.sik_fax.value = '';
 {/if}
