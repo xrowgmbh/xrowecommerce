@@ -11,4 +11,13 @@ Catalogueorder=disabled
 #USA[]=CT
 #USA[]=NY
 
+[DisplayFieldSettings]
+DisplayCompanyName=disabled
+DisplayCompanyForm=disabled
+DisplayTaxId=disabled
+DisplayFax=disabled
+
+[BasketInformation]
+DisplayTax=disabled
+
 */ ?>

@@ -7,10 +7,10 @@
 <tr><td>
     <table class="order_box">
     	<tr><th colspan="2">{"Customer"|i18n("design/standard/shop")}</th></tr>
-{if eq(ezini( 'DisplayFieldSettings', 'DisplayCompanyName', 'fieldsettings.ini' ), 'enabled' )}
+{if eq(ezini( 'DisplayFieldSettings', 'DisplayCompanyName', 'xrowecommerce.ini' ), 'enabled' )}
     	<tr><td class="bold">{'Company'|i18n('design/standard/shop')}: </td><td>{$order.account_information.company_name}</td></tr>
 {/if}
-{if eq(ezini( 'DisplayFieldSettings', 'DisplayCompanyAdditional', 'fieldsettings.ini' ), 'enabled' )}
+{if eq(ezini( 'DisplayFieldSettings', 'DisplayCompanyAdditional', 'xrowecommerce.ini' ), 'enabled' )}
         <tr><td class="bold">{'Form'|i18n('design/standard/shop')}: </td><td>{$order.account_information.company_additional}</td></tr>
 {/if}
     	<tr><td class="bold">{'Name'|i18n('design/standard/shop')}: </td><td>{$order.account_information.first_name} {$order.account_information.last_name}</td></tr>
@@ -91,14 +91,14 @@
 					{case match="7"}USPS Global Express Guaranteed (Intl. only){/case}
                 	{case}Standard Shipping{/case}
                 {/switch}
-                {if eq(ezini( 'DisplayFieldSettings', 'DisplayTaxId', 'fieldsettings.ini' ), 'enabled' )}
+                {if eq(ezini( 'DisplayFieldSettings', 'DisplayTaxId', 'xrowecommerce.ini' ), 'enabled' )}
                     <tr><td class="bold">{'TaxID'|i18n('design/standard/shop')}: </td><td>{$order.account_information.tax_id}</td></tr>
                 {/if}
                 </td></tr>
             </table>
             <table valign="top" class="order_box" border="0"  cellspacing="0" cellpadding="0">
                 <tr><th colspan="2">{"Shipping Address"|i18n("design/standard/shop")}</th></tr>
-{if eq(ezini( 'DisplayFieldSettings', 'DisplayCompanyName', 'fieldsettings.ini' ), 'enabled' )}
+{if eq(ezini( 'DisplayFieldSettings', 'DisplayCompanyName', 'xrowecommerce.ini' ), 'enabled' )}
                 <tr><td class="bold">Company:</td><td>{$order.account_information.s_company_name}</td></tr>
 {/if}
                 <tr><td class="bold">Name:</td><td>{$order.account_information.s_first_name} {$order.account_information.s_last_name}</td></tr>

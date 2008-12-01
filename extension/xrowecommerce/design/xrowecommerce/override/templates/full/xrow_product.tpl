@@ -15,7 +15,7 @@
                 <a href="javascript:;" onclick="return enlargeImage('/{$node.data_map.image.content.reference.full_path}',{$node.data_map.image.content.reference.width},{$node.data_map.image.content.reference.height},'{$node.data_map.image.content.reference.text|wash(javascript)}');" title="{$node.data_map.image.content.reference.text|wash} | {"A click on the image enlarges the image in a popup"|i18n( 'kaiser')}">
                     {attribute_view_gui
                             attribute=$node.data_map.image
-                            image_class=product
+                            image_class=product_large
                             show_alt=false()
                     }
                 </a>
@@ -168,29 +168,30 @@
     </div>
 	</form>
 </div>
-
-{*literal}
-    <style type="text/css">
-    #overlay1 {
-        background-color: white;
-        border: 1px solid grey; 
-    }
-    </style>
-            <script language="javascript" type="text/javascript">
-            YAHOO.namespace("example.container");
-    
-            function init() {
-                // Build overlay1 based on markup, initially hidden, fixed to the center of the viewport, and 300px wide
-                YAHOO.example.container.overlay1 = new YAHOO.widget.Overlay("overlay1", { fixedcenter:false,
-                                                                                          visible:false,
-                                                                                          width:"400px" } );
-                YAHOO.example.container.overlay1.render();
-    
-                YAHOO.util.Event.addListener("show_auto_tip", "mouseover", YAHOO.example.container.overlay1.show, YAHOO.example.container.overlay1, true);
-                YAHOO.util.Event.addListener("show_auto_tip", "mouseout", YAHOO.example.container.overlay1.hide, YAHOO.example.container.overlay1, true);
-            }
-    
-            YAHOO.util.Event.addListener(window, "load", init);
-    </script>
-{/literal*}
+{if eq(ezini( 'AutomaticDeliverySettings', 'AutomaticDelivery', 'automaticdelivery.ini' ), 'enabled' )}
+	{literal}
+	    <style type="text/css">
+	    #overlay1 {
+	        background-color: white;
+	        border: 1px solid grey; 
+	    }
+	    </style>
+	            <script language="javascript" type="text/javascript">
+	            YAHOO.namespace("example.container");
+	    
+	            function init() {
+	                // Build overlay1 based on markup, initially hidden, fixed to the center of the viewport, and 300px wide
+	                YAHOO.example.container.overlay1 = new YAHOO.widget.Overlay("overlay1", { fixedcenter:false,
+	                                                                                          visible:false,
+	                                                                                          width:"400px" } );
+	                YAHOO.example.container.overlay1.render();
+	    
+	                YAHOO.util.Event.addListener("show_auto_tip", "mouseover", YAHOO.example.container.overlay1.show, YAHOO.example.container.overlay1, true);
+	                YAHOO.util.Event.addListener("show_auto_tip", "mouseout", YAHOO.example.container.overlay1.hide, YAHOO.example.container.overlay1, true);
+	            }
+	    
+	            YAHOO.util.Event.addListener(window, "load", init);
+	    </script>
+	{/literal}
+{/if}
                 

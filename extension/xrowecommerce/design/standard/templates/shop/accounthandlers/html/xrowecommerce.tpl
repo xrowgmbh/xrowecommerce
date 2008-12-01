@@ -7,13 +7,13 @@
     <table class="order_box">
     	<tr><th colspan="2">{"Customer"|i18n("design/standard/shop")}</th></tr>
     	{if eq($order.account_information.shipping,1)}
-	    	{if eq(ezini( 'DisplayFieldSettings', 'DisplayCompanyName', 'fieldsettings.ini' ), 'enabled' )}
+	    	{if eq(ezini( 'DisplayFieldSettings', 'DisplayCompanyName', 'xrowecommerce.ini' ), 'enabled' )}
 	    	<tr><td class="bold">{'Company'|i18n('design/standard/shop')}:</td><td>{$order.account_information.company_name}</td></tr>
 	    	{/if}
-	    	{if eq(ezini( 'DisplayFieldSettings', 'DisplayCompanyForm', 'fieldsettings.ini' ), 'enabled' )}
+	    	{if eq(ezini( 'DisplayFieldSettings', 'DisplayCompanyForm', 'xrowecommerce.ini' ), 'enabled' )}
 	        <tr><td class="bold">{'Form of enterprise'|i18n('design/standard/shop')}:</td><td>{$order.account_information.company_additional}</td></tr>
 	        {/if}
-	        {if eq(ezini( 'DisplayFieldSettings', 'DisplayTaxId', 'fieldsettings.ini' ), 'enabled' )}
+	        {if eq(ezini( 'DisplayFieldSettings', 'DisplayTaxId', 'xrowecommerce.ini' ), 'enabled' )}
 	        <tr><td class="bold">{'TaxID'|i18n('design/standard/shop')}:</td><td>{$order.account_information.$order.account_information.tax_id}</td></tr>
 	        {/if}
         {/if}
@@ -76,13 +76,13 @@
     {else}
             <table class="order_box" border="0"  cellspacing="0" cellpadding="0">
                 <tr><th colspan="2">{"Billing Address"|i18n("design/standard/shop")}</th></tr>
-            {if eq(ezini( 'DisplayFieldSettings', 'DisplayCompanyName', 'fieldsettings.ini' ), 'enabled' )}
+            {if eq(ezini( 'DisplayFieldSettings', 'DisplayCompanyName', 'xrowecommerce.ini' ), 'enabled' )}
             <tr><td class="bold">{'Company'|i18n('design/standard/shop')}:</td><td>{$order.account_information.company_name}</td></tr>
             {/if}
-            {if eq(ezini( 'DisplayFieldSettings', 'DisplayCompanyForm', 'fieldsettings.ini' ), 'enabled' )}
+            {if eq(ezini( 'DisplayFieldSettings', 'DisplayCompanyForm', 'xrowecommerce.ini' ), 'enabled' )}
             <tr><td class="bold">{'Form of enterprise'|i18n('design/standard/shop')}:</td><td>{$order.account_information.company_additional}</td></tr>
             {/if}
-            {if eq(ezini( 'DisplayFieldSettings', 'DisplayTaxId', 'fieldsettings.ini' ), 'enabled' )}
+            {if eq(ezini( 'DisplayFieldSettings', 'DisplayTaxId', 'xrowecommerce.ini' ), 'enabled' )}
             <tr><td class="bold">{'TaxID'|i18n('design/standard/shop')}:</td><td>{$order.account_information.$order.account_information.tax_id}</td></tr>
             {/if}
                  <tr><td class="bold">{'Address'|i18n('design/standard/shop')}:</td><td>{$order.account_information.address1}</td></tr>
@@ -94,7 +94,7 @@
                 <tr><td class="bold">{'Zip code'|i18n('design/standard/shop')}:</td><td>{$order.account_information.zip}</td></tr>
                 <tr><td class="bold">{'Country'|i18n('design/standard/shop')}:</td><td>{$order.account_information.country}</td></tr>
                 <tr><td class="bold">{'Phone'|i18n('design/standard/shop')}:</td><td>{$order.account_information.phone}</td></tr>
-               {if eq(ezini( 'DisplayFieldSettings', 'DisplayFax', 'fieldsettings.ini' ), 'enabled' )}
+               {if eq(ezini( 'DisplayFieldSettings', 'DisplayFax', 'xrowecommerce.ini' ), 'enabled' )}
                 <tr><td class="bold">{'Fax'|i18n('design/standard/shop')}:</td><td>{$order.account_information.fax}</td></tr>
                 {/if}
                 <tr><td class="bold">{'Shipping'|i18n('design/standard/shop')}:</td>
@@ -116,10 +116,10 @@
             <table valign="top" class="order_box" border="0"  cellspacing="0" cellpadding="0">
                 <tr><th colspan="2">{"Shipping Address"|i18n("design/standard/shop")}</th></tr>
                 
-            {if eq(ezini( 'DisplayFieldSettings', 'DisplayCompanyName', 'fieldsettings.ini' ), 'enabled' )}
+            {if eq(ezini( 'DisplayFieldSettings', 'DisplayCompanyName', 'xrowecommerce.ini' ), 'enabled' )}
             <tr><td class="bold">{'Company'|i18n('design/standard/shop')}:</td><td>{$order.account_information.s_company_name}</td></tr>
             {/if}
-            {if eq(ezini( 'DisplayFieldSettings', 'DisplayCompanyForm', 'fieldsettings.ini' ), 'enabled' )}
+            {if eq(ezini( 'DisplayFieldSettings', 'DisplayCompanyForm', 'xrowecommerce.ini' ), 'enabled' )}
             <tr><td class="bold">{'Form of enterprise'|i18n('design/standard/shop')}:</td><td>{$order.account_information.s_company_additional}</td></tr>
             {/if}
                 <tr><td class="bold">Name:</td><td>{$order.account_information.s_first_name} {$order.account_information.s_last_name}</td></tr>
@@ -133,7 +133,7 @@
                 <tr><td class="bold">{'Zip code'|i18n('design/standard/shop')}:</td><td>{$order.account_information.s_zip}</td></tr>
                 <tr><td class="bold">{'Country'|i18n('design/standard/shop')}:</td><td>{$order.account_information.s_country}</td></tr>
                 <tr><td class="bold">{'Phone'|i18n('design/standard/shop')}:</td><td>{$order.account_information.s_phone}</td></tr>
-                {if eq(ezini( 'DisplayFieldSettings', 'DisplayFax', 'fieldsettings.ini' ), 'enabled' )}
+                {if eq(ezini( 'DisplayFieldSettings', 'DisplayFax', 'xrowecommerce.ini' ), 'enabled' )}
                 <tr><td class="bold">{'Fax'|i18n('design/standard/shop')}:</td><td>{$order.account_information.s_fax}</td></tr>
                 {/if}
                 <tr><td class="bold">{'Email'|i18n('design/standard/shop')}:</td><td>{$order.account_information.s_email}</td></tr>
