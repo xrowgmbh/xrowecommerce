@@ -1,17 +1,11 @@
 <?php
 
 include_once( 'kernel/common/template.php' );
-include_once( 'kernel/classes/eznodeviewfunctions.php' );
-include_once( 'kernel/classes/ezorder.php' );
-include_once( 'lib/ezutils/classes/ezhttptool.php' );
-include_once( 'lib/ezutils/classes/ezhttptool.php' );
-include_once( 'lib/ezxml/classes/ezxml.php' );
-include_once( 'lib/ezlocale/classes/ezdate.php' );
 
 $Module  =& $Params['Module'];
-$http =& eZHTTPTool::instance();
-$tpl =& templateInit();
-$locale =& eZLocale::instance();
+$http = eZHTTPTool::instance();
+$tpl = templateInit();
+$locale = eZLocale::instance();
 $yearList = array();
 $currentDate = new eZDate();
 $currentYear = $currentDate->attribute( 'year' );

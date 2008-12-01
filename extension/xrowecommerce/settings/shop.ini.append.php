@@ -4,6 +4,6 @@
 ExtensionDirectories[]=xrowecommerce
 Handler=xrowecommerce
 RequireUserCountry=false
-DynamicVatTypeName=E-Commerce
+DynamicVatTypeName=xrow E-Commerce Dynamic Tax
 
 */ ?>

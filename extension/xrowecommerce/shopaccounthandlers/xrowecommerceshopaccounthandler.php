@@ -1,15 +1,7 @@
 <?php
 
-include_once( 'lib/ezxml/classes/ezxml.php' );
-include_once( 'extension/coupon/classes/xrowcoupon.php' );
 class xrowECommerceShopAccountHandler
 {
-    /*!
-    */
-    function xrowECommerceShopAccountHandler()
-    {
-
-    }
     /**
      * [MerchantLocations]
      * Locations[]=USA
@@ -32,25 +24,30 @@ class xrowECommerceShopAccountHandler
     		}
     		else
     		{
-    			$LocationArray[] = $location;
+    			$LocationArray[] = array( $location );
     		}
     	}
     	return $LocationArray;
         #return array( 'USA', array( 'NY', 'CT' ) );
     }
-    /*!
-     Will verify that the user has supplied the correct user information.
-     Returns true if we have all the information needed about the user.
-    */
+/**
+ * Will verify that the user has supplied the correct user information.
+ * Returns true if we have all the information needed about the user.
+ */
     function verifyAccountInformation()
     {
+    	
         if ( eZSys::isShellExecution() )
         {
+        	eZDebug::writeDebug( "No need for account information", "xrowECommerceShopAccountHandler::verifyAccountInformation()" );
             //TODO verfiy that account is cool then do return true
             return true;
         }
         else
+        {
+        	eZDebug::writeDebug( "Need account information", "xrowECommerceShopAccountHandler::verifyAccountInformation()" );
             return false;
+        }
     }
     function fillAccountArray( $user = null )
     {
@@ -59,8 +56,8 @@ class xrowECommerceShopAccountHandler
         $userObject = $user->attribute( 'contentobject' );
         $userMap = $userObject->dataMap();
         $billing = array();
-        $billing['company_name'] = $userMap['company_name']->content();
-        $billing['company_additional'] = $userMap['company_additional']->content();
+        $billing['companyname'] = $userMap['company_name']->content();
+        $billing['companyadditional'] = $userMap['company_additional']->content();
         $billing['tax_id'] = $userMap['tax_id']->content();
         $billing['first-name'] = $userMap['first_name']->content();
         $billing['mi'] = $userMap['mi']->content();
@@ -80,8 +77,8 @@ class xrowECommerceShopAccountHandler
         $shipping = array();
         if ( $shipping !="1" )
         {
-            $shipping['s_company_name'] = $userMap['s_company_name']->content();
-            $shipping['s_company_additional'] = $userMap['s_company_additional']->content();
+            $shipping['s_companyname'] = $userMap['scompanyname']->content();
+            $shipping['s_companyadditional'] = $userMap['scompanyadditional']->content();
             $shipping['s_tax_id'] = $userMap['s_tax_id']->content();
             $shipping['s_first-name'] = $userMap['s_first_name']->content();
             $shipping['s_mi'] = $userMap['s_last_name']->content();
@@ -191,6 +188,10 @@ class xrowECommerceShopAccountHandler
     {
         $xml = new eZXML();
         $xmlDoc = $order->attribute( 'data_text_1' );
+        if ( empty( $xmlDoc ) )
+        {
+        	return array();
+        }
         $dom = $xml->domTree( $xmlDoc );
 
         $companyName = $dom->elementsByName( "company_name" );
@@ -439,8 +440,8 @@ class xrowECommerceShopAccountHandler
         // print_r( $s_ezauthorize_transaction_id );
         // die( $s_ezauthorize_card_name[0]->textContent() .'<hr />' );
 
-        return array( 'company_name' => $companyNameText,
-                      'company_additional' => $companyAdditionalText,
+        return array( 'companyname' => $companyNameText,
+                      'companyadditional' => $companyAdditionalText,
                       'tax_id' => $taxIdText,
                       'first_name' => $firstNameText,
                       'mi' => $miText,

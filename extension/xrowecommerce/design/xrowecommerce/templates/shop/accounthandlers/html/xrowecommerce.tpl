@@ -1,18 +1,21 @@
-{* ezdbug_dump($order.account_information) *}
+{def $shiplist=fetch( 'shipping', 'list_all_methods' )}
 
 {* eZAuthorize + eZGPG - CC Storage Additions *}
 {def $fetchStoredTransaction = ezini( 'eZAuthorizeSettings', 'StoreTransactionInformation', 'ezauthorize.ini' )}
 
-<table width="100%" cellspacing="0" cellpadding="0" border="0">
+<table class="shop-account" width="100%" cellspacing="0" cellpadding="0" border="0">
 <tr><td>
     <table class="order_box">
     	<tr><th colspan="2">{"Customer"|i18n("design/standard/shop")}</th></tr>
-{if eq(ezini( 'DisplayFieldSettings', 'DisplayCompanyName', 'xrowecommerce.ini' ), 'enabled' )}
-    	<tr><td class="bold">{'Company'|i18n('design/standard/shop')}: </td><td>{$order.account_information.company_name}</td></tr>
+{if and( eq(ezini( 'Settings', 'CompanyName', 'xrowecommerce.ini' ), 'enabled' ), $order.account_information.companyname)}
+    	<tr><td class="bold">{'Company'|i18n('design/standard/shop')}: </td><td>{$order.account_information.companyname}</td></tr>
 {/if}
-{if eq(ezini( 'DisplayFieldSettings', 'DisplayCompanyAdditional', 'xrowecommerce.ini' ), 'enabled' )}
-        <tr><td class="bold">{'Form'|i18n('design/standard/shop')}: </td><td>{$order.account_information.company_additional}</td></tr>
+{if and( eq(ezini( 'Settings', 'CompanyAdditional', 'xrowecommerce.ini' ), 'enabled' ), $order.account_information.companyadditional)}
+        <tr><td class="bold">{'Company additional information'|i18n('design/standard/shop')}: </td><td>{$order.account_information.companyadditional}</td></tr>
 {/if}
+                {if and( eq(ezini( 'Settings', 'TaxID', 'xrowecommerce.ini' ), 'enabled' ), $order.account_information.tax_id)}
+                    <tr><td class="bold">{'Tax ID'|i18n('design/standard/shop')}: </td><td>{$order.account_information.tax_id}</td></tr>
+                {/if}
     	<tr><td class="bold">{'Name'|i18n('design/standard/shop')}: </td><td>{$order.account_information.first_name} {$order.account_information.last_name}</td></tr>
     	<tr><td class="bold">{'Email'|i18n('design/standard/shop')}: </td><td>{$order.account_information.email}</td></tr>
     	</table>
@@ -40,9 +43,10 @@
         {/if}
         </td>
         <td valign="top" class="order_left">
-</td><td></td></tr>
+</td>
+</tr>
 <tr><td>
-            {if eq($order.account_information.shipping,1)}
+    {if eq($order.account_information.shipping,1)}
             <table border="0"  cellspacing="0" cellpadding="0" class="order_box">
                 <tr><th colspan="2">{"Delivery & Shipping Address"|i18n("design/standard/shop")}</th></tr>
                 <tr><td class="bold">{'Address'|i18n('design/standard/shop')}:</td><td>{$order.account_information.address1}</td></tr>
@@ -55,16 +59,14 @@
                 <tr><td class="bold">{'Country'|i18n('design/standard/shop')}:</td><td>{$order.account_information.country}</td></tr>
                 <tr><td class="bold">{'Phone'|i18n('design/standard/shop')}:</td><td>{$order.account_information.phone}</td></tr>
                 <tr><td class="bold">{'Shipping'|i18n('design/standard/shop')}:</td><td>
-                {switch match=$order.account_information.shippingtype}
-                	{case match="1"}Next Day Service{/case}
-	                {case match="2"}2nd Day Service{/case}
-	                {case match="3"}UPS Ground (USA only){/case}
-					{case match="4"}UPS Next Business Day Air (USA only){/case}
-					{case match="5"}UPS 2nd Business Day Air (USA only){/case}
-					{case match="6"}USPS Express Mail International (EMS) (Intl. only){/case}
-					{case match="7"}USPS Global Express Guaranteed (Intl. only){/case}
-                	{case}Standard Shipping{/case}
-                {/switch}
+
+                {if $shiplist}
+                {foreach  $shiplist as $method}
+                {if $method.identifier|eq($order.account_information.shippingtype)}
+                {$method.name}
+                {/if}
+                {/foreach}
+                {/if}
                 </td></tr>
             </table>
     {else}
@@ -81,25 +83,17 @@
                 <tr><td class="bold">{'Phone'|i18n('design/standard/shop')}:</td><td>{$order.account_information.phone}</td></tr>
                 <tr><td class="bold">{'Shipping'|i18n('design/standard/shop')}:</td>
                 <td>
-                {switch match=$order.account_information.shippingtype}
-                	{case match="1"}Next Day Service{/case}
-	                {case match="2"}2nd Day Service{/case}
-	                {case match="3"}UPS Ground (USA only){/case}
-					{case match="4"}UPS Next Business Day Air (USA only){/case}
-					{case match="5"}UPS 2nd Business Day Air (USA only){/case}
-					{case match="6"}USPS Express Mail International (EMS) (Intl. only){/case}
-					{case match="7"}USPS Global Express Guaranteed (Intl. only){/case}
-                	{case}Standard Shipping{/case}
-                {/switch}
-                {if eq(ezini( 'DisplayFieldSettings', 'DisplayTaxId', 'xrowecommerce.ini' ), 'enabled' )}
-                    <tr><td class="bold">{'TaxID'|i18n('design/standard/shop')}: </td><td>{$order.account_information.tax_id}</td></tr>
+                {foreach  $shiplist as $method}
+                {if $method.identifier|eq($order.account_information.shippingtype)}
+                {$method.name}
                 {/if}
+                {/foreach}
                 </td></tr>
             </table>
             <table valign="top" class="order_box" border="0"  cellspacing="0" cellpadding="0">
                 <tr><th colspan="2">{"Shipping Address"|i18n("design/standard/shop")}</th></tr>
-{if eq(ezini( 'DisplayFieldSettings', 'DisplayCompanyName', 'xrowecommerce.ini' ), 'enabled' )}
-                <tr><td class="bold">Company:</td><td>{$order.account_information.s_company_name}</td></tr>
+{if and( eq(ezini( 'Settings', 'CompanyName', 'xrowecommerce.ini' ), 'enabled' ), $order.account_information.companyname)}
+                <tr><td class="bold">Company:</td><td>{$order.account_information.scompanyname}</td></tr>
 {/if}
                 <tr><td class="bold">Name:</td><td>{$order.account_information.s_first_name} {$order.account_information.s_last_name}</td></tr>
                 <tr><td class="bold">MI:</td><td>{$order.account_information.s_mi}</td></tr>
@@ -116,5 +110,6 @@
             </table>
     {/if}
     
-    </td><td>&nbsp</td></tr>
+    </td>
+    </tr>
 </table>

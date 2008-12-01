@@ -1,16 +1,11 @@
 <?php
 
 include_once( 'kernel/common/template.php' );
-include_once( 'kernel/classes/eznodeviewfunctions.php' );
-include_once( 'lib/ezutils/classes/ezhttptool.php' );
-include_once( 'kernel/classes/ezorder.php' );
-include_once( 'kernel/classes/ezorderitem.php' );
-include_once( 'kernel/classes/ezorderstatus.php' );
-include_once( 'kernel/classes/ezpreferences.php' );
+
 $Module  =& $Params['Module'];
-$module =& $Params['Module'];
-$http =& eZHTTPTool::instance();
-$tpl =& templateInit();
+
+$http = eZHTTPTool::instance();
+$tpl = templateInit();
 $orderNR = $Params['orderid'];
 if ( empty( $orderNR ) )
 {
@@ -95,6 +90,8 @@ $path[] = array( 'url' => false,
                  'text' => ezi18n( 'kernel/shop', 'Orderitem' ) );
 $Result['path'] = $path;
 }
-else 
+else
+{
     $Module->redirectTo( '/shop/orderlist' );
+}
 ?>
