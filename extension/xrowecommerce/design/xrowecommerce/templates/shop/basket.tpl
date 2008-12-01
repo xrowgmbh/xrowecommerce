@@ -157,19 +157,19 @@ for (i = 0; i < field.length; i++)
      </tr>
      {/section}
     <tr>
-         <td {if eq(ezini( 'BasketInformation', 'DisplayTax', 'xrowecommerce.ini' ), 'enabled' )}colspan="5"{else}colspan="6"{/if} class="align_right line">
+         <td colspan="6" class="align_right line">
          {"Subtotal Ex. Tax"|i18n("extension/xrowecommerce")}:
          <b class="price">{$basket.total_ex_vat|l10n( 'currency', $locale, $symbol )}</b>
          </td>
     </tr>
     <tr>
-        <td {if eq(ezini( 'BasketInformation', 'DisplayTax', 'xrowecommerce.ini' ), 'enabled' )}colspan="5"{else}colspan="6"{/if} class="align_right line2">
+        <td  colspan="6" class="align_right line2">
             {"Estimated Tax"|i18n("extension/xrowecommerce")}:
             {$basket.items_info.total_price_info.price_vat|l10n( 'currency', $locale, $symbol )}
         </td>
     </tr>
     <tr>
-        <td {if eq(ezini( 'BasketInformation', 'DisplayTax', 'xrowecommerce.ini' ), 'enabled' )}colspan="5"{else}colspan="6"{/if} class="align_right">   
+        <td  colspan="6" class="align_right">   
             {"Estimated Shipping and Handling"|i18n("extension/xrowecommerce")}:
             {$basket.items_info.additional_info.shipping_total.total_price_inc_vat|l10n( 'currency', $locale, $symbol )}
         </td>
@@ -184,6 +184,7 @@ for (i = 0; i < field.length; i++)
     </tr>
 {def $taxpercent = mul( div(sub($basket.total_inc_vat, $basket.total_ex_vat), $basket.total_ex_vat), 100)
      $percentage = mul( div(sub($basket.total_inc_vat, $basket.total_ex_vat), $basket.total_ex_vat), 100)|l10n('number') }
+
     {if is_set( $shipping_info )}
     <tr>
         <td class="product-subtotal" colspan="5"><a href={$shipping_info.management_link|ezurl}>{'Shipping'|i18n( 'extension/xrowecommerce' )}{if $shipping_info.description} ({$shipping_info.description}){/if}</a>:
