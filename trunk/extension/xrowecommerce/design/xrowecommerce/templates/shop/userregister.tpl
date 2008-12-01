@@ -3,79 +3,96 @@
 
 <form method="post" action={"xrowecommerce/userregister/"|ezurl} name='register' >
 <h2>{'My Account'|i18n('design/base/shop')}</h2>
-    <div class="shopping_cart_path">
-    <div>{'1. Cart'|i18n('design/base/shop')}</div>
-    <div class="shopping_cart_path_select">{'2. Billing, Shipping and Coupons'|i18n('design/base/shop')}</div>
-    <div>{'3. Confirmation'|i18n('design/base/shop')}</div>
-    <div>{'4. Payment info'|i18n('design/base/shop')}</div>
-    <div>{'5. Order completed'|i18n('design/base/shop')}</div>
-    <div>{'6. Review reciept'|i18n('design/base/shop')}</div>
-    </div>
-    <div class="break"></div>
 
-{section show=$input_error}
+{include uri="design:shop/basket_navigator.tpl" step='2'}
+
+{if $input_error}
 <div class="warning">
 <h2>{'Validation error'|i18n('design/base/shop')}</h2>
 <ul>
-<li>{'Input did not validate, all fields marked with'|i18n('design/base/shop')} <span class="required">*</span> {'must be filled in.'|i18n('design/base/shop')}</li>
+<li>{'Input did not validate, all fields marked with %mark% must be filled in.'|i18n('extension/xrowecommerce', , hash( '%mark%', '<span class="required">*</span>' ))}</li>
 </ul>
 </div>
 {/section}
-<div class="userreg_left">{* LEFT COL START *}
-<div class="userreg_left_div">
-<span class="headingur">{'Billing Information'|i18n('design/standard/user')}</span><br />
-<p>{'Please enter your billing address exactly as it appears on your credit card statement.'|i18n('design/base/shop')}
-<div class="labelbreak"></div>
-<span class="required">* {'Required field'|i18n('design/standard/user')}</span></p>
-<div class="block">
 
-{if eq(ezini( 'DisplayFieldSettings', 'DisplayCompanyName', 'xrowecommerce.ini' ), 'enabled' )}
+{if $errors}
+<div class="warning">
+<h2>{'Validation errors'|i18n('design/base/shop')}</h2>
+<ul>
+{foreach $errors as $error}
+<li>{$error}</li>
+{/foreach}
+</ul>
+</div>
+{/if}
+<div class="billing">{* LEFT COL START *}
+
+<span class="headingur">{'Billing Information'|i18n('design/standard/user')}</span><br />
+<p>{'Please enter your billing address exactly as it appears on your credit card statement.'|i18n('design/base/shop')}<br /> <span class="required">* {'Required field'|i18n('design/standard/user')}</span></p>
+<div class="labelbreak"></div>
+
+
+{if eq(ezini( 'Settings', 'CompanyName', 'xrowecommerce.ini' ), 'enabled' )}
     <div class="ur_companyname">
         <label>{'Company name'|i18n('design/standard/user')}</label>
         <div class="labelbreak"></div>
-        <input type="text" name="CompanyName" value="{$company_name|wash}" />
+        <input type="text" name="companyname" value="{$company_name|wash}" />
+    </div>
+{/if}
+{if eq(ezini( 'Settings', 'CompanyAdditional', 'xrowecommerce.ini' ), 'enabled' )}
+    <div class="ur_company_additional">
+        <label>{'Company additional information'|i18n('design/standard/user')}</label>
+        <div class="labelbreak"></div>
+        <input type="text" name="companyadditional" value="{$companyadditional|wash}" />
+    </div>
+{/if}
+{if eq(ezini( 'Settings', 'TaxID', 'xrowecommerce.ini' ), 'enabled' )}
+    <div class="ur_taxid">
+        <label>{'Tax ID'|i18n('design/standard/user')}</label>
+        <div class="labelbreak"></div>
+        <input type="text" name="TaxID" value="{$tax_id|wash}" />
     </div>
 {/if}
 	<div class="ur_firstname">
     	<label><span class="required">*</span>{'First name'|i18n('design/standard/user')}</label>
     	<div class="labelbreak"></div>
-    	<input type="text" name="FirstName" value="{$first_name|wash}" />
+    	<input type="text" name="FirstName" id="firstname" value="{$first_name|wash}" />
     </div>
 
 	<div class="ur_mi">
     	<label>{'MI'|i18n('design/standard/user')}</label>
     	<div class="labelbreak"></div>
-    	<input class="halfbox" type="text" name="MI" size="2" value="{$mi|wash}" />
+    	<input class="halfbox" type="text" name="MI" id="mi" size="2" value="{$mi|wash}" />
     </div>
 
     <div class="ur_lastname">
     	<label><span class="required">*</span>{'Last name'|i18n('design/standard/user')}</label>
     	<div class="labelbreak"></div>
-    	<input type="text" name="LastName" value="{$last_name|wash}" />
+    	<input type="text" name="LastName" id="lastname" value="{$last_name|wash}" />
     </div>
 
 	<div class="block">
 		<label><span class="required">*</span>{'Address 1'|i18n('design/standard/user')}</label>
 		<div class="labelbreak"></div>
-		<input class="box" type="text" name="Address1" size="20" value="{$address1|wash}" />
+		<input class="box" type="text" name="Address1" id="address1" size="20" value="{$address1|wash}" />
 	</div>
 
 	<div class="block">
 		<label>{'Address 2'|i18n('design/standard/user')}</label>
 		<div class="labelbreak"></div>
-		<input class="box" type="text" name="Address2" size="20" value="{$address2|wash}" />
+		<input class="box" type="text" name="Address2" id="address2" size="20" value="{$address2|wash}" />
 	</div>
 
 	<div class="city">
-    	<label><span class="required">*</span>{'City / Town'|i18n('design/standard/user')}</label>
+    	<label><span class="required">*</span>{'City'|i18n('design/standard/user')}</label>
     	<div class="labelbreak"></div>
-    	<input type="text" name="City" value="{$city|wash}" />
+    	<input type="text" name="City" id="city" value="{$city|wash}" />
     </div>
 
     <div class="state">
     	<label>{'State / Province'|i18n('design/standard/user')}</label>
     	<div class="labelbreak"></div>
-	    <select class="state" name="State">
+	    <select class="state" name="State" id="state">
 	    <option value="">&nbsp;</option>
 	    	<optgroup label="USA">
     			<option  {if eq($state,'AL')} selected="selected" {/if} >AL</option>
@@ -191,9 +208,9 @@
     <div class="break"></div>
 
 <div class="zip">
-    <label><span class="required">*</span>{'Zip / Postcode'|i18n('design/standard/user')}</label>
+    <label><span class="required">*</span>{'ZIP'|i18n('design/standard/user')}</label>
     <div class="labelbreak"></div>
-    <input type="text" class="zip" name="Zip" value="{$zip|wash}" />
+    <input type="text" class="zip" name="Zip" id="zip" value="{$zip|wash}" />
 </div>
     <div class="break"></div>
 
@@ -231,56 +248,52 @@
 <div class="block">
 	<label><span class="required">*</span>{'Phone'|i18n('design/standard/user')}</label>
 	<div class="labelbreak"></div>
-	<input type="text" name="Phone" class="phone" value="{$phone|wash}" />
+	<input type="text" name="Phone" class="phone" id="phone" value="{$phone|wash}" />
 </div>
-{if eq(ezini( 'DisplayFieldSettings', 'DisplayFax', 'xrowecommerce.ini' ), 'enabled' )}
+{if eq(ezini( 'Settings', 'Fax', 'xrowecommerce.ini' ), 'enabled' )}
 <div class="block">
     <label>{'Fax'|i18n('design/standard/user')}</label>
     <div class="labelbreak"></div>
-    <input type="text" name="Fax" class="phone" value="{$phone|wash}" />
+    <input type="text" name="Fax" id="fax" class="phone" value="{$phone|wash}" />
 </div>
 {/if}
 <div class="block">
 	<label><span class="required">*</span>{'E-mail'|i18n('design/standard/user')}</label>
 	<div class="labelbreak"></div>
-	<input class="phone" type="text" name="EMail" value="{$email|wash}" />
+	<input class="phone" type="text" name="EMail" id="email" value="{$email|wash}" />
 </div>
     <div class="break"></div>
 
+{def $shipping_methods=fetch( 'shipping', 'list_methods' )}
+{if $shipping_methods|count|gt(0)}
 <div class="block">
 	<label><span class="required">*</span>{'Shipping'|i18n('design/standard/user')}</label>
 	<div class="labelbreak"></div>
 	<select name="ShippingType">
-	<!--
-    <option value="0"{if eq($shippingtype,0)} selected="selected" {/if}>Standard Shipping (deprecated)</option>
-	<option value="1"{if eq($shippingtype,1)} selected="selected" {/if}>Next Day Service (deprecated)</option>
-	<option value="2"{if eq($shippingtype,2)} selected="selected" {/if}>2nd Day Service (deprecated)</option>
-	-->
-	<option value="3"{if eq($shippingtype,3)} selected="selected" {/if}>UPS Ground (USA only)</option>
-	<option value="4"{if eq($shippingtype,4)} selected="selected" {/if}>UPS Next Business Day Air (USA only)</option>
-	<option value="5"{if eq($shippingtype,5)} selected="selected" {/if}>UPS 2nd Business Day Air (USA only)</option>
-	<option value="6"{if eq($shippingtype,6)} selected="selected" {/if}>USPS Express Mail International (EMS) (Intl. only)</option>
-	<option value="7"{if eq($shippingtype,7)} selected="selected" {/if}>USPS Global Express Guaranteed (Intl. only)</option>
+	{foreach $shipping_methods as $shipping}
+	<option value="{$shipping.identifier}" {if $shippingtype|eq($shipping.identifier)} selected="selected" {/if}>{$shipping.name}</option>
+	{/foreach}
 	</select>
 </div>
+{/if}
     <div class="break"></div>
-    </div>
-</div>
+</div> {*LEFT COL END*}
 
+{if ezini('Settings','Coupon','xrowecommerce.ini')|eq('enabled')}
 <div class="coupon">
 
-<span class="headingur">Coupon</span>
+<span class="headingur">{'Coupon'|i18n('design/standard/user')}</span>
 <p>{'Please enter your coupon code exactly as it appears on your promotion.'|i18n('design/standard/user')}</p>
 <div class="block">
 	<label>{'Coupon'|i18n('design/standard/user')}</label>
 	<div class="labelbreak"></div>
-	<input class="box" type="text" name="coupon_code" value="{$coupon_code|wash}" size="20" />
+	<input class="box" type="text" name="coupon_code" id="coupon_code" value="{$coupon_code|wash}" size="20" />
 </div>
 </div>
+{/if}
 
-</div> {*LEFT COL END*}
 {* right column *}
-<div class="userreg_right">
+<div class="shipping">
 <span class="headingur">Shipping Information</span>
 <table border="0">
         <tr>
@@ -299,61 +312,61 @@
         </table>
 <div class="block" id="shippinginfo" {$shipping|choose( "style='display: block;'", "style='display: none;'")}>
 
-{if eq(ezini( 'DisplayFieldSettings', 'DisplayCompanyName', 'xrowecommerce.ini' ), 'enabled' )}
+{if eq(ezini( 'Settings', 'CompanyName', 'xrowecommerce.ini' ), 'enabled' )}
     <div class="ur_companyname">
         <label>{'Company name'|i18n('design/standard/user')}</label>
         <div class="labelbreak"></div>
-        <input type="text" name="s_CompanyName" id="scompanyname" value="{$s_company_name|wash}" />
-        <input type="hidden" name="sik_companyname" id="sik_companyname" value="" />
+        <input type="text" name="scompanyname" id="scompanyname" value="{$scompany_name|wash}" />
+
+    </div>
+{/if}
+{if eq(ezini( 'Settings', 'CompanyAdditional', 'xrowecommerce.ini' ), 'enabled' )}
+    <div class="ur_company_additional">
+        <label>{'Company additional information'|i18n('design/standard/user')}</label>
+        <div class="labelbreak"></div>
+        <input type="text" name="scompanyadditional" id="scompanyadditional" value="{$scompanyadditional|wash}" />
     </div>
 {/if}
 	<div class="ur_firstname">
     	<label><span class="required">*</span>{'First name'|i18n('design/standard/user')}</label>
     	<div class="labelbreak"></div>
     	<input type="text" name="s_FirstName" id="sfirstname" value="{$s_first_name|wash}" />
-    	<input type="hidden" name="sik_firstname" id="sik_firstname" value="" />
     </div>
 
 	<div class="ur_mi">
     	<label>{'MI'|i18n('design/standard/user')}</label>
     	<div class="labelbreak"></div>
     	<input class="halfbox" type="text" name="s_MI" id="smi" size="2" value="{$s_mi|wash}" />
-    	<input type="hidden" name="sik_mi" id="sik_mi" value="" />
     </div>
 
     <div class="ur_lastname">
     	<label><span class="required">*</span>{'Last name'|i18n('design/standard/user')}</label>
     	<div class="labelbreak"></div>
     	<input type="text" name="s_LastName" id="slastname" value="{$s_last_name|wash}" />
-    	<input type="hidden" name="sik_lastname" id="sik_lastname" value="" />
     </div>
 
 	<div class="block">
 		<label><span class="required">*</span>{'Address 1'|i18n('design/standard/user')}</label>
 		<div class="labelbreak"></div>
 		<input class="box" type="text" name="s_Address1" id="saddress1" size="20" value="{$s_address1|wash}" />
-		<input type="hidden" name="sik_address1" id="sik_address1" value="" />
 	</div>
 
 	<div class="block">
 		<label>{'Address 2'|i18n('design/standard/user')}</label>
 		<div class="labelbreak"></div>
 		<input class="box" type="text" name="s_Address2" size="20" id="saddress2" value="{$s_address2|wash}" />
-		<input type="hidden" name="sik_address2" id="sik_address2" value="" />
 	</div>
 
 
 	<div class="city">
-    	<label><span class="required">*</span>{'City / Town'|i18n('design/standard/user')}</label>
+    	<label><span class="required">*</span>{'City'|i18n('design/standard/user')}</label>
     	<div class="labelbreak"></div>
     	<input type="text" name="s_City" value="{$s_city|wash}" id="scity" />
-    	<input type="hidden" name="sik_city" id="sik_city" value="" />
     </div>
 
     <div class="state">
     	<label>{'State / Province'|i18n('design/standard/user')}</label>
     	<div class="labelbreak"></div>
-    	<input type="hidden" name="sik_state" id="sik_state" value="" />
     <select name="s_State" id="sstate">
             <option value="">&nbsp;</option>
 	    	<optgroup label="USA">
@@ -470,10 +483,9 @@
     <div class="break"></div>
 
 <div class="zip">
-    <label><span class="required">*</span>{'Zip / Postcode'|i18n('design/standard/user')}</label>
+    <label><span class="required">*</span>{'Zip'|i18n('design/standard/user')}</label>
     <div class="labelbreak"></div>
     <input type="text" name="s_Zip" id="szip" value="{$s_zip|wash}"/>
-    <input type="hidden" name="sik_zip" id="sik_zip" value="" />
 </div>
     <div class="break"></div>
 
@@ -514,21 +526,19 @@
 	<label><span class="required">*</span>{'Phone'|i18n('design/standard/user')}</label>
 	<div class="labelbreak"></div>
 	<input class="phone" type="text" id="sphone" name="s_Phone" value="{$s_phone|wash}" />
-	<input type="hidden" name="sik_phone" id="sik_phone" value="" />
 </div>
-{if eq(ezini( 'DisplayFieldSettings', 'DisplayFax', 'xrowecommerce.ini' ), 'enabled' )}
+
+{if eq(ezini( 'Settings', 'Fax', 'xrowecommerce.ini' ), 'enabled' )}
 <div class="block">
     <label>Fax</label>
     <div class="labelbreak"></div>
     <input class="phone" type="text" id="sfax" name="s_Fax" value="{$s_fax|wash}" />
-    <input type="hidden" name="sik_phone" id="sik_phone" value="" />
 </div>
 {/if}
 <div class="block">
 	<label><span class="required">*</span>{'E-mail'|i18n('design/standard/user')}</label>
 	<div class="labelbreak"></div>
 	<input class="phone" type="text" name="s_EMail" id="semail" value="{$s_email|wash}" />
-	<input type="hidden" name="sik_email" id="sik_email" value="" />
 </div>
     <div class="break"></div>
 
@@ -537,7 +547,12 @@
 
   <br />
 
-{* Recaptcha *}                
+{* Captcha *}
+{def $access=fetch( 'user', 'has_access_to',
+                    hash( 'module',   'xrowecommerce',
+                          'function', 'bypass_captcha' ) )} 
+{if and( ezini('Settings','Captcha','xrowecommerce.ini')|eq('enabled'), $access|not)}
+
 <div class="block">        
         <label><span class="required">*</span>{'Verification'|i18n('design/standard/user')}</label>
         <div class="labelbreak"></div>  
@@ -554,7 +569,8 @@ lang: RecaptchaLang,
 {/literal}
 </script>
 {recaptcha_get_html()}
-</div>                 
+</div>
+{/if}      
 {* Recaptcha *}
 
 <div class="buttonblock">
@@ -600,7 +616,12 @@ lang: RecaptchaLang,
             else document.register.ShippingType.options[i].disabled = false;
         }
             if (document.register.ShippingType.selectedIndex+3 >=3 && document.register.ShippingType.selectedIndex+3 <=5)
-                document.register.ShippingType.options[3].selected = true;
+        {
+        	if ( document.register.ShippingType.options[3] )
+        	{
+            	document.register.ShippingType.options[3].selected = true;
+            }
+        }
     }
 </script>
 {/literal}
@@ -608,118 +629,75 @@ lang: RecaptchaLang,
 
 
 <script type="text/javascript">
+{literal}
 function change(status)
-{ldelim}
+{
 if (status)
-    {ldelim}
-{if eq(ezini( 'DisplayFieldSettings', 'DisplayCompanyName', 'xrowecommerce.ini' ), 'enabled' )}
-        document.register.sik_companyname.value = document.register.scompanyname.value;
-        document.register.scompanyname.value = '';
-{/if}
-{if eq(ezini( 'DisplayFieldSettings', 'DisplayCompanyForm', 'xrowecommerce.ini' ), 'enabled' )}
-        document.register.sik_companyform.value = document.register.scompanyform.value;
-        document.register.scompanyform.value = '';
-{/if}
-        document.register.sik_firstname.value = document.register.sfirstname.value;
-        document.register.sfirstname.value = '';
-        document.register.sik_lastname.value = document.register.slastname.value;
-        document.register.slastname.value = '';
-        document.register.sik_mi.value = document.register.smi.value;
-        document.register.smi.value = '';
-        document.register.sik_zip.value = document.register.szip.value;
-        document.register.szip.value = '';
-
-        document.register.sik_phone.value = document.register.sphone.value;
-        document.register.sphone.value = '';
-{if eq(ezini( 'DisplayFieldSettings', 'DisplayFax', 'xrowecommerce.ini' ), 'enabled' )}
-        document.register.sik_fax.value = document.register.sfax.value;
-        document.register.sfax.value = '';
-{/if}
-        document.register.sik_email.value = document.register.semail.value;
-        document.register.semail.value = '';
-        document.register.sik_address1.value = document.register.saddress1.value;
-        document.register.saddress1.value = '';
-        document.register.sik_address2.value = document.register.saddress2.value;
-        document.register.saddress2.value = '';
-        document.register.sik_city.value = document.register.scity.value;
-        document.register.scity.value = '';
-        document.register.sik_state.value = document.register.sstate.value;
-        document.register.sstate.value = '';
-        document.register.sik_country.value = document.register.scountry.value;
-        document.register.scountry.value = '';
-
+    {
         document.getElementById("shippinginfo").style.display = 'none';
-    {rdelim}
+    }
     else
-    {ldelim}
-{if eq(ezini( 'DisplayFieldSettings', 'DisplayCompanyName', 'xrowecommerce.ini' ), 'enabled' )}
-        document.register.scompanyname.value = document.register.scompanyname.value;
-        document.register.sik_companyname.value = '';
-{/if}
-{if eq(ezini( 'DisplayFieldSettings', 'DisplayCompanyForm', 'xrowecommerce.ini' ), 'enabled' )}
-        document.register.scompanyform.value = document.register.scompanyform.value;
-        document.register.sik_companyform.value = '';
-{/if}
-        document.register.sfirstname.value = document.register.sik_firstname.value;
-        document.register.sik_firstname.value = '';
-        document.register.slastname.value = document.register.sik_lastname.value;
-        document.register.sik_lastname.value = '';
-        document.register.smi.value = document.register.sik_mi.value;
-        document.register.sik_mi.value = '';
-        document.register.szip.value = document.register.sik_zip.value;
-        document.register.sik_zip.value = '';
-        document.register.sphone.value = document.register.sik_phone.value;
-        document.register.sik_phone.value = '';
-{if eq(ezini( 'DisplayFieldSettings', 'DisplayFax', 'xrowecommerce.ini' ), 'enabled' )}        
-        document.register.sfax.value = document.register.sik_fax.value;
-        document.register.sik_fax.value = '';
-{/if}
-        document.register.semail.value = document.register.sik_email.value;
-        document.register.sik_email.value = '';
-        document.register.saddress1.value = document.register.sik_address1.value;
-        document.register.sik_address1.value = '';
-        document.register.saddress2.value = document.register.sik_address2.value;
-        document.register.sik_address2.value = '';
-        document.register.scity.value = document.register.sik_city.value;
-        document.register.sik_city.value = '';
-        document.register.sstate.value = document.register.sik_state.value;
-        document.register.sik_state.value = '';
-        document.register.scountry.value = document.register.sik_country.value;
-        document.register.sik_country.value = '';
+    {
+    if( document.register.companyname )
+    {
+        document.register.scompanyname.value = document.register.companyname.value;
+    }
+    if( document.register.companyadditional )
+    {
+        document.register.scompanyadditional.value = document.register.companyadditional.value;
+    }
+        document.register.sfirstname.value = document.register.firstname.value;
+        document.register.slastname.value = document.register.lastname.value;
+        document.register.smi.value = document.register.mi.value;
+        document.register.szip.value = document.register.zip.value;
+        document.register.sphone.value = document.register.phone.value;
+        document.register.sfax.value = document.register.fax.value;
+        document.register.semail.value = document.register.email.value;
+        document.register.saddress1.value = document.register.address1.value;
+        document.register.saddress2.value = document.register.address2.value;
+        document.register.scity.value = document.register.city.value;
+        document.register.sstate.value = document.register.state.value;
+        document.register.scountry.value = document.register.country.value;
         document.getElementById("shippinginfo").style.display = 'block';
-    {rdelim}
-{rdelim}
+    }
+}
 
 function shipping(status)
-{ldelim}
+{
 if (document.register.Shipping.checked == false)
-    {ldelim}
+    {
         status = document.register.scountry.value;
-    {rdelim}
+    }
     
     if (status == "USA")
-    {ldelim}
+    {
         for (i = 0; i < document.register.ShippingType.length; ++i)
-        {ldelim}
+        {
             if ( document.register.ShippingType[i].value >= 6  &&  document.register.ShippingType[i].value <= 7 )
                 document.register.ShippingType.options[i].disabled = true;
             else document.register.ShippingType.options[i].disabled = false;
-        {rdelim}
+        }
         if (document.register.ShippingType.selectedIndex+3 >=6 && document.register.ShippingType.selectedIndex+3 <=7)
             document.register.ShippingType.options[0].selected = true;
-    {rdelim}
+    }
     else
-    {ldelim}
+    {
         for (i = 0; i < document.register.ShippingType.length; ++i)
-        {ldelim}
+        {
             if ( document.register.ShippingType[i].value >= 3  &&  document.register.ShippingType[i].value <= 5 )
                 document.register.ShippingType.options[i].disabled = true;
             else document.register.ShippingType.options[i].disabled = false;
-        {rdelim}
+        }
         if (document.register.ShippingType.selectedIndex+3 >=3 && document.register.ShippingType.selectedIndex+3 <=5)
-            document.register.ShippingType.options[3].selected = true;
-    {rdelim}
-{rdelim}
+        {
+        	if ( document.register.ShippingType.options[3] )
+        	{
+            	document.register.ShippingType.options[3].selected = true;
+            }
+        }
+    }
+}
+{/literal}
 </script>
 
 

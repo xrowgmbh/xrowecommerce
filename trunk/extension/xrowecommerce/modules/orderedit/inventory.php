@@ -1,9 +1,7 @@
 <?php
 
 include_once( 'kernel/common/template.php' );
-include_once( 'kernel/classes/eznodeviewfunctions.php' );
-include_once( 'lib/ezutils/classes/ezhttptool.php' );
-include_once( 'lib/ezutils/classes/ezhttptool.php' );
+
 
 $Module  =& $Params['Module'];
 $http =& eZHTTPTool::instance();

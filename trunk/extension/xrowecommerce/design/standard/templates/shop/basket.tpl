@@ -43,7 +43,7 @@ for (i = 0; i < field.length; i++)
 </script>
 <div class="shop-basket">
     <form method="post" name="basket" action={"/shop/basket/"|ezurl}>
-        <h2>{"Shopping Cart"|i18n("design/base/shop")}</h2>
+        <h1>{"Shopping Cart"|i18n("design/base/shop")}</h1>
         <div class="shopping_cart_path">
             <div class="shopping_cart_path_select">1. Cart</div>
             <div class="shopping_cart_path_text">2. Billing, Shipping and Coupons</div>
@@ -248,14 +248,13 @@ for (i = 0; i < field.length; i++)
     <tr>
         <td  colspan="6" class="align_right line2">
             {"Estimated Tax"|i18n("design/ezwebin/shop/basket")}:
-            {$basket.items_info.total_price_info.price_vat|wash()}
-            {*$basket.items_info.additional_info.shipping_total.total_price_inc_vat|attribute(show)*}
+            {$basket.items_info.total_price_info.price_vat|l10n( 'currency', $locale, $symbol )|wash()}
         </td>
     </tr>
     <tr>
         <td  colspan="6" class="align_right">   
             {"Estimated Shipping and Handling"|i18n("design/ezwebin/shop/basket")}:
-            {$basket.items_info.additional_info.shipping_total.total_price_inc_vat|wash()}
+            {$basket.items_info.additional_info.shipping_total.total_price_inc_vat|l10n( 'currency', $locale, $symbol )|wash()}
         </td>
     </tr>
     <tr>

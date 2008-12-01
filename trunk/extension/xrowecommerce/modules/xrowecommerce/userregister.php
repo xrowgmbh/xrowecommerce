@@ -3,7 +3,7 @@
 $http = eZHTTPTool::instance();
 $module = $Params["Module"];
 
-include_once( 'kernel/common/template.php' );
+include_once ( 'kernel/common/template.php' );
 
 $tpl = templateInit();
 
@@ -19,7 +19,7 @@ $firstName = '';
 $lastName = '';
 $email = '';
 // Initialize variables
-$shippingtype = $shipping = $s_email = $s_lastName = $s_firstName = $s_address1 = $s_address2 = $s_zip = $s_city = $s_state = $s_country = $s_phone = $s_mi = $address1 = $address2 = $zip = $city = $state = $country = $phone =   $recaptcha = $mi = '';
+$shippingtype = $shipping = $s_email = $s_lastName = $s_firstName = $s_address1 = $s_address2 = $s_zip = $s_city = $s_state = $s_country = $s_phone = $s_mi = $address1 = $address2 = $zip = $city = $state = $country = $phone = $recaptcha = $mi = '';
 $userobject = $user->attribute( 'contentobject' );
 
 if ( $user->isLoggedIn() and $userobject->attribute( 'class_identifier' ) == 'client' )
@@ -28,7 +28,7 @@ if ( $user->isLoggedIn() and $userobject->attribute( 'class_identifier' ) == 'cl
     $userMap = $userObject->dataMap();
     $companyName = $userMap['company_name']->content();
     $companyAdditional = $userMap['company_additional']->content();
-    $taxId = $userMap['tax_id']->content();
+    $taxID = $userMap['tax_id']->content();
     $firstName = $userMap['first_name']->content();
     $lastName = $userMap['last_name']->content();
     $mi = $userMap['mi']->content();
@@ -42,12 +42,12 @@ if ( $user->isLoggedIn() and $userobject->attribute( 'class_identifier' ) == 'cl
     $fax = $userMap['fax']->content();
     $shipping = $userMap['shippingaddress']->content();
     $shippingtype = $userMap['shippingtype']->content();
-    if( array_key_exists( 'payment_method', $userMap ) )
+    if ( array_key_exists( 'payment_method', $userMap ) )
     {
         $paymentMethod = $userMap['payment_method']->content();
     }
     $email = $user->attribute( 'email' );
-
+    
     if ( $shipping != "1" )
     {
         $s_companyName = $userMap['s_company_name']->content();
@@ -67,10 +67,9 @@ if ( $user->isLoggedIn() and $userobject->attribute( 'class_identifier' ) == 'cl
     }
 }
 
-
 // Check if user has an earlier order, copy order info from that one
 $orderList = eZOrder::activeByUserID( $user->attribute( 'contentobject_id' ) );
-if ( count( $orderList ) > 0 and  $user->isLoggedIn() )
+if ( count( $orderList ) > 0 and $user->isLoggedIn() )
 {
     $accountInfo = $orderList[0]->accountInformation();
 }
@@ -79,70 +78,60 @@ $tpl->setVariable( "input_error", false );
 if ( $module->isCurrentAction( 'Store' ) )
 {
     $inputIsValid = true;
-
-    $companyName = $http->postVariable( "CompanyName" );
-
-    $companyAdditional = $http->postVariable( "CompanyAdditional" );
-
-    $taxId = $http->postVariable( "TaxId" );
-
+    
+    $companyName = $http->postVariable( "companyname" );
+    
+    $companyAdditional = $http->postVariable( "companyadditional" );
+    
+    $taxID = $http->postVariable( "TaxID" );
+    
     $firstName = $http->postVariable( "FirstName" );
     if ( trim( $firstName ) == "" )
         $inputIsValid = false;
-
+    
     $lastName = $http->postVariable( "LastName" );
     if ( trim( $lastName ) == "" )
         $inputIsValid = false;
     $mi = $http->postVariable( "MI" );
-
+    
     $email = $http->postVariable( "EMail" );
     if ( ! eZMail::validate( $email ) )
         $inputIsValid = false;
-
+    
     $address1 = $http->postVariable( "Address1" );
     $address2 = $http->postVariable( "Address2" );
     if ( trim( $address1 ) == "" )
         $inputIsValid = false;
-
+    
     $state = $http->postVariable( "State" );
     /* if ( trim( $state ) == "" )
         $inputIsValid = false; */
-
+    
     $city = $http->postVariable( "City" );
     if ( trim( $city ) == "" )
         $inputIsValid = false;
-
+    
     $zip = $http->postVariable( "Zip" );
     if ( trim( $zip ) == "" )
         $inputIsValid = false;
-
+    
     $country = $http->postVariable( "Country" );
     if ( trim( $country ) == "" )
         $inputIsValid = false;
-
+    
     $phone = $http->postVariable( "Phone" );
     if ( trim( $phone ) == "" )
         $inputIsValid = false;
-        
+    
     $fax = $http->postVariable( "Fax" );
     if ( $http->hasPostVariable( "PaymentMethod" ) )
     {
         $paymentMethod = $http->postVariable( "PaymentMethod" );
     }
-    #if ( trim( $paymentMethod ) == "" )
-    #{
-    #    $inputIsValid = false;
-    #}
-
+    
     $shipping = $http->postVariable( "Shipping" );
     $shippingtype = $http->postVariable( "ShippingType" );
-
-    /*
-    if ($shipping == "1" and $country !="USA" and $shippingtype <= "5" )
-        $inputIsValid = false;
-        
-    if ($shipping == "1" and $country =="USA" and $shippingtype >= "6" )
-        $inputIsValid = false;
+    $shippingdestination = $country;
 
     if ($shipping != "1")
     {
@@ -185,119 +174,133 @@ if ( $module->isCurrentAction( 'Store' ) )
             $inputIsValid = false;
 
         $s_fax = $http->postVariable( "s_Fax" );
-            
+        
+        $shippingdestination = $s_country;
+            /*
         if ($s_country !="USA" and $shippingtype <= "5" )
             $inputIsValid = false;
         
         if ($s_country =="USA" and $shippingtype >= "6" )
             $inputIsValid = false;
+*/
     }
-    */
+
+    /* Shipping check */
+    if ( class_exists( 'xrowShippingInterface' ) )
+    {        
+    	$gateway  = xrowShippingInterface::instanceByMethod( $shippingtype );
+    	$gateway->method = $shippingtype;
+        if ( !$gateway->destinationCheck( $shippingdestination ) )
+        {
+        	$errors[] = "Shipping destionation is not allowed.";
+            $inputIsValid = false;
+        }
+    }
     /* Coupon check */
-    if ( class_exists( 'xrowCoupon' ) and eZINI::instance( 'xrowecommerce.ini' )->variable('Settings', 'Coupon' ) == 'enabled' )
+    if ( class_exists( 'xrowCoupon' ) and eZINI::instance( 'xrowecommerce.ini' )->variable( 'Settings', 'Coupon' ) == 'enabled' )
     {
-    	$coupon = new xrowCoupon( $http->postVariable( "coupon_code" ) );
-    	$coupon_code = $coupon->code;
+        $coupon = new xrowCoupon( $http->postVariable( "coupon_code" ) );
+        $coupon_code = $coupon->code;
     }
     $currentUser = eZUser::currentUser();
     $accessAllowed = $currentUser->hasAccessTo( 'xrowecommerce', 'bypass_captcha' );
     /* Captcha check */
-    if ( class_exists( 'xrowVerification' ) and eZINI::instance( 'xrowecommerce.ini' )->variable('Settings', 'Captcha' ) == 'enabled' and $accessAllowed["accessWord"] != 'yes' )
+    if ( class_exists( 'xrowVerification' ) and eZINI::instance( 'xrowecommerce.ini' )->variable( 'Settings', 'Captcha' ) == 'enabled' and $accessAllowed["accessWord"] != 'yes' )
     {
-    	$captcha = true;
-    	$verification = new xrowVerification();
-    	$answer = $verification->verify( $http );
-    	if( $answer != true )
-    	{
-    		$captcha = false;
-    		$inputIsValid = false;
-    	}
+        $captcha = true;
+        $verification = new xrowVerification( );
+        $answer = $verification->verify( $http );
+        if ( $answer != true )
+        {
+            $captcha = false;
+            $inputIsValid = false;
+        }
     }
     
     if ( $inputIsValid == true )
     {
         // Check for validation
         $basket = eZBasket::currentBasket();
-
+        
         $db = eZDB::instance();
         $db->begin();
         $order = $basket->createOrder();
-
+        
         $doc = new eZDOMDocument( 'account_information' );
-
+        
         $root = $doc->createElementNode( "shop_account" );
         $doc->setRoot( $root );
         
         $companyNameNode = $doc->createElementNode( "company_name" );
         $companyNameNode->appendChild( $doc->createTextNode( $companyName ) );
         $root->appendChild( $companyNameNode );
-            
+        
         $companyAdditionalNode = $doc->createElementNode( "company_additional" );
         $companyAdditionalNode->appendChild( $doc->createTextNode( $companyAdditional ) );
         $root->appendChild( $companyAdditionalNode );
-            
+        
         $taxIdNode = $doc->createElementNode( "tax_id" );
-        $taxIdNode->appendChild( $doc->createTextNode( $taxId ) );
+        $taxIdNode->appendChild( $doc->createTextNode( $taxID ) );
         $root->appendChild( $taxIdNode );
-
+        
         $firstNameNode = $doc->createElementNode( "first-name" );
         $firstNameNode->appendChild( $doc->createTextNode( $firstName ) );
         $root->appendChild( $firstNameNode );
-
+        
         $miNode = $doc->createElementNode( "mi" );
         $miNode->appendChild( $doc->createTextNode( $mi ) );
         $root->appendChild( $miNode );
-
+        
         $lastNameNode = $doc->createElementNode( "last-name" );
         $lastNameNode->appendChild( $doc->createTextNode( $lastName ) );
         $root->appendChild( $lastNameNode );
-
+        
         $address1Node = $doc->createElementNode( "address1" );
         $address1Node->appendChild( $doc->createTextNode( $address1 ) );
         $root->appendChild( $address1Node );
-
+        
         $address2Node = $doc->createElementNode( "address2" );
         $address2Node->appendChild( $doc->createTextNode( $address2 ) );
         $root->appendChild( $address2Node );
-
+        
         $cityNode = $doc->createElementNode( "city" );
         $cityNode->appendChild( $doc->createTextNode( $city ) );
         $root->appendChild( $cityNode );
-
+        
         $stateNode = $doc->createElementNode( "state" );
         $stateNode->appendChild( $doc->createTextNode( $state ) );
         $root->appendChild( $stateNode );
-
+        
         $zipNode = $doc->createElementNode( "zip" );
         $zipNode->appendChild( $doc->createTextNode( $zip ) );
         $root->appendChild( $zipNode );
-
+        
         $countryNode = $doc->createElementNode( "country" );
         $countryNode->appendChild( $doc->createTextNode( $country ) );
         $root->appendChild( $countryNode );
-
+        
         $phoneNode = $doc->createElementNode( "phone" );
         $phoneNode->appendChild( $doc->createTextNode( $phone ) );
         $root->appendChild( $phoneNode );
-
+        
         $faxNode = $doc->createElementNode( "fax" );
         $faxNode->appendChild( $doc->createTextNode( $fax ) );
         $root->appendChild( $faxNode );
-
+        
         $emailNode = $doc->createElementNode( "email" );
         $emailNode->appendChild( $doc->createTextNode( $email ) );
         $root->appendChild( $emailNode );
-
+        
         $shippingNode = $doc->createElementNode( "shipping" );
         $shippingNode->appendChild( $doc->createTextNode( $shipping ) );
         $root->appendChild( $shippingNode );
-
+        
         $shippingTypeNode = $doc->createElementNode( "shippingtype" );
         $shippingTypeNode->appendChild( $doc->createTextNode( $shippingtype ) );
         $root->appendChild( $shippingTypeNode );
         
-        $recaptacheNode = $doc->createElementNode( "captcha" ); 
-        $recaptacheNode->appendChild( $doc->createTextNode( $captcha ) ); 
+        $recaptacheNode = $doc->createElementNode( "captcha" );
+        $recaptacheNode->appendChild( $doc->createTextNode( $captcha ) );
         $root->appendChild( $recaptacheNode );
         
         $paymentMethodNode = $doc->createElementNode( xrowECommerce::ACCOUNT_KEY_PAYMENTMETHOD );
@@ -306,6 +309,7 @@ if ( $module->isCurrentAction( 'Store' ) )
         
         #$paymentMethodNode = $doc->createElementNode( xrowECommerce::ACCOUNT_KEY_PAYMENTMETHOD, $paymentMethod );
         #$root->appendChild( $paymentMethodNode );
+        
 
         if ( $coupon_code )
         {
@@ -319,81 +323,81 @@ if ( $module->isCurrentAction( 'Store' ) )
             $coupon_codeNode->appendChild( $doc->createTextNode( '' ) );
             $root->appendChild( $coupon_codeNode );
         }
-        if ($shipping != "1")
+        if ( $shipping != "1" )
         {
             /* Shipping address*/
-
-            $s_companyNameNode = $doc->createElementNode( "s_company_name" );
+            
+            $s_companyNameNode = $doc->createElementNode( "scompanyname" );
             $s_companyNameNode->appendChild( $doc->createTextNode( $s_companyName ) );
             $root->appendChild( $s_companyNameNode );
             
-            $s_companyAdditionalNode = $doc->createElementNode( "s_company_additional" );
+            $s_companyAdditionalNode = $doc->createElementNode( "scompanyadditional" );
             $s_companyAdditionalNode->appendChild( $doc->createTextNode( $s_companyAdditional ) );
             $root->appendChild( $s_companyAdditionalNode );
             
             $s_firstNameNode = $doc->createElementNode( "s_first-name" );
             $s_firstNameNode->appendChild( $doc->createTextNode( $s_firstName ) );
             $root->appendChild( $s_firstNameNode );
-
+            
             $s_miNode = $doc->createElementNode( "s_mi" );
             $s_miNode->appendChild( $doc->createTextNode( $s_mi ) );
             $root->appendChild( $s_miNode );
-
+            
             $s_lastNameNode = $doc->createElementNode( "s_last-name" );
             $s_lastNameNode->appendChild( $doc->createTextNode( $s_lastName ) );
             $root->appendChild( $s_lastNameNode );
-
+            
             $s_address1Node = $doc->createElementNode( "s_address1" );
             $s_address1Node->appendChild( $doc->createTextNode( $s_address1 ) );
             $root->appendChild( $s_address1Node );
-
+            
             $s_address2Node = $doc->createElementNode( "s_address2" );
             $s_address2Node->appendChild( $doc->createTextNode( $s_address2 ) );
             $root->appendChild( $s_address2Node );
-
+            
             $s_cityNode = $doc->createElementNode( "s_city" );
             $s_cityNode->appendChild( $doc->createTextNode( $s_city ) );
             $root->appendChild( $s_cityNode );
-
+            
             $s_stateNode = $doc->createElementNode( "s_state" );
             $s_stateNode->appendChild( $doc->createTextNode( $s_state ) );
             $root->appendChild( $s_stateNode );
-
+            
             $s_zipNode = $doc->createElementNode( "s_zip" );
             $s_zipNode->appendChild( $doc->createTextNode( $s_zip ) );
             $root->appendChild( $s_zipNode );
-
+            
             $s_countryNode = $doc->createElementNode( "s_country" );
             $s_countryNode->appendChild( $doc->createTextNode( $s_country ) );
             $root->appendChild( $s_countryNode );
-
+            
             $s_phoneNode = $doc->createElementNode( "s_phone" );
             $s_phoneNode->appendChild( $doc->createTextNode( $s_phone ) );
             $root->appendChild( $s_phoneNode );
-
+            
             $s_faxNode = $doc->createElementNode( "s_fax" );
             $s_faxNode->appendChild( $doc->createTextNode( $s_fax ) );
             $root->appendChild( $s_faxNode );
-
+            
             $s_emailNode = $doc->createElementNode( "s_email" );
             $s_emailNode->appendChild( $doc->createTextNode( $s_email ) );
             $root->appendChild( $s_emailNode );
-
-            /* Shipping address*/
+            
+        /* Shipping address*/
         } /* Shippingaddress is equal or not */
-
+        
         $order->setAttribute( 'data_text_1', $doc->toString() );
         $shopAccountINI = eZINI::instance( 'shopaccount.ini' );
         
         $order->setAttribute( 'account_identifier', $shopAccountINI->variable( 'AccountSettings', 'Handler' ) );
- 
+        
         $order->setAttribute( 'ignore_vat', 0 );
-
+        
         $order->store();
         $db->commit();
-
+        
         $http->setSessionVariable( 'MyTemporaryOrderID', $order->attribute( 'id' ) );
-
+        
         $module->redirectTo( '/shop/confirmorder/' );
         return;
     }
@@ -405,7 +409,7 @@ if ( $module->isCurrentAction( 'Store' ) )
 
 $tpl->setVariable( "company_name", $companyName );
 $tpl->setVariable( "company_additional", $companyAdditional );
-$tpl->setVariable( "tax_id", $taxId );
+$tpl->setVariable( "tax_id", $taxID );
 $tpl->setVariable( "first_name", $firstName );
 $tpl->setVariable( "mi", $mi );
 $tpl->setVariable( "last_name", $lastName );
@@ -438,11 +442,15 @@ $tpl->setVariable( "s_zip", $s_zip );
 $tpl->setVariable( "s_country", $s_country );
 $tpl->setVariable( "s_phone", $s_phone );
 $tpl->setVariable( "s_fax", $s_fax );
-
+$tpl->setVariable( "errors", $errors );
 $tpl->setVariable( "coupon_code", $coupon_code );
 
 $Result = array();
 $Result['content'] = $tpl->fetch( "design:shop/userregister.tpl" );
-$Result['path'] = array( array( 'url' => false,
-                                'text' => ezi18n( 'kernel/shop', 'Enter account information' ) ) );
+$Result['path'] = array( 
+    array( 
+        'url' => false , 
+        'text' => ezi18n( 'kernel/shop', 'Enter account information' ) 
+    ) 
+);
 ?>

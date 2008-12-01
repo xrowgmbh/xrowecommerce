@@ -1,21 +1,12 @@
 <?php
 
 include_once( 'kernel/common/template.php' );
-include_once( 'kernel/classes/eznodeviewfunctions.php' );
-include_once( 'lib/ezutils/classes/ezhttptool.php' );
-include_once( 'lib/ezutils/classes/ezhttptool.php' );
+
 
 $Module  =& $Params['Module'];
-$http =& eZHTTPTool::instance();
-$tpl =& templateInit();
-/*
-Query:
-SELECT e.contentobject_id as edit_url, e1.name, count(e1.id) as counter  FROM alcone.ezcontentobject_attribute e, alcone.ezcontentobject e1
-WHERE  ( ( e.contentclassattribute_id = 216  AND ( e.data_text REGEXP 'weight="0"' OR e.data_text NOT REGEXP '<option(.*)weight(.*)</option>'  ) )
-or ( e.contentclassattribute_id = 246  and e.data_float = 0 ) )
-AND e1.current_version = e.version AND e1.id =e.contentobject_id AND e1.status = 1 group by edit_url having counter = 2;
+$http = eZHTTPTool::instance();
+$tpl = templateInit();
 
-*/
 $db = eZDB::instance();
 $query = 'SELECT e.contentobject_id as contentobject_id, e1.name, count(e1.id) as counter  FROM alcone.ezcontentobject_attribute e, alcone.ezcontentobject e1
 WHERE  ( ( e.contentclassattribute_id = 216  AND ( e.data_text REGEXP \'weight="0"\' OR e.data_text NOT REGEXP \'<option(.*)weight(.*)</option>\'  ) )

@@ -42,55 +42,25 @@ for (i = 0; i < field.length; i++)
 //  End -->
 </script>
 <div class="shop-basket">
-        <div class="shopping_cart_path">
-            <div class="shopping_cart_path_select">{"1. Cart"|i18n("design/base/shop")}</div>
-            <div class="shopping_cart_path_text">{"2. Billing, Shipping and Coupons"|i18n("design/base/shop")}</div>
-            <div class="shopping_cart_path_text">{"3. Confirmation"|i18n("design/base/shop")}</div>
-            <div class="shopping_cart_path_text">{"4. Payment info"|i18n("design/base/shop")}</div>
-            <div class="shopping_cart_path_text">{"5. Order completed"|i18n("design/base/shop")}</div>
-            <div class="shopping_cart_path_text">{"6. Review reciept"|i18n("design/base/shop")}</div>
-        </div>
-        <div class="break"></div>
-
-<h1>{"Add Catalogue Order"|i18n("design/base/shop")}</h1>
-
-<table class="shop-basket">
-    <tr>
-        <th><p>{"Article Number"|i18n("design/base/shop")}</p></th>
-        <th class="optional"><p>{"Search"|i18n("design/base/shop")}</p></th>
-        <th><p>{"Quantity"|i18n("design/base/shop")}</p></th>
-        <th><p>{"Notation"|i18n("design/base/shop")}</p></th>
-        <th class="price"><p>{"Price in €"|i18n("design/base/shop")}</p></th>
-        <th class="optional"><p>{"Delete"|i18n("design/base/shop")}</p></th>
-    </tr>
-    <tr>
-        <td><input type="text" size="12" value="" name="KatalogueSearchText" id="kalaogue_searchtext"/></td>
-        <td><input id="catalogue_button" class="smallbutton" type="submit" alt="Submit" value="{"Search"|i18n("design/base/shop")}"/></td>
-        <td><input type="text" class="halfbox" size="12" value="" name="KatalogueQuantity" id="kalaogue_quantity"/></td>
-        <td><p class="optional">{"please type in an article number"|i18n("design/base/shop")}</p></td>
-        <td><p class="optional">{"please type in an article number"|i18n("design/base/shop")}</p></td>
-        <td><input id="catalogue_delete_button" class="button" type="submit" alt="Submit" value="{"Add Catalogue Item"|i18n("design/base/shop")}"/></td>
-    </tr>
-</table>
-
-
     <form method="post" name="basket" action={"/shop/basket/"|ezurl}>
-        <h2>{"Your Basket"|i18n("design/base/shop")}</h2>
-        <div class="break"></div>
-        {section show=$removed_items}
+        <h1>{"Shopping Cart"|i18n("design/base/shop")}</h1>
+
+{include uri="design:shop/basket_navigator.tpl" step='1'}
+
+        {if $removed_items}
             <div class="warning">
             <h2>{"The following items were removed from your cart, because the products were changed"|i18n("design/base/shop",,)}</h2>
                 <ul>
-                    {section name=RemovedItem loop=$removed_items}
+                    {foreach $removed_items as $item}
                     <li>
-                        <a href={concat("/content/view/full/",$RemovedItem:item.contentobject.main_node_id,"/")|ezurl}>
-                            {$RemovedItem:item.contentobject.name|wash}
+                        <a href={concat("/content/view/full/",$item.contentobject.main_node_id,"/")|ezurl}>
+                            {$item.contentobject.name|wash}
                         </a>
                     </li>
-                    {/section}
+                    {/foreach}
                 </ul>
             </div>
-            {/section}
+         {/if}
 
     {if not( $vat_is_known )}
         <div class="message-warning">
@@ -114,11 +84,13 @@ for (i = 0; i < field.length; i++)
             {/section}
         </div>
     {/section}
-    {section show=$basket.items}
-        <a href={'/'|ezurl()} class="details">{'Continue'|i18n("design/ezwebin/shop/basket")}</a>
-        <input type="submit" class="right-arrow2 smallbutton" name="CheckoutButton" value="Checkout" />
-        <input type="submit" class="right-arrow smallbutton" name="StoreChangesButton" value="Update" />
-        <input type="submit" class="flat-right2 smallbutton" name="RemoveProductItemButton" value="Delete" />
+    {if $basket.items}
+    <div class="buttonblock">
+        <input type="submit" class="left-arrow2" name="ContinueShoppingButton" value="Continue" title="Use this button to return to the last page you visited before the shopping cart." />
+        <input type="submit" class="right-arrow" name="StoreChangesButton" value="Update" title="Use this button to update your shopping cart." />
+        <input type="submit" class="right-arrow2" name="CheckoutButton" value="Checkout" title="Use this button to place your order." />
+    </div>
+    <div class="break"></div>
     {def $currency = fetch( 'shop', 'currency', hash( 'code', $basket.productcollection.currency_code ) )
          $locale = false()
          $symbol = false()}
@@ -126,8 +98,13 @@ for (i = 0; i < field.length; i++)
         {set locale = $currency.locale
              symbol = $currency.symbol}
     {/if}
+    
     <div class="content-basket">
-    <table>
+    <div class="buttonblock">
+        <input type="submit" class="remove-button flat-right2" name="RemoveProductItemButton" value="Delete" title="Use this button to remove items from your shopping cart."/>
+    </div>
+    <div class="break"></div>
+    <table class="order">
         <tr class="lightbg">
             <th>
                 {"Quantity"|i18n("design/base/shop")}
@@ -152,89 +129,19 @@ for (i = 0; i < field.length; i++)
         </tr>
         {section var=product_item loop=$basket.items sequence=array(bglight,bgdark)}
         <tr>
-            <td class="basketspace">
+            <td class="basketspace quantity">
                 <input type="hidden" name="ProductItemIDList[]" value="{$product_item.id}" />
-                <span><input type="text" name="ProductItemCountList[]" value="{$product_item.item_count}" size="3" style="border: 1px solid #d3d5d6; padding: 2px; text-align: right;" /></span>
+                <input class="quantity" type="text" name="ProductItemCountList[]" value="{$product_item.item_count}" size="3"/>
             </td>
             <td class="cart_item basketspace">
-
-            <table>
-                 {def $prod=fetch( 'content', 'node', hash( 'node_id', $product_item.node_id ) )}
-                 {if $prod.data_map.variation.content.option_list|count|gt(0)}
-                 {def $vary=$product_item.item_object.contentobject.data_map.variation.content.option_list[$product_item.item_object.option_list.0.option_item_id]}
-                 {section var=option_item loop=$product_item.item_object.option_list}
-                    <tr>
-                        <td rowspan="4" width="120">
-                        {if $vary.image|is_object(true)}
-                            {if $vary.image.current.data_map.image.has_content}
-                            {attribute_view_gui image_class=small attribute=$vary.image.current.data_map.image}
-                            {/if}
-                        {else}
-                            {if $product_item.item_object.contentobject.data_map.image.has_content}
-                            {attribute_view_gui image_class=small attribute=$product_item.item_object.contentobject.data_map.image}
-                            {else}
-                            <div class="nopic"><p>{'no image'|i18n("design/ezwebin/shop/basket")}</p></div>
-                            {/if}
-                        {/if}
-                        </td>
-                        <td>
-                        <p><a class="basketlink" href={concat("/content/view/full/",$prod.node_id)|ezurl}>{$prod.name|wash()}</a></p>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                        {$prod.data_map.product_id.content|wash()}{$option_item.value}
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                        {$vary.comment}
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                        {'Weight'|i18n("design/ezwebin/shop/basket")}: {$vary.weight|wash()} {'lbs'|i18n("design/ezwebin/shop/basket")}
-                        </td>
-                    </tr>
-                    {/section}
-                 {else}
-                    <tr>
-                        <td rowspan="4" width="120">
-                        {if $product_item.item_object.contentobject.data_map.image.has_content}
-                        {attribute_view_gui image_class=small attribute=$product_item.item_object.contentobject.data_map.image}
-                        {else}
-                        <div class="nopic">{'no image'|i18n("design/ezwebin/shop/basket")}</div>
-                        {/if}
-                        </td>
-                        <td>
-                        <p><a class="basketlink" href={concat("/content/view/full/",$prod.node_id)|ezurl}>{$prod.name|wash()}</a></p>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                        {$prod.data_map.product_id.content|wash()}{$prod.data_map.variation.content.name}
-                    </tr>
-                    <tr>
-                        <td>
-                        {def $vary=$product_item.item_object.contentobject.data_map.variation.content.option_list[$product_item.item_object.option_list.0.option_item_id]}
-                        {$vary.comment}                        
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                        {'Weight'|i18n("design/ezwebin/shop/basket")}: {attribute_view_gui attribute=$prod.data_map.weight} {'lbs'|i18n("design/ezwebin/shop/basket")}
-                        </td>
-                    </tr>
-                    {/if}
-                    
-                </table>
-        {if eq(ezini( 'BasketInformation', 'DisplayTax', 'xrowecommerce.ini' ), 'enabled' )}
+{include uri="design:shop/product_cell_view.tpl"}
+        </td>
         <td class="basketspace">
         
             {if ne( $product_item.vat_value, -1 )}
                 {$product_item.vat_value} %
             {else}
-                {'unknown'|i18n( 'design/base/shop' )}
+                {'unknown'|i18n( 'extension/xrowecommerce' )}
             {/if}
         </td>
         {/if}
@@ -251,21 +158,20 @@ for (i = 0; i < field.length; i++)
      {/section}
     <tr>
          <td colspan="6" class="align_right line">
-         {"Subtotal Ex. Tax"|i18n("design/base/shop")}:
+         {"Subtotal Ex. Tax"|i18n("extension/xrowecommerce")}:
          <b class="price">{$basket.total_ex_vat|l10n( 'currency', $locale, $symbol )}</b>
          </td>
     </tr>
     <tr>
         <td  colspan="6" class="align_right line2">
-            {"Estimated Tax"|i18n("design/ezwebin/shop/basket")}:
-            {$basket.items_info.total_price_info.price_vat|wash()}
-            {*$basket.items_info.additional_info.shipping_total.total_price_inc_vat|attribute(show)*}
+            {"Estimated Tax"|i18n("extension/xrowecommerce")}:
+            {$basket.items_info.total_price_info.price_vat|l10n( 'currency', $locale, $symbol )}
         </td>
     </tr>
     <tr>
         <td  colspan="6" class="align_right">   
-            {"Estimated Shipping and Handling"|i18n("design/ezwebin/shop/basket")}:
-            {$basket.items_info.additional_info.shipping_total.total_price_inc_vat|wash()}
+            {"Estimated Shipping and Handling"|i18n("extension/xrowecommerce")}:
+            {$basket.items_info.additional_info.shipping_total.total_price_inc_vat|l10n( 'currency', $locale, $symbol )}
         </td>
     </tr>
     <tr>
@@ -281,7 +187,7 @@ for (i = 0; i < field.length; i++)
 
     {if is_set( $shipping_info )}
     <tr>
-        <td class="product-subtotal" colspan="5"><a href={$shipping_info.management_link|ezurl}>{'Shipping'|i18n( 'design/admin/shop/basket' )}{if $shipping_info.description} ({$shipping_info.description}){/if}</a>:
+        <td class="product-subtotal" colspan="5"><a href={$shipping_info.management_link|ezurl}>{'Shipping'|i18n( 'extension/xrowecommerce' )}{if $shipping_info.description} ({$shipping_info.description}){/if}</a>:
             {$shipping_info.cost|l10n( 'currency', $locale, $symbol )}
         </td>
         <td class="product-subtotal">
@@ -289,7 +195,7 @@ for (i = 0; i < field.length; i++)
         </td>
     </tr>
     <tr>
-        <td class="product-subtotal" colspan="5"><b>{'Order total'|i18n( 'design/admin/shop/basket' )}</b>:
+        <td class="product-subtotal" colspan="5"><b>{'Order total'|i18n( 'extension/xrowecommerce' )}</b>:
             {$total_inc_shipping_inc_vat|l10n( 'currency', $locale, $symbol )}
         </td>
         <td class="product-subtotal">
@@ -307,26 +213,26 @@ for (i = 0; i < field.length; i++)
  {if $user.contentobject.id|eq(10)}
             <div>
                 <div class="loginbox">
-                    <p>{'Already a member?"|i18n("design/standard/user",'User name')}</p>
+                    <p>{'Already a user?"|i18n("design/standard/user",'User name')}</p>
                     <form method="post" action={"user/login"|ezurl}">
                     <div class="loginbox_wrap">
-                        <label for="id1">{"Username"|i18n("design/standard/user",'User name')}</label><div class="labelbreak"></div>
+                        <label for="id1">{"Username"|i18n("extension/xrowecommerce",'User name')}</label><div class="labelbreak"></div>
                         <input type="text" name="Login" id="id1" value="{$User:login|wash}" tabindex="1" />
                     </div>
                     <div class="loginbox_wrap">
-                        <label for="id2">{"Password"|i18n("design/standard/user")}</label><div class="labelbreak"></div>
+                        <label for="id2">{"Password"|i18n("extension/xrowecommerce")}</label><div class="labelbreak"></div>
                         <input type="password" name="Password" id="id2" value="" tabindex="1" />
                     </div>
                     <div>
                         <input class="standard" type="submit" name="LoginButton" value="{'Login'|i18n('design/standard/user','Button')}" tabindex="1">
                     </div>
-                        <input type="hidden" name="RedirectURI" value="../shop/userregister" />
+                    <input type="hidden" name="RedirectURI" value={"shop/userregister"|ezurl} />
                 </div>
             </div>
  </form>
 {/if*}
     {undef $currency $locale $symbol}
-    {section-else}
+    {else}
 </form>
     <div class="feedback">
         <form method="post" name="basket" action={"/shop/basket/"|ezurl}>
@@ -337,7 +243,7 @@ for (i = 0; i < field.length; i++)
                         <a href={'/'|ezurl()}><input type="submit" class="standard" name="ContinueShoppingButton" value="Continue" src={"images/continue_shopping.gif"|ezdesign()}/></a>
                     </td>
                     <td>
-                        <b>{"You have no products in your cart"|i18n("design/base/shop")}</b>               
+                        <b>{"You have no products in your cart"|i18n("extension/xrowecommerce")}</b>               
                     </td>
                 </tr>
             </table>
@@ -345,5 +251,5 @@ for (i = 0; i < field.length; i++)
         </form>
         <div></div>
     </div>
-    {/section}
+    {/if}
 </div>
