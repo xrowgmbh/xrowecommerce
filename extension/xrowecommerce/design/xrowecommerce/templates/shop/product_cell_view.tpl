@@ -13,7 +13,7 @@
                             {if $product_item.item_object.contentobject.data_map.image.has_content}
                             {attribute_view_gui image_class=small attribute=$product_item.item_object.contentobject.data_map.image}
                             {else}
-                            <div class="nopic">&nbsp;</div>
+                            <div class="nopic"><img src={'nopic_130.gif'|ezimage()} alt="{'No image aviable'|i18n('design/xrowecommerce')}" /></div>
                             {/if}
                         {/if}
                         </td>
@@ -45,7 +45,7 @@
                         {if $product_item.item_object.contentobject.data_map.image.has_content}
                         {attribute_view_gui image_class=small attribute=$product_item.item_object.contentobject.data_map.image}
                         {else}
-                        <div class="nopic">&nbsp;</div>
+                        <div class="nopic"><img src={'nopic_130.gif'|ezimage()} alt="{'No image aviable'|i18n('design/xrowecommerce')}" /></div>
                         {/if}
                         </td>
                         <td>
@@ -55,6 +55,7 @@
                     <tr>
                         <td>
                         {$prod.data_map.product_id.content|wash()}{$prod.data_map.variation.content.name}
+                        </td>
                     </tr>
                     <tr>
                         <td>

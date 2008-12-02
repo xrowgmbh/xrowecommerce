@@ -574,16 +574,10 @@ lang: RecaptchaLang,
 {* Recaptcha *}
 
 <div class="buttonblock">
-    <input class="left-arrow" type="submit" name="CancelButton" value="{'Cancel'|i18n('design/base/shop')}" />
-    <input class="right-arrow" type="submit" name="StoreButton" value="{'Continue'|i18n('design/base/shop')}" />
-
-    
+    <input class="left-arrow smallbutton" type="submit" name="CancelButton" value="{'Cancel'|i18n('design/base/shop')}" />
+    <input class="right-arrow smallbutton" type="submit" name="StoreButton" value="{'Continue'|i18n('design/base/shop')}" />
 </div>
-
 <br />
-
-
-
 {* / left column *}
 </div>
 {literal}
