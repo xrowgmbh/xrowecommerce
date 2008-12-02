@@ -1,6 +1,6 @@
 <div class="productline">
 <div class="product_title"><a href="{$node.url_alias|ezurl('no')}" title="{$node.name|wash()}">{$node.name|wash()}</a></div>
-    <div class="productline-img">
+    <div class="productcategory-img">
         {if $node.data_map.image.has_content}
         <div class="productline-img">
             {attribute_view_gui image_class=product_line attribute=$node.data_map.image href=$node.url_alias|ezurl()}
