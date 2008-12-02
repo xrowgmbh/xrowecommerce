@@ -45,7 +45,7 @@
                         {if $product_item.item_object.contentobject.data_map.image.has_content}
                         {attribute_view_gui image_class=small attribute=$product_item.item_object.contentobject.data_map.image}
                         {else}
-                        <div class="nopic"><img src={'nopic_130.gif'|ezimage()} alt="{'No image aviable'|i18n('design/xrowecommerce')}" /></div>
+                        <div class="nopic"><img src={'nopic_95.gif'|ezimage()} alt="{'No image aviable'|i18n('design/xrowecommerce')}" /></div>
                         {/if}
                         </td>
                         <td>
