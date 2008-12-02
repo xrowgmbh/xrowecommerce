@@ -41,12 +41,16 @@ for (i = 0; i < field.length; i++)
 {/literal}
 //  End -->
 </script>
+
 <div class="shop-basket">
-    <form method="post" name="basket" action={"/shop/basket/"|ezurl}>
-        <h1>{"Shopping Cart"|i18n("design/base/shop")}</h1>
-
 {include uri="design:shop/basket_navigator.tpl" step='1'}
+<div class="break"></div>
+{if $basket.items}
+    {include uri="design:shop/basket_catalogue_order.tpl"}
+{/if}
 
+    <form method="post" name="basket" action={"/shop/basket/"|ezurl}>
+        <h2>{"Shopping Cart"|i18n("design/base/shop")}</h2>
         {if $removed_items}
             <div class="warning">
             <h2>{"The following items were removed from your cart, because the products were changed"|i18n("design/base/shop",,)}</h2>
@@ -86,9 +90,9 @@ for (i = 0; i < field.length; i++)
     {/section}
     {if $basket.items}
     <div class="buttonblock">
-        <input type="submit" class="left-arrow2" name="ContinueShoppingButton" value="Continue" title="Use this button to return to the last page you visited before the shopping cart." />
-        <input type="submit" class="right-arrow" name="StoreChangesButton" value="Update" title="Use this button to update your shopping cart." />
-        <input type="submit" class="right-arrow2" name="CheckoutButton" value="Checkout" title="Use this button to place your order." />
+        <a href={'/'|ezurl()} class="details">{'Continue'|i18n("design/ezwebin/shop/basket")}</a>
+        <input type="submit" class="right-arrow smallbutton" name="StoreChangesButton" value="Update" title="Use this button to update your shopping cart." />
+        <input type="submit" class="right-arrow2 smallbutton" name="CheckoutButton" value="Checkout" title="Use this button to place your order." />
     </div>
     <div class="break"></div>
     {def $currency = fetch( 'shop', 'currency', hash( 'code', $basket.productcollection.currency_code ) )
@@ -101,7 +105,7 @@ for (i = 0; i < field.length; i++)
     
     <div class="content-basket">
     <div class="buttonblock">
-        <input type="submit" class="remove-button flat-right2" name="RemoveProductItemButton" value="Delete" title="Use this button to remove items from your shopping cart."/>
+        <input type="submit" class="remove-button flat-right2 smallbutton" name="RemoveProductItemButton" value="Delete" title="Use this button to remove items from your shopping cart."/>
     </div>
     <div class="break"></div>
     <table class="order">
@@ -113,17 +117,17 @@ for (i = 0; i < field.length; i++)
                 {"Item"|i18n("design/base/shop")}
             </th>
           {if eq(ezini( 'BasketInformation', 'DisplayTax', 'xrowecommerce.ini' ), 'enabled' )}
-            <th align="right">
+            <th>
                 {"Tax"|i18n("design/base/shop")}
             </th>
           {/if}
-            <th align="right">
+            <th>
                 {"Unit Price"|i18n("design/base/shop")}
             </th>
-            <th align="right">
+            <th class="totalprice">
                 {"Total Price"|i18n("design/base/shop")}
             </th>
-            <th align="right">
+            <th>
                 {"Remove"|i18n("design/base/shop")}
             </th>
         </tr>
@@ -134,21 +138,22 @@ for (i = 0; i < field.length; i++)
                 <input class="quantity" type="text" name="ProductItemCountList[]" value="{$product_item.item_count}" size="3"/>
             </td>
             <td class="cart_item basketspace">
-{include uri="design:shop/product_cell_view.tpl"}
-        </td>
-        <td class="basketspace">
-        
-            {if ne( $product_item.vat_value, -1 )}
-                {$product_item.vat_value} %
-            {else}
-                {'unknown'|i18n( 'extension/xrowecommerce' )}
-            {/if}
-        </td>
+                {include uri="design:shop/product_cell_view.tpl"}
+            </td>
+        {if eq(ezini( 'BasketInformation', 'DisplayTax', 'xrowecommerce.ini' ), 'enabled' )}
+            <td class="basketspace">
+            
+                {if ne( $product_item.vat_value, -1 )}
+                    {$product_item.vat_value} %
+                {else}
+                    {'unknown'|i18n( 'extension/xrowecommerce' )}
+                {/if}
+            </td>
         {/if}
         <td class="basketspace">
             {$product_item.price_ex_vat|l10n( 'currency', $locale, $symbol )}
         </td>
-        <td class="basketspace">
+        <td class="basketspace totalprice">
             {$product_item.total_price_ex_vat|l10n( 'currency', $locale, $symbol )}
         </td>
         <td class="basketspace">
@@ -156,36 +161,12 @@ for (i = 0; i < field.length; i++)
         </td>
      </tr>
      {/section}
-    <tr>
-         <td colspan="6" class="align_right line">
-         {"Subtotal Ex. Tax"|i18n("extension/xrowecommerce")}:
-         <b class="price">{$basket.total_ex_vat|l10n( 'currency', $locale, $symbol )}</b>
-         </td>
-    </tr>
-    <tr>
-        <td  colspan="6" class="align_right line2">
-            {"Estimated Tax"|i18n("extension/xrowecommerce")}:
-            {$basket.items_info.total_price_info.price_vat|l10n( 'currency', $locale, $symbol )}
-        </td>
-    </tr>
-    <tr>
-        <td  colspan="6" class="align_right">   
-            {"Estimated Shipping and Handling"|i18n("extension/xrowecommerce")}:
-            {$basket.items_info.additional_info.shipping_total.total_price_inc_vat|l10n( 'currency', $locale, $symbol )}
-        </td>
-    </tr>
-    <tr>
-        <td colspan="6" class="align_right line3">
-            <b class="price">
-            {'Total'|i18n( 'design/ezwebin/shop/basket' )}:
-            {$basket.total_inc_vat|l10n( 'currency', $locale, $symbol )}
-            </b>
-        </td>
-    </tr>
+    
+    
 {def $taxpercent = mul( div(sub($basket.total_inc_vat, $basket.total_ex_vat), $basket.total_ex_vat), 100)
      $percentage = mul( div(sub($basket.total_inc_vat, $basket.total_ex_vat), $basket.total_ex_vat), 100)|l10n('number') }
 
-    {if is_set( $shipping_info )}
+{if is_set( $shipping_info )}
     <tr>
         <td class="product-subtotal" colspan="5"><a href={$shipping_info.management_link|ezurl}>{'Shipping'|i18n( 'extension/xrowecommerce' )}{if $shipping_info.description} ({$shipping_info.description}){/if}</a>:
             {$shipping_info.cost|l10n( 'currency', $locale, $symbol )}
@@ -203,34 +184,75 @@ for (i = 0; i < field.length; i++)
         </td>
     </tr>
     {/if}
+            <tr>
+                 <td {if eq(ezini( 'BasketInformation', 'DisplayTax', 'xrowecommerce.ini' ), 'enabled' )}colspan="4"{else}colspan="3"{/if} class="align_right line">
+                    {"Subtotal Ex. Tax"|i18n("extension/xrowecommerce")}:
+                 </td>
+                 <td class="totalprice">
+                     <b class="price">{$basket.total_ex_vat|l10n( 'currency', $locale, $symbol )}</b>
+                 </td>
+                 <td class="noborder">&nbsp;</td>
+            </tr>
+            {if eq(ezini( 'BasketInformation', 'DisplayTax', 'xrowecommerce.ini' ), 'enabled' )}
+            <tr>
+                <td {if eq(ezini( 'BasketInformation', 'DisplayTax', 'xrowecommerce.ini' ), 'enabled' )}colspan="4"{else}colspan="3"{/if} class="align_right line2">
+                    {"Estimated Tax"|i18n("extension/xrowecommerce")}:
+                </td>
+                <td class="totalprice">
+                     {$basket.items_info.total_price_info.price_vat|l10n( 'currency', $locale, $symbol )}
+                </td>
+                <td class="noborder">&nbsp;</td>
+            </tr>
+            {/if}
+            <tr>
+                <td {if eq(ezini( 'BasketInformation', 'DisplayTax', 'xrowecommerce.ini' ), 'enabled' )}colspan="4"{else}colspan="3"{/if} class="align_right">   
+                    {"Estimated Shipping and Handling"|i18n("extension/xrowecommerce")}:
+                </td>
+                <td class="totalprice">
+                    {$basket.items_info.additional_info.shipping_total.total_price_inc_vat|l10n( 'currency', $locale, $symbol )}            
+                </td>
+                <td class="noborder">&nbsp;</td>
+            </tr>
+            <tr>
+                <td {if eq(ezini( 'BasketInformation', 'DisplayTax', 'xrowecommerce.ini' ), 'enabled' )}colspan="4"{else}colspan="3"{/if} class="align_right line3">
+                    <b class="price">
+                        {'Total'|i18n( 'design/ezwebin/shop/basket' )}:
+                    </b>
+                </td>
+                <td class="totalprice">
+                    {$basket.total_inc_vat|l10n( 'currency', $locale, $symbol )}            
+                </td>
+                <td class="noborder">&nbsp;</td>
+            </tr>
     </table>
    </div>
  </form>
-
-{* ####### Login Box ########
-
- {def $user=fetch( 'user', 'current_user' )}
- {if $user.contentobject.id|eq(10)}
-            <div>
-                <div class="loginbox">
-                    <p>{'Already a user?"|i18n("design/standard/user",'User name')}</p>
-                    <form method="post" action={"user/login"|ezurl}">
-                    <div class="loginbox_wrap">
-                        <label for="id1">{"Username"|i18n("extension/xrowecommerce",'User name')}</label><div class="labelbreak"></div>
-                        <input type="text" name="Login" id="id1" value="{$User:login|wash}" tabindex="1" />
-                    </div>
-                    <div class="loginbox_wrap">
-                        <label for="id2">{"Password"|i18n("extension/xrowecommerce")}</label><div class="labelbreak"></div>
-                        <input type="password" name="Password" id="id2" value="" tabindex="1" />
-                    </div>
+    {if eq(ezini( 'BasketInformation', 'DisplayLogin', 'xrowecommerce.ini' ), 'enabled' )}
+        {* ####### Login Box ######## *}
+         {def $user=fetch( 'user', 'current_user' )}
+         {if $user.contentobject.id|eq(10)}
                     <div>
-                        <input class="standard" type="submit" name="LoginButton" value="{'Login'|i18n('design/standard/user','Button')}" tabindex="1">
+                        <div class="loginbox">
+                            <p>{'Already a user?"|i18n("design/standard/user",'User name')}</p>
+                            <form method="post" action={"user/login"|ezurl}">
+                                <div class="loginbox_wrap">
+                                    <label for="id1">{"Username"|i18n("extension/xrowecommerce",'User name')}</label><div class="labelbreak"></div>
+                                    <input type="text" name="Login" id="id1" value="{$User:login|wash}" tabindex="1" />
+                                </div>
+                                <div class="loginbox_wrap">
+                                    <label for="id2">{"Password"|i18n("extension/xrowecommerce")}</label><div class="labelbreak"></div>
+                                    <input type="password" name="Password" id="id2" value="" tabindex="1" />
+                                </div>
+                                <div>
+                                    <input class="standard" type="submit" name="LoginButton" value="{'Login'|i18n('design/standard/user','Button')}" tabindex="1">
+                                </div>
+                                <input type="hidden" name="RedirectURI" value={"shop/userregister"|ezurl} />
+                             </form>
+                        </div>
                     </div>
-                    <input type="hidden" name="RedirectURI" value={"shop/userregister"|ezurl} />
-                </div>
-            </div>
- </form>
-{/if*}
+        {/if}
+    {/if}
+
     {undef $currency $locale $symbol}
     {else}
 </form>
@@ -240,7 +262,7 @@ for (i = 0; i < field.length; i++)
             <table>
                 <tr>
                     <td>
-                        <a href={'/'|ezurl()}><input type="submit" class="standard" name="ContinueShoppingButton" value="Continue" src={"images/continue_shopping.gif"|ezdesign()}/></a>
+                        <a href={'/'|ezurl()} class="details">{'Continue'|i18n("design/ezwebin/shop/basket")}</a>
                     </td>
                     <td>
                         <b>{"You have no products in your cart"|i18n("extension/xrowecommerce")}</b>               
@@ -249,7 +271,6 @@ for (i = 0; i < field.length; i++)
             </table>
         </div>
         </form>
-        <div></div>
     </div>
     {/if}
 </div>

@@ -30,7 +30,7 @@
 	                </a>
 	            </div>
             {else}
-                <div class="nopic attribute-image"><p>{'no Image'|i18n('design/base/shop')}</p></div>
+                <div class="nopic attribute-image"><img src={'nopic_130.gif'|ezimage()} alt="{'No image aviable'|i18n('design/xrowecommerce')}" /></div>
             {/if}
             <div class="attribute-description">
                 {attribute_view_gui attribute=$node.data_map.description}
