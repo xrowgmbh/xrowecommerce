@@ -1,12 +1,10 @@
 <div class="shop-basket">
     <form method="post" action={"/shop/confirmorder/"|ezurl}>
         <h1>{"Confirm order"|i18n("extension/xrowecommerce")}</h1>
-
-{include uri="design:shop/basket_navigator.tpl" step='4'}
-
+        {include uri="design:shop/basket_navigator.tpl" step='3'}
         <div class="buttonblock">
-			<input class="left-arrow2" type="submit" name="CancelButton" value="{'Cancel'|i18n('design/base/shop')}" />
-			<input class="right-arrow2" type="submit" name="ConfirmOrderButton" value="{'Confirm'|i18n('design/base/shop')}" />
+			<input class="left-arrow2 smallbutton" type="submit" name="CancelButton" value="{'Cancel'|i18n('design/base/shop')}" />
+			<input class="right-arrow2 smallbutton" type="submit" name="ConfirmOrderButton" value="{'Confirm'|i18n('design/base/shop')}" />
         </div>
         <div class="break"></div>
         {shop_account_view_gui view=html order=$order}
@@ -19,11 +17,11 @@
         {/if}
         {if count($hazardous)|gt(0)}
         
-            <p style="color: red;">{'Hazardous item(s) found in your cart.'|i18n('design/base/shop')}</p>
+            <p>{'Hazardous item(s) found in your cart.'|i18n('design/base/shop')}</p>
             <p>
                 {'Dear Customer,'|i18n('design/base/shop')}<br />
                 {"We've removed the following hazardous items from your shopping cart since we are not allowed to ship these items to your destination. For further questions please contact %companyname%."|i18n('design/base/shop',,hash('%companyname%', ezini( 'InvoiceSettings', 'CompanyName', 'order.ini'  )))}<br />
-                <ul style="background: white;">
+                <ul>
                     {foreach $hazardous as $item}
                     <li>{$item.item_count} x <a href={concat("/content/view/full/", $item.contentobject.main_node_id)|ezurl()}>{$item.name}</a></li>
                     {/foreach}
@@ -47,7 +45,7 @@
                     <th>
                         {"Unit Price"|i18n("design/base/shop")}
                     </th>
-                    <th align="right">
+                    <th class="totalprice">
                         {"Total Price"|i18n("design/base/shop")}
                     </th>
                 </tr>
@@ -56,8 +54,8 @@
                    <td class="{$product_item.sequence} product-name basketspace">
                         <b>{$product_item.item_count}</b>
                     </td>
-                   <td class="{$product_item.sequence} product-name basketspace">
-{include uri="design:shop/product_cell_view.tpl"}
+                   <td class="{$product_item.sequence} product-name basketspace cart_item">
+                    {include uri="design:shop/product_cell_view.tpl"}
                     </td>
 
             <td class="{$product_item.sequence} product-name basketspace">
@@ -66,32 +64,25 @@
             <td class="{$product_item.sequence} product-name basketspace">
                {$product_item.price_ex_vat|l10n( 'currency', $locale, $symbol )}
             </td>
-            <td class="{$product_item.sequence} product-name basketspace align_right">
+            <td class="{$product_item.sequence} product-name basketspace totalprice">
                 {$product_item.total_price_ex_vat|l10n( 'currency', $locale, $symbol )}
             </td>
          </tr>
-         {delimiter}
-            <tr><td colspan="5" /></tr>
-         {/delimiter}
          {/section}
-         {if gt(count($order.product_items),0)}
-            <tr><td colspan="5" /></tr>
-         {/if}
      <tr>
 		<td class="line" colspan="4">
          	{"Subtotal ex. tax"|i18n("design/base/shop")}
         </td>
-        <td colspan="5" class="align_right line">
+        <td colspan="5" class="align_right line totalprice">
              <strong class="price">{$order.product_total_ex_vat|l10n( 'currency', $locale, $symbol )}</strong>
         </td>
      </tr>
-     
     {section name=OrderItem loop=$order.order_items show=$order.order_items sequence=array(bglight,bgdark)}
     <tr >
         <td class="{$OrderItem:sequence}" colspan="4">
         {$OrderItem:item.description}:
         </td>
-        <td class="{$OrderItem:sequence} basketspace align_right">
+        <td class="{$OrderItem:sequence} basketspace align_right totalprice">
         {$OrderItem:item.price_ex_vat|l10n( 'currency', $locale, $symbol )}
         </td>
     </tr>
@@ -103,7 +94,7 @@
         <td class="{$OrderItem:sequence} line" colspan ="4">
         {"Tax"|i18n("design/base/shop")}
         </td>
-        <td class="{$OrderItem:sequence} basketspace line align_right">
+        <td class="{$OrderItem:sequence} basketspace line align_right totalprice">
         {sub($order.total_inc_vat, $order.total_ex_vat)|l10n( 'currency', $locale, $symbol )}
         </td>
     </tr>
@@ -112,18 +103,15 @@
         <td class="line price"  colspan ="4">
         <b>{"Order total"|i18n("design/base/shop")}</b>
         </td>
-        <td class="line align_right price">
+        <td class="line align_right price totalprice">
         <strong>{$order.total_inc_vat|l10n( 'currency', $locale, $symbol )}</strong>
         </td>
     </tr>
     </table>
-    
     {else}
-    
     {* If the shopping cart is empty after removing hazardous items... *}
-    <h3>Sorry, there are no items left in your cart.</h3>
+    <h3>{"Sorry, there are no items left in your cart."|i18n("extension/xrowecommerce")}</h3>
     
     {/if}
-    
     </form>
 </div>
