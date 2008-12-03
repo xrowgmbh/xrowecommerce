@@ -1,12 +1,13 @@
 <?php /* #?ini charset="utf-8"?
 
 [Settings]
-Captcha=enabled
-Coupon=enabled
+Captcha=disabled
+Coupon=disabled
 Catalogueorder=disabled
-CompanyName=enabled
-CompanyAdditional=enabled
-TaxID=enabled
+CompanyName=disabled
+CompanyAdditional=disabled
+MI=disabled
+TaxID=dis
 Fax=enabled
 # Please use an override instead
 

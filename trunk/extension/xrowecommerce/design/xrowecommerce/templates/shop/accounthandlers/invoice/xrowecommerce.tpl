@@ -2,9 +2,9 @@
 <table  class="list" width="100%" cellspacing="0" cellpadding="0" border="0" align="right">
 <caption style="font-size: 12pt;"><b>
 {if $packingslip}
-Packing slip
+{'Packing slip'|i18n( 'design/admin/shop/orderview' )}
 {else}
-Invoice
+{'Invoice'|i18n( 'design/admin/shop/orderview' )}
 {/if}
 </b></caption>
 <tr>
@@ -20,14 +20,14 @@ Invoice
     <td>
     
     {if eq($order.account_information.shippingtype,0)}Standard Shipping
-    {elseif eq($order.account_information.shippingtype,1)}Next Day Service
-    {elseif eq($order.account_information.shippingtype,2)}2nd Day Service
-    {elseif eq($order.account_information.shippingtype,3)}UPS Ground (USA only)
-    {elseif eq($order.account_information.shippingtype,4)}UPS Next Business Day Air (USA only)
-    {elseif eq($order.account_information.shippingtype,5)}UPS 2nd Business Day Air (USA only)
-    {elseif eq($order.account_information.shippingtype,6)}USPS Express Mail International (EMS)
-    {elseif eq($order.account_information.shippingtype,7)}USPS Global Express Guaranteed
-    {else}Unknown Shipping
+    {elseif eq($order.account_information.shippingtype,1)}{'Next Day Service'|i18n( 'design/admin/shop/orderview' )}
+    {elseif eq($order.account_information.shippingtype,2)}{'2nd Day Service'|i18n( 'design/admin/shop/orderview' )}
+    {elseif eq($order.account_information.shippingtype,3)}{'UPS Ground (USA only)'|i18n( 'design/admin/shop/orderview' )}
+    {elseif eq($order.account_information.shippingtype,4)}{'UPS Next Business Day Air (USA only)'|i18n( 'design/admin/shop/orderview' )}
+    {elseif eq($order.account_information.shippingtype,5)}{'UPS 2nd Business Day Air (USA only)'|i18n( 'design/admin/shop/orderview' )}
+    {elseif eq($order.account_information.shippingtype,6)}{'USPS Express Mail International (EMS)'|i18n( 'design/admin/shop/orderview' )}
+    {elseif eq($order.account_information.shippingtype,7)}{'USPS Global Express Guaranteed'|i18n( 'design/admin/shop/orderview' )}
+    {else}{'Unknown Shipping'|i18n( 'design/admin/shop/orderview' )}
     {/if}
     </td>
 </tr>
@@ -101,7 +101,7 @@ Invoice
 {else}
 
 <table  class="list" width="100%" cellspacing="0" cellpadding="0" border="0" align="right">
-<caption style="font-size: 12pt;"><b>Ship to</b></caption>
+<caption style="font-size: 12pt;"><b>{'Ship to'|i18n( 'design/admin/shop/orderview' )}</b></caption>
 <tr>
     <th class="tight">{'Name'|i18n( 'design/admin/shop/orderview' )}</th>
     <td>{$order.account_information.first_name} {$order.account_information.mi} {$order.account_information.last_name}</td>

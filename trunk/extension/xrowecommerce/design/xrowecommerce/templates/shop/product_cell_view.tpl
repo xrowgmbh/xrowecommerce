@@ -1,10 +1,10 @@
-            <table>
+            <table class="product_item">
                  {def $prod=fetch( 'content', 'node', hash( 'node_id', $product_item.node_id ) )}
                  {if $prod.data_map.variation.content.option_list|count|gt(0)}
                  {def $vary=$product_item.item_object.contentobject.data_map.variation.content.option_list[$product_item.item_object.option_list.0.option_item_id]}
                  {section var=option_item loop=$product_item.item_object.option_list}
                     <tr>
-                        <td rowspan="4" class="product-cell">
+                        <td rowspan="4" class="cart_item">
                         {if $vary.image|is_object(true)}
                             {if $vary.image.current.data_map.image.has_content}
                             {attribute_view_gui image_class=small attribute=$vary.image.current.data_map.image}

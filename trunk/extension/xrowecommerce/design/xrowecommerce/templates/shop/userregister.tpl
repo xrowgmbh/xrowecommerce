@@ -58,13 +58,11 @@
     	<div class="labelbreak"></div>
     	<input type="text" name="FirstName" id="firstname" value="{$first_name|wash}" />
     </div>
-
 	<div class="ur_mi">
     	<label>{'MI'|i18n('design/standard/user')}</label>
     	<div class="labelbreak"></div>
     	<input class="halfbox" type="text" name="MI" id="mi" size="2" value="{$mi|wash}" />
     </div>
-
     <div class="ur_lastname">
     	<label><span class="required">*</span>{'Last name'|i18n('design/standard/user')}</label>
     	<div class="labelbreak"></div>
@@ -232,7 +230,7 @@
         {def $country=$country_default_ini}
     {/if}
     {def $countries=fetch( 'content', 'country_list', array(false, false))}
-            <select name="Country" id="country" style="width: 170px;" onchange="shipping(this.value);">
+            <select name="Country" id="country" onchange="shipping(this.value);">
                 <option value="">&nbsp;</option>
                 {foreach $countries as $country_list_item}
                 {if $country_list_item.Alpha3|eq('')}{set $country_list_item_code=$country_list_item.Alpha2}{else}{set $country_list_item_code=$country_list_item.Alpha3}{/if}

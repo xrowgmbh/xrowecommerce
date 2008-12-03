@@ -23,13 +23,13 @@
         <th>
         {"Item"|i18n("design/base/shop")}
         </th>
-        <th align="right">
+        <th>
         {"Tax"|i18n("design/base/shop")}
         </th>
-        <th align="right">
+        <th>
         {"Price"|i18n("design/base/shop")}
         </th>
-        <th align="right">
+        <th class="totalprice">
         {"Total Price"|i18n("design/base/shop")}
         </th>
     </tr>
@@ -38,8 +38,8 @@
         <td class="{$product_item.sequence} product-name basketspace" align="center" valign="top">
             {$product_item.item_count}
         </td>
-        <td class="{$product_item.sequence} basketspace">
- {include uri="design:shop/product_cell_view.tpl"}
+        <td class="{$product_item.sequence} basketspace cart_item">
+            {include uri="design:shop/product_cell_view.tpl"}
         </td>
         <td valign="top" class="basketspace">
         {$product_item.vat_value} %
@@ -48,7 +48,7 @@
         <td valign="top" class="basketspace">
         {$product_item.price_ex_vat|l10n( 'currency', $locale, $symbol )}
         </td>
-        <td valign="top" class="basketspace">
+        <td valign="top" class="basketspace totalprice">
         {$product_item.total_price_ex_vat|l10n( 'currency', $locale, $symbol )}
         </td>
      </tr>
@@ -57,7 +57,7 @@
 		<td class="line" colspan="4">
          	{"Subtotal ex. tax"|i18n("design/base/shop")}:
         </td>
-        <td colspan="5" class="align_right line">
+        <td class="totalprice line">
              <strong class="price">{$order.product_total_ex_vat|l10n( 'currency', $locale, $symbol )}</strong>
         </td>
      </tr>
@@ -66,7 +66,7 @@
         <td class="{$OrderItem:sequence}" colspan="4">
         {$OrderItem:item.description}:
         </td>
-        <td class="{$OrderItem:sequence} align_right">
+        <td class="{$OrderItem:sequence}">
         {$OrderItem:item.price_ex_vat|l10n( 'currency', $locale, $symbol )}
         </td>
     </tr>
@@ -78,7 +78,7 @@
     <td class="{$OrderItem:sequence} line3" colspan ="4">
     {'Tax'|i18n('design/standard/shop')}
     </td>
-    <td class="{$OrderItem:sequence} align_right">
+    <td class="{$OrderItem:sequence} totalprice">
     {sub($order.total_inc_vat, $order.total_ex_vat)|l10n( 'currency', $locale, $symbol )}
     </td>
 </tr>
@@ -87,7 +87,7 @@
         <td class="price line" colspan="4">
         {"Order total"|i18n("design/base/shop")}
         </td>
-        <td class="price align_right line">
+        <td class="price totalprice line">
         <strong>{$order.total_inc_vat|l10n( 'currency', $locale, $symbol )}</strong>
         </td>
     </tr>

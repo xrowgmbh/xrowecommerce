@@ -6,9 +6,9 @@
 <table class="shop-account" width="100%" cellspacing="0" cellpadding="0" border="0">
 <tr><td>
     <table class="order_box">
-    	<tr><th colspan="2">{"Customer"|i18n("design/standard/shop")}</th></tr>
+        <tr><th colspan="2">{"Customer"|i18n("design/standard/shop")}</th></tr>
 {if and( eq(ezini( 'Settings', 'CompanyName', 'xrowecommerce.ini' ), 'enabled' ), $order.account_information.companyname)}
-    	<tr><td class="bold">{'Company'|i18n('design/standard/shop')}: </td><td>{$order.account_information.companyname}</td></tr>
+        <tr><td class="bold">{'Company'|i18n('design/standard/shop')}: </td><td>{$order.account_information.companyname}</td></tr>
 {/if}
 {if and( eq(ezini( 'Settings', 'CompanyAdditional', 'xrowecommerce.ini' ), 'enabled' ), $order.account_information.companyadditional)}
         <tr><td class="bold">{'Company additional information'|i18n('design/standard/shop')}: </td><td>{$order.account_information.companyadditional}</td></tr>
@@ -16,9 +16,9 @@
                 {if and( eq(ezini( 'Settings', 'TaxID', 'xrowecommerce.ini' ), 'enabled' ), $order.account_information.tax_id)}
                     <tr><td class="bold">{'Tax ID'|i18n('design/standard/shop')}: </td><td>{$order.account_information.tax_id}</td></tr>
                 {/if}
-    	<tr><td class="bold">{'Name'|i18n('design/standard/shop')}: </td><td>{$order.account_information.first_name} {$order.account_information.last_name}</td></tr>
-    	<tr><td class="bold">{'Email'|i18n('design/standard/shop')}: </td><td>{$order.account_information.email}</td></tr>
-    	</table>
+        <tr><td class="bold">{'Name'|i18n('design/standard/shop')}: </td><td>{$order.account_information.first_name} {$order.account_information.last_name}</td></tr>
+        <tr><td class="bold">{'Email'|i18n('design/standard/shop')}: </td><td>{$order.account_information.email}</td></tr>
+        </table>
         {if and( eq( $fetchStoredTransaction, true), ne( $order.account_information.ezauthorize_card_date, '') )}
         {def $key = ezini( 'eZGPGSettings', 'KeyID', 'ezgpg.ini' )}
         
@@ -84,9 +84,9 @@
                 <tr><td class="bold">{'Shipping'|i18n('design/standard/shop')}:</td>
                 <td>
                 {foreach  $shiplist as $method}
-                {if $method.identifier|eq($order.account_information.shippingtype)}
-                {$method.name}
-                {/if}
+                    {if $method.identifier|eq($order.account_information.shippingtype)}
+                       $method.name}
+                    {/if}
                 {/foreach}
                 </td></tr>
             </table>
