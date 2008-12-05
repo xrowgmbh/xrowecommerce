@@ -45,9 +45,7 @@ for (i = 0; i < field.length; i++)
 <div class="shop-basket">
 {include uri="design:shop/basket_navigator.tpl" step='1'}
 <div class="break"></div>
-{if $basket.items}
     {include uri="design:shop/basket_catalogue_order.tpl"}
-{/if}
 
     <form method="post" name="basket" action={"/shop/basket/"|ezurl}>
         <h2>{"Shopping Cart"|i18n("design/base/shop")}</h2>
@@ -233,7 +231,7 @@ for (i = 0; i < field.length; i++)
          {if $user.contentobject.id|eq(10)}
                     <div>
                         <div class="loginbox">
-                            <p>{'Already a user?"|i18n("design/standard/user",'User name')}</p>
+                            <p>{'Already a user?'|i18n("design/standard/user",'User name')}</p>
                             <form method="post" action={"user/login"|ezurl}">
                                 <div class="loginbox_wrap">
                                     <label for="id1">{"Username"|i18n("extension/xrowecommerce",'User name')}</label><div class="labelbreak"></div>
@@ -244,15 +242,14 @@ for (i = 0; i < field.length; i++)
                                     <input type="password" name="Password" id="id2" value="" tabindex="1" />
                                 </div>
                                 <div>
-                                    <input class="standard" type="submit" name="LoginButton" value="{'Login'|i18n('design/standard/user','Button')}" tabindex="1">
+                                    <input class="standard smallbutton" type="submit" name="LoginButton" value="{'Login'|i18n('design/standard/user','Button')}" tabindex="1">
                                 </div>
-                                <input type="hidden" name="RedirectURI" value={"shop/userregister"|ezurl} />
+                                <input type="hidden" name="RedirectURI" value={"xrowecommerce/userregister"|ezroot} />
                              </form>
                         </div>
                     </div>
         {/if}
     {/if}
-
     {undef $currency $locale $symbol}
     {else}
 </form>

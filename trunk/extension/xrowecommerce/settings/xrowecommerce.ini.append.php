@@ -6,8 +6,7 @@ Coupon=disabled
 Catalogueorder=disabled
 CompanyName=disabled
 CompanyAdditional=disabled
-MI=disabled
-TaxID=dis
+TaxID=disabled
 Fax=enabled
 # Please use an override instead
 
@@ -20,6 +19,6 @@ Fax=enabled
 
 [BasketInformation]
 DisplayTax=disabled
-DisplayLogin=disabled
+DisplayLogin=enabled
 
 */ ?>
