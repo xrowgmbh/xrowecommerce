@@ -9,6 +9,7 @@
         <th class="price"><p>{"Price in €"|i18n("design/base/shop")}</p></th>
         <th class="optional"><p>{"Delete"|i18n("design/base/shop")}</p></th>
     </tr>
+
     <tr>
         <td><input type="text" size="12" value="" name="KatalogueSearchText" id="kalaogue_searchtext"/></td>
         <td><input id="catalogue_button" class="smallbutton" type="submit" alt="Submit" value="{"Search"|i18n("design/base/shop")}"/></td>
@@ -17,4 +18,5 @@
         <td><p class="optional">{"please type in an article number"|i18n("design/base/shop")}</p></td>
         <td><input id="catalogue_delete_button" class="button" type="submit" alt="Submit" value="{"Add Catalogue Item"|i18n("design/base/shop")}"/></td>
     </tr>
+
 </table>

@@ -15,3 +15,4 @@
 </form>
 </div>
 
+{$event|attribute(show, 2)}
