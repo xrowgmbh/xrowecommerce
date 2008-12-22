@@ -182,13 +182,9 @@
 
     {/let}
 	</td>
-{* BC:Original Text Link
-	<td><a href={concat( '/layout/set/print/shop/orderview/', $Orders.item.id, '/?print=1', )|ezurl} target="_blank">print #{$Orders.item.order_nr}</a></td>
-	<td><a href={concat( '/layout/set/print/shop/orderview/', $Orders.item.id, '/?print=1', )|ezurl} target="_blank">Print #{$Orders.item.order_nr}</a></td>
-*}
 	<td>
-	<a href={concat( '/layout/set/print/shop/orderview/', $Orders.item.id, '/?print=1', )|ezurl} target="_blank"><img src={'print_printer.32x32.png'|ezimage} height="28" width="28" alt="" title=""></a>
-	<a href={concat( '/orderedit/edit/', $Orders.item.order_nr)|ezurl}><img src={'images/txt2.png'|ezdesign}  alt="Edit shippingcosts" title="Edit shippingcosts"></a>
+    <a href={concat( 'xrowecommerce/invoiceprint/', $Orders.item.id )|ezurl} target="_blank"><img src={'print_printer.32x32.png'|ezimage} height="28" width="28" alt="" title=""></a>
+	<a href={concat( 'orderedit/edit/', $Orders.item.order_nr)|ezurl}><img src={'images/txt2.png'|ezdesign}  alt="Edit shippingcosts" title="Edit shippingcosts"></a>
 	</td>
 </tr>
 {/section}
