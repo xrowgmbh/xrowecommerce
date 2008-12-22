@@ -45,17 +45,17 @@ for (i = 0; i < field.length; i++)
 <div class="shop-basket">
 {include uri="design:shop/basket_navigator.tpl" step='1'}
 <div class="break"></div>
-<h1>{"Shopping Cart"|i18n("design/base/shop")}</h1>
+<h1>{"Shopping Cart"|i18n("extension/xrowecommerce")}</h1>
 {if ezini( 'Settings', 'Catalogueorder', 'xrowecommerce.ini' )|eq('enabled')}
     {include uri="design:shop/basket_catalogue_order.tpl"}
-	<h2>{"Shopping Cart"|i18n("design/base/shop")}</h2>
+	<h2>{"Shopping Cart"|i18n("extension/xrowecommerce")}</h2>
 {/if}
 
     <form method="post" name="basket" action={"shop/basket/"|ezurl}>
         
         {if $removed_items}
             <div class="warning">
-            <h2>{"The following items were removed from your cart, because the products were changed"|i18n("design/base/shop",,)}</h2>
+            <h2>{"The following items were removed from your cart, because the products were changed"|i18n("extension/xrowecommerce",,)}</h2>
                 <ul>
                     {foreach $removed_items as $item}
                     <li>
@@ -70,30 +70,30 @@ for (i = 0; i < field.length; i++)
 
     {if not( $vat_is_known )}
         <div class="message-warning">
-            <h2>{'Tax is unknown'|i18n('design/base/shop')}</h2>
-            {'Tax percentage is not yet known for some of the items being purchased.'|i18n( 'design/base/shop' )}
-            {'This probably means that some information about you is not yet available and will be obtained during checkout.'|i18n( 'design/base/shop' )}
+            <h2>{'Tax is unknown'|i18n('extension/xrowecommerce')}</h2>
+            {'Tax percentage is not yet known for some of the items being purchased.'|i18n( 'extension/xrowecommerce' )}
+            {'This probably means that some information about you is not yet available and will be obtained during checkout.'|i18n( 'extension/xrowecommerce' )}
         </div>
 
     {/if}
     {section show=$error}
         <div class="error">
             {section show=$error|eq(1)}
-                <h2>{"Attempted to add object without price to basket."|i18n("design/base/shop",,)}</h2>
+                <h2>{"Attempted to add object without price to basket."|i18n("extension/xrowecommerce",,)}</h2>
             {/section}
         </div>
     {/section}
     {section show=$error}
         <div class="error">
             {section show=eq($error, "aborted")}
-                <h2>{"Your payment was aborted."|i18n("design/base/shop",,)}</h2>
+                <h2>{"Your payment was aborted."|i18n("extension/xrowecommerce",,)}</h2>
             {/section}
         </div>
     {/section}
     {if $basket.items}
     <div class="buttonblock">
 
-        <input class="right-arrow smallbutton" type="submit" name="ContinueShoppingButton" value="{'Continue'|i18n("design/ezwebin/shop/basket")}" />
+        <input class="right-arrow smallbutton" type="submit" name="ContinueShoppingButton" value="{'Continue'|i18n("extension/xrowecommerce")}" />
         
         <input type="submit" class="right-arrow smallbutton" name="StoreChangesButton" value="Update" title="Use this button to update your shopping cart." />
         <input type="submit" class="right-arrow2 smallbutton" name="CheckoutButton" value="Checkout" title="Use this button to place your order." />
@@ -115,24 +115,24 @@ for (i = 0; i < field.length; i++)
     <table class="order">
         <tr class="lightbg">
             <th>
-                {"Quantity"|i18n("design/base/shop")}
+                {"Quantity"|i18n("extension/xrowecommerce")}
             </th>
             <th>
-                {"Item"|i18n("design/base/shop")}
+                {"Item"|i18n("extension/xrowecommerce")}
             </th>
           {if eq(ezini( 'BasketInformation', 'DisplayTax', 'xrowecommerce.ini' ), 'enabled' )}
             <th>
-                {"Tax"|i18n("design/base/shop")}
+                {"Tax"|i18n("extension/xrowecommerce")}
             </th>
           {/if}
             <th>
-                {"Unit Price"|i18n("design/base/shop")}
+                {"Unit Price"|i18n("extension/xrowecommerce")}
             </th>
             <th class="totalprice">
-                {"Total Price"|i18n("design/base/shop")}
+                {"Total Price"|i18n("extension/xrowecommerce")}
             </th>
             <th>
-                {"Remove"|i18n("design/base/shop")}
+                {"Remove"|i18n("extension/xrowecommerce")}
             </th>
         </tr>
         {section var=product_item loop=$basket.items sequence=array(bglight,bgdark)}
@@ -221,7 +221,7 @@ for (i = 0; i < field.length; i++)
             <tr class="grandtotal-line">
                 <td {if eq(ezini( 'BasketInformation', 'DisplayTax', 'xrowecommerce.ini' ), 'enabled' )}colspan="4"{else}colspan="3"{/if} class="align_right">
                     <b class="price">
-                        {'Total'|i18n( 'design/ezwebin/shop/basket' )}:
+                        {'Total'|i18n( 'extension/xrowecommerce' )}:
                     </b>
                 </td>
                 <td class="totalprice">
@@ -238,7 +238,7 @@ for (i = 0; i < field.length; i++)
          {if $user.contentobject.id|eq(ezini( 'UserSettings', 'AnonymousUserID' ))}
                     <div>
                         <div class="loginbox">
-                            <p>{'Already a user?'|i18n("design/standard/user",'User name')}</p>
+                            <p>{'Already a user?'|i18n("extension/xrowecommerce",'User name')}</p>
                             <form method="post" action={"user/login"|ezurl}">
                                 <div class="loginbox_wrap">
                                     <label for="id1">{"Username"|i18n("extension/xrowecommerce",'User name')}</label><div class="labelbreak"></div>
@@ -249,7 +249,7 @@ for (i = 0; i < field.length; i++)
                                     <input type="password" name="Password" id="id2" value="" tabindex="1" />
                                 </div>
                                 <div>
-                                    <input class="standard smallbutton" type="submit" name="LoginButton" value="{'Login'|i18n('design/standard/user','Button')}" tabindex="1">
+                                    <input class="standard smallbutton" type="submit" name="LoginButton" value="{'Login'|i18n('extension/xrowecommerce','Button')}" tabindex="1">
                                 </div>
                                 <input type="hidden" name="RedirectURI" value={"xrowecommerce/userregister"|ezroot} />
                              </form>
@@ -264,7 +264,7 @@ for (i = 0; i < field.length; i++)
         {*<form method="post" name="basket" action={"shop/basket/"|ezurl}> eZ Bug ContinueShoppingButton redirects to basket page*}
         <form method="get" name="basket" action={"/"|ezurl}>
             <div class="buttonblock">
-                <input class="right-arrow smallbutton" type="submit" name="ContinueShoppingButton" value="{'Continue'|i18n("design/ezwebin/shop/basket")}" />
+                <input class="right-arrow smallbutton" type="submit" name="ContinueShoppingButton" value="{'Continue'|i18n("extension/xrowecommerce")}" />
             </div>
             <p><b>{"You have no items in your shopping cart"|i18n("extension/xrowecommerce")}</b></p>
         </form>

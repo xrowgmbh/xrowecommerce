@@ -1,6 +1,6 @@
 {def $node=fetch( 'content', 'node', hash( 'node_id', $node_id ) )}
 <form method="post" action={"xrowecommerce/multiadd"|ezurl}>
-<input type="submit" class="flat-right" name="ActionAddToBasket" value="{"Add to cart"|i18n("design/ezwebin/full/product")}" />
+<input type="submit" class="flat-right" name="ActionAddToBasket" value="{"Add to cart"|i18n("extension/xrowecommerce")}" />
 <input type="hidden" name="ContentNodeID" value="{$node.node_id}" />
 <input type="hidden" name="ContentObjectID" value="{$node.object.id}" />
 <input type="hidden" name="ViewMode" value="full" />
@@ -61,7 +61,7 @@ $products=fetch( content, tree,
 {if $child.data_map.image.has_content}
 {attribute_view_gui attribute=$child.data_map.image image_class=tooltip}
 {else}
-<div class="nopic attribute-image"><img src={'nopic_130.gif'|ezimage()} alt="{'No image aviable'|i18n('design/xrowecommerce')}" /></div>
+<div class="nopic attribute-image"><img src={'nopic_130.gif'|ezimage()} alt="{'No image aviable'|i18n('extension/xrowecommerce')}" /></div>
 {/if}
 <p>{attribute_view_gui attribute=$child.data_map.short_description}</p>
 <p>{attribute_view_gui attribute=$child.data_map.description}</p>
@@ -106,7 +106,7 @@ $products=fetch( content, tree,
 {if $child.data_map.image.has_content}
 {attribute_view_gui attribute=$child.data_map.image image_class=tooltip}
 {else}
-<div class="nopic attribute-image"><img src={'nopic_130.gif'|ezimage()} alt="{'No image aviable'|i18n('design/xrowecommerce')}" /></div>
+<div class="nopic attribute-image"><img src={'nopic_130.gif'|ezimage()} alt="{'No image aviable'|i18n('extension/xrowecommerce')}" /></div>
 {/if}
 <p>{attribute_view_gui attribute=$child.data_map.short_description}</p>
 <p>{attribute_view_gui attribute=$child.data_map.description}</p>
@@ -137,7 +137,7 @@ $products=fetch( content, tree,
                          item_count=$products_count
                          view_parameters=$view_parameters
                          item_limit=$page_limit}
-<input type="submit" class="flat-right" name="ActionAddToBasket" value="{"Add to cart"|i18n("design/ezwebin/full/product")}" />
+<input type="submit" class="flat-right" name="ActionAddToBasket" value="{"Add to cart"|i18n("extension/xrowecommerce")}" />
 </form>
 {undef}
 

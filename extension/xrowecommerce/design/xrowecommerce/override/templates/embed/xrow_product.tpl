@@ -4,7 +4,7 @@
         {if $object.data_map.image.has_content}
             {attribute_view_gui image_class=listitem attribute=$object.data_map.image href=$object.main_node.url_alias|ezurl()}
         {else}
-           <div class="nopic"><a href={$object.main_node.url_alias|ezurl}><img src={'nopic_95.gif'|ezimage()} alt="{'No image aviable'|i18n('design/xrowecommerce')}" /></a></div>
+           <div class="nopic"><a href={$object.main_node.url_alias|ezurl}><img src={'nopic_95.gif'|ezimage()} alt="{'No image aviable'|i18n('extension/xrowecommerce')}" /></a></div>
         {/if}
         <p><a href={$object.main_node.url_alias|ezurl}>{$object.name|wash()|shorten(40)}</a></p>
         <div class="attribute-short">
@@ -25,7 +25,7 @@
                 {/if}
                 {if or( $partprice|gt(0), $allprice|gt(0) ) }
                 {if $partprice|gt(0)}
-                    <span class="currentprice">{'starting at'|i18n('design/base/shop')} {$partprice|l10n( 'currency' )}</span>
+                    <span class="currentprice">{'starting at'|i18n('extension/xrowecommerce')} {$partprice|l10n( 'currency' )}</span>
                 {/if}
                 {if $allprice|gt(0)}
                     <span class="currentprice">{$allprice|l10n( 'currency' )}</span>

@@ -1,5 +1,5 @@
 <div class="shop-basket">
-    <h1>{"Order Receipt #%order_id "|i18n("design/base/shop",,
+    <h1>{"Order Receipt #%order_id "|i18n("extension/xrowecommerce",,
          hash( '%order_id', $order.order_nr,
                '%order_status', $order.status_name ) )}</h1>
 
@@ -15,22 +15,22 @@
     {/if}
 
     <table class="order">
-    <caption>{"Product items"|i18n("design/base/shop")}</caption>
+    <caption>{"Product items"|i18n("extension/xrowecommerce")}</caption>
     <tr class="lightbg">
         <th>
-        {"Quantity"|i18n("design/base/shop")}
+        {"Quantity"|i18n("extension/xrowecommerce")}
         </th>
         <th>
-        {"Item"|i18n("design/base/shop")}
+        {"Item"|i18n("extension/xrowecommerce")}
         </th>
         <th>
-        {"Tax"|i18n("design/base/shop")}
+        {"Tax"|i18n("extension/xrowecommerce")}
         </th>
         <th>
-        {"Price"|i18n("design/base/shop")}
+        {"Price"|i18n("extension/xrowecommerce")}
         </th>
         <th class="totalprice">
-        {"Total Price"|i18n("design/base/shop")}
+        {"Total Price"|i18n("extension/xrowecommerce")}
         </th>
     </tr>
     {foreach $order.product_items as $product_item sequence array(bglight,bgdark) as $sequence}
@@ -55,7 +55,7 @@
      {/foreach}
      <tr class="subtotal-line">
 		<td  colspan="4">
-         	{"Subtotal ex. tax"|i18n("design/base/shop")}
+         	{"Subtotal ex. tax"|i18n("extension/xrowecommerce")}
         </td>
         <td class="align_right totalprice">
              <strong class="price">{$order.product_total_ex_vat|l10n( 'currency', $locale, $symbol )}</strong>
@@ -76,7 +76,7 @@
      {if $taxpercent|eq(0)|not}
 <tr>
     <td class="{$sequence} line" colspan ="4">
-    {'Tax'|i18n('design/standard/shop')}
+    {'Tax'|i18n('extension/xrowecommerce')}
     </td>
     <td class="{$sequence} line align_right totalprice">
     {sub($order.total_inc_vat, $order.total_ex_vat)|l10n( 'currency', $locale, $symbol )}
@@ -85,7 +85,7 @@
 {/if}
     <tr class="grandtotal-line">
         <td colspan="4">
-        {"Order total"|i18n("design/base/shop")}
+        {"Order total"|i18n("extension/xrowecommerce")}
         </td>
         <td class="align_right totalprice">
         <strong>{$order.total_inc_vat|l10n( 'currency', $locale, $symbol )}</strong>

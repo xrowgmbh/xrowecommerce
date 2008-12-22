@@ -128,80 +128,8 @@
 <context>
     <name>design/admin/shop/accounthandlers/html/ez</name>
     <message>
-        <source>Name</source>
-        <translation>Name</translation>
-    </message>
-    <message>
-        <source>E-mail</source>
-        <translation>Email</translation>
-    </message>
-    <message>
-        <source>Address</source>
-        <translation>Adresse</translation>
-    </message>
-    <message>
-        <source>Company name</source>
-        <translation>Firmenname</translation>
-    </message>
-    <message>
-        <source>Form of enterprise</source>
-        <translation>Unternehmensform</translation>
-    </message>
-    <message>
-        <source>Tax ID</source>
-        <translation>Steuernummer</translation>
-    </message>
-    <message>
-        <source>First Name</source>
-        <translation>Vorname</translation>
-    </message>
-    <message>
-        <source>Last Name</source>
-        <translation>Nachname</translation>
-    </message>
-    <message>
-        <source>Address 1</source>
-        <translation>Adresszeile 1</translation>
-    </message>
-    <message>
-        <source>Address 2</source>
-        <translation>Adresszeile 2</translation>
-    </message>
-    <message>
-        <source>City</source>
-        <translation>Stadt</translation>
-    </message>
-    <message>
-        <source>State</source>
-        <translation>Bundesland</translation>
-    </message>
-    <message>
-        <source>Zip Code</source>
-        <translation>Postleitzahl</translation>
-    </message>
-    <message>
-        <source>Country</source>
-        <translation>Land</translation>
-    </message>
-    <message>
-        <source>Fax</source>
-        <translation>Fax</translation>
-    </message>
-    <message>
-        <source>Phone</source>
-        <translation>Telefon</translation>
-    </message>
-    <message>
-        <source>Shipping Type</source>
-        <translation>Versandart</translation>
-    </message>
-    <message>
         <source>Payment information</source>
         <translation>Zahlungsart</translation>
-    </message>
-    <message>
-        <source>Authorize.net : Transaction ID</source>
-        <translation>Authorize.net : Transaktionsnummer</translation>
     </message>
     <message>
         <source>Card Holder&apos;s Name</source>
@@ -214,25 +142,6 @@
     <message>
         <source>Card Expiration Date</source>
         <translation>Gültig bis</translation>
-    </message>
-    <message>
-        <source>Card Type</source>
-        <translation>Kartentyp</translation>
-    </message>
-    <message>
-        <source>Refund Order</source>
-        <translation>Rückerstattung</translation>
-    </message>
-</context>
-<context>
-    <name>design/admin/shop/basket</name>
-    <message>
-        <source>Shipping</source>
-        <translation>Versand</translation>
-    </message>
-    <message>
-        <source>Order total</source>
-        <translation>Bestellsumme</translation>
     </message>
 </context>
 <context>
@@ -559,227 +468,137 @@
         <source>E-mail</source>
         <translation>Email</translation>
     </message>
+    <message>
+        <source>Packing slip</source>
+        <translation>Packzettel</translation>
+    </message>
+    <message>
+        <source>Invoice</source>
+        <translation>Rechnung</translation>
+    </message>
+    <message>
+        <source>Next Day Service</source>
+        <translation>Lieferung am nächsten Tag</translation>
+    </message>
+    <message>
+        <source>2nd Day Service</source>
+        <translation>Lieferung am 2. Tag</translation>
+    </message>
+    <message>
+        <source>UPS Ground (USA only)</source>
+        <translation>UPS Einzugsbereich (Nur USA)</translation>
+    </message>
+    <message>
+        <source>UPS Next Business Day Air (USA only)</source>
+        <translation>UPS Lieferung am nächsten Tag per Luftpost (Nur USA)</translation>
+    </message>
+    <message>
+        <source>UPS 2nd Business Day Air (USA only)</source>
+        <translation>UPS Lieferung in 2 Werktagen per Luftpost (Nur USA)</translation>
+    </message>
+    <message>
+        <source>USPS Express Mail International (EMS)</source>
+        <translation>USPS Internationaler Expressversand (EMS)</translation>
+    </message>
+    <message>
+        <source>USPS Global Express Guaranteed</source>
+        <translation>USPS weltweite versicherte Expresslieferung</translation>
+    </message>
+    <message>
+        <source>Unknown Shipping</source>
+        <translation>Lieferkosten unbekannt</translation>
+    </message>
+    <message>
+        <source>Ship to</source>
+        <translation>Lieferung an</translation>
+    </message>
 </context>
 <context>
-    <name>design/base</name>
+    <name>extension/xrowecommerce</name>
     <message>
-        <source>Cancel</source>
-        <translation>Abbrechen</translation>
+        <source>Fraud detected</source>
+        <translation>Betrug festgestellt</translation>
     </message>
     <message>
-        <source>Add to Automatic Delivery</source>
-        <translation>Zur automatischen Auslieferung hinzufügen</translation>
-    </message>
-    <message>
-        <source>Check out</source>
-        <translation>Bezahlen</translation>
-    </message>
-</context>
-<context>
-    <name>design/base/shop</name>
-    <message>
-        <source>Shopping Cart</source>
-        <translation>Warenkorb</translation>
-    </message>
-    <message>
-        <source>The following items were removed from your cart, because the products were changed</source>
-        <translation>Die folgenden Artikel wurden von Ihrem Warenkorb enfernd, da die Produkte verändert wurden</translation>
-    </message>
-    <message>
-        <source>Tax is unknown</source>
-        <translation>Steuer ist unbekannt</translation>
-    </message>
-    <message>
-        <source>Tax percentage is not yet known for some of the items being purchased.</source>
-        <translation>Die Höhe der Steuer ist für einige der gekauften Artikel noch nicht bekannt.</translation>
-    </message>
-    <message>
-        <source>This probably means that some information about you is not yet available and will be obtained during checkout.</source>
-        <translation>Dies bedeutet möglicherweise, dass einige Informationen über Sie noch nicht verfügbar sind, aber später während des Bezahlvorgangs abgerufen werden.</translation>
-    </message>
-    <message>
-        <source>Attempted to add object without price to cart.</source>
-        <translation>Sie haben versucht einen Artikel ohne Preis zum Wahrenkorb hinzuzufügen.</translation>
-    </message>
-    <message>
-        <source>Your payment was aborted.</source>
-        <translation>Der Bezahlvorgang wurde abgebrochen.</translation>
-    </message>
-    <message>
-        <source>Quantity</source>
-        <translation>Anzahl</translation>
-    </message>
-    <message>
-        <source>Item</source>
-        <translation>Artikel</translation>
-    </message>
-    <message>
-        <source>Tax</source>
-        <translation>Steuer</translation>
-    </message>
-    <message>
-        <source>Unit Price</source>
-        <translation>Stückpreis</translation>
-    </message>
-    <message>
-        <source>Discount</source>
-        <translation>Rabatt</translation>
-    </message>
-    <message>
-        <source>Total Price</source>
-        <translation>Gesamtpreis</translation>
-    </message>
-    <message>
-        <source>Remove</source>
-        <translation>Entfernen</translation>
+        <source>Please contact customer support. We are blocking your ordering attempts for the next 24 hours.</source>
+        <translation>Bitte wenden Sie sich an die Kundenbetreuung. Bestellversuche Ihrerseits werden für die nächsten 24 Stunden blockiert.</translation>
     </message>
     <message>
         <source>unknown</source>
         <translation>unbekannt</translation>
     </message>
     <message>
+        <source>Shipping</source>
+        <translation>Versand</translation>
+    </message>
+    <message>
+        <source>Order total</source>
+        <translation>Gesamtbestellung</translation>
+    </message>
+    <message>
         <source>Subtotal Ex. Tax</source>
         <translation>Zwischensumme ohne MwSt</translation>
     </message>
     <message>
-        <source>You have no products in your cart</source>
-        <translation>Es befinden sich keine Artikel im Warenkorb</translation>
+        <source>Estimated Shipping and Handling</source>
+        <translation>Versand und Verpackung kosten voraussichtlich</translation>
+    </message>
+    <message>
+        <source>Estimated Tax</source>
+        <translation>Steuer beträgt voraussichtlich</translation>
+    </message>
+    <message>
+        <source>Username</source>
+        <comment>User name</comment>
+        <translation>Benutzername</translation>
+    </message>
+    <message>
+        <source>Password</source>
+        <translation>Passwort</translation>
+    </message>
+    <message>
+        <source>You have no items in your shopping cart</source>
+        <translation>Sie haben keine Artikel im Einkaufswagen</translation>
+    </message>
+    <message>
+        <source>Cart</source>
+        <translation>Einkaufswagen</translation>
+    </message>
+    <message>
+        <source>Billing, Shipping and Coupons</source>
+        <translation>Rechnungs-, Versandinformationen und Coupons</translation>
+    </message>
+    <message>
+        <source>Billing and Shipping</source>
+        <translation>Versand- und Rechnungsinformationen</translation>
+    </message>
+    <message>
+        <source>Confirmation</source>
+        <translation>Bestätigung</translation>
+    </message>
+    <message>
+        <source>Payment</source>
+        <translation>Bezahlung</translation>
+    </message>
+    <message>
+        <source>Order completed</source>
+        <translation>Bestellung abgeschlossen</translation>
+    </message>
+    <message>
+        <source>Reciept</source>
+        <translation>Beleg</translation>
     </message>
     <message>
         <source>Confirm order</source>
         <translation>Bestellvorgang abschließen</translation>
     </message>
     <message>
-        <source>Cancel</source>
-        <translation>Abbrechen</translation>
+        <source>Sorry, there are no items left in your cart.</source>
+        <translation>Sie haben keine Artikel im Einkaufswagen.</translation>
     </message>
     <message>
-        <source>Confirm</source>
-        <translation>Bestätigen</translation>
-    </message>
-    <message>
-        <source>Product items</source>
-        <translation>Produkte</translation>
-    </message>
-    <message>
-        <source>Subtotal Ex. TAX</source>
-        <translation>Zwischensumme ohne MwSt</translation>
-    </message>
-    <message>
-        <source>Order summary</source>
-        <translation>Bestellzusammenfassung</translation>
-    </message>
-    <message>
-        <source>Subtotal of items ex. Tax</source>
-        <translation>Zwischensumme der Artikel ohne MwSt</translation>
-    </message>
-    <message>
-        <source>Order total</source>
-        <translation>Bestellsumme</translation>
-    </message>
-    <message>
-        <source>Order Reciept #%order_id </source>
-        <translation>Bestellbeleg #%order_id </translation>
-    </message>
-    <message>
-        <source>TAX</source>
-        <translation>Steuer</translation>
-    </message>
-    <message>
-        <source>Price</source>
-        <translation>Preis</translation>
-    </message>
-    <message>
-        <source>Subtotal of items Ex. Taxt</source>
-        <translation>Zwischensumme der Artikel ohne MwSt</translation>
-    </message>
-    <message>
-        <source>Continue</source>
-        <translation>Fortfahren</translation>
-    </message>
-    <message>
-        <source>no Image</source>
-        <translation>kein Bild</translation>
-    </message>
-    <message>
-        <source>starting at</source>
-        <translation>ab</translation>
-    </message>
-    <message>
-        <source>starting at </source>
-        <translation>ab</translation>
-    </message>
-    <message>
-        <source>read more</source>
-        <translation>mehr Infos</translation>
-    </message>
-    <message>
-        <source>Attempted to add object without price to basket.</source>
-        <translation>Sie haben versucht ein Produkt ohne Preis zum Warenkorb hinzuzufügen.</translation>
-    </message>
-    <message>
-        <source>1. Cart</source>
-        <translation>1. Warenkorb</translation>
-    </message>
-    <message>
-        <source>2. Billing, Shipping and Coupons</source>
-        <translation>2. Rechnungsdaten, Versandart und Gutscheine</translation>
-    </message>
-    <message>
-        <source>3. Confirmation</source>
-        <translation>3. Bestätigung</translation>
-    </message>
-    <message>
-        <source>4. Payment info</source>
-        <translation>4. Bezahlungsinformationen</translation>
-    </message>
-    <message>
-        <source>5. Order completed</source>
-        <translation>5. Bestellvorgang abgeschlossen</translation>
-    </message>
-    <message>
-        <source>6. Review reciept</source>
-        <translation>6. Abrechnungsbeleg einsehen</translation>
-    </message>
-    <message>
-        <source>Hazardous item(s) found in your cart</source>
-        <translation>Gefahrengüter im Warenkorb gefunden</translation>
-    </message>
-    <message>
-        <source>Dear Customer,</source>
-        <translation>Sehr geehrter Kunde,</translation>
-    </message>
-    <message>
-        <source>We&apos;ve removed the following hazardous items from your shopping cart since we are NOT allowed to ship these items to your destination. For further questions please contact</source>
-        <translation>Wir haben folgenden als gefährlich eingestuften Artikel aus Ihrem Warenkorb enfernt, da es uns nicht erlaubt ist diesen Artikel in Ihr Land zu liefern</translation>
-    </message>
-    <message>
-        <source>Weight</source>
-        <translation>Gewicht</translation>
-    </message>
-    <message>
-        <source>lbs</source>
-        <translation>Pfund</translation>
-    </message>
-    <message>
-        <source>My Account</source>
-        <translation>Mein Bestellkonto</translation>
-    </message>
-    <message>
-        <source>Validation error</source>
-        <translation>Fehler bei der Gültigkeitsüberprüfung</translation>
-    </message>
-    <message>
-        <source>Input did not validate, all fields marked with</source>
-        <translation>Einige Angaben sind ungültig. Bitte füllen Sie alle Felder aus, die mit einem</translation>
-    </message>
-    <message>
-        <source>must be filled in.</source>
-        <translation>markiert wurden.</translation>
-    </message>
-    <message>
-        <source>Please enter your billing address exactly as it appears on your credit card statement.</source>
-        <translation>Bitte tragen Sie Ihre Rechnungsdaten so ein, wie sie auf der Kreditkartenangabe eingetragen sind.</translation>
+        <source>Input did not validate, all fields marked with %mark% must be filled in.</source>
+        <translation>Eingabe ungültig, alle Felder mit %mark% müssen ausgefüllt werden.</translation>
     </message>
     <message>
         <source>Select a payment method</source>
@@ -789,55 +608,74 @@
         <source>Please select your desired payment method below.</source>
         <translation>Bitte wählen Sie unten die gewünschte Bezahlungsmethode.</translation>
     </message>
-</context>
-<context>
-    <name>design/ezwebin/full/product</name>
     <message>
-        <source>Add to Shopping Cart</source>
-        <translation>Dem Warenkorb hinzufügen</translation>
+        <source>Select</source>
+        <translation>Auswählen</translation>
     </message>
     <message>
-        <source>People who bought this also bought</source>
-        <translation>Kunden, die diesen Artikel gekauft haben, kauften auch</translation>
+        <source>Cancel</source>
+        <translation>Abbrechen</translation>
     </message>
     <message>
-        <source>Basket</source>
-        <translation>Warenkorb</translation>
+        <source>Quantity</source>
+        <translation>Anzahl</translation>
     </message>
     <message>
-        <source>Details</source>
-        <translation>Details</translation>
+        <source>SKU</source>
+        <translation>Artikelnummer</translation>
     </message>
     <message>
-        <source>Add to cart</source>
-        <translation>Dem Warenkorb hinzufügen</translation>
-    </message>
-</context>
-<context>
-    <name>design/ezwebin/shop/basket</name>
-    <message>
-        <source>Estimated Tax</source>
-        <translation>Steuer beträgt voraussichtlich</translation>
+        <source>Product</source>
+        <translation>Produkt</translation>
     </message>
     <message>
-        <source>Estimated Shipping and Handling</source>
-        <translation>Versand und Verpackung kosten voraussichtlich</translation>
+        <source>Unit price</source>
+        <translation>Einzelpreis</translation>
     </message>
     <message>
-        <source>Total</source>
-        <translation>Summe</translation>
+        <source>Extended price</source>
+        <translation>Erweiterter Preis</translation>
     </message>
     <message>
-        <source>Weight</source>
-        <translation>Gewicht</translation>
+        <source>Tax</source>
+        <translation>Steuer</translation>
     </message>
     <message>
-        <source>lbs</source>
-        <translation>Pfund</translation>
+        <source>Phone</source>
+        <translation>Telefon</translation>
     </message>
-</context>
-<context>
-    <name>design/standard/shop</name>
+    <message>
+        <source>Website</source>
+        <translation>Internetseite</translation>
+    </message>
+    <message>
+        <source>starting at</source>
+        <translation>ab</translation>
+    </message>
+    <message>
+        <source>read more</source>
+        <translation>mehr Infos</translation>
+    </message>
+    <message>
+        <source>Type</source>
+        <translation>Eintippen</translation>
+    </message>
+    <message>
+        <source>Any</source>
+        <translation>Irgendwelche</translation>
+    </message>
+    <message>
+        <source>Add to Automatic Delivery</source>
+        <translation>Zur automatischen Auslieferung hinzufügen</translation>
+    </message>
+    <message>
+        <source>Update Cart</source>
+        <translation>Warenkorb aktualisieren</translation>
+    </message>
+    <message>
+        <source>Check out</source>
+        <translation>Bezahlen</translation>
+    </message>
     <message>
         <source>Customer</source>
         <translation>Kunde</translation>
@@ -847,11 +685,11 @@
         <translation>Firmenname</translation>
     </message>
     <message>
-        <source>Form of enterprise</source>
+        <source>Company additional information</source>
         <translation>Unternehmensform</translation>
     </message>
     <message>
-        <source>TaxID</source>
+        <source>Tax ID</source>
         <translation>Steuernummer</translation>
     </message>
     <message>
@@ -864,7 +702,7 @@
     </message>
     <message>
         <source>Delivery &amp; Shipping Address</source>
-        <translation>Lieferadresse</translation>
+        <translation>Versand &amp; Lieferadresse</translation>
     </message>
     <message>
         <source>Address</source>
@@ -887,18 +725,6 @@
         <translation>Land</translation>
     </message>
     <message>
-        <source>Phone</source>
-        <translation>Telefon</translation>
-    </message>
-    <message>
-        <source>Fax</source>
-        <translation>Fax</translation>
-    </message>
-    <message>
-        <source>Shipping</source>
-        <translation>Versand</translation>
-    </message>
-    <message>
         <source>Billing Address</source>
         <translation>Rechnungsadresse</translation>
     </message>
@@ -907,75 +733,22 @@
         <translation>Versandadresse</translation>
     </message>
     <message>
+        <source>Already a user?</source>
+        <comment>User name</comment>
+        <translation>Bereigs Kunde?</translation>
+    </message>
+    <message>
+        <source>Login</source>
+        <comment>Button</comment>
+        <translation>Login Button</translation>
+    </message>
+    <message>
         <source>Order</source>
         <translation>Bestellung</translation>
     </message>
     <message>
         <source>Product items</source>
         <translation>Produkte</translation>
-    </message>
-    <message>
-        <source>Update Cart</source>
-        <translation>Warenkorb aktualisieren</translation>
-    </message>
-    <message>
-        <source>Form</source>
-        <translation>Formular</translation>
-    </message>
-    <message>
-        <source>1. Cart</source>
-        <translation>1. Warenkorb</translation>
-    </message>
-    <message>
-        <source>2. Billing, Shipping and Coupons</source>
-        <translation>2. Rechnungsdaten, Versandart und Gutscheine</translation>
-    </message>
-    <message>
-        <source>3. Confirmation</source>
-        <translation>3. Bestätigung</translation>
-    </message>
-    <message>
-        <source>4. Payment info</source>
-        <translation>4. Rechnungsdaten</translation>
-    </message>
-    <message>
-        <source>5. Order completed</source>
-        <translation>5. Bestellvorgang abgeschlossen</translation>
-    </message>
-    <message>
-        <source>Weight</source>
-        <translation>Gewicht</translation>
-    </message>
-    <message>
-        <source>lbs</source>
-        <translation>Pfund</translation>
-    </message>
-    <message>
-        <source>Subtotal Ex. TAX</source>
-        <translation>Zwischensumme ohne MwSt</translation>
-    </message>
-    <message>
-        <source>Tax</source>
-        <translation>Steuer</translation>
-    </message>
-</context>
-<context>
-    <name>design/standard/user</name>
-    <message>
-        <source>Username</source>
-        <comment>User name</comment>
-        <translation>Benutzername</translation>
-    </message>
-    <message>
-        <source>Password</source>
-        <translation>Passwort</translation>
-    </message>
-    <message>
-        <source>Login</source>
-        <comment>Button</comment>
-        <translation>Login
-
-Button</translation>
     </message>
     <message>
         <source>Billing Information</source>
@@ -1010,24 +783,12 @@ Button</translation>
         <translation>Adresszeile 2</translation>
     </message>
     <message>
-        <source>City / Town</source>
-        <translation>Stadt</translation>
-    </message>
-    <message>
         <source>State / Province</source>
         <translation>Bundesland</translation>
     </message>
     <message>
-        <source>Zip / Postcode</source>
-        <translation>Postleitzahl</translation>
-    </message>
-    <message>
-        <source>Country</source>
-        <translation>Land</translation>
-    </message>
-    <message>
-        <source>Phone</source>
-        <translation>Telefon</translation>
+        <source>ZIP</source>
+        <translation>PLZ</translation>
     </message>
     <message>
         <source>Fax</source>
@@ -1038,20 +799,20 @@ Button</translation>
         <translation>Email</translation>
     </message>
     <message>
-        <source>Shipping</source>
-        <translation>Versand</translation>
+        <source>Coupon</source>
+        <translation>Gutschein</translation>
     </message>
     <message>
         <source>Please enter your coupon code exactly as it appears on your promotion.</source>
         <translation>Bitte geben Sie den Code ein, der auf Ihrem Gutschein steht.</translation>
     </message>
     <message>
-        <source>Coupon</source>
-        <translation>Gutschein</translation>
-    </message>
-    <message>
         <source>My billing and shipping addresses are identical.</source>
         <translation>Rechnungs- und Lieferadresse sind gleich.</translation>
+    </message>
+    <message>
+        <source>Zip</source>
+        <translation>PLZ</translation>
     </message>
     <message>
         <source>Verification</source>
@@ -1114,7 +875,7 @@ Button</translation>
     </message>
     <message>
         <source>Login</source>
-        <translation>Login</translation>
+        <translation>Einloggen</translation>
     </message>
     <message>
         <source>Confirm Password</source>
@@ -1122,7 +883,7 @@ Button</translation>
     </message>
     <message>
         <source>Please enter your billing address exactly as it appears on your credit card statement.</source>
-        <translation>Bitte geben Sie Ihre Rechnungsadresse an, wie sie auch auf Ihrer Kreditkartenbestätigung steht.</translation>
+        <translation>Bitte geben Sie den Code ein, der auf Ihrem Gutschein steht.</translation>
     </message>
     <message>
         <source>Input did not validate</source>
@@ -1137,91 +898,192 @@ Button</translation>
         <translation>Unternehmensform</translation>
     </message>
     <message>
-        <source>Tax ID</source>
-        <translation>Steuernummer</translation>
+        <source>City / Town</source>
+        <translation>Stadt</translation>
+    </message>
+    <message>
+        <source>Zip / Postcode</source>
+        <translation>Postleitzahl</translation>
     </message>
     <message>
         <source>Shipping Information</source>
         <translation>Versandadresse</translation>
     </message>
-</context>
-<context>
-    <name>design/standard/workflow</name>
     <message>
-        <source>Cancel</source>
-        <translation>Abbrechen</translation>
+        <source>No image aviable</source>
+        <translation>Kein Bild verfügbar</translation>
     </message>
     <message>
-        <source>Select</source>
-        <translation>Auswählen</translation>
-    </message>
-</context>
-<context>
-    <name>design/standard/workflow/eventtype/edit</name>
-    <message>
-        <source>Type</source>
-        <translation>Eintippen</translation>
+        <source>Image</source>
+        <translation>Bild</translation>
     </message>
     <message>
-        <source>Any</source>
-        <translation>Irgendwelche</translation>
-    </message>
-</context>
-<context>
-    <name>design/standard/workflow/eventtype/view</name>
-    <message>
-        <source>Type</source>
-        <translation>Eintippen</translation>
+        <source>Number</source>
+        <translation>Nummer</translation>
     </message>
     <message>
-        <source>Any</source>
-        <translation>Irgendwelche</translation>
-    </message>
-</context>
-<context>
-    <name>extension/order/invoice</name>
-    <message>
-        <source>Quantity</source>
-        <translation>Anzahl</translation>
+        <source>Item</source>
+        <translation>Artikel</translation>
     </message>
     <message>
-        <source>SKU</source>
+        <source>Description</source>
+        <translation>Beschreibung</translation>
+    </message>
+    <message>
+        <source>Price</source>
+        <translation>Preis</translation>
+    </message>
+    <message>
+        <source>Add to Shopping Cart</source>
+        <translation>Dem Warenkorb hinzufügen</translation>
+    </message>
+    <message>
+        <source>People who bought this also bought</source>
+        <translation>Kunden, die diesen Artikel gekauft haben, kauften auch</translation>
+    </message>
+    <message>
+        <source>Basket</source>
+        <translation>Warenkorb</translation>
+    </message>
+    <message>
+        <source>Details</source>
+        <translation>Details</translation>
+    </message>
+    <message>
+        <source>Add to cart</source>
+        <translation>Dem Warenkorb hinzufügen</translation>
+    </message>
+    <message>
+        <source>Shopping Cart</source>
+        <translation>Warenkorb</translation>
+    </message>
+    <message>
+        <source>The following items were removed from your cart, because the products were changed</source>
+        <translation>Die folgenden Artikel wurden von Ihrem Warenkorb enfernd, da die Produkte verändert wurden</translation>
+    </message>
+    <message>
+        <source>Tax is unknown</source>
+        <translation>Steuer ist unbekannt</translation>
+    </message>
+    <message>
+        <source>Tax percentage is not yet known for some of the items being purchased.</source>
+        <translation>Die Höhe der Steuer ist für einige der gekauften Artikel noch nicht bekannt.</translation>
+    </message>
+    <message>
+        <source>This probably means that some information about you is not yet available and will be obtained during checkout.</source>
+        <translation>Dies bedeutet möglicherweise, dass einige Informationen über Sie noch nicht verfügbar sind, aber später während des Bezahlvorgangs abgerufen werden.</translation>
+    </message>
+    <message>
+        <source>Attempted to add object without price to basket.</source>
+        <translation>Sie haben versucht ein Produkt ohne Preis zum Warenkorb hinzuzufügen.</translation>
+    </message>
+    <message>
+        <source>Your payment was aborted.</source>
+        <translation>Der Bezahlvorgang wurde abgebrochen.</translation>
+    </message>
+    <message>
+        <source>Continue</source>
+        <translation>Fortfahren</translation>
+    </message>
+    <message>
+        <source>Unit Price</source>
+        <translation>Stückpreis</translation>
+    </message>
+    <message>
+        <source>Total Price</source>
+        <translation>Gesamtpreis</translation>
+    </message>
+    <message>
+        <source>Remove</source>
+        <translation>Entfernen</translation>
+    </message>
+    <message>
+        <source>Total</source>
+        <translation>Summe</translation>
+    </message>
+    <message>
+        <source>Add Catalogue Order</source>
+        <translation>Katalognummer hinzufügen</translation>
+    </message>
+    <message>
+        <source>Article Number</source>
         <translation>Artikelnummer</translation>
     </message>
     <message>
-        <source>Product</source>
-        <translation>Produkt</translation>
+        <source>Search</source>
+        <translation>Suchen</translation>
     </message>
     <message>
-        <source>Unit price</source>
-        <translation>Einzelpreis</translation>
+        <source>Notation</source>
+        <translation>Vermerk</translation>
     </message>
     <message>
-        <source>Extended price</source>
-        <translation>Erweiterter Preis</translation>
+        <source>Price in ?</source>
+        <translation>Preis in ?</translation>
     </message>
     <message>
-        <source>Subtotal Ex. Tax</source>
+        <source>Delete</source>
+        <translation>Löschen</translation>
+    </message>
+    <message>
+        <source>please type in an article number</source>
+        <translation>Bitte geben Sie eine artikelnummer ein</translation>
+    </message>
+    <message>
+        <source>Add Catalogue Item</source>
+        <translation>Katalogartikel hinzufügen</translation>
+    </message>
+    <message>
+        <source>Confirm</source>
+        <translation>Bestätigen</translation>
+    </message>
+    <message>
+        <source>Hazardous item(s) found in your cart.</source>
+        <translation>Gefahrengüter in Ihrem Einkaufswagen festgestellt.</translation>
+    </message>
+    <message>
+        <source>Dear Customer,</source>
+        <translation>Sehr geehrter Kunde,</translation>
+    </message>
+    <message>
+        <source>We&apos;ve removed the following hazardous items from your shopping cart since we are not allowed to ship these items to your destination. For further questions please contact %companyname%.</source>
+        <translation>Wir haben die folgenden Gefahrengüter aus Ihren Einkaufswagen entfernt, da wir diese nicht zu Ihnen exportieren dürfen. Für weitere Anweisungen oder Fragen kontaktieren Sie bitte %companyname%.</translation>
+    </message>
+    <message>
+        <source>Subtotal ex. tax</source>
         <translation>Zwischensumme ohne MwSt</translation>
     </message>
     <message>
-        <source>Tax</source>
-        <translation>Steuer</translation>
+        <source>Order Receipt #%order_id </source>
+        <translation>Bestellbeleg Nr %order_id</translation>
     </message>
     <message>
-        <source>Order total</source>
-        <translation>Bestellsumme</translation>
-    </message>
-</context>
-<context>
-    <name>extension/xrowecommerce</name>
-    <message>
-        <source>Fraud detected</source>
-        <translation>Betrug festgestellt</translation>
+        <source>SKU number</source>
+        <translation>Artikelnummer</translation>
     </message>
     <message>
-        <source>Please contact customer support. We are blocking your ordering attempts for the next 24 hours.</source>
-        <translation>Bitte wenden Sie sich an die Kundenbetreuung. Bestellversuche Ihrerseits werden für die nächsten 24 Stunden blockiert.</translation>
+        <source>Weight</source>
+        <translation>Gewicht</translation>
+    </message>
+    <message>
+        <source>lbs</source>
+        <translation>Pfund</translation>
+    </message>
+    <message>
+        <source>My Account</source>
+        <translation>Mein Bestellkonto</translation>
+    </message>
+    <message>
+        <source>Validation error</source>
+        <translation>Fehler bei der Gültigkeitsüberprüfung</translation>
+    </message>
+    <message>
+        <source>Validation errors</source>
+        <translation>Fehler bei der Gültigkeitsüberprüfung</translation>
+    </message>
+    <message>
+        <source>A click on the image enlarges the image in a popup</source>
+        <translation>Klicken Sie auf das Bild um es in einem neuen Fenster zu vergrößern</translation>
     </message>
 </context>
 <context>
@@ -1244,7 +1106,7 @@ Button</translation>
     </message>
     <message>
         <source>Orderitem</source>
-        <translation>Bestellung</translation>
+        <translation>Bestellter Artikel</translation>
     </message>
     <message>
         <source>Zero weight prods</source>
@@ -1253,6 +1115,10 @@ Button</translation>
     <message>
         <source>Tax listing</source>
         <translation>Steuerliste</translation>
+    </message>
+    <message>
+        <source>Order #%order_id</source>
+        <translation>Bestellung Nr %order_id</translation>
     </message>
     <message>
         <source>Statistics</source>

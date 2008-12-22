@@ -30,21 +30,21 @@
                    {/switch}
                        
                        {else}
-                       <div class="nopic"><img src={'nopic_130.gif'|ezimage()} alt="{'No image aviable'|i18n('design/xrowecommerce')}" /></div>
+                       <div class="nopic"><img src={'nopic_130.gif'|ezimage()} alt="{'No image aviable'|i18n('extension/xrowecommerce')}" /></div>
                        {/if}
                    {/if}
 				</div>
                <p class="product-link"><a class="basketlink" href={concat("/content/view/full/",$prod.node_id)|ezurl} title="Product link">{$prod.name|wash()}</a></p>
                
                <p class="product-id">
-                   {'SKU number'|i18n("design/ezwebin/shop/basket")}<br /> {$product_item.item_object.contentobject.data_map.product_id.content|wash()}{$option_item.value}
+                   {'SKU number'|i18n("extension/xrowecommerce")}<br /> {$product_item.item_object.contentobject.data_map.product_id.content|wash()}{$option_item.value}
                </p>
                <p class="product-description">
                    {$vary.comment}
                </p>
                {if $vary.weight}
 <p class="product-weight">
-                   {'Weight'|i18n("design/ezwebin/shop/basket")}: {$vary.weight|wash()} {'lbs'|i18n("design/ezwebin/shop/basket")}
+                   {'Weight'|i18n("extension/xrowecommerce")}: {$vary.weight|wash()} {'lbs'|i18n("extension/xrowecommerce")}
                </p>
                {/if}
                {/foreach}
@@ -66,14 +66,14 @@
                         {/case}
                    {/switch}
                    {else}
-                   <div class="nopic"><img src={'nopic_95.gif'|ezimage()} alt="{'No image aviable'|i18n('design/xrowecommerce')}" /></div>
+                   <div class="nopic"><img src={'nopic_95.gif'|ezimage()} alt="{'No image aviable'|i18n('extension/xrowecommerce')}" /></div>
                    {/if}
                    </div>
                    <p class="product-link">
                     <a class="basketlink" href={concat("/content/view/full/",$prod.node_id)|ezurl}>{$prod.name|wash()}</a>
                    </p>
 	<p class="product-id">
-		{'SKU number'|i18n("design/ezwebin/shop/basket")}<br />{$prod.data_map.product_id.content|wash()}{$prod.data_map.variation.content.name}
+		{'SKU number'|i18n("extension/xrowecommerce")}<br />{$prod.data_map.product_id.content|wash()}{$prod.data_map.variation.content.name}
 	</p>
 	<p class="product-description">
                    {def $vary=$product_item.item_object.contentobject.data_map.variation.content.option_list[$product_item.item_object.option_list.0.option_item_id]}
@@ -81,7 +81,7 @@
                	</p>
                {if $prod.data_map.weight}
 <p class="product-weight">
-                   {'Weight'|i18n("design/ezwebin/shop/basket")}: {attribute_view_gui attribute=$prod.data_map.weight} {'lbs'|i18n("design/ezwebin/shop/basket")}
+                   {'Weight'|i18n("extension/xrowecommerce")}: {attribute_view_gui attribute=$prod.data_map.weight} {'lbs'|i18n("extension/xrowecommerce")}
                </p>
                {/if}
                {/if}

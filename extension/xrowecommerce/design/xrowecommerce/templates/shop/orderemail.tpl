@@ -1,4 +1,4 @@
-+{set-block scope=root variable=subject}{ezini( 'InvoiceSettings', 'CompanyName', 'order.ini'  )} {"Order"|i18n("design/standard/shop")} #{$order.order_nr}{/set-block}
++{set-block scope=root variable=subject}{ezini( 'InvoiceSettings', 'CompanyName', 'order.ini'  )} {"Order"|i18n("extension/xrowecommerce")} #{$order.order_nr}{/set-block}
 Thank you for ordering from {ezini( 'InvoiceSettings', 'CompanyName', 'order.ini'  )}.
 
 The details of the order are below.  If you have a question, please do not reply to this email.
@@ -16,7 +16,7 @@ Date: {$timestamp|l10n( 'datetime' )}
 
 
 
-{"Product items"|i18n("design/standard/shop")}
+{"Product items"|i18n("extension/xrowecommerce")}
 ----------------------------------------------
 
 

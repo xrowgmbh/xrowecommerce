@@ -108,7 +108,7 @@
 </tr>
 <tr>
 <td colspan="2">
-<input class="button" type="submit" name="CancelButton" value="{'Cancel'|i18n('design/standard/workflow')}" />
+<input class="button" type="submit" name="CancelButton" value="{'Cancel'|i18n('extension/xrowecommerce')}" />
 <input class="button" type="submit" name="validate" value="Submit" />
 </td>
 </tr>

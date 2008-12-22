@@ -576,7 +576,7 @@
     </message>
 </context>
 <context>
-    <name>design/base/shop</name>
+    <name>extension/xrowecommerce</name>
     <message>
         <source>Shopping Cart</source>
         <translation type="unfinished"></translation>
@@ -1175,7 +1175,7 @@
     </message>
 </context>
 <context>
-    <name>extension/order/invoice</name>
+    <name>extension/xrowecommerce</name>
     <message>
         <source>Quantity</source>
         <translation type="unfinished"></translation>
@@ -1221,7 +1221,7 @@
     </message>
 </context>
 <context>
-    <name>kernel/shop</name>
+    <name>extension/xrowecommerce</name>
     <message>
         <source>Enter account information</source>
         <translation type="unfinished"></translation>
@@ -1256,7 +1256,7 @@
     </message>
 </context>
 <context>
-    <name>kernel/workflow/event</name>
+    <name>extension/xrowecommerce</name>
     <message>
         <source>Inventory Manager</source>
         <translation type="unfinished"></translation>

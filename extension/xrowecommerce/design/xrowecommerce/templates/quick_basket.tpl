@@ -50,8 +50,8 @@
       <td><b>{$basket.total_inc_vat|l10n(currency)}</b></td>
       </tr>
     </table><br />
-    <input class="flat-right2" type="submit" name="StoreChangesButton" value="{'Update Cart'|i18n('design/standard/shop')}" />
-    <input type="submit" class="flat-right" name="CheckoutButton" value="{"Check out"|i18n("design/base")}" />
+    <input class="flat-right2" type="submit" name="StoreChangesButton" value="{'Update Cart'|i18n('extension/xrowecommerce')}" />
+    <input type="submit" class="flat-right" name="CheckoutButton" value="{"Check out"|i18n("extension/xrowecommerce")}" />
 </form>
 {else}
 <p class="price">Your cart is empty.</p><br />

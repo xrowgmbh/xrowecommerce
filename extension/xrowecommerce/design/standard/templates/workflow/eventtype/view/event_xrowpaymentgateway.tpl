@@ -2,10 +2,10 @@
 
 <div class="element">
 {let selectedGatewaysTypes=$event.selected_gateways_types}
-{"Type"|i18n("design/standard/workflow/eventtype/view")}:
+{"Type"|i18n("extension/xrowecommerce")}:
 
 {section show=$selectedGatewaysTypes|contains(-1)}
-{"Any"|i18n("design/standard/workflow/eventtype/view")}
+{"Any"|i18n("extension/xrowecommerce")}
 {section-else}
 
 {let comma=false()}

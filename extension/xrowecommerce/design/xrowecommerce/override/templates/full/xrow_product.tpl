@@ -12,7 +12,7 @@
             <div class="image-description-wrap">
             {if $node.data_map.image.has_content}
             <div class="attribute-image">
-                <a href="javascript:;" onclick="return enlargeImage('/{$node.data_map.image.content.reference.full_path}',{$node.data_map.image.content.reference.width},{$node.data_map.image.content.reference.height},'{$node.data_map.image.content.reference.text|wash(javascript)}');" title="{$node.data_map.image.content.reference.text|wash} | {"A click on the image enlarges the image in a popup"|i18n( 'kaiser')}">
+                <a href="javascript:;" onclick="return enlargeImage('/{$node.data_map.image.content.reference.full_path}',{$node.data_map.image.content.reference.width},{$node.data_map.image.content.reference.height},'{$node.data_map.image.content.reference.text|wash(javascript)}');" title="{$node.data_map.image.content.reference.text|wash} | {"A click on the image enlarges the image in a popup"|i18n( 'extension/xrowecommerce')}">
                     {attribute_view_gui
                             attribute=$node.data_map.image
                             image_class=product_large
@@ -26,7 +26,7 @@
                 {/if}
             </div>
             {else}
-            <div class="nopic attribute-image"><img src={'nopic_130.gif'|ezimage()} alt="{'No image aviable'|i18n('design/xrowecommerce')}" /></div>
+            <div class="nopic attribute-image"><img src={'nopic_130.gif'|ezimage()} alt="{'No image aviable'|i18n('extension/xrowecommerce')}" /></div>
             {/if}
             <div class="description-wrap">
                     <div class="attribute-short">
@@ -52,7 +52,7 @@
                 {/if}
                 {if or( $partprice|gt(0), $allprice|gt(0) ) }
                 {if $partprice|gt(0)}
-                    <span class="currentprice">{'starting at '|i18n('design/base/shop')} {$partprice|l10n( 'currency' )}</span>
+                    <span class="currentprice">{'starting at'|i18n('extension/xrowecommerce')} {$partprice|l10n( 'currency' )}</span>
                 {/if}
                 {if $allprice|gt(0)}
                     <span class="currentprice">{$allprice|l10n( 'currency' )}</span>
@@ -68,14 +68,14 @@
 <div>
                 <table class="list" summary="This table contains information about the product, like image, product number, description and the form to orderthe product.">
                     <tr>
-                        <th>{'Image'|i18n('design/xrowecommerce')}</th>
-                        <th>{'Number'|i18n('design/xrowecommerce')}</th>
+                        <th>{'Image'|i18n('extension/xrowecommerce')}</th>
+                        <th>{'Number'|i18n('extension/xrowecommerce')}</th>
                         {if $node.data_map.variation.content.option_list|count|gt(0)}
-                        <th>{'Item'|i18n('design/xrowecommerce')}</th>
-                        <th>{'Description'|i18n('design/xrowecommerce')}</th>
+                        <th>{'Item'|i18n('extension/xrowecommerce')}</th>
+                        <th>{'Description'|i18n('extension/xrowecommerce')}</th>
                         {/if}
-                        <th>{'Quantity'|i18n('design/xrowecommerce')}</th>
-                        <th>{'Price'|i18n('design/xrowecommerce')}</th>
+                        <th>{'Quantity'|i18n('extension/xrowecommerce')}</th>
+                        <th>{'Price'|i18n('extension/xrowecommerce')}</th>
                     </tr>
                     {if $node.data_map.variation.content.option_list|count|gt(0)}
                     {section var=Options loop=$node.data_map.variation.content.option_list}
@@ -84,7 +84,7 @@
                            {if $Options.item.image|is_object(true)}
                            {attribute_view_gui image_class=galleryline attribute=$Options.item.image.current.data_map.image}
                            {else}
-                           <div class="s_nopic"><img src={'nopic_70.gif'|ezimage()} alt="{'No image aviable'|i18n('design/xrowecommerce')}" /></div>
+                           <div class="s_nopic"><img src={'nopic_70.gif'|ezimage()} alt="{'No image aviable'|i18n('extension/xrowecommerce')}" /></div>
                            {/if}
                         </td>
                        <td>
@@ -126,7 +126,7 @@
                 </table>
                 <div class="block">
                     <div class="right">
-                        <input type="submit" class="right-arrow" name="ActionAddToBasket" value="{"Add to Shopping Cart"|i18n("design/ezwebin/full/product")}" />
+                        <input type="submit" class="right-arrow" name="ActionAddToBasket" value="{"Add to Shopping Cart"|i18n("extension/xrowecommerce")}" />
                     </div>
                 </div>
                 <div class="attribute-multi-options">
@@ -137,7 +137,7 @@
             {def $user=fetch( 'user', 'current_user' )}
             {if and($node.data_map.recurring.content|not(), $user.is_logged_in)}
                 <p>Add your selections to <a id="show_auto_tip">Automatic Delivery</a>?</p>
-                <input class="flat-right2 block" type="submit" onclick="document.buy.action='{"recurringorders/add"|ezurl(no)}'; document.buy.submit(); return true;" name="ActionAddToRecurring" value="{"Add to Automatic Delivery"|i18n("design/base")}" />
+                <input class="flat-right2 block" type="submit" onclick="document.buy.action='{"recurringorders/add"|ezurl(no)}'; document.buy.submit(); return true;" name="ActionAddToRecurring" value="{"Add to Automatic Delivery"|i18n("extension/xrowecommerce")}" />
             {elseif $node.data_map.recurring.content|not()}
                 <div id="headingp2">**Note**</div>
                 <p>This product is available for <a id="show_auto_tip">Automatic Delivery</a>. To add this product to your Automatic Delivery you have to <a href={'user/login'|ezurl}>login</a>.</p>
@@ -155,7 +155,7 @@
             {def $related_purchase=fetch( 'shop', 'related_purchase', hash( 'contentobject_id', $node.object.id, 'limit', 2 ) )}
             {if $related_purchase}
             <div class="attribute-short-wide">
-                <h2 class="uppercase">{'People who bought this also bought'|i18n( 'design/ezwebin/full/product' )}</h2>
+                <h2 class="uppercase">{'People who bought this also bought'|i18n( 'extension/xrowecommerce' )}</h2>
                 {foreach $related_purchase as $product}
                     <span>{content_view_gui view=text_linked content_object=$product}</span>
                     <p class="price">{attribute_view_gui attribute=$product.data_map.price}</p>
