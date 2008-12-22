@@ -1,7 +1,7 @@
 <div class="paymentmethodselection">
 <h1>{'Select a payment method'|i18n('extension/xrowecommerce')}</h1>
 
-{include uri="design:shop/basket_navigator.tpl" step='3'}
+{include uri="design:shop/basket_navigator.tpl" step='4'}
 
     <p>{'Please select your desired payment method below.'|i18n('extension/xrowecommerce')}</p>
 <form method="post" action={"shop/checkout"|ezurl}>
@@ -14,5 +14,3 @@
     </div>
 </form>
 </div>
-
-{$event|attribute(show, 2)}

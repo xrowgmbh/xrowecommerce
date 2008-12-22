@@ -1,5 +1,5 @@
 <div class="shop-basket">
-    <h1>{"Order Reciept #%order_id "|i18n("design/base/shop",,
+    <h1>{"Order Receipt #%order_id "|i18n("design/base/shop",,
          hash( '%order_id', $order.order_nr,
                '%order_status', $order.status_name ) )}</h1>
 
@@ -33,71 +33,69 @@
         {"Total Price"|i18n("design/base/shop")}
         </th>
     </tr>
-    {section var=product_item loop=$order.product_items sequence=array(bglight,bgdark)}
-    <tr>
-        <td class="{$product_item.sequence} product-name basketspace" align="center" valign="top">
+    {foreach $order.product_items as $product_item sequence array(bglight,bgdark) as $sequence}
+    <tr class="product-line">
+        <td class="{$product_item.sequence} product-name basketspace">
             {$product_item.item_count}
         </td>
         <td class="{$product_item.sequence} basketspace cart_item">
-            {include uri="design:shop/product_cell_view.tpl"}
+            {include uri="design:shop/product_cell_view.tpl" product_item=$product_item}
         </td>
-        <td valign="top" class="basketspace">
+        <td class="basketspace">
         {$product_item.vat_value} %
 
         </td>
-        <td valign="top" class="basketspace">
+        <td class="basketspace">
         {$product_item.price_ex_vat|l10n( 'currency', $locale, $symbol )}
         </td>
-        <td valign="top" class="basketspace totalprice">
+        <td class="align_right basketspace totalprice">
         {$product_item.total_price_ex_vat|l10n( 'currency', $locale, $symbol )}
         </td>
      </tr>
-     {/section}
-     <tr>
-		<td class="line" colspan="4">
-         	{"Subtotal ex. tax"|i18n("design/base/shop")}:
+     {/foreach}
+     <tr class="subtotal-line">
+		<td  colspan="4">
+         	{"Subtotal ex. tax"|i18n("design/base/shop")}
         </td>
-        <td class="totalprice line">
+        <td class="align_right totalprice">
              <strong class="price">{$order.product_total_ex_vat|l10n( 'currency', $locale, $symbol )}</strong>
         </td>
      </tr>
-    {section name=OrderItem loop=$order.order_items show=$order.order_items sequence=array(bglight,bgdark)}
-    <tr>
-        <td class="{$OrderItem:sequence}" colspan="4">
-        {$OrderItem:item.description}:
+    {foreach $order.order_items as $OrderItem sequence array(bglight,bgdark) as $sequence}
+    <tr class="orderitem-line">
+        <td class="{$sequence} line" colspan="4">
+        {$OrderItem.description}
         </td>
-        <td class="{$OrderItem:sequence}">
-        {$OrderItem:item.price_ex_vat|l10n( 'currency', $locale, $symbol )}
+        <td class="{$sequence} align_right line">
+        {$OrderItem.price_ex_vat|l10n( 'currency', $locale, $symbol )}
         </td>
     </tr>
-    {/section}
+    {/foreach}
     {def $taxpercent = mul( div(sub($order.total_inc_vat, $order.total_ex_vat), $order.total_ex_vat), 100)
      $percentage = mul( div(sub($order.total_inc_vat, $order.total_ex_vat), $order.total_ex_vat), 100)|l10n('number') }
      {if $taxpercent|eq(0)|not}
 <tr>
-    <td class="{$OrderItem:sequence} line3" colspan ="4">
+    <td class="{$sequence} line" colspan ="4">
     {'Tax'|i18n('design/standard/shop')}
     </td>
-    <td class="{$OrderItem:sequence} totalprice">
+    <td class="{$sequence} line align_right totalprice">
     {sub($order.total_inc_vat, $order.total_ex_vat)|l10n( 'currency', $locale, $symbol )}
     </td>
 </tr>
 {/if}
-    <tr>
-        <td class="price line" colspan="4">
+    <tr class="grandtotal-line">
+        <td colspan="4">
         {"Order total"|i18n("design/base/shop")}
         </td>
-        <td class="price totalprice line">
+        <td class="align_right totalprice">
         <strong>{$order.total_inc_vat|l10n( 'currency', $locale, $symbol )}</strong>
         </td>
     </tr>
 </table>
 
-
-{def $user_city=wrap_user_func('getXMLString', array('city', $order.data_text_1))}
-{def $user_state=wrap_user_func('getXMLString', array('state', $order.data_text_1))}
-
-{def $user_country=wrap_user_func('getXMLString', array('country', $order.data_text_1))}
+{def $user_city=fetch( 'xrowecommerce', 'get_shopaccount_value', hash( 'name','city', 'order', $order) )}
+{def $user_state=fetch( 'xrowecommerce', 'get_shopaccount_value', hash( 'name','state', 'order', $order) )}
+{def $user_country=fetch( 'xrowecommerce', 'get_shopaccount_value', hash( 'name','country', 'order', $order) )}
 
 <script type="text/javascript">
 var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");

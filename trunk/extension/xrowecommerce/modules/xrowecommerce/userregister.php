@@ -230,6 +230,10 @@ if ( $module->isCurrentAction( 'Store' ) )
         
         $root = $doc->createElementNode( "shop_account" );
         $doc->setRoot( $root );
+
+        $siteaccessNode = $doc->createElementNode( "siteaccess" );
+        $siteaccessNode->appendChild( $doc->createTextNode( $GLOBALS['eZCurrentAccess']['name'] ) );
+        $root->appendChild( $siteaccessNode );
         
         $companyNameNode = $doc->createElementNode( "company_name" );
         $companyNameNode->appendChild( $doc->createTextNode( $companyName ) );

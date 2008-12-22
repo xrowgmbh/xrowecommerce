@@ -13,7 +13,7 @@
 <li>{'Input did not validate, all fields marked with %mark% must be filled in.'|i18n('extension/xrowecommerce', , hash( '%mark%', '<span class="required">*</span>' ))}</li>
 </ul>
 </div>
-{/section}
+{/if}
 
 {if $errors}
 <div class="warning">

@@ -1,3 +1,10 @@
+{def $currency = fetch( 'shop', 'currency', hash( 'code', $order.productcollection.currency_code ) )
+     $locale = false()
+     $symbol = false()}
+{if $currency}
+    {set locale = $currency.locale
+         symbol = $currency.symbol}
+{/if}
 <form name="contentserver" method="post" action={'orderedit/edit'|ezurl}>
 
 <div class="context-block">
@@ -38,14 +45,14 @@
 <tr class="bglight">
     <th scope="row">Original price:</th>
     <td>
-        $ {$orderitem.price}
+        {$orderitem.price|l10n( 'currency', $locale, $symbol )}
     </td>
 </tr>
 
 <tr class="bglight">
     <th scope="row">Price:</th>
     <td>
-        $ <input type="text" name="price_{$orderitem.id}" value="{$orderitem.price}" size="10" />
+        {$symbol} <input type="text" name="price_{$orderitem.id}" value="{$orderitem.price}" size="10" />
     </td>
 </tr>
 

@@ -49,61 +49,59 @@
                         {"Total Price"|i18n("design/base/shop")}
                     </th>
                 </tr>
-                {section var=product_item loop=$order.product_items sequence=array(bglight,bgdark)}
-                <tr>
-                   <td class="{$product_item.sequence} product-name basketspace">
+                {foreach $order.product_items as $product_item sequence array(bglight,bgdark) as $sequence}
+                <tr class="product-line">
+                   <td class="{$sequence} product-name basketspace">
                         <b>{$product_item.item_count}</b>
                     </td>
-                   <td class="{$product_item.sequence} product-name basketspace cart_item">
+                   <td class="{$sequence} product-name basketspace cart_item">
                     {include uri="design:shop/product_cell_view.tpl"}
                     </td>
 
-            <td class="{$product_item.sequence} product-name basketspace">
+            <td class="{$sequence} align_right product-name basketspace">
                {$product_item.vat_value} %
             </td>
-            <td class="{$product_item.sequence} product-name basketspace">
+            <td class="{$sequence} align_right product-name basketspace">
                {$product_item.price_ex_vat|l10n( 'currency', $locale, $symbol )}
             </td>
-            <td class="{$product_item.sequence} product-name basketspace totalprice">
-                {$product_item.total_price_ex_vat|l10n( 'currency', $locale, $symbol )}
-            </td>
+            <td class="align_right product-name basketspace totalprice">{$product_item.total_price_ex_vat|l10n( 'currency', $locale, $symbol )}</td>
          </tr>
-         {/section}
-     <tr>
-		<td class="line" colspan="4">
+         {/foreach}
+     <tr class="subtotal-line">
+		<td colspan="4">
          	{"Subtotal ex. tax"|i18n("design/base/shop")}
         </td>
-        <td colspan="5" class="align_right line totalprice">
+        <td class="align_right basketspace totalprice">
              <strong class="price">{$order.product_total_ex_vat|l10n( 'currency', $locale, $symbol )}</strong>
         </td>
      </tr>
-    {section name=OrderItem loop=$order.order_items show=$order.order_items sequence=array(bglight,bgdark)}
-    <tr >
-        <td class="{$OrderItem:sequence}" colspan="4">
-        {$OrderItem:item.description}:
+    {foreach $order.order_items as $OrderItem sequence array(bglight,bgdark) as $sequence}
+    <tr class="orderitem-line">
+        <td class="{$sequence} line" colspan="4">
+        {$OrderItem.description}
         </td>
-        <td class="{$OrderItem:sequence} basketspace align_right totalprice">
-        {$OrderItem:item.price_ex_vat|l10n( 'currency', $locale, $symbol )}
+        <td class="{$sequence} basketspace line align_right totalprice">
+        {$OrderItem.price_ex_vat|l10n( 'currency', $locale, $symbol )}
         </td>
     </tr>
-    {/section}
+    {/foreach}
     {def $taxpercent = mul( div(sub($order.total_inc_vat, $order.total_ex_vat), $order.total_ex_vat), 100)
          $percentage = mul( div(sub($order.total_inc_vat, $order.total_ex_vat), $order.total_ex_vat), 100)|l10n('number') }
     {if $taxpercent|eq(0)|not}
-    <tr>
-        <td class="{$OrderItem:sequence} line" colspan ="4">
+    <tr class="tax-line">
+        <td class="{$sequence} line" colspan ="4">
         {"Tax"|i18n("design/base/shop")}
         </td>
-        <td class="{$OrderItem:sequence} basketspace line align_right totalprice">
+        <td class="{$sequence} basketspace line align_right totalprice">
         {sub($order.total_inc_vat, $order.total_ex_vat)|l10n( 'currency', $locale, $symbol )}
         </td>
     </tr>
     {/if}
-    <tr>
-        <td class="line price"  colspan ="4">
+    <tr class="grandtotal-line">
+        <td class="price"  colspan ="4">
         <b>{"Order total"|i18n("design/base/shop")}</b>
         </td>
-        <td class="line align_right price totalprice">
+        <td class="align_right price totalprice">
         <strong>{$order.total_inc_vat|l10n( 'currency', $locale, $symbol )}</strong>
         </td>
     </tr>

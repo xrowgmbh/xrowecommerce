@@ -23,7 +23,11 @@ $ViewList["statistics"] = array(
     "script" => "orderstatistics.php",
     "default_navigation_part" => 'ezshopnavigationpart',
     "params" => array( 'StartYear', 'StartMonth', 'StopMonth', 'StartDay', 'StopDay' ) );
-
+$ViewList["invoiceprint"] = array(
+    "functions" => array( 'buy' ),
+    "script" => "invoiceprint.php",
+    "default_navigation_part" => 'ezshopnavigationpart',
+    "params" => array( "OrderID" ) );
 $FunctionList['buy'] = array( );
 $FunctionList['administrate'] = array( );
 $FunctionList['bypass_captcha'] = array( );

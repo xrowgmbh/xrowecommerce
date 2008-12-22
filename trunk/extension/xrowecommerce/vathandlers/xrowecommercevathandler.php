@@ -26,43 +26,36 @@ class xrowECommerceVATHandler
             $order = eZOrder::fetch( $orderID );
         else
             $order = false;
-        if ( get_class( $order ) == 'eZOrder' )
+        if ( $order instanceof eZOrder )
         {
-            $xml = new eZXML( );
             $xmlDoc = $order->attribute( 'data_text_1' );
             eZDebug::writeDebug( $xmlDoc );
-            if ( $xmlDoc != null )
+            $xml = simplexml_load_string( $xmlDoc );
+            if ( $xml instanceof SimpleXMLElement )
             {
-                $dom = $xml->domTree( $xmlDoc );
-                
-                $element = $dom->elementsByName( "shipping" );
-                if ( array_key_exists( 0, $element ) and is_object( $element[0] ) )
-                    $use_shipping_address = $element[0]->textContent();
+                if ( (int)$xml->{'shipping'} )
+                    $use_shipping_address = (int)$xml->{'shipping'};
                 else
                     $use_shipping_address = false;
-                if ( $use_shipping_address == "1" )
+                if ( $use_shipping_address )
                 {
-                    $statedom = $dom->elementsByName( "state" );
-                    $countrydom = $dom->elementsByName( "country" );
+                    $state = (string)$xml->{'state'};
+                    $country = (string)$xml->{'country'};
                 }
                 else
                 {
-                    $statedom = $dom->elementsByName( "s_state" );
-                    $countrydom = $dom->elementsByName( "s_country" );
+                    $state = (string)$xml->{'s_state'};
+                    $country = (string)$xml->{'s_country'};
                 }
-                $taxiddom = $dom->elementsByName( "taxid" );
-                if ( array_key_exists( 0, $taxiddom ) and is_object( $taxiddom[0] ) )
+                $tmptaxid = (string)$xml->{'tax_id'};
+                if ( !empty( $tmptaxid ) )
                 {
-                    $taxid = $taxiddom[0]->textContent();
+                    $taxid = $tmptaxid;
                 }
                 else
                 {
                 	$taxid = false;
                 }
-                if ( array_key_exists( 0, $statedom ) and is_object( $statedom[0] ) )
-                    $state = $statedom[0]->textContent();
-                if ( array_key_exists( 0, $countrydom ) and is_object( $countrydom[0] ) )
-                    $country = $countrydom[0]->textContent();
                 $percentage = xrowECommerceVATHandler::getTAX( $country, $state, $taxid );
             }
             else
@@ -79,7 +72,7 @@ class xrowECommerceVATHandler
             if ( is_object( $object ) )
             {
                 $dm = $object->dataMap();
-                if ( is_object( $dm['taxid'] ) and $dm['taxid']->attribute( 'has_content' ) )
+                if ( is_object( $dm['tax_id'] ) and $dm['tax_id']->attribute( 'has_content' ) )
                 {
                     $percentage = xrowECommerceVATHandler::getTAX( $country, false, true );
                 }

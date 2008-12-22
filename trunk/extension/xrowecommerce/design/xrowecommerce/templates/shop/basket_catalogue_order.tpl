@@ -1,4 +1,4 @@
-<h1>{"Add Catalogue Order"|i18n("design/base/shop")}</h1>
+<h2>{"Add Catalogue Order"|i18n("design/base/shop")}</h2>
 
 <table class="shop-basket">
     <tr>
