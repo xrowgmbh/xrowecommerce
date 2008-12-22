@@ -128,79 +128,7 @@
 <context>
     <name>design/admin/shop/accounthandlers/html/ez</name>
     <message>
-        <source>Name</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>E-mail</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Address</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Company name</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Form of enterprise</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Tax ID</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>First Name</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Last Name</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Address 1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Address 2</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>City</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>State</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Zip Code</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Country</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Fax</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Phone</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Shipping Type</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Payment information</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Authorize.net : Transaction ID</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -213,25 +141,6 @@
     </message>
     <message>
         <source>Card Expiration Date</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Card Type</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Refund Order</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>design/admin/shop/basket</name>
-    <message>
-        <source>Shipping</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Order total</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -559,78 +468,59 @@
         <source>E-mail</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Packing slip</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Invoice</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Next Day Service</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>2nd Day Service</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>UPS Ground (USA only)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>UPS Next Business Day Air (USA only)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>UPS 2nd Business Day Air (USA only)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>USPS Express Mail International (EMS)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>USPS Global Express Guaranteed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unknown Shipping</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ship to</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
-    <name>design/base</name>
+    <name>extension/xrowecommerce</name>
     <message>
-        <source>Cancel</source>
+        <source>Fraud detected</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Add to Automatic Delivery</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Check out</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>design/base/shop</name>
-    <message>
-        <source>Shopping Cart</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>The following items were removed from your cart, because the products were changed</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Tax is unknown</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Tax percentage is not yet known for some of the items being purchased.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>This probably means that some information about you is not yet available and will be obtained during checkout.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Attempted to add object without price to cart.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Your payment was aborted.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Quantity</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Item</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Tax</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Unit Price</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Discount</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Total Price</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Remove</source>
+        <source>Please contact customer support. We are blocking your ordering attempts for the next 24 hours.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -638,39 +528,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Subtotal Ex. Tax</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>You have no products in your cart</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Confirm order</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Cancel</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Confirm</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Product items</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Subtotal Ex. TAX</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Order summary</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Subtotal of items ex. Tax</source>
+        <source>Shipping</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -678,107 +536,68 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Order Reciept #%order_id </source>
+        <source>Subtotal Ex. Tax</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>TAX</source>
+        <source>Estimated Shipping and Handling</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Price</source>
+        <source>Estimated Tax</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Subtotal of items Ex. Taxt</source>
+        <source>Username</source>
+        <comment>User name</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Continue</source>
+        <source>Password</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>no Image</source>
+        <source>You have no items in your shopping cart</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>starting at</source>
+        <source>Cart</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>starting at </source>
+        <source>Billing, Shipping and Coupons</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>read more</source>
+        <source>Billing and Shipping</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Attempted to add object without price to basket.</source>
+        <source>Confirmation</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>1. Cart</source>
+        <source>Payment</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>2. Billing, Shipping and Coupons</source>
+        <source>Order completed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>3. Confirmation</source>
+        <source>Reciept</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>4. Payment info</source>
+        <source>Confirm order</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>5. Order completed</source>
+        <source>Sorry, there are no items left in your cart.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>6. Review reciept</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Hazardous item(s) found in your cart</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Dear Customer,</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>We&apos;ve removed the following hazardous items from your shopping cart since we are NOT allowed to ship these items to your destination. For further questions please contact</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Weight</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>lbs</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>My Account</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Validation error</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Input did not validate, all fields marked with</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>must be filled in.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Please enter your billing address exactly as it appears on your credit card statement.</source>
+        <source>Input did not validate, all fields marked with %mark% must be filled in.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -789,55 +608,74 @@
         <source>Please select your desired payment method below.</source>
         <translation type="unfinished"></translation>
     </message>
-</context>
-<context>
-    <name>design/ezwebin/full/product</name>
     <message>
-        <source>Add to Shopping Cart</source>
+        <source>Select</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>People who bought this also bought</source>
+        <source>Cancel</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Basket</source>
+        <source>Quantity</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Details</source>
+        <source>SKU</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Add to cart</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>design/ezwebin/shop/basket</name>
-    <message>
-        <source>Estimated Tax</source>
+        <source>Product</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Estimated Shipping and Handling</source>
+        <source>Unit price</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Total</source>
+        <source>Extended price</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Weight</source>
+        <source>Tax</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>lbs</source>
+        <source>Phone</source>
         <translation type="unfinished"></translation>
     </message>
-</context>
-<context>
-    <name>design/standard/shop</name>
+    <message>
+        <source>Website</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>starting at</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>read more</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Type</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Any</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add to Automatic Delivery</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Update Cart</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Check out</source>
+        <translation type="unfinished"></translation>
+    </message>
     <message>
         <source>Customer</source>
         <translation type="unfinished"></translation>
@@ -847,11 +685,11 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Form of enterprise</source>
+        <source>Company additional information</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>TaxID</source>
+        <source>Tax ID</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -887,18 +725,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Phone</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Fax</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Shipping</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Billing Address</source>
         <translation type="unfinished"></translation>
     </message>
@@ -907,72 +733,21 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Order</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Product items</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Update Cart</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Form</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>1. Cart</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>2. Billing, Shipping and Coupons</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>3. Confirmation</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>4. Payment info</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>5. Order completed</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Weight</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>lbs</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Subtotal Ex. TAX</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Tax</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>design/standard/user</name>
-    <message>
-        <source>Username</source>
+        <source>Already a user?</source>
         <comment>User name</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Password</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Login</source>
         <comment>Button</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Order</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Product items</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1008,23 +783,11 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>City / Town</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>State / Province</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Zip / Postcode</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Country</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Phone</source>
+        <source>ZIP</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1036,7 +799,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Shipping</source>
+        <source>Coupon</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1044,11 +807,11 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Coupon</source>
+        <source>My billing and shipping addresses are identical.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>My billing and shipping addresses are identical.</source>
+        <source>Zip</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1133,90 +896,191 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Tax ID</source>
+        <source>City / Town</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Zip / Postcode</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Shipping Information</source>
         <translation type="unfinished"></translation>
     </message>
-</context>
-<context>
-    <name>design/standard/workflow</name>
     <message>
-        <source>Cancel</source>
+        <source>No image aviable</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Select</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>design/standard/workflow/eventtype/edit</name>
-    <message>
-        <source>Type</source>
+        <source>Image</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Any</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>design/standard/workflow/eventtype/view</name>
-    <message>
-        <source>Type</source>
+        <source>Number</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Any</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>extension/order/invoice</name>
-    <message>
-        <source>Quantity</source>
+        <source>Item</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>SKU</source>
+        <source>Description</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Product</source>
+        <source>Price</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Unit price</source>
+        <source>Add to Shopping Cart</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Extended price</source>
+        <source>People who bought this also bought</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Subtotal Ex. Tax</source>
+        <source>Basket</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Tax</source>
+        <source>Details</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Order total</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>extension/xrowecommerce</name>
-    <message>
-        <source>Fraud detected</source>
+        <source>Add to cart</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Please contact customer support. We are blocking your ordering attempts for the next 24 hours.</source>
+        <source>Shopping Cart</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The following items were removed from your cart, because the products were changed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Tax is unknown</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Tax percentage is not yet known for some of the items being purchased.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>This probably means that some information about you is not yet available and will be obtained during checkout.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Attempted to add object without price to basket.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Your payment was aborted.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Continue</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unit Price</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Total Price</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Remove</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Total</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add Catalogue Order</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Article Number</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Search</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Notation</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Price in ?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Delete</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>please type in an article number</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add Catalogue Item</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Confirm</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Hazardous item(s) found in your cart.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Dear Customer,</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>We&apos;ve removed the following hazardous items from your shopping cart since we are not allowed to ship these items to your destination. For further questions please contact %companyname%.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Subtotal ex. tax</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Order Receipt #%order_id </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>SKU number</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Weight</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>lbs</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>My Account</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Validation error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Validation errors</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>A click on the image enlarges the image in a popup</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1248,6 +1112,10 @@
     </message>
     <message>
         <source>Tax listing</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Order #%order_id</source>
         <translation type="unfinished"></translation>
     </message>
     <message>

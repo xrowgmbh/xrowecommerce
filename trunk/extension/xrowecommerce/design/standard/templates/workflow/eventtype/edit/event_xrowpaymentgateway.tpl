@@ -3,7 +3,7 @@
 
 <div class="element">
  {let selectedGatewaysTypes=$event.selected_gateways_types}
-    <label>{"Type"|i18n("design/standard/workflow/eventtype/edit")}</label><div class="labelbreak"></div>
+    <label>{"Type"|i18n("extension/xrowecommerce")}</label><div class="labelbreak"></div>
     <select name="WorkflowEvent_event_ezpaymentgateway_gateways_{$event.id}[]" size="5"  multiple>
         <option value="-1"
             {switch match=-1}
@@ -13,7 +13,7 @@
                 {case}
                 {/case}
             {/switch}
-        >{"Any"|i18n("design/standard/workflow/eventtype/edit")}
+        >{"Any"|i18n("extension/xrowecommerce")}
         </option>
         {section name=Gateways loop=$event.workflow_type.available_gateways}
             <option value="{$Gateways:item.value}"

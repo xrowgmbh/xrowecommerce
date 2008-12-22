@@ -245,7 +245,7 @@
     {/if}
     <div style="width: 390px; float: left; display: inline; margin:5px; padding: 8px;">
         <div style="text-align: right;">
-            <input class="left-arrow2" type="submit" name="DiscardButton" value="{'Cancel'|i18n('design/base')}" />
+            <input class="left-arrow2" type="submit" name="DiscardButton" value="{'Cancel'|i18n('extension/xrowecommerce')}" />
             <input class="right-arrow" type="submit" name="PublishButton" value="Update" />
             <input type="hidden" name="DiscardConfirm" value="0" />
             <input type="hidden" name="RedirectURI" value={''|ezurl()} />

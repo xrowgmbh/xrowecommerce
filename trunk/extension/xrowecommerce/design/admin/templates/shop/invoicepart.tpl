@@ -24,12 +24,12 @@ thead {
 <table class="list" width="70%" cellspacing="0" cellpadding="0" border="0" align="right">
 <thead>
 <tr>
-    <th class="tight">{'Quantity'|i18n( 'extension/order/invoice' )}</th>
-    <th class="tight">{'SKU'|i18n( 'extension/order/invoice' )}</th>
-    <th>{'Product'|i18n( 'extension/order/invoice' )}</th>
+    <th class="tight">{'Quantity'|i18n( 'extension/xrowecommerce' )}</th>
+    <th class="tight">{'SKU'|i18n( 'extension/xrowecommerce' )}</th>
+    <th>{'Product'|i18n( 'extension/xrowecommerce' )}</th>
 {if $packingslip|not}
-    <th class="tight">{'Unit price'|i18n( 'extension/order/invoice' )}</th>
-    <th class="tight">{'Extended price'|i18n( 'extension/order/invoice' )}</th>
+    <th class="tight">{'Unit price'|i18n( 'extension/xrowecommerce' )}</th>
+    <th class="tight">{'Extended price'|i18n( 'extension/xrowecommerce' )}</th>
 {/if}
 </tr>
 </thead>
@@ -65,7 +65,7 @@ thead {
 <td colspan="9">&nbsp;</td>
 </tr>
 <tr>
-    <th colspan="4">{'Subtotal Ex. Tax'|i18n( 'extension/order/invoice' )}:</th>
+    <th colspan="4">{'Subtotal Ex. Tax'|i18n( 'extension/xrowecommerce' )}:</th>
     <td class="number" align="right">{$order.product_total_ex_vat|l10n( 'currency', $locale, $symbol )}</td>
 </tr>
 {section name=OrderItem loop=$order.order_items show=$order.order_items sequence=array(bglight,bgdark)}
@@ -77,11 +77,11 @@ thead {
 {def $taxpercent = mul( div(sub($order.total_inc_vat, $order.total_ex_vat), $order.total_ex_vat), 100)
      $percentage = mul( div(sub($order.total_inc_vat, $order.total_ex_vat), $order.total_ex_vat), 100)|l10n('number') }
 <tr>
-    <th colspan="4">{'Tax'|i18n( 'extension/order/invoice' )}:</th>
+    <th colspan="4">{'Tax'|i18n( 'extension/xrowecommerce' )}:</th>
     <td class="number" align="right">{$order.product_total_inc_vat|sub($order.product_total_ex_vat)|l10n( 'currency', $locale, $symbol )}</td>
 </tr>
 <tr>
-    <th colspan="4"><b>{'Order total'|i18n( 'extension/order/invoice' )}</b></th>
+    <th colspan="4"><b>{'Order total'|i18n( 'extension/xrowecommerce' )}</b></th>
     <td class="number" align="right"><b>{$order.total_inc_vat|l10n( 'currency', $locale, $symbol )}</b></td>
 </tr>
 {/if}

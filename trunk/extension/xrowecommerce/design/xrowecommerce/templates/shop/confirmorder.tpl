@@ -3,8 +3,8 @@
         <h1>{"Confirm order"|i18n("extension/xrowecommerce")}</h1>
         {include uri="design:shop/basket_navigator.tpl" step='3'}
         <div class="buttonblock">
-			<input class="left-arrow2 smallbutton" type="submit" name="CancelButton" value="{'Cancel'|i18n('design/base/shop')}" />
-			<input class="right-arrow2 smallbutton" type="submit" name="ConfirmOrderButton" value="{'Confirm'|i18n('design/base/shop')}" />
+			<input class="left-arrow2 smallbutton" type="submit" name="CancelButton" value="{'Cancel'|i18n('extension/xrowecommerce')}" />
+			<input class="right-arrow2 smallbutton" type="submit" name="ConfirmOrderButton" value="{'Confirm'|i18n('extension/xrowecommerce')}" />
         </div>
         <div class="break"></div>
         {shop_account_view_gui view=html order=$order}
@@ -17,10 +17,10 @@
         {/if}
         {if count($hazardous)|gt(0)}
         
-            <p>{'Hazardous item(s) found in your cart.'|i18n('design/base/shop')}</p>
+            <p>{'Hazardous item(s) found in your cart.'|i18n('extension/xrowecommerce')}</p>
             <p>
-                {'Dear Customer,'|i18n('design/base/shop')}<br />
-                {"We've removed the following hazardous items from your shopping cart since we are not allowed to ship these items to your destination. For further questions please contact %companyname%."|i18n('design/base/shop',,hash('%companyname%', ezini( 'InvoiceSettings', 'CompanyName', 'order.ini'  )))}<br />
+                {'Dear Customer,'|i18n('extension/xrowecommerce')}<br />
+                {"We've removed the following hazardous items from your shopping cart since we are not allowed to ship these items to your destination. For further questions please contact %companyname%."|i18n('extension/xrowecommerce',,hash('%companyname%', ezini( 'InvoiceSettings', 'CompanyName', 'order.ini'  )))}<br />
                 <ul>
                     {foreach $hazardous as $item}
                     <li>{$item.item_count} x <a href={concat("/content/view/full/", $item.contentobject.main_node_id)|ezurl()}>{$item.name}</a></li>
@@ -31,22 +31,22 @@
         
         {if count( $order.product_items )|gt(0)}
             <table class="order">
-                <caption>{"Product items"|i18n("design/base/shop")}</caption>
+                <caption>{"Product items"|i18n("extension/xrowecommerce")}</caption>
                 <tr class="lightbg">
                     <th>
-                        {"Quantity"|i18n("design/base/shop")}
+                        {"Quantity"|i18n("extension/xrowecommerce")}
                     </th>
                     <th>
-                        {"Item"|i18n("design/base/shop")}
+                        {"Item"|i18n("extension/xrowecommerce")}
                     </th>
                     <th>
-                        {"Tax"|i18n("design/base/shop")}
+                        {"Tax"|i18n("extension/xrowecommerce")}
                     </th>
                     <th>
-                        {"Unit Price"|i18n("design/base/shop")}
+                        {"Unit Price"|i18n("extension/xrowecommerce")}
                     </th>
                     <th class="totalprice">
-                        {"Total Price"|i18n("design/base/shop")}
+                        {"Total Price"|i18n("extension/xrowecommerce")}
                     </th>
                 </tr>
                 {foreach $order.product_items as $product_item sequence array(bglight,bgdark) as $sequence}
@@ -69,7 +69,7 @@
          {/foreach}
      <tr class="subtotal-line">
 		<td colspan="4">
-         	{"Subtotal ex. tax"|i18n("design/base/shop")}
+         	{"Subtotal ex. tax"|i18n("extension/xrowecommerce")}
         </td>
         <td class="align_right basketspace totalprice">
              <strong class="price">{$order.product_total_ex_vat|l10n( 'currency', $locale, $symbol )}</strong>
@@ -90,7 +90,7 @@
     {if $taxpercent|eq(0)|not}
     <tr class="tax-line">
         <td class="{$sequence} line" colspan ="4">
-        {"Tax"|i18n("design/base/shop")}
+        {"Tax"|i18n("extension/xrowecommerce")}
         </td>
         <td class="{$sequence} basketspace line align_right totalprice">
         {sub($order.total_inc_vat, $order.total_ex_vat)|l10n( 'currency', $locale, $symbol )}
@@ -99,7 +99,7 @@
     {/if}
     <tr class="grandtotal-line">
         <td class="price"  colspan ="4">
-        <b>{"Order total"|i18n("design/base/shop")}</b>
+        <b>{"Order total"|i18n("extension/xrowecommerce")}</b>
         </td>
         <td class="align_right price totalprice">
         <strong>{$order.total_inc_vat|l10n( 'currency', $locale, $symbol )}</strong>

@@ -3,7 +3,7 @@
         <div class="attribute-image">
             <p>
                 {if $object.reverse_related_contentobject_array.0.class_identifier|eq('xrow_product_category')}
-                    <a href="javascript:;" onclick="return enlargeImage('/{$object.data_map.image.content.reference.full_path}',{$object.data_map.image.content.reference.width},{$object.data_map.image.content.reference.height},'{$object.data_map.image.content.reference.text|wash(javascript)}');" title="{$object.data_map.image.content.reference.text|wash} | {"A click on the image enlarges the image in a popup"|i18n( 'kaiser')}">
+                    <a href="javascript:;" onclick="return enlargeImage('/{$object.data_map.image.content.reference.full_path}',{$object.data_map.image.content.reference.width},{$object.data_map.image.content.reference.height},'{$object.data_map.image.content.reference.text|wash(javascript)}');" title="{$object.data_map.image.content.reference.text|wash} | {"A click on the image enlarges the image in a popup"|i18n( 'extension/xrowecommerce')}">
                 {/if}
                 {section show=is_set($link_parameters.href)}
                     {section show=is_set($object_parameters.size)}
