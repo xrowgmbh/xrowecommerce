@@ -292,7 +292,7 @@
 
 {* right column *}
 <div class="shipping">
-<span class="headingur">Shipping Information</span>
+<span class="headingur">{'Shipping Information'|i18n( 'extension/xrowecommerce' )}</span>
 <table border="0">
         <tr>
         <td>

@@ -6,9 +6,9 @@
 // Checks and unchecks unlimited number in the group...
 // Pass the Checkbox group name...
 // call buttons as so:
-// <input type=button name="CheckAll"   value="Check All"
+// <input type=button name="CheckAll"   value="{'Check All'|i18n( 'extension/xrowecommerce' )}"
 // onClick="checkAll(document.myform.list)">
-// <input type=button name="UnCheckAll" value="Uncheck All"
+// <input type=button name="UnCheckAll" value="{'Uncheck All'|i18n( 'extension/xrowecommerce' )}"
 // onClick="uncheckAll(document.myform.list)">
 // -->
 <!-- Begin
@@ -79,14 +79,14 @@ for (i = 0; i < field.length; i++)
     {section show=$error}
         <div class="error">
             {section show=$error|eq(1)}
-                <h2>{"Attempted to add object without price to basket."|i18n("extension/xrowecommerce",,)}</h2>
+                <h2>{"Attempted to add object without price to basket."|i18n("extension/xrowecommerce")}</h2>
             {/section}
         </div>
     {/section}
     {section show=$error}
         <div class="error">
             {section show=eq($error, "aborted")}
-                <h2>{"Your payment was aborted."|i18n("extension/xrowecommerce",,)}</h2>
+                <h2>{"Your payment was aborted."|i18n("extension/xrowecommerce")}</h2>
             {/section}
         </div>
     {/section}
@@ -95,8 +95,8 @@ for (i = 0; i < field.length; i++)
 
         <input class="right-arrow smallbutton" type="submit" name="ContinueShoppingButton" value="{'Continue'|i18n("extension/xrowecommerce")}" />
         
-        <input type="submit" class="right-arrow smallbutton" name="StoreChangesButton" value="Update" title="Use this button to update your shopping cart." />
-        <input type="submit" class="right-arrow2 smallbutton" name="CheckoutButton" value="Checkout" title="Use this button to place your order." />
+        <input type="submit" class="right-arrow smallbutton" name="StoreChangesButton" value={'Update'|i18n( 'extension/xrowecommerce' )} title="Use this button to update your shopping cart." />
+        <input type="submit" class="right-arrow2 smallbutton" name="CheckoutButton" value={'Checkout'|i18n( 'extension/xrowecommerce' )} title="Use this button to place your order." />
     </div>
     <div class="break"></div>
     {def $currency = fetch( 'shop', 'currency', hash( 'code', $basket.productcollection.currency_code ) )
@@ -109,7 +109,7 @@ for (i = 0; i < field.length; i++)
     
     <div class="content-basket">
     <div class="buttonblock">
-        <input type="submit" class="remove-button flat-right2 smallbutton" name="RemoveProductItemButton" value="Delete" title="Use this button to remove items from your shopping cart." />
+        <input type="submit" class="remove-button flat-right2 smallbutton" name="RemoveProductItemButton" value={'Delete'|i18n( 'extension/xrowecommerce' )} title={'Use this button to remove items from your shopping cart.'|i18n( 'extension/xrowecommerce' )} />
     </div>
     <div class="break"></div>
     <table class="order">
