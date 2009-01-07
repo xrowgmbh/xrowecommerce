@@ -1,44 +1,5 @@
 <!DOCTYPE TS><TS>
 <context>
-    <name>design/admin/content/edit</name>
-    <message>
-        <source>Edit &lt;%object_name&gt; [%class_name]</source>
-        <translation>&lt;%object_name&gt; [%class_name] Bearbeiten</translation>
-    </message>
-    <message>
-        <source>Translating content from %from_lang to %to_lang</source>
-        <translation>Inhalt von %from_lang in %to_lang übersetzen</translation>
-    </message>
-    <message>
-        <source>Send for publishing</source>
-        <translation>Veröffentlichen</translation>
-    </message>
-    <message>
-        <source>Publish the contents of the draft that is being edited. The draft will thus become the published version of the object.</source>
-        <translation>Veröffentlicht den Inhalt des Entwurfes, der bearbeitet wird. Der Entwurf wird zur veröffentlichen Version werden.</translation>
-    </message>
-    <message>
-        <source>Store draft</source>
-        <translation>Entwurf speichern</translation>
-    </message>
-    <message>
-        <source>Store the contents of the draft that is being edited and continue editing. Use this button to periodically save your work while editing.</source>
-        <translation>Speichert die Inhalte des Entwurfes, der gerade bearbeitet wird und setzt anschließend das Bearbeiten fort. Benutzen Sie diesen Button zum Zwischenspeichern während des Bearbeitens.</translation>
-    </message>
-    <message>
-        <source>Discard draft</source>
-        <translation>Entwurf verwerfen</translation>
-    </message>
-    <message>
-        <source>Are you sure you want to discard the draft?</source>
-        <translation>Sind sie sicher, dass Sie den Entwurf verwerfen möchten?</translation>
-    </message>
-    <message>
-        <source>Discard the draft that is being edited. This will also remove the translations that belong to the draft (if any).</source>
-        <translation>Verwirft den momentanen Entwurf. Diese Aktion entfern ebenfalls vorhandene Übersetzungen zu diesem Entwurf.</translation>
-    </message>
-</context>
-<context>
     <name>design/admin/parts/shop/menu</name>
     <message>
         <source>Shop</source>
@@ -566,11 +527,11 @@
     </message>
     <message>
         <source>Billing, Shipping and Coupons</source>
-        <translation>Rechnungs-, Versandinformationen und Coupons</translation>
+        <translation>Rechnung, Versand und Coupons</translation>
     </message>
     <message>
         <source>Billing and Shipping</source>
-        <translation>Versand- und Rechnungsinformationen</translation>
+        <translation>Rechnung und Versand</translation>
     </message>
     <message>
         <source>Confirmation</source>
@@ -1084,6 +1045,26 @@ Button</translation>
     <message>
         <source>A click on the image enlarges the image in a popup</source>
         <translation>Klicken Sie auf das Bild um es in einem neuen Fenster zu vergrößern</translation>
+    </message>
+    <message>
+        <source>Check All</source>
+        <translation>Alle auswählen</translation>
+    </message>
+    <message>
+        <source>Uncheck All</source>
+        <translation>Alle abwählen</translation>
+    </message>
+    <message>
+        <source>Update</source>
+        <translation>Aktualisieren</translation>
+    </message>
+    <message>
+        <source>Checkout</source>
+        <translation>Kasse</translation>
+    </message>
+    <message>
+        <source>Use this button to remove items from your shopping cart.</source>
+        <translation>Benutzen Sie diesen Knopf, um Artikel aus Ihrem Einkaufswagen zu entfernen.</translation>
     </message>
 </context>
 <context>

@@ -12,7 +12,7 @@
 
     <tr>
         <td><input type="text" size="12" value="" name="KatalogueSearchText" id="kalaogue_searchtext"/></td>
-        <td><input id="catalogue_button" class="smallbutton" type="submit" alt="Submit" value="{"Search"|i18n("extension/xrowecommerce")}"/></td>
+        <td><input id="catalogue_button" class="" type="submit" alt="Submit" value="{"Search"|i18n("extension/xrowecommerce")}"/></td>
         <td><input type="text" class="halfbox" size="12" value="" name="KatalogueQuantity" id="kalaogue_quantity"/></td>
         <td><p class="optional">{"please type in an article number"|i18n("extension/xrowecommerce")}</p></td>
         <td><p class="optional">{"please type in an article number"|i18n("extension/xrowecommerce")}</p></td>
