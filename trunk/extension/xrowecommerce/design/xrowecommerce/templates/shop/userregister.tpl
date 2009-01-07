@@ -572,8 +572,8 @@ lang: RecaptchaLang,
 {* Recaptcha *}
 
 <div class="buttonblock">
-    <input class="left-arrow smallbutton" type="submit" name="CancelButton" value="{'Cancel'|i18n('extension/xrowecommerce')}" />
-    <input class="right-arrow smallbutton" type="submit" name="StoreButton" value="{'Continue'|i18n('extension/xrowecommerce')}" />
+    <input class="left-arrow " type="submit" name="CancelButton" value="{'Cancel'|i18n('extension/xrowecommerce')}" />
+    <input class="right-arrow " type="submit" name="StoreButton" value="{'Continue'|i18n('extension/xrowecommerce')}" />
 </div>
 <br />
 {* / left column *}

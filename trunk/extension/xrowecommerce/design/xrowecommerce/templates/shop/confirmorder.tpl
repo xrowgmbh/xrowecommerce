@@ -3,8 +3,8 @@
         <h1>{"Confirm order"|i18n("extension/xrowecommerce")}</h1>
         {include uri="design:shop/basket_navigator.tpl" step='3'}
         <div class="buttonblock">
-			<input class="left-arrow2 smallbutton" type="submit" name="CancelButton" value="{'Cancel'|i18n('extension/xrowecommerce')}" />
-			<input class="right-arrow2 smallbutton" type="submit" name="ConfirmOrderButton" value="{'Confirm'|i18n('extension/xrowecommerce')}" />
+			<input class="left-arrow2 " type="submit" name="CancelButton" value="{'Cancel'|i18n('extension/xrowecommerce')}" />
+			<input class="right-arrow2 " type="submit" name="ConfirmOrderButton" value="{'Confirm'|i18n('extension/xrowecommerce')}" />
         </div>
         <div class="break"></div>
         {shop_account_view_gui view=html order=$order}

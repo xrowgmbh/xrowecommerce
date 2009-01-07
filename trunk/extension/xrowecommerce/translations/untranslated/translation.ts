@@ -1,44 +1,5 @@
 <!DOCTYPE TS><TS>
 <context>
-    <name>design/admin/content/edit</name>
-    <message>
-        <source>Edit &lt;%object_name&gt; [%class_name]</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Translating content from %from_lang to %to_lang</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Send for publishing</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Publish the contents of the draft that is being edited. The draft will thus become the published version of the object.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Store draft</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Store the contents of the draft that is being edited and continue editing. Use this button to periodically save your work while editing.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Discard draft</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Are you sure you want to discard the draft?</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Discard the draft that is being edited. This will also remove the translations that belong to the draft (if any).</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
     <name>design/admin/parts/shop/menu</name>
     <message>
         <source>Shop</source>
@@ -1081,6 +1042,26 @@
     </message>
     <message>
         <source>A click on the image enlarges the image in a popup</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Check All</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Uncheck All</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Update</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Checkout</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Use this button to remove items from your shopping cart.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

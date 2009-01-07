@@ -93,10 +93,10 @@ for (i = 0; i < field.length; i++)
     {if $basket.items}
     <div class="buttonblock">
 
-        <input class="right-arrow smallbutton" type="submit" name="ContinueShoppingButton" value="{'Continue'|i18n("extension/xrowecommerce")}" />
+        <input class="right-arrow " type="submit" name="ContinueShoppingButton" value="{'Continue'|i18n("extension/xrowecommerce")}" />
         
-        <input type="submit" class="right-arrow smallbutton" name="StoreChangesButton" value={'Update'|i18n( 'extension/xrowecommerce' )} title="Use this button to update your shopping cart." />
-        <input type="submit" class="right-arrow2 smallbutton" name="CheckoutButton" value={'Checkout'|i18n( 'extension/xrowecommerce' )} title="Use this button to place your order." />
+        <input type="submit" class="right-arrow " name="StoreChangesButton" value={'Update'|i18n( 'extension/xrowecommerce' )} title="Use this button to update your shopping cart." />
+        <input type="submit" class="right-arrow2 " name="CheckoutButton" value={'Checkout'|i18n( 'extension/xrowecommerce' )} title="Use this button to place your order." />
     </div>
     <div class="break"></div>
     {def $currency = fetch( 'shop', 'currency', hash( 'code', $basket.productcollection.currency_code ) )
@@ -109,7 +109,7 @@ for (i = 0; i < field.length; i++)
     
     <div class="content-basket">
     <div class="buttonblock">
-        <input type="submit" class="remove-button flat-right2 smallbutton" name="RemoveProductItemButton" value={'Delete'|i18n( 'extension/xrowecommerce' )} title={'Use this button to remove items from your shopping cart.'|i18n( 'extension/xrowecommerce' )} />
+        <input type="submit" class="flat-right2 " name="RemoveProductItemButton" value={'Delete'|i18n( 'extension/xrowecommerce' )} title={'Use this button to remove items from your shopping cart.'|i18n( 'extension/xrowecommerce' )} />
     </div>
     <div class="break"></div>
     <table class="order">
@@ -249,7 +249,7 @@ for (i = 0; i < field.length; i++)
                                     <input type="password" name="Password" id="id2" value="" tabindex="1" />
                                 </div>
                                 <div>
-                                    <input class="standard smallbutton" type="submit" name="LoginButton" value="{'Login'|i18n('extension/xrowecommerce','Button')}" tabindex="1">
+                                    <input class="standard " type="submit" name="LoginButton" value="{'Login'|i18n('extension/xrowecommerce','Button')}" tabindex="1">
                                 </div>
                                 <input type="hidden" name="RedirectURI" value={"xrowecommerce/userregister"|ezroot} />
                              </form>
@@ -264,7 +264,7 @@ for (i = 0; i < field.length; i++)
         {*<form method="post" name="basket" action={"shop/basket/"|ezurl}> eZ Bug ContinueShoppingButton redirects to basket page*}
         <form method="get" name="basket" action={"/"|ezurl}>
             <div class="buttonblock">
-                <input class="right-arrow smallbutton" type="submit" name="ContinueShoppingButton" value="{'Continue'|i18n("extension/xrowecommerce")}" />
+                <input class="right-arrow " type="submit" name="ContinueShoppingButton" value="{'Continue'|i18n("extension/xrowecommerce")}" />
             </div>
             <p><b>{"You have no items in your shopping cart"|i18n("extension/xrowecommerce")}</b></p>
         </form>
