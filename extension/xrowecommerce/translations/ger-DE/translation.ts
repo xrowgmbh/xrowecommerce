@@ -563,7 +563,7 @@
     </message>
     <message>
         <source>Please select your desired payment method below.</source>
-        <translation>Bitte wählen Sie unten die gewünschte Bezahlungsmethode.</translation>
+        <translation>Bitte wählen Sie unten die gewünschte Zahlungsmethode.</translation>
     </message>
     <message>
         <source>Select</source>
