@@ -817,7 +817,7 @@
     </message>
     <message>
         <source>Create an account to save your shipping and billing information.</source>
-        <translation>Erstellen Sie ein Bestellkonto um Rechnungs- und Lieferadresse zu speichern.</translation>
+        <translation>Erstellen Sie ein Konto um Rechnungs- und Lieferadresse zu speichern.</translation>
     </message>
     <message>
         <source>Sign Up</source>
@@ -1032,7 +1032,7 @@ Button</translation>
     </message>
     <message>
         <source>My Account</source>
-        <translation>Mein Bestellkonto</translation>
+        <translation>Mein Konto</translation>
     </message>
     <message>
         <source>Validation error</source>
