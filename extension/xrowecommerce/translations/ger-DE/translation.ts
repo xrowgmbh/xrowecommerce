@@ -542,10 +542,6 @@
         <translation>Bezahlung</translation>
     </message>
     <message>
-        <source>Order completed</source>
-        <translation>Bestellung abgeschlossen</translation>
-    </message>
-    <message>
         <source>Reciept</source>
         <translation>Beleg</translation>
     </message>
@@ -1065,6 +1061,10 @@ Button</translation>
     <message>
         <source>Use this button to remove items from your shopping cart.</source>
         <translation>Benutzen Sie diesen Knopf, um Artikel aus Ihrem Warenkorb zu entfernen.</translation>
+    </message>
+    <message>
+        <source>Completion</source>
+        <translation>Abschluss</translation>
     </message>
 </context>
 <context>
