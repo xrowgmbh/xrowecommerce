@@ -22,26 +22,74 @@ $email = '';
 $shippingtype = $shipping = $s_email = $s_lastName = $s_firstName = $s_address1 = $s_address2 = $s_zip = $s_city = $s_state = $s_country = $s_phone = $s_mi = $address1 = $address2 = $zip = $city = $state = $country = $phone = $recaptcha = $mi = '';
 $userobject = $user->attribute( 'contentobject' );
 
-if ( $user->isLoggedIn() and $userobject->attribute( 'class_identifier' ) == 'client' )
+if ( $user->isLoggedIn() and in_array( $userobject->attribute( 'class_identifier' ), eZINI::instance( 'xrowecommerce.ini' )->variable( 'Settings', 'ShopUserClassList' ) ) )
 {
     $userObject = $user->attribute( 'contentobject' );
     $userMap = $userObject->dataMap();
-    $companyName = $userMap['company_name']->content();
-    $companyAdditional = $userMap['company_additional']->content();
-    $taxID = $userMap['tax_id']->content();
-    $firstName = $userMap['first_name']->content();
-    $lastName = $userMap['last_name']->content();
-    $mi = $userMap['mi']->content();
-    $address1 = $userMap['address1']->content();
-    $address2 = $userMap['address2']->content();
-    $state = $userMap['state']->content();
-    $zip = $userMap['zip_code']->content();
-    $city = $userMap['city']->content();
-    $country = $userMap['country']->attribute( 'data_text' );
-    $phone = $userMap['phone']->content();
-    $fax = $userMap['fax']->content();
-    $shipping = $userMap['shippingaddress']->content();
-    $shippingtype = $userMap['shippingtype']->content();
+    if ( isset( $userMap['company_name'] ) )
+    {
+        $companyName = $userMap['company_name']->content();
+    }
+    if ( isset( $userMap['company_additional'] ) )
+    {
+        $companyAdditional = $userMap['company_additional']->content();
+    }
+    if ( isset( $userMap['tax_id'] ) )
+    {
+        $taxID = $userMap['tax_id']->content();
+    }
+    if ( isset( $userMap['first_name'] ) )
+    {
+        $firstName = $userMap['first_name']->content();
+    }
+    if ( isset( $userMap['last_name'] ) )
+    {
+        $lastName = $userMap['last_name']->content();
+    }
+    if ( isset( $userMap['mi'] ) )
+    {
+    	$mi = $userMap['mi']->content();
+    }
+    if ( isset( $userMap['address1'] ) )
+    {
+    	$address1 = $userMap['address1']->content();
+    }
+    if ( isset( $userMap['address2'] ) )
+    {
+    	$address2 = $userMap['address2']->content();
+    }
+    if ( isset( $userMap['state'] ) )
+    {
+        $state = $userMap['state']->content();
+    }
+    if ( isset( $userMap['zip_code'] ) )
+    {
+    	$zip = $userMap['zip_code']->content();
+    }
+    if ( isset( $userMap['city'] ) )
+    {
+        $city = $userMap['city']->content();
+    }
+    if ( isset( $userMap['country'] ) )
+    {
+    	$country = $userMap['country']->attribute( 'data_text' );
+    }
+    if ( isset( $userMap['phone'] ) )
+    {
+        $phone = $userMap['phone']->content();
+    }
+    if ( isset( $userMap['fax'] ) )
+    {
+        $fax = $userMap['fax']->content();
+    }
+    if ( isset( $userMap['shippingaddress'] ) )
+    {
+    	$shipping = $userMap['shippingaddress']->content();
+    }
+    if ( isset( $userMap['shippingtype'] ) )
+    {
+    	$shippingtype = $userMap['shippingtype']->content();
+    }
     if ( array_key_exists( 'payment_method', $userMap ) )
     {
         $paymentMethod = $userMap['payment_method']->content();
@@ -50,20 +98,62 @@ if ( $user->isLoggedIn() and $userobject->attribute( 'class_identifier' ) == 'cl
     
     if ( $shipping != "1" )
     {
-        $s_companyName = $userMap['s_company_name']->content();
-        $s_companyAdditional = $userMap['s_company_additional']->content();
-        $s_firstName = $userMap['s_first_name']->content();
-        $s_lastName = $userMap['s_last_name']->content();
-        $s_mi = $userMap['s_mi']->content();
-        $s_address1 = $userMap['s_address1']->content();
-        $s_address2 = $userMap['s_address2']->content();
-        $s_state = $userMap['s_state']->content();
-        $s_city = $userMap['s_city']->content();
-        $s_zip = $userMap['s_zip_code']->content();
-        $s_country = $userMap['s_country']->attribute( 'data_text' );
-        $s_phone = $userMap['s_phone']->content();
-        $s_fax = $userMap['s_fax']->content();
-        $s_email = $userMap['s_email']->content();
+        if ( isset( $userMap['s_company_name'] ) )
+        {
+            $s_companyName = $userMap['s_company_name']->content();
+        }
+        if ( isset( $userMap['s_company_additional'] ) )
+        {
+            $s_companyAdditional = $userMap['s_company_additional']->content();
+        }
+        if ( isset( $userMap['s_first_name'] ) )
+        {
+            $s_firstName = $userMap['s_first_name']->content();
+        }
+        if ( isset( $userMap['s_last_name'] ) )
+        {
+        	$s_lastName = $userMap['s_last_name']->content();
+        }
+        if ( isset( $userMap['s_mi'] ) )
+        {
+            $s_mi = $userMap['s_mi']->content();
+        }
+        if ( isset( $userMap['s_address1'] ) )
+        {
+            $s_address1 = $userMap['s_address1']->content();
+        }
+        if ( isset( $userMap['s_address2'] ) )
+        {
+            $s_address2 = $userMap['s_address2']->content();
+        }
+        if ( isset( $userMap['s_state'] ) )
+        {
+        	$s_state = $userMap['s_state']->content();
+        }
+        if ( isset( $userMap['s_city'] ) )
+        {
+            $s_city = $userMap['s_city']->content();
+        }
+        if ( isset( $userMap['s_zip_code'] ) )
+        {
+            $s_zip = $userMap['s_zip_code']->content();
+        }
+        if ( isset( $userMap['s_country'] ) )
+        {
+        	$s_country = $userMap['s_country']->attribute( 'data_text' );
+        }
+        if ( isset( $userMap['s_phone'] ) )
+        {
+            $s_phone = $userMap['s_phone']->content();
+        }
+        if ( isset( $userMap['s_fax'] ) )
+        {
+            $s_fax = $userMap['s_fax']->content();
+        }
+        if ( isset( $userMap['s_email'] ) )
+        {
+            $s_email = $userMap['s_email']->content();
+        }
     }
 }
 

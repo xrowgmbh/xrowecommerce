@@ -132,7 +132,7 @@ for (i = 0; i < field.length; i++)
                 {"Total Price"|i18n("extension/xrowecommerce")}
             </th>
             <th>
-                {"Remove"|i18n("extension/xrowecommerce")}
+               <img src={'shop/basket-delete-icon.gif'|ezimage} title="{"Remove"|i18n("extension/xrowecommerce")}" />
             </th>
         </tr>
         {section var=product_item loop=$basket.items sequence=array(bglight,bgdark)}

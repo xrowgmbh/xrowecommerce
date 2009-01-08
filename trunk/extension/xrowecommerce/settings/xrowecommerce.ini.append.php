@@ -8,6 +8,7 @@ CompanyName=disabled
 CompanyAdditional=disabled
 TaxID=disabled
 Fax=enabled
+ShopUserClassList[]=client
 # Please use an override instead
 
 #[MerchantLocations]
