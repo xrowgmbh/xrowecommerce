@@ -542,10 +542,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Order completed</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Reciept</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1062,6 +1058,10 @@
     </message>
     <message>
         <source>Use this button to remove items from your shopping cart.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Completion</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
