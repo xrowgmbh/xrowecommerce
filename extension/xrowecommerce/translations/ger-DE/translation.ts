@@ -643,11 +643,11 @@
     </message>
     <message>
         <source>Company</source>
-        <translation>Firmenname</translation>
+        <translation>Firma</translation>
     </message>
     <message>
         <source>Company additional information</source>
-        <translation>Unternehmensform</translation>
+        <translation>Firma zuätzliche Information</translation>
     </message>
     <message>
         <source>Tax ID</source>
@@ -844,7 +844,7 @@ Button</translation>
     </message>
     <message>
         <source>Please enter your billing address exactly as it appears on your credit card statement.</source>
-        <translation>Bitte geben Sie den Code ein, der auf Ihrem Gutschein steht.</translation>
+        <translation>Bitte tragen Sie ihre Rechnungsanschrift so ein, wie sie auf Ihrer Kreditkartenabrechung steht.</translation>
     </message>
     <message>
         <source>Input did not validate</source>

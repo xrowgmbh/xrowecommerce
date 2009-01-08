@@ -2,7 +2,7 @@
 <div class="shop-basket">
 
 <form method="post" action={"xrowecommerce/userregister/"|ezurl} name='register' >
-<h2>{'My Account'|i18n('extension/xrowecommerce')}</h2>
+<h1>{'My Account'|i18n('extension/xrowecommerce')}</h1>
 
 {include uri="design:shop/basket_navigator.tpl" step='2'}
 
@@ -293,23 +293,13 @@
 {* right column *}
 <div class="shipping">
 <span class="headingur">{'Shipping Information'|i18n( 'extension/xrowecommerce' )}</span>
-<table border="0">
-        <tr>
-        <td>
-            <input name="Shipping" value="1" type="checkbox" {$shipping|choose( '', 'checked="checked"' )}
-            onchange="change(this.checked); shipping(document.register.country.value);"
-            />
-        </td>
-        <td>
-            <p>
-            {'My billing and shipping addresses are identical.'|i18n('extension/xrowecommerce')} <span class="required">* {'Required field'|i18n('extension/xrowecommerce')}</span>
-            </p>
-        </td>
-        </tr>
+<p>
+    <input name="Shipping" value="1" type="checkbox" {$shipping|choose( '', 'checked="checked"' )} onchange="change(this.checked); shipping(document.register.country.value);" />
+    {'My billing and shipping addresses are identical.'|i18n('extension/xrowecommerce')} 
+</p>
 
-        </table>
 <div class="block" id="shippinginfo" {$shipping|choose( "style='display: block;'", "style='display: none;'")}>
-
+<p><span class="required">* {'Required field'|i18n('extension/xrowecommerce')}</span></p>
 {if eq(ezini( 'Settings', 'CompanyName', 'xrowecommerce.ini' ), 'enabled' )}
     <div class="ur_companyname">
         <label>{'Company name'|i18n('extension/xrowecommerce')}</label>
@@ -493,7 +483,7 @@
 
 
     {set $country_default=''}
-    {def $is_set=is_set($s_country)}
+    {set $is_set=is_set($s_country)}
     {if is_set($s_country)|not}
         {def $s_country=''}
     {/if}
@@ -503,8 +493,7 @@
     {if and($s_country|eq(''),$country|not)}
             {set $s_country=$country_default_ini|wash()}
     {/if}
-    {def $countries=fetch( 'content', 'country_list', array(false, false))
-     $country_list_item_code=''}
+    {set $country_list_item_code=''}
     <input type="hidden" name="sik_country" id="sik_country" value="USA" />
             <select name="s_Country" id="scountry" onchange="shipping(document.register.country.value);">
                 <option value="">&nbsp;</option>
