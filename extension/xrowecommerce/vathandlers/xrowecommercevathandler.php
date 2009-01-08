@@ -72,7 +72,7 @@ class xrowECommerceVATHandler
             if ( is_object( $object ) )
             {
                 $dm = $object->dataMap();
-                if ( is_object( $dm['tax_id'] ) and $dm['tax_id']->attribute( 'has_content' ) )
+                if ( isset( $dm['tax_id'] ) and $dm['tax_id']->attribute( 'has_content' ) )
                 {
                     $percentage = xrowECommerceVATHandler::getTAX( $country, false, true );
                 }
