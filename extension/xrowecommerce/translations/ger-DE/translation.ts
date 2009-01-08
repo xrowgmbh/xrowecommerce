@@ -647,7 +647,7 @@
     </message>
     <message>
         <source>Company additional information</source>
-        <translation>Firma zuätzliche Information</translation>
+        <translation>Firma zusätzliche Information</translation>
     </message>
     <message>
         <source>Tax ID</source>
