@@ -27,7 +27,7 @@
 {/if}
 <div class="billing">{* LEFT COL START *}
 
-<span class="headingur">{'Billing Information'|i18n('extension/xrowecommerce')}</span><br />
+<h3>{'Billing Information'|i18n('extension/xrowecommerce')}</h3>
 <p>{'Please enter your billing address exactly as it appears on your credit card statement.'|i18n('extension/xrowecommerce')}<br /> <span class="required">* {'Required field'|i18n('extension/xrowecommerce')}</span></p>
 <div class="labelbreak"></div>
 
@@ -292,7 +292,7 @@
 
 {* right column *}
 <div class="shipping">
-<span class="headingur">{'Shipping Information'|i18n( 'extension/xrowecommerce' )}</span>
+<h3>{'Shipping Information'|i18n( 'extension/xrowecommerce' )}</h3>
 <p>
     <input name="Shipping" value="1" type="checkbox" {$shipping|choose( '', 'checked="checked"' )} onchange="change(this.checked); shipping(document.register.country.value);" />
     {'My billing and shipping addresses are identical.'|i18n('extension/xrowecommerce')} 
