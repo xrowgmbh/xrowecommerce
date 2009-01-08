@@ -519,11 +519,11 @@
     </message>
     <message>
         <source>You have no items in your shopping cart</source>
-        <translation>Sie haben keine Artikel im Einkaufswagen</translation>
+        <translation>Sie haben keine Artikel im Warenkorb</translation>
     </message>
     <message>
         <source>Cart</source>
-        <translation>Einkaufswagen</translation>
+        <translation>Warenkorb</translation>
     </message>
     <message>
         <source>Billing, Shipping and Coupons</source>
@@ -555,7 +555,7 @@
     </message>
     <message>
         <source>Sorry, there are no items left in your cart.</source>
-        <translation>Sie haben keine Artikel im Einkaufswagen.</translation>
+        <translation>Sie haben keine Artikel im Warenkorb.</translation>
     </message>
     <message>
         <source>Input did not validate, all fields marked with %mark% must be filled in.</source>
@@ -1000,7 +1000,7 @@ Button</translation>
     </message>
     <message>
         <source>Hazardous item(s) found in your cart.</source>
-        <translation>Gefahrengüter in Ihrem Einkaufswagen festgestellt.</translation>
+        <translation>Gefahrengüter in Ihrem Warenkorb festgestellt.</translation>
     </message>
     <message>
         <source>Dear Customer,</source>
@@ -1008,7 +1008,7 @@ Button</translation>
     </message>
     <message>
         <source>We&apos;ve removed the following hazardous items from your shopping cart since we are not allowed to ship these items to your destination. For further questions please contact %companyname%.</source>
-        <translation>Wir haben die folgenden Gefahrengüter aus Ihren Einkaufswagen entfernt, da wir diese nicht zu Ihnen exportieren dürfen. Für weitere Anweisungen oder Fragen kontaktieren Sie bitte %companyname%.</translation>
+        <translation>Wir haben die folgenden Gefahrengüter aus Ihren Warenkorb entfernt, da wir diese nicht zu Ihnen exportieren dürfen. Für weitere Anweisungen oder Fragen kontaktieren Sie bitte %companyname%.</translation>
     </message>
     <message>
         <source>Subtotal ex. tax</source>
@@ -1064,7 +1064,7 @@ Button</translation>
     </message>
     <message>
         <source>Use this button to remove items from your shopping cart.</source>
-        <translation>Benutzen Sie diesen Knopf, um Artikel aus Ihrem Einkaufswagen zu entfernen.</translation>
+        <translation>Benutzen Sie diesen Knopf, um Artikel aus Ihrem Warenkorb zu entfernen.</translation>
     </message>
 </context>
 <context>
