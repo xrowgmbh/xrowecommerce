@@ -87,25 +87,6 @@
     </message>
 </context>
 <context>
-    <name>design/admin/shop/accounthandlers/html/ez</name>
-    <message>
-        <source>Payment information</source>
-        <translation>Zahlungsart</translation>
-    </message>
-    <message>
-        <source>Card Holder&apos;s Name</source>
-        <translation>Name des Karteninhabers</translation>
-    </message>
-    <message>
-        <source>Last 4 Digits of Card Number</source>
-        <translation>Letzte 4 Ziffern der Kartennummer</translation>
-    </message>
-    <message>
-        <source>Card Expiration Date</source>
-        <translation>Gültig bis</translation>
-    </message>
-</context>
-<context>
     <name>design/admin/shop/orderlist</name>
     <message>
         <source>Products with zero weight</source>
@@ -1065,6 +1046,378 @@ Button</translation>
     <message>
         <source>Completion</source>
         <translation>Abschluss</translation>
+    </message>
+    <message>
+        <source>Qty</source>
+        <translation>Menge</translation>
+    </message>
+    <message>
+        <source>Your cart is empty.</source>
+        <translation>Ihr Warenkorb ist leer.</translation>
+    </message>
+    <message>
+        <source>Please</source>
+        <translation>Bitte</translation>
+    </message>
+    <message>
+        <source>select the product-categories</source>
+        <translation>wählen Sie die Produktkategorien</translation>
+    </message>
+    <message>
+        <source>on the left to view and order products.</source>
+        <translation>auf der linken Seite, um Produkte anzusehen und zu bestellen.</translation>
+    </message>
+    <message>
+        <source>Option:</source>
+        <translation>Option:</translation>
+    </message>
+    <message>
+        <source>LBS</source>
+        <translation>Pfund</translation>
+    </message>
+    <message>
+        <source>Products that match the following properties are listed:</source>
+        <translation>Produkte mit den passenden Eigenschaften wurden aufgelistet:</translation>
+    </message>
+    <message>
+        <source>no weight attribute in the variations and no general weight</source>
+        <translation>keine Gewichtsattribute in den Variationen und kein allgemeines Gewicht</translation>
+    </message>
+    <message>
+        <source>no general weight and zero weight in the variations</source>
+        <translation>kein allgemeines Gewicht und keine Gewichtsangabe in den Variationen</translation>
+    </message>
+    <message>
+        <source>Gratulation. No products left anymore.</source>
+        <translation>Gratulation. Keine verbleibenden Produkte.</translation>
+    </message>
+    <message>
+        <source>Order Number</source>
+        <translation>Bestellnummer</translation>
+    </message>
+    <message>
+        <source>Original description</source>
+        <translation>Originalbeschreibung</translation>
+    </message>
+    <message>
+        <source>Original price</source>
+        <translation>Originalpreis</translation>
+    </message>
+    <message>
+        <source>Customer search</source>
+        <translation>Kundensuche</translation>
+    </message>
+    <message>
+        <source>Multiple occurencies!</source>
+        <translation>Verschiedene Vorfälle!</translation>
+    </message>
+    <message>
+        <source>No match</source>
+        <translation>Keine Übereinstimmung</translation>
+    </message>
+    <message>
+        <source>Search for customer in the system via e-mail address</source>
+        <translation>Kundensuche im System via Emailadresse</translation>
+    </message>
+    <message>
+        <source>Edit shippingcosts with this order number:</source>
+        <translation>Bearbeite Versandkosten mit dieser Bestellnummer:</translation>
+    </message>
+    <message>
+        <source>E-mail address or Order No</source>
+        <translation>Emailadresse oder Bestellnummer</translation>
+    </message>
+    <message>
+        <source>Link</source>
+        <translation>Link</translation>
+    </message>
+    <message>
+        <source>ID</source>
+        <translation>Nummer</translation>
+    </message>
+    <message>
+        <source>Show user</source>
+        <translation>Zeige Benutzer</translation>
+    </message>
+    <message>
+        <source>A log of this change will be saved.</source>
+        <translation>Eine Aufzeichnung dieser Veränderung wurde gespeichert.</translation>
+    </message>
+    <message>
+        <source>A wise decision!</source>
+        <translation>Eine weise Entscheidung!</translation>
+    </message>
+    <message>
+        <source>order</source>
+        <translation>Bestellung</translation>
+    </message>
+    <message>
+        <source>orders</source>
+        <translation>Bestellungen</translation>
+    </message>
+    <message>
+        <source>Selected period is from</source>
+        <translation>Ausgewählter Zeitraum ist von</translation>
+    </message>
+    <message>
+        <source>till</source>
+        <translation>bis</translation>
+    </message>
+    <message>
+        <source>and includes</source>
+        <translation>und enthält</translation>
+    </message>
+    <message>
+        <source>Year</source>
+        <translation>Jahr</translation>
+    </message>
+    <message>
+        <source>Month</source>
+        <translation>Monat</translation>
+    </message>
+    <message>
+        <source>Day</source>
+        <translation>Tag</translation>
+    </message>
+    <message>
+        <source>From</source>
+        <translation>Von</translation>
+    </message>
+    <message>
+        <source>Date</source>
+        <translation>DatumDatum</translation>
+    </message>
+    <message>
+        <source>Total (inc Tax)</source>
+        <translation>Summe (mit MwSt.)</translation>
+    </message>
+    <message>
+        <source>Total (ex Tax)</source>
+        <translation>Summe (ohne MwSt.)</translation>
+    </message>
+    <message>
+        <source>Total Tax</source>
+        <translation>MwSt. gesamt</translation>
+    </message>
+    <message>
+        <source>Total NY Tax</source>
+        <translation>NY Steuern gesamt</translation>
+    </message>
+    <message>
+        <source>Total CT Tax</source>
+        <translation>CT Steuern gesamt</translation>
+    </message>
+    <message>
+        <source>Total Products</source>
+        <translation>Produkte gesamt</translation>
+    </message>
+    <message>
+        <source>Total Shipping/handling</source>
+        <translation>Summe Verpackung/Versand</translation>
+    </message>
+    <message>
+        <source>Sorry, no order in the selected Month to show.</source>
+        <translation>Verzeihung, es gibt im ausgewählten Monat keine Bestellung.</translation>
+    </message>
+    <message>
+        <source>Although your Login User Name must be kept the same, you can update your Email Address and/or change your Password by entering new information in the appropriate field.  When complete, click the &quot;Update&quot; button at the bottom of the page.</source>
+        <translation>Obwohl Ihr Benutzername für den Login gleich bleiben muss, können Sie Ihre Emailadresse und/oder Ihr Passwort ändern, indem Sie die neuen Informationen in das zutreffende Feld schreiben. Wenn Sie fertig sind, clicken Sie den Button unten auf der Seite um die Informationen abzusenden.</translation>
+    </message>
+    <message>
+        <source>Username</source>
+        <translation>Benutzername</translation>
+    </message>
+    <message>
+        <source>Credit card Information</source>
+        <translation>Kreditkarteninformation</translation>
+    </message>
+    <message>
+        <source>Your credit card information is needed, if you want to make use of our recurring order option.</source>
+        <translation>Ihre Kreditkarteninformation werden benötigt, wenn Sie die Option &quot;Wiederkehrenden Bestellungen&quot; nutzen möchten.</translation>
+    </message>
+    <message>
+        <source>Did you know about our...</source>
+        <translation>Kennen Sie schon unsere...</translation>
+    </message>
+    <message>
+        <source>Add your selections to</source>
+        <translation>Fügen Sie Ihre Bestellungen der</translation>
+    </message>
+    <message>
+        <source>Automatic Delivery</source>
+        <translation>Automatischen Auslieferung</translation>
+    </message>
+    <message>
+        <source>Note</source>
+        <translation>Hinweis</translation>
+    </message>
+    <message>
+        <source>This product is available for</source>
+        <translation>Dieses Produkt ist verfügbar zur</translation>
+    </message>
+    <message>
+        <source>To add this product to your Automatic Delivery you have to</source>
+        <translation>Um dieses Produkt zut automatischen Auslieferung hinzuzufügen, müssen Sie</translation>
+    </message>
+    <message>
+        <source>login</source>
+        <translation>einloggen</translation>
+    </message>
+    <message>
+        <source>What is Automatic Delivery?</source>
+        <translation>Was ist automatische Auslieferung?</translation>
+    </message>
+    <message>
+        <source>Use our Automatic Delivery service to have this item sent to you as often as you like.  You?ll get priority on our inventory and save time.</source>
+        <translation>Benutzen Sie unseren Servive &quot;Automatische Auslieferung&quot; um diesen Artikel so oft geliefert zu bekommen wie und wann Sie mögen. Ihre Bestellungen bekommen höhere Priorität beim Lagerbestand und sie sparen Zeit.</translation>
+    </message>
+    <message>
+        <source>By placing your initial Automatic Delivery order and setting up an Automatic Delivery schedule, you authorize us to charge the same credit card for future Automatic Delivery orders until you cancel.</source>
+        <translation>Beim Einrichten der automatischen Auslieferung und Einrichten des Auslieferungsplanes authorisieren Sie uns für zukünftige Bestellungen den erforderlichen Betrag abzubuchen.</translation>
+    </message>
+    <message>
+        <source>Since the accuracy of your credit card, shipping and billing information is vital to Automatic Delivery, please promptly submit changes through the my account section.</source>
+        <translation>Nebeni korrekten Kreditkarteninformationen sind außerdem Rechnungs- und Lierferungsinformationen wesentlich um die automatische Abwicklung korrekt abzuwickeln. Bitte übermitteln Sie Veränderungen schnellstmöglich über Ihr Profil Ihres Kundenkontos.</translation>
+    </message>
+    <message>
+        <source>Article Number:</source>
+        <translation>Artikelnummer:</translation>
+    </message>
+    <message>
+        <source>Address1</source>
+        <translation>Adresszeile 1</translation>
+    </message>
+    <message>
+        <source>Address2</source>
+        <translation>Adresszeile 2</translation>
+    </message>
+    <message>
+        <source>Shipped to</source>
+        <translation>ausgeliefert an</translation>
+    </message>
+    <message>
+        <source>Payment information</source>
+        <translation>Zahlungsart</translation>
+    </message>
+    <message>
+        <source>Card Holder&apos;s Name</source>
+        <translation>Name des Karteninhabers</translation>
+    </message>
+    <message>
+        <source>Last 4 Digits of Card Number</source>
+        <translation>Letzte 4 Ziffern der Kartennummer</translation>
+    </message>
+    <message>
+        <source>Card Expiration Date</source>
+        <translation>Gültig bis</translation>
+    </message>
+    <message>
+        <source>Thank you for ordering from</source>
+        <translation>Danke für Ihre Bestellung bei</translation>
+    </message>
+    <message>
+        <source>The details of the order are below.  If you have a question, please do not reply to this email.</source>
+        <translation>Anbei die Details Ihrer Bestellung. Wenn Sie eine Frage haben, antworten Sie bitte nicht an diese Emailadresse.</translation>
+    </message>
+    <message>
+        <source>Rather, email</source>
+        <translation>Vielmehr, emailen Sie</translation>
+    </message>
+    <message>
+        <source>or call</source>
+        <translation>oder Rufen uns an unter</translation>
+    </message>
+    <message>
+        <source>Thank you again, and have a wonderful day!</source>
+        <translation>Abermals vielen Dank und einen schönen Tag!</translation>
+    </message>
+    <message>
+        <source>Order ID</source>
+        <translation>Bestellnummer</translation>
+    </message>
+    <message>
+        <source>Grand Total</source>
+        <translation>Gesamtsumme</translation>
+    </message>
+    <message>
+        <source>The Staff at</source>
+        <translation>Das Personal bei</translation>
+    </message>
+    <message>
+        <source>Contact Us</source>
+        <translation>Kontaktieren Sie uns</translation>
+    </message>
+    <message>
+        <source>Shop</source>
+        <translation>Shop</translation>
+    </message>
+    <message>
+        <source>Payment Information</source>
+        <translation>Zahlungsart</translation>
+    </message>
+    <message>
+        <source>Please enter your credit card information</source>
+        <translation>Bitte geben Sie Ihre Kreditkarteninformationen ein</translation>
+    </message>
+    <message>
+        <source>There were errors on the form</source>
+        <translation>Es gab Fehler im Dokument</translation>
+    </message>
+    <message>
+        <source>Name on Card</source>
+        <translation>Name auf der Karte</translation>
+    </message>
+    <message>
+        <source>Card Type</source>
+        <translation>Kartentyp</translation>
+    </message>
+    <message>
+        <source>Card Number</source>
+        <translation>Kartennummer</translation>
+    </message>
+    <message>
+        <source>Security Number</source>
+        <translation>Sicherheitsnummer</translation>
+    </message>
+    <message>
+        <source>Expiration Date</source>
+        <translation>Gültig bis</translation>
+    </message>
+    <message>
+        <source>Help?</source>
+        <translation>Hilfe?</translation>
+    </message>
+    <message>
+        <source>This table contains the specific product images, product id&apos;s, product names and links to the full view of the product</source>
+        <translation>Diese Tabelle enhält die jeweiligen Produktbilder, Produktnummern, Produktnamen und den Links zur Vollansicht des Produktes</translation>
+    </message>
+    <message>
+        <source>Enter your email address, login and password.</source>
+        <translation>Geben Sie Ihre Emailadresse, den Benutzernamen und das Passwort ein.</translation>
+    </message>
+    <message>
+        <source>Q: What are the advantages of security code verification?</source>
+        <translation>Q: Was sind die Vorteile der Prüfung des Sicherheitscodes?</translation>
+    </message>
+    <message>
+        <source>Please enter the last 3 digits of your credit card&apos;s security code, which is printed on the back of your card.</source>
+        <translation>Bitte geben Sie die letzten 3 Zeichen des Sicherheitscodes Ihrer Kreditkarte ein, welcher auf der Rückseite abgebildet ist.</translation>
+    </message>
+    <message>
+        <source>There are several advantages of security code verification</source>
+        <translation>Es gibt einige Vorzüge bei der Überprüfung des Sicherheitscodes</translation>
+    </message>
+    <message>
+        <source>Increased customer security</source>
+        <translation>Erhöhte Kundensicherheit</translation>
+    </message>
+    <message>
+        <source>Faster order fullfilment</source>
+        <translation>Schnellere Erfüllung der Bestellung</translation>
+    </message>
+    <message>
+        <source>Deters fraud</source>
+        <translation>Betrüger abschrecken</translation>
     </message>
 </context>
 <context>
