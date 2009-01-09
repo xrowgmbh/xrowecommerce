@@ -163,6 +163,18 @@ class xrowECommerce
                                    'total_sum_info' => $totalSumInfo );
         return $statisticArray;
     }
+    static function paymentLimitationList()
+    {
+        xrowPaymentGatewayType::loadAndRegisterGateways();
+        $list = xrowPaymentGatewayType::getGateways( array( -1 ) );
+        $paymentArray = array();
+        foreach ( $list as $item )
+        {
+            $paymentArray[] = array( 'name' => $item['Name'], 'id' => $item['value'] );
+        }
+
+        return $paymentArray;
+    }
 }
 
 ?>

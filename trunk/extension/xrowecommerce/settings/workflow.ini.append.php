@@ -6,7 +6,6 @@
 [EventSettings]
 RepositoryDirectories[]=extension/xrowecommerce/workflowtypes
 ExtensionDirectories[]=xrowecommerce
-AvailableEventTypes[]=event_ezreceipt
 AvailableEventTypes[]=event_xrowpaymentgateway
 AvailableEventTypes[]=event_ezproductcount
 

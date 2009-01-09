@@ -28,8 +28,20 @@ $ViewList["invoiceprint"] = array(
     "script" => "invoiceprint.php",
     "default_navigation_part" => 'ezshopnavigationpart',
     "params" => array( "OrderID" ) );
+
+$Payment = array(
+    'name' => 'Payment',
+    'values' => array(),
+    'extension' => 'xrowecommerce',
+    'path' => 'classes/',
+    'file' => 'xrowecommerce.php',
+    'class' => 'xrowECommerce',
+    'function' => 'paymentLimitationList',
+    'parameter' => array( false )
+    );
+
 $FunctionList['buy'] = array( );
 $FunctionList['administrate'] = array( );
 $FunctionList['bypass_captcha'] = array( );
-
+$FunctionList['payment'] = array( 'Payment' => $Payment );
 ?>
