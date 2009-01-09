@@ -86,7 +86,7 @@
     	<div class="labelbreak"></div>
     	<input type="text" name="City" id="city" value="{$city|wash}" />
     </div>
-
+{if eq(ezini( 'Settings', 'State', 'xrowecommerce.ini' ), 'enabled' )}
     <div class="state">
     	<label>{'State / Province'|i18n('extension/xrowecommerce')}</label>
     	<div class="labelbreak"></div>
@@ -203,6 +203,7 @@
 		     </optgroup>
 	    </select>
     </div>
+{/if}    
     <div class="break"></div>
 
 <div class="zip">
@@ -351,7 +352,7 @@
     	<div class="labelbreak"></div>
     	<input type="text" name="s_City" value="{$s_city|wash}" id="scity" />
     </div>
-
+{if eq(ezini( 'Settings', 'State', 'xrowecommerce.ini' ), 'enabled' )}
     <div class="state">
     	<label>{'State / Province'|i18n('extension/xrowecommerce')}</label>
     	<div class="labelbreak"></div>
@@ -469,6 +470,7 @@
 	    </select>
     </div>
     <div class="break"></div>
+{/if}
 
 <div class="zip">
     <label><span class="required">*</span>{'Zip'|i18n('extension/xrowecommerce')}</label>

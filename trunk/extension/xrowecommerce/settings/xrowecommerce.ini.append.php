@@ -7,6 +7,7 @@ Coupon=disabled
 Catalogueorder=disabled
 CompanyName=disabled
 CompanyAdditional=disabled
+MI=not_required
 State=enabled
 TaxID=disabled
 Fax=enabled
