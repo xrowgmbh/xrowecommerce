@@ -15,7 +15,22 @@ class xrowShippingInterface {
 		}
 		return false;
 	}
-	
+	static function instanceByMethod( $methodname )
+	{
+		$list = self::fetchAll();	
+		foreach ( $list as $key => $method )
+		{
+		if ( $method['identifier'] == $methodname )
+		{
+			$name = $method['gateway']; 
+			$return = new $name();
+			$return->loadConfiguration();
+			$return->method = $methodname;
+			return $return;
+		}
+		}
+		return false;
+	}
 	static function fetchAll() {
 		$result = array();
 		$list = eZINI::instance( 'shipping.ini' )->variable( 'Settings', 'ShippingGateways' );

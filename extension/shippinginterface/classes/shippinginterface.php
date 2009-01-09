@@ -51,7 +51,7 @@ class ShippingInterface
     			$name = $method['name'];
     		}
     	}
-    	return $name . ' ( '.$this->weight.'lbs)';
+    	return $name . ' ( '.$this->weight.' lbs )';
     }
     
     /**
@@ -65,6 +65,10 @@ class ShippingInterface
     function loadConfiguration()
     {
     	return false;
+    }
+    function destinationCheck()
+    {
+    	return true;
     }
     
     

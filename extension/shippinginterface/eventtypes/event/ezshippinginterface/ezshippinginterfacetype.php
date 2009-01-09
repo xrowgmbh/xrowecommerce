@@ -297,7 +297,8 @@ class eZShippingInterfaceType extends eZWorkflowEventType
         #### SHIPPING COST CALCULATION
         $shippingerror = false;
 
-        $gateway  = xrowShippingInterface::instanceByIdentifier( $shippingtype );
+        $gateway  = xrowShippingInterface::instanceByMethod( $shippingtype );
+
         if( $gateway )
         {
         	try
@@ -307,7 +308,7 @@ class eZShippingInterfaceType extends eZWorkflowEventType
         		{
         			$totalweight = 1;
         		}
-        		$ups->setWeight( $totalweight );
+        		$gateway->setWeight( $totalweight );
         		$gateway->setAddressTo( $shipping_country, $shipping_state, $shipping_zip, $shipping_city );
         		$cost = $gateway->getPrice();
         		$description = $gateway->description();
@@ -465,7 +466,7 @@ class eZShippingInterfaceType extends eZWorkflowEventType
         
         // get actual tax value
         $vat_value = 0;
-        $vat_value = xrowECommerceVATHandler::getVatPercent();
+        $vat_value = eZVATManager::getVAT();
         /*
         if( $tax_country == "USA" AND $tax_state == "NY" AND $cost > 0 )
                 $vat_value =  8.375;
