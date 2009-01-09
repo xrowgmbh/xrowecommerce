@@ -23,5 +23,5 @@ class xrowCashOnDeliveryGateway extends eZPaymentGateway
         return eZWorkflowType::STATUS_ACCEPTED;
     }
 }
-xrowPaymentGatewayType::registerGateway( xrowCashOnDeliveryGateway::GATEWAY_STRING, "xrowcashondeliverygateway", "ezi18n( 'kernel/classes/datatypes', 'Pay on delivery' )" );
+xrowPaymentGatewayType::registerGateway( xrowCashOnDeliveryGateway::GATEWAY_STRING, "xrowcashondeliverygateway", ezi18n( 'kernel/classes/datatypes', 'Pay on delivery' ) );
 ?>
