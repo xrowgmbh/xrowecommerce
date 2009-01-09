@@ -13,7 +13,7 @@
         <div style="border: 1px solid #ebeeef; width: 290px; float: left; display: inline; margin:5px; padding: 8px;">
             <span class="heading1">{'Account Information'|i18n('extension/xrowecommerce')}</span>
             <br />
-            <p>Enter your email address, login and password.<br /> <span class="required">* Required field</span><br /></p>
+            <p>{"Enter your email address, login and password."|i18n("extension/xrowecommerce")}<br /> <span class="required">* {'Required field'|i18n("extension/xrowecommerce")}</span><br /></p>
             <br />
 
             <div class="block">

@@ -49,5 +49,5 @@ class eZPayinvoiceGateway extends eZPaymentGateway
         }
     }
 }
-eZPaymentGatewayType::registerGateway( EZ_PAYMENT_GATEWAY_TYPE_PAYINVOICE, "ezpayinvoicegateway", "Pay by invoice" );
+eZPaymentGatewayType::registerGateway( EZ_PAYMENT_GATEWAY_TYPE_PAYINVOICE, "ezpayinvoicegateway", "ezi18n( 'kernel/classes/datatypes', 'Pay by invoice' )" );
 ?>

@@ -13,11 +13,11 @@
 {* DESIGN: Content START *}<div class="box-ml"><div class="box-mr"><div class="box-content">
 <div class="context-attributes">
 <p>
-Products that match the following properties are listed:
+{'Products that match the following properties are listed:'|i18n( 'extension/xrowecommerce')}
 </p>
 <ul>
-<li>no weight attribute in the variations and no general weight</li>
-<li>no general weight and zero weight in the variations</li>
+<li>{'no weight attribute in the variations and no general weight'|i18n( 'extension/xrowecommerce')}</li>
+<li>{'no general weight and zero weight in the variations'|i18n( 'extension/xrowecommerce')}</li>
 </ul>
 
 <div class="block">
@@ -36,7 +36,7 @@ Products that match the following properties are listed:
 {/foreach}
 {else}
 <tr>
-        <td colspan="2">Gratulation. No products left anymore.</td>
+        <td colspan="2">{'Gratulation. No products left anymore.'|i18n( 'extension/xrowecommerce')}</td>
 </tr>
 {/if}
 </table>

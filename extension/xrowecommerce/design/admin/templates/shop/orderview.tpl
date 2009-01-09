@@ -63,15 +63,15 @@
         <td class="number" align="right"><a href={concat('/remove/remove/','order/', $order.id, '/item/', $ProductItem:item.id)|ezurl()} {literal}onClick="
 if(confirm('Are you absolutly certain you want to remove this item from this order?\nThis action is permenant ...'))
 {
- alert('A log of this change will be saved.');
+ alert('{'A log of this change will be saved.'|i18n( 'extension/xrowecommerce')}');
  return true;
 }
 else
 {
- alert('A wise decision!')
+ alert('{'A wise decision!'|i18n( 'extension/xrowecommerce')}')
  return false;
 }
-{/literal}"}>Remove</a>
+{/literal}"}>{'Remove'|i18n( 'extension/xrowecommerce')}</a>
 
 {* $ProductItem:item|attribute(show,1) *}
 {*

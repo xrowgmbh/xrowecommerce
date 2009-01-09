@@ -4,7 +4,7 @@
 
 {* DESIGN: Header START *}<div class="box-header"><div class="box-tc"><div class="box-ml"><div class="box-mr"><div class="box-tl"><div class="box-tr">
 
-<h1 class="context-title">{'Order statistic'|i18n( 'design/admin/shop/orderlist')} ({$order_array|count()} {if $order_array|count()|eq(1)}order{else}orders{/if}) </h1>
+<h1 class="context-title">{'Order statistic'|i18n( 'design/admin/shop/orderlist')} ({$order_array|count()} {if $order_array|count()|eq(1)}{'order'|i18n( 'extension/xrowecommerce')}{else}{'orders'|i18n( 'extension/xrowecommerce')}{/if}) </h1>
 
 {* DESIGN: Mainline *}<div class="header-mainline"></div>
 
@@ -16,7 +16,7 @@
 {def $timestamp=currentdate()}
 {$timestamp|l10n( 'datetime' )}
 <br /><br />
-Selected period is from <b>{$order_result.time.start_stamp|l10n( 'date' )}</b> till <b>{$order_result.time.stop_stamp|l10n( 'date' )}</b> and includes {$order_array|count()} {if $order_array|count()|eq(1)}order{else}orders{/if}.<br />
+{'Selected period is from'|i18n( 'extension/xrowecommerce')} <b>{$order_result.time.start_stamp|l10n( 'date' )}</b> {'till'|i18n( 'extension/xrowecommerce')} <b>{$order_result.time.stop_stamp|l10n( 'date' )}</b> {'and includes'|i18n( 'extension/xrowecommerce')} {$order_array|count()} {if $order_array|count()|eq(1)}{'order'|i18n( 'extension/xrowecommerce')}{else}{'orders'|i18n( 'extension/xrowecommerce')}{/if}.<br />
 <br />
 {literal}
 <style type="text/css">
@@ -32,17 +32,17 @@ Selected period is from <b>{$order_result.time.start_stamp|l10n( 'date' )}</b> t
 <table width="100%" cellspacing="0" cellpadding="0" border="0" id="hidebyprint">
     <tr>
         <td style="text-align: center;">&nbsp;</td>
-        <td style="text-align: center;">Year</td>
-        <td style="text-align: center;">Month</td>
-        <td style="text-align: center;">Day</td>
+        <td style="text-align: center;">{'Year'|i18n( 'extension/xrowecommerce')}</td>
+        <td style="text-align: center;">{'Month'|i18n( 'extension/xrowecommerce')}</td>
+        <td style="text-align: center;">{'Day'|i18n( 'extension/xrowecommerce')}</td>
         <td style="text-align: center;">&nbsp;</td>
-        <td style="text-align: center;">Year</td>
-        <td style="text-align: center;">Month</td>
-        <td style="text-align: center;">Day</td>
+        <td style="text-align: center;">{'Year'|i18n( 'extension/xrowecommerce')}</td>
+        <td style="text-align: center;">{'Month'|i18n( 'extension/xrowecommerce')}</td>
+        <td style="text-align: center;">{'Day'|i18n( 'extension/xrowecommerce')}</td>
         <td style="text-align: center;">&nbsp;</td>
     </tr>
 <tr>
-<td>From: &nbsp;</td>
+<td>{'From'|i18n( 'extension/xrowecommerce')}: &nbsp;</td>
 <td style="text-align: center;">
 <select name="StartYear" title="{'Select the year for which you wish to view statistics.'|i18n( 'design/admin/shop/orderstatistics' )}">
     <option value="0" {section show=eq($year,0)}selected="selected"{/section}>[{'All years'|i18n( 'design/admin/shop/orderstatistics' )}]</option>
@@ -67,7 +67,7 @@ Selected period is from <b>{$order_result.time.start_stamp|l10n( 'date' )}</b> t
     {/section}
 </select>
 </td>
-<td style="text-align: center;">till: &nbsp;</td>
+<td style="text-align: center;">{'till'|i18n( 'extension/xrowecommerce')}: &nbsp;</td>
 <td style="text-align: center;">
 <select name="StopYear" title="{'Select the year till which you wish to view statistics.'|i18n( 'design/admin/shop/orderstatistics' )}">
     <option value="0" {section show=eq($stopyear,0)}selected="selected"{/section}>[{'Years'|i18n( 'design/admin/shop/orderstatistics' )}]</option>
@@ -100,16 +100,16 @@ Selected period is from <b>{$order_result.time.start_stamp|l10n( 'date' )}</b> t
 <div class="block">
 <table class="list" width="100%" cellspacing="0" cellpadding="0" border="0">
     <tr>
-        <th style="text-align: right;"><b>Order</b></th>
-        <th style="text-align: right;"><b>Date</b></th>
-        <th style="text-align: right;"><b>State</b></th>
-        <th style="text-align: right;"><b>Total (inc Tax)</b></th>
-        <th style="text-align: right;"><b>Total (ex Tax)</b></th>
-        <th style="text-align: right;"><b>Total Tax</b></th>
-        <th style="text-align: right;"><b>Total NY Tax</b></th>
-        <th style="text-align: right;"><b>Total CT Tax</b></th>
-        <th style="text-align: right;"><b>Total Products</b></th>
-        <th style="text-align: right;"><b>Total Shipping/handling</b></th>
+        <th style="text-align: right;"><b>{'Order'|i18n( 'extension/xrowecommerce')}</b></th>
+        <th style="text-align: right;"><b>{'Date'|i18n( 'extension/xrowecommerce')}</b></th>
+        <th style="text-align: right;"><b>{'State</b></th>
+        <th style="text-align: right;"><b>{'Total (inc Tax)'|i18n( 'extension/xrowecommerce')}</b></th>
+        <th style="text-align: right;"><b>{'Total (ex Tax)'|i18n( 'extension/xrowecommerce')}</b></th>
+        <th style="text-align: right;"><b>{'Total Tax'|i18n( 'extension/xrowecommerce')}</b></th>
+        <th style="text-align: right;"><b>{'Total NY Tax'|i18n( 'extension/xrowecommerce')}</b></th>
+        <th style="text-align: right;"><b>{'Total CT Tax'|i18n( 'extension/xrowecommerce')}</b></th>
+        <th style="text-align: right;"><b>{'Total Products'|i18n( 'extension/xrowecommerce')}</b></th>
+        <th style="text-align: right;"><b>{'Total Shipping/handling'|i18n( 'extension/xrowecommerce')}</b></th>
     </tr>
     <tr>
         <td style="text-align: right;">&nbsp;</td>
@@ -155,16 +155,16 @@ Selected period is from <b>{$order_result.time.start_stamp|l10n( 'date' )}</b> t
             {set $i=0}
             {set $page_count=inc($page_count)}
             <tr style="page-break-before:always;">
-                <th style="text-align: right;"><b>Order</b></th>
-                <th style="text-align: right;"><b>Date</b></th>
-                <th style="text-align: right;"><b>State</b></th>
-                <th style="text-align: right;"><b>Total (inc Tax)</b></th>
-                <th style="text-align: right;"><b>Total (ex Tax)</b></th>
-                <th style="text-align: right;"><b>Total Tax</b></th>
-                <th style="text-align: right;"><b>Total NY Tax</b></th>
-                <th style="text-align: right;"><b>Total CT Tax</b></th>
-                <th style="text-align: right;"><b>Total Products</b></th>
-                <th style="text-align: right;"><b>Total Shipping/handling</b></th>
+                <th style="text-align: right;"><b>{'Order'|i18n( 'extension/xrowecommerce')}</b></th>
+                <th style="text-align: right;"><b>{'Date'|i18n( 'extension/xrowecommerce')}</b></th>
+                <th style="text-align: right;"><b>{'State'|i18n( 'extension/xrowecommerce')}</b></th>
+                <th style="text-align: right;"><b>{'Total (inc Tax)'|i18n( 'extension/xrowecommerce')}</b></th>
+                <th style="text-align: right;"><b>{'Total (ex Tax)'|i18n( 'extension/xrowecommerce')}</b></th>
+                <th style="text-align: right;"><b>{'Total Tax'|i18n( 'extension/xrowecommerce')}</b></th>
+                <th style="text-align: right;"><b>{'Total NY Tax'|i18n( 'extension/xrowecommerce')}</b></th>
+                <th style="text-align: right;"><b>{'Total CT Tax'|i18n( 'extension/xrowecommerce')}</b></th>
+                <th style="text-align: right;"><b>{'Total Products'|i18n( 'extension/xrowecommerce')}</b></th>
+                <th style="text-align: right;"><b>{'Total Shipping/handling'|i18n( 'extension/xrowecommerce')}</b></th>
             </tr>
             <tr>
                 <td colspan="11"><hr /></td>
@@ -174,7 +174,7 @@ Selected period is from <b>{$order_result.time.start_stamp|l10n( 'date' )}</b> t
         {/foreach}
     {else}
         <tr class="{$style}">
-            <td colspan="11">Sorry, no order in the selected Month to show.</td>
+            <td colspan="11">{'Sorry, no order in the selected Month to show.'|i18n( 'extension/xrowecommerce')}</td>
         </tr>
     {/if}
 </table>

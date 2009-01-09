@@ -1,5 +1,5 @@
 <div>
-   <h1>Cart<//h1>
+   <h1>{'Cart'|i18n("extension/xrowecommerce")}</h1>
 </div>
 
 <form class="qbasketform" method="post" action={"/shop/basket"|ezurl}>
@@ -9,10 +9,10 @@
    <table class="quickbasket">
 
     <tr>
-        <th width=200px>Item</th>
-        <th width=70px>Qty</th>
-        <th width=70px>Price</th>
-        <th width=70px>Total</th>
+        <th width=200px>{'Item'|i18n("extension/xrowecommerce")}</th>
+        <th width=70px>{'Qty'|i18n("extension/xrowecommerce")}</th>
+        <th width=70px>{'Price'|i18n("extension/xrowecommerce")}</th>
+        <th width=70px>{'Total'|i18n("extension/xrowecommerce")}</th>
     </tr>
     {foreach $basket.items as $item}
     {if $item.item_object.option_list|count|gt(0)}
@@ -54,7 +54,7 @@
     <input type="submit" class="flat-right" name="CheckoutButton" value="{"Check out"|i18n("extension/xrowecommerce")}" />
 </form>
 {else}
-<p class="price">Your cart is empty.</p><br />
-<p>Please <b>select the product-categories</b> on the left to view and order products.</p>
+<p class="price">{'Your cart is empty.'|i18n("extension/xrowecommerce")}</p><br />
+<p>{'Please'|i18n("extension/xrowecommerce")} <b>{'select the product-categories'|i18n("extension/xrowecommerce")}</b> {'on the left to view and order products.'|i18n("extension/xrowecommerce")}</p>
 {/if}
 {/def}
