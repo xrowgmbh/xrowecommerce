@@ -182,14 +182,13 @@ if ( $module->isCurrentAction( 'Store' ) )
     $lastName = $http->postVariable( "LastName" );
     if ( trim( $lastName ) == "" )
         $inputIsValid = false;
-      
+     
     $mi = $http->postVariable( "MI" );
     if ( eZINI::instance( 'xrowecommerce.ini' )->variable( 'Settings', 'MI' ) == 'enabled' )
     {
         if ( trim( $mi ) == "" )
             $inputIsValid = false;
     }
-
     $email = $http->postVariable( "EMail" );
     if ( ! eZMail::validate( $email ) )
         $inputIsValid = false;
@@ -289,12 +288,15 @@ if ( $module->isCurrentAction( 'Store' ) )
     if ( class_exists( 'xrowShippingInterface' ) )
     {        
     	$gateway  = xrowShippingInterface::instanceByMethod( $shippingtype );
-    	$gateway->method = $shippingtype;
-        if ( !$gateway->destinationCheck( $shippingdestination ) )
-        {
-        	$errors[] = "Shipping destionation is not allowed.";
-            $inputIsValid = false;
-        }
+    	if ( $gateway instanceof ShippingInterface )
+    	{
+        	$gateway->method = $shippingtype;
+            if ( !$gateway->destinationCheck( $shippingdestination ) )
+            {
+            	$errors[] = "Shipping destionation is not allowed.";
+                $inputIsValid = false;
+            }
+    	}
     }
     /* Coupon check */
     if ( class_exists( 'xrowCoupon' ) and eZINI::instance( 'xrowecommerce.ini' )->variable( 'Settings', 'Coupon' ) == 'enabled' )
