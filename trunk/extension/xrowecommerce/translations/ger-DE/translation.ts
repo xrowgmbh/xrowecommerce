@@ -673,7 +673,7 @@
     <message>
         <source>Already a user?</source>
         <comment>User name</comment>
-        <translation>Bereigs Kunde?</translation>
+        <translation>Bereits Kunde?</translation>
     </message>
     <message>
         <source>Login</source>
