@@ -182,8 +182,14 @@ if ( $module->isCurrentAction( 'Store' ) )
     $lastName = $http->postVariable( "LastName" );
     if ( trim( $lastName ) == "" )
         $inputIsValid = false;
+      
     $mi = $http->postVariable( "MI" );
-    
+    if ( eZINI::instance( 'xrowecommerce.ini' )->variable( 'Settings', 'MI' ) == 'enabled' )
+    {
+        if ( trim( $mi ) == "" )
+            $inputIsValid = false;
+    }
+
     $email = $http->postVariable( "EMail" );
     if ( ! eZMail::validate( $email ) )
         $inputIsValid = false;
@@ -194,9 +200,13 @@ if ( $module->isCurrentAction( 'Store' ) )
         $inputIsValid = false;
     
     $state = $http->postVariable( "State" );
-    /* if ( trim( $state ) == "" )
-        $inputIsValid = false; */
-    
+
+    if ( eZINI::instance( 'xrowecommerce.ini' )->variable( 'Settings', 'State' ) == 'enabled' )
+    {
+        if ( trim( $state ) == "" )
+            $inputIsValid = false;
+    }
+
     $city = $http->postVariable( "City" );
     if ( trim( $city ) == "" )
         $inputIsValid = false;
