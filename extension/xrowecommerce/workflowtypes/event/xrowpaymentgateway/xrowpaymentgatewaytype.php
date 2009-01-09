@@ -154,7 +154,7 @@ class xrowPaymentGatewayType extends eZWorkflowEventType
 
     function typeFunctionalAttributes()
     {
-        return array( 
+        return array(
             'selected_gateways_types' , 
             'selected_gateways' , 
             'current_gateway' , 
@@ -165,7 +165,8 @@ class xrowPaymentGatewayType extends eZWorkflowEventType
     function attributes()
     {
         return array_merge( array( 
-            'available_gateways' 
+            'available_gateways',
+            'allowed_gateways'
         ), eZWorkflowEventType::attributes() );
     }
 
@@ -185,7 +186,17 @@ class xrowPaymentGatewayType extends eZWorkflowEventType
                     ) );
                 }
                 break;
-        
+            case 'allowed_gateways':
+                {
+                	var_dump($this->getGateways( array( 
+                        - 1 
+                    ) ) );
+                  
+                    return $this->getGateways( array( 
+                        - 1 
+                    ) );
+                }
+            break;
         }
         return eZWorkflowEventType::attribute( $attr );
     }
