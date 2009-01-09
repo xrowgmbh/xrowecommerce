@@ -11,7 +11,7 @@ class fixedprice extends ShippingInterface
     	 );
     }
     function getPrice() {
-    	return (float)eZINI::instace('shipping.ini.append.php')->variable( 'FixedPrice', 'Amount' );
+    	return (float)eZINI::instace('shipping.ini')->variable( 'FixedPrice', 'Amount' );
     }
     
 }
