@@ -236,25 +236,23 @@ for (i = 0; i < field.length; i++)
         {* ####### Login Box ######## *}
          {def $user=fetch( 'user', 'current_user' )}
          {if $user.contentobject.id|eq(ezini( 'UserSettings', 'AnonymousUserID' ))}
-                    <div>
                         <div class="loginbox">
                             <p>{'Already a user?'|i18n("extension/xrowecommerce",'User name')}</p>
                             <form method="post" action={"user/login"|ezurl}">
-                                <div class="loginbox_wrap">
+                                <div class="wrap">
                                     <label for="id1">{"Username"|i18n("extension/xrowecommerce",'User name')}</label><div class="labelbreak"></div>
                                     <input type="text" name="Login" id="id1" value="{$User:login|wash}" tabindex="1" />
                                 </div>
-                                <div class="loginbox_wrap">
+                                <div class="wrap">
                                     <label for="id2">{"Password"|i18n("extension/xrowecommerce")}</label><div class="labelbreak"></div>
                                     <input type="password" name="Password" id="id2" value="" tabindex="1" />
                                 </div>
-                                <div>
-                                    <input class="standard " type="submit" name="LoginButton" value="{'Login'|i18n('extension/xrowecommerce','Button')}" tabindex="1">
+                                <div class="login-button">
+                                    <input class="button" type="submit" name="LoginButton" value="{'Login'|i18n('extension/xrowecommerce','Button')}" tabindex="1">
                                 </div>
                                 <input type="hidden" name="RedirectURI" value={"xrowecommerce/userregister"|ezroot} />
                              </form>
                         </div>
-                    </div>
         {/if}
     {/if}
     {undef $currency $locale $symbol}
