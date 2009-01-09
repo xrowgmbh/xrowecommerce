@@ -993,7 +993,7 @@ Button</translation>
     </message>
     <message>
         <source>Order Receipt #%order_id </source>
-        <translation>Bestellbeleg Nr %order_id</translation>
+        <translation>Auftragsbestätigung Nr %order_id</translation>
     </message>
     <message>
         <source>SKU number</source>
