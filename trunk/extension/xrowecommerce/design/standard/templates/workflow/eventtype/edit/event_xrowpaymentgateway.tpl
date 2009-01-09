@@ -7,7 +7,7 @@
     <select name="WorkflowEvent_event_ezpaymentgateway_gateways_{$event.id}[]" size="5"  multiple>
          
         <option value="-1" {if $selectedGatewaysTypes|contains('-1')} selected="selected" {/if}>{"Any"|i18n("extension/xrowecommerce")}</option>
-        {foreach $event.workflow_type.available_gateways as $Gateways}
+        {foreach $event.workflow_type.allowed_gateways as $Gateways}
             <option value="{$Gateways.value}" {if $selectedGatewaysTypes|contains($Gateways.value)} selected="selected" {/if}>{$Gateways.Name|wash}
             </option>
         {/foreach}
