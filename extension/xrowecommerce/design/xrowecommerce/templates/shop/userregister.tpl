@@ -54,23 +54,25 @@
     </div>
 {/if}
 	<div class="ur_firstname">
-    	<label><span class="required">*</span>{'First name'|i18n('extension/xrowecommerce')}</label>
+    	<label>{'First name'|i18n('extension/xrowecommerce')}<span class="required">*</span></label>
     	<div class="labelbreak"></div>
     	<input type="text" name="FirstName" id="firstname" value="{$first_name|wash}" />
     </div>
+{if eq(ezini( 'Settings', 'CompanyAdditional', 'xrowecommerce.ini' ), 'enabled' )}
 	<div class="ur_mi">
     	<label>{'MI'|i18n('extension/xrowecommerce')}</label>
     	<div class="labelbreak"></div>
     	<input class="halfbox" type="text" name="MI" id="mi" size="2" value="{$mi|wash}" />
     </div>
+{/if}
     <div class="ur_lastname">
-    	<label><span class="required">*</span>{'Last name'|i18n('extension/xrowecommerce')}</label>
+    	<label>{'Last name'|i18n('extension/xrowecommerce')}<span class="required">*</span></label>
     	<div class="labelbreak"></div>
     	<input type="text" name="LastName" id="lastname" value="{$last_name|wash}" />
     </div>
 
 	<div class="block">
-		<label><span class="required">*</span>{'Address 1'|i18n('extension/xrowecommerce')}</label>
+		<label>{'Address 1'|i18n('extension/xrowecommerce')}<span class="required">*</span></label>
 		<div class="labelbreak"></div>
 		<input class="box" type="text" name="Address1" id="address1" size="20" value="{$address1|wash}" />
 	</div>
@@ -82,7 +84,7 @@
 	</div>
 
 	<div class="city">
-    	<label><span class="required">*</span>{'City'|i18n('extension/xrowecommerce')}</label>
+    	<label>{'City'|i18n('extension/xrowecommerce')}<span class="required">*</span></label>
     	<div class="labelbreak"></div>
     	<input type="text" name="City" id="city" value="{$city|wash}" />
     </div>
@@ -207,14 +209,14 @@
     <div class="break"></div>
 
 <div class="zip">
-    <label><span class="required">*</span>{'ZIP'|i18n('extension/xrowecommerce')}</label>
+    <label>{'ZIP'|i18n('extension/xrowecommerce')}<span class="required">*</span></label>
     <div class="labelbreak"></div>
     <input type="text" class="zip" name="Zip" id="zip" value="{$zip|wash}" />
 </div>
     <div class="break"></div>
 
 <div class="country">
-    <label><span class="required">*</span>{'Country'|i18n('extension/xrowecommerce')}</label>
+    <label>{'Country'|i18n('extension/xrowecommerce')}<span class="required">*</span></label>
     <div class="labelbreak"></div>
     {def $country_default_ini=ezini( 'ShopAccountHandlerDefaults', 'DefaultCountryCode' )}
     {def $country_default=''}
@@ -245,7 +247,7 @@
     <div class="break"></div>
 
 <div class="block">
-	<label><span class="required">*</span>{'Phone'|i18n('extension/xrowecommerce')}</label>
+	<label>{'Phone'|i18n('extension/xrowecommerce')}<span class="required">*</span></label>
 	<div class="labelbreak"></div>
 	<input type="text" name="Phone" class="phone" id="phone" value="{$phone|wash}" />
 </div>
@@ -257,7 +259,7 @@
 </div>
 {/if}
 <div class="block">
-	<label><span class="required">*</span>{'E-mail'|i18n('extension/xrowecommerce')}</label>
+	<label>{'E-mail'|i18n('extension/xrowecommerce')}<span class="required">*</span></label>
 	<div class="labelbreak"></div>
 	<input class="phone" type="text" name="EMail" id="email" value="{$email|wash}" />
 </div>
@@ -266,7 +268,7 @@
 {def $shipping_methods=fetch( 'shipping', 'list_methods' )}
 {if $shipping_methods|count|gt(0)}
 <div class="block">
-	<label><span class="required">*</span>{'Shipping'|i18n('extension/xrowecommerce')}</label>
+	<label>{'Shipping'|i18n('extension/xrowecommerce')}<span class="required">*</span></label>
 	<div class="labelbreak"></div>
 	<select name="ShippingType">
 	{foreach $shipping_methods as $shipping}
@@ -317,25 +319,25 @@
     </div>
 {/if}
 	<div class="ur_firstname">
-    	<label><span class="required">*</span>{'First name'|i18n('extension/xrowecommerce')}</label>
+    	<label>{'First name'|i18n('extension/xrowecommerce')}<span class="required">*</span></label>
     	<div class="labelbreak"></div>
     	<input type="text" name="s_FirstName" id="sfirstname" value="{$s_first_name|wash}" />
     </div>
-
+{if eq(ezini( 'Settings', 'MI', 'xrowecommerce.ini' ), 'enabled' )}
 	<div class="ur_mi">
     	<label>{'MI'|i18n('extension/xrowecommerce')}</label>
     	<div class="labelbreak"></div>
     	<input class="halfbox" type="text" name="s_MI" id="smi" size="2" value="{$s_mi|wash}" />
     </div>
-
+{/if}
     <div class="ur_lastname">
-    	<label><span class="required">*</span>{'Last name'|i18n('extension/xrowecommerce')}</label>
+    	<label>{'Last name'|i18n('extension/xrowecommerce')}<span class="required">*</span></label>
     	<div class="labelbreak"></div>
     	<input type="text" name="s_LastName" id="slastname" value="{$s_last_name|wash}" />
     </div>
 
 	<div class="block">
-		<label><span class="required">*</span>{'Address 1'|i18n('extension/xrowecommerce')}</label>
+		<label>{'Address 1'|i18n('extension/xrowecommerce')}<span class="required">*</span></label>
 		<div class="labelbreak"></div>
 		<input class="box" type="text" name="s_Address1" id="saddress1" size="20" value="{$s_address1|wash}" />
 	</div>
@@ -348,7 +350,7 @@
 
 
 	<div class="city">
-    	<label><span class="required">*</span>{'City'|i18n('extension/xrowecommerce')}</label>
+    	<label>{'City'|i18n('extension/xrowecommerce')}<span class="required">*</span></label>
     	<div class="labelbreak"></div>
     	<input type="text" name="s_City" value="{$s_city|wash}" id="scity" />
     </div>
@@ -473,14 +475,14 @@
 {/if}
 
 <div class="zip">
-    <label><span class="required">*</span>{'Zip'|i18n('extension/xrowecommerce')}</label>
+    <label>{'Zip'|i18n('extension/xrowecommerce')}<span class="required">*</span></label>
     <div class="labelbreak"></div>
     <input type="text" name="s_Zip" id="szip" value="{$s_zip|wash}"/>
 </div>
     <div class="break"></div>
 
 <div class="country">
-    <label><span class="required">*</span>{'Country'|i18n('extension/xrowecommerce')}</label>
+    <label>{'Country'|i18n('extension/xrowecommerce')}<span class="required">*</span></label>
     <div class="labelbreak"></div>
 
 
@@ -512,7 +514,7 @@
     <div class="break"></div>
 
 <div class="block">
-	<label><span class="required">*</span>{'Phone'|i18n('extension/xrowecommerce')}</label>
+	<label>{'Phone'|i18n('extension/xrowecommerce')}<span class="required">*</span></label>
 	<div class="labelbreak"></div>
 	<input class="phone" type="text" id="sphone" name="s_Phone" value="{$s_phone|wash}" />
 </div>
@@ -525,7 +527,7 @@
 </div>
 {/if}
 <div class="block">
-	<label><span class="required">*</span>{'E-mail'|i18n('extension/xrowecommerce')}</label>
+	<label>{'E-mail'|i18n('extension/xrowecommerce')}<span class="required">*</span></label>
 	<div class="labelbreak"></div>
 	<input class="phone" type="text" name="s_EMail" id="semail" value="{$s_email|wash}" />
 </div>
@@ -543,7 +545,7 @@
 {if and( ezini('Settings','Captcha','xrowecommerce.ini')|eq('enabled'), $access|not)}
 
 <div class="block">        
-        <label><span class="required">*</span>{'Verification'|i18n('extension/xrowecommerce')}</label>
+        <label>{'Verification'|i18n('extension/xrowecommerce')}<span class="required">*</span></label>
         <div class="labelbreak"></div>  
 {def $lang=ezini('Display','OverrideLang','recaptcha.ini')}
 {if $lang|eq('')}{set $lang="en"}{/if}
