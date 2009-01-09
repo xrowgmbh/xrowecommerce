@@ -1,15 +1,15 @@
 +{set-block scope=root variable=subject}{ezini( 'InvoiceSettings', 'CompanyName', 'order.ini'  )} {"Order"|i18n("extension/xrowecommerce")} #{$order.order_nr}{/set-block}
-Thank you for ordering from {ezini( 'InvoiceSettings', 'CompanyName', 'order.ini'  )}.
+{'Thank you for ordering from'|i18n( 'extension/xrowecommerce' )} {ezini( 'InvoiceSettings', 'CompanyName', 'order.ini'  )}.
 
-The details of the order are below.  If you have a question, please do not reply to this email.
-Rather, email {ezini( 'InvoiceSettings', 'CompanyEmail', 'order.ini'  )} or call {ezini( 'InvoiceSettings', 'CompanyPhone', 'order.ini'  )}.
-Thank you again, and have a wonderful day!
+{'The details of the order are below.  If you have a question, please do not reply to this email.'|i18n( 'extension/xrowecommerce' )}
+{'Rather, email'|i18n( 'extension/xrowecommerce' )} {ezini( 'InvoiceSettings', 'CompanyEmail', 'order.ini'  )} {'or call'|i18n( 'extension/xrowecommerce' )} {ezini( 'InvoiceSettings', 'CompanyPhone', 'order.ini'  )}.
+{'Thank you again, and have a wonderful day!'|i18n( 'extension/xrowecommerce' )}
 ----------------------------------------------
 
-Order ID: {$order.order_nr}
+{'Order ID'|i18n( 'extension/xrowecommerce' )}: {$order.order_nr}
 {def $timestamp=currentdate()}
 
-Date: {$timestamp|l10n( 'datetime' )}
+{'Date'|i18n( 'extension/xrowecommerce' )}: {$timestamp|l10n( 'datetime' )}
 
 
 {shop_account_view_gui view=ascii order=$order}
@@ -40,13 +40,13 @@ Date: {$timestamp|l10n( 'datetime' )}
 {/section}
 
 ----------------------------------------------
-Total:  {$order.product_total_inc_vat|l10n( 'currency', $locale, $symbol )}
+{'Total'|i18n( 'extension/xrowecommerce' )}:  {$order.product_total_inc_vat|l10n( 'currency', $locale, $symbol )}
 {section name=OrderItem loop=$order.order_items show=$order.order_items sequence=array(bglight,bgdark)}
 
 {$OrderItem:item.description}:  {$OrderItem:item.price_inc_vat|l10n( 'currency', $locale, $symbol )}
 
 {/section}
-Grand Total: {$order.total_inc_vat|l10n( 'currency', $locale, $symbol )}
+{'Grand Total'|i18n( 'extension/xrowecommerce' )}: {$order.total_inc_vat|l10n( 'currency', $locale, $symbol )}
 {undef $currency $locale $symbol}
 
 ----------------------------------------------
@@ -56,10 +56,10 @@ Grand Total: {$order.total_inc_vat|l10n( 'currency', $locale, $symbol )}
 
 
 
-The Staff at Alcone Company
+{'The Staff at'|i18n( 'extension/xrowecommerce' )} {ezini( 'InvoiceSettings', 'CompanyName', 'order.ini'  )}
 
 ----------------------------
-Contact Us:
-Phone: {ezini( 'InvoiceSettings', 'CompanyPhone', 'order.ini'  )}
-Shop: {ezini( 'InvoiceSettings', 'CompanyWebsite', 'order.ini'  )}
+{'Contact Us'|i18n( 'extension/xrowecommerce' )}:
+{'Phone'|i18n( 'extension/xrowecommerce' )}: {ezini( 'InvoiceSettings', 'CompanyPhone', 'order.ini'  )}
+{'Shop'|i18n( 'extension/xrowecommerce' )}: {ezini( 'InvoiceSettings', 'CompanyWebsite', 'order.ini'  )}
 ----------------------------

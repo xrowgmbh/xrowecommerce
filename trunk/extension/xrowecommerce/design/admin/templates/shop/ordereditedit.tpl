@@ -23,34 +23,34 @@
 <table class="list" cellspacing="0">
 {foreach $orderitems as $orderitem}
 <tr class="bglight">
-    <th scope="row">Order Number:</th>
+    <th scope="row">{'Order Number'|i18n( 'extension/xrowecommerce' )}:</th>
     <td>
         <input type="hidden" name="orderitemid[]" value="{$orderitem.id}" />
         <b>{$ordernr}</b>
     </td>
 </tr>
 <tr class="bglight">
-    <th scope="row">Original description:</th>
+    <th scope="row">{'Original description'|i18n( 'extension/xrowecommerce' )}:</th>
     <td>
         {$orderitem.description}
     </td>
 </tr>
 
 <tr class="bglight">
-    <th scope="row">Description:</th>
+    <th scope="row">{'Description'|i18n( 'extension/xrowecommerce' )}:</th>
     <td>
         <input type="text" name="description_{$orderitem.id}" value="{$orderitem.description}" size="130" />
     </td>
 </tr>
 <tr class="bglight">
-    <th scope="row">Original price:</th>
+    <th scope="row">{'Original price'|i18n( 'extension/xrowecommerce' )}:</th>
     <td>
         {$orderitem.price|l10n( 'currency', $locale, $symbol )}
     </td>
 </tr>
 
 <tr class="bglight">
-    <th scope="row">Price:</th>
+    <th scope="row">{'Price'|i18n( 'extension/xrowecommerce' )}:</th>
     <td>
         {$symbol} <input type="text" name="price_{$orderitem.id}" value="{$orderitem.price}" size="10" />
     </td>

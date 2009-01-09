@@ -136,19 +136,19 @@
             <div class="attribute-short-wide">
             {def $user=fetch( 'user', 'current_user' )}
             {if and($node.data_map.recurring.content|not(), $user.is_logged_in)}
-                <p>Add your selections to <a id="show_auto_tip">Automatic Delivery</a>?</p>
+                <p>{'Add your selections to'|i18n( 'extension/xrowecommerce')} <a id="show_auto_tip">{'Automatic Delivery'|i18n( 'extension/xrowecommerce')}</a>?</p>
                 <input class="flat-right2 block" type="submit" onclick="document.buy.action='{"recurringorders/add"|ezurl(no)}'; document.buy.submit(); return true;" name="ActionAddToRecurring" value="{"Add to Automatic Delivery"|i18n("extension/xrowecommerce")}" />
             {elseif $node.data_map.recurring.content|not()}
-                <div id="headingp2">**Note**</div>
-                <p>This product is available for <a id="show_auto_tip">Automatic Delivery</a>. To add this product to your Automatic Delivery you have to <a href={'user/login'|ezurl}>login</a>.</p>
+                <div id="headingp2">**{'Note'|i18n( 'extension/xrowecommerce')}**</div>
+                <p>{'This product is available for'|i18n( 'extension/xrowecommerce')} <a id="show_auto_tip">{'Automatic Delivery'|i18n( 'extension/xrowecommerce')}</a>. {'To add this product to your Automatic Delivery you have to'|i18n( 'extension/xrowecommerce')} <a href={'user/login'|ezurl}>{'login'|i18n( 'extension/xrowecommerce')}</a>.</p>
             {/if}
             </div>
         
             <div id="overlay1" style="visibility:hidden;">
-                <h3>What is Automatic Delivery?</h3>
-                <p>Use our Automatic Delivery service to have this item sent to you as often as you like.  You’ll get priority on our inventory and save time.</p>
-                <p>By placing your initial Automatic Delivery order and setting up an Automatic Delivery schedule, you authorize us to charge the same credit card for future Automatic Delivery orders until you cancel.</p>
-                <p>Since the accuracy of your credit card, shipping and billing information is vital to Automatic Delivery, please promptly submit changes through the my account section.</p>
+                <h3>{'What is Automatic Delivery?'|i18n( 'extension/xrowecommerce')}</h3>
+                <p>{'Use our Automatic Delivery service to have this item sent to you as often as you like.  You’ll get priority on our inventory and save time.'|i18n( 'extension/xrowecommerce')}</p>
+                <p>{'By placing your initial Automatic Delivery order and setting up an Automatic Delivery schedule, you authorize us to charge the same credit card for future Automatic Delivery orders until you cancel.'|i18n( 'extension/xrowecommerce')}</p>
+                <p>{'Since the accuracy of your credit card, shipping and billing information is vital to Automatic Delivery, please promptly submit changes through the my account section.'|i18n( 'extension/xrowecommerce')}</p>
             </div>
 {/if}
             {* Related products. *}

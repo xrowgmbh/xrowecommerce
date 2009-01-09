@@ -87,25 +87,6 @@
     </message>
 </context>
 <context>
-    <name>design/admin/shop/accounthandlers/html/ez</name>
-    <message>
-        <source>Payment information</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Card Holder&apos;s Name</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Last 4 Digits of Card Number</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Card Expiration Date</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
     <name>design/admin/shop/orderlist</name>
     <message>
         <source>Products with zero weight</source>
@@ -1062,6 +1043,378 @@
     </message>
     <message>
         <source>Completion</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Qty</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Your cart is empty.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>select the product-categories</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>on the left to view and order products.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Option:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>LBS</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Products that match the following properties are listed:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>no weight attribute in the variations and no general weight</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>no general weight and zero weight in the variations</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Gratulation. No products left anymore.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Customer search</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Multiple occurencies!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>No match</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Search for customer in the system via e-mail address</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Edit shippingcosts with this order number:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>E-mail address or Order No</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Link</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>ID</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Show user</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>A log of this change will be saved.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>A wise decision!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>order</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>orders</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Selected period is from</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>till</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>and includes</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Year</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Month</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Day</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>From</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Date</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Total (inc Tax)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Total (ex Tax)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Total Tax</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Total NY Tax</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Total CT Tax</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Total Products</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Total Shipping/handling</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Sorry, no order in the selected Month to show.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Although your Login User Name must be kept the same, you can update your Email Address and/or change your Password by entering new information in the appropriate field.  When complete, click the &quot;Update&quot; button at the bottom of the page.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Username</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Credit card Information</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Your credit card information is needed, if you want to make use of our recurring order option.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Did you know about our...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add your selections to</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Automatic Delivery</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Note</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>This product is available for</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>To add this product to your Automatic Delivery you have to</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>login</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>What is Automatic Delivery?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Use our Automatic Delivery service to have this item sent to you as often as you like.  You?ll get priority on our inventory and save time.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>By placing your initial Automatic Delivery order and setting up an Automatic Delivery schedule, you authorize us to charge the same credit card for future Automatic Delivery orders until you cancel.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Since the accuracy of your credit card, shipping and billing information is vital to Automatic Delivery, please promptly submit changes through the my account section.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Article Number:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Address1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Address2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Shipped to</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Payment information</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Card Holder&apos;s Name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Last 4 Digits of Card Number</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Card Expiration Date</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Thank you for ordering from</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The details of the order are below.  If you have a question, please do not reply to this email.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Rather, email</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>or call</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Thank you again, and have a wonderful day!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Order ID</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Grand Total</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The Staff at</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Contact Us</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Shop</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Payment Information</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please enter your credit card information</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>There were errors on the form</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Name on Card</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Card Type</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Card Number</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Security Number</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Expiration Date</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Help?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Order Number</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Original description</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Original price</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>This table contains the specific product images, product id&apos;s, product names and links to the full view of the product</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Enter your email address, login and password.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Q: What are the advantages of security code verification?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please enter the last 3 digits of your credit card&apos;s security code, which is printed on the back of your card.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>There are several advantages of security code verification</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Increased customer security</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Faster order fullfilment</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Deters fraud</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

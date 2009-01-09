@@ -23,5 +23,5 @@ class xrowAdvancepaymentGateway extends eZPaymentGateway
         return eZWorkflowType::STATUS_ACCEPTED;
     }
 }
-xrowPaymentGatewayType::registerGateway( xrowAdvancepaymentGateway::GATEWAY_STRING, "xrowadvancepaymentgateway", "Advance payment" );
+xrowPaymentGatewayType::registerGateway( xrowAdvancepaymentGateway::GATEWAY_STRING, "xrowadvancepaymentgateway", "ezi18n( 'kernel/classes/datatypes', 'Advance payment' )" );
 ?>

@@ -3,7 +3,7 @@
 
 {* DESIGN: Header START *}<div class="box-header"><div class="box-tc"><div class="box-ml"><div class="box-mr"><div class="box-tl"><div class="box-tr">
 
-<h1 class="context-title">Customer search</h1>
+<h1 class="context-title">{'Customer search'|i18n( 'extension/xrowecommerce')}</h1>
 
 {* DESIGN: Mainline *}<div class="header-mainline"></div>
 
@@ -17,18 +17,18 @@
 
 <div class="break"></div>
 {if and(is_set($emails), $emails|eq(2)) }
-    <p>Multiple occurencies!</p>
+    <p>{'Multiple occurencies!'|i18n( 'extension/xrowecommerce')}</p>
 {elseif and(is_set($emails), $emails|eq(0)) }
-    <p>No match</p>
+    <p>{'No match'|i18n( 'extension/xrowecommerce')}</p>
 {else}
-    <p>Search for customer in the system via e-mail address</p>
+    <p>{'Search for customer in the system via e-mail address'|i18n( 'extension/xrowecommerce')}</p>
 {/if}  
 </div>
 </div>
 
 <table class="list">
   <tr class="bglight">
-  <th scope="row">Edit shippingcosts with this order number:</th>
+  <th scope="row">{'Edit shippingcosts with this order number:'|i18n( 'extension/xrowecommerce')}</th>
     <td>
         <form name="orderedit" method="post" action={'orderedit/edit'|ezurl}>
             <input name="order_id" type="text" value="" size="50" />
@@ -38,7 +38,7 @@
   </tr>
 <form name="contentserver" method="post" action={'customersearch/search'|ezurl}>
     <tr>
-        <th scope="row">E-mail address or Order No</th>
+        <th scope="row">{'E-mail address or Order No'|i18n( 'extension/xrowecommerce')}</th>
         <td>
             <input name="E-mail" type="text" {if is_set($email)}value="{$email}"{else}value="{$E-mail}"{/if} size="50" />
             <input class="button" name="Search" type="submit" value="Search" />
@@ -49,12 +49,12 @@
 <h3>Please select one of the following users:</h3>
 <table class="list" cellspacing="0">
 <tr>
-	<th class="wide">Link</th>
-	<th class="wide">ID</th>
-	<th class="wide">E-mail</th>
+	<th class="wide">{'Link'|i18n( 'extension/xrowecommerce')}</th>
+	<th class="wide">{'ID'|i18n( 'extension/xrowecommerce')}</th>
+	<th class="wide">{'E-mail'|i18n( 'extension/xrowecommerce')}</th>
 </tr>
 {foreach $userid as $email_item}
-    <tr><td><a href="/shop/customerorderview/{$email_item.user_id}/{$email}">Show user</a></td><td>{if $email_item.user_id|eq(10)}(anonymous){else}{$email_item.user_id}{/if}</td><td>{$email}</td></tr>
+    <tr><td><a href="/shop/customerorderview/{$email_item.user_id}/{$email}">{'Show user'|i18n( 'extension/xrowecommerce')}</a></td><td>{if $email_item.user_id|eq(10)}(anonymous){else}{$email_item.user_id}{/if}</td><td>{$email}</td></tr>
 {/foreach}
 </table>
 {/if}

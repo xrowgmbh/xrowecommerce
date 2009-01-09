@@ -29,11 +29,11 @@ $products=fetch( content, tree,
                          item_limit=$page_limit}
 <table class="quickorder_products">
         <tr>
-            <th>Number</th>
-            <th>Name</th>
-            <th>Item</th>
-            <th>Qty</th>
-            <th>Price</th>
+            <th>{'Number'|i18n("extension/xrowecommerce")}</th>
+            <th>{'Name'|i18n("extension/xrowecommerce")}</th>
+            <th>{'Item'|i18n("extension/xrowecommerce")}</th>
+            <th>{'Qty'|i18n("extension/xrowecommerce")}</th>
+            <th>{'Price'|i18n("extension/xrowecommerce")}</th>
         </tr>
         {def $i=0}
         {foreach $products as $key => $child}
@@ -65,11 +65,11 @@ $products=fetch( content, tree,
 {/if}
 <p>{attribute_view_gui attribute=$child.data_map.short_description}</p>
 <p>{attribute_view_gui attribute=$child.data_map.description}</p>
-<p>Option:</p>
+<p>{'Option:'|i18n("extension/xrowecommerce")}</p>
 <h4>{$option.comment|wash()}</h4>
 <p>{$option.description|wash()}</p>
-<span class="row-hr"><span>Weight</span><span>Price</span></span>
-<span class="row-td"><span>{$option.weight|wash} LBS</span><span>{$child.data_map.price.data_float|sum($option.additional_price)|l10n(currency)}</span></span>
+<span class="row-hr"><span>{'Weight'|i18n("extension/xrowecommerce")}</span><span>{'Price'|i18n("extension/xrowecommerce")}</span></span>
+<span class="row-td"><span>{$option.weight|wash} {'LBS'|i18n("extension/xrowecommerce")}</span><span>{$child.data_map.price.data_float|sum($option.additional_price)|l10n(currency)}</span></span>
 </div>
                             <script type="text/javascript">
                                     YAHOO.namespace("example.container");
@@ -110,7 +110,7 @@ $products=fetch( content, tree,
 {/if}
 <p>{attribute_view_gui attribute=$child.data_map.short_description}</p>
 <p>{attribute_view_gui attribute=$child.data_map.description}</p>
-<span class="row-hr"><span>Weight</span><span>Price</span></span>
+<span class="row-hr"><span>{'Weight'|i18n("extension/xrowecommerce")}</span><span>{'Price'|i18n("extension/xrowecommerce")}</span></span>
 <span class="row-td"><span>{$child.data_map.weight.data_float|wash} LBS</span><span>{$child.data_map.price.data_float|sum($option.additional_price)|l10n(currency)}</span></span>
 </div>
                             <script type="text/javascript">

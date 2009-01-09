@@ -9,25 +9,14 @@
 *}
 <div class="shop-basket">
 
-<h2>Payment Information</h2>
+<h2>{'Payment Information'|i18n('extension/xrowecommerce')}</h2>
 
-<br />
-    <div class="shopping_cart_path">
-    <div>1. Cart</div>
-    <div>2. Billing, Shipping and Coupons</div>
-    <div>3. Confirmation</div>
-    <div class="shopping_cart_path_select">4. Payment info</div>
-    <div>5. Order completed</div>
-    <div>6. Review reciept</div>
-    </div>
-    <div class="break"></div>
-    <br />
-    <br />
+{include uri="design:shop/basket_navigator.tpl" step='4'}
 
-<p>Please enter your credit card information</p>
+<p>{'Please enter your credit card information'|i18n('extension/xrowecommerce')}</p>
 
 {if ne($errors, 0)}
-<b>There were errors on the form: </b><br />
+<b>{'There were errors on the form'|i18n('extension/xrowecommerce')}: </b><br />
 <ul>
 {foreach $errors as $errmsg}
 <li>{$errmsg}</li>
@@ -47,11 +36,11 @@
 <td>
 <table border="00" cellpadding="4" cellspacing="4" width="100%">
 <tr>
-<td>Name on Card: </td>
+<td>{'Name on Card'|i18n('extension/xrowecommerce')}: </td>
 <td><input type="text" size="32" name="CardName" value="{$cardname}" style="width:150px;" /></td>
 </tr>
 <tr>
-<td>Card Type: </td>
+<td>{'Card Type'|i18n('extension/xrowecommerce')}: </td>
 <td>
 <select name="CardType">
   <option value="visa">Visa</option>
@@ -62,15 +51,15 @@
 </select>
 </tr>
 <tr>
-<td>Card Number: </td>
+<td>{'Card Number'|i18n('extension/xrowecommerce')}: </td>
 <td><input type="text" size="32" name="CardNumber" value="{$cardnumber}" style="width:150px;" /></td>
 </tr>
 <tr>
-<td>Security Number: </td>
+<td>{'Security Number'|i18n('extension/xrowecommerce')}: </td>
 <td><input type="text" size="5" name="SecurityNumber" value="{$securitynumber}" /></td>
 </tr>
 <tr>
-<td>Expiration Date: </td>
+<td>{'Expiration Date'|i18n('extension/xrowecommerce')}: </td>
 <td>
   <select name="ExpirationMonth">
     <option value=""></option>
@@ -291,18 +280,18 @@ function initShowHideDivs()
 {/literal}
 </script>
 <div class="question_answer_div">
-<div class="dhtmlgoodies_question">Q: What are the advantages of security code verification?</div>
+<div class="dhtmlgoodies_question">{"Q: What are the advantages of security code verification?"|i18n("extension/xrowecommerce")}</div>
 
 <div class="dhtmlgoodies_answer">
 <div>
 <img src={"three_digit_code_example.png"|ezimage} class="" alt="" title="" style="margin-top:0px;" /><br />
-<div class="" style="margin:7px;width:250px;">Please enter the last 3 digits of your credit card's security code, which is printed on the back of your card.</div>
+<div class="" style="margin:7px;width:250px;">{"Please enter the last 3 digits of your credit card's security code, which is printed on the back of your card."|i18n("extension/xrowecommerce")}</div>
 <div>
-		<h4>There are several advantages of security code verification</h4>
+		<h4>{"There are several advantages of security code verification"|i18n("extension/xrowecommerce")}</h4>
 		<ul>
-			<li>Increased customer security</li>
-			<li>Faster order fullfilment</li>
-			<li>Deters fraud</li>
+			<li>{"Increased customer security"|i18n("extension/xrowecommerce")}</li>
+			<li>{"Faster order fullfilment"|i18n("extension/xrowecommerce")}</li>
+			<li>{"Deters fraud"|i18n("extension/xrowecommerce")}</li>
 		</ul>
 	</div>
 </div>
@@ -313,11 +302,11 @@ initShowHideDivs();
 //showHideContent(false,1);	// Automatically expand first item
 </script>
 
-{* <a>Help?</a>
+{* <a>{'Help?'|i18n('extension/xrowecommerce')}</a>
 
 <div>
 <img src={"three_digit_code_example.png"|ezimage} class="" alt="" title="" style="margin-top:0px;" /><br />
-<div class="" style="width: 250px;">Please enter the last 3 digits of your credit card's security code, which is printed on the back of your card.</div>
+<div class="" style="width: 250px;">{"Please enter the last 3 digits of your credit card's security code, which is printed on the back of your card."|i18n("extension/xrowecommerce")}</div>
 </div>
 *}
 </td>

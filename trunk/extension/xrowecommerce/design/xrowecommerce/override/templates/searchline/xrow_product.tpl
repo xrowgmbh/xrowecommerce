@@ -1,6 +1,6 @@
     <tr>
         <td class="width_50">
-        <table class="product" summary="This table contains the specific product images, product id's, product names and links to the full view of the product">
+        <table class="product" summary="{"This table contains the specific product images, product id's, product names and links to the full view of the product"|i18n( "extension/xrowecommerce")}">
             <tr>
                 <td rowspan="2">
                     <div class="searchline-img">
@@ -16,7 +16,7 @@
                 <td><p class="product_title"><a href="{$node.url_alias|ezurl('no')}" title="{$node.name|wash()}">{$node.name|wash()}</a></p></td>
             </tr>
             <tr>
-                <td><p>Artikelnummer: 000000000</p></td>
+                <td><p>{'Article Number:'|i18n( 'extension/xrowecommerce')} 000000000</p></td>
             </tr>
         </table>
         </td>

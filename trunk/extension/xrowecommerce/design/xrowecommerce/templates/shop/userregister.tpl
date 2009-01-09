@@ -517,7 +517,7 @@
 
 {if eq(ezini( 'Settings', 'Fax', 'xrowecommerce.ini' ), 'enabled' )}
 <div class="block">
-    <label>Fax</label>
+    <label>{'Fax'|i18n( 'extension/xrowecommerce' )}</label>
     <div class="labelbreak"></div>
     <input class="phone" type="text" id="sfax" name="s_Fax" value="{$s_fax|wash}" />
 </div>

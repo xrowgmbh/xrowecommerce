@@ -23,18 +23,18 @@
         {def $key = ezini( 'eZGPGSettings', 'KeyID', 'ezgpg.ini' )}
         
         <fieldset>
-        <legend>{'Payment information'|i18n( 'design/admin/shop/accounthandlers/html/ez' )}</legend>
+        <legend>{'Payment information'|i18n( 'extension/xrowecommerce' )}</legend>
         <table class="list" cellspacing="0">
             <tr>
-                <td>{'Card Holder\'s Name'|i18n( 'design/admin/shop/accounthandlers/html/ez' )}</td>
+                <td>{'Card Holder\'s Name'|i18n( 'extension/xrowecommerce' )}</td>
                 <td>{ezgpg_decrypt($order.account_information.ezauthorize_card_name, $key)}</td>
             </tr>
             <tr>
-                <td>{'Last 4 Digits of Card Number'|i18n( 'design/admin/shop/accounthandlers/html/ez' )}</td>
+                <td>{'Last 4 Digits of Card Number'|i18n( 'extension/xrowecommerce' )}</td>
                 <td>{ezgpg_decrypt_limit($order.account_information.ezauthorize_card_number, $key)}</td>
             </tr>
             <tr>
-                <td>{'Card Expiration Date'|i18n( 'design/admin/shop/accounthandlers/html/ez' )}</td>
+                <td>{'Card Expiration Date'|i18n( 'extension/xrowecommerce' )}</td>
                 <td>{$order.account_information.ezauthorize_card_date}</td>
             </tr>
         </table>
@@ -93,10 +93,10 @@
             <table valign="top" class="order_box" border="0"  cellspacing="0" cellpadding="0">
                 <tr><th colspan="2">{"Shipping Address"|i18n("extension/xrowecommerce")}</th></tr>
 {if and( eq(ezini( 'Settings', 'CompanyName', 'xrowecommerce.ini' ), 'enabled' ), $order.account_information.companyname)}
-                <tr><td class="bold">Company:</td><td>{$order.account_information.scompanyname}</td></tr>
+                <tr><td class="bold">{'Company'|i18n( 'extension/xrowecommerce' )}:</td><td>{$order.account_information.scompanyname}</td></tr>
 {/if}
-                <tr><td class="bold">Name:</td><td>{$order.account_information.s_first_name} {$order.account_information.s_last_name}</td></tr>
-                <tr><td class="bold">MI:</td><td>{$order.account_information.s_mi}</td></tr>
+                <tr><td class="bold">{'Name'|i18n( 'extension/xrowecommerce' )}:</td><td>{$order.account_information.s_first_name} {$order.account_information.s_last_name}</td></tr>
+                <tr><td class="bold">{'MI'|i18n( 'extension/xrowecommerce' )}:</td><td>{$order.account_information.s_mi}</td></tr>
                 <tr><td class="bold">{'Address'|i18n('extension/xrowecommerce')}:</td><td>{$order.account_information.s_address1}</td></tr>
                 {if gt(count($order.account_information.s_address2),0)}
                 <tr><td>&nbsp;</td><td>{$order.account_information.s_address2}</td></tr>
