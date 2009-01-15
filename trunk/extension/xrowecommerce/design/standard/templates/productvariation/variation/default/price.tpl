@@ -24,4 +24,6 @@
 <table cellpadding="0" cellspacing="0" border="0" width="100%" class="xrowpricetable">
 <tbody id="XrowProductVariation_{$attribute.id}_xxxrownumberxxx_{$variation_attribute.attribute.identifier}_to"></tbody>
 </table>
+{if $variation_attribute.sliding}
 <div><input type="button" class="button" name="PriceButton{$attribute.id}_xxxrownumberxxx_{$variation_attribute.attribute.identifier}" value="{"Add price"|i18n('extension/xrowecommerce/productvariation')}" onclick="return xrowaddpriceline( 'XrowProductVariation_{$attribute.id}_price_{$variation_attribute.attribute.identifier}_from', 'XrowProductVariation_{$attribute.id}_xxxrownumberxxx_{$variation_attribute.attribute.identifier}_to', xxxrownumberxxx );" /></div>
+{/if}
