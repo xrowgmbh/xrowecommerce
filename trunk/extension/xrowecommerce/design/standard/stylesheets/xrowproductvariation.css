@@ -1,0 +1,36 @@
+.warning
+{
+    color: red;
+}
+
+.xrowproductstring
+{
+    width: 150px;
+}
+
+.xrowproducttext
+{
+    width: 150px;
+    height: 30px;
+}
+
+.xrowproductnumber
+{
+    width: 40px;
+}
+
+.xrowproductprice
+{
+    width: 50px;
+}
+
+.xrowproductpriceamout
+{
+    width: 30px;
+}
+
+td.error
+{
+    padding-top: 1px;
+    border: 1px solid red !important;
+}
