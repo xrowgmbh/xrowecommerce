@@ -3,4 +3,11 @@
 [ExtensionSettings]
 DesignExtensions[]=xrowecommerce
 
+[JavaScriptSettings]
+JavaScriptList[]=xrowproductvariation.js
+
+[StylesheetSettings]
+CSSFileList[]=xrowproductvariation.css
+
+
 */ ?>
