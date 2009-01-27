@@ -50,19 +50,38 @@ class xrowProductTemplate extends eZPersistentObject
                      and $this->AttributeList[$key]['translation']
                      and count( $this->AttributeList[$key]['default_value_array'] ) > 0 )
                 {
-                    foreach ( $langArray as $langLocale )
-                    {
-                        if ( isset( $this->AttributeList[$key]['default_value_array'][$langLocale] ) )
-                        {
-                            $this->AttributeList[$key]['default_value'] = $this->AttributeList[$key]['default_value_array'][$langLocale];
-                            break;
-                        }
-                    }
+                    $this->AttributeList[$key]['default_value'] = $this->getLangValue( $langArray, $this->AttributeList[$key], 'default_value_array' );
                 }
                 if ( !isset( $this->AttributeList[$key]['default_value'] ) )
                     $this->AttributeList[$key]['default_value'] = null;
+
+                if ( count( $this->AttributeList[$key]['column_name_array'] ) > 0 )
+                {
+                    $this->AttributeList[$key]['column_name'] = $this->getLangValue( $langArray, $this->AttributeList[$key], 'column_name_array' );
+                }
+                if ( !isset( $this->AttributeList[$key]['column_name'] ) )
+                    $this->AttributeList[$key]['column_name'] = null;
+
+                if ( count( $this->AttributeList[$key]['column_desc_array'] ) > 0 )
+                {
+                    $this->AttributeList[$key]['column_desc'] = $this->getLangValue( $langArray, $this->AttributeList[$key], 'column_desc_array' );
+                }
+                if ( !isset( $this->AttributeList[$key]['column_desc'] ) )
+                    $this->AttributeList[$key]['column_desc'] = null;
             }
         }
+    }
+
+    function getLangValue( $langArray, $dataArray, $key )
+    {
+        foreach ( $langArray as $langLocale )
+        {
+            if ( isset( $dataArray[$key][$langLocale] ) )
+            {
+                return $dataArray[$key][$langLocale];
+            }
+        }
+        return null;
     }
 
     function resetAttributeList()

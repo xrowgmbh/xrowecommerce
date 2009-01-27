@@ -8,12 +8,12 @@
     <tr>
         <td valign="top" class="tight"><img src={"trash-icon-16x16.gif"|ezimage} alt="{"Delete attribute"|i18n( 'extension/xrowecommerce/productvariation' )|wash}"  width="16" height="16" onclick="return xrow_delete_template( 'xrow_tr_attribute_{$attribute.identifier|wash}', 'xrow_attribute_{$attribute.identifier|wash}', '{$attribute.identifier|wash}', '{$attribute.name|wash('javascript')}', '{"You try to delete this attribute from the product template. Please confirm this action by clicking the OK button."|i18n( 'extension/xrowecommerce/productvariation' )|wash('javascript')}', 'AttributeIDList', 'noinfo', 'AttributeSortListID' );" /></td>
         <td valign="top" width="100%"><strong>{$attribute.name|wash} ({$attribute.data_type_obj.name|wash})</strong>
-            {if ne( $attribute.desc, '')}<p>{$attribute.desc|wash|nl2br}</p>{/if}
+            {if ne( $attribute.desc|trim, '')}<p>{$attribute.desc|wash|nl2br}</p>{/if}
 
             {include uri=concat( "design:productvariation/template/", $attribute.data_type, ".tpl" )
-             attribute=$attribute
-             error=$error
-             template=$template}
+                     attribute=$attribute
+                     error=$error
+                     template=$template}
 
              <input type="hidden" name="AttributeIDArray[]" value="{$attribute.id}" />
         </td>

@@ -479,12 +479,17 @@ class xrowProductVariationType extends eZDataType
                                                 false,
                                                 array( 'placement' => 'asc' ) );
 
-            foreach( $data as $currentData )
+            // prevent copying of date
+            if ( $contentObjectAttribute->attribute( 'contentobject_id' ) == $originalContentObjectAttribute->attribute( 'contentobject_id' ) )
             {
-				$newData = $currentData->cloneVariation( $contentObjectAttribute->attribute( 'language_code' ),
-				                                         $contentObjectAttribute->attribute( 'id' ),
-				                                         $contentObjectAttribute->attribute( 'version' ) );
-				$newData->store();
+
+	            foreach( $data as $currentData )
+	            {
+					$newData = $currentData->cloneVariation( $contentObjectAttribute->attribute( 'language_code' ),
+					                                         $contentObjectAttribute->attribute( 'id' ),
+					                                         $contentObjectAttribute->attribute( 'version' ) );
+					$newData->store();
+	            }
             }
         }
     }

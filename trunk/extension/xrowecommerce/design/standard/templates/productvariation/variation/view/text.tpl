@@ -1,0 +1,1 @@
+{$content|wash|nl2br}

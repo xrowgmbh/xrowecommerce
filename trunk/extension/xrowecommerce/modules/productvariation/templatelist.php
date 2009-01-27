@@ -47,9 +47,11 @@ if ( $Params['Offset'] > 0 )
 $templateList = xrowProductTemplate::fetchList( array(), true, $offset, $limit, array( 'name' => 'asc' ) );
 $templateCount = xrowProductTemplate::fetchListCount( array() );
 
+$viewParameters = array( 'offset' => $offset );
+
 $tpl->setVariable( 'template_list', $templateList );
 $tpl->setVariable( 'template_count', $templateCount );
-$tpl->setVariable( 'view_parameters', $Params );
+$tpl->setVariable( 'view_parameters', $viewParameters );
 $tpl->setVariable( 'language_code', $languageCode );
 $tpl->setVariable( 'number_of_items', $limit );
 

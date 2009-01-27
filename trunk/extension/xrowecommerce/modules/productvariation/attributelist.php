@@ -45,9 +45,11 @@ if ( isset( $Params['Offset'] ) )
 $attributeList = xrowProductAttribute::fetchList( array(), true, $offset, $limit, array( 'name' => 'asc' ) );
 $attributeCount = xrowProductAttribute::fetchListCount();
 
+$viewParameters = array( 'offset' => $offset );
+
 $tpl->setVariable( 'attribute_list', $attributeList );
 $tpl->setVariable( 'attribute_count', $attributeCount );
-$tpl->setVariable( 'view_parameters', $Params );
+$tpl->setVariable( 'view_parameters', $viewParameters );
 $tpl->setVariable( 'language_code', $languageCode );
 $tpl->setVariable( 'number_of_items', $limit );
 
