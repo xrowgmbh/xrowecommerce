@@ -1607,11 +1607,11 @@ Es ist nicht möglich, den Datentyp danach zu ändern.</translation>
     </message>
     <message>
         <source>Remove selected</source>
-        <translation>Ausgewähltes löschen</translation>
+        <translation type="obsolete">Ausgewähltes löschen</translation>
     </message>
     <message>
         <source>Remove selected attributes.</source>
-        <translation>Ausgewählte Attribute löschen.</translation>
+        <translation type="obsolete">Ausgewählte Attribute löschen.</translation>
     </message>
     <message>
         <source>Use this menu to select the language you to want use then click the &quot;New attribute&quot; button.</source>
@@ -1783,7 +1783,7 @@ Es ist nicht möglich, den Datentyp danach zu ändern.</translation>
     </message>
     <message>
         <source>Remove selected product templates.</source>
-        <translation>Ausgewählte Produkt Vorlagen löschen.</translation>
+        <translation type="obsolete">Ausgewählte Produkt Vorlagen löschen.</translation>
     </message>
     <message>
         <source>Use this menu to select the language you to want use then click the &quot;New product template&quot; button.</source>
@@ -1903,7 +1903,7 @@ Es ist nicht möglich, den Datentyp danach zu ändern.</translation>
     <message>
         <source>Stores price and the SKU of the variation</source>
         <comment>Datatype description</comment>
-        <translation>Speichert den Preis der Produkt Variation</translation>
+        <translation type="obsolete">Speichert den Preis der Produkt Variation</translation>
     </message>
     <message>
         <source>Object relation</source>
@@ -1954,6 +1954,11 @@ Es ist nicht möglich, den Datentyp danach zu ändern.</translation>
         <source>Stores text of the variation</source>
         <comment>Datatype description</comment>
         <translation>Speichert einen Text Block, mehrzeilig</translation>
+    </message>
+    <message>
+        <source>Stores price of the variation</source>
+        <comment>Datatype description</comment>
+        <translation>Speichert den Preis der Variation</translation>
     </message>
 </context>
 <context>
