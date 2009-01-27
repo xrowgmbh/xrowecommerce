@@ -489,11 +489,25 @@ class xrowProductDataType
         else
             $result['search'] = false;
 
+        $nameKey = $key . 'column_name';
+        if ( $http->hasPostVariable( $nameKey ) )
+            $result['column_name_array'][$languageCode] = trim( $http->postVariable( $nameKey ) );
+
+        $descKey = $key . 'column_desc';
+        if ( $http->hasPostVariable( $descKey ) )
+            $result['column_desc_array'][$languageCode] = trim( $http->postVariable( $descKey ) );
+
         if ( !$result['translation'] )
         {
             $result['default_value'] = $result['default_value_array'][$languageCode];
             $result['default_value_array'] = array();
         }
+
+        $uniqueSKUKey = $key . 'unique_sku';
+        if ( $http->hasPostVariable( $uniqueSKUKey ) )
+            $result['unique_sku'] = true;
+        else
+            $result['unique_sku'] = false;
     }
     /**
      * Deletes the content of the current datatype

@@ -62,8 +62,9 @@
     <th>&nbsp;</th>
 {foreach $content.template.attribute_list as $key => $template_item}
 
-    <th valign="top">{$template_item.attribute.name|wash}</th>
-        {/foreach}
+    <th valign="top" title="{$template_item.column_desc|wash}">{$template_item.column_name|wash}</th>
+
+{/foreach}
     <th>&nbsp;</th>
     <th>&nbsp;</th>
 </tr>

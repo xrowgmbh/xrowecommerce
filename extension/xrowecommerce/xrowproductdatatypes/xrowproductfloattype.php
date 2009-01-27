@@ -71,6 +71,14 @@ class xrowProductFloatType extends xrowProductDataType
             $result['search'] = true;
         else
             $result['search'] = false;
+
+        $nameKey = $key . 'column_name';
+        if ( $http->hasPostVariable( $nameKey ) )
+            $result['column_name_array'][$languageCode] = trim( $http->postVariable( $nameKey ) );
+
+        $descKey = $key . 'column_desc';
+        if ( $http->hasPostVariable( $descKey ) )
+            $result['column_desc_array'][$languageCode] = trim( $http->postVariable( $descKey ) );
     }
 
     /**

@@ -1,8 +1,9 @@
-{def $first=true()}
+{def $first=true()
+     $country_array=ezini( 'PriceSettings', 'CountryArray', 'xrowproduct.ini' )}
 <div id="XrowProductVariation_{$attribute.id}_price_{$variation_attribute.attribute.identifier}_from">
 <table cellpadding="0" cellspacing="0" border="0" width="100%" class="xrowpricetable">
 <tbody>
-{foreach ezini( 'PriceSettings', 'CountryArray', 'xrowproduct.ini' ) as $countryISO => $currency}
+{foreach $country_array as $countryISO => $currency}
 <tr>
     <td>{if $first}<img src={"trash-icon-16x16.gif"|ezimage} alt="{"Delete line"|i18n( 'extension/xrowecommerce/productvariation' )|wash}"  width="16" height="16" onclick="return this.parentNode.parentNode.parentNode.parentNode.parentNode.removeChild( this.parentNode.parentNode.parentNode.parentNode );" />{else}<img src={"1x1.gif"|ezimage} width="16" height="16" alt="" />{/if}</td>
 {if $variation_attribute.sliding}

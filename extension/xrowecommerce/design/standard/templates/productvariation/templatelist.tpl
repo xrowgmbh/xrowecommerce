@@ -72,6 +72,16 @@
 </div>
 {/if}
 
+{* Navigator. *}
+<div class="context-toolbar">
+{include name=navigator
+         uri='design:navigator/google.tpl'
+         page_uri='/productvariation/templatelist'
+         item_count=$template_count
+         view_parameters=$view_parameters
+         item_limit=$number_of_items}
+</div>
+
 {* DESIGN: Content END *}</div></div></div>
 
 <div class="controlbar">

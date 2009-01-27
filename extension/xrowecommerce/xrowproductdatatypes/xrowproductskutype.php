@@ -40,42 +40,45 @@ class xrowProductSkuType extends xrowProductDataType
         }
         else
         {
-        	$content = $variationArray[$line][$column];
+        	if ( $attribute['unique_sku'] )
+        	{
+	        	$content = $variationArray[$line][$column];
 
-        	$db = eZDB::instance();
+	        	$db = eZDB::instance();
 
-        	$idsql = "";
-        	if ( isset( $variationArray[$line]['id'] ) )
-        	   $idsql = " AND a.id != '" . $db->escapeString( $variationArray[$line]['id'] ) . "' ";
+	        	$idsql = "";
+	        	if ( isset( $variationArray[$line]['id'] ) )
+	        	   $idsql = " AND a.id != '" . $db->escapeString( $variationArray[$line]['id'] ) . "' ";
 
-        	$sql = "SELECT
-        	           COUNT(*) counter
-        	        FROM
-        	           xrowproduct_data a,
-        	           ezcontentobject v
-        	        WHERE
-        	           a.`$column` = '" . $db->escapeString( $content ) . "'
-        	           $idsql
-        	           AND a.object_id = v.id
-        	           AND a.attribute_id != " . $contentObjectAttribute->attribute( 'id' ) . "
-        	           AND a.language_code = '" . $contentObjectAttribute->attribute( 'language_code' ) . "'
-        	           AND a.version = v.current_version
-        	           AND v.status = " . eZContentObject::STATUS_PUBLISHED . "
-        	           ";
-        	#eZDebug::writeDebug( $sql, 'dupe query' );
-        	$result = $db->arrayQuery( $sql );
-        	#eZDebug::writeDebug( $result, 'result' );
-        	if ( $result[0]['counter'] > 0 )
-        	   $errorArray[$line][$column]['dupe'] = true;
+	        	$sql = "SELECT
+	        	           COUNT(*) counter
+	        	        FROM
+	        	           xrowproduct_data a,
+	        	           ezcontentobject v
+	        	        WHERE
+	        	           a.`$column` = '" . $db->escapeString( $content ) . "'
+	        	           $idsql
+	        	           AND a.object_id = v.id
+	        	           AND a.attribute_id != " . $contentObjectAttribute->attribute( 'id' ) . "
+	        	           AND a.language_code = '" . $contentObjectAttribute->attribute( 'language_code' ) . "'
+	        	           AND a.version = v.current_version
+	        	           AND v.status = " . eZContentObject::STATUS_PUBLISHED . "
+	        	           ";
+	        	#eZDebug::writeDebug( $sql, 'dupe query' );
+	        	$result = $db->arrayQuery( $sql );
+	        	#eZDebug::writeDebug( $result, 'result' );
+	        	if ( $result[0]['counter'] > 0 )
+	        	   $errorArray[$line][$column]['dupe'] = true;
 
-            $skuArray = array();
-        	foreach( $variationArray as $line => $variation )
-            {
-                if ( !in_array( $variation[$column], $skuArray ) )
-            	   $skuArray[] = $variation[$column];
-            	else
-            	   $errorArray[$line][$column]['dupe'] = true;
-            }
+	            $skuArray = array();
+	        	foreach( $variationArray as $line => $variation )
+	            {
+	                if ( !in_array( $variation[$column], $skuArray ) )
+	            	   $skuArray[] = $variation[$column];
+	            	else
+	            	   $errorArray[$line][$column]['dupe'] = true;
+	            }
+	        }
         }
     }
 }

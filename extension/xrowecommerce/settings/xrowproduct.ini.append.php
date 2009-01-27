@@ -1,9 +1,5 @@
 <?php /* #?ini charset="utf-8"?
 
-[XrowProductVariationSettings]
-# Show hidden fields, necerssary on admin site
-# ShowHiddenFields=true
-
 [XrowProductDataTypes]
 ProductDataTypeArray[]
 ProductDataTypeArray[]=string
@@ -14,6 +10,7 @@ ProductDataTypeArray[]=float
 ProductDataTypeArray[]=relation
 ProductDataTypeArray[]=price
 ProductDataTypeArray[]=sku
+# coming soon
 #ProductDataTypeArray[]=selection
 
 ExtensionDirectories[]
@@ -27,6 +24,14 @@ RepositoryDirectories[]
 #CountryArray[AUT]=EUR
 #CountryArray[GER]=EUR
 
+# Which price of which country should be shown
 #PreferedCountry=AUT
+
+# Country which has the default price (input is required)
+#DefaultCountry=AUT
+
+# Show hidden fields, necerssary on admin site
+# ShowHiddenFields=true
+
 
 */ ?>

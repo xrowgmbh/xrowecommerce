@@ -1,0 +1,1 @@
+{if $content}{"Yes"|i18n('extension/xrowecommerce/productvariation')}{else}{"No"|i18n('extension/xrowecommerce/productvariation')}{/if}

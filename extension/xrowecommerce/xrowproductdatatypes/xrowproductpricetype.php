@@ -60,6 +60,14 @@ class xrowProductPriceType extends xrowProductDataType
             $result['sliding'] = true;
         else
             $result['sliding'] = false;
+
+        $nameKey = $key . 'column_name';
+        if ( $http->hasPostVariable( $nameKey ) )
+            $result['column_name_array'][$languageCode] = trim( $http->postVariable( $nameKey ) );
+
+        $descKey = $key . 'column_desc';
+        if ( $http->hasPostVariable( $descKey ) )
+            $result['column_desc_array'][$languageCode] = trim( $http->postVariable( $descKey ) );
     }
 
     /**
@@ -117,6 +125,8 @@ class xrowProductPriceType extends xrowProductDataType
         $currencyArray = $ini->variable( 'PriceSettings', 'CountryArray' );
         $countryList = array_keys( $currencyArray );
 
+        $defaultCountry = $ini->variable( 'PriceSettings', 'DefaultCountry' );
+
         $locale = eZLocale::instance();
         $validator = new eZFloatValidator( false, false );
 
@@ -126,22 +136,43 @@ class xrowProductPriceType extends xrowProductDataType
         	$errorArray[$line][$column]['amount_1'] = true;
         }
         $validator = new eZFloatValidator( false, false );
+
         foreach ( $contentArray['amount'] as $key => $amount )
         {
-            if ( !is_numeric( $amount ) )
+            $countryOKList = array();
+            $postTestArray = array();
+
+        	if ( !is_numeric( $amount ) )
                 $errorArray[$line][$column]['amount'][$amount] = true;
 
             foreach( $countryList as $country )
             {
                 $price = str_replace( " ", "", $contentArray[$country][$key] );
-                $price = $locale->internalNumber( $price );
+                if ( $price == "" )
+                {
+                	$postTestArray[] = $country;
+                }
+                else
+                {
+	                $price = $locale->internalNumber( $price );
 
-                $ok = $validator->validate( $price );
-                if ( $ok == eZInputValidator::STATE_INVALID )
-				{
-				    $errorArray[$line][$column]['price'][$key][$country] = true;
-				    $errorArray[$line][$column]['not_valid'] = true;
-				}
+	                $ok = $validator->validate( $price );
+	                if ( $ok == eZInputValidator::STATE_INVALID )
+					{
+					    $errorArray[$line][$column]['price'][$key][$country] = true;
+					    $errorArray[$line][$column]['not_valid'] = true;
+					}
+					else
+					    $countryOKList[] = $country;
+                }
+            }
+            if ( count( $postTestArray ) > 0 )
+            {
+            	if ( !in_array( $defaultCountry, $countryOKList ) )
+            	{
+            		$errorArray[$line][$column]['not_valid'] = true;
+            		$errorArray[$line][$column]['price'][$key][$defaultCountry] = true;
+            	}
             }
         }
     }
@@ -210,23 +241,26 @@ class xrowProductPriceType extends xrowProductDataType
             	foreach( $countryList as $country )
             	{
             	   $price = str_replace(" ", "", $contentArray[$country][$key] );
-                   $price = $locale->internalNumber( $price );
+            	   if ( $price != "" )
+            	   {
+	                   $price = $locale->internalNumber( $price );
 
-                   if ( isset( $existingEntries[$amount][$country] ) )
-                   {
-                        $priceItem = $existingEntries[$amount][$country];
-                        unset( $existingEntries[$amount][$country] );
-                   }
-                   else
-                   {
-                   	   $row['country'] = $country;
-	                   $row['amount'] = $amount;
-	                   $row['price_id'] = $priceID;
-	                   $priceItem = new xrowProductPrice( $row );
-                   }
+	                   if ( isset( $existingEntries[$amount][$country] ) )
+	                   {
+	                        $priceItem = $existingEntries[$amount][$country];
+	                        unset( $existingEntries[$amount][$country] );
+	                   }
+	                   else
+	                   {
+	                   	   $row['country'] = $country;
+		                   $row['amount'] = $amount;
+		                   $row['price_id'] = $priceID;
+		                   $priceItem = new xrowProductPrice( $row );
+	                   }
 
-            	   $priceItem->setAttribute( 'price', $price );
-                   $priceArray[$amount][$country] = $priceItem;
+	            	   $priceItem->setAttribute( 'price', $price );
+	                   $priceArray[$amount][$country] = $priceItem;
+            	   }
             	}
             	#ksort( $priceArray );
             }
@@ -347,7 +381,7 @@ class xrowProductPriceType extends xrowProductDataType
     	return $priceID;
     }
 
-/**
+    /**
      * Returns the metadata for the search engine if searching is allowed
      *
      * @param xrowProductData $variation
