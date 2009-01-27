@@ -20,7 +20,7 @@ class xrowProductPriceType extends xrowProductDataType
 
         $this->xrowProductDataType( self::DATA_TYPE_STRING,
                                     ezi18n( 'extension/xrowecommerce/productvariation', "Price", 'Datatype name' ),
-                                    ezi18n( 'extension/xrowecommerce/productvariation', "Stores price and the SKU of the variation", 'Datatype description' ),
+                                    ezi18n( 'extension/xrowecommerce/productvariation', "Stores price of the variation", 'Datatype description' ),
                                     $params );
     }
 
