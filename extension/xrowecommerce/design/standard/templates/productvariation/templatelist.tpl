@@ -89,12 +89,6 @@
 <div class="block">
     <div class="left">
 
-    {if $template_count|gt(0)}
-    <input class="button" type="submit" name="RemoveButton" value="{'Remove selected'|i18n( 'extension/xrowecommerce/productvariation' )}" title="{'Remove selected product templates.'|i18n( 'extension/xrowecommerce/productvariation' )|wash}" />
-    {else}
-    <input class="button-disabled" type="submit" name="RemoveButton" value="{'Remove selected'|i18n( 'extension/xrowecommerce/productvariation' )}" disabled="disabled" />
-    {/if}
-
     {def $languages=fetch( 'content', 'prioritized_languages' )}
     {if gt( $languages|count, 1 )}
         <select name="LanguageCode" title="{'Use this menu to select the language you to want use then click the "New product template" button.'|i18n( 'extension/xrowecommerce/productvariation' )|wash()}">
