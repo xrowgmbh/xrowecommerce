@@ -1,5 +1,19 @@
 <!DOCTYPE TS><TS>
 <context>
+    <name>design/admin/class/edit_language</name>
+    <message>
+        <source>Edit</source>
+        <translation>Bearbeiten</translation>
+    </message>
+</context>
+<context>
+    <name>design/admin/class/select_language</name>
+    <message>
+        <source>Cancel</source>
+        <translation>Abbrechen</translation>
+    </message>
+</context>
+<context>
     <name>design/admin/parts/shop/menu</name>
     <message>
         <source>Shop</source>
@@ -84,6 +98,18 @@
     <message>
         <source>Recurring order history</source>
         <translation>Chronik wiederkehrender Bestellungen</translation>
+    </message>
+    <message>
+        <source>Product variation setup</source>
+        <translation>Produkt Variationen Setup</translation>
+    </message>
+    <message>
+        <source>Product attributes</source>
+        <translation>Produkte Attribute</translation>
+    </message>
+    <message>
+        <source>Product templates</source>
+        <translation>Produkt Vorlagen</translation>
     </message>
 </context>
 <context>
@@ -456,6 +482,13 @@
     </message>
 </context>
 <context>
+    <name>design/standard/class/datatype</name>
+    <message>
+        <source>Select which nodes from which classes can be selected</source>
+        <translation>Welche Knoten von welchen Klassen können ausgewählt werden</translation>
+    </message>
+</context>
+<context>
     <name>extension/xrowecommerce</name>
     <message>
         <source>Fraud detected</source>
@@ -584,7 +617,7 @@
     </message>
     <message>
         <source>Website</source>
-        <translation>Internetseite</translation>
+        <translation type="obsolete">Internetseite</translation>
     </message>
     <message>
         <source>starting at</source>
@@ -957,7 +990,7 @@ Button</translation>
     </message>
     <message>
         <source>Price in ?</source>
-        <translation>Preis in ?</translation>
+        <translation type="obsolete">Preis in ?</translation>
     </message>
     <message>
         <source>Delete</source>
@@ -1269,7 +1302,7 @@ Button</translation>
     </message>
     <message>
         <source>Use our Automatic Delivery service to have this item sent to you as often as you like.  You?ll get priority on our inventory and save time.</source>
-        <translation>Benutzen Sie unseren Servive &quot;Automatische Auslieferung&quot; um diesen Artikel so oft geliefert zu bekommen wie und wann Sie mögen. Ihre Bestellungen bekommen höhere Priorität beim Lagerbestand und sie sparen Zeit.</translation>
+        <translation type="obsolete">Benutzen Sie unseren Servive &quot;Automatische Auslieferung&quot; um diesen Artikel so oft geliefert zu bekommen wie und wann Sie mögen. Ihre Bestellungen bekommen höhere Priorität beim Lagerbestand und sie sparen Zeit.</translation>
     </message>
     <message>
         <source>By placing your initial Automatic Delivery order and setting up an Automatic Delivery schedule, you authorize us to charge the same credit card for future Automatic Delivery orders until you cancel.</source>
@@ -1418,6 +1451,537 @@ Button</translation>
     <message>
         <source>Deters fraud</source>
         <translation>Betrüger abschrecken</translation>
+    </message>
+    <message>
+        <source>Use eZ Publish roles and policies for payment method selection.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Use our Automatic Delivery service to have this item sent to you as often as you like.  You&#xe2;&#x80;&#x99;ll get priority on our inventory and save time.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Price in &#xe2;&#x82;&#xac;</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>extension/xrowecommerce/productvariation</name>
+    <message>
+        <source>Product template</source>
+        <translation>Produkt Vorlage</translation>
+    </message>
+    <message>
+        <source>Change template</source>
+        <translation>Vorlage wechseln</translation>
+    </message>
+    <message>
+        <source>You try to change the template. Please confirm this action.</source>
+        <translation>Sie möchten die Vorlage wechseln. Bitte bestätigen Sie diese Aktion.</translation>
+    </message>
+    <message>
+        <source>Choose template</source>
+        <translation>Vorlage wählen</translation>
+    </message>
+    <message>
+        <source>Delete attribute</source>
+        <translation>Attribute löschen</translation>
+    </message>
+    <message>
+        <source>Move up</source>
+        <translation>Hinauf schieben</translation>
+    </message>
+    <message>
+        <source>Move down</source>
+        <translation>Hinunter schieben</translation>
+    </message>
+    <message>
+        <source>Add line</source>
+        <translation>Zeile hinzufügen</translation>
+    </message>
+    <message>
+        <source>No product variations entered.</source>
+        <translation>Keine Produkt Variationen vorhanden.</translation>
+    </message>
+    <message>
+        <source>Edit product variation attribute</source>
+        <translation>Produkt Variations Attribute bearbeiten</translation>
+    </message>
+    <message>
+        <source>Choose datatype</source>
+        <translation>Datentyp auswählen</translation>
+    </message>
+    <message>
+        <source>Error</source>
+        <translation>Fehler</translation>
+    </message>
+    <message>
+        <source>No datatype was selected.</source>
+        <translation>Es wurde kein Datentype ausgewählt.</translation>
+    </message>
+    <message>
+        <source>You need to select a datatype for the attribute.
+      It&apos;s not possible to change this afterwards.</source>
+        <translation>Sie müssen einen Datentyp für das Attribut auswählen.
+Es ist nicht möglich, den Datentyp danach zu ändern.</translation>
+    </message>
+    <message>
+        <source>Cancel</source>
+        <translation>Abbrechen</translation>
+    </message>
+    <message>
+        <source>Store datatype</source>
+        <translation>Datentyp speichern</translation>
+    </message>
+    <message>
+        <source>Edit datatype - error</source>
+        <translation>Datentyp bearbeiten - Fehler</translation>
+    </message>
+    <message>
+        <source>Edit datatype</source>
+        <translation>Datentyp bearbeiten</translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation>Name</translation>
+    </message>
+    <message>
+        <source>Please enter a name for the attribute.</source>
+        <translation>Bitte geben Sie einen Namen für das Attribut ein.</translation>
+    </message>
+    <message>
+        <source>Identifier</source>
+        <translation>Identifier</translation>
+    </message>
+    <message>
+        <source>Please enter a valid identifier for the attribute.</source>
+        <translation>Bitte geben Sie einen gültigen Identifier für das Attribut ein.</translation>
+    </message>
+    <message>
+        <source>This identifier is already in use. Enter another one.</source>
+        <translation>Dieser Identifier wird schon verwendet. Bitte wählen Sie einen anderen.</translation>
+    </message>
+    <message>
+        <source>Description</source>
+        <translation>Beschreibung</translation>
+    </message>
+    <message>
+        <source>Active</source>
+        <translation>Aktiv</translation>
+    </message>
+    <message>
+        <source>Product attribute setup</source>
+        <translation>Produkt Attribut Setup</translation>
+    </message>
+    <message>
+        <source>ID</source>
+        <translation>ID</translation>
+    </message>
+    <message>
+        <source>Type</source>
+        <translation>Typ</translation>
+    </message>
+    <message>
+        <source>Creator</source>
+        <translation>Ersteller</translation>
+    </message>
+    <message>
+        <source>Created</source>
+        <translation>Erstellt</translation>
+    </message>
+    <message>
+        <source>Yes</source>
+        <translation>Ja</translation>
+    </message>
+    <message>
+        <source>No</source>
+        <translation>Nein</translation>
+    </message>
+    <message>
+        <source>Edit the &lt;%attribute_name&gt; attribute.</source>
+        <translation>&lt;%attribute_name&gt; Attribut bearbeiten.</translation>
+    </message>
+    <message>
+        <source>There are no attributes available.</source>
+        <translation>Keine Attribute eingegeben.</translation>
+    </message>
+    <message>
+        <source>Remove selected</source>
+        <translation>Ausgewähltes löschen</translation>
+    </message>
+    <message>
+        <source>Remove selected attributes.</source>
+        <translation>Ausgewählte Attribute löschen.</translation>
+    </message>
+    <message>
+        <source>Use this menu to select the language you to want use then click the &quot;New attribute&quot; button.</source>
+        <translation>Verwenden Sie dieses Menü, um die Sprache auszuwählen, in der Sie das Attribute anlegen wollen.</translation>
+    </message>
+    <message>
+        <source>New attribute</source>
+        <translation>Neues Attribut</translation>
+    </message>
+    <message>
+        <source>Create a new attribute.</source>
+        <translation>Neues Attribut erstellen.</translation>
+    </message>
+    <message>
+        <source>Select language</source>
+        <translation>Sprache wählen</translation>
+    </message>
+    <message>
+        <source>Language</source>
+        <translation>Sprache</translation>
+    </message>
+    <message>
+        <source>Select the language you want to edit the attribute</source>
+        <translation>Wählen Sie die Sprache, in der Sie das Attribut bearbeiten möchten</translation>
+    </message>
+    <message>
+        <source>Column name:</source>
+        <translation>Spalten name:</translation>
+    </message>
+    <message>
+        <source>Column description:</source>
+        <translation>Spalten Beschreibung:</translation>
+    </message>
+    <message>
+        <source>Default value:</source>
+        <translation>Standard Wert:</translation>
+    </message>
+    <message>
+        <source>Show on frontend:</source>
+        <translation>Am Frontend anzeigen:</translation>
+    </message>
+    <message>
+        <source>Add to search:</source>
+        <translation>Zur Suche hinzufügen:</translation>
+    </message>
+    <message>
+        <source>Please enter a valid number or leave the field empty</source>
+        <translation>Bitte geben Sie eine gültige Zahl ein oder lassen Sie das Feld leer</translation>
+    </message>
+    <message>
+        <source>Input required:</source>
+        <translation>Eingabe erforderlich:</translation>
+    </message>
+    <message>
+        <source>Sliding price:</source>
+        <translation>Staffelpreis:</translation>
+    </message>
+    <message>
+        <source>Start point:</source>
+        <translation>Startpunkt:</translation>
+    </message>
+    <message>
+        <source>Nothing selected.</source>
+        <translation>Nichts ausgewählt.</translation>
+    </message>
+    <message>
+        <source>Browse</source>
+        <translation>Durchsuchen</translation>
+    </message>
+    <message>
+        <source>Remove</source>
+        <translation>Löschen</translation>
+    </message>
+    <message>
+        <source>Content class</source>
+        <translation>Content Klasse</translation>
+    </message>
+    <message>
+        <source>All classes</source>
+        <translation>Alle Klassen</translation>
+    </message>
+    <message>
+        <source>Needs translation:</source>
+        <translation>Übersetzung notwendig:</translation>
+    </message>
+    <message>
+        <source>Unique SKU required:</source>
+        <translation>Einzigartige Artikelnummer notwendig:</translation>
+    </message>
+    <message>
+        <source>You try to delete this attribute from the product template. Please confirm this action by clicking the OK button.</source>
+        <translation>Sie wollen dieses Attribut von der Produkt Vorlage löschen. Bitte bestätigen Sie diese Aktion mit OK.</translation>
+    </message>
+    <message>
+        <source>Edit product template</source>
+        <translation>Produkt Vorlage bearbeiten</translation>
+    </message>
+    <message>
+        <source>Edit template - error</source>
+        <translation>Vorlage bearbeiten - Fehler</translation>
+    </message>
+    <message>
+        <source>One or more errors occured. Please correct them.</source>
+        <translation>Einer oder mehrere Fehler sind aufgetreten. Bitte korrigieren Sie diese.</translation>
+    </message>
+    <message>
+        <source>Edit template</source>
+        <translation>Vorlage bearbeiten</translation>
+    </message>
+    <message>
+        <source>Attributes</source>
+        <translation>Attribute</translation>
+    </message>
+    <message>
+        <source>Please enter some attributes in the setup, before you create the template.</source>
+        <translation>Sie müssen eines oder mehrere Attribute erstellen, bevor Sie Vorlagen anlegen können.</translation>
+    </message>
+    <message>
+        <source>No attributes added for this template.</source>
+        <translation>Kein Attribute wurde diesem Template hinzugefügt.</translation>
+    </message>
+    <message>
+        <source>Available attributes</source>
+        <translation>Verfügbare Attribute</translation>
+    </message>
+    <message>
+        <source>Use the select box and the button below to add attributes to this product template.</source>
+        <translation>Verwenden Sie die Auswahlbox, um Attribute der Produkt Vorlage hinzuzufügen.</translation>
+    </message>
+    <message>
+        <source>Add attribute</source>
+        <translation>Attribute hinzufügen</translation>
+    </message>
+    <message>
+        <source>Default sort order</source>
+        <translation>Standard Sortierung</translation>
+    </message>
+    <message>
+        <source>No sorting</source>
+        <translation>Keine Sortierung</translation>
+    </message>
+    <message>
+        <source>Ascending</source>
+        <translation>Aufsteigend</translation>
+    </message>
+    <message>
+        <source>Descending</source>
+        <translation>Absteigend</translation>
+    </message>
+    <message>
+        <source>Store template</source>
+        <translation>Vorlage speichern</translation>
+    </message>
+    <message>
+        <source>Product template setup</source>
+        <translation>Produkt Vorlagen Setup</translation>
+    </message>
+    <message>
+        <source>Last modified</source>
+        <translation>Zuletzt geändert</translation>
+    </message>
+    <message>
+        <source>Edit the &lt;%template_name&gt; product template.</source>
+        <translation>&lt;%template_name&gt; Vorlage bearbeiten.</translation>
+    </message>
+    <message>
+        <source>There are no product templates available.</source>
+        <translation>Keine Produkt Vorlagen vorhanden.</translation>
+    </message>
+    <message>
+        <source>Remove selected product templates.</source>
+        <translation>Ausgewählte Produkt Vorlagen löschen.</translation>
+    </message>
+    <message>
+        <source>Use this menu to select the language you to want use then click the &quot;New product template&quot; button.</source>
+        <translation>Verwenden Sie dieses Menü, um die Sprache zu wählen, in der Sie das Template anlegen wollen. Dann klicken Sie den &quot;Neue Produkt Vorlage&quot; Knopf.</translation>
+    </message>
+    <message>
+        <source>New product template</source>
+        <translation>Neue Produkt Vorlage</translation>
+    </message>
+    <message>
+        <source>Create a new product template.</source>
+        <translation>Neue Produkt Vorlage erstellen.</translation>
+    </message>
+    <message>
+        <source>Delete line</source>
+        <translation>Zeile löschen</translation>
+    </message>
+    <message>
+        <source>Amount</source>
+        <translation>Anzahl</translation>
+    </message>
+    <message>
+        <source>Add price</source>
+        <translation>Preis hinzufügen</translation>
+    </message>
+    <message>
+        <source>Input required.</source>
+        <translation>Eingabe erforderlich.</translation>
+    </message>
+    <message>
+        <source>Please enter a valid number.</source>
+        <translation>Bitte geben Sie eine gültige Zahl ein.</translation>
+    </message>
+    <message>
+        <source>Please enter valid prices. Wrong prices are marked with a red *</source>
+        <translation>Bitte geben Sie gültige Preise ein. Falsche Preise sind mit einem roten * (Stern) markiert</translation>
+    </message>
+    <message>
+        <source>Please enter a price for 1 item.</source>
+        <translation>Bitte geben Sie den Preis für die Anzahl 1 des Produkts ein.</translation>
+    </message>
+    <message>
+        <source>Please correct the amount marked with a red *</source>
+        <translation>Bitte korrigieren Sie die Anzahl, die mit einem roten * (Stern) markiert ist</translation>
+    </message>
+    <message>
+        <source>SKU already in use.</source>
+        <translation>Artikel Nummer wird bereits verwendet.</translation>
+    </message>
+    <message>
+        <source>Please enter text.</source>
+        <translation>Bitte geben Sie Text ein.</translation>
+    </message>
+    <message>
+        <source>Attribute edit</source>
+        <translation>Attribut bearbeiten</translation>
+    </message>
+    <message>
+        <source>Product variation - edit attribute</source>
+        <translation>Produkt Variation - Attribut bearbeiten</translation>
+    </message>
+    <message>
+        <source>Product variation attributes</source>
+        <translation>Produkt Variations Attribute</translation>
+    </message>
+    <message>
+        <source>Product variation columns</source>
+        <translation>Produkt Variations Spalten</translation>
+    </message>
+    <message>
+        <source>Template edit</source>
+        <translation>Vorlage bearbeiten</translation>
+    </message>
+    <message>
+        <source>Product variation - edit template</source>
+        <translation>Produkt Variation - Vorlage bearbeiten</translation>
+    </message>
+    <message>
+        <source>Product variation templates</source>
+        <translation>Produkt Variations Vorlagen</translation>
+    </message>
+    <message>
+        <source>Boolean</source>
+        <comment>Datatype name</comment>
+        <translation>Ja/Nein</translation>
+    </message>
+    <message>
+        <source>Stores true or false.</source>
+        <comment>Datatype description</comment>
+        <translation>Speichert &quot;wahr&quot; oder &quot;falsch&quot; Werte.</translation>
+    </message>
+    <message>
+        <source>Float</source>
+        <comment>Datatype name</comment>
+        <translation>Kommazahl</translation>
+    </message>
+    <message>
+        <source>Stores a floating-point number.</source>
+        <comment>Datatype description</comment>
+        <translation>Speichert Komma Zahlen.</translation>
+    </message>
+    <message>
+        <source>Integer</source>
+        <comment>Datatype name</comment>
+        <translation>Ganzzahl</translation>
+    </message>
+    <message>
+        <source>Stores an integer.</source>
+        <comment>Datatype description</comment>
+        <translation>Speichert ganze Zahlen.</translation>
+    </message>
+    <message>
+        <source>Price</source>
+        <comment>Datatype name</comment>
+        <translation>Preis</translation>
+    </message>
+    <message>
+        <source>Stores price and the SKU of the variation</source>
+        <comment>Datatype description</comment>
+        <translation>Speichert den Preis der Produkt Variation</translation>
+    </message>
+    <message>
+        <source>Object relation</source>
+        <comment>Datatype name</comment>
+        <translation>Objekt Verknüpfung</translation>
+    </message>
+    <message>
+        <source>Stores an object relation. (e.g. to an image)</source>
+        <comment>Datatype description</comment>
+        <translation>Speichert eine Objekt Verknüpfung. (z.B. ein Bild)</translation>
+    </message>
+    <message>
+        <source>Selection</source>
+        <comment>Datatype name</comment>
+        <translation>Auswahl</translation>
+    </message>
+    <message>
+        <source>Stores a selection like colours green, blue, red....</source>
+        <comment>Datatype description</comment>
+        <translation>Speichert eine Auswahl vorhandener Werte wie z.B. Farben grün, blau, rot...</translation>
+    </message>
+    <message>
+        <source>stockkeeping unit</source>
+        <comment>Datatype name</comment>
+        <translation>Artikel Nummer</translation>
+    </message>
+    <message>
+        <source>Stores the stockkeeping unit of the variation</source>
+        <comment>Datatype description</comment>
+        <translation>Speichert die Artikelnummer der Variation</translation>
+    </message>
+    <message>
+        <source>Text line</source>
+        <comment>Datatype name</comment>
+        <translation>Textzeile</translation>
+    </message>
+    <message>
+        <source>Stores a line of text of the variation</source>
+        <comment>Datatype description</comment>
+        <translation>Speichert eine Zeile Text</translation>
+    </message>
+    <message>
+        <source>Text block</source>
+        <comment>Datatype name</comment>
+        <translation>Text Block</translation>
+    </message>
+    <message>
+        <source>Stores text of the variation</source>
+        <comment>Datatype description</comment>
+        <translation>Speichert einen Text Block, mehrzeilig</translation>
+    </message>
+</context>
+<context>
+    <name>kernel/classes/datatypes</name>
+    <message>
+        <source>Pay on delivery</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Pay by invoice</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Advance payment</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Product variations</source>
+        <comment>Datatype name</comment>
+        <translation>Produkt Variationen</translation>
+    </message>
+    <message>
+        <source>Please choose a template for the product variation.</source>
+        <translation>Bitte wählen Sie eine Vorlage für die Produkt Variation.</translation>
+    </message>
+    <message>
+        <source>Please correct the input of product variations. The wrong or missing input is marked with a red border.</source>
+        <translation>Bitte korrigieren Sie die Eingabe bei den Produkt Variationen. Falsche Eingaben sind mit einem roten Rand markiert.</translation>
     </message>
 </context>
 <context>
