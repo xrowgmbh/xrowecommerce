@@ -537,9 +537,14 @@
 
   <br />
 
-{* Recaptcha *}                
+{* Captcha *}
+{def $access=fetch( 'user', 'has_access_to',
+                    hash( 'module',   'xrowecommerce',
+                          'function', 'bypass_captcha' ) )} 
+{if and( ezini('Settings','Captcha','xrowecommerce.ini')|eq('enabled'), $access|not, ezhttp( 'xrowCaptchaSolved', 'session' )|not)}
+
 <div class="block">        
-        <label><span class="required">*</span>{'Verification'|i18n('design/standard/user')}</label>
+        <label>{'Verification'|i18n('extension/xrowecommerce')}<span class="required">*</span></label>
         <div class="labelbreak"></div>  
 {def $lang=ezini('Display','OverrideLang','recaptcha.ini')}
 {if $lang|eq('')}{set $lang="en"}{/if}
@@ -554,8 +559,9 @@ lang: RecaptchaLang,
 {/literal}
 </script>
 {recaptcha_get_html()}
-</div>                 
-{* Recaptcha *}
+</div>
+{/if}      
+{* Captcha *}
 
 <div class="buttonblock">
     <input class="left-arrow" type="submit" name="CancelButton" value="{'Cancel'|i18n('design/base/shop')}" />
