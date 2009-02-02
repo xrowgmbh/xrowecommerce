@@ -562,7 +562,7 @@ lang: RecaptchaLang,
 {recaptcha_get_html()}
 </div>
 {/if}      
-{* Recaptcha *}
+{* Captcha *}
 
 <div class="buttonblock">
     <input class="left-arrow " type="submit" name="CancelButton" value="{'Cancel'|i18n('extension/xrowecommerce')}" />
