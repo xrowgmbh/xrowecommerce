@@ -118,8 +118,19 @@ if ( $module->isCurrentAction( 'Store' ) )
 
     $country = $http->postVariable( "Country" );
     if ( trim( $country ) == "" )
+    {
         $inputIsValid = false;
 
+    }
+    else
+    {
+        if ( in_array( $country, eZINI::instance( 'xrowecommerce.ini' )->variable( 'Settings', 'CountryWihtStatesList' ) ) 
+             and $state == '' )
+    	{
+            $inputIsValid = false;
+        }
+    }
+    
     $phone = $http->postVariable( "Phone" );
     if ( trim( $phone ) == "" )
         $inputIsValid = false;
@@ -175,10 +186,22 @@ if ( $module->isCurrentAction( 'Store' ) )
         $s_zip = $http->postVariable( "s_Zip" );
         if ( trim( $s_zip ) == "" )
             $inputIsValid = false;
+        
+        $s_state = $http->postVariable( "s_State" );
 
         $s_country = $http->postVariable( "s_Country" );
         if ( trim( $s_country ) == "" )
+        {
             $inputIsValid = false;
+        }
+        else
+        {
+            if ( in_array( $s_country, eZINI::instance( 'xrowecommerce.ini' )->variable( 'Settings', 'CountryWithStatesList' ) ) 
+                 and $s_state == '' )
+            {
+                $inputIsValid = false;
+            }
+        }
 
         $s_phone = $http->postVariable( "s_Phone" );
         if ( trim( $s_phone ) == "" )
