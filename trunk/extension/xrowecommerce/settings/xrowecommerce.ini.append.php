@@ -11,6 +11,10 @@ MI=not_required
 State=not_required
 TaxID=disabled
 Fax=enabled
+CountryWithStatesList[]
+#CountryWithStatesList[]=USA
+#CountryWithStatesList[]=MEX
+#CountryWithStatesList[]=CAN
 ShopUserClassList[]=client
 # Please use an override instead
 
