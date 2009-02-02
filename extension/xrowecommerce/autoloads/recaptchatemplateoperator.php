@@ -81,7 +81,7 @@ class reCAPTCHATemplateOperator
                     try
                     {
                         // Run the HTML generation code from the reCAPTCHA PHP library 
-                        $operatorValue = recaptcha_get_html( $key );
+                        $operatorValue = recaptcha_get_html( $key, null, eZSys::isSSLNow() );
                     }
                     catch ( Exception $e )
                     {
