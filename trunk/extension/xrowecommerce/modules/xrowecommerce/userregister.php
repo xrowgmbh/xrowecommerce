@@ -329,16 +329,20 @@ if ( $module->isCurrentAction( 'Store' ) )
     $currentUser = eZUser::currentUser();
     $accessAllowed = $currentUser->hasAccessTo( 'xrowecommerce', 'bypass_captcha' );
     /* Captcha check */
-    if ( class_exists( 'xrowVerification' ) and eZINI::instance( 'xrowecommerce.ini' )->variable( 'Settings', 'Captcha' ) == 'enabled' and $accessAllowed["accessWord"] != 'yes' )
+    if ( class_exists( 'xrowVerification' ) and eZINI::instance( 'xrowecommerce.ini' )->variable('Settings', 'Captcha' ) == 'enabled' and $accessAllowed["accessWord"] != 'yes' and empty($_SESSION['xrowCaptchaSolved'] ))
     {
-        $captcha = true;
-        $verification = new xrowVerification( );
-        $answer = $verification->verify( $http );
-        if ( $answer != true )
-        {
-            $captcha = false;
-            $inputIsValid = false;
-        }
+    	$captcha = true;
+    	$verification = new xrowVerification();
+    	$answer = $verification->verify( $http );
+    	if( $answer != true )
+    	{
+    		$captcha = false;
+    		$inputIsValid = false;
+    	}
+    	else
+    	{
+    		$_SESSION['xrowCaptchaSolved'] = 1;
+    	}
     }
     
     if ( $inputIsValid == true )

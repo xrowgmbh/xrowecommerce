@@ -542,7 +542,7 @@
 {def $access=fetch( 'user', 'has_access_to',
                     hash( 'module',   'xrowecommerce',
                           'function', 'bypass_captcha' ) )} 
-{if and( ezini('Settings','Captcha','xrowecommerce.ini')|eq('enabled'), $access|not)}
+{if and( ezini('Settings','Captcha','xrowecommerce.ini')|eq('enabled'), $access|not, ezhttp( 'xrowCaptchaSolved', 'session' )|not)}
 
 <div class="block">        
         <label>{'Verification'|i18n('extension/xrowecommerce')}<span class="required">*</span></label>
