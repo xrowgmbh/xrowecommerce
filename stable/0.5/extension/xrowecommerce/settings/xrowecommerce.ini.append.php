@@ -16,6 +16,7 @@ CountryWithStatesList[]
 #CountryWithStatesList[]=USA
 #CountryWithStatesList[]=MEX
 #CountryWithStatesList[]=CAN
+DescriptionLength=60
 ShopUserClassList[]=client
 # Please use an override instead
 

@@ -46,6 +46,9 @@ thead {
         {if $vary.comment}
             <br />Variation: {$vary.comment}
         {/if}
+        {if $vary.description}
+            <br />Description: {$vary.description|shorten(ezini('xrowecommerce', 'Settings', 'DescriptionLength' ))}
+        {/if}
         </td>
         {/section}
     {section-else}

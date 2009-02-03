@@ -165,7 +165,7 @@ for (i = 0; i < field.length; i++)
                         {if $vary.comment.has_content}
                             {$vary.comment}
                         {else}
-                            {$vary.description|shorten(30)}
+                            {$vary.description|shorten(ezini('xrowecommerce', 'Settings', 'DescriptionLength' ))}
                         {/if}
                         </td>
                     </tr>
