@@ -55,7 +55,7 @@ for (i = 0; i < field.length; i++)
         <div class="break"></div>
         {section show=$removed_items}
             <div class="warning">
-            <h2>{"The following items were removed from your cart, because the products were changed"|i18n("design/base/shop",,)}</h2>
+            <h2>{"The following items were removed from your cart, because the products were changed"|i18n("design/base/shop")}</h2>
                 <ul>
                     {section name=RemovedItem loop=$removed_items}
                     <li>
@@ -157,7 +157,7 @@ for (i = 0; i < field.length; i++)
                     </tr>
                     <tr>
                         <td>
-                        {$prod.data_map.product_id.content|wash()}{$option_item.value}
+                        {$option_item.value}{*$prod.data_map.product_id.content|wash()*}
                         </td>
                     </tr>
                     <tr>
@@ -230,7 +230,6 @@ for (i = 0; i < field.length; i++)
         <td  colspan="6" class="align_right line2">
             {"Estimated Tax"|i18n("design/ezwebin/shop/basket")}:
             {$basket.items_info.total_price_info.price_vat|wash()}
-            {*$basket.items_info.additional_info.shipping_total.total_price_inc_vat|attribute(show)*}
         </td>
     </tr>
     <tr>
