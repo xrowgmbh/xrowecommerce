@@ -157,12 +157,16 @@ for (i = 0; i < field.length; i++)
                     </tr>
                     <tr>
                         <td>
-                        {$option_item.value}{*$prod.data_map.product_id.content|wash()*}
+                        {$option_item.value}
                         </td>
                     </tr>
                     <tr>
                         <td>
-                        {$vary.comment}
+                        {if $vary.comment.has_content}
+                            {$vary.comment}
+                        {else}
+                            {$vary.description|shorten(30)}
+                        {/if}
                         </td>
                     </tr>
                     <tr>
