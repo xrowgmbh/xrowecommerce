@@ -75,7 +75,10 @@ class xrowProductIntegerType extends xrowProductDataType
         if ( !isset( $variationArray[$line][$column] ) )
             return;
 
-        $content = $variationArray[$line][$column];
+        $content = trim( $variationArray[$line][$column] );
+
+        if ( strlen( $content ) == 0 )
+            return;
 
         $validator = new eZIntegerValidator( false, false );
         $ok = $validator->validate( $content );

@@ -132,7 +132,10 @@ class xrowProductFloatType extends xrowProductDataType
         if ( !isset( $variationArray[$line][$column] ) )
             return;
 
-        $content = $variationArray[$line][$column];
+        $content = trim( $variationArray[$line][$column] );
+
+        if ( strlen( $content ) == 0 )
+            return;
 
         $locale = eZLocale::instance();
         $content = str_replace(" ", "", $content );
