@@ -69,6 +69,12 @@ class xrowProductTemplate extends eZPersistentObject
                 if ( !isset( $this->AttributeList[$key]['column_desc'] ) )
                     $this->AttributeList[$key]['column_desc'] = null;
             }
+
+            foreach ( $this->AttributeList as $key => $item )
+            {
+            	$identifier = $item['attribute']->attribute( 'identifier' );
+            	$this->AttributeListByIdentifier[$identifier] = $item;
+            }
         }
     }
 
@@ -88,6 +94,7 @@ class xrowProductTemplate extends eZPersistentObject
     {
         $this->AttributeList = array();
         $this->Data['attributes'] = array();
+        $this->AttributeListByIdentifier = array();
     }
 
     static function definition()
@@ -154,6 +161,7 @@ class xrowProductTemplate extends eZPersistentObject
                                                       'top_priority_language_locale' => 'topPriorityLanguageLocale',
                                                       'data' => 'getData',
                                                       'attribute_list' => 'attributeList',
+                                                      'attribute_list_by_identifier' => 'attributeListByIdentifier',
                                                       'has_attribute_list' => 'hasAttributeList',
                                                       'sortby' => 'sortBy'
 
@@ -335,6 +343,11 @@ class xrowProductTemplate extends eZPersistentObject
         return $this->AttributeList;
     }
 
+    function attributeListByIdentifier()
+    {
+    	return $this->AttributeListByIdentifier;
+    }
+
     function hasAttributeList()
     {
         if ( isset( $this->AttributeList ) and count( $this->AttributeList ) > 0 )
@@ -372,7 +385,7 @@ class xrowProductTemplate extends eZPersistentObject
     public $SortBy;
     public $Name;
     public $AttributeList = array();
-
+    public $AttributeListByIdentifier = array();
 }
 
 ?>

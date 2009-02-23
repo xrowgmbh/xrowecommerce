@@ -410,6 +410,4 @@ class xrowProductPriceType extends xrowProductDataType
     }
 }
 
-xrowProductDataType::register( xrowProductPriceType::DATA_TYPE_STRING, "xrowProductPriceType" );
-
 ?>

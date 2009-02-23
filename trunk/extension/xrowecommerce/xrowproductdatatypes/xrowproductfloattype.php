@@ -181,6 +181,4 @@ class xrowProductFloatType extends xrowProductDataType
     }
 }
 
-xrowProductDataType::register( xrowProductFloatType::DATA_TYPE_STRING, "xrowProductFloatType" );
-
 ?>

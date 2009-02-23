@@ -147,6 +147,4 @@ class xrowProductRelationType extends xrowProductDataType
     }
 }
 
-xrowProductDataType::register( xrowProductRelationType::DATA_TYPE_STRING, "xrowProductRelationType" );
-
 ?>

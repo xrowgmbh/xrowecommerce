@@ -89,6 +89,4 @@ class xrowProductIntegerType extends xrowProductDataType
     }
 }
 
-xrowProductDataType::register( xrowProductIntegerType::DATA_TYPE_STRING, "xrowProductIntegerType" );
-
 ?>

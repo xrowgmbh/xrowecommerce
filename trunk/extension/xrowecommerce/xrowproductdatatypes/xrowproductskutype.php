@@ -83,6 +83,4 @@ class xrowProductSkuType extends xrowProductDataType
     }
 }
 
-xrowProductDataType::register( xrowProductSkuType::DATA_TYPE_STRING, "xrowProductSkuType" );
-
 ?>

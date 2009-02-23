@@ -2,14 +2,14 @@
 
 [XrowProductDataTypes]
 ProductDataTypeArray[]
-ProductDataTypeArray[]=string
-ProductDataTypeArray[]=integer
-ProductDataTypeArray[]=boolean
-ProductDataTypeArray[]=text
-ProductDataTypeArray[]=float
-ProductDataTypeArray[]=relation
-ProductDataTypeArray[]=price
-ProductDataTypeArray[]=sku
+ProductDataTypeArray[string]=xrowProductTextType
+ProductDataTypeArray[integer]=xrowProductIntegerType
+ProductDataTypeArray[boolean]=xrowProductBooleanType
+ProductDataTypeArray[text]=xrowProductTextType
+ProductDataTypeArray[float]=xrowProductFloatType
+ProductDataTypeArray[relation]=xrowProductRelationType
+ProductDataTypeArray[price]=xrowProductPriceType
+ProductDataTypeArray[sku]=xrowProductSkuType
 # coming soon
 #ProductDataTypeArray[]=selection
 

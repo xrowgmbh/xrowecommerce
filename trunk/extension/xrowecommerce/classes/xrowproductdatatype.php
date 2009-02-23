@@ -43,19 +43,12 @@ class xrowProductDataType
     {
         if ( !isset( $GLOBALS['xrowProductDataTypes'][$dataTypeString] ) )
         {
-            self::loadAndRegisterType( $dataTypeString );
+            $types = self::loadAndRegisterAllTypes();
         }
 
         if ( isset( $GLOBALS['xrowProductDataTypes'][$dataTypeString] ) )
         {
-            $className = $GLOBALS['xrowProductDataTypes'][$dataTypeString];
-
-            if ( !isset( $GLOBALS['xrowProductTypeObjects'][$dataTypeString] ) ||
-                 get_class( $GLOBALS['xrowProductTypeObjects'][$dataTypeString] ) != $className )
-            {
-                $GLOBALS['xrowProductTypeObjects'][$dataTypeString] = new $className();
-            }
-            return $GLOBALS['xrowProductTypeObjects'][$dataTypeString];
+            return $GLOBALS['xrowProductDataTypes'][$dataTypeString];
         }
 
         return null;
@@ -68,22 +61,11 @@ class xrowProductDataType
     */
     static function registeredDataTypes()
     {
-        $types = isset( $GLOBALS['xrowProductDataTypes'] ) ? $GLOBALS['xrowProductDataTypes'] : null;
-        if ( isset( $types ) )
+        if ( !isset( $GLOBALS['xrowProductDataTypes'] ) )
         {
-            foreach ( $types as $dataTypeString => $className )
-            {
-                if ( !isset( $GLOBALS['xrowProductTypeObjects'][$dataTypeString] ) )
-                {
-                    $GLOBALS['xrowProductTypeObjects'][$dataTypeString] = new $className();
-                }
-            }
-            uasort( $GLOBALS['xrowProductTypeObjects'],
-                    create_function( '$a, $b',
-                                     'return strcmp( $a->Name, $b->Name);' ) );
-            return $GLOBALS['xrowProductTypeObjects'];
+        	$GLOBALS['xrowProductDataTypes'] = self::loadAndRegisterAllTypes();
         }
-        return null;
+        return $GLOBALS['xrowProductDataTypes'];
     }
 
     static function allowedTypes()
@@ -92,8 +74,8 @@ class xrowProductDataType
         if ( !is_array( $allowedTypes ) )
         {
             $productINI = eZINI::instance( 'xrowproduct.ini' );
-            $dataTypes = $productINI->variable( 'XrowProductDataTypes', 'ProductDataTypeArray' );
-            $allowedTypes = array_unique( $dataTypes );
+            $allowedTypes = $productINI->variable( 'XrowProductDataTypes', 'ProductDataTypeArray' );
+            $types = self::loadAndRegisterAllTypes();
         }
         return $allowedTypes;
     }
@@ -101,75 +83,15 @@ class xrowProductDataType
     static function loadAndRegisterAllTypes()
     {
         $allowedTypes = self::allowedTypes();
-        foreach( $allowedTypes as $type )
-        {
-            self::loadAndRegisterType( $type );
-        }
-    }
-
-    static function loadAndRegisterType( $type )
-    {
-        $types =& $GLOBALS['xrowProductDataTypes'];
-        if ( isset( $types[$type] ) )
-        {
-            return false;
-        }
-
-        $baseDirectory = eZExtension::baseDirectory();
-        $productINI = eZINI::instance( 'xrowproduct.ini' );
-
-        $extensionDirectories = $productINI->variable( 'XrowProductDataTypes', 'ExtensionDirectories' );
-        $extensionDirectories = array_unique( $extensionDirectories );
-
-        $repositoryDirectories = array();
-
-        foreach ( $extensionDirectories as $extensionDirectory )
-        {
-            $extensionPath = $baseDirectory . '/' . $extensionDirectory . '/xrowproductdatatypes';
-            $triedDirectories[] = $extensionPath;
-            if ( file_exists( $extensionPath ) )
-            {
-                $repositoryDirectories[] = $extensionPath;
-            }
-            else
-            {
-                eZDebug::writeWarning( "Extension '$extensionDirectory' does not have the subdirectory 'xrowproductdatatypes'\n" .
-                                       "Looked for directory '" . $extensionPath . "'\n" .
-                                       "Cannot look for product datatype '$type' in this extension." );
-            }
-        }
-        $foundEventType = false;
-        $repositoryDirectories = array_unique( $repositoryDirectories );
-        foreach ( $repositoryDirectories as $repositoryDirectory )
-        {
-            $includeFile = "$repositoryDirectory/xrowproduct" . $type . "type.php";
-            if ( file_exists( $includeFile ) )
-            {
-                $foundEventType = true;
-                break;
-            }
-        }
-        if ( !$foundEventType )
-        {
-            eZDebug::writeError( "product Datatype not found: '$type', searched in these directories: " . implode( ', ', $triedDirectories ), "self::loadAndRegisterType" );
-            return false;
-        }
-        include_once( $includeFile );
-        return true;
-    }
-
-    /*!
-     \static
-     Registers the datatype with string id \a $dataTypeString and
-     class name \a $className. The class name is used for instantiating
-     the class and should be in lowercase letters.
-    */
-    static function register( $dataTypeString, $className )
-    {
         $types =& $GLOBALS['xrowProductDataTypes'];
         if ( !is_array( $types ) )
-            $types = array();
-        $types[$dataTypeString] = $className;
+        {
+	        foreach( $allowedTypes as $dataTypeString => $className )
+	        {
+	            $types[$dataTypeString] = new $className;
+	        }
+        }
+        return $types;
     }
 
     /*!

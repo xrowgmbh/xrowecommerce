@@ -34,3 +34,8 @@ td.error
     padding-top: 1px;
     border: 1px solid red !important;
 }
+
+.nowrap
+{
+    white-space: nowrap;
+}
