@@ -66,6 +66,4 @@ class xrowProductBooleanType extends xrowProductDataType
     }
 }
 
-xrowProductDataType::register( xrowProductBooleanType::DATA_TYPE_STRING, "xrowProductBooleanType" );
-
 ?>

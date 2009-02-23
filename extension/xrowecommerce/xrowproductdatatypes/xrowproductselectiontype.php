@@ -58,6 +58,4 @@ class xrowProductSelectionType extends xrowProductDataType
     }
 }
 
-xrowProductDataType::register( xrowProductSelectionType::DATA_TYPE_STRING, "xrowProductSelectionType" );
-
 ?>

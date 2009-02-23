@@ -41,6 +41,4 @@ class xrowProductStringType extends xrowProductDataType
     }
 }
 
-xrowProductDataType::register( xrowProductStringType::DATA_TYPE_STRING, "xrowProductStringType" );
-
 ?>
