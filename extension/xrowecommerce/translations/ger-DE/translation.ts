@@ -1960,16 +1960,36 @@ Es ist nicht möglich, den Datentyp danach zu ändern.</translation>
         <comment>Datatype description</comment>
         <translation>Speichert den Preis der Variation</translation>
     </message>
+    <message>
+        <source>Column headline configuration</source>
+        <translation>Konfiguration der Spalten Überschriften</translation>
+    </message>
+    <message>
+        <source>Show column config</source>
+        <translation>Konfig. anzeigen</translation>
+    </message>
+    <message>
+        <source>Hide column config</source>
+        <translation>Konfig. verbergen</translation>
+    </message>
+    <message>
+        <source>New name</source>
+        <translation>Neuer Name</translation>
+    </message>
+    <message>
+        <source>New description</source>
+        <translation>Neue Beschreibung</translation>
+    </message>
 </context>
 <context>
     <name>kernel/classes/datatypes</name>
     <message>
         <source>Pay on delivery</source>
-        <translation type="unfinished"></translation>
+        <translation>Bei Lieferung zahlen</translation>
     </message>
     <message>
         <source>Pay by invoice</source>
-        <translation type="unfinished"></translation>
+        <translation>Per Rechnung zahlen</translation>
     </message>
     <message>
         <source>Advance payment</source>
