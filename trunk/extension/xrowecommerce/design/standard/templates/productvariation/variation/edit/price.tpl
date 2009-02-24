@@ -18,7 +18,7 @@
 <tr>
     <td>{if and($amount|ne(1),$first)}<img src={"trash-icon-16x16.gif"|ezimage} alt="{"Delete line"|i18n( 'extension/xrowecommerce/productvariation' )|wash}"  width="16" height="16" onclick="return this.parentNode.parentNode.parentNode.parentNode.removeChild( this.parentNode.parentNode.parentNode );" />{else}<img src={"1x1.gif"|ezimage} width="16" height="16" alt="" />{/if}</td>
 
-    {if $template.attribute.sliding}
+{if $data.template_item.sliding}
     <td>{if $first}<span title="{"Amount"|i18n('extension/xrowecommerce/productvariation')|wash}">#</span>{else}&nbsp;{/if}</td>
     <td>{if $first}<input name="XrowProductVariation[{$attribute.id}][{$line}][{$data.template_item.attribute.identifier}][amount][{$j|wash}]" class="xrowproductpriceamount" type="text" size="5" maxlength="15" value="{$amount|wash}" />{if is_set( $error[$line][$data.template_item.attribute.identifier]['amount'][$amount] )}<span class="warning">*</span>{/if}{else}&nbsp;{/if}</td>
 {else}
