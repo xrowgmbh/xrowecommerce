@@ -125,7 +125,24 @@ class xrowProductVariationType extends eZDataType
 
         if ( $template )
         {
-            $dataKey = "XrowProductVariation";
+            $columndef = array( 'column_name_array' => array(),
+                                'column_desc_array' => array() );
+
+            $columnDefNameKey = 'XrowProductColumnNameArray';
+            if ( $http->hasPostVariable( $columnDefNameKey ) )
+            {
+                $columnNameArray = $http->postVariable( $columnDefNameKey );
+                $columndef['column_name_array'] = $columnNameArray[$id];
+            }
+            $columnDefDescKey = 'XrowProductColumnDescArray';
+            if ( $http->hasPostVariable( $columnDefDescKey ) )
+            {
+            	$columnDescArray = $http->postVariable( $columnDefDescKey );
+            	$columndef['column_desc_array'] = $columnDescArray[$id];
+            }
+            $contentObjectAttribute->setAttribute( 'data_text', serialize( $columndef ) );
+
+        	$dataKey = "XrowProductVariation";
             if ( $http->hasPostVariable( $dataKey ) )
             {
                 $variationAllArray = $http->postVariable( $dataKey );
@@ -420,7 +437,17 @@ class xrowProductVariationType extends eZDataType
             $sortBy = null;
             if ( $content['template_id'] > 0 )
             {
-                $content['template'] = xrowProductTemplate::fetch( $content['template_id'] );
+                $columndef = array( 'column_name_array' => array(),
+                                    'column_desc_array' => array() );
+                $columnTemp = $contentObjectAttribute->attribute( 'data_text' );
+                if ( strlen( $columnTemp ) > 0 )
+                {
+                	$columndef = @unserialize( $columnTemp );
+                }
+                $content['column_name_array'] = $columndef['column_name_array'];
+                $content['column_desc_array'] = $columndef['column_desc_array'];
+
+            	$content['template'] = xrowProductTemplate::fetch( $content['template_id'] );
                 $template =& $content['template'];
                 if ( $template )
                 {

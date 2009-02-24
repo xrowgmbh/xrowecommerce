@@ -4,14 +4,33 @@
      $template=$content.template
      $data=false()
      $index=0
+     $column_name_array=$content.column_name_array
+     $column_desc_array=$content.column_desc_array
 }
 {if $content.data|count|gt(0)}{set $index=$content.data|count}{/if}
-
-{* $content.data|attribute(show) *}
 
 <script type="text/javascript">
 <!--
     var newindex={$index};
+{literal}
+    function toggleview( button, id, ontext, offtext )
+    {
+        var obj = document.getElementById( id );
+        if ( obj )
+        {
+            if ( obj.style.display == 'block' )
+            {
+                button.value = ontext;
+                obj.style.display = 'none';
+            }
+            else
+            {
+                button.value = offtext;
+                obj.style.display = 'block';
+            }
+        }
+    }
+{/literal}
 // -->
 </script>
 <div class="block">
@@ -49,10 +68,28 @@
                      variation_attribute_id=$variation_attribute_id}
             </td>
 {/foreach}
-            <td valign="top" class="tight"><img src={"button-move_up.gif"|ezimage} alt="Move up"  width="16" height="16" onclick="return xrow_move(  {ldelim} direction: 'up', tr: this.parentNode.parentNode {rdelim} );" /></td>
-        <td valign="top" class="tight"><img src={"button-move_down.gif"|ezimage} alt="Move down" width="16" height="16" title="Move down" onclick="return xrow_move( {ldelim} direction: 'down', tr: this.parentNode.parentNode {rdelim});" /></td>
+            <td valign="top" class="tight"><img src={"button-move_up.gif"|ezimage} alt="{'Move up'|i18n('extension/xrowecommerce/productvariation')}"  width="16" height="16" onclick="return xrow_move(  {ldelim} direction: 'up', tr: this.parentNode.parentNode {rdelim} );" /></td>
+        <td valign="top" class="tight"><img src={"button-move_down.gif"|ezimage} alt="{'Move down'|i18n('extension/xrowecommerce/productvariation')}" width="16" height="16" title="Move down" onclick="return xrow_move( {ldelim} direction: 'down', tr: this.parentNode.parentNode {rdelim});" /></td>
         </tr>
     </tbody>
+</table>
+</div>
+<h3>{'Column headline configuration'|i18n('extension/xrowecommerce/productvariation')}</h3>
+<div class="block">
+<input type="button" class="button" name="xrowconfigbutton{$id}" onclick="toggleview( this, 'xrowcolumnconfig{$id}', '{'Show column config'|i18n('extension/xrowecommerce/productvariation')|wash('javascript')}', '{'Hide column config'|i18n('extension/xrowecommerce/productvariation')|wash('javascript')}' );" value="{'Show column config'|i18n('extension/xrowecommerce/productvariation')|wash}"/>
+<br />
+<table cellpadding="0" cellspacing="0" border="0" width="100%" class="list" id="xrowcolumnconfig{$id}" style="display:none;">
+
+{foreach $content.template.attribute_list as $key => $template_item}
+    <tr>
+    <th valign="top">{$template_item.column_name|wash}</th>
+    <td>{'New name'|i18n('extension/xrowecommerce/productvariation')}:</td>
+    <td valign="top"><input type="text" size="20" name="XrowProductColumnNameArray[{$id}][{$template_item.attribute.identifier}]" value="{cond( is_set( $column_name_array[$template_item.attribute.identifier] ), $column_name_array[$template_item.attribute.identifier]|wash, $template_item.column_name|wash )}" /></td>
+    <td>{'New description'|i18n('extension/xrowecommerce/productvariation')}:</td>
+    <td valign="top"><textarea class="xrowproducttextcolumn" cols="70" rows="2" name="XrowProductColumnDescArray[{$id}][{$template_item.attribute.identifier}]">{cond( is_set( $column_desc_array[$template_item.attribute.identifier] ), $column_desc_array[$template_item.attribute.identifier]|wash, $template_item.column_desc|wash )}</textarea></td>
+    </tr>
+{/foreach}
+
 </table>
 </div>
 
@@ -62,7 +99,7 @@
     <th>&nbsp;</th>
 {foreach $content.template.attribute_list as $key => $template_item}
 
-    <th valign="top" title="{$template_item.column_desc|wash}">{$template_item.column_name|wash}</th>
+    <th valign="top" title="{$template_item.column_desc|wash}">{cond( is_set( $column_name_array[$template_item.attribute.identifier] ), $column_name_array[$template_item.attribute.identifier]|wash, $template_item.column_name|wash )}</th>
 
 {/foreach}
     <th>&nbsp;</th>
