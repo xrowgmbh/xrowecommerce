@@ -4,6 +4,8 @@
      $template=$content.template
      $data=false()
      $show_hidden_fields=cond( ezini( 'PriceSettings', 'ShowHiddenFields', 'xrowproduct.ini' )|eq( 'true' ), true(), false() )
+     $column_name_array=$content.column_name_array
+     $column_desc_array=$content.column_desc_array
 }
 {if $content.data|count|gt(0)}
 
@@ -22,7 +24,7 @@
 {foreach $content.template.attribute_list as $key => $template_item}
 
 {if or( $show_hidden_fields, $template_item.frontend )}
-    <th valign="top" title="{$template_item.column_desc|wash}">{$template_item.column_name|wash}</th>
+    <th title="{cond( is_set( $column_desc_array[$template_item.attribute.identifier] ), $column_desc_array[$template_item.attribute.identifier]|wash, $template_item.column_desc|wash )}">{cond( is_set( $column_name_array[$template_item.attribute.identifier] ), $column_name_array[$template_item.attribute.identifier]|wash, $template_item.column_name|wash )}</th>
 {/if}
 
 {/foreach}

@@ -99,7 +99,7 @@
     <th>&nbsp;</th>
 {foreach $content.template.attribute_list as $key => $template_item}
 
-    <th valign="top" title="{$template_item.column_desc|wash}">{cond( is_set( $column_name_array[$template_item.attribute.identifier] ), $column_name_array[$template_item.attribute.identifier]|wash, $template_item.column_name|wash )}</th>
+    <th valign="top" title="{cond( is_set( $column_desc_array[$template_item.attribute.identifier] ), $column_desc_array[$template_item.attribute.identifier]|wash, $template_item.column_desc|wash )}">{cond( is_set( $column_name_array[$template_item.attribute.identifier] ), $column_name_array[$template_item.attribute.identifier]|wash, $template_item.column_name|wash )}</th>
 
 {/foreach}
     <th>&nbsp;</th>
