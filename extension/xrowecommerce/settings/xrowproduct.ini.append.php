@@ -2,7 +2,7 @@
 
 [XrowProductDataTypes]
 ProductDataTypeArray[]
-ProductDataTypeArray[string]=xrowProductTextType
+ProductDataTypeArray[string]=xrowProductStringType
 ProductDataTypeArray[integer]=xrowProductIntegerType
 ProductDataTypeArray[boolean]=xrowProductBooleanType
 ProductDataTypeArray[text]=xrowProductTextType
