@@ -220,11 +220,13 @@ class xrowProductPriceType extends xrowProductDataType
             $existingEntries = array();
             $existingEntriesRaw = array();
             if ( !$newEntry )
+            {
                 $existingEntriesRaw = xrowProductPrice::fetchList( array( 'price_id' => $priceID ),
                                                                    true,
                                                                    false,
                                                                    false,
                                                                    array( 'amount' => 'asc' ) );
+            }
 
             if ( count( $existingEntriesRaw ) > 0 )
             {
@@ -241,26 +243,25 @@ class xrowProductPriceType extends xrowProductDataType
             	foreach( $countryList as $country )
             	{
             	   $price = str_replace(" ", "", $contentArray[$country][$key] );
-            	   if ( $price != "" )
-            	   {
-	                   $price = $locale->internalNumber( $price );
+                   $price = $locale->internalNumber( $price );
 
-	                   if ( isset( $existingEntries[$amount][$country] ) )
-	                   {
-	                        $priceItem = $existingEntries[$amount][$country];
-	                        unset( $existingEntries[$amount][$country] );
-	                   }
-	                   else
-	                   {
-	                   	   $row['country'] = $country;
-		                   $row['amount'] = $amount;
-		                   $row['price_id'] = $priceID;
-		                   $priceItem = new xrowProductPrice( $row );
-	                   }
+                   if ( isset( $existingEntries[$amount][$country] ) )
+                   {
+                        $priceItem = $existingEntries[$amount][$country];
+                        unset( $existingEntries[$amount][$country] );
+                   }
+                   else
+                   {
+                   	   $row['country'] = $country;
+	                   $row['amount'] = $amount;
+	                   $row['price_id'] = $priceID;
+	                   $priceItem = new xrowProductPrice( $row );
+                   }
 
-	            	   $priceItem->setAttribute( 'price', $price );
-	                   $priceArray[$amount][$country] = $priceItem;
-            	   }
+            	   if ( $price == "" )
+            	       $price = null;
+                   $priceItem->setAttribute( 'price', $price );
+                   $priceArray[$amount][$country] = $priceItem;
             	}
             	#ksort( $priceArray );
             }
