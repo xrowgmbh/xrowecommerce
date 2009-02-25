@@ -156,7 +156,7 @@ class xrowProductData extends eZPersistentObject
                 $field = $attribute['attribute']->Identifier;
                 if ( $dataType )
                 {
-                    $result .= " " . $dataType->metaData( $this, $column, $attribute );
+                    $result .= " " . $dataType->metaData( $this, $field, $attribute );
                 }
             }
         }
