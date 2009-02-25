@@ -8,7 +8,8 @@
 <tbody id="XrowProductVariation_{$attribute.id}_{$line}_{$data.template_item.attribute.identifier}_to">
 {foreach $content as $amount => $price_array}
 {set $first=true()}
-<tr class="{if $i|eq(0)}{set $i=1}bglight{else}{set $i=0}bgdark{/if}"><td>
+<tr class="{if $i|eq(0)}{set $i=1}bglight{else}{set $i=0}bgdark{/if}">
+    <td>
 <table cellpadding="0" cellspacing="0" border="0" width="100%" class="xrowpricetable">
 <tbody>
 
