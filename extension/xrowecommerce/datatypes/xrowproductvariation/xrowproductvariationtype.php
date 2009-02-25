@@ -666,11 +666,12 @@ class xrowProductVariationType extends eZDataType
             foreach ( $content['data'] as $data )
             {
             	if ( $data['obj'] )
-            	   $result .= " " . $data['obj']->metaData();
+            	{
+            	    $result .= " " . $data['obj']->metaData();
+            	}
             }
         }
-
-    	return array( 'id' => $contentObjectAttribute->attribute( 'contentclass_attribute_identifier' ),
+        return array( 'id' => $contentObjectAttribute->attribute( 'contentclass_attribute_identifier' ),
                       'text' => trim( $result ) );
     }
 
