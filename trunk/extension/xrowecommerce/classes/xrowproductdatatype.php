@@ -492,15 +492,11 @@ class xrowProductDataType
      *
      * @param xrowProductData $variation
      * @param string $column
-     * @param $attribute
      * @return string
      */
-    function metaData( xrowProductData $variation, $column, $attribute )
+    function metaData( xrowProductData $variation, $column )
     {
-        $result = "";
-    	if ( isset( $attribute['search'] ) and $attribute['search'] )
-            return $variation->attribute( $column );
-    	return $result;
+        return $variation->attribute( $column );
     }
 
     /*!

@@ -671,8 +671,8 @@ class xrowProductVariationType extends eZDataType
             	}
             }
         }
-        return array( 'id' => $contentObjectAttribute->attribute( 'contentclass_attribute_identifier' ),
-                      'text' => trim( $result ) );
+        return array( array( 'id' => $contentObjectAttribute->attribute( 'contentclass_attribute_identifier' ),
+                             'text' => trim( $result ) ) );
     }
 
     /*!
