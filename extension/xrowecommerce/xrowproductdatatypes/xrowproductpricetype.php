@@ -387,26 +387,22 @@ class xrowProductPriceType extends xrowProductDataType
      *
      * @param xrowProductData $variation
      * @param string $column
-     * @param $attribute
      * @return string
      */
-    function metaData( xrowProductData $variation, $column, $attribute )
+    function metaData( xrowProductData $variation, $column )
     {
         $result = "";
-        if ( isset( $attribute['search'] ) and $attribute['search'] )
-        {
-            $id = $variation->attribute( $column );
-            $resultArray = xrowProductPrice::fetchList( array( 'price_id' => $id ),
-                                                       true,
-                                                       false,
-                                                       false,
-                                                       array( 'amount' => 'asc' ) );
-        	foreach ( $resultArray as $item )
-        	{
-        		$result .= " " . $item->attribute( 'price' );
-        	}
-        	$result = trim( $result );
-        }
+        $id = $variation->attribute( $column );
+        $resultArray = xrowProductPrice::fetchList( array( 'price_id' => $id ),
+                                                      true,
+                                                      false,
+                                                      false,
+                                                      array( 'amount' => 'asc' ) );
+       	foreach ( $resultArray as $item )
+       	{
+       		$result .= " " . $item->attribute( 'price' );
+       	}
+       	$result = trim( $result );
         return $result;
     }
 }
