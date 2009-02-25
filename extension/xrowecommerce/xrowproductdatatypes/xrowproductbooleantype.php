@@ -32,12 +32,9 @@ class xrowProductBooleanType extends xrowProductDataType
      * @param $attribute
      * @return string
      */
-    function metaData( xrowProductData $variation, $column, $attribute )
+    function metaData( xrowProductData $variation, $column )
     {
-        $result = "";
-        if ( isset( $attribute['search'] ) and $attribute['search'] )
-            return $attribute['attribute']->attribute( 'name' );
-        return $result;
+        return "";
     }
 
     /**

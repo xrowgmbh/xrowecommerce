@@ -154,9 +154,11 @@ class xrowProductData extends eZPersistentObject
             {
                 $dataType = $attribute['attribute']->dataType();
                 $field = $attribute['attribute']->Identifier;
-                if ( $dataType )
+                if ( $dataType and
+                     isset( $attribute['search'] ) and
+                     $attribute['search'] == true )
                 {
-                    $result .= " " . $dataType->metaData( $this, $field, $attribute );
+                    $result .= " " . $dataType->metaData( $this, $field );
                 }
             }
         }
