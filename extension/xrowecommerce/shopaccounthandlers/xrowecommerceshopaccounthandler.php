@@ -255,7 +255,7 @@ class xrowECommerceShopAccountHandler
         }
         
         // If order has a shipping country use it instead.
-        if ( $result['s_country'] != '' )
+        if ( isset( $result['s_country'] ) and $result['s_country'] != '' )
         {
             $result['shipping_country'] = $result['s_country'];
         }

@@ -5,7 +5,7 @@
 {if ezini( 'Settings', 'ShowColumnPosition', 'xrowecommerce.ini')|ne('enabled')}
 {set $cols=$cols|sub(1)}
 {/if}
-{if and( eq(ezini( 'BasketInformation', 'DisplayTax', 'xrowecommerce.ini' ), 'enabled' ), ezini( 'Settings', 'ShowColumnTax', 'xrowecommerce.ini' )|eq('enabled') )}
+{if ezini( 'Settings', 'ShowColumnTax', 'xrowecommerce.ini' )|ne('enabled')}
 {set $cols=$cols|sub(1)}
 {/if}
 {literal}
@@ -105,7 +105,7 @@ for (i = 0; i < field.length; i++)
     
     <div class="content-basket">
     <div id="buttonblock-delete" class="buttonblock">
-        <input type="submit" class="flat-right2 " name="RemoveProductItemButton" value={'Delete'|i18n( 'extension/xrowecommerce' )} title="{'Use this button to remove items from your shopping cart.'|i18n( 'extension/xrowecommerce' )}" />
+        <input id="delete-button" type="submit" class="flat-right2 button" name="RemoveProductItemButton" value={'Delete'|i18n( 'extension/xrowecommerce' )} title="{'Use this button to remove items from your shopping cart.'|i18n( 'extension/xrowecommerce' )}" />
     </div>
     <div class="break"></div>
     <table class="order">
@@ -121,7 +121,7 @@ for (i = 0; i < field.length; i++)
             <th>
                 {"Item"|i18n("extension/xrowecommerce")}
             </th>
-            {if and( eq(ezini( 'BasketInformation', 'DisplayTax', 'xrowecommerce.ini' ), 'enabled' ), ezini( 'Settings', 'ShowColumnTax', 'xrowecommerce.ini' )|eq('enabled') )}
+            {if ezini( 'Settings', 'ShowColumnTax', 'xrowecommerce.ini' )|eq('enabled')}
             <th>
                 {"Tax"|i18n("extension/xrowecommerce")}
             </th>
@@ -169,7 +169,7 @@ for (i = 0; i < field.length; i++)
             {$product_item.total_price_ex_vat|l10n( 'currency', $locale, $symbol )}
         </td>
         {if ezini( 'Settings', 'ShowColumnRemove', 'xrowecommerce.ini')|eq('enabled')}
-        <td class="basketspace">
+        <td class="delete basketspace">
             <input class="shopping_cart_checkbox" type="checkbox" name="RemoveProductItemDeleteList[]" value="{$product_item.item.id}" />
         </td>
         {/if}
@@ -199,7 +199,7 @@ for (i = 0; i < field.length; i++)
     </tr>
     {/if}
             <tr class="subtotal-line">
-                 <td colspan="{$cols|sub(1)}" class="align_right">
+                 <td colspan="{$cols|sub(2)}" class="align_right">
                     {"Subtotal Ex. Tax"|i18n("extension/xrowecommerce")}:
                  </td>
                  <td class="totalprice">
@@ -209,32 +209,32 @@ for (i = 0; i < field.length; i++)
             </tr>
 
             <tr class="orderitem-line">
-                <td colspan="{$cols|sub(1)}" class="align_right">   
+                <td colspan="{$cols|sub(2)}" class="align_right">   
                     {"Estimated Shipping and Handling"|i18n("extension/xrowecommerce")}:
                 </td>
-                <td class="totalprice">
+                <td class="price totalprice">
                     {$basket.items_info.additional_info.shipping_total.total_price_inc_vat|l10n( 'currency', $locale, $symbol )}            
                 </td>
                 <td class="noborder">&nbsp;</td>
             </tr>
             {if eq(ezini( 'BasketInformation', 'DisplayTax', 'xrowecommerce.ini' ), 'enabled' )}
             <tr class="tax-line">
-                <td colspan="{$cols|sub(1)}" class="align_right">
+                <td colspan="{$cols|sub(2)}" class="align_right">
                     {"Estimated Tax"|i18n("extension/xrowecommerce")}:
                 </td>
-                <td class="totalprice">
+                <td class="price totalprice">
                      {$basket.items_info.total_price_info.price_vat|l10n( 'currency', $locale, $symbol )}
                 </td>
                 <td class="noborder">&nbsp;</td>
             </tr>
             {/if}
             <tr class="grandtotal-line">
-                <td colspan="{$cols|sub(1)}" class="align_right">
-                    <b class="price">
+                <td colspan="{$cols|sub(2)}" class="align_right">
+                    <strong>
                         {'Total'|i18n( 'extension/xrowecommerce' )}:
-                    </b>
+                    </strong>
                 </td>
-                <td class="totalprice">
+                <td class="price totalprice">
                     {$basket.total_inc_vat|l10n( 'currency', $locale, $symbol )}            
                 </td>
                 <td class="noborder">&nbsp;</td>
