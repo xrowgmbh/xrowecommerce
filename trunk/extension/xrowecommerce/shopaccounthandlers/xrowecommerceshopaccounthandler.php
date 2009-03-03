@@ -2,6 +2,7 @@
 
 class xrowECommerceShopAccountHandler
 {
+
     /**
      * [MerchantLocations]
      * Locations[]=USA
@@ -14,41 +15,48 @@ class xrowECommerceShopAccountHandler
      */
     function merchantsLocations()
     {
-    	$ini = eZINI::instance( 'xrowecommerce.ini' );
-		$LocationArray = array();
-    	foreach ( $ini->variable( 'MerchantLocations', 'Location' ) as $location )
-    	{
-    		if( $ini->hasVariable( 'MerchantLocations', $location ) )
-    		{
-    			$LocationArray[] = array( $location , $ini->variable( 'MerchantLocations', $location ) );
-    		}
-    		else
-    		{
-    			$LocationArray[] = array( $location );
-    		}
-    	}
-    	return $LocationArray;
+        $ini = eZINI::instance( 'xrowecommerce.ini' );
+        $LocationArray = array();
+        foreach ( $ini->variable( 'MerchantLocations', 'Location' ) as $location )
+        {
+            if ( $ini->hasVariable( 'MerchantLocations', $location ) )
+            {
+                $LocationArray[] = array( 
+                    $location , 
+                    $ini->variable( 'MerchantLocations', $location ) 
+                );
+            }
+            else
+            {
+                $LocationArray[] = array( 
+                    $location 
+                );
+            }
+        }
+        return $LocationArray;
         #return array( 'USA', array( 'NY', 'CT' ) );
     }
-/**
- * Will verify that the user has supplied the correct user information.
- * Returns true if we have all the information needed about the user.
- */
+
+    /**
+     * Will verify that the user has supplied the correct user information.
+     * Returns true if we have all the information needed about the user.
+     */
     function verifyAccountInformation()
     {
-    	
+        
         if ( eZSys::isShellExecution() )
         {
-        	eZDebug::writeDebug( "No need for account information", "xrowECommerceShopAccountHandler::verifyAccountInformation()" );
+            eZDebug::writeDebug( "No need for account information", "xrowECommerceShopAccountHandler::verifyAccountInformation()" );
             //TODO verfiy that account is cool then do return true
             return true;
         }
         else
         {
-        	eZDebug::writeDebug( "Need account information", "xrowECommerceShopAccountHandler::verifyAccountInformation()" );
+            eZDebug::writeDebug( "Need account information", "xrowECommerceShopAccountHandler::verifyAccountInformation()" );
             return false;
         }
     }
+
     function fillAccountArray( $user = null )
     {
         if ( $user === null )
@@ -75,7 +83,7 @@ class xrowECommerceShopAccountHandler
         $billing['paymentmethod'] = $userMap['paymentmethod']->content();
         $billing['email'] = $user->attribute( 'email' );
         $shipping = array();
-        if ( $shipping !="1" )
+        if ( $shipping != "1" )
         {
             $shipping['s_companyname'] = $userMap['scompanyname']->content();
             $shipping['s_companyadditional'] = $userMap['scompanyadditional']->content();
@@ -98,13 +106,14 @@ class xrowECommerceShopAccountHandler
         {
             $creditcard['ezauthorize-card-name'] = $tmpcreditcard['name'];
             $creditcard['ezauthorize-card-number'] = $tmpcreditcard['number'];
-            $creditcard['ezauthorize-card-date'] = $tmpcreditcard['month'].$tmpcreditcard['year'];
+            $creditcard['ezauthorize-card-date'] = $tmpcreditcard['month'] . $tmpcreditcard['year'];
             $creditcard['ezauthorize-card-type'] = $tmpcreditcard['type'];
         }
-
+        
         $returnArray = array_merge( $billing, $shipping, $creditcard );
         return $returnArray;
     }
+
     /*!
      Redirectes to the user registration page.
     */
@@ -118,13 +127,13 @@ class xrowECommerceShopAccountHandler
     */
     function transactionID( $order )
     {
-        $xml = new eZXML();
-        $xmlDoc = $order->attribute( 'data_text_1' );
-        if( $xmlDoc != null )
+        $xmlString = $order->attribute( 'data_text_1' );
+        if ( $xmlString != null )
         {
-                $dom = $xml->domTree( $xmlDoc );
-                $id = $dom->elementsByName( "ezauthorize-transaction-id" );
-                return $id[0]->textContent();
+            $dom = new DOMDocument( '1.0', 'utf-8' );
+            $success = $dom->loadXML( $xmlString );
+            $id = $dom->getElementsByTagName( "ezauthorize-transaction-id" )->item( 0 );
+            return $id->textContent;
         }
         else
             return false;
@@ -135,16 +144,18 @@ class xrowECommerceShopAccountHandler
     */
     function email( $order )
     {
-        $xml = new eZXML();
-        $xmlDoc = $order->attribute( 'data_text_1' );
-        if( $xmlDoc != null )
+        $xmlString = $order->attribute( 'data_text_1' );
+        if ( $xmlString != null )
         {
-            $dom = $xml->domTree( $xmlDoc );
-            $email = $dom->elementsByName( "email" );
-            if ( isset( $email[0] ) )
+            $dom = new DOMDocument( '1.0', 'utf-8' );
+            $success = $dom->loadXML( $xmlString );
+            $email = $dom->getElementsByTagName( "email" )->item( 0 );
+            if ( $email )
             {
-                return $email[0]->textContent();
-            } else {
+                return $email->textContent;
+            }
+            else
+            {
                 return false;
             }
         }
@@ -158,326 +169,144 @@ class xrowECommerceShopAccountHandler
     function accountName( $order )
     {
         $accountName = "";
-        $xml = new eZXML();
-        $xmlDoc = $order->attribute( 'data_text_1' );
-        if( $xmlDoc != null )
+        $xmlString = $order->attribute( 'data_text_1' );
+        if ( $xmlString != null )
         {
-            $dom = $xml->domTree( $xmlDoc );
-            $firstName = $dom->elementsByName( "first-name" );
-            $mi = $dom->elementsByName( "mi" );
+            $dom = new DOMDocument( '1.0', 'utf-8' );
+            $success = $dom->loadXML( $xmlString );
 
-            if( array_key_exists( 0, $mi ) and is_object( $mi[0] ) )
+            $firstName = $dom->getElementsByTagName( "first-name" )->item( 0 );
+            $mi = $dom->getElementsByTagName( "mi" )->item( 0 );
+            $lastName = $dom->getElementsByTagName( "last-name" )->item( 0 );
+
+            if ( is_object( $mi ) )
             {
-                $mi_tc = $mi[0]->textContent();
+            	$accountName = $firstName->textContent . " " . $mi_tc . " " . $lastName->textContent;
             }
             else
             {
                 $mi_tc = '';
             }
-
-            $lastName = $dom->elementsByName( "last-name" );
-
-            if( isset( $firstName[0] ) and isset( $lastName[0] ) )
-                $accountName = $firstName[0]->textContent() . " " . $mi_tc ." " . $lastName[0]->textContent();
         }
-
         return $accountName;
     }
 
     function accountInformation( $order )
     {
-        $xml = new eZXML();
-        $xmlDoc = $order->attribute( 'data_text_1' );
-        if ( empty( $xmlDoc ) )
+        $result = array();
+        $dom = new DOMDocument( '1.0', 'utf-8' );
+        $xmlString = $order->attribute( 'data_text_1' );
+        if ( empty( $xmlString ) )
         {
-        	return array();
+            return array();
         }
-        $dom = $xml->domTree( $xmlDoc );
-
-        $companyName = $dom->elementsByName( "company_name" );
-        $companyAdditional = $dom->elementsByName( "company_additional" );
-        $taxId = $dom->elementsByName( "tax_id" );
-        $firstName = $dom->elementsByName( "first-name" );
-        $mi = $dom->elementsByName( "mi" );
-        $lastName = $dom->elementsByName( "last-name" );
-
-        $address1 = $dom->elementsByName( "address1" );
-        $address2 = $dom->elementsByName( "address2" );
-
-        $city = $dom->elementsByName( "city" );
-        $state = $dom->elementsByName( "state" );
-        $zip = $dom->elementsByName( "zip" );
-        $country = $dom->elementsByName( "country" );
-
-        $phone = $dom->elementsByName( "phone" );
-        $fax = $dom->elementsByName( "fax" );
-        $email = $dom->elementsByName( "email" );
-
-        $shipping = $dom->elementsByName( "shipping" );
-        $shippingtype = $dom->elementsByName( "shippingtype" );
-        
-        $paymentMethod = $dom->elementsByName( "paymentmethod" );
-
-        $s_companyName = $dom->elementsByName( "s_company_name" );
-        $s_companyAdditional = $dom->elementsByName( "s_company_additional" );
-        $s_firstName = $dom->elementsByName( "s_first-name" );
-        $s_mi = $dom->elementsByName( "s_mi" );
-        $s_lastName = $dom->elementsByName( "s_last-name" );
-
-        $s_address1 = $dom->elementsByName( "s_address1" );
-        $s_address2 = $dom->elementsByName( "s_address2" );
-
-        $s_city = $dom->elementsByName( "s_city" );
-        $s_state = $dom->elementsByName( "s_state" );
-        $s_zip = $dom->elementsByName( "s_zip" );
-        $s_country = $dom->elementsByName( "s_country" );
-
-        $s_phone = $dom->elementsByName( "s_phone" );
-        $s_fax = $dom->elementsByName( "s_fax" );
-        $s_email = $dom->elementsByName( "s_email" );
-
-        // $comment =& $dom->elementsByName( "comment" );
-
-        $companyNameText = "";
-        if ( isset( $companyName[0] ) )
-            $companyNameText = $companyName[0]->textContent();
-            
-        $companyAdditionalText = "";
-        if ( isset( $companyAdditional[0] ) )
-            $companyAdditionalText = $companyAdditional[0]->textContent();
-            
-        $taxIdText = "";
-        if ( isset( $taxId[0] ) )
-            $taxIdText = $taxId[0]->textContent();
-        
-        $firstNameText = "";
-        if ( isset( $firstName[0] ) )
-            $firstNameText = $firstName[0]->textContent();
-
-        $miText = "";
-        if( isset( $mi[0] ) )
+        $success = $dom->loadXML( $xmlString );
+        $fields = array( 
+            'company_name' , 
+            'company_additional' , 
+            'tax_id' , 
+            'first-name' , 
+            'mi' , 
+            'last-name' , 
+            'address1' , 
+            'address2' , 
+            'city' , 
+            'state' , 
+            'zip' , 
+            'country' , 
+            'phone' , 
+            'fax' , 
+            'email' , 
+            'shipping' , 
+            'shippingtype' , 
+            'paymentmethod' , 
+            's_company_name' , 
+            's_company_additional' , 
+            's_first-name' , 
+            's_mi' , 
+            's_last-name' , 
+            's_address1' , 
+            's_address2' , 
+            's_city' , 
+            's_state' , 
+            's_zip' , 
+            's_country' , 
+            's_phone' , 
+            's_fax' , 
+            's_email' , 
+            'reference' , 
+            'message' , 
+            'no_partial_delivery' , 
+            'coupon-code' , 
+            'ezauthorize-transaction-id' , 
+            'ezauthorize-card-name' , 
+            'ezauthorize-card-number' , 
+            'ezauthorize-card-date' , 
+            'ezauthorize-card-type' 
+        )
+        ;
+        foreach ( $fields as $field )
         {
-        if ( isset( $mi[0] ) )
-            $miText = $mi[0]->textContent();
+            $node = $dom->getElementsByTagName( $field )->item( 0 );
+            if ( $node )
+            {
+                $result[str_ireplace( '-', '_', $field )] = $node->textContent;
+            }
         }
-
-        $lastNameText = "";
-        if ( isset( $lastName[0] ) )
-            $lastNameText = $lastName[0]->textContent();
-
-        $address1Text = "";
-        if ( isset( $address1[0] ) )
-            $address1Text = $address1[0]->textContent();
-
-        $address2Text = "";
-        if ( isset( $address2[0] ) )
-            $address2Text = $address2[0]->textContent();
-
-        $cityText = "";
-        if ( isset( $city[0] ) )
-            $cityText = $city[0]->textContent();
-
-        $stateText = "";
-        if ( isset( $state[0] ) )
-            $stateText = $state[0]->textContent();
-
-        $zipText = "";
-        if ( isset( $zip[0] ) )
-            $zipText = $zip[0]->textContent();
-
-        $countryText = "";
-        if ( isset( $country[0] ) )
-            $countryText = $country[0]->textContent();
-
-        $phoneText = "";
-        if ( isset( $phone[0] ) )
-            $phoneText = $phone[0]->textContent();
-            
-        $faxText = "";
-        if ( isset( $fax[0] ) )
-            $faxText = $fax[0]->textContent();
-
-        $emailText = "";
-        if ( isset( $email[0] ) )
-            $emailText = $email[0]->textContent();
-
-        $shippingText = "";
-        if ( isset( $shipping[0] ) ) {
-            if ( isset( $shipping[0] ) )
-                $shippingText = $shipping[0]->textContent();
-        }
-
-        $shippingTypeText = "";
-        if ( isset( $shippingtype[0] ) )
-            $shippingTypeText = $shippingtype[0]->textContent();
-
-        $paymentMethodText = "";
-        if ( isset( $paymentMethod[0] ) )
-            $paymentMethodText = $paymentMethod[0]->textContent();
-
-        // ezDebug::writeDebug( count($s_firstName), 'eZUser Information'  );
-
-        $s_companyNameText = "";
-        if ( count($s_firstName) > 0 and isset( $s_companyName[0] ) )
-            $s_companyNameText = $s_companyName[0]->textContent();
-            
-        $s_companyAdditionalText = "";
-        if ( count($s_firstName) > 0 and isset( $s_companyAdditional[0] ) )
-            $s_companyAdditionalText = $s_companyAdditional[0]->textContent();
-            
-        $s_firstNameText = "";
-        if ( count($s_firstName) > 0 and isset( $s_firstName[0] ) )
-            $s_firstNameText = $s_firstName[0]->textContent();
-
-        $s_miText = "";
-        if ( isset( $s_mi[0] ) ) {
-            if ( count($s_firstName) > 0 and isset( $s_mi[0] ) )
-                $s_miText = $s_mi[0]->textContent();
-        }
-
-        $s_lastNameText = "";
-        if ( count($s_firstName) > 0 and isset( $s_lastName[0] ) )
-            $s_lastNameText = $s_lastName[0]->textContent();
-
-        $s_address1Text = "";
-        if ( count($s_firstName) > 0 and isset( $s_address1[0] ) )
-            $s_address1Text = $s_address1[0]->textContent();
-
-        $s_address2Text = "";
-        if ( isset( $s_address2[0] ) ) {
-            if ( count($s_firstName) > 0 and isset( $s_address2[0] ) )
-                $s_address2Text = $s_address2[0]->textContent();
-        }
-
-        $s_cityText = "";
-        if ( count($s_firstName) > 0 and isset( $s_city[0] ) )
-            $s_cityText = $s_city[0]->textContent();
-
-        $s_stateText = "";
-        if ( count($s_firstName) > 0 and isset( $s_state[0] ) )
-            $s_stateText = $s_state[0]->textContent();
-
-        $s_zipText = "";
-        if ( count($s_firstName) > 0 and isset( $s_zip[0] ) )
-            $s_zipText = $s_zip[0]->textContent();
-
-        $s_countryText = "";
-        if ( count($s_firstName) > 0 and isset( $s_country[0] ) )
-            $s_countryText = $s_country[0]->textContent();
-
-        $s_phoneText = "";
-        if ( count($s_firstName) > 0 and isset( $s_phone[0] ) )
-            $s_phoneText = $s_phone[0]->textContent();
-
-        $s_faxText = "";
-        if ( count($s_firstName) > 0 and isset( $s_fax[0] ) )
-            $s_faxText = $s_fax[0]->textContent();
-
-        $s_emailText = "";
-        if ( count($s_firstName) > 0 and isset( $s_email[0] ) )
-            $s_emailText = $s_email[0]->textContent();
-
+        
         // If order has a shipping country use it instead.
-        if ( isset( $shippingText ) and $shippingText == 0  and $s_countryText != '' )
-            $shipping_country = $s_countryText;
-        else
-            $shipping_country = $countryText;
-
-        // Check for defered international shipping address cost calculation error by vendor.
-        /* deprecated
-        if ( isset( $shipping_country ) and $shipping_country !== 'USA' and $shipping_country !== 'CAN' )
+        if ( $result['s_country'] != '' )
         {
-            $shippingTypeText = "2";
-        }
-        */
-        /**
-         * Coupon extension
-         */
-        $CouponNode = $dom->elementsByName( "coupon-code" );
-        $CouponCode = "";
-        if ( array_key_exists( 0, $CouponNode ) and is_object( $CouponNode[0] ) )
-            $CouponCode = $CouponNode[0]->textContent();
-
-        /*
-         eZ Authorize - Support Display of Payment information
-        */
-        $s_ezauthorize_transaction_id = $dom->elementsByName( "ezauthorize-transaction-id" );
-        $s_ezauthorize_card_name = $dom->elementsByName( "ezauthorize-card-name" );
-        $s_ezauthorize_card_number = $dom->elementsByName( "ezauthorize-card-number" );
-        $s_ezauthorize_card_date = $dom->elementsByName( "ezauthorize-card-date" );
-        $s_ezauthorize_card_type = $dom->elementsByName( "ezauthorize-card-type" );
-
-        if ( isset( $s_ezauthorize_transaction_id[0] ) ){
-            $s_ezauthorize_transaction_idText = "";
-            if ( $s_ezauthorize_transaction_id[0] != '' and isset( $s_ezauthorize_transaction_id[0] ) )
-                $s_ezauthorize_transaction_idText = $s_ezauthorize_transaction_id[0]->textContent();
-
-            $s_ezauthorize_card_nameText = "";
-            if ( $s_ezauthorize_transaction_id[0] != '' and isset( $s_ezauthorize_card_name[0] ) )
-                $s_ezauthorize_card_nameText = $s_ezauthorize_card_name[0]->textContent();
-
-            $s_ezauthorize_card_numberText = "";
-            if ( $s_ezauthorize_transaction_id[0] != '' and isset( $s_ezauthorize_card_number[0] ) )
-                $s_ezauthorize_card_numberText = $s_ezauthorize_card_number[0]->textContent();
-
-            $s_ezauthorize_card_dateText = "";
-            if ( $s_ezauthorize_transaction_id[0] != '' and isset( $s_ezauthorize_card_date[0] ) )
-                $s_ezauthorize_card_dateText = $s_ezauthorize_card_date[0]->textContent();
-
-            $s_ezauthorize_card_typeText = "";
-            if ( $s_ezauthorize_transaction_id[0] != '' and isset( $s_ezauthorize_card_type[0] ) )
-                $s_ezauthorize_card_typeText = $s_ezauthorize_card_type[0]->textContent();
+            $result['shipping_country'] = $result['s_country'];
         }
         else
         {
-            $s_ezauthorize_transaction_idText = "";
-            $s_ezauthorize_card_nameText = "";
-            $s_ezauthorize_card_numberText = "";
-            $s_ezauthorize_card_dateText = "";
-            $s_ezauthorize_card_typeText = "";
+            $result['shipping_country'] = $result['country'];
         }
-
-        // print_r( $s_ezauthorize_transaction_id );
-        // die( $s_ezauthorize_card_name[0]->textContent() .'<hr />' );
-
-        return array( 'companyname' => $companyNameText,
-                      'companyadditional' => $companyAdditionalText,
-                      'tax_id' => $taxIdText,
-                      'first_name' => $firstNameText,
-                      'mi' => $miText,
-                      'last_name' => $lastNameText,
-                      'address1' => $address1Text,
-                      'address2' => $address2Text,
-                      'city' => $cityText,
-                      'state' => $stateText,
-                      'zip' => $zipText,
-                      'country' => $countryText,
-                      'phone' => $phoneText,
-                      'fax' => $faxText,
-                      'email' => $emailText,
-                      'shipping' => $shippingText,
-                      'shippingtype' => $shippingTypeText,
-                      'paymentmethod' => $paymentMethodText,
-                      's_company_name' => $s_companyNameText,
-                      's_company_additional' => $s_companyAdditionalText,
-                      's_first_name' => $s_firstNameText,
-                      's_mi' => $s_miText,
-                      's_last_name' => $s_lastNameText,
-                      's_address1' => $s_address1Text,
-                      's_address2' => $s_address2Text,
-                      's_city' => $s_cityText,
-                      's_state' => $s_stateText,
-                      's_zip' => $s_zipText,
-                      's_country' => $s_countryText,
-                      's_phone' => $s_phoneText,
-                      's_fax' => $s_faxText,
-                      'coupon_code' => $CouponCode,
-                      'ezauthorize_transaction_id' => $s_ezauthorize_transaction_idText,
-                      'ezauthorize_card_name' => $s_ezauthorize_card_nameText,
-                      'ezauthorize_card_number' => $s_ezauthorize_card_numberText,
-                      'ezauthorize_card_date' => $s_ezauthorize_card_dateText,
-                      'ezauthorize_card_type' => $s_ezauthorize_card_typeText,
-                      's_email' => $s_emailText );
+        
+        return $result;
+        /* old result array for reference
+        $ttest = array( 
+            'companyname' => $companyNameText , 
+            'companyadditional' => $companyAdditionalText , 
+            'tax_id' => $taxIdText , 
+            'first_name' => $firstNameText , 
+            'mi' => $miText , 
+            'last_name' => $lastNameText , 
+            'address1' => $address1Text , 
+            'address2' => $address2Text , 
+            'city' => $cityText , 
+            'state' => $stateText , 
+            'zip' => $zipText , 
+            'country' => $countryText , 
+            'phone' => $phoneText , 
+            'fax' => $faxText , 
+            'email' => $emailText , 
+            'shipping' => $shippingText , 
+            'shippingtype' => $shippingTypeText , 
+            'paymentmethod' => $paymentMethodText , 
+            's_company_name' => $s_companyNameText , 
+            's_company_additional' => $s_companyAdditionalText , 
+            's_first_name' => $s_firstNameText , 
+            's_mi' => $s_miText , 
+            's_last_name' => $s_lastNameText , 
+            's_address1' => $s_address1Text , 
+            's_address2' => $s_address2Text , 
+            's_city' => $s_cityText , 
+            's_state' => $s_stateText , 
+            's_zip' => $s_zipText , 
+            's_country' => $s_countryText , 
+            's_phone' => $s_phoneText , 
+            's_fax' => $s_faxText , 
+            'coupon_code' => $CouponCode , 
+            'ezauthorize_transaction_id' => $s_ezauthorize_transaction_idText , 
+            'ezauthorize_card_name' => $s_ezauthorize_card_nameText , 
+            'ezauthorize_card_number' => $s_ezauthorize_card_numberText , 
+            'ezauthorize_card_date' => $s_ezauthorize_card_dateText , 
+            'ezauthorize_card_type' => $s_ezauthorize_card_typeText , 
+            's_email' => $s_emailText 
+        );
+*/
     }
 }
 

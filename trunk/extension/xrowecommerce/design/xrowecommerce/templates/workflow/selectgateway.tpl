@@ -5,7 +5,7 @@
 
     <p>{'Please select your desired payment method below.'|i18n('extension/xrowecommerce')}</p>
 <form method="post" action={"shop/checkout"|ezurl}>
-    {foreach $event.selected_gateways as $gateway}
+    {foreach $event.allowed_gateways as $gateway}
         <input class="commerce_radiobutton" type="radio" name="SelectedGateway" value="{$gateway.value}" {run-once} checked="checked"  {/run-once}/><span>{$gateway.Name|wash}</span><br />
     {/foreach}
     <div class="buttonblock">

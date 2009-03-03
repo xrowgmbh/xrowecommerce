@@ -29,17 +29,7 @@
 $http = eZHTTPTool::instance();
 $module =& $Params["Module"];
 
-include_once( "kernel/classes/ezcontentobject.php" );
-include_once( "kernel/classes/ezbasket.php" );
-include_once( "kernel/classes/ezvattype.php" );
-include_once( "kernel/classes/ezorder.php" );
-include_once( "kernel/classes/datatypes/ezuser/ezuser.php" );
-include_once( 'lib/ezutils/classes/ezoperationhandler.php' );
-include_once( "kernel/classes/ezproductcollection.php" );
-include_once( "kernel/classes/ezproductcollectionitem.php" );
-include_once( "kernel/classes/ezproductcollectionitemoption.php" );
 include_once( "kernel/common/template.php" );
-include_once( 'lib/ezutils/classes/ezhttptool.php' );
 
 $basket = eZBasket::currentBasket();
 $basket->updatePrices(); // Update the prices. Transaction not necessary.

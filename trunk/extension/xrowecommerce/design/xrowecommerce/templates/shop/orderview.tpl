@@ -1,10 +1,25 @@
+{def $cols=6}
+{if ezini( 'Settings', 'ShowColumnPosition', 'xrowecommerce.ini')|ne('enabled')}
+{set $cols=$cols|sub(1)}
+{/if}
+{if ezini( 'Settings', 'ShowColumnTax', 'xrowecommerce.ini')|ne('enabled')}
+{set $cols=$cols|sub(1)}
+{/if}
+
 <div class="shop-basket">
     <h1>{"Order Receipt #%order_id "|i18n("extension/xrowecommerce",,
          hash( '%order_id', $order.order_nr,
                '%order_status', $order.status_name ) )}</h1>
 
 {include uri="design:shop/basket_navigator.tpl" step='5'}
-
+<div class="no-print">
+<form method="post" action={""|ezurl}>
+        <div id="buttonblock-top" class="buttonblock">
+            <input id="print-button" class="button" type="button" name="Print" onclick="window.print();" value="{'Print'|i18n('extension/xrowecommerce')}" title="{'Print order receipt '|i18n('extension/xrowecommerce')}" />
+            <input id="continue-button" class="button" type="submit" name="Continue" value="{'Continue'|i18n('extension/xrowecommerce')}" title="{'Continue with shopping'|i18n('extension/xrowecommerce')}" />
+        </div>
+</form>
+</div>
     {shop_account_view_gui view=html order=$order}
     {def $currency = fetch( 'shop', 'currency', hash( 'code', $order.productcollection.currency_code ) )
          $locale = false()
@@ -17,15 +32,22 @@
     <table class="order">
     <caption>{"Product items"|i18n("extension/xrowecommerce")}</caption>
     <tr class="lightbg">
+        {if ezini( 'Settings', 'ShowColumnPosition', 'xrowecommerce.ini' )|eq('enabled')}
+        <th class="position">
+        <abbr title="{"Position"|i18n("extension/xrowecommerce")}">{"Pos."|i18n("extension/xrowecommerce")}</abbr>
+        </th>
+        {/if}
         <th>
         {"Quantity"|i18n("extension/xrowecommerce")}
         </th>
         <th>
         {"Item"|i18n("extension/xrowecommerce")}
         </th>
+        {if ezini( 'Settings', 'ShowColumnTax', 'xrowecommerce.ini' )|eq('enabled')}
         <th>
         {"Tax"|i18n("extension/xrowecommerce")}
         </th>
+        {/if}
         <th>
         {"Price"|i18n("extension/xrowecommerce")}
         </th>
@@ -33,19 +55,25 @@
         {"Total Price"|i18n("extension/xrowecommerce")}
         </th>
     </tr>
-    {foreach $order.product_items as $product_item sequence array(bglight,bgdark) as $sequence}
-    <tr class="product-line">
-        <td class="{$product_item.sequence} product-name basketspace">
+    {foreach $order.product_items as $key => $product_item sequence array(bglight,bgdark) as $sequence}
+    <tr class="{$sequence} product-line">
+        {if ezini( 'Settings', 'ShowColumnPosition', 'xrowecommerce.ini' )|eq('enabled')}
+        <td class=" position">
+        {$key}
+        </td>
+        {/if}
+        <td class="product-name basketspace">
             {$product_item.item_count}
         </td>
-        <td class="{$product_item.sequence} basketspace cart_item">
-            {include uri="design:shop/product_cell_view.tpl" product_item=$product_item}
+        <td class="basketspace cart_item">
+            {include uri="design:shop/product_cell_view.tpl" view="overview"}
         </td>
+        {if ezini( 'Settings', 'ShowColumnTax', 'xrowecommerce.ini' )|eq('enabled')}
         <td class="basketspace">
         {$product_item.vat_value} %
-
         </td>
-        <td class="basketspace">
+        {/if}
+        <td class="basketspace price">
         {$product_item.price_ex_vat|l10n( 'currency', $locale, $symbol )}
         </td>
         <td class="align_right basketspace totalprice">
@@ -54,7 +82,7 @@
      </tr>
      {/foreach}
      <tr class="subtotal-line">
-		<td  colspan="4">
+		<td colspan="{$cols|sub(1)}">
          	{"Subtotal ex. tax"|i18n("extension/xrowecommerce")}
         </td>
         <td class="align_right totalprice">
@@ -62,11 +90,11 @@
         </td>
      </tr>
     {foreach $order.order_items as $OrderItem sequence array(bglight,bgdark) as $sequence}
-    <tr class="orderitem-line">
-        <td class="{$sequence} line" colspan="4">
+    <tr class="{$sequence} orderitem-line">
+        <td class="line" colspan="{$cols|sub(1)}">
         {$OrderItem.description}
         </td>
-        <td class="{$sequence} align_right line">
+        <td class="align_right line">
         {$OrderItem.price_ex_vat|l10n( 'currency', $locale, $symbol )}
         </td>
     </tr>
@@ -74,17 +102,17 @@
     {def $taxpercent = mul( div(sub($order.total_inc_vat, $order.total_ex_vat), $order.total_ex_vat), 100)
      $percentage = mul( div(sub($order.total_inc_vat, $order.total_ex_vat), $order.total_ex_vat), 100)|l10n('number') }
      {if $taxpercent|eq(0)|not}
-<tr>
-    <td class="{$sequence} line" colspan ="4">
+<tr class="{$sequence}">
+    <td class="line" colspan ="{$cols|sub(1)}">
     {'Tax'|i18n('extension/xrowecommerce')}
     </td>
-    <td class="{$sequence} line align_right totalprice">
+    <td class="line align_right totalprice">
     {sub($order.total_inc_vat, $order.total_ex_vat)|l10n( 'currency', $locale, $symbol )}
     </td>
 </tr>
 {/if}
     <tr class="grandtotal-line">
-        <td colspan="4">
+        <td colspan="{$cols|sub(1)}">
         {"Order total"|i18n("extension/xrowecommerce")}
         </td>
         <td class="align_right totalprice">
@@ -92,7 +120,14 @@
         </td>
     </tr>
 </table>
-
+<div class="no-print">
+<form method="post" action={""|ezurl}>
+        <div id="buttonblock-bottom" class="buttonblock">
+            <input id="print-button" class="button" type="button" name="Print" onclick="window.print();" value="{'Print'|i18n('extension/xrowecommerce')}" title="{'Print order receipt '|i18n('extension/xrowecommerce')}" />
+            <input id="continue-button" class="button" type="submit" name="Continue" value="{'Continue'|i18n('extension/xrowecommerce')}" title="{'Continue with shopping'|i18n('extension/xrowecommerce')}" />
+        </div>
+</form>
+</div>
 {def $user_city=fetch( 'xrowecommerce', 'get_shopaccount_value', hash( 'name','city', 'order', $order) )}
 {def $user_state=fetch( 'xrowecommerce', 'get_shopaccount_value', hash( 'name','state', 'order', $order) )}
 {def $user_country=fetch( 'xrowecommerce', 'get_shopaccount_value', hash( 'name','country', 'order', $order) )}
