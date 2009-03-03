@@ -58,8 +58,8 @@
     {foreach $order.product_items as $key => $product_item sequence array(bglight,bgdark) as $sequence}
     <tr class="{$sequence} product-line">
         {if ezini( 'Settings', 'ShowColumnPosition', 'xrowecommerce.ini' )|eq('enabled')}
-        <td class=" position">
-        {$key}
+        <td class="position">
+        {$key|sum(1)}
         </td>
         {/if}
         <td class="product-name basketspace">

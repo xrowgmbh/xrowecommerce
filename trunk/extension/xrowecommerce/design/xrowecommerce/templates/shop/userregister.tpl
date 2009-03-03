@@ -6,6 +6,7 @@
 
 {include uri="design:shop/basket_navigator.tpl" step='2'}
 
+{include uri="design:shop/userregister_preface.tpl"}
 {if $input_error}
 <div class="warning">
 <h2>{'Validation error'|i18n('extension/xrowecommerce')}</h2>
@@ -25,10 +26,10 @@
 </ul>
 </div>
 {/if}
-<div class="billing">{* LEFT COL START *}
+<div class="billing">
 
 <h3>{'Billing Information'|i18n('extension/xrowecommerce')}</h3>
-<p>{'Please enter your billing address exactly as it appears on your credit card statement.'|i18n('extension/xrowecommerce')}<br /> <span class="required">* {'Required field'|i18n('extension/xrowecommerce')}</span></p>
+<p><span class="required">* <i>{'Required field'|i18n('extension/xrowecommerce')}</i></span></p>
 <div class="labelbreak"></div>
 
 
@@ -58,7 +59,7 @@
     	<div class="labelbreak"></div>
     	<input type="text" name="FirstName" id="firstname" value="{$first_name|wash}" />
     </div>
-{if eq(ezini( 'Settings', 'CompanyAdditional', 'xrowecommerce.ini' ), 'enabled' )}
+{if eq(ezini( 'Settings', 'MI', 'xrowecommerce.ini' ), 'enabled' )}
 	<div class="ur_mi">
     	<label>{'MI'|i18n('extension/xrowecommerce')}</label>
     	<div class="labelbreak"></div>
@@ -658,9 +659,17 @@ if (status)
     {
         document.register.scompanyadditional.value = document.register.companyadditional.value;
     }
+    if( document.register.mi )
+    {
+    	document.register.smi.value = document.register.mi.value;
+    }
+    if( document.register.state )
+    {
+        document.register.sstate.value = document.register.state.value;
+    }
         document.register.sfirstname.value = document.register.firstname.value;
         document.register.slastname.value = document.register.lastname.value;
-        document.register.smi.value = document.register.mi.value;
+        
         document.register.szip.value = document.register.zip.value;
         document.register.sphone.value = document.register.phone.value;
         document.register.sfax.value = document.register.fax.value;
@@ -668,7 +677,6 @@ if (status)
         document.register.saddress1.value = document.register.address1.value;
         document.register.saddress2.value = document.register.address2.value;
         document.register.scity.value = document.register.city.value;
-        document.register.sstate.value = document.register.state.value;
         document.register.scountry.value = document.register.country.value;
         document.getElementById("shippinginfo").style.display = 'block';
     }
