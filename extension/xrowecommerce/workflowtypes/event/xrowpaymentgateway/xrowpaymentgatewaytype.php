@@ -33,16 +33,17 @@ class xrowPaymentGatewayType extends eZWorkflowEventType
         $parameters = $process->attribute( 'parameters' );
         $parameters = unserialize( $parameters );
         $order = eZOrder::fetch( $parameters["order_id"] );
-        $xml = new eZXML( );
-        $xmlDoc = $order->attribute( 'data_text_1' );
-        if ( $xmlDoc != null )
+        $xmlString = $order->attribute( 'data_text_1' );
+        if ( $xmlString != null )
         {
-            $dom = $xml->domTree( $xmlDoc );
-            $recaptchaNode = $dom->elementsByName( "captcha" );
+            $dom = new DOMDocument( '1.0', 'utf-8' );
+            $success = $dom->loadXML( $xmlString );
+
+            $recaptchaNode = $dom->getElementsByTagName( "captcha" )->item( 0 );
             $recaptcha = false;
-            if ( isset( $recaptchaNode[0] ) )
+            if ( isset( $recaptchaNode ) )
             {
-                $recaptcha = $recaptchaNode[0]->textContent();
+                $recaptcha = $recaptchaNode->textContent;
                 if ( $recaptcha == "1" )
                 {
                     $recaptcha = true;

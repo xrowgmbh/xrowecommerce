@@ -1,22 +1,19 @@
-<script type="text/javascript">
-<!--
-// by Nannette Thacker
-// http://www.shiningstar.net
-// This script checks and unchecks boxes on a form
-// Checks and unchecks unlimited number in the group...
-// Pass the Checkbox group name...
-// call buttons as so:
-// <input type=button name="CheckAll"   value="{'Check All'|i18n( 'extension/xrowecommerce' )}"
-// onClick="checkAll(document.myform.list)">
-// <input type=button name="UnCheckAll" value="{'Uncheck All'|i18n( 'extension/xrowecommerce' )}"
-// onClick="uncheckAll(document.myform.list)">
-// -->
-<!-- Begin
+{def $cols=7}
+{if ezini( 'Settings', 'ShowColumnRemove', 'xrowecommerce.ini')|ne('enabled')}
+{set $cols=$cols|sub(1)}
+{/if}
+{if ezini( 'Settings', 'ShowColumnPosition', 'xrowecommerce.ini')|ne('enabled')}
+{set $cols=$cols|sub(1)}
+{/if}
+{if and( eq(ezini( 'BasketInformation', 'DisplayTax', 'xrowecommerce.ini' ), 'enabled' ), ezini( 'Settings', 'ShowColumnTax', 'xrowecommerce.ini' )|eq('enabled') )}
+{set $cols=$cols|sub(1)}
+{/if}
 {literal}
+<script type="text/javascript">
 removecheck_togglestate = 0;
-function toggleAll()
+function toggleAll( element )
 {
-    var checkref = document.basket.elements["RemoveProductItemDeleteList[]"];
+    var checkref = document.basket.elements[element];
     if (!removecheck_togglestate)
     {
         for (i = 0; i < checkref.length; i++)
@@ -38,10 +35,8 @@ function uncheckAll()
 for (i = 0; i < field.length; i++)
         field[i].checked = false ;
 }
-{/literal}
-//  End -->
 </script>
-
+{/literal}
 <div class="shop-basket">
 {include uri="design:shop/basket_navigator.tpl" step='1'}
 <div class="break"></div>
@@ -91,12 +86,13 @@ for (i = 0; i < field.length; i++)
         </div>
     {/section}
     {if $basket.items}
-    <div class="buttonblock">
+    <div id="buttonblock-top" class="buttonblock">
 
-        <input class="right-arrow " type="submit" name="ContinueShoppingButton" value="{'Continue'|i18n("extension/xrowecommerce")}" />
+        <input id="continue-schopping-button" class="right-arrow" type="submit" name="ContinueShoppingButton" value="{'Continue'|i18n("extension/xrowecommerce")}" title="{'Continue Shopping'|i18n("extension/xrowecommerce")}"/>
+        <input id="empty-cart-button" type="button" onclick="empty_basket.submit();" class="button small-action" name="EmptyShoppingCartButton" value="{'Empty Cart'|i18n( 'extension/xrowecommerce' )}" title="Use this button to empty your shopping cart." />
         
-        <input type="submit" class="right-arrow " name="StoreChangesButton" value={'Update'|i18n( 'extension/xrowecommerce' )} title="Use this button to update your shopping cart." />
-        <input type="submit" class="right-arrow2 " name="CheckoutButton" value={'Checkout'|i18n( 'extension/xrowecommerce' )} title="Use this button to place your order." />
+        <input id="store-button" type="submit" class="right-arrow " name="StoreChangesButton" value={'Update'|i18n( 'extension/xrowecommerce' )} title="Use this button to update your shopping cart." />
+        <input id="checkout-button" type="submit" class="right-arrow2 continue-button" name="CheckoutButton" value={'Checkout'|i18n( 'extension/xrowecommerce' )} title="Use this button to place your order." />
     </div>
     <div class="break"></div>
     {def $currency = fetch( 'shop', 'currency', hash( 'code', $basket.productcollection.currency_code ) )
@@ -108,43 +104,55 @@ for (i = 0; i < field.length; i++)
     {/if}
     
     <div class="content-basket">
-    <div class="buttonblock">
-        <input type="submit" class="flat-right2 " name="RemoveProductItemButton" value={'Delete'|i18n( 'extension/xrowecommerce' )} title={'Use this button to remove items from your shopping cart.'|i18n( 'extension/xrowecommerce' )} />
+    <div id="buttonblock-delete" class="buttonblock">
+        <input type="submit" class="flat-right2 " name="RemoveProductItemButton" value={'Delete'|i18n( 'extension/xrowecommerce' )} title="{'Use this button to remove items from your shopping cart.'|i18n( 'extension/xrowecommerce' )}" />
     </div>
     <div class="break"></div>
     <table class="order">
         <tr class="lightbg">
+            {if ezini( 'Settings', 'ShowColumnPosition', 'xrowecommerce.ini' )|eq('enabled')}
+                <th class="position">
+                <abbr title="{"Position"|i18n("extension/xrowecommerce")}">{"Pos."|i18n("extension/xrowecommerce")}</abbr>
+                </th>
+            {/if}
             <th>
                 {"Quantity"|i18n("extension/xrowecommerce")}
             </th>
             <th>
                 {"Item"|i18n("extension/xrowecommerce")}
             </th>
-          {if eq(ezini( 'BasketInformation', 'DisplayTax', 'xrowecommerce.ini' ), 'enabled' )}
+            {if and( eq(ezini( 'BasketInformation', 'DisplayTax', 'xrowecommerce.ini' ), 'enabled' ), ezini( 'Settings', 'ShowColumnTax', 'xrowecommerce.ini' )|eq('enabled') )}
             <th>
                 {"Tax"|i18n("extension/xrowecommerce")}
             </th>
-          {/if}
+            {/if}
             <th>
                 {"Unit Price"|i18n("extension/xrowecommerce")}
             </th>
             <th class="totalprice">
                 {"Total Price"|i18n("extension/xrowecommerce")}
             </th>
+            {if ezini( 'Settings', 'ShowColumnRemove', 'xrowecommerce.ini')|eq('enabled')}
             <th>
-               <img src={'shop/basket-delete-icon.gif'|ezimage} title="{"Remove"|i18n("extension/xrowecommerce")}" />
+               <a class="mark-all" onclick="toggleAll('RemoveProductItemDeleteList[]');"><img src={'shop/basket-delete-icon.gif'|ezimage} title="{"Remove"|i18n("extension/xrowecommerce")}" /></a>
             </th>
+            {/if}
         </tr>
-        {section var=product_item loop=$basket.items sequence=array(bglight,bgdark)}
-        <tr class="product-line">
+        {foreach $basket.items as $key => $product_item sequence array(bglight,bgdark) as $sequence}
+        <tr class="{$sequence} product-line">
+            {if ezini( 'Settings', 'ShowColumnPosition', 'xrowecommerce.ini' )|eq('enabled')}
+            <td class="position">
+            {$key|sum(1)}
+            </td>
+            {/if}
             <td class="basketspace quantity">
                 <input type="hidden" name="ProductItemIDList[]" value="{$product_item.id}" />
                 <input class="quantity" type="text" name="ProductItemCountList[]" value="{$product_item.item_count}" size="3"/>
             </td>
             <td class="cart_item basketspace">
-                {include uri="design:shop/product_cell_view.tpl"}
+                {include uri="design:shop/product_cell_view.tpl" view="basket"}
             </td>
-        {if eq(ezini( 'BasketInformation', 'DisplayTax', 'xrowecommerce.ini' ), 'enabled' )}
+            {if and( eq(ezini( 'BasketInformation', 'DisplayTax', 'xrowecommerce.ini' ), 'enabled' ), ezini( 'Settings', 'ShowColumnTax', 'xrowecommerce.ini' )|eq('enabled') )}
             <td class="basketspace">
             
                 {if ne( $product_item.vat_value, -1 )}
@@ -153,18 +161,20 @@ for (i = 0; i < field.length; i++)
                     {'unknown'|i18n( 'extension/xrowecommerce' )}
                 {/if}
             </td>
-        {/if}
-        <td class="basketspace">
+            {/if}
+        <td class="basketspace price">
             {$product_item.price_ex_vat|l10n( 'currency', $locale, $symbol )}
         </td>
         <td class="basketspace totalprice">
             {$product_item.total_price_ex_vat|l10n( 'currency', $locale, $symbol )}
         </td>
+        {if ezini( 'Settings', 'ShowColumnRemove', 'xrowecommerce.ini')|eq('enabled')}
         <td class="basketspace">
             <input class="shopping_cart_checkbox" type="checkbox" name="RemoveProductItemDeleteList[]" value="{$product_item.item.id}" />
         </td>
+        {/if}
      </tr>
-     {/section}
+     {/foreach}
     
     
 {def $taxpercent = mul( div(sub($basket.total_inc_vat, $basket.total_ex_vat), $basket.total_ex_vat), 100)
@@ -172,7 +182,7 @@ for (i = 0; i < field.length; i++)
 
 {if is_set( $shipping_info )}
     <tr>
-        <td class="product-subtotal" colspan="5"><a href={$shipping_info.management_link|ezurl}>{'Shipping'|i18n( 'extension/xrowecommerce' )}{if $shipping_info.description} ({$shipping_info.description}){/if}</a>:
+        <td class="product-subtotal" colspan="{$cols|sub(1)}"><a href={$shipping_info.management_link|ezurl}>{'Shipping'|i18n( 'extension/xrowecommerce' )}{if $shipping_info.description} ({$shipping_info.description}){/if}</a>:
             {$shipping_info.cost|l10n( 'currency', $locale, $symbol )}
         </td>
         <td class="product-subtotal">
@@ -180,7 +190,7 @@ for (i = 0; i < field.length; i++)
         </td>
     </tr>
     <tr>
-        <td class="product-subtotal" colspan="5"><b>{'Order total'|i18n( 'extension/xrowecommerce' )}</b>:
+        <td class="product-subtotal" colspan="{$cols|sub(1)}"><b>{'Order total'|i18n( 'extension/xrowecommerce' )}</b>:
             {$total_inc_shipping_inc_vat|l10n( 'currency', $locale, $symbol )}
         </td>
         <td class="product-subtotal">
@@ -189,7 +199,7 @@ for (i = 0; i < field.length; i++)
     </tr>
     {/if}
             <tr class="subtotal-line">
-                 <td {if eq(ezini( 'BasketInformation', 'DisplayTax', 'xrowecommerce.ini' ), 'enabled' )}colspan="4"{else}colspan="3"{/if} class="align_right">
+                 <td colspan="{$cols|sub(1)}" class="align_right">
                     {"Subtotal Ex. Tax"|i18n("extension/xrowecommerce")}:
                  </td>
                  <td class="totalprice">
@@ -199,7 +209,7 @@ for (i = 0; i < field.length; i++)
             </tr>
 
             <tr class="orderitem-line">
-                <td {if eq(ezini( 'BasketInformation', 'DisplayTax', 'xrowecommerce.ini' ), 'enabled' )}colspan="4"{else}colspan="3"{/if} class="align_right">   
+                <td colspan="{$cols|sub(1)}" class="align_right">   
                     {"Estimated Shipping and Handling"|i18n("extension/xrowecommerce")}:
                 </td>
                 <td class="totalprice">
@@ -209,7 +219,7 @@ for (i = 0; i < field.length; i++)
             </tr>
             {if eq(ezini( 'BasketInformation', 'DisplayTax', 'xrowecommerce.ini' ), 'enabled' )}
             <tr class="tax-line">
-                <td {if eq(ezini( 'BasketInformation', 'DisplayTax', 'xrowecommerce.ini' ), 'enabled' )}colspan="4"{else}colspan="3"{/if} class="align_right">
+                <td colspan="{$cols|sub(1)}" class="align_right">
                     {"Estimated Tax"|i18n("extension/xrowecommerce")}:
                 </td>
                 <td class="totalprice">
@@ -219,7 +229,7 @@ for (i = 0; i < field.length; i++)
             </tr>
             {/if}
             <tr class="grandtotal-line">
-                <td {if eq(ezini( 'BasketInformation', 'DisplayTax', 'xrowecommerce.ini' ), 'enabled' )}colspan="4"{else}colspan="3"{/if} class="align_right">
+                <td colspan="{$cols|sub(1)}" class="align_right">
                     <b class="price">
                         {'Total'|i18n( 'extension/xrowecommerce' )}:
                     </b>
@@ -232,15 +242,15 @@ for (i = 0; i < field.length; i++)
     </table>
    </div>
  </form>
+ {* ####### Login Box ######## *}
     {if eq(ezini( 'BasketInformation', 'DisplayLogin', 'xrowecommerce.ini' ), 'enabled' )}
-        {* ####### Login Box ######## *}
          {def $user=fetch( 'user', 'current_user' )}
          {if $user.contentobject.id|eq(ezini( 'UserSettings', 'AnonymousUserID' ))}
                         <div class="loginbox">
                             <p>{'Already a user?'|i18n("extension/xrowecommerce",'User name')}</p>
                             <form method="post" action={"user/login"|ezurl}">
                                 <div class="wrap">
-                                    <label for="id1">{"Username"|i18n("extension/xrowecommerce",'User name')}</label><div class="labelbreak"></div>
+                                    <label for="id1">{"Username"|i18n("extension/xrowecommerce",'Username')}</label><div class="labelbreak"></div>
                                     <input type="text" name="Login" id="id1" value="{$User:login|wash}" tabindex="1" />
                                 </div>
                                 <div class="wrap">
@@ -257,10 +267,8 @@ for (i = 0; i < field.length; i++)
     {/if}
     {undef $currency $locale $symbol}
     {else}
-</form>
     <div class="feedback">
-        {*<form method="post" name="basket" action={"shop/basket/"|ezurl}> eZ Bug ContinueShoppingButton redirects to basket page*}
-        <form method="get" name="basket" action={"/"|ezurl}>
+        <form method="post" name="basket" action={"shop/basket/"|ezurl}>
             <div class="buttonblock">
                 <input class="right-arrow " type="submit" name="ContinueShoppingButton" value="{'Continue'|i18n("extension/xrowecommerce")}" />
             </div>
@@ -269,3 +277,13 @@ for (i = 0; i < field.length; i++)
     </div>
     {/if}
 </div>
+
+<form name="empty_basket" id="empty_basket" method="post" action={"shop/basket/"|ezurl}>
+<input type="hidden" name="RemoveProductItemButton" value="RemoveProductItemButton" />
+{foreach $basket.items as $key => $product_item sequence array(bglight,bgdark) as $sequence}
+    <input type="hidden" name="ProductItemIDList[]" value="{$product_item.id}" />
+    <input type="hidden" name="RemoveProductItemDeleteList[]" value="{$product_item.id}" />
+    
+    <input class="quantity" type="hidden" name="ProductItemCountList[]" value="{$product_item.item_count}" size="3"/>
+{/foreach}
+</form>

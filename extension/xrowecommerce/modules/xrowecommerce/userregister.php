@@ -238,6 +238,23 @@ if ( $module->isCurrentAction( 'Store' ) )
         $paymentMethod = $http->postVariable( "PaymentMethod" );
     }
     
+    if ( $http->hasPostVariable( "reference" ) )
+    {
+        $reference = $http->postVariable( "reference" );
+    }
+    if ( $http->hasPostVariable( "message" ) )
+    {
+        $message = $http->postVariable( "message" );
+    }
+    if ( $http->hasPostVariable( "no_partial_delivery" ) )
+    {
+        $no_partial_delivery = '1';
+    }
+    elseif ( !$http->hasPostVariable( "no_partial_delivery" ) and eZINI::instance( 'xrowecommerce.ini' )->variable( 'Settings', 'NoPartialDelivery' ) == 'enabled' )
+    {
+    	$no_partial_delivery = '0';
+    }
+    
     $shipping = $http->postVariable( "Shipping" );
     $shippingtype = $http->postVariable( "ShippingType" );
     $shippingdestination = $country;
@@ -354,171 +371,139 @@ if ( $module->isCurrentAction( 'Store' ) )
         $db->begin();
         $order = $basket->createOrder();
         
-        $doc = new eZDOMDocument( 'account_information' );
-        
-        $root = $doc->createElementNode( "shop_account" );
-        $doc->setRoot( $root );
+        $doc = new DOMDocument( '1.0', 'utf-8' );
+        $root = $doc->createElement( 'shop_account' );
+        $doc->appendChild( $root );
+        $siteaccessNode = $doc->createElement( "siteaccess", $GLOBALS['eZCurrentAccess']['name'] );
 
-        $siteaccessNode = $doc->createElementNode( "siteaccess" );
-        $siteaccessNode->appendChild( $doc->createTextNode( $GLOBALS['eZCurrentAccess']['name'] ) );
         $root->appendChild( $siteaccessNode );
         
-        $companyNameNode = $doc->createElementNode( "company_name" );
-        $companyNameNode->appendChild( $doc->createTextNode( $companyName ) );
+        $companyNameNode = $doc->createElement( "company_name", $companyName );
         $root->appendChild( $companyNameNode );
         
-        $companyAdditionalNode = $doc->createElementNode( "company_additional" );
-        $companyAdditionalNode->appendChild( $doc->createTextNode( $companyAdditional ) );
+        $companyAdditionalNode = $doc->createElement( "company_additional", $companyAdditional );
         $root->appendChild( $companyAdditionalNode );
         
-        $taxIdNode = $doc->createElementNode( "tax_id" );
-        $taxIdNode->appendChild( $doc->createTextNode( $taxID ) );
+        $taxIdNode = $doc->createElement( "tax_id", $taxID );
         $root->appendChild( $taxIdNode );
         
-        $firstNameNode = $doc->createElementNode( "first-name" );
-        $firstNameNode->appendChild( $doc->createTextNode( $firstName ) );
+        $firstNameNode = $doc->createElement( "first-name", $firstName );
         $root->appendChild( $firstNameNode );
         
-        $miNode = $doc->createElementNode( "mi" );
-        $miNode->appendChild( $doc->createTextNode( $mi ) );
+        $miNode = $doc->createElement( "mi", $mi );
         $root->appendChild( $miNode );
         
-        $lastNameNode = $doc->createElementNode( "last-name" );
+        $lastNameNode = $doc->createElement( "last-name" );
         $lastNameNode->appendChild( $doc->createTextNode( $lastName ) );
         $root->appendChild( $lastNameNode );
         
-        $address1Node = $doc->createElementNode( "address1" );
+        $address1Node = $doc->createElement( "address1" );
         $address1Node->appendChild( $doc->createTextNode( $address1 ) );
         $root->appendChild( $address1Node );
         
-        $address2Node = $doc->createElementNode( "address2" );
+        $address2Node = $doc->createElement( "address2" );
         $address2Node->appendChild( $doc->createTextNode( $address2 ) );
         $root->appendChild( $address2Node );
         
-        $cityNode = $doc->createElementNode( "city" );
-        $cityNode->appendChild( $doc->createTextNode( $city ) );
+        $cityNode = $doc->createElement( "city", $city );
         $root->appendChild( $cityNode );
         
-        $stateNode = $doc->createElementNode( "state" );
-        $stateNode->appendChild( $doc->createTextNode( $state ) );
+        $stateNode = $doc->createElement( "state", $state );
         $root->appendChild( $stateNode );
         
-        $zipNode = $doc->createElementNode( "zip" );
-        $zipNode->appendChild( $doc->createTextNode( $zip ) );
+        $zipNode = $doc->createElement( "zip", $zip );
         $root->appendChild( $zipNode );
         
-        $countryNode = $doc->createElementNode( "country" );
-        $countryNode->appendChild( $doc->createTextNode( $country ) );
+        $countryNode = $doc->createElement( "country", $country );
         $root->appendChild( $countryNode );
         
-        $phoneNode = $doc->createElementNode( "phone" );
-        $phoneNode->appendChild( $doc->createTextNode( $phone ) );
+        $phoneNode = $doc->createElement( "phone", $phone );
         $root->appendChild( $phoneNode );
         
-        $faxNode = $doc->createElementNode( "fax" );
-        $faxNode->appendChild( $doc->createTextNode( $fax ) );
+        $faxNode = $doc->createElement( "fax", $fax );
         $root->appendChild( $faxNode );
         
-        $emailNode = $doc->createElementNode( "email" );
-        $emailNode->appendChild( $doc->createTextNode( $email ) );
+        $emailNode = $doc->createElement( "email", $email );
         $root->appendChild( $emailNode );
         
-        $shippingNode = $doc->createElementNode( "shipping" );
-        $shippingNode->appendChild( $doc->createTextNode( $shipping ) );
+        $shippingNode = $doc->createElement( "shipping", $shipping );
         $root->appendChild( $shippingNode );
         
-        $shippingTypeNode = $doc->createElementNode( "shippingtype" );
-        $shippingTypeNode->appendChild( $doc->createTextNode( $shippingtype ) );
+        $shippingTypeNode = $doc->createElement( "shippingtype", $shippingtype );
         $root->appendChild( $shippingTypeNode );
         
-        $recaptacheNode = $doc->createElementNode( "captcha" );
-        $recaptacheNode->appendChild( $doc->createTextNode( $captcha ) );
+        $recaptacheNode = $doc->createElement( "captcha", $captcha );
         $root->appendChild( $recaptacheNode );
         
-        $paymentMethodNode = $doc->createElementNode( xrowECommerce::ACCOUNT_KEY_PAYMENTMETHOD );
-        $paymentMethodNode->appendChild( $doc->createTextNode( $paymentMethod ) );
+        $paymentMethodNode = $doc->createElement( xrowECommerce::ACCOUNT_KEY_PAYMENTMETHOD, $paymentMethod );
         $root->appendChild( $paymentMethodNode );
-        
-        #$paymentMethodNode = $doc->createElementNode( xrowECommerce::ACCOUNT_KEY_PAYMENTMETHOD, $paymentMethod );
-        #$root->appendChild( $paymentMethodNode );
-        
 
         if ( $coupon_code )
         {
-            $coupon_codeNode = $doc->createElementNode( "coupon_code" );
-            $coupon_codeNode->appendChild( $doc->createTextNode( $coupon_code ) );
+            $coupon_codeNode = $doc->createElement( "coupon_code", $coupon_code );
             $root->appendChild( $coupon_codeNode );
         }
         else
         {
-            $coupon_codeNode = $doc->createElementNode( "coupon_code" );
-            $coupon_codeNode->appendChild( $doc->createTextNode( '' ) );
+            $coupon_codeNode = $doc->createElement( "coupon_code", '' );
             $root->appendChild( $coupon_codeNode );
         }
+        
+        $referenceNode = $doc->createElement( "reference", $reference );
+        $root->appendChild( $referenceNode );
+        
         if ( $shipping != "1" )
         {
             /* Shipping address*/
             
-            $s_companyNameNode = $doc->createElementNode( "scompanyname" );
-            $s_companyNameNode->appendChild( $doc->createTextNode( $s_companyName ) );
+            $s_companyNameNode = $doc->createElement( "scompanyname", $s_companyName );
+
             $root->appendChild( $s_companyNameNode );
             
-            $s_companyAdditionalNode = $doc->createElementNode( "scompanyadditional" );
-            $s_companyAdditionalNode->appendChild( $doc->createTextNode( $s_companyAdditional ) );
+            $s_companyAdditionalNode = $doc->createElement( "scompanyadditional", $s_companyAdditional );
             $root->appendChild( $s_companyAdditionalNode );
             
-            $s_firstNameNode = $doc->createElementNode( "s_first-name" );
-            $s_firstNameNode->appendChild( $doc->createTextNode( $s_firstName ) );
+            $s_firstNameNode = $doc->createElement( "s_first-name", $s_firstName );
             $root->appendChild( $s_firstNameNode );
             
-            $s_miNode = $doc->createElementNode( "s_mi" );
-            $s_miNode->appendChild( $doc->createTextNode( $s_mi ) );
+            $s_miNode = $doc->createElement( "s_mi", $s_mi );
             $root->appendChild( $s_miNode );
             
-            $s_lastNameNode = $doc->createElementNode( "s_last-name" );
-            $s_lastNameNode->appendChild( $doc->createTextNode( $s_lastName ) );
+            $s_lastNameNode = $doc->createElement( "s_last-name", $s_lastName );
             $root->appendChild( $s_lastNameNode );
             
-            $s_address1Node = $doc->createElementNode( "s_address1" );
-            $s_address1Node->appendChild( $doc->createTextNode( $s_address1 ) );
+            $s_address1Node = $doc->createElement( "s_address1", $s_address1 );
             $root->appendChild( $s_address1Node );
             
-            $s_address2Node = $doc->createElementNode( "s_address2" );
-            $s_address2Node->appendChild( $doc->createTextNode( $s_address2 ) );
+            $s_address2Node = $doc->createElement( "s_address2", $s_address2 );
             $root->appendChild( $s_address2Node );
             
-            $s_cityNode = $doc->createElementNode( "s_city" );
-            $s_cityNode->appendChild( $doc->createTextNode( $s_city ) );
+            $s_cityNode = $doc->createElement( "s_city", $s_city );
             $root->appendChild( $s_cityNode );
             
-            $s_stateNode = $doc->createElementNode( "s_state" );
-            $s_stateNode->appendChild( $doc->createTextNode( $s_state ) );
+            $s_stateNode = $doc->createElement( "s_state", $s_state );
             $root->appendChild( $s_stateNode );
             
-            $s_zipNode = $doc->createElementNode( "s_zip" );
-            $s_zipNode->appendChild( $doc->createTextNode( $s_zip ) );
+            $s_zipNode = $doc->createElement( "s_zip", $s_zip );
             $root->appendChild( $s_zipNode );
             
-            $s_countryNode = $doc->createElementNode( "s_country" );
-            $s_countryNode->appendChild( $doc->createTextNode( $s_country ) );
+            $s_countryNode = $doc->createElement( "s_country", $s_country );
             $root->appendChild( $s_countryNode );
             
-            $s_phoneNode = $doc->createElementNode( "s_phone" );
-            $s_phoneNode->appendChild( $doc->createTextNode( $s_phone ) );
+            $s_phoneNode = $doc->createElement( "s_phone", $s_phone );
             $root->appendChild( $s_phoneNode );
             
-            $s_faxNode = $doc->createElementNode( "s_fax" );
+            $s_faxNode = $doc->createElement( "s_fax" );
             $s_faxNode->appendChild( $doc->createTextNode( $s_fax ) );
             $root->appendChild( $s_faxNode );
             
-            $s_emailNode = $doc->createElementNode( "s_email" );
-            $s_emailNode->appendChild( $doc->createTextNode( $s_email ) );
+            $s_emailNode = $doc->createElement( "s_email", $s_email );
             $root->appendChild( $s_emailNode );
             
         /* Shipping address*/
         } /* Shippingaddress is equal or not */
         
-        $order->setAttribute( 'data_text_1', $doc->toString() );
+        $order->setAttribute( 'data_text_1', $doc->saveXML() );
         $shopAccountINI = eZINI::instance( 'shopaccount.ini' );
         
         $order->setAttribute( 'account_identifier', $shopAccountINI->variable( 'AccountSettings', 'Handler' ) );
@@ -576,7 +561,9 @@ $tpl->setVariable( "s_phone", $s_phone );
 $tpl->setVariable( "s_fax", $s_fax );
 $tpl->setVariable( "errors", $errors );
 $tpl->setVariable( "coupon_code", $coupon_code );
-
+$tpl->setVariable( "reference", $reference );
+$tpl->setVariable( "message", $message );
+$tpl->setVariable( "no_partial_delivery", $no_partial_delivery );
 $Result = array();
 $Result['content'] = $tpl->fetch( "design:shop/userregister.tpl" );
 $Result['path'] = array( 

@@ -338,7 +338,7 @@
     </message>
     <message>
         <source>VAT</source>
-        <translation>Steuer</translation>
+        <translation>Mehrwertsteuer</translation>
     </message>
     <message>
         <source>Price ex. VAT</source>
@@ -512,19 +512,19 @@
     </message>
     <message>
         <source>Subtotal Ex. Tax</source>
-        <translation>Zwischensumme ohne MwSt</translation>
+        <translation>Zwischensumme ohne MwSt.</translation>
     </message>
     <message>
         <source>Estimated Shipping and Handling</source>
-        <translation>Versand und Verpackung kosten voraussichtlich</translation>
+        <translation>Voraussichtliche Versand- und Verpackungskosten</translation>
     </message>
     <message>
         <source>Estimated Tax</source>
-        <translation>Steuer beträgt voraussichtlich</translation>
+        <translation>Voraussichtliche MwSt.</translation>
     </message>
     <message>
         <source>Username</source>
-        <comment>User name</comment>
+        <comment>Username</comment>
         <translation>Benutzername</translation>
     </message>
     <message>
@@ -609,7 +609,7 @@
     </message>
     <message>
         <source>Tax</source>
-        <translation>Steuer</translation>
+        <translation>MwSt.</translation>
     </message>
     <message>
         <source>Phone</source>
@@ -934,11 +934,11 @@ Button</translation>
     </message>
     <message>
         <source>Tax is unknown</source>
-        <translation>Steuer ist unbekannt</translation>
+        <translation>MwSt. ist unbekannt</translation>
     </message>
     <message>
         <source>Tax percentage is not yet known for some of the items being purchased.</source>
-        <translation>Die Höhe der Steuer ist für einige der gekauften Artikel noch nicht bekannt.</translation>
+        <translation>Die Höhe der Mehrwertsteuer ist für einige der gekauften Artikel noch nicht bekannt.</translation>
     </message>
     <message>
         <source>This probably means that some information about you is not yet available and will be obtained during checkout.</source>
@@ -2037,7 +2037,7 @@ Es ist nicht möglich, den Datentyp danach zu ändern.</translation>
     </message>
     <message>
         <source>Tax listing</source>
-        <translation>Steuerliste</translation>
+        <translation>Mehrwertsteuerliste</translation>
     </message>
     <message>
         <source>Order #%order_id</source>

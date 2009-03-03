@@ -12,6 +12,7 @@ $ViewList["userregister"] = array(
                                     'CancelButton' => 'Cancel'
                                     )
     );
+
 $ViewList["multiadd"] = array(
     "functions" => array( 'buy' ),
     "script" => "multiadd.php",

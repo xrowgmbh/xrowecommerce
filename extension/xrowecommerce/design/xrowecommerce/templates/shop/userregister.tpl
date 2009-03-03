@@ -296,10 +296,8 @@
 {* right column *}
 <div class="shipping">
 <h3>{'Shipping Information'|i18n( 'extension/xrowecommerce' )}</h3>
-<p>
-    <input name="Shipping" value="1" type="checkbox" {$shipping|choose( '', 'checked="checked"' )} onchange="change(this.checked); shipping(document.register.country.value);" />
-    {'My billing and shipping addresses are identical.'|i18n('extension/xrowecommerce')} 
-</p>
+<label class="shipping-checkbox" for="shipping-checkbox"><input class="shipping-checkbox" id="shipping-checkbox" name="Shipping" value="1" type="checkbox" {$shipping|choose( '', 'checked="checked"' )} onchange="change(this.checked); shipping(document.register.country.value);" />{'My billing and shipping addresses are identical.'|i18n('extension/xrowecommerce')}</label>
+
 
 <div class="block" id="shippinginfo" {$shipping|choose( "style='display: block;'", "style='display: none;'")}>
 <p><span class="required">* {'Required field'|i18n('extension/xrowecommerce')}</span></p>
@@ -534,9 +532,14 @@
     <div class="break"></div>
 
     </div>
-    {* <br /> *}
 
-  <br />
+
+{* / left column *}
+</div>
+
+
+<div class="additional-information">
+<h3>{'Additional Information'|i18n( 'extension/xrowecommerce' )}</h3>
 
 {* Captcha *}
 {def $access=fetch( 'user', 'has_access_to',
@@ -564,12 +567,36 @@ lang: RecaptchaLang,
 {/if}      
 {* Captcha *}
 
-<div class="buttonblock">
-    <input class="left-arrow " type="submit" name="CancelButton" value="{'Cancel'|i18n('extension/xrowecommerce')}" />
-    <input class="right-arrow " type="submit" name="StoreButton" value="{'Continue'|i18n('extension/xrowecommerce')}" />
+
+{* Your No Partial Delivery *}
+{if and( ezini('Settings','NoPartialDelivery','xrowecommerce.ini')|eq('enabled'))}
+<div class="block">        
+        <label class="no_partial_delivery" for="no_partial_delivery"><input class="no_partial_delivery" type="checkbox" name="no_partial_delivery" id="no_partial_delivery" {if $no_partial_delivery} checked="checked" {/if} value="1" />{'No partial delivery'|i18n('extension/xrowecommerce')}</label>
+       
 </div>
-<br />
-{* / left column *}
+{/if}
+{* Your Reference *}
+{if and( ezini('Settings','Reference','xrowecommerce.ini')|eq('enabled'))}
+<div class="block">        
+        <label for="reference">{'Your reference'|i18n('extension/xrowecommerce')}</label>
+        <div class="labelbreak"></div>  
+        <input class="reference" type="text" name="reference" id="reference" value="{$reference|wash}" />
+</div>
+{/if}
+{* Your Message *}
+{if and( ezini('Settings','Message','xrowecommerce.ini')|eq('enabled'))}
+<div class="block">        
+        <label for="message">{'Your message'|i18n('extension/xrowecommerce')}</label>
+        <div class="labelbreak"></div>  
+        <textarea class="message" name="message" id="message" rows="10" cols="50">{$message|wash}</textarea>
+</div>
+{/if}
+
+</div>
+
+<div class="buttonblock">
+    <input id="cancle-button" class="button left-arrow" type="submit" name="CancelButton" value="{'Cancel'|i18n('extension/xrowecommerce')}" title="{'Cancel order'|i18n('extension/xrowecommerce')}" />
+    <input id="continue-button" class="button right-arrow" type="submit" name="StoreButton" value="{'Continue'|i18n('extension/xrowecommerce')}" title="{'Continue order'|i18n('extension/xrowecommerce')}" />
 </div>
 {literal}
 <script type="text/javascript">

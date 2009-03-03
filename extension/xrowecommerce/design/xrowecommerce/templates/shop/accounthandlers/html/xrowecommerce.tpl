@@ -90,7 +90,7 @@
                 {/foreach}
                 </td></tr>
             </table>
-            <table valign="top" class="order_box" border="0"  cellspacing="0" cellpadding="0">
+            <table id="shipping-address-table" valign="top" class="order_box" border="0"  cellspacing="0" cellpadding="0">
                 <tr><th colspan="2">{"Shipping Address"|i18n("extension/xrowecommerce")}</th></tr>
 {if and( eq(ezini( 'Settings', 'CompanyName', 'xrowecommerce.ini' ), 'enabled' ), $order.account_information.companyname)}
                 <tr><td class="bold">{'Company'|i18n( 'extension/xrowecommerce' )}:</td><td>{$order.account_information.scompanyname}</td></tr>
