@@ -196,6 +196,43 @@ class xrowECommerce
         return $paymentArray;
     }
 
+    /**
+     * Invoke the VIES service to check an EU VAT number
+     *
+     * @param string $cc Country Code
+     * @param string $vat VAT number
+     * @return mixed
+     */
+    static function checkVat( $cc, $vat )
+    {
+        $wsdl = 'extension/xrowecommerce/WDSL/checkVatPort.xml';
+        
+        $vies = new SoapClient( $wsdl );
+
+        $nii = new checkVat( $cc, $vat );
+        
+        try
+        {
+            $ret = $vies->checkVat( $nii );
+        }
+        catch ( SoapFault $e )
+        {
+            $ret = $e->faultstring;
+            $regex = '/\{ \'([A-Z_]*)\' \}/';
+            $n = preg_match( $regex, $ret, $matches );
+            $ret = $matches[1];
+            $faults = array( 
+                'INVALID_INPUT' => 'The provided CountryCode is invalid or the VAT number is empty' , 
+                'SERVICE_UNAVAILABLE' => 'The SOAP service is unavailable, try again later' , 
+                'MS_UNAVAILABLE' => 'The Member State service is unavailable, try again later or with another Member State' , 
+                'TIMEOUT' => 'The Member State service could not be reached in time, try again later or with another Member State' , 
+                'SERVER_BUSY' => 'The service cannot process your request. Try again later.' 
+            );
+            throw new Exception( $faults[$ret] );
+        }
+        
+        return $ret;
+    }
 }
 
 ?>

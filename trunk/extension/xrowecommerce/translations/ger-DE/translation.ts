@@ -326,7 +326,7 @@
     </message>
     <message>
         <source>Order #%order_id [%order_status]</source>
-        <translation>Bestellnummer #%order_id [%order_status]</translation>
+        <translation>Auftragsnummer #%order_id [%order_status]</translation>
     </message>
     <message>
         <source>Product</source>
