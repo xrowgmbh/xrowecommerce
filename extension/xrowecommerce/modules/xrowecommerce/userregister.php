@@ -48,15 +48,15 @@ if ( $user->isLoggedIn() and in_array( $userobject->attribute( 'class_identifier
     }
     if ( isset( $userMap['mi'] ) )
     {
-    	$mi = $userMap['mi']->content();
+        $mi = $userMap['mi']->content();
     }
     if ( isset( $userMap['address1'] ) )
     {
-    	$address1 = $userMap['address1']->content();
+        $address1 = $userMap['address1']->content();
     }
     if ( isset( $userMap['address2'] ) )
     {
-    	$address2 = $userMap['address2']->content();
+        $address2 = $userMap['address2']->content();
     }
     if ( isset( $userMap['state'] ) )
     {
@@ -64,7 +64,7 @@ if ( $user->isLoggedIn() and in_array( $userobject->attribute( 'class_identifier
     }
     if ( isset( $userMap['zip_code'] ) )
     {
-    	$zip = $userMap['zip_code']->content();
+        $zip = $userMap['zip_code']->content();
     }
     if ( isset( $userMap['city'] ) )
     {
@@ -72,7 +72,7 @@ if ( $user->isLoggedIn() and in_array( $userobject->attribute( 'class_identifier
     }
     if ( isset( $userMap['country'] ) )
     {
-    	$country = $userMap['country']->attribute( 'data_text' );
+        $country = $userMap['country']->attribute( 'data_text' );
     }
     if ( isset( $userMap['phone'] ) )
     {
@@ -84,11 +84,11 @@ if ( $user->isLoggedIn() and in_array( $userobject->attribute( 'class_identifier
     }
     if ( isset( $userMap['shippingaddress'] ) )
     {
-    	$shipping = $userMap['shippingaddress']->content();
+        $shipping = $userMap['shippingaddress']->content();
     }
     if ( isset( $userMap['shippingtype'] ) )
     {
-    	$shippingtype = $userMap['shippingtype']->content();
+        $shippingtype = $userMap['shippingtype']->content();
     }
     if ( array_key_exists( 'payment_method', $userMap ) )
     {
@@ -112,7 +112,7 @@ if ( $user->isLoggedIn() and in_array( $userobject->attribute( 'class_identifier
         }
         if ( isset( $userMap['s_last_name'] ) )
         {
-        	$s_lastName = $userMap['s_last_name']->content();
+            $s_lastName = $userMap['s_last_name']->content();
         }
         if ( isset( $userMap['s_mi'] ) )
         {
@@ -128,7 +128,7 @@ if ( $user->isLoggedIn() and in_array( $userobject->attribute( 'class_identifier
         }
         if ( isset( $userMap['s_state'] ) )
         {
-        	$s_state = $userMap['s_state']->content();
+            $s_state = $userMap['s_state']->content();
         }
         if ( isset( $userMap['s_city'] ) )
         {
@@ -140,7 +140,7 @@ if ( $user->isLoggedIn() and in_array( $userobject->attribute( 'class_identifier
         }
         if ( isset( $userMap['s_country'] ) )
         {
-        	$s_country = $userMap['s_country']->attribute( 'data_text' );
+            $s_country = $userMap['s_country']->attribute( 'data_text' );
         }
         if ( isset( $userMap['s_phone'] ) )
         {
@@ -173,8 +173,6 @@ if ( $module->isCurrentAction( 'Store' ) )
     
     $companyAdditional = $http->postVariable( "companyadditional" );
     
-    $taxID = $http->postVariable( "TaxID" );
-    
     $firstName = $http->postVariable( "FirstName" );
     if ( trim( $firstName ) == "" )
         $inputIsValid = false;
@@ -182,7 +180,7 @@ if ( $module->isCurrentAction( 'Store' ) )
     $lastName = $http->postVariable( "LastName" );
     if ( trim( $lastName ) == "" )
         $inputIsValid = false;
-     
+    
     $mi = $http->postVariable( "MI" );
     if ( eZINI::instance( 'xrowecommerce.ini' )->variable( 'Settings', 'MI' ) == 'enabled' )
     {
@@ -199,13 +197,13 @@ if ( $module->isCurrentAction( 'Store' ) )
         $inputIsValid = false;
     
     $state = $http->postVariable( "State" );
-
+    
     if ( eZINI::instance( 'xrowecommerce.ini' )->variable( 'Settings', 'State' ) == 'enabled' )
     {
         if ( trim( $state ) == "" )
             $inputIsValid = false;
     }
-
+    
     $city = $http->postVariable( "City" );
     if ( trim( $city ) == "" )
         $inputIsValid = false;
@@ -221,13 +219,69 @@ if ( $module->isCurrentAction( 'Store' ) )
     }
     else
     {
-        if ( in_array( $country, eZINI::instance( 'xrowecommerce.ini' )->variable( 'Settings', 'CountryWihtStatesList' ) ) 
-             and $state == '' )
-    	{
+        if ( eZINI::instance( 'xrowecommerce.ini' )->hasVariable( 'Settings', 'CountryWihtStatesList' ) and in_array( $country, eZINI::instance( 'xrowecommerce.ini' )->variable( 'Settings', 'CountryWihtStatesList' ) ) and $state == '' )
+        {
             $inputIsValid = false;
         }
     }
-    
+    if ( $http->hasPostVariable( "TaxID" ) )
+    {
+        $ezcountry = eZCountryType::fetchCountry( $country, 'Alpha3' );
+        $Alpha2 = $ezcountry['Alpha2'];
+        $ids = array( 
+            "AT" , 
+            "BE" , 
+            "BG" , 
+            "CY" , 
+            "CZ" , 
+            "DE" , 
+            "DK" , 
+            "EE" , 
+            "EL" , 
+            "ES" , 
+            "FI" , 
+            "FR" , 
+            "GB" , 
+            "HU" , 
+            "IE" , 
+            "IT" , 
+            "LT" , 
+            "LU" , 
+            "LV" , 
+            "MT" , 
+            "NL" , 
+            "PL" , 
+            "PT" , 
+            "RO" , 
+            "SE" , 
+            "SI" , 
+            "SK" 
+        );
+        $taxID = strtoupper( str_replace( " ", "", trim( $http->postVariable( "TaxID" ) ) ) );
+        if ( empty( $taxID ) and $companyName and in_array( $Alpha2, $ids ) )
+        {
+            $errors[] = ezi18n( 'extension/xrowecommerce', 'Please enter a your companies tax ID number.' );
+            $inputIsValid = false;
+        }
+        if ( in_array( $Alpha2, $ids ) )
+        {
+            $matches = array();
+            if ( preg_match( "/^(" . join( '|', $ids ) . ")([0-9]+)/i", $taxID, $matches ) )
+            {
+                if ( $Alpha2 != $matches[1] )
+                {
+                    $errors[] = ezi18n( 'extension/xrowecommerce', 'Country doesn`t match tax ID number.' );
+                    $inputIsValid = false;
+                }
+                $ret = xrowECommerce::checkVat( $ezcountry['Alpha2'], $matches[2] );
+                if ( ! $ret->valid )
+                {
+                    $errors[] = ezi18n( 'extension/xrowecommerce', 'Your companies tax ID number is not valid.' );
+                    $inputIsValid = false;
+                }
+            }
+        }
+    }
     $phone = $http->postVariable( "Phone" );
     if ( trim( $phone ) == "" )
         $inputIsValid = false;
@@ -250,21 +304,21 @@ if ( $module->isCurrentAction( 'Store' ) )
     {
         $no_partial_delivery = '1';
     }
-    elseif ( !$http->hasPostVariable( "no_partial_delivery" ) and eZINI::instance( 'xrowecommerce.ini' )->variable( 'Settings', 'NoPartialDelivery' ) == 'enabled' )
+    elseif ( ! $http->hasPostVariable( "no_partial_delivery" ) and eZINI::instance( 'xrowecommerce.ini' )->variable( 'Settings', 'NoPartialDelivery' ) == 'enabled' )
     {
-    	$no_partial_delivery = '0';
+        $no_partial_delivery = '0';
     }
     
     $shipping = $http->postVariable( "Shipping" );
     $shippingtype = $http->postVariable( "ShippingType" );
     $shippingdestination = $country;
-
-    if ($shipping != "1")
+    
+    if ( $shipping != "1" )
     {
         $s_companyName = $http->postVariable( "s_CompanyName" );
         
         $s_companyAdditional = $http->postVariable( "s_CompanyAdditional" );
-   
+        
         $s_firstName = $http->postVariable( "s_FirstName" );
         if ( trim( $s_firstName ) == "" )
             $inputIsValid = false;
@@ -272,27 +326,26 @@ if ( $module->isCurrentAction( 'Store' ) )
         if ( trim( $s_lastName ) == "" )
             $inputIsValid = false;
         $s_mi = $http->postVariable( "s_MI" );
-
+        
         $s_email = $http->postVariable( "s_EMail" );
         if ( ! eZMail::validate( $s_email ) )
             $inputIsValid = false;
-
+        
         $s_address1 = $http->postVariable( "s_Address1" );
         $s_address2 = $http->postVariable( "s_Address2" );
         if ( trim( $s_address1 ) == "" )
             $inputIsValid = false;
-
-
+        
         $s_city = $http->postVariable( "s_City" );
         if ( trim( $s_city ) == "" )
             $inputIsValid = false;
-
+        
         $s_zip = $http->postVariable( "s_Zip" );
         if ( trim( $s_zip ) == "" )
             $inputIsValid = false;
         
         $s_state = $http->postVariable( "s_State" );
-
+        
         $s_country = $http->postVariable( "s_Country" );
         if ( trim( $s_country ) == "" )
         {
@@ -300,21 +353,20 @@ if ( $module->isCurrentAction( 'Store' ) )
         }
         else
         {
-            if ( in_array( $s_country, eZINI::instance( 'xrowecommerce.ini' )->variable( 'Settings', 'CountryWithStatesList' ) ) 
-                 and $s_state == '' )
+            if ( in_array( $s_country, eZINI::instance( 'xrowecommerce.ini' )->variable( 'Settings', 'CountryWithStatesList' ) ) and $s_state == '' )
             {
                 $inputIsValid = false;
             }
         }
-
+        
         $s_phone = $http->postVariable( "s_Phone" );
         if ( trim( $s_phone ) == "" )
             $inputIsValid = false;
-
+        
         $s_fax = $http->postVariable( "s_Fax" );
         
         $shippingdestination = $s_country;
-            /*
+        /*
         if ($s_country !="USA" and $shippingtype <= "5" )
             $inputIsValid = false;
         
@@ -322,20 +374,20 @@ if ( $module->isCurrentAction( 'Store' ) )
             $inputIsValid = false;
 */
     }
-
+    
     /* Shipping check */
     if ( class_exists( 'xrowShippingInterface' ) )
-    {        
-    	$gateway  = xrowShippingInterface::instanceByMethod( $shippingtype );
-    	if ( $gateway instanceof ShippingInterface )
-    	{
-        	$gateway->method = $shippingtype;
-            if ( !$gateway->destinationCheck( $shippingdestination ) )
+    {
+        $gateway = xrowShippingInterface::instanceByMethod( $shippingtype );
+        if ( $gateway instanceof ShippingInterface )
+        {
+            $gateway->method = $shippingtype;
+            if ( ! $gateway->destinationCheck( $shippingdestination ) )
             {
-            	$errors[] = "Shipping destionation is not allowed.";
+                $errors[] = ezi18n( 'extension/xrowecommerce', 'Shipping destionation is not allowed.' );
                 $inputIsValid = false;
             }
-    	}
+        }
     }
     /* Coupon check */
     if ( class_exists( 'xrowCoupon' ) and eZINI::instance( 'xrowecommerce.ini' )->variable( 'Settings', 'Coupon' ) == 'enabled' )
@@ -346,20 +398,20 @@ if ( $module->isCurrentAction( 'Store' ) )
     $currentUser = eZUser::currentUser();
     $accessAllowed = $currentUser->hasAccessTo( 'xrowecommerce', 'bypass_captcha' );
     /* Captcha check */
-    if ( class_exists( 'xrowVerification' ) and eZINI::instance( 'xrowecommerce.ini' )->variable('Settings', 'Captcha' ) == 'enabled' and $accessAllowed["accessWord"] != 'yes' and empty($_SESSION['xrowCaptchaSolved'] ))
+    if ( class_exists( 'xrowVerification' ) and eZINI::instance( 'xrowecommerce.ini' )->variable( 'Settings', 'Captcha' ) == 'enabled' and $accessAllowed["accessWord"] != 'yes' and empty( $_SESSION['xrowCaptchaSolved'] ) )
     {
-    	$captcha = true;
-    	$verification = new xrowVerification();
-    	$answer = $verification->verify( $http );
-    	if( $answer != true )
-    	{
-    		$captcha = false;
-    		$inputIsValid = false;
-    	}
-    	else
-    	{
-    		$_SESSION['xrowCaptchaSolved'] = 1;
-    	}
+        $captcha = true;
+        $verification = new xrowVerification( );
+        $answer = $verification->verify( $http );
+        if ( $answer != true )
+        {
+            $captcha = false;
+            $inputIsValid = false;
+        }
+        else
+        {
+            $_SESSION['xrowCaptchaSolved'] = 1;
+        }
     }
     
     if ( $inputIsValid == true )
@@ -375,7 +427,7 @@ if ( $module->isCurrentAction( 'Store' ) )
         $root = $doc->createElement( 'shop_account' );
         $doc->appendChild( $root );
         $siteaccessNode = $doc->createElement( "siteaccess", $GLOBALS['eZCurrentAccess']['name'] );
-
+        
         $root->appendChild( $siteaccessNode );
         
         $companyNameNode = $doc->createElement( "company_name", $companyName );
@@ -437,7 +489,7 @@ if ( $module->isCurrentAction( 'Store' ) )
         
         $paymentMethodNode = $doc->createElement( xrowECommerce::ACCOUNT_KEY_PAYMENTMETHOD, $paymentMethod );
         $root->appendChild( $paymentMethodNode );
-
+        
         if ( $coupon_code )
         {
             $coupon_codeNode = $doc->createElement( "coupon_code", $coupon_code );
@@ -460,7 +512,7 @@ if ( $module->isCurrentAction( 'Store' ) )
             /* Shipping address*/
             
             $s_companyNameNode = $doc->createElement( "scompanyname", $s_companyName );
-
+            
             $root->appendChild( $s_companyNameNode );
             
             $s_companyAdditionalNode = $doc->createElement( "scompanyadditional", $s_companyAdditional );
@@ -572,7 +624,7 @@ $Result['content'] = $tpl->fetch( "design:shop/userregister.tpl" );
 $Result['path'] = array( 
     array( 
         'url' => false , 
-        'text' => ezi18n( 'kernel/shop', 'Enter account information' ) 
+        'text' => ezi18n( 'extension/xrowecommerce', 'Enter account information' ) 
     ) 
 );
 ?>
