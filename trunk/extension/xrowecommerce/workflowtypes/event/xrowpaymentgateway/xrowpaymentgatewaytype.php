@@ -10,12 +10,11 @@ class xrowPaymentGatewayType extends eZWorkflowEventType
     Constructor.
     */
     
-    function xrowPaymentGatewayType()
+    function __construct()
     {
         $this->logger = eZPaymentLogger::CreateForAdd( "var/log/eZPaymentGatewayType.log" );
-        
         $this->eZWorkflowEventType( xrowPaymentGatewayType::WORKFLOW_TYPE_STRING, ezi18n( 'kernel/workflow/event', "xrow Ecommerce Payment Gateway" ) );
-        $this->loadAndRegisterGateways();
+        xrowEPayment::loadAndRegisterGateways();
     }
 
     /*!
@@ -27,6 +26,7 @@ class xrowPaymentGatewayType extends eZWorkflowEventType
     
     function execute( $process, $event )
     {
+        
         $GLOBALS['xrowPaymentGatewayFailedAttempt'] = true;
         $this->logger->writeTimedString( 'execute' );
         // Captcha check begin
@@ -38,7 +38,7 @@ class xrowPaymentGatewayType extends eZWorkflowEventType
         {
             $dom = new DOMDocument( '1.0', 'utf-8' );
             $success = $dom->loadXML( $xmlString );
-
+            
             $recaptchaNode = $dom->getElementsByTagName( "captcha" )->item( 0 );
             $recaptcha = false;
             if ( isset( $recaptchaNode ) )
@@ -59,11 +59,16 @@ class xrowPaymentGatewayType extends eZWorkflowEventType
         // Recaptcha check end
         
 
-        if ( $process->attribute( 'event_state' ) == xrowPaymentGatewayType::GATEWAY_NOT_SELECTED )
+        $theGateway = $this->getCurrentGateway( $event );
+        
+        if ( $process->attribute( 'event_state' ) == xrowPaymentGatewayType::GATEWAY_NOT_SELECTED and $theGateway instanceof eZPaymentGateway )
+        {
+            $process->setAttribute( 'event_state', xrowPaymentGatewayType::GATEWAY_SELECTED );
+        }
+        if ( $process->attribute( 'event_state' ) == xrowPaymentGatewayType::GATEWAY_NOT_SELECTED or ! ( $theGateway instanceof eZPaymentGateway ) )
         {
             $this->logger->writeTimedString( 'execute: eZPaymentGatewayType::GATEWAY_NOT_SELECTED' );
             
-            $process->setAttribute( 'event_state', xrowPaymentGatewayType::GATEWAY_SELECTED );
             if ( ! $this->selectGateway( $event ) )
             {
                 $process->Template = array();
@@ -76,39 +81,32 @@ class xrowPaymentGatewayType extends eZWorkflowEventType
             }
         }
         
-        $theGateway = $this->getCurrentGateway( $event );
-        if ( $theGateway != null )
-        {
-            $status = $theGateway->execute( $process, $event );
-            /* 
+        $status = $theGateway->execute( $process, $event );
+        /* 
              * Fraud detection
              * 
              * Gateway must use  $GLOBALS['xrowPaymentGatewayFailedAttempt'] = true on declient transactions
 			 */
-            if ( $status == eZWorkflowType::STATUS_FETCH_TEMPLATE_REPEAT and $GLOBALS['xrowPaymentGatewayFailedAttempt'] )
+        if ( $status == eZWorkflowType::STATUS_FETCH_TEMPLATE_REPEAT and $GLOBALS['xrowPaymentGatewayFailedAttempt'] )
+        {
+            $oldtime = time() - 60 * 60 * 24;
+            if ( ! array_key_exists( 'xrowPaymentGatewayFailedAttemptCount', $_SESSION ) or $oldtime > $_SESSION['xrowPaymentGatewayFailedAttemptCountTime'] )
             {
-                $oldtime = time() - 60 * 60 * 24;
-                if ( ! array_key_exists( 'xrowPaymentGatewayFailedAttemptCount', $_SESSION ) or $oldtime > $_SESSION['xrowPaymentGatewayFailedAttemptCountTime'] )
-                {
-                    $_SESSION['xrowPaymentGatewayFailedAttemptCount'] = 0;
-                    $_SESSION['xrowPaymentGatewayFailedAttemptCountTime'] = time();
-                }
-                $_SESSION['xrowPaymentGatewayFailedAttemptCount'] ++;
-                if ( $_SESSION['xrowPaymentGatewayFailedAttemptCount'] > 5 )
-                {
-                    $process->Template = array();
-                    $process->Template['templateName'] = 'design:workflow/fraud.tpl';
-                    $process->Template['templateVars'] = array( 
-                        'event' => $event 
-                    );
-                    return eZWorkflowType::STATUS_FETCH_TEMPLATE_REPEAT;
-                }
+                $_SESSION['xrowPaymentGatewayFailedAttemptCount'] = 0;
+                $_SESSION['xrowPaymentGatewayFailedAttemptCountTime'] = time();
             }
-            return $status;
+            $_SESSION['xrowPaymentGatewayFailedAttemptCount'] ++;
+            if ( $_SESSION['xrowPaymentGatewayFailedAttemptCount'] > 5 )
+            {
+                $process->Template = array();
+                $process->Template['templateName'] = 'design:workflow/fraud.tpl';
+                $process->Template['templateVars'] = array( 
+                    'event' => $event 
+                );
+                return eZWorkflowType::STATUS_FETCH_TEMPLATE_REPEAT;
+            }
         }
-        
-        $this->logger->writeTimedString( 'execute: something wrong' );
-        return eZWorkflowType::STATUS_REJECTED;
+        return $status;
     }
 
     /*!
@@ -133,13 +131,12 @@ class xrowPaymentGatewayType extends eZWorkflowEventType
             case 'selected_gateways':
                 {
                     $selectedGatewaysTypes = explode( ',', $event->attribute( 'data_text1' ) );
-                    return $this->getGateways( $selectedGatewaysTypes );
+                    return xrowEPayment::getGateways( $selectedGatewaysTypes );
                 }
                 break;
             
             case 'current_gateway':
                 {
-                    
                     return $event->attribute( 'data_text2' );
                 }
                 break;
@@ -155,7 +152,7 @@ class xrowPaymentGatewayType extends eZWorkflowEventType
 
     function typeFunctionalAttributes()
     {
-        return array(
+        return array( 
             'selected_gateways_types' , 
             'selected_gateways' , 
             'current_gateway' , 
@@ -166,8 +163,8 @@ class xrowPaymentGatewayType extends eZWorkflowEventType
     function attributes()
     {
         return array_merge( array( 
-            'available_gateways',
-            'allowed_gateways'
+            'available_gateways' , 
+            'allowed_gateways' 
         ), eZWorkflowEventType::attributes() );
     }
 
@@ -182,154 +179,18 @@ class xrowPaymentGatewayType extends eZWorkflowEventType
         {
             case 'available_gateways':
                 {
-                    return $this->getGateways( array( 
+                    return xrowEPayment::getGateways( array( 
                         - 1 
                     ) );
                 }
                 break;
             case 'allowed_gateways':
                 {
-                	var_dump($this->getGateways( array( 
-                        - 1 
-                    ) ) );
-                  
-                    return $this->getGateways( array( 
-                        - 1 
-                    ) );
+                    return xrowEPayment::allowedGatewaysByUser();
                 }
-            break;
+                break;
         }
         return eZWorkflowEventType::attribute( $attr );
-    }
-
-    /*!
-     \static
-    Searches 'available' gateways( built-in or as extensions ).
-    */
-    
-    function loadAndRegisterGateways()
-    {
-        xrowPaymentGatewayType::loadAndRegisterBuiltInGateways();
-        xrowPaymentGatewayType::loadAndRegisterExtensionGateways();
-    }
-
-    /*!
-      \static
-    */
-    function loadAndRegisterBuiltInGateways()
-    {
-        $gatewaysINI = eZINI::instance( 'paymentgateways.ini' );
-        $gatewaysTypes = $gatewaysINI->variable( 'GatewaysSettings', 'AvailableGateways' );
-        $gatewaysDir = false;
-        
-        // GatewaysDirectories was spelt as GatewaysDerictories, which is
-        // confusing for people writing ini files - it's a typo.
-        if ( $gatewaysINI->hasVariable( 'GatewaysSettings', 'GatewaysDerictories' ) )
-            $gatewaysDir = $gatewaysINI->variable( 'GatewaysSettings', 'GatewaysDerictories' );
-        else
-            $gatewaysDir = $gatewaysINI->variable( 'GatewaysSettings', 'GatewaysDirectories' );
-        
-        if ( is_array( $gatewaysDir ) && is_array( $gatewaysTypes ) )
-        {
-            foreach ( $gatewaysDir as $dir )
-            {
-                foreach ( $gatewaysTypes as $gateway )
-                {
-                    $gatewayPath = "$dir/$gateway/classes/" . $gateway . 'gateway.php';
-                    if ( file_exists( $gatewayPath ) )
-                    {
-                        include_once ( $gatewayPath );
-                    }
-                }
-            }
-        }
-    }
-
-    /*!
-      \static
-    */
-    function loadAndRegisterExtensionGateways()
-    {
-        $gatewaysINI = eZINI::instance( 'paymentgateways.ini' );
-        $siteINI = eZINI::instance( 'site.ini' );
-        $extensionDirectory = $siteINI->variable( 'ExtensionSettings', 'ExtensionDirectory' );
-        $activeExtensions = eZExtension::activeExtensions();
-        
-        foreach ( $activeExtensions as $extension )
-        {
-            $gatewayPath = "$extensionDirectory/$extension/classes/" . $extension . 'gateway.php';
-            if ( file_exists( $gatewayPath ) )
-            {
-                include_once ( $gatewayPath );
-            }
-        }
-        foreach ( $gatewaysINI->variable( 'GatewaysSettings', 'GatewaysDirectories' ) as $dir )
-        {
-            foreach ( $gatewaysINI->variable( 'GatewaysSettings', 'AvailableGateways' ) as $name )
-            {
-                $gatewayPath = $dir . '/' . $name . 'gateway.php';
-                if ( file_exists( $gatewayPath ) )
-                {
-                    include_once ( $gatewayPath );
-                }
-            }
-        }
-    }
-
-    /*!
-    Each gateway must call this function to become 'available'.
-    */
-    
-    function registerGateway( $gateway, $class_name, $description )
-    {
-        $gateways = & $GLOBALS["eZPaymentGateways"];
-        if ( ! is_array( $gateways ) )
-        {
-            $gateways = array();
-        }
-        
-        if ( isset( $gateways[$gateway] ) )
-        {
-            eZDebug::writeError( "Gateway already registered: $gateway", "eZPaymentGatewayType::registerGateway" );
-        }
-        else
-        {
-            $gateways[$gateway] = array( 
-                "class_name" => $class_name , 
-                "description" => $description 
-            );
-        }
-    }
-
-    /*!
-    Returns an array of gateways definitions( class_name, description ) by
-    'gatewaysTypes'( array of 'gateway' values that were passed to
-    'registerGateway' function).
-    */
-    function getGateways( $gatewaysTypes )
-    {
-        $gateways = array();
-        $availableGateways = $GLOBALS['eZPaymentGateways'];
-        if ( ! is_array( $availableGateways ) )
-        {
-            return $gateways;
-        }
-        
-        if ( in_array( '-1', $gatewaysTypes ) )
-        {
-            $gatewaysTypes = array_keys( $availableGateways );
-        }
-        
-        foreach ( $gatewaysTypes as $key )
-        {
-            $gateway = $availableGateways[$key];
-            
-            $gateway['Name'] = $gateway['description'];
-            $gateway['value'] = $key;
-            $gateways[] = $gateway;
-        }
-        
-        return $gateways;
     }
 
     /*!
@@ -360,7 +221,7 @@ class xrowPaymentGatewayType extends eZWorkflowEventType
         $theGateway = null;
         $gatewayType = $this->getCurrentGatewayType( $event );
         
-        if ( $gatewayType != null )
+        if ( ! empty( $gatewayType ) )
         {
             $theGateway = $this->createGateway( $gatewayType );
         }
@@ -380,19 +241,27 @@ class xrowPaymentGatewayType extends eZWorkflowEventType
         if ( $http->hasPostVariable( 'SelectButton' ) && $http->hasPostVariable( 'SelectedGateway' ) )
         {
             $gateway = $http->postVariable( 'SelectedGateway' );
-            $event->setAttribute( 'data_text2', $gateway );
-            $event->store();
+            if ( in_array( $gateway, xrowEPayment::allowedGatewayListByUser() ) )
+            {
+                $event->setAttribute( 'data_text2', $gateway );
+                $event->store();
+            }
+            else
+            {
+                throw new Exception( "Gateway not known." );
+            }
         }
-        else 
+        else
+        {
             if ( $http->hasPostVariable( 'CancelButton' ) )
             {
-                $gateway = null;
+                return null;
             }
             else
             {
                 $gateway = $event->attribute( 'current_gateway' );
             }
-        
+        }
         return $gateway;
     }
 

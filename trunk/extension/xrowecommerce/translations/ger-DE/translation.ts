@@ -799,11 +799,11 @@
     </message>
     <message>
         <source>Could not login</source>
-        <translation>Konnte nicht einloggen</translation>
+        <translation>Anmeldung fehlgeschlagen</translation>
     </message>
     <message>
         <source>A valid username and password is required to login.</source>
-        <translation>Ein gültiger Benutzername und Passwort werden für das Einloggen benötigt.</translation>
+        <translation>Ein gültiger Benutzername und Passwort werden für das anmelden benötigt.</translation>
     </message>
     <message>
         <source>Access not allowed</source>
@@ -846,7 +846,7 @@ Button</translation>
     </message>
     <message>
         <source>Login</source>
-        <translation>Einloggen</translation>
+        <translation>Anmelden</translation>
     </message>
     <message>
         <source>Confirm Password</source>
@@ -1294,7 +1294,7 @@ Button</translation>
     </message>
     <message>
         <source>login</source>
-        <translation>einloggen</translation>
+        <translation>anmelden</translation>
     </message>
     <message>
         <source>What is Automatic Delivery?</source>

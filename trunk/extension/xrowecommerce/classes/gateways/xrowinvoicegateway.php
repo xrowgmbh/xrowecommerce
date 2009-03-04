@@ -25,5 +25,5 @@ class xrowInvoiceGateway extends eZPaymentGateway
         return eZWorkflowType::STATUS_ACCEPTED;
     }
 }
-xrowPaymentGatewayType::registerGateway( xrowInvoiceGateway::GATEWAY_STRING, "xrowinvoicegateway", ezi18n( 'kernel/classes/datatypes', 'Pay by invoice' ) );
+xrowEPayment::registerGateway( xrowInvoiceGateway::GATEWAY_STRING, "xrowinvoicegateway", ezi18n( 'kernel/classes/datatypes', 'Pay by invoice' ) );
 ?>

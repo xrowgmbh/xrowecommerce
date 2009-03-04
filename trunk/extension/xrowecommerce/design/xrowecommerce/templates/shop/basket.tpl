@@ -258,7 +258,7 @@ for (i = 0; i < field.length; i++)
                                     <input type="password" name="Password" id="id2" value="" tabindex="1" />
                                 </div>
                                 <div class="login-button">
-                                    <input class="button" type="submit" name="LoginButton" value="{'Login'|i18n('extension/xrowecommerce','Button')}" tabindex="1">
+                                    <input class="button" type="submit" name="LoginButton" value="{'Login'|i18n('extension/xrowecommerce')}" tabindex="1">
                                 </div>
                                 <input type="hidden" name="RedirectURI" value={"xrowecommerce/userregister"|ezroot} />
                              </form>
