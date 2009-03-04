@@ -170,7 +170,7 @@ for (i = 0; i < field.length; i++)
         </td>
         {if ezini( 'Settings', 'ShowColumnRemove', 'xrowecommerce.ini')|eq('enabled')}
         <td class="delete basketspace">
-            <input class="shopping_cart_checkbox" type="checkbox" name="RemoveProductItemDeleteList[]" value="{$product_item.item.id}" />
+            <input class="shopping_cart_checkbox" type="checkbox" name="RemoveProductItemDeleteList[]" value="{$product_item.id}" />
         </td>
         {/if}
      </tr>
