@@ -269,10 +269,10 @@ for (i = 0; i < field.length; i++)
     {else}
     <div class="feedback">
         <form method="post" name="basket" action={"shop/basket/"|ezurl}>
-            <div class="buttonblock">
-                <input class="right-arrow " type="submit" name="ContinueShoppingButton" value="{'Continue'|i18n("extension/xrowecommerce")}" />
-            </div>
             <p><b>{"You have no items in your shopping cart"|i18n("extension/xrowecommerce")}</b></p>
+            <div class="buttonblock">
+                <input id="continue-button" class="right-arrow " type="submit" name="ContinueShoppingButton" value="{'Continue'|i18n("extension/xrowecommerce")}" />
+            </div>
         </form>
     </div>
     {/if}
