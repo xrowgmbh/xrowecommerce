@@ -14,6 +14,7 @@ class xrowPaymentGatewayType extends eZWorkflowEventType
     {
         $this->logger = eZPaymentLogger::CreateForAdd( "var/log/eZPaymentGatewayType.log" );
         $this->eZWorkflowEventType( xrowPaymentGatewayType::WORKFLOW_TYPE_STRING, ezi18n( 'kernel/workflow/event', "xrow Ecommerce Payment Gateway" ) );
+        $this->setTriggerTypes( array( 'shop' => array( 'checkout' => array( 'before' ) ) ) );
         xrowEPayment::loadAndRegisterGateways();
     }
 
