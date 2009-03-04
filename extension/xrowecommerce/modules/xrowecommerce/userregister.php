@@ -452,6 +452,9 @@ if ( $module->isCurrentAction( 'Store' ) )
         $referenceNode = $doc->createElement( "reference", $reference );
         $root->appendChild( $referenceNode );
         
+        $messageNode = $doc->createElement( "message", $message );
+        $root->appendChild( $messageNode );
+        
         if ( $shipping != "1" )
         {
             /* Shipping address*/
