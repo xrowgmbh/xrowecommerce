@@ -1,5 +1,19 @@
 <!DOCTYPE TS><TS>
 <context>
+    <name>design/admin/class/edit_language</name>
+    <message>
+        <source>Edit</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>design/admin/class/select_language</name>
+    <message>
+        <source>Cancel</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>design/admin/parts/shop/menu</name>
     <message>
         <source>Shop</source>
@@ -83,6 +97,18 @@
     </message>
     <message>
         <source>Recurring order history</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Product variation setup</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Product attributes</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Product templates</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -452,6 +478,13 @@
     </message>
     <message>
         <source>Ship to</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>design/standard/class/datatype</name>
+    <message>
+        <source>Select which nodes from which classes can be selected</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1022,14 +1055,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Check All</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Uncheck All</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Update</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1415,6 +1440,665 @@
     </message>
     <message>
         <source>Deters fraud</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Use eZ Publish roles and policies for payment method selection.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>To</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Additional Orderinformation</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Partial delivery</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>No</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Yes</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Payment method</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unkown</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Reference</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Message</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Continue Shopping</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Empty Cart</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Position</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Pos.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Username</source>
+        <comment>Username</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Accept the terms and conditions to continue.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Cancel order</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Show the conditions of service.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>I have read the %linkstart%gernal terms and conditions%linkend% and accept them.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Print</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Print order receipt </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Continue with shopping</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Additional Information</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>No partial delivery</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Your reference</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Your message</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Continue order</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>You do not have permission to use any of the available payment methods.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please enter a your companies tax ID number.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Country doesn`t match tax ID number.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Your companies tax ID number is not valid.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Shipping destionation is not allowed.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Enter account information</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>extension/xrowecommerce/productvariation</name>
+    <message>
+        <source>Product template</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Change template</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>You try to change the template. Please confirm this action.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Choose template</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Delete attribute</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Move up</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Move down</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Column headline configuration</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Show column config</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Hide column config</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>New name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>New description</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add line</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>No product variations entered.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Edit product variation attribute</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Choose datatype</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>No datatype was selected.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>You need to select a datatype for the attribute.
+      It&apos;s not possible to change this afterwards.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Cancel</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Store datatype</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Edit datatype - error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Edit datatype</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please enter a name for the attribute.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Identifier</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please enter a valid identifier for the attribute.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>This identifier is already in use. Enter another one.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Description</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Active</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Product attribute setup</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>ID</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Type</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Creator</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Created</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Yes</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>No</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Edit the &lt;%attribute_name&gt; attribute.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>There are no attributes available.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Use this menu to select the language you to want use then click the &quot;New attribute&quot; button.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>New attribute</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Create a new attribute.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Select language</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Language</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Select the language you want to edit the attribute</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Column name:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Column description:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Default value:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Show on frontend:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add to search:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please enter a valid number or leave the field empty</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Input required:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Sliding price:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Start point:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Nothing selected.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Browse</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Remove</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Content class</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>All classes</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Needs translation:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unique SKU required:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>You try to delete this attribute from the product template. Please confirm this action by clicking the OK button.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Edit product template</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Edit template - error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>One or more errors occured. Please correct them.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Edit template</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Attributes</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please enter some attributes in the setup, before you create the template.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>No attributes added for this template.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Available attributes</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Use the select box and the button below to add attributes to this product template.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add attribute</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Default sort order</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>No sorting</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ascending</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Descending</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Store template</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Product template setup</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Last modified</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Edit the &lt;%template_name&gt; product template.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>There are no product templates available.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Use this menu to select the language you to want use then click the &quot;New product template&quot; button.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>New product template</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Create a new product template.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Delete line</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Amount</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add price</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Input required.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please enter a valid number.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please enter valid prices. Wrong prices are marked with a red *</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please enter a price for 1 item.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please correct the amount marked with a red *</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>SKU already in use.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please enter text.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Attribute edit</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Product variation - edit attribute</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Product variation attributes</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Product variation columns</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Template edit</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Product variation - edit template</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Product variation templates</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Boolean</source>
+        <comment>Datatype name</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Stores true or false.</source>
+        <comment>Datatype description</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Float</source>
+        <comment>Datatype name</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Stores a floating-point number.</source>
+        <comment>Datatype description</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Integer</source>
+        <comment>Datatype name</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Stores an integer.</source>
+        <comment>Datatype description</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Price</source>
+        <comment>Datatype name</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Stores price of the variation</source>
+        <comment>Datatype description</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Object relation</source>
+        <comment>Datatype name</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Stores an object relation. (e.g. to an image)</source>
+        <comment>Datatype description</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Selection</source>
+        <comment>Datatype name</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Stores a selection like colours green, blue, red....</source>
+        <comment>Datatype description</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>stockkeeping unit</source>
+        <comment>Datatype name</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Stores the stockkeeping unit of the variation</source>
+        <comment>Datatype description</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Text line</source>
+        <comment>Datatype name</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Stores a line of text of the variation</source>
+        <comment>Datatype description</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Text block</source>
+        <comment>Datatype name</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Stores text of the variation</source>
+        <comment>Datatype description</comment>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>kernel/classes/datatypes</name>
+    <message>
+        <source>Pay on delivery</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Pay by invoice</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Advance payment</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Product variations</source>
+        <comment>Datatype name</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please choose a template for the product variation.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please correct the input of product variations. The wrong or missing input is marked with a red border.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
