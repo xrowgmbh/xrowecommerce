@@ -711,7 +711,7 @@
     <message>
         <source>Login</source>
         <comment>Button</comment>
-        <translation>Login Button</translation>
+        <translation>Anmelden</translation>
     </message>
     <message>
         <source>Order</source>
@@ -832,9 +832,7 @@
     <message>
         <source>Sign Up</source>
         <comment>Button</comment>
-        <translation>Anmelden
-
-Button</translation>
+        <translation>Registrieren</translation>
     </message>
     <message>
         <source>Register user</source>
