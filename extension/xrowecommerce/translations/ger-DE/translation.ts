@@ -617,7 +617,7 @@
     </message>
     <message>
         <source>Website</source>
-        <translation type="obsolete">Internetseite</translation>
+        <translation>Internetseite</translation>
     </message>
     <message>
         <source>starting at</source>
@@ -990,7 +990,7 @@ Button</translation>
     </message>
     <message>
         <source>Price in ?</source>
-        <translation type="obsolete">Preis in ?</translation>
+        <translation>Preis in ?</translation>
     </message>
     <message>
         <source>Delete</source>
@@ -1055,14 +1055,6 @@ Button</translation>
     <message>
         <source>A click on the image enlarges the image in a popup</source>
         <translation>Klicken Sie auf das Bild um es in einem neuen Fenster zu vergrößern</translation>
-    </message>
-    <message>
-        <source>Check All</source>
-        <translation>Alle auswählen</translation>
-    </message>
-    <message>
-        <source>Uncheck All</source>
-        <translation>Alle abwählen</translation>
     </message>
     <message>
         <source>Update</source>
@@ -1302,7 +1294,7 @@ Button</translation>
     </message>
     <message>
         <source>Use our Automatic Delivery service to have this item sent to you as often as you like.  You?ll get priority on our inventory and save time.</source>
-        <translation type="obsolete">Benutzen Sie unseren Servive &quot;Automatische Auslieferung&quot; um diesen Artikel so oft geliefert zu bekommen wie und wann Sie mögen. Ihre Bestellungen bekommen höhere Priorität beim Lagerbestand und sie sparen Zeit.</translation>
+        <translation>Benutzen Sie unseren Servive &quot;Automatische Auslieferung&quot; um diesen Artikel so oft geliefert zu bekommen wie und wann Sie mögen. Ihre Bestellungen bekommen höhere Priorität beim Lagerbestand und sie sparen Zeit.</translation>
     </message>
     <message>
         <source>By placing your initial Automatic Delivery order and setting up an Automatic Delivery schedule, you authorize us to charge the same credit card for future Automatic Delivery orders until you cancel.</source>
@@ -1454,15 +1446,136 @@ Button</translation>
     </message>
     <message>
         <source>Use eZ Publish roles and policies for payment method selection.</source>
-        <translation type="unfinished"></translation>
+        <translation>Benutzen Sie eZ Publish Rollen und Richtlinien für die Auswahl Ihrer Bezahlmethode.</translation>
     </message>
     <message>
-        <source>Use our Automatic Delivery service to have this item sent to you as often as you like.  You&#xe2;&#x80;&#x99;ll get priority on our inventory and save time.</source>
-        <translation type="unfinished"></translation>
+        <source>To</source>
+        <translation>An</translation>
     </message>
     <message>
-        <source>Price in &#xe2;&#x82;&#xac;</source>
-        <translation type="unfinished"></translation>
+        <source>Additional Orderinformation</source>
+        <translation>Zusätzliche Bestellinformationen</translation>
+    </message>
+    <message>
+        <source>Partial delivery</source>
+        <translation>teilweise Auslieferung</translation>
+    </message>
+    <message>
+        <source>No</source>
+        <translation>Nein</translation>
+    </message>
+    <message>
+        <source>Yes</source>
+        <translation>Ja</translation>
+    </message>
+    <message>
+        <source>Payment method</source>
+        <translation>Zahlungsmethode</translation>
+    </message>
+    <message>
+        <source>Unkown</source>
+        <translation>Unbekannt</translation>
+    </message>
+    <message>
+        <source>Reference</source>
+        <translation>Referenz</translation>
+    </message>
+    <message>
+        <source>Message</source>
+        <translation>Nachricht</translation>
+    </message>
+    <message>
+        <source>Continue Shopping</source>
+        <translation>Weiter einkaufen</translation>
+    </message>
+    <message>
+        <source>Empty Cart</source>
+        <translation>Einkaufswagen leeren</translation>
+    </message>
+    <message>
+        <source>Position</source>
+        <translation>Porition</translation>
+    </message>
+    <message>
+        <source>Pos.</source>
+        <translation>Pos.</translation>
+    </message>
+    <message>
+        <source>Accept the terms and conditions to continue.</source>
+        <translation>Nehmen Sie die Geschäftsbedingungen an um fortzufahren.</translation>
+    </message>
+    <message>
+        <source>Cancel order</source>
+        <translation>Bestellung abbrechen</translation>
+    </message>
+    <message>
+        <source>Show the conditions of service.</source>
+        <translation>Zeige die Servicebedingungen.</translation>
+    </message>
+    <message>
+        <source>I have read the %linkstart%gernal terms and conditions%linkend% and accept them.</source>
+        <translation>Ich habe die %linkstart% Geschäftsbedingungen %linkend% gelesen und nehmen diese an.</translation>
+    </message>
+    <message>
+        <source>Print</source>
+        <translation>Drucken</translation>
+    </message>
+    <message>
+        <source>Print order receipt </source>
+        <translation>Kaufbeleg drucken</translation>
+    </message>
+    <message>
+        <source>Continue with shopping</source>
+        <translation>Weiter einkaufen</translation>
+    </message>
+    <message>
+        <source>Additional Information</source>
+        <translation>Zusatzinformation</translation>
+    </message>
+    <message>
+        <source>No partial delivery</source>
+        <translation>Keine Teilauslieferung</translation>
+    </message>
+    <message>
+        <source>Your reference</source>
+        <translation>Ihre Referenz</translation>
+    </message>
+    <message>
+        <source>Your message</source>
+        <translation>Ihre Nachricht</translation>
+    </message>
+    <message>
+        <source>Continue order</source>
+        <translation>Bestellung fortfahren</translation>
+    </message>
+    <message>
+        <source>Username</source>
+        <comment>User name</comment>
+        <translation>Benutzername</translation>
+    </message>
+    <message>
+        <source>You do not have permission to use any of the available payment methods.</source>
+        <translation>Sie haben keine Erlaubnis eine der verfügbaren Zahlungsmethoden zu nutzen.</translation>
+    </message>
+    <message>
+        <source>Please enter a your companies tax ID number.</source>
+        <translation>Bitte geben Sie die Steuernummer Ihres Unternehmens ein.</translation>
+    </message>
+    <message>
+        <source>Country doesn`t match tax ID number.</source>
+        <translation>Das Land entspricht nicht der Steuernummer.</translation>
+    </message>
+    <message>
+        <source>Your companies tax ID number is not valid.</source>
+        <translation>Ungültige Steuernummer.</translation>
+    </message>
+    <message>
+        <source>Shipping destionation is not allowed.</source>
+        <translation>Der Versand an Ihren Standort ist nicht erlaubt.</translation>
+    </message>
+    <message>
+        <source>Enter account information</source>
+        <translation>Geben Sie Ihre Benutzerdaten ein</translation>
     </message>
 </context>
 <context>
@@ -1604,14 +1717,6 @@ Es ist nicht möglich, den Datentyp danach zu ändern.</translation>
     <message>
         <source>There are no attributes available.</source>
         <translation>Keine Attribute eingegeben.</translation>
-    </message>
-    <message>
-        <source>Remove selected</source>
-        <translation type="obsolete">Ausgewähltes löschen</translation>
-    </message>
-    <message>
-        <source>Remove selected attributes.</source>
-        <translation type="obsolete">Ausgewählte Attribute löschen.</translation>
     </message>
     <message>
         <source>Use this menu to select the language you to want use then click the &quot;New attribute&quot; button.</source>
@@ -1782,10 +1887,6 @@ Es ist nicht möglich, den Datentyp danach zu ändern.</translation>
         <translation>Keine Produkt Vorlagen vorhanden.</translation>
     </message>
     <message>
-        <source>Remove selected product templates.</source>
-        <translation type="obsolete">Ausgewählte Produkt Vorlagen löschen.</translation>
-    </message>
-    <message>
         <source>Use this menu to select the language you to want use then click the &quot;New product template&quot; button.</source>
         <translation>Verwenden Sie dieses Menü, um die Sprache zu wählen, in der Sie das Template anlegen wollen. Dann klicken Sie den &quot;Neue Produkt Vorlage&quot; Knopf.</translation>
     </message>
@@ -1901,11 +2002,6 @@ Es ist nicht möglich, den Datentyp danach zu ändern.</translation>
         <translation>Preis</translation>
     </message>
     <message>
-        <source>Stores price and the SKU of the variation</source>
-        <comment>Datatype description</comment>
-        <translation type="obsolete">Speichert den Preis der Produkt Variation</translation>
-    </message>
-    <message>
         <source>Object relation</source>
         <comment>Datatype name</comment>
         <translation>Objekt Verknüpfung</translation>
@@ -1993,7 +2089,7 @@ Es ist nicht möglich, den Datentyp danach zu ändern.</translation>
     </message>
     <message>
         <source>Advance payment</source>
-        <translation type="unfinished"></translation>
+        <translation>Vorauszahlung</translation>
     </message>
     <message>
         <source>Product variations</source>
