@@ -17,7 +17,7 @@ $product_item is the current product in the cart
                <div class="product-image">
                    {if $vary.image|is_object(true)}
                        {if $vary.image.current.data_map.image.has_content}
-                               <img src={$vary.image.current.data_map.image.content['small'].url|ezroot} width="{$image.width}" height="{$image.height}" alt="{$image.text|wash(xhtml)}" title="{$image.text|wash(xhtml)}" />
+                               <img src={$vary.image.current.data_map.image.content['product_tiny'].url|ezroot} width="{$image.width}" height="{$image.height}" alt="{$image.text|wash(xhtml)}" title="{$image.text|wash(xhtml)}" />
                        
                        {/if}
                    {else}
