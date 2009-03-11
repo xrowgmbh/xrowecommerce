@@ -587,7 +587,7 @@ lang: RecaptchaLang,
 {* Your Message *}
 {if and( ezini('Settings','Message','xrowecommerce.ini')|eq('enabled'))}
 <div class="block">        
-        <label for="message">{'Your message'|i18n('extension/xrowecommerce')}</label>
+        <label for="message">{'Your notes on order'|i18n('extension/xrowecommerce')}</label>
         <div class="labelbreak"></div>  
         <textarea class="message" name="message" id="message" rows="10" cols="50">{$message|wash}</textarea>
 </div>

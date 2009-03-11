@@ -64,12 +64,12 @@ class xrowECommerceShopAccountHandler
         $userObject = $user->attribute( 'contentobject' );
         $userMap = $userObject->dataMap();
         $billing = array();
-        $billing['companyname'] = $userMap['company_name']->content();
-        $billing['companyadditional'] = $userMap['company_additional']->content();
+        $billing['company_name'] = $userMap['company_name']->content();
+        $billing['company_additional'] = $userMap['company_additional']->content();
         $billing['tax_id'] = $userMap['tax_id']->content();
-        $billing['first-name'] = $userMap['first_name']->content();
+        $billing['first_name'] = $userMap['first_name']->content();
         $billing['mi'] = $userMap['mi']->content();
-        $billing['last-name'] = $userMap['last_name']->content();
+        $billing['last_name'] = $userMap['last_name']->content();
         $billing['address1'] = $userMap['address1']->content();
         $billing['address2'] = $userMap['address2']->content();
         $billing['state'] = $userMap['state']->content();
@@ -85,9 +85,8 @@ class xrowECommerceShopAccountHandler
         $shipping = array();
         if ( $shipping != "1" )
         {
-            $shipping['s_companyname'] = $userMap['scompanyname']->content();
-            $shipping['s_companyadditional'] = $userMap['scompanyadditional']->content();
-            $shipping['s_tax_id'] = $userMap['s_tax_id']->content();
+            $shipping['s_companyname'] = $userMap['s_company_name']->content();
+            $shipping['s_companyadditional'] = $userMap['s_company_additional']->content();
             $shipping['s_first-name'] = $userMap['s_first_name']->content();
             $shipping['s_mi'] = $userMap['s_last_name']->content();
             $shipping['s_last-name'] = $userMap['s_mi']->content();
@@ -175,9 +174,9 @@ class xrowECommerceShopAccountHandler
             $dom = new DOMDocument( '1.0', 'utf-8' );
             $success = $dom->loadXML( $xmlString );
 
-            $firstName = $dom->getElementsByTagName( "first-name" )->item( 0 );
+            $firstName = $dom->getElementsByTagName( "first_name" )->item( 0 );
             $mi = $dom->getElementsByTagName( "mi" )->item( 0 );
-            $lastName = $dom->getElementsByTagName( "last-name" )->item( 0 );
+            $lastName = $dom->getElementsByTagName( "last_name" )->item( 0 );
 
             if ( is_object( $mi ) )
             {
@@ -205,9 +204,9 @@ class xrowECommerceShopAccountHandler
             'company_name' , 
             'company_additional' , 
             'tax_id' , 
-            'first-name' , 
+            'first_name' , 
             'mi' , 
-            'last-name' , 
+            'last_name' , 
             'address1' , 
             'address2' , 
             'city' , 
@@ -222,9 +221,9 @@ class xrowECommerceShopAccountHandler
             'paymentmethod' , 
             's_company_name' , 
             's_company_additional' , 
-            's_first-name' , 
+            's_first_name' , 
             's_mi' , 
-            's_last-name' , 
+            's_last_name' , 
             's_address1' , 
             's_address2' , 
             's_city' , 
@@ -237,7 +236,7 @@ class xrowECommerceShopAccountHandler
             'reference' , 
             'message' , 
             'no_partial_delivery' , 
-            'coupon-code' , 
+            'coupon_code' , 
             'ezauthorize-transaction-id' , 
             'ezauthorize-card-name' , 
             'ezauthorize-card-number' , 

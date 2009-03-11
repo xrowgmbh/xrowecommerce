@@ -7,19 +7,20 @@ include_once ( 'kernel/common/template.php' );
 
 $tpl = templateInit();
 
+
 if ( $module->isCurrentAction( 'Cancel' ) )
 {
-    $module->redirectTo( '/shop/basket/' );
+    $module->redirectTo( 'shop/basket' );
     return;
 }
 
 $user = eZUser::currentUser();
 
-$firstName = '';
-$lastName = '';
+$first_name = '';
+$last_name = '';
 $email = '';
 // Initialize variables
-$shippingtype = $shipping = $s_email = $s_lastName = $s_firstName = $s_address1 = $s_address2 = $s_zip = $s_city = $s_state = $s_country = $s_phone = $s_mi = $address1 = $address2 = $zip = $city = $state = $country = $phone = $recaptcha = $mi = '';
+$shippingtype = $shipping = $s_email = $s_last_name = $s_first_name = $s_address1 = $s_address2 = $s_zip = $s_city = $s_state = $s_country = $s_phone = $s_mi = $address1 = $address2 = $zip = $city = $state = $country = $phone = $recaptcha = $mi = '';
 $userobject = $user->attribute( 'contentobject' );
 
 if ( $user->isLoggedIn() and in_array( $userobject->attribute( 'class_identifier' ), eZINI::instance( 'xrowecommerce.ini' )->variable( 'Settings', 'ShopUserClassList' ) ) )
@@ -28,23 +29,23 @@ if ( $user->isLoggedIn() and in_array( $userobject->attribute( 'class_identifier
     $userMap = $userObject->dataMap();
     if ( isset( $userMap['company_name'] ) )
     {
-        $companyName = $userMap['company_name']->content();
+        $company_name = $userMap['company_name']->content();
     }
     if ( isset( $userMap['company_additional'] ) )
     {
-        $companyAdditional = $userMap['company_additional']->content();
+        $company_additional = $userMap['company_additional']->content();
     }
     if ( isset( $userMap['tax_id'] ) )
     {
-        $taxID = $userMap['tax_id']->content();
+        $tax_id = $userMap['tax_id']->content();
     }
     if ( isset( $userMap['first_name'] ) )
     {
-        $firstName = $userMap['first_name']->content();
+        $first_name = $userMap['first_name']->content();
     }
     if ( isset( $userMap['last_name'] ) )
     {
-        $lastName = $userMap['last_name']->content();
+        $last_name = $userMap['last_name']->content();
     }
     if ( isset( $userMap['mi'] ) )
     {
@@ -92,7 +93,7 @@ if ( $user->isLoggedIn() and in_array( $userobject->attribute( 'class_identifier
     }
     if ( array_key_exists( 'payment_method', $userMap ) )
     {
-        $paymentMethod = $userMap['payment_method']->content();
+        $payment_method = $userMap['payment_method']->content();
     }
     $email = $user->attribute( 'email' );
     
@@ -100,19 +101,19 @@ if ( $user->isLoggedIn() and in_array( $userobject->attribute( 'class_identifier
     {
         if ( isset( $userMap['s_company_name'] ) )
         {
-            $s_companyName = $userMap['s_company_name']->content();
+            $s_company_name = $userMap['s_company_name']->content();
         }
         if ( isset( $userMap['s_company_additional'] ) )
         {
-            $s_companyAdditional = $userMap['s_company_additional']->content();
+            $s_company_additional = $userMap['s_company_additional']->content();
         }
         if ( isset( $userMap['s_first_name'] ) )
         {
-            $s_firstName = $userMap['s_first_name']->content();
+            $s_first_name = $userMap['s_first_name']->content();
         }
         if ( isset( $userMap['s_last_name'] ) )
         {
-            $s_lastName = $userMap['s_last_name']->content();
+            $s_last_name = $userMap['s_last_name']->content();
         }
         if ( isset( $userMap['s_mi'] ) )
         {
@@ -156,29 +157,45 @@ if ( $user->isLoggedIn() and in_array( $userobject->attribute( 'class_identifier
         }
     }
 }
-
+$orderID = $http->sessionVariable( 'MyTemporaryOrderID' );
+$order = eZOrder::fetch( $orderID );
+if ( $order instanceof eZOrder )
+{
+    if (  $order->attribute( 'is_temporary' ) )
+    {
+    	
+        $accountInfo = $order->accountInformation();
+        var_dump($accountInfo);
+        foreach ( $accountInfo as $name => $value )
+        {
+        	$$name = $value;
+        }
+    }
+}
+/*
 // Check if user has an earlier order, copy order info from that one
 $orderList = eZOrder::activeByUserID( $user->attribute( 'contentobject_id' ) );
 if ( count( $orderList ) > 0 and $user->isLoggedIn() )
 {
     $accountInfo = $orderList[0]->accountInformation();
 }
+*/
 
 $tpl->setVariable( "input_error", false );
 if ( $module->isCurrentAction( 'Store' ) )
 {
     $inputIsValid = true;
     
-    $companyName = $http->postVariable( "companyname" );
+    $company_name = $http->postVariable( "companyname" );
     
-    $companyAdditional = $http->postVariable( "companyadditional" );
+    $company_additional = $http->postVariable( "companyadditional" );
     
-    $firstName = $http->postVariable( "FirstName" );
-    if ( trim( $firstName ) == "" )
+    $first_name = $http->postVariable( "FirstName" );
+    if ( trim( $first_name ) == "" )
         $inputIsValid = false;
     
-    $lastName = $http->postVariable( "LastName" );
-    if ( trim( $lastName ) == "" )
+    $last_name = $http->postVariable( "LastName" );
+    if ( trim( $last_name ) == "" )
         $inputIsValid = false;
     
     $mi = $http->postVariable( "MI" );
@@ -257,23 +274,30 @@ if ( $module->isCurrentAction( 'Store' ) )
             "SI" , 
             "SK" 
         );
-        $taxID = strtoupper( str_replace( " ", "", trim( $http->postVariable( "TaxID" ) ) ) );
-        if ( empty( $taxID ) and $companyName and in_array( $Alpha2, $ids ) )
+        $tax_id = strtoupper( str_replace( " ", "", trim( $http->postVariable( "TaxID" ) ) ) );
+        if ( empty( $tax_id ) and $company_name and in_array( $Alpha2, $ids ) )
         {
             $errors[] = ezi18n( 'extension/xrowecommerce', 'Please enter a your companies tax ID number.' );
             $inputIsValid = false;
         }
         if ( in_array( $Alpha2, $ids ) )
         {
+        	                
             $matches = array();
-            if ( preg_match( "/^(" . join( '|', $ids ) . ")([0-9]+)/i", $taxID, $matches ) )
+            if ( preg_match( "/^(" . join( '|', $ids ) . ")([0-9]+)/i", $tax_id, $matches ) )
             {
                 if ( $Alpha2 != $matches[1] )
                 {
                     $errors[] = ezi18n( 'extension/xrowecommerce', 'Country doesn`t match tax ID number.' );
                     $inputIsValid = false;
                 }
+                try {
                 $ret = xrowECommerce::checkVat( $ezcountry['Alpha2'], $matches[2] );
+                }
+                catch ( Exception $e )
+                {
+                	eZDebug::writeError( $e->getMessage(), 'TAX ID Validation problem' );
+                }
                 if ( ! $ret->valid )
                 {
                     $errors[] = ezi18n( 'extension/xrowecommerce', 'Your companies tax ID number is not valid.' );
@@ -289,7 +313,7 @@ if ( $module->isCurrentAction( 'Store' ) )
     $fax = $http->postVariable( "Fax" );
     if ( $http->hasPostVariable( "PaymentMethod" ) )
     {
-        $paymentMethod = $http->postVariable( "PaymentMethod" );
+        $payment_method = $http->postVariable( "PaymentMethod" );
     }
     
     if ( $http->hasPostVariable( "reference" ) )
@@ -315,15 +339,15 @@ if ( $module->isCurrentAction( 'Store' ) )
     
     if ( $shipping != "1" )
     {
-        $s_companyName = $http->postVariable( "s_CompanyName" );
+        $s_company_name = $http->postVariable( "s_CompanyName" );
         
-        $s_companyAdditional = $http->postVariable( "s_CompanyAdditional" );
+        $s_company_additional = $http->postVariable( "s_CompanyAdditional" );
         
-        $s_firstName = $http->postVariable( "s_FirstName" );
-        if ( trim( $s_firstName ) == "" )
+        $s_first_name = $http->postVariable( "s_FirstName" );
+        if ( trim( $s_first_name ) == "" )
             $inputIsValid = false;
-        $s_lastName = $http->postVariable( "s_LastName" );
-        if ( trim( $s_lastName ) == "" )
+        $s_last_name = $http->postVariable( "s_LastName" );
+        if ( trim( $s_last_name ) == "" )
             $inputIsValid = false;
         $s_mi = $http->postVariable( "s_MI" );
         
@@ -430,24 +454,24 @@ if ( $module->isCurrentAction( 'Store' ) )
         
         $root->appendChild( $siteaccessNode );
         
-        $companyNameNode = $doc->createElement( "company_name", $companyName );
-        $root->appendChild( $companyNameNode );
+        $company_nameNode = $doc->createElement( "company_name", $company_name );
+        $root->appendChild( $company_nameNode );
         
-        $companyAdditionalNode = $doc->createElement( "company_additional", $companyAdditional );
-        $root->appendChild( $companyAdditionalNode );
+        $company_additionalNode = $doc->createElement( "company_additional", $company_additional );
+        $root->appendChild( $company_additionalNode );
         
-        $taxIdNode = $doc->createElement( "tax_id", $taxID );
-        $root->appendChild( $taxIdNode );
+        $tax_idNode = $doc->createElement( "tax_id", $tax_id );
+        $root->appendChild( $tax_idNode );
         
-        $firstNameNode = $doc->createElement( "first-name", $firstName );
-        $root->appendChild( $firstNameNode );
+        $first_nameNode = $doc->createElement( "first_name", $first_name );
+        $root->appendChild( $first_nameNode );
         
         $miNode = $doc->createElement( "mi", $mi );
         $root->appendChild( $miNode );
         
-        $lastNameNode = $doc->createElement( "last-name" );
-        $lastNameNode->appendChild( $doc->createTextNode( $lastName ) );
-        $root->appendChild( $lastNameNode );
+        $last_nameNode = $doc->createElement( "last_name" );
+        $last_nameNode->appendChild( $doc->createTextNode( $last_name ) );
+        $root->appendChild( $last_nameNode );
         
         $address1Node = $doc->createElement( "address1" );
         $address1Node->appendChild( $doc->createTextNode( $address1 ) );
@@ -487,8 +511,8 @@ if ( $module->isCurrentAction( 'Store' ) )
         $recaptacheNode = $doc->createElement( "captcha", $captcha );
         $root->appendChild( $recaptacheNode );
         
-        $paymentMethodNode = $doc->createElement( xrowECommerce::ACCOUNT_KEY_PAYMENTMETHOD, $paymentMethod );
-        $root->appendChild( $paymentMethodNode );
+        $payment_methodNode = $doc->createElement( xrowECommerce::ACCOUNT_KEY_PAYMENTMETHOD, $payment_method );
+        $root->appendChild( $payment_methodNode );
         
         if ( $coupon_code )
         {
@@ -511,21 +535,21 @@ if ( $module->isCurrentAction( 'Store' ) )
         {
             /* Shipping address*/
             
-            $s_companyNameNode = $doc->createElement( "scompanyname", $s_companyName );
+            $s_company_nameNode = $doc->createElement( "s_company_name", $s_company_name );
             
-            $root->appendChild( $s_companyNameNode );
+            $root->appendChild( $s_company_nameNode );
             
-            $s_companyAdditionalNode = $doc->createElement( "scompanyadditional", $s_companyAdditional );
-            $root->appendChild( $s_companyAdditionalNode );
+            $s_company_additionalNode = $doc->createElement( "s_company_additional", $s_company_additional );
+            $root->appendChild( $s_company_additionalNode );
             
-            $s_firstNameNode = $doc->createElement( "s_first-name", $s_firstName );
-            $root->appendChild( $s_firstNameNode );
+            $s_first_nameNode = $doc->createElement( "s_first_name", $s_first_name );
+            $root->appendChild( $s_first_nameNode );
             
             $s_miNode = $doc->createElement( "s_mi", $s_mi );
             $root->appendChild( $s_miNode );
             
-            $s_lastNameNode = $doc->createElement( "s_last-name", $s_lastName );
-            $root->appendChild( $s_lastNameNode );
+            $s_last_nameNode = $doc->createElement( "s_last_name", $s_last_name );
+            $root->appendChild( $s_last_nameNode );
             
             $s_address1Node = $doc->createElement( "s_address1", $s_address1 );
             $root->appendChild( $s_address1Node );
@@ -579,12 +603,12 @@ if ( $module->isCurrentAction( 'Store' ) )
     }
 }
 
-$tpl->setVariable( "company_name", $companyName );
-$tpl->setVariable( "company_additional", $companyAdditional );
-$tpl->setVariable( "tax_id", $taxID );
-$tpl->setVariable( "first_name", $firstName );
+$tpl->setVariable( "company_name", $company_name );
+$tpl->setVariable( "company_additional", $company_additional );
+$tpl->setVariable( "tax_id", $tax_id );
+$tpl->setVariable( "first_name", $first_name );
 $tpl->setVariable( "mi", $mi );
-$tpl->setVariable( "last_name", $lastName );
+$tpl->setVariable( "last_name", $last_name );
 $tpl->setVariable( "email", $email );
 
 $tpl->setVariable( "address1", $address1 );
@@ -597,14 +621,17 @@ $tpl->setVariable( "phone", $phone );
 $tpl->setVariable( "fax", $fax );
 $tpl->setVariable( "shipping", $shipping );
 $tpl->setVariable( "shippingtype", $shippingtype );
-$tpl->setVariable( "payment_method", $paymentMethod );
-$tpl->setVariable( "recaptcha", $recaptcha );
+if(isset($payment_method ) )
+{
+$tpl->setVariable( "payment_method", $payment_method );
 
-$tpl->setVariable( "s_company_name", $s_companyName );
-$tpl->setVariable( "s_company_additional", $s_companyAdditional );
-$tpl->setVariable( "s_first_name", $s_firstName );
+}
+$tpl->setVariable( "recaptcha", $recaptcha );
+$tpl->setVariable( "s_company_name", $s_company_name );
+$tpl->setVariable( "s_company_additional", $s_company_additional );
+$tpl->setVariable( "s_first_name", $s_first_name );
 $tpl->setVariable( "s_mi", $s_mi );
-$tpl->setVariable( "s_last_name", $s_lastName );
+$tpl->setVariable( "s_last_name", $s_last_name );
 $tpl->setVariable( "s_email", $s_email );
 $tpl->setVariable( "s_address1", $s_address1 );
 $tpl->setVariable( "s_address2", $s_address2 );

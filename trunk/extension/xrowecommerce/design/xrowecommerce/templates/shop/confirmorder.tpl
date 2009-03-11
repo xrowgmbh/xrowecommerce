@@ -58,6 +58,36 @@ function toggleCOS()
         }
     }
 }
+function showAlert()
+{
+    var handleOK = function() {
+        this.cancel();
+    };
+    
+    var oPanel3 = new YAHOO.widget.SimpleDialog("panel-3", {
+        
+        modal: true,
+        icon: YAHOO.widget.SimpleDialog.ICON_INFO,
+        visible: false,
+        fixedcenter: true,
+        constraintoviewport: true,
+        width: "300px",
+        role: "alertdialog",
+        buttons: [ { text:"OK", handler:handleOK, isDefault:true } ],
+        text: "Your changes have been saved."
+    
+    }); 
+
+    oPanel3.setHeader("Info");
+    oPanel3.render(document.body);
+
+    var oTooltip3 = new YAHOO.widget.Tooltip("tooltip-3", { 
+        context:"show-dialog-3", 
+        text:"Shows a Modal Dialog built using SimpleDialog using the ARIA role of alertdialog.",
+        iframe: true,
+        showDelay:500 } );
+
+}
 {/literal}
 </script>
 <div class="shop-basket">
@@ -108,9 +138,11 @@ function toggleCOS()
                     <th>
                         {"Item"|i18n("extension/xrowecommerce")}
                     </th>
+                    {if ezini( 'Settings', 'ShowColumnTax', 'xrowecommerce.ini')|eq('enabled')}
                     <th>
                         {"Tax"|i18n("extension/xrowecommerce")}
                     </th>
+                    {/if}
                     <th>
                         {"Unit Price"|i18n("extension/xrowecommerce")}
                     </th>
