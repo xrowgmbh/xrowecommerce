@@ -200,7 +200,7 @@ for (i = 0; i < field.length; i++)
     {/if}
             <tr class="subtotal-line">
                  <td colspan="{$cols|sub(2)}" class="align_right">
-                    {"Subtotal Ex. Tax"|i18n("extension/xrowecommerce")}:
+                    {"Subtotal Ex. Tax"|i18n("extension/xrowecommerce")}
                  </td>
                  <td class="totalprice">
                      <b class="price">{$basket.total_ex_vat|l10n( 'currency', $locale, $symbol )}</b>
@@ -210,7 +210,7 @@ for (i = 0; i < field.length; i++)
 
             <tr class="orderitem-line">
                 <td colspan="{$cols|sub(2)}" class="align_right">   
-                    {"Estimated Shipping and Handling"|i18n("extension/xrowecommerce")}:
+                    {"Estimated Shipping and Handling"|i18n("extension/xrowecommerce")}
                 </td>
                 <td class="price totalprice">
                     {$basket.items_info.additional_info.shipping_total.total_price_inc_vat|l10n( 'currency', $locale, $symbol )}            
@@ -220,7 +220,7 @@ for (i = 0; i < field.length; i++)
             {if eq(ezini( 'BasketInformation', 'DisplayTax', 'xrowecommerce.ini' ), 'enabled' )}
             <tr class="tax-line">
                 <td colspan="{$cols|sub(2)}" class="align_right">
-                    {"Estimated Tax"|i18n("extension/xrowecommerce")}:
+                    {"Estimated Tax"|i18n("extension/xrowecommerce")}
                 </td>
                 <td class="price totalprice">
                      {$basket.items_info.total_price_info.price_vat|l10n( 'currency', $locale, $symbol )}
@@ -231,7 +231,7 @@ for (i = 0; i < field.length; i++)
             <tr class="grandtotal-line">
                 <td colspan="{$cols|sub(2)}" class="align_right">
                     <strong>
-                        {'Total'|i18n( 'extension/xrowecommerce' )}:
+                        {'Total'|i18n( 'extension/xrowecommerce' )}
                     </strong>
                 </td>
                 <td class="price totalprice">

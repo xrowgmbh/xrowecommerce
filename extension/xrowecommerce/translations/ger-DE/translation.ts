@@ -1456,7 +1456,7 @@
     </message>
     <message>
         <source>Partial delivery</source>
-        <translation>teilweise Auslieferung</translation>
+        <translation>Teillieferung</translation>
     </message>
     <message>
         <source>No</source>
@@ -1500,7 +1500,7 @@
     </message>
     <message>
         <source>Accept the terms and conditions to continue.</source>
-        <translation>Nehmen Sie die Geschäftsbedingungen an um fortzufahren.</translation>
+        <translation>Nehmen Sie die allgemeinen Geschäftsbedingungen an um fortzufahren.</translation>
     </message>
     <message>
         <source>Cancel order</source>
@@ -1511,8 +1511,8 @@
         <translation>Zeige die Servicebedingungen.</translation>
     </message>
     <message>
-        <source>I have read the %linkstart%gernal terms and conditions%linkend% and accept them.</source>
-        <translation>Ich habe die %linkstart% Geschäftsbedingungen %linkend% gelesen und nehmen diese an.</translation>
+        <source>I have read the %linkstart%general terms and conditions%linkend% and accept them.</source>
+        <translation>Ich habe die %linkstart% allgemeinen Geschäftsbedingungen %linkend% gelesen und nehmen diese an.</translation>
     </message>
     <message>
         <source>Print</source>

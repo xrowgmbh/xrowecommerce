@@ -27,7 +27,6 @@ class xrowPaymentGatewayType extends eZWorkflowEventType
     
     function execute( $process, $event )
     {
-        
         $GLOBALS['xrowPaymentGatewayFailedAttempt'] = true;
         $this->logger->writeTimedString( 'execute' );
         // Captcha check begin
@@ -57,9 +56,13 @@ class xrowPaymentGatewayType extends eZWorkflowEventType
         {
             return eZWorkflowType::STATUS_REJECTED;
         }
-        // Recaptcha check end
-        
-
+        $http = eZHTTPTool::instance();
+        if ( $http->hasPostVariable( 'CancelButton' ) )
+        {
+        	$order->purge( false );
+            $process->RedirectUrl = 'shop/basket';
+            return eZWorkflowType::STATUS_REDIRECT_REPEAT;
+        }
         $theGateway = $this->getCurrentGateway( $event );
         
         if ( $process->attribute( 'event_state' ) == xrowPaymentGatewayType::GATEWAY_NOT_SELECTED and $theGateway instanceof eZPaymentGateway )
@@ -138,7 +141,7 @@ class xrowPaymentGatewayType extends eZWorkflowEventType
             
             case 'current_gateway':
                 {
-                    return $event->attribute( 'data_text2' );
+                	return $event->attribute( 'data_text2' ) ? false : $event->attribute( 'data_text2' );
                 }
                 break;
             case 'permissions':
@@ -254,14 +257,7 @@ class xrowPaymentGatewayType extends eZWorkflowEventType
         }
         else
         {
-            if ( $http->hasPostVariable( 'CancelButton' ) )
-            {
-                return null;
-            }
-            else
-            {
-                $gateway = $event->attribute( 'current_gateway' );
-            }
+            $gateway = $event->attribute( 'current_gateway' );
         }
         return $gateway;
     }

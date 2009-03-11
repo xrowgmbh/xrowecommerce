@@ -123,8 +123,8 @@
 <div class="no-print">
 <form method="post" action={""|ezurl}>
         <div id="buttonblock-bottom" class="buttonblock">
-            <input id="print-button" class="button" type="button" name="Print" onclick="window.print();" value="{'Print'|i18n('extension/xrowecommerce')}" title="{'Print order receipt '|i18n('extension/xrowecommerce')}" />
-            <input id="continue-button" class="button" type="submit" name="Continue" value="{'Continue'|i18n('extension/xrowecommerce')}" title="{'Continue with shopping'|i18n('extension/xrowecommerce')}" />
+            <input id="print-button" class="button" type="button" name="Print" onclick="window.print();" value="{'Print order'|i18n('extension/xrowecommerce')}" title="{'Print order receipt'|i18n('extension/xrowecommerce')}" />
+            <input id="continue-button" class="button" type="submit" name="Continue" value="{'Continue'|i18n('extension/xrowecommerce')}" title="{'Continue shopping'|i18n('extension/xrowecommerce')}" />
         </div>
 </form>
 </div>

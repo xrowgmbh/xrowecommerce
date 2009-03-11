@@ -1,5 +1,5 @@
 {def $shiplist=fetch( 'shipping', 'list_all_methods' )}
-
+{def $country=false()}
 {* eZAuthorize + eZGPG - CC Storage Additions *}
 {def $fetchStoredTransaction = ezini( 'eZAuthorizeSettings', 'StoreTransactionInformation', 'ezauthorize.ini' )}
 
@@ -34,7 +34,7 @@
                 <tr><th>{'State'|i18n('extension/xrowecommerce')}:</th><td>{$order.account_information.state}</td></tr>
                 {/if}
                 <tr><th>{'Zip code'|i18n('extension/xrowecommerce')}:</th><td>{$order.account_information.zip}</td></tr>
-                <tr><th>{'Country'|i18n('extension/xrowecommerce')}:</th><td>{$order.account_information.country}</td></tr>
+                <tr><th>{'Country'|i18n('extension/xrowecommerce')}:</th><td>{set $country=fetch( 'content', 'country_list', hash( 'filter', 'Alpha3', 'value', $order.account_information.country ) )}{$country.Name|wash}</td></tr>
                 <tr><th>{'Phone'|i18n('extension/xrowecommerce')}:</th><td>{$order.account_information.phone}</td></tr>
                 <tr><th>{'Shipping'|i18n('extension/xrowecommerce')}:</th><td>
 
@@ -60,7 +60,7 @@
                 <tr><th>{'State'|i18n('extension/xrowecommerce')}:</th><td>{$order.account_information.state}</td></tr>
                 {/if}
                 <tr><th>{'Zip code'|i18n('extension/xrowecommerce')}:</th><td>{$order.account_information.zip}</td></tr>
-                <tr><th>{'Country'|i18n('extension/xrowecommerce')}:</th><td>{$order.account_information.country}</td></tr>
+                <tr><th>{'Country'|i18n('extension/xrowecommerce')}:</th><td>{set $country=fetch( 'content', 'country_list', hash( 'filter', 'Alpha3', 'value', $order.account_information.country ) )}{$country.Name|wash}</td></tr>
                 <tr><th>{'Phone'|i18n('extension/xrowecommerce')}:</th><td>{$order.account_information.phone}</td></tr>
                 <tr><th>{'Shipping'|i18n('extension/xrowecommerce')}:</th>
                 <td>
@@ -73,8 +73,7 @@
             </table>
             <table id="shipping-address-table" valign="top" class="order_box" border="0"  cellspacing="0" cellpadding="0">
                 <caption>{"Shipping Address"|i18n("extension/xrowecommerce")}</caption>
-                <tr><th>{'To'|i18n('extension/xrowecommerce')}:</th><td>{if $order.account_information.company_name}{$order.account_information.company_name} {$order.account_information.company_additional},{/if} {$order.account_information.first_name} {$order.account_information.last_name}</td></tr>
-                <tr><th>{'MI'|i18n( 'extension/xrowecommerce' )}:</th><td>{$order.account_information.s_mi}</td></tr>
+                <tr><th>{'To'|i18n('extension/xrowecommerce')}:</th><td>{if $order.account_information.company_name}{$order.account_information.company_name} {$order.account_information.company_additional},{/if} {$order.account_information.first_name} {$order.account_information.s_mi} {$order.account_information.last_name}</td></tr>
                 <tr><th>{'Address'|i18n('extension/xrowecommerce')}:</th><td>{$order.account_information.s_address1}</td></tr>
                 {if gt(count($order.account_information.s_address2),0)}
                 <tr><th>&nbsp;</th><td>{$order.account_information.s_address2}</td></tr>
@@ -84,7 +83,7 @@
                 <tr><th>{'State'|i18n('extension/xrowecommerce')}:</th><td>{$order.account_information.s_state}</td></tr>
                 {/if}
                 <tr><th>{'Zip code'|i18n('extension/xrowecommerce')}:</th><td>{$order.account_information.s_zip}</td></tr>
-                <tr><th>{'Country'|i18n('extension/xrowecommerce')}:</th><td>{$order.account_information.s_country}</td></tr>
+                <tr><th>{'Country'|i18n('extension/xrowecommerce')}:</th><td>{set $country=fetch( 'content', 'country_list', hash( 'filter', 'Alpha3', 'value', $order.account_information.s_country ) )}{$country.Name|wash}</td></tr>
                 <tr><th>{'Phone'|i18n('extension/xrowecommerce')}:</th><td>{$order.account_information.s_phone}</td></tr>
                 <tr><th>{'Email'|i18n('extension/xrowecommerce')}:</th><td>{$order.account_information.s_email}</td></tr>
             </table>
@@ -106,11 +105,11 @@
                 {else}
                 <tr><th>{'Payment method'|i18n('extension/xrowecommerce')}:</th><td>{'Unkown'|i18n('extension/xrowecommerce')}</td></tr>
                 {/if}
-                {if ezini( 'Settings', 'Reference', 'xrowecommerce.ini' )|eq( 'enabled' )}
+                {if and(ezini( 'Settings', 'Reference', 'xrowecommerce.ini' )|eq( 'enabled' ), $order.account_information.reference)}
                 <tr><th>{'Reference'|i18n('extension/xrowecommerce')}:</th><td>{$order.account_information.reference}</td></tr>
                 {/if}
-                {if ezini( 'Settings', 'Message', 'xrowecommerce.ini' )|eq( 'enabled' )}
-                <tr><th>{'Message'|i18n('extension/xrowecommerce')}:</th><td>{$order.account_information.message}</td></tr>
+                {if and(ezini( 'Settings', 'Message', 'xrowecommerce.ini' )|eq( 'enabled' ), $order.account_information.message)}
+                <tr><th>{'Your notes on order'|i18n('extension/xrowecommerce')}:</th><td>{$order.account_information.message|nl2br()|wash()}</td></tr>
                 {/if}
             </table>
             

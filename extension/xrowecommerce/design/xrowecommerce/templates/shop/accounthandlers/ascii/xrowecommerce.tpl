@@ -36,3 +36,20 @@
 {'Phone'|i18n( 'extension/xrowecommerce')}: {$order.account_information.s_phone}
 {'Email'|i18n( 'extension/xrowecommerce')}: {$order.account_information.s_email}
 {/if}
+
+{"Additional Orderinformation"|i18n("extension/xrowecommerce")}:
+{if ezini( 'Settings', 'NoPartialDelivery', 'xrowecommerce.ini' )|eq( 'enabled' )}
+{'Partial delivery'|i18n('extension/xrowecommerce')}: {if $order.account_information.no_partial_delivery}{'No'|i18n('extension/xrowecommerce')}{else}{'Yes'|i18n('extension/xrowecommerce')}{/if}
+{/if}
+{if $order.account_information.paymentmethod}
+{'Payment method'|i18n('extension/xrowecommerce')}: {$order.account_information.paymentmethod}
+{else}
+{'Payment method'|i18n('extension/xrowecommerce')}: {'Unkown'|i18n('extension/xrowecommerce')}
+{/if}
+{if and(ezini( 'Settings', 'Reference', 'xrowecommerce.ini' )|eq( 'enabled' ), $order.account_information.reference)}
+{'Reference'|i18n('extension/xrowecommerce')}:{$order.account_information.reference}
+{/if}
+{if and(ezini( 'Settings', 'Message', 'xrowecommerce.ini' )|eq( 'enabled' ), $order.account_information.message}}
+{'Your notes on order'|i18n('extension/xrowecommerce')}:
+{$order.account_information.message}
+{/if}
