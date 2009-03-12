@@ -616,10 +616,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Website</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>starting at</source>
         <translation type="unfinished"></translation>
     </message>
@@ -987,10 +983,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Price in ?</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Delete</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1279,10 +1271,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Use our Automatic Delivery service to have this item sent to you as often as you like.  You?ll get priority on our inventory and save time.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>By placing your initial Automatic Delivery order and setting up an Automatic Delivery schedule, you authorize us to charge the same credit card for future Automatic Delivery orders until you cancel.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1479,10 +1467,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Message</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Continue Shopping</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1516,22 +1500,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>I have read the %linkstart%gernal terms and conditions%linkend% and accept them.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Print</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Print order receipt </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Continue with shopping</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Additional Information</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1541,10 +1509,6 @@
     </message>
     <message>
         <source>Your reference</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Your message</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1573,6 +1537,34 @@
     </message>
     <message>
         <source>Enter account information</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Use our Automatic Delivery service to have this item sent to you as often as you like.  You&#xe2;&#x80;&#x99;ll get priority on our inventory and save time.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Your notes on order</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Price in &#xe2;&#x82;&#xac;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>I have read the %linkstart%general terms and conditions%linkend% and accept them.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Print order</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Print order receipt</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Continue shopping</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
