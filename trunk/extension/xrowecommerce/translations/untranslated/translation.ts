@@ -1567,6 +1567,10 @@
         <source>Price in ?</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Website</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>extension/xrowecommerce/productvariation</name>

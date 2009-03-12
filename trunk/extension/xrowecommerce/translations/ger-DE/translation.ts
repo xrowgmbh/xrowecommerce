@@ -1553,19 +1553,23 @@
     </message>
     <message>
         <source>Your notes on order</source>
-        <translation type="unfinished"></translation>
+        <translation>Ihre Anmerkungen an Bestellung</translation>
     </message>
     <message>
         <source>Print order</source>
-        <translation type="unfinished"></translation>
+        <translation>Bestellung drucken</translation>
     </message>
     <message>
         <source>Print order receipt</source>
-        <translation type="unfinished"></translation>
+        <translation>Bestellbeleg drucken</translation>
     </message>
     <message>
         <source>Continue shopping</source>
-        <translation type="unfinished"></translation>
+        <translation>Weiter einkaufen</translation>
+    </message>
+    <message>
+        <source>Website</source>
+        <translation>Webseite</translation>
     </message>
 </context>
 <context>
