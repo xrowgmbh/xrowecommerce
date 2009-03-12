@@ -1540,15 +1540,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Use our Automatic Delivery service to have this item sent to you as often as you like.  You&#xe2;&#x80;&#x99;ll get priority on our inventory and save time.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Your notes on order</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Price in &#xe2;&#x82;&#xac;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1565,6 +1557,14 @@
     </message>
     <message>
         <source>Continue shopping</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Use our Automatic Delivery service to have this item sent to you as often as you like.  You?ll get priority on our inventory and save time.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Price in ?</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

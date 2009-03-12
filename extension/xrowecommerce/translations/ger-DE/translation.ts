@@ -616,10 +616,6 @@
         <translation>Telefon</translation>
     </message>
     <message>
-        <source>Website</source>
-        <translation>Internetseite</translation>
-    </message>
-    <message>
         <source>starting at</source>
         <translation>ab</translation>
     </message>
@@ -1479,10 +1475,6 @@
         <translation>Referenz</translation>
     </message>
     <message>
-        <source>Message</source>
-        <translation>Nachricht</translation>
-    </message>
-    <message>
         <source>Continue Shopping</source>
         <translation>Weiter einkaufen</translation>
     </message>
@@ -1515,18 +1507,6 @@
         <translation>Ich habe die %linkstart% allgemeinen Geschäftsbedingungen %linkend% gelesen und nehmen diese an.</translation>
     </message>
     <message>
-        <source>Print</source>
-        <translation>Drucken</translation>
-    </message>
-    <message>
-        <source>Print order receipt </source>
-        <translation>Kaufbeleg drucken</translation>
-    </message>
-    <message>
-        <source>Continue with shopping</source>
-        <translation>Weiter einkaufen</translation>
-    </message>
-    <message>
         <source>Additional Information</source>
         <translation>Zusatzinformation</translation>
     </message>
@@ -1537,10 +1517,6 @@
     <message>
         <source>Your reference</source>
         <translation>Ihre Referenz</translation>
-    </message>
-    <message>
-        <source>Your message</source>
-        <translation>Ihre Nachricht</translation>
     </message>
     <message>
         <source>Continue order</source>
@@ -1574,6 +1550,22 @@
     <message>
         <source>Enter account information</source>
         <translation>Geben Sie Ihre Benutzerdaten ein</translation>
+    </message>
+    <message>
+        <source>Your notes on order</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Print order</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Print order receipt</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Continue shopping</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
