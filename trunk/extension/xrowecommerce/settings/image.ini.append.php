@@ -19,5 +19,6 @@ Filters[]=geometry/scaledownonly=400;300
 [product_tiny]
 Reference=
 Filters[]
-Filters[]=geometry/scalewidthdownonly=30
-*/ ?>
+Filters[]=geometry/scalewidthdownonly=60
+
+*/ ?
