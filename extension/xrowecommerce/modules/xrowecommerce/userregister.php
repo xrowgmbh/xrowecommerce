@@ -7,7 +7,6 @@ include_once ( 'kernel/common/template.php' );
 
 $tpl = templateInit();
 
-
 if ( $module->isCurrentAction( 'Cancel' ) )
 {
     $module->redirectTo( 'shop/basket' );
@@ -161,14 +160,14 @@ $orderID = $http->sessionVariable( 'MyTemporaryOrderID' );
 $order = eZOrder::fetch( $orderID );
 if ( $order instanceof eZOrder )
 {
-    if (  $order->attribute( 'is_temporary' ) )
+    if ( $order->attribute( 'is_temporary' ) )
     {
-    	
+        
         $accountInfo = $order->accountInformation();
-        var_dump($accountInfo);
+        var_dump( $accountInfo );
         foreach ( $accountInfo as $name => $value )
         {
-        	$$name = $value;
+            $$name = $value;
         }
     }
 }
@@ -282,7 +281,7 @@ if ( $module->isCurrentAction( 'Store' ) )
         }
         if ( in_array( $Alpha2, $ids ) )
         {
-        	                
+            
             $matches = array();
             if ( preg_match( "/^(" . join( '|', $ids ) . ")([0-9]+)/i", $tax_id, $matches ) )
             {
@@ -291,17 +290,18 @@ if ( $module->isCurrentAction( 'Store' ) )
                     $errors[] = ezi18n( 'extension/xrowecommerce', 'Country doesn`t match tax ID number.' );
                     $inputIsValid = false;
                 }
-                try {
-                $ret = xrowECommerce::checkVat( $ezcountry['Alpha2'], $matches[2] );
+                try
+                {
+                    $ret = xrowECommerce::checkVat( $ezcountry['Alpha2'], $matches[2] );
+                    if ( !$ret )
+                    {
+                        $errors[] = ezi18n( 'extension/xrowecommerce', 'Your companies tax ID number is not valid.' );
+                        $inputIsValid = false;
+                    }
                 }
                 catch ( Exception $e )
                 {
-                	eZDebug::writeError( $e->getMessage(), 'TAX ID Validation problem' );
-                }
-                if ( ! $ret->valid )
-                {
-                    $errors[] = ezi18n( 'extension/xrowecommerce', 'Your companies tax ID number is not valid.' );
-                    $inputIsValid = false;
+                    eZDebug::writeError( $e->getMessage(), 'TAX ID Validation problem' );
                 }
             }
         }
@@ -621,9 +621,9 @@ $tpl->setVariable( "phone", $phone );
 $tpl->setVariable( "fax", $fax );
 $tpl->setVariable( "shipping", $shipping );
 $tpl->setVariable( "shippingtype", $shippingtype );
-if(isset($payment_method ) )
+if ( isset( $payment_method ) )
 {
-$tpl->setVariable( "payment_method", $payment_method );
+    $tpl->setVariable( "payment_method", $payment_method );
 
 }
 $tpl->setVariable( "recaptcha", $recaptcha );

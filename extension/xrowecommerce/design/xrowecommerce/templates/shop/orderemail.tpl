@@ -1,4 +1,4 @@
-+{set-block scope=root variable=subject}{ezini( 'InvoiceSettings', 'CompanyName', 'order.ini'  )} {"Order"|i18n("extension/xrowecommerce")} #{$order.order_nr}{/set-block}
+{set-block scope=root variable=subject}{ezini( 'InvoiceSettings', 'CompanyName', 'order.ini'  )} {"Order"|i18n("extension/xrowecommerce")} #{$order.order_nr}{/set-block}
 {'Thank you for ordering from'|i18n( 'extension/xrowecommerce' )} {ezini( 'InvoiceSettings', 'CompanyName', 'order.ini'  )}.
 
 {'The details of the order are below.  If you have a question, please do not reply to this email.'|i18n( 'extension/xrowecommerce' )}
@@ -29,24 +29,24 @@
          symbol = $currency.symbol}
 {/if}
 
-{section name=ProductItem loop=$order.product_items show=$order.product_items sequence=array(bglight,bgdark)}
-{$ProductItem:item.item_count} x {$ProductItem:item.object_name} ({$ProductItem:item.price_inc_vat|l10n( 'currency', $locale, $symbol )})
+{foreach $order.product_items as $ProductItem}
+{$ProductItem.item_count} x {$ProductItem.object_name} ({$ProductItem.price_inc_vat|l10n( 'currency', $locale, $symbol )})
 
-{def $vary=$ProductItem:item.item_object.contentobject.data_map.variation.content.option_list[$ProductItem:item.item_object.option_list.0.option_item_id]}
+{def $vary=$ProductItem.item_object.contentobject.data_map.variation.content.option_list[$ProductItem.item_object.option_list.0.option_item_id]}
 --{$vary.value}--  {$vary.comment}
 {$ProductItem:item.total_price_inc_vat|l10n( 'currency', $locale, $symbol )}
 
 
-{/section}
+{/foreach}
 
 ----------------------------------------------
 {'Total'|i18n( 'extension/xrowecommerce' )}:  {$order.product_total_inc_vat|l10n( 'currency', $locale, $symbol )}
-{section name=OrderItem loop=$order.order_items show=$order.order_items sequence=array(bglight,bgdark)}
+{foreach $order.order_items as $OrderItem}
 
-{$OrderItem:item.description}:  {$OrderItem:item.price_inc_vat|l10n( 'currency', $locale, $symbol )}
+{$OrderItem.description}:  {$OrderItem.price_inc_vat|l10n( 'currency', $locale, $symbol )}
 
-{/section}
-{'Grand Total'|i18n( 'extension/xrowecommerce' )}: {$order.total_inc_vat|l10n( 'currency', $locale, $symbol )}
+{/foreach}
+{'Total'|i18n( 'extension/xrowecommerce' )}: {$order.total_inc_vat|l10n( 'currency', $locale, $symbol )}
 {undef $currency $locale $symbol}
 
 ----------------------------------------------

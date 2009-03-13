@@ -230,7 +230,7 @@ class xrowECommerce
             );
             throw new Exception( $faults[$ret] );
         }
-        return $ret;
+        return $ret->valid;
     }
 }
 
