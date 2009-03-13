@@ -236,7 +236,7 @@ class xrowECommerceShopAccountHandler
             'reference' , 
             'message' , 
             'no_partial_delivery' , 
-            'coupon_code' , 
+            'coupon_code' ,
             'ezauthorize-transaction-id' , 
             'ezauthorize-card-name' , 
             'ezauthorize-card-number' , 
@@ -247,6 +247,7 @@ class xrowECommerceShopAccountHandler
         foreach ( $fields as $field )
         {
             $node = $dom->getElementsByTagName( $field )->item( 0 );
+            var_dump($field.$node->textContent."<BR>");
             if ( $node )
             {
                 $result[str_ireplace( '-', '_', $field )] = $node->textContent;

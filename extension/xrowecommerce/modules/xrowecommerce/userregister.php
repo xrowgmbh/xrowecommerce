@@ -510,10 +510,11 @@ if ( $module->isCurrentAction( 'Store' ) )
         
         $recaptacheNode = $doc->createElement( "captcha", $captcha );
         $root->appendChild( $recaptacheNode );
-        
-        $payment_methodNode = $doc->createElement( xrowECommerce::ACCOUNT_KEY_PAYMENTMETHOD, $payment_method );
-        $root->appendChild( $payment_methodNode );
-        
+        if( !empty( $payment_method ) )
+        {
+            $payment_methodNode = $doc->createElement( xrowECommerce::ACCOUNT_KEY_PAYMENTMETHOD, $payment_method );
+            $root->appendChild( $payment_methodNode );
+        }
         if ( $coupon_code )
         {
             $coupon_codeNode = $doc->createElement( "coupon_code", $coupon_code );
