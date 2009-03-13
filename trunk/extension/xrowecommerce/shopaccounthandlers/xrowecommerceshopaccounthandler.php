@@ -247,7 +247,6 @@ class xrowECommerceShopAccountHandler
         foreach ( $fields as $field )
         {
             $node = $dom->getElementsByTagName( $field )->item( 0 );
-            var_dump($field.$node->textContent."<BR>");
             if ( $node )
             {
                 $result[str_ireplace( '-', '_', $field )] = $node->textContent;
