@@ -1,5 +1,5 @@
-<div class="shop">
-<div class="paymentmethodselection">
+<div class="shop shop-payment">
+
 <h1>{'Select a payment method'|i18n('extension/xrowecommerce')}</h1>
 
 {include uri="design:shop/basket_navigator.tpl" step='4'}
@@ -22,5 +22,5 @@
     <input id="cancle-button" class="button" type="submit" name="CancelButton"  value="{'Cancel'|i18n('extension/xrowecommerce')}" />
  </div>
 {/if}
-</div>
+
 </div>

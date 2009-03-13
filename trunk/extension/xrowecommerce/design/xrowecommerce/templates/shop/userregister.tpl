@@ -1,5 +1,5 @@
 {def $current_user=fetch( 'user', 'current_user' )}
-<div class="shop-basket">
+<div class="shop shop-userregister">
 
 <form method="post" action={"xrowecommerce/userregister/"|ezurl} name='register' >
 <h1>{'My Account'|i18n('extension/xrowecommerce')}</h1>

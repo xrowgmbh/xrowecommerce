@@ -37,7 +37,7 @@ for (i = 0; i < field.length; i++)
 }
 </script>
 {/literal}
-<div class="shop-basket">
+<div class="shop shop-basket">
 {include uri="design:shop/basket_navigator.tpl" step='1'}
 <div class="break"></div>
 <h1>{"Shopping Cart"|i18n("extension/xrowecommerce")}</h1>

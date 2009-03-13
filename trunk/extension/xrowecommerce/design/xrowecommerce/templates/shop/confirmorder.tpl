@@ -90,7 +90,7 @@ function showAlert()
 }
 {/literal}
 </script>
-<div class="shop-basket">
+<div class="shop shop-confirmorder">
     <form method="post" action={"shop/confirmorder"|ezurl} id="confirmorder" name="confirmorder">
         <h1>{"Confirm order"|i18n("extension/xrowecommerce")}</h1>
         {include uri="design:shop/basket_navigator.tpl" step='3'}
