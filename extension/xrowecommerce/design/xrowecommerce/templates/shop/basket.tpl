@@ -46,7 +46,7 @@ for (i = 0; i < field.length; i++)
 	<h2>{"Shopping Cart"|i18n("extension/xrowecommerce")}</h2>
 {/if}
 
-    <form method="post" name="basket" action={"shop/basket/"|ezurl}>
+
         
         {if $removed_items}
             <div class="warning">
@@ -86,6 +86,7 @@ for (i = 0; i < field.length; i++)
         </div>
     {/section}
     {if $basket.items}
+    <form method="post" name="basket" action={"shop/basket/"|ezurl}>
     <div id="buttonblock-top" class="buttonblock">
 
         <input id="continue-schopping-button" class="right-arrow" type="submit" name="ContinueShoppingButton" value="{'Continue'|i18n("extension/xrowecommerce")}" title="{'Continue Shopping'|i18n("extension/xrowecommerce")}"/>
@@ -104,10 +105,7 @@ for (i = 0; i < field.length; i++)
     {/if}
     
     <div class="content-basket">
-    <div id="buttonblock-delete" class="buttonblock">
-        <input id="delete-button" type="submit" class="flat-right2 button" name="RemoveProductItemButton" value={'Delete'|i18n( 'extension/xrowecommerce' )} title="{'Use this button to remove items from your shopping cart.'|i18n( 'extension/xrowecommerce' )}" />
-    </div>
-    <div class="break"></div>
+
     <table class="order">
         <tr class="lightbg">
             {if ezini( 'Settings', 'ShowColumnPosition', 'xrowecommerce.ini' )|eq('enabled')}
@@ -133,8 +131,8 @@ for (i = 0; i < field.length; i++)
                 {"Total Price"|i18n("extension/xrowecommerce")}
             </th>
             {if ezini( 'Settings', 'ShowColumnRemove', 'xrowecommerce.ini')|eq('enabled')}
-            <th>
-               <a class="mark-all" onclick="toggleAll('RemoveProductItemDeleteList[]');"><img src={'shop/basket-delete-icon.gif'|ezimage} title="{"Remove"|i18n("extension/xrowecommerce")}" /></a>
+            <th>{*<a class="mark-all" onclick="toggleAll('RemoveProductItemDeleteList[]');">Mark all</a>*}
+               <input id="delete-button" class="icon" type="image" name="RemoveProductItemButton" src={'shop/basket-delete-icon.gif'|ezimage} value={'Delete'|i18n( 'extension/xrowecommerce' )} title="{'Use this button to remove items from your shopping cart.'|i18n( 'extension/xrowecommerce' )}" />
             </th>
             {/if}
         </tr>
@@ -268,7 +266,7 @@ for (i = 0; i < field.length; i++)
     {undef $currency $locale $symbol}
     {else}
     <div class="feedback">
-        <form method="post" name="basket" action={"shop/basket/"|ezurl}>
+        <form method="post" name="basket" action={"xrowecommerce/basket"|ezurl}>
             <p><b>{"You have no items in your shopping cart"|i18n("extension/xrowecommerce")}</b></p>
             <div class="buttonblock">
                 <input id="continue-button" class="right-arrow " type="submit" name="ContinueShoppingButton" value="{'Continue'|i18n("extension/xrowecommerce")}" />
@@ -278,7 +276,7 @@ for (i = 0; i < field.length; i++)
     {/if}
 </div>
 
-<form name="empty_basket" id="empty_basket" method="post" action={"shop/basket/"|ezurl}>
+<form name="empty_basket" id="empty_basket" method="post" action={"shop/basket"|ezurl}>
 <input type="hidden" name="RemoveProductItemButton" value="RemoveProductItemButton" />
 {foreach $basket.items as $key => $product_item sequence array(bglight,bgdark) as $sequence}
     <input type="hidden" name="ProductItemIDList[]" value="{$product_item.id}" />

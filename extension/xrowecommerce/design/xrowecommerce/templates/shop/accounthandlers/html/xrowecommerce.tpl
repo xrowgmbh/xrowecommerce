@@ -1,4 +1,5 @@
 {def $shiplist=fetch( 'shipping', 'list_all_methods' )}
+{def $gateways=fetch( 'xrowecommerce', 'list_all_gateways' )}
 {def $country=false()}
 {* eZAuthorize + eZGPG - CC Storage Additions *}
 {def $fetchStoredTransaction = ezini( 'eZAuthorizeSettings', 'StoreTransactionInformation', 'ezauthorize.ini' )}
@@ -101,7 +102,14 @@
                 </td></tr>
                 {/if}
                 {if $order.account_information.paymentmethod}
-                <tr><th>{'Payment method'|i18n('extension/xrowecommerce')}:</th><td>{$order.account_information.paymentmethod}</td></tr>
+                <tr><th>{'Payment method'|i18n('extension/xrowecommerce')}:</th><td>
+
+{if $gateways|gt(0)}
+    {foreach $gateways as $gateway}
+        {if $order.account_information.paymentmethod|eq($gateway.value)}{$gateway.Name|wash}{/if}
+    {/foreach}
+{/if}
+                {$order.account_information.paymentmethod}</td></tr>
                 {else}
                 <tr><th>{'Payment method'|i18n('extension/xrowecommerce')}:</th><td>{'Unkown'|i18n('extension/xrowecommerce')}</td></tr>
                 {/if}
