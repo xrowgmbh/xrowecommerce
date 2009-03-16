@@ -215,9 +215,9 @@ function showAlert()
     </table>
     {if ezini( 'Settings', 'ConditionsOfService', 'xrowecommerce.ini')|eq('enabled')}
         <a name="cos"></a>
-        <label class="cos" for="cos" ><input id="cos" name="cos" class="cos" value="1" type="checkbox" /><span title="{'Show the conditions of service.'|i18n('extension/xrowecommerce')}">{'I have read the %linkstart%general terms and conditions%linkend% and accept them.'|i18n('extension/xrowecommerce',,hash('%linkstart%', '<a onclick="toggleCOS(); ">', '%linkend%', '</a>' ))}</span></label>
+        <label class="cos" for="cos" ><input id="cos" name="cos" class="cos" value="1" type="checkbox" /><span title="{'Show the terms and conditions.'|i18n('extension/xrowecommerce')}">{'I have read the %linkstart%general terms and conditions%linkend% and accept them.'|i18n('extension/xrowecommerce',,hash('%linkstart%', '<a onclick="toggleCOS(); ">', '%linkend%', '</a>' ))}</span></label>
         <div id="cos-content" style="display: none;">
-        {include uri="design:shop/cos.tpl" view="confirmorder"}
+        {include uri="design:shop/terms_and_conditions.tpl" view="confirmorder"}
         </div>
     {/if}
         <div id="buttonblock-bottom" class="buttonblock">

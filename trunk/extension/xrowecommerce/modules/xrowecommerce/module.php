@@ -12,7 +12,12 @@ $ViewList["userregister"] = array(
                                     'CancelButton' => 'Cancel'
                                     )
     );
-
+$ViewList["basket"] = array(
+    "functions" => array( 'buy' ),
+    "script" => "basket.php",
+    "default_navigation_part" => 'ezshopnavigationpart',
+    'unordered_params' => array( 'error' => 'Error' ),
+    "params" => array(  ) );
 $ViewList["multiadd"] = array(
     "functions" => array( 'buy' ),
     "script" => "multiadd.php",
