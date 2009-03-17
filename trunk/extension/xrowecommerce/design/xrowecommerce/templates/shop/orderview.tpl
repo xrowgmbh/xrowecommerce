@@ -13,10 +13,11 @@
 
 {include uri="design:shop/basket_navigator.tpl" step='5'}
 <div class="no-print">
-<form method="post" action={""|ezurl}>
+<form method="post" action={"xrowecommerce/basket"|ezurl}>
+<input type="submit" class="hide" name="Continue" value="{'Continue'|i18n('extension/xrowecommerce')}" />
         <div id="buttonblock-top" class="buttonblock">
             <input id="print-button" class="button" type="button" name="Print" onclick="window.print();" value="{'Print order'|i18n('extension/xrowecommerce')}" title="{'Print order receipt'|i18n('extension/xrowecommerce')}" />
-            <input id="continue-button" class="button" type="submit" name="Continue" value="{'Continue'|i18n('extension/xrowecommerce')}" title="{'Continue shopping'|i18n('extension/xrowecommerce')}" />
+            <input id="continue-button" class="button" type="submit" name="ContinueShoppingButton" value="{'Continue'|i18n('extension/xrowecommerce')}" title="{'Continue shopping'|i18n('extension/xrowecommerce')}" />
         </div>
 </form>
 </div>

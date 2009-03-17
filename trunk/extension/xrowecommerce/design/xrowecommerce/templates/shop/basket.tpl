@@ -87,6 +87,7 @@ for (i = 0; i < field.length; i++)
     {/section}
     {if $basket.items}
     <form method="post" name="basket" action={"shop/basket/"|ezurl}>
+    <input type="submit" class="hide" sytle="display: hide;" name="CheckoutButton" value={'Checkout'|i18n( 'extension/xrowecommerce' )} />
     <div id="buttonblock-top" class="buttonblock">
 
         <input id="continue-schopping-button" class="right-arrow" type="submit" name="ContinueShoppingButton" value="{'Continue'|i18n("extension/xrowecommerce")}" title="{'Continue Shopping'|i18n("extension/xrowecommerce")}"/>

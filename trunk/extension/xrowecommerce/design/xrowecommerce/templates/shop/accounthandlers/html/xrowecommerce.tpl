@@ -109,7 +109,7 @@
         {if $order.account_information.paymentmethod|eq($gateway.value)}{$gateway.Name|wash}{/if}
     {/foreach}
 {/if}
-                {$order.account_information.paymentmethod}</td></tr>
+                </td></tr>
                 {else}
                 <tr><th>{'Payment method'|i18n('extension/xrowecommerce')}:</th><td>{'Unkown'|i18n('extension/xrowecommerce')}</td></tr>
                 {/if}

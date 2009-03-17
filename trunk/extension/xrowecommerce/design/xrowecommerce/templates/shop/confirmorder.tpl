@@ -5,7 +5,6 @@
 {if ezini( 'Settings', 'ShowColumnTax', 'xrowecommerce.ini')|ne('enabled')}
 {set $cols=$cols|sub(1)}
 {/if}
-<script type="text/javascript" src={"javascript/yui/build/yahoo-dom-event/yahoo-dom-event.js"|ezdesign}></script>
 <script type="text/javascript">             
 {literal}
 function checkCOS( element )
@@ -92,6 +91,7 @@ function showAlert()
 </script>
 <div class="shop shop-confirmorder">
     <form method="post" action={"shop/confirmorder"|ezurl} id="confirmorder" name="confirmorder">
+        <input type="submit" class="hide" sytle="display: hide;" name="ConfirmOrderButton" value="{'Confirm'|i18n('extension/xrowecommerce')}" />
         <h1>{"Confirm order"|i18n("extension/xrowecommerce")}</h1>
         {include uri="design:shop/basket_navigator.tpl" step='3'}
         
@@ -214,11 +214,7 @@ function showAlert()
     </tr>
     </table>
     {if ezini( 'Settings', 'ConditionsOfService', 'xrowecommerce.ini')|eq('enabled')}
-        <a name="cos"></a>
-        <label class="cos" for="cos" ><input id="cos" name="cos" class="cos" value="1" type="checkbox" /><span title="{'Show the terms and conditions.'|i18n('extension/xrowecommerce')}">{'I have read the %linkstart%general terms and conditions%linkend% and accept them.'|i18n('extension/xrowecommerce',,hash('%linkstart%', '<a onclick="toggleCOS(); ">', '%linkend%', '</a>' ))}</span></label>
-        <div id="cos-content" style="display: none;">
         {include uri="design:shop/terms_and_conditions.tpl" view="confirmorder"}
-        </div>
     {/if}
         <div id="buttonblock-bottom" class="buttonblock">
             <input id="cancel-button" class="left-arrow2" type="submit" name="CancelButton" value="{'Cancel'|i18n('extension/xrowecommerce')}" title="{'Cancel order'|i18n('extension/xrowecommerce')}"/>
