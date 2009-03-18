@@ -430,6 +430,12 @@ class xrowProductDataType
             $result['unique_sku'] = true;
         else
             $result['unique_sku'] = false;
+
+        $selectKey = $key . 'select';
+        if ( $http->hasPostVariable( $selectKey ) )
+            $result['select'] = true;
+        else
+            $result['select'] = false;
     }
     /**
      * Deletes the content of the current datatype
