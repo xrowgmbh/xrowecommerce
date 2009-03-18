@@ -239,6 +239,14 @@ for (i = 0; i < field.length; i++)
                 <td class="noborder">&nbsp;</td>
             </tr>
     </table>
+     <div id="buttonblock-bottom" class="buttonblock">
+
+        <input id="continue-schopping-button" class="right-arrow" type="submit" name="ContinueShoppingButton" value="{'Continue'|i18n("extension/xrowecommerce")}" title="{'Continue Shopping'|i18n("extension/xrowecommerce")}"/>
+        <input id="empty-cart-button" type="button" onclick="empty_basket.submit();" class="button small-action" name="EmptyShoppingCartButton" value="{'Empty Cart'|i18n( 'extension/xrowecommerce' )}" title="Use this button to empty your shopping cart." />
+        
+        <input id="store-button" type="submit" class="right-arrow " name="StoreChangesButton" value={'Update'|i18n( 'extension/xrowecommerce' )} title="Use this button to update your shopping cart." />
+        <input id="checkout-button" type="submit" class="right-arrow2 continue-button" name="CheckoutButton" value={'Checkout'|i18n( 'extension/xrowecommerce' )} title="Use this button to place your order." />
+    </div>
    </div>
  </form>
  {* ####### Login Box ######## *}
