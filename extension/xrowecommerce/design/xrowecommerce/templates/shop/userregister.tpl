@@ -685,7 +685,11 @@ if (status)
 
 function shipping(status)
 {
-if (document.register.Shipping.checked == false)
+	if ( document.register.ShippingType == null )
+	{
+		return false;
+	}
+    if ( document.register.Shipping.checked == false)
     {
         status = document.register.scountry.value;
     }
