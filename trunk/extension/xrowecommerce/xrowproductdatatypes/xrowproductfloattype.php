@@ -79,6 +79,12 @@ class xrowProductFloatType extends xrowProductDataType
         $descKey = $key . 'column_desc';
         if ( $http->hasPostVariable( $descKey ) )
             $result['column_desc_array'][$languageCode] = trim( $http->postVariable( $descKey ) );
+
+        $selectKey = $key . 'select';
+        if ( $http->hasPostVariable( $selectKey ) )
+            $result['select'] = true;
+        else
+            $result['select'] = false;
     }
 
     /**

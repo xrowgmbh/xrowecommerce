@@ -7,6 +7,7 @@
      $translation=cond( is_set( $settings.translation ), $settings.translation, false() )
      $frontend=cond( is_set( $settings.frontend ), $settings.frontend, true() )
      $search=cond( is_set( $settings.search ), $settings.search, true() )
+     $select=cond( is_set( $settings.select ), $settings.select, false() )
 }
 <div>
     <label>{"Column name:"|i18n( 'extension/xrowecommerce/productvariation' )|wash}</label>

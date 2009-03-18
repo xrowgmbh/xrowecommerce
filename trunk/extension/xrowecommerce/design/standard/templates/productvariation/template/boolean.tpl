@@ -3,6 +3,7 @@
      $default_value=cond( is_set( $settings.default_value ), $settings.default_value, false() )
      $column_name=cond( is_set( $settings.column_name ), $settings.column_name, $attribute.name )
      $column_desc=cond( is_set( $settings.column_desc ), $settings.column_desc, $attribute.desc )
+     $select=cond( is_set( $settings.select ), $settings.select, false() )
 }
 <div>
     <label>{"Column name:"|i18n( 'extension/xrowecommerce/productvariation' )|wash}</label>
@@ -19,6 +20,10 @@
         <label>
             {"Add to search:"|i18n( 'extension/xrowecommerce/productvariation' )|wash}
             <input type="checkbox" name="XrowProductTemplate_{$id}_search" value="1"{if $search} checked="checked"{/if} />
+        </label>
+        <label>
+            {"Show in select box:"|i18n( 'extension/xrowecommerce/productvariation' )|wash}
+            <input type="checkbox" name="XrowProductTemplate_{$id}_select" value="1"{if $select} checked="checked"{/if} />
         </label>
     </div>
 </div>

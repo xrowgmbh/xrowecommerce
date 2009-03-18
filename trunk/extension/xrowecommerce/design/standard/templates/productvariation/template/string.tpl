@@ -7,6 +7,7 @@
      $translation=cond( is_set( $settings.translation ), $settings.translation, false() )
      $frontend=cond( is_set( $settings.frontend ), $settings.frontend, true() )
      $search=cond( is_set( $settings.search ), $settings.search, true() )
+     $select=cond( is_set( $settings.select ), $settings.select, false() )
 }
 <div>
     <label>{"Column name:"|i18n( 'extension/xrowecommerce/productvariation' )|wash}</label>
@@ -31,6 +32,10 @@
         <label>
             {"Add to search:"|i18n( 'extension/xrowecommerce/productvariation' )|wash}
             <input type="checkbox" name="XrowProductTemplate_{$id}_search" value="1"{if $search} checked="checked"{/if} />
+        </label>
+        <label>
+            {"Show in select box:"|i18n( 'extension/xrowecommerce/productvariation' )|wash}
+            <input type="checkbox" name="XrowProductTemplate_{$id}_select" value="1"{if $select} checked="checked"{/if} />
         </label>
     </div>
 </div>
