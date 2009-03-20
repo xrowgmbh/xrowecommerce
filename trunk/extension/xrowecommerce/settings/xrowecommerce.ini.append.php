@@ -36,5 +36,5 @@ ShopUserClassList[]=client
 [BasketInformation]
 DisplayTax=disabled
 DisplayLogin=enabled
-
+DisplayShipping=enabled
 */ ?>

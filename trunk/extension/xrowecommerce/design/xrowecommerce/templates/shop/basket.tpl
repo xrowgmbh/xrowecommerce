@@ -206,7 +206,7 @@ for (i = 0; i < field.length; i++)
                  </td>
                  <td class="noborder">&nbsp;</td>
             </tr>
-
+            {if eq(ezini( 'BasketInformation', 'DisplayShipping', 'xrowecommerce.ini' ), 'enabled' )}
             <tr class="orderitem-line">
                 <td colspan="{$cols|sub(2)}" class="align_right">   
                     {"Estimated Shipping and Handling"|i18n("extension/xrowecommerce")}
@@ -216,6 +216,7 @@ for (i = 0; i < field.length; i++)
                 </td>
                 <td class="noborder">&nbsp;</td>
             </tr>
+            {/if}
             {if eq(ezini( 'BasketInformation', 'DisplayTax', 'xrowecommerce.ini' ), 'enabled' )}
             <tr class="tax-line">
                 <td colspan="{$cols|sub(2)}" class="align_right">
