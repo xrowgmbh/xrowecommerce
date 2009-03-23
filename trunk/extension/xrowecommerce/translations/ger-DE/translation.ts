@@ -984,7 +984,7 @@
     </message>
     <message>
         <source>Price in ?</source>
-        <translation>Preis in ?</translation>
+        <translation type="obsolete">Preis in ?</translation>
     </message>
     <message>
         <source>Delete</source>
@@ -1288,7 +1288,7 @@
     </message>
     <message>
         <source>Use our Automatic Delivery service to have this item sent to you as often as you like.  You?ll get priority on our inventory and save time.</source>
-        <translation>Benutzen Sie unseren Servive &quot;Automatische Auslieferung&quot; um diesen Artikel so oft geliefert zu bekommen wie und wann Sie mögen. Ihre Bestellungen bekommen höhere Priorität beim Lagerbestand und sie sparen Zeit.</translation>
+        <translation type="obsolete">Benutzen Sie unseren Servive &quot;Automatische Auslieferung&quot; um diesen Artikel so oft geliefert zu bekommen wie und wann Sie mögen. Ihre Bestellungen bekommen höhere Priorität beim Lagerbestand und sie sparen Zeit.</translation>
     </message>
     <message>
         <source>By placing your initial Automatic Delivery order and setting up an Automatic Delivery schedule, you authorize us to charge the same credit card for future Automatic Delivery orders until you cancel.</source>
@@ -1356,7 +1356,7 @@
     </message>
     <message>
         <source>Grand Total</source>
-        <translation>Gesamtsumme</translation>
+        <translation type="obsolete">Gesamtsumme</translation>
     </message>
     <message>
         <source>The Staff at</source>
@@ -1500,7 +1500,7 @@
     </message>
     <message>
         <source>Show the conditions of service.</source>
-        <translation>Zeige die Servicebedingungen.</translation>
+        <translation type="obsolete">Zeige die Servicebedingungen.</translation>
     </message>
     <message>
         <source>I have read the %linkstart%general terms and conditions%linkend% and accept them.</source>
@@ -1569,7 +1569,19 @@
     </message>
     <message>
         <source>Website</source>
-        <translation>Webseite</translation>
+        <translation type="obsolete">Webseite</translation>
+    </message>
+    <message>
+        <source>Use our Automatic Delivery service to have this item sent to you as often as you like.  You&#xe2;&#x80;&#x99;ll get priority on our inventory and save time.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Price in &#xe2;&#x82;&#xac;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Show the terms and conditions.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2070,6 +2082,10 @@ Es ist nicht möglich, den Datentyp danach zu ändern.</translation>
         <source>New description</source>
         <translation>Neue Beschreibung</translation>
     </message>
+    <message>
+        <source>Show in select box:</source>
+        <translation>Feld in Select Box anzeigen:</translation>
+    </message>
 </context>
 <context>
     <name>kernel/classes/datatypes</name>
@@ -2136,6 +2152,10 @@ Es ist nicht möglich, den Datentyp danach zu ändern.</translation>
     <message>
         <source>Statistics</source>
         <translation>Statistiken</translation>
+    </message>
+    <message>
+        <source>Basket</source>
+        <translation>Warenkorb</translation>
     </message>
 </context>
 <context>
