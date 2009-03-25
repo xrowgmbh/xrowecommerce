@@ -10,11 +10,4 @@ FreeShippingWeightDiscount=5.00
 eZoption2ProductVariations=Enabled
 ShippingVendorName=Alcone
 
-[ShippingInterface]
-eZoption2ProductVariations=Enabled
-fastlash_id=2588
-add_handling_fee=enabled
-handling_fee=2.00
-handling_fee_name=Handling
-handling_fee_include=enabled
-free_shippingitem_reduce=9.00
+
