@@ -54,12 +54,15 @@ class eZOption2
 
     /*!
     */
-    function eZOption2( $contentObjectAttribute, $name = false )
+    function eZOption2( $contentObjectAttribute, $name = false, $init = true )
     {
-        
-        $this->decodeXML( $contentObjectAttribute->attribute( "data_text" ) );
+        if ( $init )
+        {
+        	$this->decodeXML( $contentObjectAttribute->attribute( "data_text" ) );
+            $this->Name = $name;
+        }
         $this->contentObjectAttribute = $contentObjectAttribute;
-        $this->Name = $name;
+        
     
     }
 
@@ -245,7 +248,6 @@ class eZOption2
 
     function store()
     {
-        
         $this->contentObjectAttribute->setAttribute( "data_text", $this->xmlString() );
         $this->contentObjectAttribute->store();
     }
