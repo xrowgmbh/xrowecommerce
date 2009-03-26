@@ -3,6 +3,9 @@
 [HandlerSettings]
 ExtensionRepositories[]=xrowecommerce
 
+[ConfirmOrderSettings]
+Handler=xrowecommerce
+
 [AccountSettings]
 Handler=xrowecommerce
 
