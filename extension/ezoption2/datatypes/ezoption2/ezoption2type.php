@@ -180,7 +180,7 @@ class eZOption2Type extends eZDataType
             $optionImageArray = $http->postVariable( $base . "_data_option_image_" . $contentObjectAttribute->attribute( "id" ) );
         else
             $optionImageArray = array();
-        $option = new eZOption2( $contentObjectAttribute, $optionName );
+        $option = new eZOption2( $contentObjectAttribute, $optionName, false );
         
         foreach ( $optionAdditionalPriceArray as $index => $additionalPrice )
         {
@@ -198,6 +198,7 @@ class eZOption2Type extends eZDataType
             $optionPriceArray = array();
         }
         $i = 0;
+        
         foreach ( $optionIDArray as $id )
         {
             $optionPriceArray = array();
@@ -311,7 +312,6 @@ class eZOption2Type extends eZDataType
                             $contentObjectAttribute->setContent( $option );
                             $contentObjectAttribute->store();
                             $option = new eZOption2( $contentObjectAttribute );
-                            $option->decodeXML( $contentObjectAttribute->attribute( "data_text" ) );
                             $contentObjectAttribute->setContent( $option );
                             return;
                         }
@@ -330,7 +330,6 @@ class eZOption2Type extends eZDataType
                     $contentObjectAttribute->setContent( $option );
                     $contentObjectAttribute->store();
                     $option = new eZOption2( $contentObjectAttribute );
-                    $option->decodeXML( $contentObjectAttribute->attribute( "data_text" ) );
                     $contentObjectAttribute->setContent( $option );
                 }
                 break;
@@ -548,6 +547,23 @@ class eZOption2Type extends eZDataType
     function isInformationCollector()
     {
         return true;
+    }
+    function onPublish( $contentObjectAttribute, $contentObject, $publishedNodes )
+    {
+    	$trans = $contentObjectAttribute->fetchAttributeTranslations();
+    	$xml = $contentObjectAttribute->attribute( "data_text" );
+    	$mpNode = $dom->getElementsByTagName( "multi_price" )->item( 0 );
+    	foreach ( $trans as $translation )
+    	{
+    		$old = $translation->attribute( "data_text" );
+    		$dom = new DOMDocument( '1.0', 'utf-8' );
+            $success = $dom->loadXML( $old );
+            $translationMPNode = $dom->getElementsByTagName( "multi_price" )->item( 0 );
+            $translationMPNode = clone $mpNode;
+    		$translation->setAttribute( "data_text", $dom->saveXML() );
+    		eZPersistentObject::storeObject( $translation );
+    	}
+
     }
 }
 
