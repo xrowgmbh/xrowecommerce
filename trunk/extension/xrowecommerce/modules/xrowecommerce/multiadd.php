@@ -52,12 +52,11 @@ if ( $http->hasPostVariable( "ActionAddToBasket" ) )
         if( $http->hasPostVariable( "RedirectURI" ) )
             $http->setSessionVariable( "FromPage", $http->postVariable( "RedirectURI" ) );
         else
-            $http->setSessionVariable( "FromPage", 'shop/basket' );
+            $http->setSessionVariable( "FromPage", $_SERVER['HTTP_REFERER'] );
         if ( count( $list ) == 0 )
         {
         	//error no product sumbitted
-             $module->redirectTo( $_SERVER['HTTP_REFERER'] );
-             return;
+             return $module->redirectTo( $_SERVER['HTTP_REFERER'] );
         }
     }
 }
@@ -70,10 +69,9 @@ if ( count( $list ) > 0  )
                                                                               'option_list' => $position['variations'],
                                                                               'quantity' => $position['quantity'] ) );
 	}
-    return $module->redirectTo( $http->sessionVariable( "FromPage" ) );
+    return $module->redirectTo( 'shop/basket' );
 }
 
-eZDebug::writeError("How did you get here?", "multiadd");
-$module->redirectTo( 'shop/basket');
-return;
+return $module->redirectTo( 'shop/basket' );
+
 ?>
