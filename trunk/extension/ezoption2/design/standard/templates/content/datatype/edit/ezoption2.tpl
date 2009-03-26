@@ -9,7 +9,7 @@
 <div class="block">
 <label>{'Options'|i18n( 'design/standard/content/datatype' )}:</label>
 
-{section show=$attribute.content.option_list}
+{if $attribute.content.option_list}
 <table class="list" cellspacing="0">
 <tr>
     <th class="tight">&nbsp;</th>
@@ -23,50 +23,131 @@
     <th>{'Image'|i18n( 'design/standard/content/datatype' )}</th>
 </tr>
 
-{section var=Options loop=$attribute.content.option_list sequence=array( bglight, bgdark )}
+{foreach $attribute.content.option_list as $option}
 <tr class="{$Options.sequence}">
 
 {* Remove. *}
 <td>
-<input type="checkbox" name="{$attribute_base}_data_option_remove_{$attribute.id}[]" value="{$Options.item.id}" title="{'Select option for removal.'|i18n( 'design/standard/content/datatype' )}" />
-<input type="hidden" name="{$attribute_base}_data_option_id_{$attribute.id}[]" value="{$Options.item.id}" />
+<input type="checkbox" name="{$attribute_base}_data_option_remove_{$attribute.id}[{$option.id}]" value="{$option.id}" title="{'Select option for removal.'|i18n( 'design/standard/content/datatype' )}" />
+<input type="hidden" name="{$attribute_base}_data_option_id_{$attribute.id}[{$option.id}]" value="{$option.id}" />
 </td>
 
 {* Option. *}
-<td><input class="box" type="text" name="{$attribute_base}_data_option_value_{$attribute.id}[]" value="{$Options.item.value}" /></td>
+<td><input class="box" type="text" name="{$attribute_base}_data_option_value_{$attribute.id}[{$option.id}]" value="{$option.value}" /></td>
 
-<td><input class="box" type="text" name="{$attribute_base}_data_option_comment_{$attribute.id}[]" value="{$Options.item.comment}" /></td>
+<td><input class="box" type="text" name="{$attribute_base}_data_option_comment_{$attribute.id}[{$option.id}]" value="{$option.comment}" /></td>
 
 {* Description. *}
-<td><textarea class="box" name="{$attribute_base}_data_option_description_{$attribute.id}[]">{$Options.item.description}</textarea></td>
+<td><textarea class="box" name="{$attribute_base}_data_option_description_{$attribute.id}[{$option.id}]">{$option.description}</textarea></td>
 
 
-{section show=$attribute.is_information_collector|not}
+{if $attribute.is_information_collector|not}
 {* Price. *}
-<td><input class="box" type="text" name="{$attribute_base}_data_option_additional_price_{$attribute.id}[]" value="{$Options.item.additional_price}" /></td>
-{/section}
-<td><input id="variation_weight_{$attribute.id}" class="box" type="text" name="{$attribute_base}_data_option_weight_{$attribute.id}[]" value="{$Options.item.weight}" /></td>
+<td>
+
+{*
+<input class="box" type="text" name="{$attribute_base}_data_option_additional_price_{$attribute.id}[{$option.id}]" value="{$option.additional_price}" />
+*}
+{*$option|attribute(show,2)*}
+{def $multi_price = $option.multi_price
+     $custom_price_list = $multi_price.custom_price_list
+     $auto_price_list = $multi_price.auto_price_list
+     $currency_list = $multi_price.auto_currency_list}
+    {if or( count( $custom_price_list ), count( $auto_price_list ) )}
+        <table class="list" cellspacing="0">
+        <tr>
+            {*<th class="tight">&nbsp;</th>*}
+            <th>{'Currency'|i18n( 'design/standard/content/datatype' )}</th>
+            <th>{'Value'|i18n( 'design/standard/content/datatype' )}</th>
+        </tr>
+            {foreach $auto_price_list as $index => $price}
+            <tr>
+                {* Remove. 
+                <td><input id="ezcoa-{if ne( $attribute_base, 'ContentObjectAttribute' )}{$attribute_base}-{/if}{$attribute.contentclassattribute_id}_{$attribute.contentclass_attribute_identifier}_remove_{$index}" class="ezcc-{$attribute.object.content_class.identifier} ezcca-{$attribute.object.content_class.identifier}_{$attribute.contentclass_attribute_identifier}" type="checkbox" name="{$attribute_base}_remove_price_array_{$attribute.id}[{$option.id}][{$price.currency_code}]" title="{'Select price for removal.'|i18n( 'design/standard/content/datatype' )}" disabled="disabled" /></td>
+*}
+                {* Currency *}
+                <td>{$price.currency_code}</td>
+
+                {* Value *}
+                <td>{$price.value}({'Auto'|i18n( 'design/standard/content/datatype' )})</td>
+            </tr>
+            {/foreach}
+            {foreach $custom_price_list as $price}
+            <tr>
+                {* Remove. 
+                <td><input type="checkbox" name="{$attribute_base}_remove_price_array_{$attribute.id}[{$option.id}][{$price.currency_code}]" title="{'Select price for removal.'|i18n( 'design/standard/content/datatype' )}" /></td>
+*}
+                {* Currency *}
+                <td>{$price.currency_code}</td>
+
+                {* Value *}
+                <td><input type="text" name="{$attribute_base}_price_array_{$attribute.id}[{$option.id}][{$price.currency_code}]" size="12" value="{$price.value}" /></td>
+            </tr>
+            {/foreach}
+        </table>
+
+        {* 'Remove' button 
+        <input class="button" type="submit" name="CustomActionButton[{$attribute.id}_remove_prices]" value="{'Remove selected'|i18n( 'design/standard/content/datatype' )}" title="{'Remove selected prices.'|i18n( 'design/standard/content/datatype' )}" /><p>
+    *}
+    {else}
+        {* Disabled 'remove' button *}
+        <p>{'Price list is empty'|i18n( 'design/standard/content/datatype' )}</p>
+        {*
+        <input class="button-disabled" type="submit" name="CustomActionButton[{$attribute.id}_remove_prices]" value="{'Remove selected'|i18n( 'design/standard/content/datatype' )}" disabled="disabled" />
+        
+        *}
+    {/if}
+
+
+
+</td>
+{/if}
+<td><input id="variation_weight_{$attribute.id}" class="box" type="text" name="{$attribute_base}_data_option_weight_{$attribute.id}[{$option.id}]" value="{$option.weight}" /></td>
 {* Object relation *}
 <td>
-<input id="variation_image_id_{$attribute.id}_{$Options.item.id}" type="hidden" name="{$attribute_base}_data_option_image_{$attribute.id}[]" value="{$Options.item.image.id}" />
-<div id="variation_image_div_{$attribute.id}_{$Options.item.id}">
-{if and($Options.item.image.content_class.identifier|eq('image'),$Options.item.image|is_object)}
-<a id="variation_image_link_{$attribute.id}_{$Options.item.id}" href={$Options.item.image.main_node.url_alias|ezurl()} target="_blank">{attribute_view_gui image_class=small attribute=$Options.item.image.current.data_map.image}</a>
+<input id="variation_image_id_{$attribute.id}_{$option.id}" type="hidden" name="{$attribute_base}_data_option_image_{$attribute.id}[{$option.id}]" value="{$option.image.id}" />
+
+{if and($option.image.content_class.identifier|eq('image'),$option.image|is_object)}
+<div id="variation_image_div_{$attribute.id}_{$option.id}">
+<a id="variation_image_link_{$attribute.id}_{$option.id}" href={$option.image.main_node.url_alias|ezurl()} target="_blank">{attribute_view_gui image_class=small attribute=$option.image.current.data_map.image}</a>
 </div>
 {else}
-</div>
-<div id="variation_noimage_div_{$attribute.id}_{$Options.item.id}">{'No image'|i18n( 'design/standard/content/datatype' )}</div>
+<div id="variation_noimage_div_{$attribute.id}_{$option.id}">{'No image'|i18n( 'design/standard/content/datatype' )}</div>
 {/if}
-{if $Options.item.image|is_object}<input class="button" type="submit" name="CustomActionButton[{$attribute.id}_remove_object-{$Options.item.id}]" value="{'Remove'|i18n( 'design/standard/content/datatype' )}" />{/if}
-<input class="button" type="submit" name="CustomActionButton[{$attribute.id}_browse_object-{$Options.item.id}]" value="{'Add'|i18n( 'design/standard/content/datatype' )}" />
-<input class="button" type="button" name="Uploadbutton" value="Upload" onClick="javascript:variationupload(  '{$attribute.contentobject_id}', '{$attribute.version}', 'object', '{$attribute.id}', '{$Options.item.id}' );" />
+{if $option.image|is_object}<input class="button" type="submit" name="CustomActionButton[{$attribute.id}_remove_object-{$option.id}]" value="{'Remove'|i18n( 'design/standard/content/datatype' )}" />{/if}
+<input class="button" type="submit" name="CustomActionButton[{$attribute.id}_browse_object-{$option.id}]" value="{'Add'|i18n( 'design/standard/content/datatype' )}" />
+<input class="button" type="button" name="Uploadbutton" value="Upload" onClick="javascript:variationupload(  '{$attribute.contentobject_id}', '{$attribute.version}', 'object', '{$attribute.id}', '{$option.id}' );" />
 </td></tr>
-{/section}
+{/foreach}
 
 </table>
-{section-else}
+
+    {if count( $attribute.content.option_list.0.multi_price.currency_list )}
+        {* Select currency *}
+        <select name="{$attribute_base}_selected_currency_{$attribute.id}" title="Select currency">
+            {foreach $attribute.content.option_list.0.multi_price.currency_list as $currency}
+                <option value="{$currency.code}">{$currency.code}</option>
+            {/foreach}
+            {*
+            {section var=Currency loop=$currency_list}
+                <option value="{$Currency.code}">{$Currency.code}</option>
+            {/section}
+            *}
+        </select>
+
+        {* 'Set price' button *}
+        <input class="button" type="submit" name="CustomActionButton[{$attribute.id}_set_custom_price]" value="{'Set custom price'|i18n( 'design/standard/content/datatype' )}" title="{'Set custom price.'|i18n( 'design/standard/content/datatype' )}" />
+        <input class="button" type="submit" name="CustomActionButton[{$attribute.id}_remove_custom_price]" value="{'Remove custom price'|i18n( 'design/standard/content/datatype' )}" title="{'Set custom price.'|i18n( 'design/standard/content/datatype' )}" />
+        <input name="ContentObjectAttribute_id[]" value="{$attribute.id}" type="hidden">
+    {else}
+        {* Disabled 'Set price' button *}
+        <input class="button-disabled" type="submit" name="CustomActionButton[{$attribute.id}_set_custom_price]" value="{'Set custom price'|i18n( 'design/standard/content/datatype' )}" disabled="disabled" />
+        {'There are no available currencies.'|i18n( 'design/standard/content/datatype' )}
+    {/if}
+
+{else}
 <p>{'There are no options.'|i18n( 'design/standard/content/datatype' )}</p>
-{/section}
+{/if}
 
 
 {section show=$attribute.content.option_list}
@@ -79,6 +160,10 @@
 
 </div>
 {/default}
+
+
+
+
 {def $url='/'|ezurl('no','full')}
 {run-once}
 

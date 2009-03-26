@@ -1,4 +1,5 @@
 <?php
+
 //
 // Definition of eZOption class
 //
@@ -28,6 +29,7 @@
 // ## END COPYRIGHT, LICENSE AND WARRANTY NOTICE ##
 //
 
+
 /*!
   \class eZOption ezoption.php
   \ingroup eZDatatype
@@ -49,13 +51,16 @@
 
 class eZOption2
 {
+
     /*!
     */
-    function eZOption2( $name )
+    function eZOption2( $contentObjectAttribute, $name = false )
     {
+        
+        $this->decodeXML( $contentObjectAttribute->attribute( "data_text" ) );
+        $this->contentObjectAttribute = $contentObjectAttribute;
         $this->Name = $name;
-        $this->Options = array();
-        $this->OptionCount = 0;
+    
     }
 
     /*!
@@ -65,7 +70,6 @@ class eZOption2
     {
         $this->Name = $name;
     }
-
 
     /*!
      Returns the name of the option set.
@@ -80,53 +84,54 @@ class eZOption2
     */
     function addOption( $valueArray )
     {
-        $value = isset( $valueArray['value'] ) ? $valueArray['value'] : '';
-        $comment = isset( $valueArray['comment'] ) ? $valueArray['comment'] : '';
-        $weight = isset( $valueArray['weight'] ) ? $valueArray['weight'] : '';
+        $valueArray['value'] = isset( $valueArray['value'] ) ? $valueArray['value'] : '';
+        $valueArray['comment'] = isset( $valueArray['comment'] ) ? $valueArray['comment'] : '';
+        $valueArray['weight'] = isset( $valueArray['weight'] ) ? $valueArray['weight'] : '';
         #$image = isset( $valueArray['image'] ) ? eZContentObject::fetch($valueArray['image']) : null;
-        $image = isset( $valueArray['image'] ) ? $valueArray['image'] : null;
-        $description = isset( $valueArray['description'] ) ? $valueArray['description'] : '';
-        $additionalPrice = isset( $valueArray['additional_price'] ) ? $valueArray['additional_price'] : '';
-        $this->Options[] = array( "id" => $this->OptionCount,
-                                  "value" => $value,
-                                  "description" => $description,
-                                  "comment" => $comment,
-                                  "weight" => $weight,
-        						  "image" => $image,
-                                  'additional_price' => $additionalPrice,
-                                  "is_default" => false );
-
+        $valueArray['image'] = isset( $valueArray['image'] ) ? $valueArray['image'] : null;
+        $valueArray['description'] = isset( $valueArray['description'] ) ? $valueArray['description'] : '';
+        $valueArray['additional_price'] = isset( $valueArray['additional_price'] ) ? $valueArray['additional_price'] : 0;
+        $valueArray['id'] = $this->OptionCount;
+        $valueArray['is_default'] = false;
+        $this->Options[] = $valueArray;
+        
         $this->OptionCount += 1;
     }
 
     function insertOption( $valueArray, $beforeID )
     {
-        array_splice( $this->Options, $beforeID, 0 ,  array( array( "id" => $this->OptionCount,
-                                                                    "value" => $valueArray['value'],
-                                                                    "description" => $valueArray['description'],
-                                                                    "comment" => $valueArray['comment'],
-                                                                    "weight" => $valueArray['weight'],
-        															"image" => $valueArray['image'],
-                                                                    'additional_price' => $valueArray['additional_price'],
-                                                                    "is_default" => false ) ) );
+        array_splice( $this->Options, $beforeID, 0, array( 
+            array( 
+                "id" => $this->OptionCount , 
+                "value" => $valueArray['value'] , 
+                "description" => $valueArray['description'] , 
+                "comment" => $valueArray['comment'] , 
+                "weight" => $valueArray['weight'] , 
+                "image" => $valueArray['image'] , 
+                'additional_price' => $valueArray['additional_price'] , 
+                "is_default" => false 
+            ) 
+        ) );
         $this->OptionCount += 1;
     }
 
     function removeOptions( $array_remove )
     {
         $shiftvalue = 0;
-        foreach( $array_remove as $id )
+        foreach ( $array_remove as $id )
         {
             array_splice( $this->Options, $id - $shiftvalue, 1 );
-            $shiftvalue++;
+            $shiftvalue ++;
         }
         $this->OptionCount -= $shiftvalue;
     }
 
     function attributes()
     {
-        return array( 'name',
-                      'option_list' );
+        return array( 
+            'name' , 
+            'option_list' 
+        );
     }
 
     function hasAttribute( $name )
@@ -134,31 +139,49 @@ class eZOption2
         return in_array( $name, $this->attributes() );
     }
 
+    function VATType()
+    {
+        if ( ! $this->VATType )
+        {
+            $this->VATType = eZVatType::create();
+        }
+        
+        return $this->VATType;
+    }
+
     function attribute( $name )
     {
         switch ( $name )
         {
-            case "name" :
-            {
-                return $this->Name;
-            }break;
-            case "option_list" :
-            {
-            	// put code in here!
-            foreach( $this->Options as $index => $options )
-			{
-				if( is_numeric( $options["image"] ) && $options["image"] > 0 )
-				{
-					$this->Options[$index]["image"] = eZContentObject::fetch($options["image"]);
-				}
-			}
-                return $this->Options;
-            }break;
+            case 'vat_type':
+                {
+                    return $this->VATType()->VATTypeList();
+                }
+                break;
+            case "name":
+                {
+                    return $this->Name;
+                }
+                break;
+            case "option_list":
+                {
+                    // put code in here!
+                    foreach ( $this->Options as $index => $options )
+                    {
+                        if ( is_numeric( $options["image"] ) && $options["image"] > 0 )
+                        {
+                            $this->Options[$index]["image"] = eZContentObject::fetch( $options["image"] );
+                        }
+                    }
+                    return $this->Options;
+                }
+                break;
             default:
-            {
-                eZDebug::writeError( "Attribute '$name' does not exist", 'eZOption::attribute' );
-                return null;
-            }break;
+                {
+                    eZDebug::writeError( "Attribute '$name' does not exist", 'eZOption::attribute' );
+                    return null;
+                }
+                break;
         }
     }
 
@@ -171,48 +194,79 @@ class eZOption2
         {
             $dom = new DOMDocument( '1.0', 'utf-8' );
             $success = $dom->loadXML( $xmlString );
-
+            
             // set the name of the node
             $nameNode = $dom->getElementsByTagName( "name" )->item( 0 );
             $this->setName( $nameNode->textContent );
-
+            
             $optionNodes = $dom->getElementsByTagName( "option" );
             $this->OptionCount = 0;
-
+            
             foreach ( $optionNodes as $optionNode )
             {
-                $this->addOption( array( 'value' => $optionNode->textContent,
-                                         'description' => $optionNode->getAttribute( 'description' ),
-                                         'comment' => $optionNode->getAttribute( 'comment' ),
-                                         'weight' => $optionNode->getAttribute( 'weight' ),
-                					     'image' => $optionNode->getAttribute( 'image' ),
-                                         'additional_price' => $optionNode->getAttribute( 'additional_price' ) ) );
+                $PriceList = array();
+                $mpl = $optionNode->getElementsByTagName( "multi_price" );
+                if ( $mpl )
+                {
+                    $mp = $mpl->item( 0 );
+                }
+                if ( is_object( $mp ) )
+                {
+                    foreach ( $mp->getElementsByTagName( "price" ) as $priceNode )
+                    {
+                        ;
+                        $price = array( 
+                            'type' => $priceNode->getAttribute( 'type' ) , 
+                            'value' => $priceNode->getAttribute( 'value' ) , 
+                            'currency_code' => $priceNode->getAttribute( 'currency_code' ) 
+                        );
+                        $PriceList[$priceNode->getAttribute( 'currency_code' )] = $price;
+                    }
+                }
+                $this->addOption( array( 
+                    'value' => $optionNode->textContent , 
+                    'description' => $optionNode->getAttribute( 'description' ) , 
+                    'comment' => $optionNode->getAttribute( 'comment' ) , 
+                    'weight' => $optionNode->getAttribute( 'weight' ) , 
+                    'image' => $optionNode->getAttribute( 'image' ) , 
+                    'additional_price' => $optionNode->getAttribute( 'additional_price' ) , 
+                    'multi_price' => new eZOptionMultiPrice( $PriceList ) 
+                ) )
+
+                ;
             }
+        
         }
         else
         {
-            $this->addOption( "" );
-            $this->addOption( "" );
+            $this->addOption();
         }
+    }
+
+    function store()
+    {
+        
+        $this->contentObjectAttribute->setAttribute( "data_text", $this->xmlString() );
+        $this->contentObjectAttribute->store();
     }
 
     /*!
      Will return the XML string for this option set.
     */
-    function xmlString( )
+    function xmlString()
     {
         $doc = new DOMDocument( '1.0', 'utf-8' );
-
+        
         $root = $doc->createElement( "ezoption" );
         $doc->appendChild( $root );
-
+        
         $name = $doc->createElement( "name", $this->Name );
         $root->appendChild( $name );
-
+        
         $options = $doc->createElement( "options" );
         $root->appendChild( $options );
-
-        $id=0;
+        
+        $id = 0;
         foreach ( $this->Options as $option )
         {
             unset( $optionNode );
@@ -222,23 +276,47 @@ class eZOption2
             $optionNode->setAttribute( "comment", $option['comment'] );
             $optionNode->setAttribute( "weight", $option['weight'] );
             $optionNode->setAttribute( "image", $option['image'] );
-            $optionNode->setAttribute( 'additional_price', $option['additional_price'] );
+            //$optionNode->setAttribute( 'additional_price', $option['additional_price'] );
+            $multi_price = $doc->createElement( "multi_price" );
+            if ( $option['multi_price'] and count( $option['multi_price']->PriceList ) > 0 )
+            {
+                
+                foreach ( $option['multi_price']->PriceList as $price )
+                {
+                    if ( $price['type'] != eZMultiPriceData::VALUE_TYPE_CUSTOM )
+                    {
+                        continue;
+                    }
+                    
+                    $priceNode = $doc->createElement( 'price' );
+                    
+                    $priceNode->setAttribute( 'currency_code', $price['currency_code'] );
+                    $priceNode->setAttribute( 'value', $price['value'] );
+                    $priceNode->setAttribute( 'type', $price['type'] );
+                    
+                    $multi_price->appendChild( $priceNode );
+                    unset( $priceNode );
+                }
+                $optionNode->appendChild( $multi_price );
+                unset( $multi_price );
+            }
+            
             $options->appendChild( $optionNode );
         }
-
+        
         $xml = $doc->saveXML();
-
+        
         return $xml;
     }
-
+    
     /// Contains the Option name
     public $Name;
-
+    
     /// Contains the Options
-    public $Options;
-
+    public $Options = array();
+    
     /// Contains the option counter value
-    public $OptionCount;
+    public $OptionCount = 0;
 }
 
 ?>
