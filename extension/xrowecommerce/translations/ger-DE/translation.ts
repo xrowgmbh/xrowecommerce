@@ -2091,7 +2091,7 @@ Es ist nicht möglich, den Datentyp danach zu ändern.</translation>
     <name>kernel/classes/datatypes</name>
     <message>
         <source>Pay on delivery</source>
-        <translation>Bei Lieferung zahlen</translation>
+        <translation>Nachnahme</translation>
     </message>
     <message>
         <source>Pay by invoice</source>
@@ -2099,7 +2099,7 @@ Es ist nicht möglich, den Datentyp danach zu ändern.</translation>
     </message>
     <message>
         <source>Advance payment</source>
-        <translation>Vorauszahlung</translation>
+        <translation>Vorkasse</translation>
     </message>
     <message>
         <source>Product variations</source>
