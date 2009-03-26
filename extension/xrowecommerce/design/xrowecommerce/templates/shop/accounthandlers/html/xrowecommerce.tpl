@@ -117,7 +117,7 @@
                 <tr><th>{'Reference'|i18n('extension/xrowecommerce')}:</th><td>{$order.account_information.reference}</td></tr>
                 {/if}
                 {if and(ezini( 'Settings', 'Message', 'xrowecommerce.ini' )|eq( 'enabled' ), $order.account_information.message)}
-                <tr><th>{'Your notes on order'|i18n('extension/xrowecommerce')}:</th><td>{$order.account_information.message|nl2br()|wash()}</td></tr>
+                <tr><th>{'Your notes on order'|i18n('extension/xrowecommerce')}:</th><td>{$order.account_information.message|wash()|nl2br()}</td></tr>
                 {/if}
             </table>
             

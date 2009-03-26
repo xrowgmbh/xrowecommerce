@@ -33,6 +33,12 @@ ShopUserClassList[]=client
 #USA[]=CT
 #USA[]=NY
 
+[MailSettings]
+#define the receiver of the order confirmation mail
+Email=
+#Define if mail should be send out on checkout 
+SendOrderEmail=enabled
+
 [BasketInformation]
 DisplayTax=disabled
 DisplayLogin=enabled
