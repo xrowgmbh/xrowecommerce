@@ -29,7 +29,7 @@
 $http = eZHTTPTool::instance();
 $module =& $Params["Module"];
 
-include_once( "kernel/common/template.php" );
+require_once( "kernel/common/template.php" );
 
 $basket = eZBasket::currentBasket();
 $basket->updatePrices(); // Update the prices. Transaction not necessary.
