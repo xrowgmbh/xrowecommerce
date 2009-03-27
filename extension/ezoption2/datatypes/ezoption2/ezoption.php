@@ -59,6 +59,9 @@ class eZOption2
         if ( $init )
         {
         	$this->decodeXML( $contentObjectAttribute->attribute( "data_text" ) );
+        }
+        if ( $name !== false )
+        {
             $this->Name = $name;
         }
         $this->contentObjectAttribute = $contentObjectAttribute;
@@ -103,17 +106,10 @@ class eZOption2
 
     function insertOption( $valueArray, $beforeID )
     {
+    	$valueArray['is_default'] = false;
+    	$valueArray['id'] = $this->OptionCount;
         array_splice( $this->Options, $beforeID, 0, array( 
-            array( 
-                "id" => $this->OptionCount , 
-                "value" => $valueArray['value'] , 
-                "description" => $valueArray['description'] , 
-                "comment" => $valueArray['comment'] , 
-                "weight" => $valueArray['weight'] , 
-                "image" => $valueArray['image'] , 
-                'additional_price' => $valueArray['additional_price'] , 
-                "is_default" => false 
-            ) 
+      $valueArray
         ) );
         $this->OptionCount += 1;
     }

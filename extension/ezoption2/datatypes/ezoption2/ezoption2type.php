@@ -298,27 +298,26 @@ class eZOption2Type extends eZDataType
             case "new_option":
                 {
                     $option = $contentObjectAttribute->content();
-                    $postvarname = "ContentObjectAttribute" . "_data_option_remove_" . $contentObjectAttribute->attribute( "id" );
-                    if ( $http->hasPostVariable( $postvarname ) )
+                    
+                    if ( $option->OptionCount > 0 )
                     {
-                        $idArray = $http->postVariable( $postvarname );
-                        $beforeID = array_shift( $idArray );
-                        if ( $beforeID >= 0 )
+                        
+                        foreach ( array_keys( $option->Options[0]['multi_price']->customPriceList() ) as $currency )
                         {
-                            $option->insertOption( array( 
-                                'multi_price' => new eZOptionMultiPrice( ) 
-                            ), $beforeID );
-                            
-                            $contentObjectAttribute->setContent( $option );
-                            $contentObjectAttribute->store();
-                            $option = new eZOption2( $contentObjectAttribute );
-                            $contentObjectAttribute->setContent( $option );
-                            return;
+                            $priceList[$currency] = array( 
+                                'currency_code' => $currency , 
+                                'value' => '0.00' , 
+                                'type' => eZMultiPriceData::VALUE_TYPE_CUSTOM 
+                            );
                         }
                     }
-                    $option->addOption( "" );
+                    $option->addOption( array( 
+                        'multi_price' => new eZOptionMultiPrice( $priceList ) 
+                    ) );
+                    
                     $contentObjectAttribute->setContent( $option );
                     $contentObjectAttribute->store();
+                
                 }
                 break;
             case "remove_selected":
@@ -548,23 +547,53 @@ class eZOption2Type extends eZDataType
     {
         return true;
     }
+/*
     function onPublish( $contentObjectAttribute, $contentObject, $publishedNodes )
     {
-    	$trans = $contentObjectAttribute->fetchAttributeTranslations();
-    	$xml = $contentObjectAttribute->attribute( "data_text" );
-    	$mpNode = $dom->getElementsByTagName( "multi_price" )->item( 0 );
-    	foreach ( $trans as $translation )
-    	{
-    		$old = $translation->attribute( "data_text" );
-    		$dom = new DOMDocument( '1.0', 'utf-8' );
-            $success = $dom->loadXML( $old );
-            $translationMPNode = $dom->getElementsByTagName( "multi_price" )->item( 0 );
-            $translationMPNode = clone $mpNode;
-    		$translation->setAttribute( "data_text", $dom->saveXML() );
-    		eZPersistentObject::storeObject( $translation );
-    	}
+        
+        $trans = $contentObjectAttribute->fetchAttributeTranslations();
+        $xml = $contentObjectAttribute->attribute( "data_text" );
+        $dom2 = new DOMDocument( '1.0', 'utf-8' );
+        $success = $dom2->loadXML( $old );
+        $mpNode = $dom2->getElementsByTagName( "multi_price" );
 
+        foreach ( $trans as $translation )
+        {
+        	
+            $old = $translation->attribute( "data_text" );
+            $dom = new DOMDocument( '1.0', 'utf-8' );
+            $success = $dom->loadXML( $old );
+            if ( $mpNode->length == 1 )
+            {
+                $translationMPNode = $dom->getElementsByTagName( "multi_price" );
+                if ( $translationMPNode->length == 1 )
+                {
+                	$parentNode = $translationMPNode->item( 0 )->parentNode;
+                    $parentNode->removeChild( $translationMPNode->item( 0 ) );
+                    $parentNode->appendChild( $dom->importNode( $mpNode->item( 0 ), true) );
+                }
+                else
+                {
+                	
+                }
+            }
+            else
+            {
+            	$translationMPNode = $dom->getElementsByTagName( "multi_price" );
+                if ( $translationMPNode->length == 1)
+                {
+                    $parentNode = $translationMPNode->item( 0 )->parentNode;
+                    $parentNode->removeChild( $translationMPNode->item( 0 ) );
+                }
+            }
+            $translation->setAttribute( "data_text", $dom->saveXML() );
+                    var_dump( $translation->DataText );
+        die( "here" );
+            eZPersistentObject::storeObject( $translation );
+        }
+    
     }
+*/
 }
 
 eZDataType::register( eZOption2Type::OPTION2, "ezoption2type" );
