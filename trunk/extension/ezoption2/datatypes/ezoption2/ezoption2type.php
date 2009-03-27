@@ -71,39 +71,36 @@ class eZOption2Type extends eZDataType
                 $optionAdditionalPriceList = $http->postVariable( $base . "_data_option_additional_price_" . $contentObjectAttribute->attribute( "id" ) );
             else
                 $optionAdditionalPriceList = array();
-            
+                /*
             for ( $i = 0; $i < count( $valueList ); ++ $i )
-                if ( trim( $valueList[$i] ) != '' )
+                if ( trim( $valueList[$idList[$i]] ) != '' )
                 {
                     ++ $count;
                     break;
                 }
+*/
             if ( $contentObjectAttribute->validateIsRequired() and trim( $dataName ) == '' )
             {
                 $contentObjectAttribute->setValidationError( ezi18n( 'kernel/classes/datatypes', 'NAME is required.' ) );
                 return eZInputValidator::STATE_INVALID;
             }
-            if ( $count != 0 )
+            foreach ( $idList as $id )
             {
-                for ( $i = 0; $i < count( $idList ); $i ++ )
+                if ( trim( $valueList[$id] ) == "" )
                 {
-                    $value = $valueList[$i];
-                    if ( trim( $value ) == "" )
-                    {
-                        $contentObjectAttribute->setValidationError( ezi18n( 'kernel/classes/datatypes', 'The option value must be provided.' ) );
-                        return eZInputValidator::STATE_INVALID;
-                    }
-                    if ( isset( $optionAdditionalPriceList[$i] ) && strlen( $optionAdditionalPriceList[$i] ) && ! preg_match( "#^[-|+]?[0-9]+(\.){0,1}[0-9]{0,2}$#", trim( $optionAdditionalPriceList[$i] ) ) )
-                    {
-                        $contentObjectAttribute->setValidationError( ezi18n( 'kernel/classes/datatypes', 'The Additional price value is not valid.' ) );
-                        return eZInputValidator::STATE_INVALID;
-                    }
+                    $contentObjectAttribute->setValidationError( ezi18n( 'kernel/classes/datatypes', 'The option value must be provided.' ) );
+                    return eZInputValidator::STATE_INVALID;
+                }
+                if ( isset( $optionAdditionalPriceList[$id] ) && strlen( $optionAdditionalPriceList[$id] ) && ! preg_match( "#^[-|+]?[0-9]+(\.){0,1}[0-9]{0,2}$#", trim( $optionAdditionalPriceList[$id] ) ) )
+                {
+                    $contentObjectAttribute->setValidationError( ezi18n( 'kernel/classes/datatypes', 'The Additional price value is not valid.' ) );
+                    return eZInputValidator::STATE_INVALID;
                 }
             }
         }
         if ( $contentObjectAttribute->validateIsRequired() and ! $classAttribute->attribute( 'is_information_collector' ) )
         {
-            if ( $count == 0 )
+            if ( count( $idList ) == 0 )
             {
                 $contentObjectAttribute->setValidationError( ezi18n( 'kernel/classes/datatypes', 'At least one option is required.' ) );
                 return eZInputValidator::STATE_INVALID;
@@ -197,29 +194,28 @@ class eZOption2Type extends eZDataType
         {
             $optionPriceArray = array();
         }
-        $i = 0;
         
         foreach ( $optionIDArray as $id )
         {
             $optionPriceArray = array();
-            foreach ( $optionPriceArraytmp[$i] as $key => $price )
+            foreach ( $optionPriceArraytmp[$id] as $key => $price )
             {
                 $optionPriceArray[$key] = array( 
-                    'value' => $price , 
+                    'value' => sprintf( "%01.2f", $price ) ,  #number_format($price, 2, '.') , 
                     'currency_code' => $key , 
                     'type' => eZMultiPriceData::VALUE_TYPE_CUSTOM 
                 );
             }
             $option->addOption( array( 
-                'value' => $optionValueArray[$i] , 
-                'comment' => $optionCommentArray[$i] , 
-                'weight' => $optionWeightArray[$i] , 
-                'description' => $optionDescriptionArray[$i] , 
-                'image' => $optionImageArray[$i] , 
-                'additional_price' => ( isset( $optionAdditionalPriceArray[$i] ) ? $optionAdditionalPriceArray[$i] : 0 ) , 
+                'id' => $id , 
+                'value' => $optionValueArray[$id] , 
+                'comment' => $optionCommentArray[$id] , 
+                'weight' => $optionWeightArray[$id] , 
+                'description' => $optionDescriptionArray[$id] , 
+                'image' => $optionImageArray[$id] , 
+                'additional_price' => ( isset( $optionAdditionalPriceArray[$id] ) ? $optionAdditionalPriceArray[$id] : 0 ) , 
                 'multi_price' => new eZOptionMultiPrice( $optionPriceArray ) 
             ) );
-            $i ++;
         }
         $contentObjectAttribute->setContent( $option );
         return true;
@@ -547,53 +543,95 @@ class eZOption2Type extends eZDataType
     {
         return true;
     }
-/*
+
     function onPublish( $contentObjectAttribute, $contentObject, $publishedNodes )
     {
         
         $trans = $contentObjectAttribute->fetchAttributeTranslations();
         $xml = $contentObjectAttribute->attribute( "data_text" );
+        #echo "START $contentObjectAttribute->LanguageCode\n";
+        #echo $xml . "\n";
         $dom2 = new DOMDocument( '1.0', 'utf-8' );
-        $success = $dom2->loadXML( $old );
-        $mpNode = $dom2->getElementsByTagName( "multi_price" );
-
+        $success = $dom2->loadXML( $xml );
+        $options = $dom2->getElementsByTagName( "option" );
+        $current = array();
+        if ( $options->length > 0 )
+        {
+            foreach ( $options as $option )
+            {
+                $current[$option->getAttribute( 'id' )] = $option;
+            }
+        }
         foreach ( $trans as $translation )
         {
-        	
+            if ( $contentObjectAttribute->LanguageCode == $translation->LanguageCode )
+            {
+                continue;
+            }
             $old = $translation->attribute( "data_text" );
             $dom = new DOMDocument( '1.0', 'utf-8' );
             $success = $dom->loadXML( $old );
-            if ( $mpNode->length == 1 )
+            #echo "OLD $translation->LanguageCode\n";
+            #echo $old . "\n";
+            $toptionNode = $dom->getElementsByTagName( "options" )->item( 0 );
+            $toptions = $dom->getElementsByTagName( "option" );
+            if ( $options->length > 0 )
             {
-                $translationMPNode = $dom->getElementsByTagName( "multi_price" );
-                if ( $translationMPNode->length == 1 )
+                foreach ( $toptions as $toption )
                 {
-                	$parentNode = $translationMPNode->item( 0 )->parentNode;
-                    $parentNode->removeChild( $translationMPNode->item( 0 ) );
-                    $parentNode->appendChild( $dom->importNode( $mpNode->item( 0 ), true) );
+                    if ( $current[$toption->getAttribute( 'id' )] )
+                    {
+                        $txpath = new DOMXPath( $dom );
+                        $tentries = $txpath->query( 'multi_price', $toption );
+                        $xpath = new DOMXPath( $dom2 );
+                        $entries = $xpath->query( 'multi_price', $current[$toption->getAttribute( 'id' )] );
+                        
+                        if ( $tentries->length > 0 and $entries->length > 0 )
+                        {
+                            $toption->removeChild( $tentries->item( 0 ) );
+                            $toption->appendChild( $dom->importNode( $entries->item( 0 ), true ) );
+                        }
+                        elseif ( $tentries->length > 0 and $entries->length == 0 )
+                        {
+                            $toption->removeChild( $tentries->item( 0 ) );
+                        }
+                        elseif ( $tentries->length == 0 and $entries->length > 0 )
+                        {
+                            $toption->appendChild( $dom->importNode( $entries->item( 0 ), true ) );
+                        }
+                    }
+                    else
+                    {
+                        $toption->parentNode->removeChild( $toption );
+                    }
                 }
-                else
+                foreach ( array_keys( $current ) as $key )
                 {
-                	
-                }
-            }
-            else
-            {
-            	$translationMPNode = $dom->getElementsByTagName( "multi_price" );
-                if ( $translationMPNode->length == 1)
-                {
-                    $parentNode = $translationMPNode->item( 0 )->parentNode;
-                    $parentNode->removeChild( $translationMPNode->item( 0 ) );
+                    $ok = false;
+                    foreach ( $toptions as $toption )
+                    {
+                        if ( $toption->getAttribute( 'id' ) == $key )
+                        {
+                            $ok = true;
+                            break;
+                        }
+                    
+                    }
+                    if ( $ok === false )
+                    {
+                        $toptionNode->appendChild( $dom->importNode( $current[$key], true ) );
+                    }
                 }
             }
             $translation->setAttribute( "data_text", $dom->saveXML() );
-                    var_dump( $translation->DataText );
-        die( "here" );
+            #echo "$translation->LanguageCode\n";
+            #echo $translation->attribute( "data_text" ) . "\n";
+            
+
             eZPersistentObject::storeObject( $translation );
+        
         }
-    
     }
-*/
 }
 
 eZDataType::register( eZOption2Type::OPTION2, "ezoption2type" );
