@@ -97,7 +97,10 @@ class eZOption2
         $valueArray['image'] = isset( $valueArray['image'] ) ? $valueArray['image'] : null;
         $valueArray['description'] = isset( $valueArray['description'] ) ? $valueArray['description'] : '';
         $valueArray['additional_price'] = isset( $valueArray['additional_price'] ) ? $valueArray['additional_price'] : 0;
-        $valueArray['id'] = $this->OptionCount;
+        if( !$valueArray['id'] )
+        {
+            $valueArray['id'] = uniqid( "option-" );
+        }
         $valueArray['is_default'] = false;
         $this->Options[] = $valueArray;
         
@@ -106,6 +109,7 @@ class eZOption2
 
     function insertOption( $valueArray, $beforeID )
     {
+    	throw new Exception("deprecated ".__METHOD__);
     	$valueArray['is_default'] = false;
     	$valueArray['id'] = $this->OptionCount;
         array_splice( $this->Options, $beforeID, 0, array( 
@@ -223,6 +227,7 @@ class eZOption2
                     }
                 }
                 $this->addOption( array( 
+                    'id' => $optionNode->getAttribute( 'id' ),
                     'value' => $optionNode->textContent , 
                     'description' => $optionNode->getAttribute( 'description' ) , 
                     'comment' => $optionNode->getAttribute( 'comment' ) , 
@@ -264,7 +269,6 @@ class eZOption2
         $options = $doc->createElement( "options" );
         $root->appendChild( $options );
         
-        $id = 0;
         foreach ( $this->Options as $option )
         {
             unset( $optionNode );
