@@ -25,7 +25,7 @@
 {/foreach}
 
 ----------------------------------------------
-{'Total'|i18n( 'extension/xrowecommerce' )}:  {$order.product_total_ex_vat|l10n( 'currency', $locale, $symbol )}
+{'Total'|i18n( 'extension/xrowecommerce' )}: {$order.product_total_ex_vat|l10n( 'currency', $locale, $symbol )}
 
 {foreach $order.order_items as $OrderItem}
 
