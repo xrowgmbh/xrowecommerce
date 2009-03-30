@@ -17,6 +17,7 @@
     {set locale = $currency.locale
          symbol = $currency.symbol}
 {/if}
+
 {foreach $order.product_items as $product_item}
 
 {include uri="design:shop/orderemail/product_cell_view.tpl"}
