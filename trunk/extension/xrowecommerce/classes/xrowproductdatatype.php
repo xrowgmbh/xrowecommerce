@@ -505,6 +505,18 @@ class xrowProductDataType
         return $variation->attribute( $column );
     }
 
+    /**
+     * Returns the content for the option name field
+     *
+     * @param xrowProductData $variation
+     * @param string $column
+     * @return string
+     */
+    public function metaName( xrowProductData $variation, $column )
+    {
+    	return $variation->attribute( $column );
+    }
+
     /*!
      \reimp
     */

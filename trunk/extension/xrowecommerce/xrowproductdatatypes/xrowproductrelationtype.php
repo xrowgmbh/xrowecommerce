@@ -145,6 +145,18 @@ class xrowProductRelationType extends xrowProductDataType
             }break;
         }
     }
+
+    /**
+     * Returns the content for the option name field
+     *
+     * @param xrowProductData $variation
+     * @param string $column
+     * @return string
+     */
+    public function metaName( xrowProductData $variation, $column )
+    {
+        return false;
+    }
 }
 
 ?>

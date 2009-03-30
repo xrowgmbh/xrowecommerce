@@ -38,6 +38,22 @@ class xrowProductBooleanType extends xrowProductDataType
     }
 
     /**
+     * Returns the content for the option name field
+     *
+     * @param xrowProductData $variation
+     * @param string $column
+     * @return string
+     */
+    public function metaName( xrowProductData $variation, $column )
+    {
+        $content = $variation->attribute( $column );
+        if ( $content == 1 )
+            return ezi18n( 'yes', 'extension/xrowcommerce/productvariation' );
+        else
+            return ezi18n( 'no', 'extension/xrowcommerce/productvariation' );
+    }
+
+    /**
      * Fetches the content for the current datatype
      *
      * @param array $data contains the complete data of the http input

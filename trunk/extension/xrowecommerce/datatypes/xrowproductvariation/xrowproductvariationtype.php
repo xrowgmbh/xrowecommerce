@@ -98,7 +98,8 @@ class xrowProductVariationType extends eZDataType
 
     function fetchObjectAttributeHTTPInput( $http, $base, $contentObjectAttribute )
     {
-        $content = $contentObjectAttribute->content();
+        $cObj = $contentObjectAttribute->content();
+        $content = $cObj->attribute( 'content' );
 
     	$id = $contentObjectAttribute->attribute( 'id' );
         $version = $contentObjectAttribute->attribute( 'version' );
@@ -290,8 +291,9 @@ class xrowProductVariationType extends eZDataType
                     }
                 }
             }
-            $contentObjectAttribute->setContent( $content );
-            $GLOBALS['xrowProductVariation'][$id][$version] = $content;
+            $cObj->Content = $content;
+            $contentObjectAttribute->setContent( $cObj );
+            $GLOBALS['xrowProductVariation'][$id][$version] = $cObj;
 
             return true;
         }
@@ -302,7 +304,8 @@ class xrowProductVariationType extends eZDataType
     function storeObjectAttribute( $attribute )
     {
         $id = $attribute->attribute( 'id' );
-        $content = $attribute->content();
+        $cObj = $attribute->content();
+        $content = $cObj->attribute( 'content' );
 
         if ( count( $content['data'] ) > 0 )
         {
@@ -487,7 +490,9 @@ class xrowProductVariationType extends eZDataType
             if ( !isset( $GLOBALS['xrowProductVariationError'][$id][$version] ) )
                 $GLOBALS['xrowProductVariationError'][$id][$version] = array();
             $content['error'] =& $GLOBALS['xrowProductVariationError'][$id][$version];
-            $GLOBALS['xrowProductVariation'][$id][$version] = $content;
+
+            $classAttribute = $contentObjectAttribute->contentClassAttribute();
+            $GLOBALS['xrowProductVariation'][$id][$version] = new xrowProductVariationPrice( $contentObjectAttribute, $classAttribute, $content );
         }
         return $GLOBALS['xrowProductVariation'][$id][$version];
     }
@@ -539,7 +544,8 @@ class xrowProductVariationType extends eZDataType
     */
     function hasObjectAttributeContent( $contentObjectAttribute )
     {
-        $content = self::objectAttributeContent( $contentObjectAttribute );
+        $cObj = self::objectAttributeContent( $contentObjectAttribute );
+        $content = $cObj->attribute( 'content' );
         if ( count( $content['data'] ) > 0 )
             return true;
         else
@@ -662,7 +668,8 @@ class xrowProductVariationType extends eZDataType
         $result = "";
     	if ( $contentObjectAttribute->hasContent() )
         {
-            $content = $contentObjectAttribute->content();
+            $cObj = $contentObjectAttribute->content();
+            $content = $cObj->attribute( 'content' );
             foreach ( $content['data'] as $data )
             {
             	if ( $data['obj'] )
@@ -689,6 +696,50 @@ class xrowProductVariationType extends eZDataType
     function isInformationCollector()
     {
         return false;
+    }
+
+    /*!
+     Fetches the product option information for option with ID \a $optionID and returns this information.
+     This will be called from the basket when a new product with an option is added, it is then up to the
+     specific datatype to return proper data. It will also be used to recalcuate prices.
+
+     \param $objectAttribute The attribute that the datatype controls.
+     \param $optionID The ID of the option which information should be returned from.
+     \param $productItem The product item object which contains the option, is available for reading only.
+     \return An array structure which contains:
+             - id - The unique ID of the selected option, this must be unique in the attribute and will later on
+                    be used to recalculate prices.
+             - name - The name of the option list
+             - value - The display string of the selected option
+             - additional_price - A value which is added to the total product price, set to 0 or \c false if no price is used.
+             If the option could not be found it should return \c false, if not supported it should return \c null.
+     \sa handleProductOption
+    */
+    function productOptionInformation( $objectAttribute, $optionID, $productItem, $amount = 1 )
+    {
+        $result = array();
+        $price = 0.0;
+        $name = '';
+        $value = '';
+        $cObj = $objectAttribute->content();
+        $variation = xrowProductData::fetch( $optionID );
+        if ( $variation )
+        {
+        	$template = $variation->fetchTemplate();
+        	$priceIdentifier = $template->findPriceAttributeIdentifier();
+        	if ( $priceIdentifier != '' )
+        	{
+        		$priceID = $variation->attribute( $priceIdentifier );
+        		$price = xrowProductPrice::fetchPriceByAmount( $priceID, $amount );
+        	}
+        	$name = $variation->getVariationName();
+        }
+        $result['value'] = $value;
+        $result['name'] = $name;
+        $result['additional_price'] = $price;
+        $result['id'] = (int) $optionID;
+
+        return $result;
     }
 
 }

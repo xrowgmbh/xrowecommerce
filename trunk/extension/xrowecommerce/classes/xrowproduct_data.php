@@ -50,7 +50,8 @@ class xrowProductData extends eZPersistentObject
 
             $GLOBALS['xrowproductdata_def'] = array_merge( $def,
                                                             array(
-                                                                  'function_attributes' => array( 'template' => 'fetchTemplate' ),
+                                                                  'function_attributes' => array( 'template' => 'fetchTemplate',
+                                                                                                  'contentobject_attribute' => 'contentObjectAttribute' ),
                                                                   'keys' => array( 'id' ),
                                                                   'sort' => array( 'id' => 'asc' ),
                                                                   'class_name' => 'xrowProductData',
@@ -165,6 +166,55 @@ class xrowProductData extends eZPersistentObject
         return $result;
     }
 
+    /**
+     * Returns the name of a variation
+     *
+     * @return string name
+     */
+    public function getVariationName()
+    {
+    	$result = "";
+        $template = $this->attribute( 'template' );
+        if ( $template )
+        {
+            $attribute = $this->contentObjectAttribute();
+        	$cObj = $attribute->content();
+        	if ( $cObj )
+        	{
+        	    $content = $cObj->attribute( 'content' );
+        	    $columnNameArray = $content['column_name_array'];
+        	}
+            $xrowIni = eZINI::instance( 'xrowproduct.ini' );
+        	$delimiter = $xrowIni->variable( 'XrowProductDataTypes', 'NameDelimiter' );
+        	foreach ( $template->AttributeList as $attribute )
+            {
+                $dataType = $attribute['attribute']->dataType();
+                $id = $attribute['attribute']->Identifier;
+                $field = $id;
+                if ( $dataType and
+                     isset( $attribute['search'] ) and
+                     $attribute['search'] === true and
+                     isset( $attribute['frontend'] ) and
+                     $attribute['frontend'] === true )
+                {
+                    $colName = '';
+                    if ( isset( $columnNameArray[$id] ) )
+                        $colName = $columnNameArray[$id];
+                    else
+                        $colName = $attribute['column_name'];
+
+                    $value = $dataType->metaName( $this, $field );
+                    if ( $value !== false )
+                    {
+                        $result .= " $colName: $value" .  $delimiter;
+                    }
+                }
+            }
+            $result = trim( $result, $delimiter );
+        }
+        return $result;
+    }
+
     static function fetchList( $conditions = null,
                                $asObjects = true,
                                $offset = false,
@@ -248,6 +298,17 @@ class xrowProductData extends eZPersistentObject
                          'language_code' => array( '!=', $languageCode ) );
 
         return self::fetchObjectList( eZContentObjectAttribute::definition(), array( 'id', 'language_code' ), $params );
+    }
+
+    /**
+     * Fetches the belonging content object attribute
+     *
+     * @return mixed
+     */
+    public function contentObjectAttribute()
+    {
+        $result = eZContentObjectAttribute::fetch( $this->attribute( 'attribute_id' ), $this->attribute( 'version' ) );
+        return $result;
     }
 }
 
