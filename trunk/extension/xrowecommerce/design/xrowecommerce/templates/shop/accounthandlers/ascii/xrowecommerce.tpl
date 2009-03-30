@@ -1,5 +1,17 @@
-{'Name'|i18n( 'extension/xrowecommerce')}: {$order.account_information.first_name} {$order.account_information.last_name}
-{'MI'|i18n( 'extension/xrowecommerce')}: {$order.account_information.mi}
+
+{if and( eq(ezini( 'Settings', 'CompanyName', 'xrowecommerce.ini' ), 'enabled' ), $order.account_information.company_name)}
+{'Company'|i18n('extension/xrowecommerce')}: {$order.account_information.company_name}
+{/if}
+
+{if and( eq(ezini( 'Settings', 'CompanyAdditional', 'xrowecommerce.ini' ), 'enabled' ), $order.account_information.company_additional)}
+{'Company additional information'|i18n('extension/xrowecommerce')}: {$order.account_information.company_additional}
+{/if}
+
+{if and( eq(ezini( 'Settings', 'TaxID', 'xrowecommerce.ini' ), 'enabled' ), $order.account_information.tax_id)}
+    {'Tax ID'|i18n('extension/xrowecommerce')}: {$order.account_information.tax_id}
+{/if}
+
+{'Name'|i18n( 'extension/xrowecommerce')}: {$order.account_information.first_name} {$order.account_information.mi} {$order.account_information.last_name}
 {'Email'|i18n( 'extension/xrowecommerce')}: {$order.account_information.email}
 
 
@@ -10,7 +22,11 @@
 {/if}
 
 {'City'|i18n( 'extension/xrowecommerce')}: {$order.account_information.city}
-{'State'|i18n( 'extension/xrowecommerce')}: {$order.account_information.state}
+
+{if $order.account_information.state}
+{'State'|i18n('extension/xrowecommerce')}: {$order.account_information.state}
+{/if}
+
 {'Country'|i18n( 'extension/xrowecommerce')}: {$order.account_information.country}
 {'Zip code'|i18n( 'extension/xrowecommerce')}: {$order.account_information.zip}
 {'Phone'|i18n( 'extension/xrowecommerce')}: {$order.account_information.phone}
@@ -30,7 +46,11 @@
 {/if}
 
 {'City'|i18n( 'extension/xrowecommerce')}: {$order.account_information.s_city}
-{'State'|i18n( 'extension/xrowecommerce')}: {$order.account_information.s_state}
+
+{if $order.account_information.s_state}
+{'State'|i18n('extension/xrowecommerce')}: {$order.account_information.s_state}
+{/if}
+
 {'Country'|i18n( 'extension/xrowecommerce')}: {$order.account_information.s_country}
 {'Zip code'|i18n( 'extension/xrowecommerce')}: {$order.account_information.s_zip}
 {'Phone'|i18n( 'extension/xrowecommerce')}: {$order.account_information.s_phone}

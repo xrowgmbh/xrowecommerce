@@ -204,9 +204,19 @@ if ( $module->isCurrentAction( 'Store' ) )
             $inputIsValid = false;
     }
     $email = $http->postVariable( "EMail" );
-    if ( ! eZMail::validate( $email ) )
+    if ( empty( $email ) )
+    {
+        $errors[] = ezi18n( 'extension/xrowecommerce', "The email address isn't given." );
         $inputIsValid = false;
-    
+    }
+    else
+    {
+        if ( ! eZMail::validate( $email ) )
+        {
+            $errors[] = ezi18n( 'extension/xrowecommerce', "The email address isn't valid." );
+            $inputIsValid = false;
+        }
+    }
     $address1 = $http->postVariable( "Address1" );
     $address2 = $http->postVariable( "Address2" );
     if ( trim( $address1 ) == "" )
@@ -293,7 +303,7 @@ if ( $module->isCurrentAction( 'Store' ) )
                 try
                 {
                     $ret = xrowECommerce::checkVat( $ezcountry['Alpha2'], $matches[2] );
-                    if ( !$ret )
+                    if ( ! $ret )
                     {
                         $errors[] = ezi18n( 'extension/xrowecommerce', 'Your companies tax ID number is not valid.' );
                         $inputIsValid = false;
@@ -352,9 +362,19 @@ if ( $module->isCurrentAction( 'Store' ) )
         $s_mi = $http->postVariable( "s_MI" );
         
         $s_email = $http->postVariable( "s_EMail" );
-        if ( ! eZMail::validate( $s_email ) )
+        if ( empty( $s_email ) )
+        {
+            $errors[] = ezi18n( 'extension/xrowecommerce', "The email address isn't given." );
             $inputIsValid = false;
-        
+        }
+        else
+        {
+            if ( ! eZMail::validate( $s_email ) )
+            {
+                $errors[] = ezi18n( 'extension/xrowecommerce', "The email address isn't valid." );
+                $inputIsValid = false;
+            }
+        }
         $s_address1 = $http->postVariable( "s_Address1" );
         $s_address2 = $http->postVariable( "s_Address2" );
         if ( trim( $s_address1 ) == "" )
@@ -510,7 +530,7 @@ if ( $module->isCurrentAction( 'Store' ) )
         
         $recaptacheNode = $doc->createElement( "captcha", $captcha );
         $root->appendChild( $recaptacheNode );
-        if( !empty( $payment_method ) )
+        if ( ! empty( $payment_method ) )
         {
             $payment_methodNode = $doc->createElement( xrowECommerce::ACCOUNT_KEY_PAYMENTMETHOD, $payment_method );
             $root->appendChild( $payment_methodNode );
