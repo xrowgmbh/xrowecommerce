@@ -370,6 +370,28 @@ class xrowProductTemplate extends eZPersistentObject
         return $this->SortBy;
     }
 
+    /**
+     * Search the price datatype in the attribute list
+     * and returns the identifier.
+     * @return string
+     */
+    public function findPriceAttributeIdentifier()
+    {
+    	$this->updateAttributes();
+    	$attributeList = $this->attributeList();
+        foreach ( $attributeList as $attribute )
+        {
+            $dataType = $attribute['attribute']->dataType();
+
+        	if ( $dataType->DataTypeString == 'price' )
+            {
+            	return  $attribute['attribute']->attribute( 'identifier' );
+            }
+        }
+        eZDebug::writeError( 'Price field not found', 'xrowProductTemplate::findPriceAttributeIdentifier()' );
+        return '';
+    }
+
      /// \privatesection
     public $ID;
     // serialized array of data

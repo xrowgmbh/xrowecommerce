@@ -1,0 +1,12 @@
+
+-) Price datatypes list hardcoded in ezshopfunctions.php
+http://issues.ez.no/IssueView.php?Id=14011&activeItem=21
+
+-) eZDataType
+
+added amount for
+function productOptionInformation( $objectAttribute, $optionID, $productItem, $amount = 1 )
+
+Price hack:
+wrong usage of productOptionInformation
+http://issues.ez.no/IssueView.php?Id=14703&activeItem=1

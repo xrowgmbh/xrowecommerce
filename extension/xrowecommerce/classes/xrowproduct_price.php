@@ -41,7 +41,7 @@ class xrowProductPrice extends eZPersistentObject
                       'name' => 'xrowproduct_price' );
     }
 
-    static function fetchList( $conditions = null,
+    public static function fetchList( $conditions = null,
                                $asObjects = true,
                                $offset = false,
                                $limit = false,
@@ -60,7 +60,7 @@ class xrowProductPrice extends eZPersistentObject
         return $result;
     }
 
-    static function fetchListCount( $conditions )
+    public static function fetchListCount( $conditions )
     {
         $custom = array( array( 'operation' => 'count( id )',
                                 'name' => 'count' ) );
@@ -74,6 +74,57 @@ class xrowProductPrice extends eZPersistentObject
                                                      false,
                                                      $custom );
         return $rows[0]['count'];
+    }
+
+    /**
+     * Fetches a price by code and amount
+     *
+     * @param int $priceID
+     * @param int $amount
+     * @param string $code
+     * @return float
+     */
+    public static function fetchPriceByAmount( $priceID, $amount )
+    {
+    	//eZDebug::writeDebug( $amount, 'amount' );
+    	$conditions = array( 'price_id' => $priceID,
+    	                     'amount' => array( '<=', $amount ) );
+        $limitation = array( 'offset' => 0, 'length' => 1 );
+        $sortBy = array( 'amount' => 'desc' );
+
+        $countryList = self::countryArray();
+        foreach ( $countryList as $key )
+        {
+            $conditions['country'] = $key;
+        	$rows = eZPersistentObject::fetchObjectList( self::definition(),
+                                                         array( 'price' ),
+                                                         $conditions,
+                                                         $sortBy,
+                                                         $limitation,
+                                                         false );
+
+            if ( count( $rows ) == 1 )
+	        {
+	            return $rows[0]['price'];
+	        }
+        }
+        eZDebug::writeDebug( 'price not found', 'xrowProductPrice::fetchPriceByAmount()' );
+        return 0.0;
+    }
+
+    /**
+     * returns the priorized list of currencies / countries
+     *
+     */
+    public static function countryArray()
+    {
+    	if ( !isset( $GLOBALS['xrowpricecountryarray'] ) )
+    	{
+            $xrowINI = eZINI::instance( 'xrowproduct.ini');
+            $countryArray = $xrowINI->variable( 'PriceSettings', 'CountryArray' );
+            $GLOBALS['xrowpricecountryarray'] = array_keys( $countryArray );
+    	}
+    	return $GLOBALS['xrowpricecountryarray'];
     }
 }
 

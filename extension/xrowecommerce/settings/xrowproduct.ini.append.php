@@ -7,22 +7,18 @@ ProductDataTypeArray[integer]=xrowProductIntegerType
 ProductDataTypeArray[boolean]=xrowProductBooleanType
 ProductDataTypeArray[text]=xrowProductTextType
 ProductDataTypeArray[float]=xrowProductFloatType
-ProductDataTypeArray[relation]=xrowProductRelationType
+#ProductDataTypeArray[relation]=xrowProductRelationType
 ProductDataTypeArray[price]=xrowProductPriceType
 ProductDataTypeArray[sku]=xrowProductSkuType
 # coming soon
 #ProductDataTypeArray[]=selection
 
-ExtensionDirectories[]
-ExtensionDirectories[]=xrowecommerce
-
-RepositoryDirectories[]
+# Delimiter for the price option name
+NameDelimiter=,
 
 [PriceSettings]
-# A list of countries which are supported, ISO
-#CountryArray[]
-#CountryArray[AUT]=EUR
-#CountryArray[GER]=EUR
+IsVATInclude=false
+VATTypeID=1
 
 # Which price of which country should be shown
 #PreferedCountry=AUT
