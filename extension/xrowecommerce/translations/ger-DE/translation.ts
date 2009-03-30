@@ -1204,7 +1204,7 @@
     </message>
     <message>
         <source>Date</source>
-        <translation>DatumDatum</translation>
+        <translation>Datum</translation>
     </message>
     <message>
         <source>Total (inc Tax)</source>
