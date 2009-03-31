@@ -1,4 +1,6 @@
-
+{def $shiplist=fetch( 'shipping', 'list_all_methods' )}
+{def $gateways=fetch( 'xrowecommerce', 'list_all_gateways' )}
+ 
 {if and( eq(ezini( 'Settings', 'CompanyName', 'xrowecommerce.ini' ), 'enabled' ), $order.account_information.company_name)}
 {'Company'|i18n('extension/xrowecommerce')}: {$order.account_information.company_name}
  
@@ -33,7 +35,7 @@
  
 {'Phone'|i18n( 'extension/xrowecommerce')}: {$order.account_information.phone}
  
-{'Shipping'|i18n( 'extension/xrowecommerce')}: {switch match=$order.account_information.shippingtype}{case match="1"}Next Day Service{/case}{case match="2"}2nd Day Service{/case}{case}Standard Shipping{/case}{/switch}
+{'Shipping'|i18n( 'extension/xrowecommerce')}: {foreach  $shiplist as $method}{if $method.identifier|eq($order.account_information.shippingtype)}$method.name}{/if}{/foreach}
  
 {if eq($order.account_information.shipping,0)}
 {'Shipped to'|i18n( 'extension/xrowecommerce')}:
@@ -70,7 +72,8 @@
  
 {/if}
 {if $order.account_information.paymentmethod}
-{'Payment method'|i18n('extension/xrowecommerce')}: {$order.account_information.paymentmethod}
+{'Payment method'|i18n('extension/xrowecommerce')}: {if $gateways|gt(0)}{foreach $gateways as $gateway}{if $order.account_information.paymentmethod|eq($gateway.value)}{$gateway.Name|wash}{/if}{/foreach}{/if}
+{$order.account_information.paymentmethod}
  
 {else}
 {'Payment method'|i18n('extension/xrowecommerce')}: {'Unkown'|i18n('extension/xrowecommerce')}
