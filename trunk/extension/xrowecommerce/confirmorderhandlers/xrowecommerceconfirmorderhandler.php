@@ -31,6 +31,7 @@ class xrowECommerceConfirmOrderHandler
             //include_once( 'lib/ezutils/classes/ezmailtransport.php' );
             $mail = new eZMail( );
             $emailSender = eZINI::instance( 'xrowecommerce.ini' )->variable( 'MailSettings', 'Email' );
+            $htmlMode = eZINI::instance( 'xrowecommerce.ini' )->variable( 'MailSettings', 'HtmlEmail' );
             if ( ! $emailSender )
                 $emailSender = $ini->variable( 'MailSettings', 'EmailSender' );
             if ( ! $emailSender )
@@ -40,6 +41,8 @@ class xrowECommerceConfirmOrderHandler
             $mail->setSender( $emailSender );
             $mail->setSubject( $subject );
             $mail->setBody( $templateResult );
+            if( $htmlMode == 'enabled' )
+                $mail->setContentType('text/html');
             $mailResult = eZMailTransport::send( $mail );
             
             $email = eZINI::instance( 'xrowecommerce.ini' )->variable( 'MailSettings', 'Email' );
@@ -51,6 +54,8 @@ class xrowECommerceConfirmOrderHandler
             $mail->setSender( $emailSender );
             $mail->setSubject( $subject );
             $mail->setBody( $templateResult );
+            if( $htmlMode == 'enabled' )
+                $mail->setContentType('text/html');
             $mailResult = eZMailTransport::send( $mail );
         }
     }
