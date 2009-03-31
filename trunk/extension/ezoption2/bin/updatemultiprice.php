@@ -48,7 +48,7 @@ while ( $attributes = eZPersistentObject::fetchObjectList( eZContentObjectAttrib
                 
                 $priceNode = $doc->createElement( 'price' );
                 
-                $priceNode->setAttribute( 'currency_code', eZShopFunctions::preferredCurrencyCode() );
+                $priceNode->setAttribute( 'currency_code', 'EUR' ); #eZShopFunctions::preferredCurrencyCode()
                 $priceNode->setAttribute( 'value', $price );
                 $priceNode->setAttribute( 'type', eZMultiPriceData::VALUE_TYPE_CUSTOM );
                 
