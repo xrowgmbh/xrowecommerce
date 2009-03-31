@@ -43,4 +43,10 @@ SendOrderEmail=enabled
 DisplayTax=disabled
 DisplayLogin=enabled
 DisplayShipping=enabled
-*/ ?>
+
+[InvoiceSettings]
+ShowFooter=enabled
+CompanyName=Example Inc
+CompanyWebsite=http://www.example.com/
+CompanyPhone=+1 555 123456
+* */ ?>
