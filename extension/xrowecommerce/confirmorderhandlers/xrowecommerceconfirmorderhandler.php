@@ -31,31 +31,41 @@ class xrowECommerceConfirmOrderHandler
             //include_once( 'lib/ezutils/classes/ezmailtransport.php' );
             $mail = new eZMail( );
             $emailSender = eZINI::instance( 'xrowecommerce.ini' )->variable( 'MailSettings', 'Email' );
-            $htmlMode = eZINI::instance( 'xrowecommerce.ini' )->variable( 'MailSettings', 'HtmlEmail' );
+            $htmlMode = eZINI::instance( 'xrowecommerce.ini' )->variable( 'MailSettings', 'HTMLEmail' );
             if ( ! $emailSender )
+            {
                 $emailSender = $ini->variable( 'MailSettings', 'EmailSender' );
+            }
             if ( ! $emailSender )
+            {
                 $emailSender = $ini->variable( "MailSettings", "AdminEmail" );
+            }
             
             $mail->setReceiver( $email );
             $mail->setSender( $emailSender );
             $mail->setSubject( $subject );
             $mail->setBody( $templateResult );
-            if( $htmlMode == 'enabled' )
-                $mail->setContentType('text/html');
+            if ( $htmlMode == 'enabled' )
+            {
+                $mail->setContentType( 'text/html' );
+            }
             $mailResult = eZMailTransport::send( $mail );
             
             $email = eZINI::instance( 'xrowecommerce.ini' )->variable( 'MailSettings', 'Email' );
             if ( ! $email )
+            {
                 $email = $ini->variable( "MailSettings", "AdminEmail" );
+            }
             $mail = new eZMail( );
             
             $mail->setReceiver( $email );
             $mail->setSender( $emailSender );
             $mail->setSubject( $subject );
             $mail->setBody( $templateResult );
-            if( $htmlMode == 'enabled' )
-                $mail->setContentType('text/html');
+            if ( $htmlMode == 'enabled' )
+            {
+                $mail->setContentType( 'text/html' );
+            }
             $mailResult = eZMailTransport::send( $mail );
         }
     }
