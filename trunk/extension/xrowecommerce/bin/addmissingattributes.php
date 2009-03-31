@@ -168,7 +168,7 @@ function updateClasses( $ident )
     if ( !attributeIdentifierExists( $class, 's_address1' ) )
     {
         $attributes[] = array( 
-            'identifier' => 'address1', 
+            'identifier' => 's_address1', 
             'name' => 'Address', 
             'data_type_string' => 'ezstring' 
         );
