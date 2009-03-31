@@ -26,7 +26,7 @@
                 {/if}
             </div>
             {else}
-            <div class="nopic attribute-image"><img src={'nopic_130.gif'|ezimage()} alt="{'No image aviable'|i18n('extension/xrowecommerce')}" /></div>
+            <div class="nopic attribute-image"><img src={'nopic_130.gif'|ezimage()} alt="{'No image available'|i18n('extension/xrowecommerce')}" /></div>
             {/if}
             <div class="description-wrap">
                     <div class="attribute-short">
@@ -84,7 +84,7 @@
                            {if $Options.item.image|is_object(true)}
                            {attribute_view_gui image_class=galleryline attribute=$Options.item.image.current.data_map.image}
                            {else}
-                           <div class="s_nopic"><img src={'nopic_70.gif'|ezimage()} alt="{'No image aviable'|i18n('extension/xrowecommerce')}" /></div>
+                           <div class="s_nopic"><img src={'nopic_70.gif'|ezimage()} alt="{'No image available'|i18n('extension/xrowecommerce')}" /></div>
                            {/if}
                         </td>
                        <td>

@@ -875,7 +875,7 @@
         <translation>Versandadresse</translation>
     </message>
     <message>
-        <source>No image aviable</source>
+        <source>No image available</source>
         <translation>Kein Bild verfügbar</translation>
     </message>
     <message>
