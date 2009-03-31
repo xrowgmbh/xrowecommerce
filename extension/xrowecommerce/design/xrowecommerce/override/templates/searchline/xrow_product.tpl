@@ -9,7 +9,7 @@
                                 {attribute_view_gui image_class=product_thumb attribute=$node.data_map.image}
                             </div>
                         {else}
-                            <div class="nopic"><a href="{$node.url_alias|ezurl('no')}"><img src={'nopic_70.gif'|ezimage()} alt="{'No image aviable'|i18n('extension/xrowecommerce')}" /></a></div>
+                            <div class="nopic"><a href="{$node.url_alias|ezurl('no')}"><img src={'nopic_70.gif'|ezimage()} alt="{'No image available'|i18n('extension/xrowecommerce')}" /></a></div>
                         {/if}
                     </div>
                 </td>

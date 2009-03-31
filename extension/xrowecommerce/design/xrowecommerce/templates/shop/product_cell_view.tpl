@@ -39,7 +39,7 @@ $product_item is the current product in the cart
                    {/switch}
                        
                        {else}
-                       <div class="product-image-unavialable"><img src={'shop/unavailable.png'|ezimage()} alt="{'No image aviable'|i18n('extension/xrowecommerce')}" /></div>
+                       <div class="product-image-unavialable"><img src={'shop/unavailable.png'|ezimage()} alt="{'No image available'|i18n('extension/xrowecommerce')}" /></div>
                        {/if}
                    {/if}
 				</div>
@@ -77,7 +77,7 @@ $product_item is the current product in the cart
                     {/case}
                {/switch}
                {else}
-               <div class="product-image-unavialable"><img src={'shop/unavailable.png'|ezimage()} alt="{'No image aviable'|i18n('extension/xrowecommerce')}" /></div>
+               <div class="product-image-unavialable"><img src={'shop/unavailable.png'|ezimage()} alt="{'No image available'|i18n('extension/xrowecommerce')}" /></div>
                {/if}
                </div>
                <p class="product-link">

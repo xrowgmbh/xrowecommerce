@@ -875,7 +875,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>No image aviable</source>
+        <source>No image available</source>
         <translation type="unfinished"></translation>
     </message>
     <message>

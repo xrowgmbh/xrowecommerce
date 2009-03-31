@@ -61,7 +61,7 @@ $products=fetch( content, tree,
 {if $child.data_map.image.has_content}
 {attribute_view_gui attribute=$child.data_map.image image_class=tooltip}
 {else}
-<div class="nopic attribute-image"><img src={'nopic_130.gif'|ezimage()} alt="{'No image aviable'|i18n('extension/xrowecommerce')}" /></div>
+<div class="nopic attribute-image"><img src={'nopic_130.gif'|ezimage()} alt="{'No image available'|i18n('extension/xrowecommerce')}" /></div>
 {/if}
 <p>{attribute_view_gui attribute=$child.data_map.short_description}</p>
 <p>{attribute_view_gui attribute=$child.data_map.description}</p>
@@ -106,7 +106,7 @@ $products=fetch( content, tree,
 {if $child.data_map.image.has_content}
 {attribute_view_gui attribute=$child.data_map.image image_class=tooltip}
 {else}
-<div class="nopic attribute-image"><img src={'nopic_130.gif'|ezimage()} alt="{'No image aviable'|i18n('extension/xrowecommerce')}" /></div>
+<div class="nopic attribute-image"><img src={'nopic_130.gif'|ezimage()} alt="{'No image available'|i18n('extension/xrowecommerce')}" /></div>
 {/if}
 <p>{attribute_view_gui attribute=$child.data_map.short_description}</p>
 <p>{attribute_view_gui attribute=$child.data_map.description}</p>
