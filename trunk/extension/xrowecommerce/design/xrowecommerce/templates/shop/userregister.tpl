@@ -45,7 +45,7 @@
     <div class="ur_company_additional">
         <label>{'Company additional information'|i18n('extension/xrowecommerce')}</label>
         <div class="labelbreak"></div>
-        <input type="text" name="companyadditional" value="{$companyadditional|wash}" />
+        <input type="text" name="companyadditional" value="{$company_additional|wash}" />
     </div>
 {/if}
 {if eq(ezini( 'Settings', 'TaxID', 'xrowecommerce.ini' ), 'enabled' )}
@@ -298,10 +298,10 @@
 {* right column *}
 <div class="shipping">
 <h3>{'Shipping Information'|i18n( 'extension/xrowecommerce' )}</h3>
-<label class="shipping-checkbox" for="shipping-checkbox"><input class="shipping-checkbox" id="shipping-checkbox" name="Shipping" value="1" type="checkbox" {$shipping|choose( '', 'checked="checked"' )} onchange="change(this.checked); shipping(document.register.country.value);" />{'My billing and shipping addresses are identical.'|i18n('extension/xrowecommerce')}</label>
+<label class="shipping-checkbox" for="shipping-checkbox"><input class="shipping-checkbox" id="shipping-checkbox" name="Shipping" value="1" type="checkbox" {if $shipping} checked="checked" {/if} onchange="change(this.checked); shipping(document.register.country.value);" />{'My billing and shipping addresses are identical.'|i18n('extension/xrowecommerce')}</label>
 
 
-<div class="block" id="shippinginfo" {$shipping|choose( "style='display: block;'", "style='display: none;'")}>
+<div class="block" id="shippinginfo"{if $shipping} style="display: none;"{else} style="display: block;"{/if}>
 <p><span class="required">* {'Required field'|i18n('extension/xrowecommerce')}</span></p>
 {if eq(ezini( 'Settings', 'CompanyName', 'xrowecommerce.ini' ), 'enabled' )}
     <div class="ur_companyname">
@@ -692,6 +692,7 @@ function shipping(status)
     if ( document.register.Shipping.checked == false)
     {
         status = document.register.scountry.value;
+        document.getElementById("shippinginfo").style.display = 'block';
     }
     
     if (status == "USA")

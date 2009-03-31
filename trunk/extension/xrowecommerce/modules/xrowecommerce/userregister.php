@@ -342,8 +342,14 @@ if ( $module->isCurrentAction( 'Store' ) )
     {
         $no_partial_delivery = '0';
     }
-    
-    $shipping = $http->postVariable( "Shipping" );
+    if( $http->hasPostVariable( "Shipping" ) )
+    {
+        $shipping = true;
+    }
+    else
+    {
+    	$shipping = false;
+    }
     $shippingtype = $http->postVariable( "ShippingType" );
     $shippingdestination = $country;
     
@@ -641,6 +647,7 @@ $tpl->setVariable( "country", $country );
 $tpl->setVariable( "phone", $phone );
 $tpl->setVariable( "fax", $fax );
 $tpl->setVariable( "shipping", $shipping );
+
 $tpl->setVariable( "shippingtype", $shippingtype );
 if ( isset( $payment_method ) )
 {
