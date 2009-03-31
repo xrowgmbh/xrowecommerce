@@ -223,37 +223,35 @@ class eZShippingInterfaceType extends eZWorkflowEventType
             $dm = $co->dataMap();
             
             // FreeShipping Item check
-            if ( $dm['freeshipping']->DataInt == 1 )
-                $freeshippingproduct = true;
-                // FreeShipping Item check
-            
-
-            // FreeHandling Item check
-            if ( is_object( $dm['freehandling'] ) )
+            if ( array_key_exists( 'freeshipping', $dm ) and $dm['freeshipping']->DataInt == 1 )
             {
-                if ( $dm["freehandling"]->DataInt == 1 )
-                    $freehandlingproduct = true;
+                $freeshippingproduct = true;
+            }
+            else
+            {
+                $freeshippingproduct = false;
             }
             
             // FreeHandling Item check
-            
-
-            // Hazardous Item check
-            if ( is_object( $dm['hazardous'] ) )
+            if ( array_key_exists( 'freehandling', $dm ) and $dm["freehandling"]->DataInt == 1 )
             {
-                if ( $dm["hazardous"]->DataInt == 1 )
+                $freehandlingproduct = true;
+            }
+            else
+            {
+                $freehandlingproduct = false;
+            }
+            
+            // Hazardous Item check
+            if ( array_key_exists( 'hazardous', $dm ) and $dm["hazardous"]->DataInt == 1 )
+            {
+                if ( $shipping_country != "USA" and $shipping_country != "CAN" or $shippingtype == 4 or $shippingtype == 5 )
                 {
-                    if ( $shipping_country != "USA" and $shipping_country != "CAN" or $shippingtype == 4 or $shippingtype == 5 )
-                    {
-                        $hazardousproducts[] = $item;
-                        $item->remove();
-                        continue;
-                    }
+                    $hazardousproducts[] = $item;
+                    $item->remove();
+                    continue;
                 }
             }
-            
-            // FreeHandling Item check
-            
 
             if ( ! empty( $option ) )
             {
@@ -262,7 +260,7 @@ class eZShippingInterfaceType extends eZWorkflowEventType
                 /*
                      Variation
                     */
-                if ( $dm['variation'] )
+                if ( array_key_exists( 'variation', $dm ) )
                 {
                     $content = $dm['variation']->content();
                     $contentopt = $content->Options;
@@ -278,7 +276,7 @@ class eZShippingInterfaceType extends eZWorkflowEventType
             else
             {
                 // Conditional, if weight is defined in datamap array
-                if ( $dm['weight'] )
+                if ( array_key_exists( 'weight', $dm ) )
                 {
                     // Fetch weight
                     $count = $item->ItemCount;
@@ -468,8 +466,7 @@ class eZShippingInterfaceType extends eZWorkflowEventType
         
 
         // get actual tax value
-        $vat_value = 0;
-        $vat_value = eZVATManager::getVAT();
+        $vat_value = eZVATManager::getVAT( false, false );
         /*
         if( $tax_country == "USA" AND $tax_state == "NY" AND $cost > 0 )
                 $vat_value =  8.375;
