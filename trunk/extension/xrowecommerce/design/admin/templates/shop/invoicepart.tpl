@@ -14,7 +14,7 @@ thead {
 {/literal}
 
 <p style="margin-top:2em"></p>
-    {include uri="design:order/invoiceheader.tpl"}
+    {include uri="design:shop/invoice/header.tpl"}
 <div class="break" style="clear:both;"></div>
     {shop_account_view_gui view=invoice order=$order packingslip=$packingslip}
 <div class="break" style="clear:both;"></div>
@@ -68,12 +68,12 @@ thead {
     <th colspan="4">{'Subtotal Ex. Tax'|i18n( 'extension/xrowecommerce' )}:</th>
     <td class="number" align="right">{$order.product_total_ex_vat|l10n( 'currency', $locale, $symbol )}</td>
 </tr>
-{section name=OrderItem loop=$order.order_items show=$order.order_items sequence=array(bglight,bgdark)}
+{foreach $order.order_items as $order_item sequence array(bglight,bgdark) as $sequence}
 <tr>
-    <th colspan="4">{$OrderItem:item.description}:</th>
-    <td class="number" align="right">{$OrderItem:item.price_ex_vat|l10n( 'currency', $locale, $symbol )}</td>
+    <th colspan="4">{$order_item.description}:</th>
+    <td class="number" align="right">{$order_item.price_ex_vat|l10n( 'currency', $locale, $symbol )}</td>
 </tr>
-{/section}
+{/foreach}
 {def $taxpercent = mul( div(sub($order.total_inc_vat, $order.total_ex_vat), $order.total_ex_vat), 100)
      $percentage = mul( div(sub($order.total_inc_vat, $order.total_ex_vat), $order.total_ex_vat), 100)|l10n('number') }
 <tr>
@@ -87,6 +87,6 @@ thead {
 {/if}
 </tbody>
 </table>
-{if eq( ezini('OrderSettings','showFooter','order.ini'), true)}
-{include uri="design:order/invoicefooter.tpl" packingslip=$packingslip}
+{if ezini('InvoiceSettings','ShowFooter','xrowecommerce.ini')|eq('enabled')}
+{include uri="design:shop/invoice/footer.tpl" packingslip=$packingslip}
 {/if}

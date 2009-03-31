@@ -114,7 +114,7 @@ function showAlert()
             <p>{'Hazardous item(s) found in your cart.'|i18n('extension/xrowecommerce')}</p>
             <p>
                 {'Dear Customer,'|i18n('extension/xrowecommerce')}<br />
-                {"We've removed the following hazardous items from your shopping cart since we are not allowed to ship these items to your destination. For further questions please contact %companyname%."|i18n('extension/xrowecommerce',,hash('%companyname%', ezini( 'InvoiceSettings', 'CompanyName', 'order.ini'  )))}<br />
+                {"We've removed the following hazardous items from your shopping cart since we are not allowed to ship these items to your destination. For further questions please contact %companyname%."|i18n('extension/xrowecommerce',,hash('%companyname%', ezini( 'InvoiceSettings', 'CompanyName', 'xrowecommmerce.ini'  )))}<br />
                 <ul>
                     {foreach $hazardous as $item}
                     <li>{$item.item_count} x <a href={concat("/content/view/full/", $item.contentobject.main_node_id)|ezurl()}>{$item.name}</a></li>
