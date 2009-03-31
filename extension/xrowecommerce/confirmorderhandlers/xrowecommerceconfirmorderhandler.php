@@ -26,9 +26,7 @@ class xrowECommerceConfirmOrderHandler
             $templateResult = $tpl->fetch( 'design:shop/orderemail.tpl' );
             
             $subject = $tpl->variable( 'subject' );
-            
-            //include_once( 'lib/ezutils/classes/ezmail.php' );
-            //include_once( 'lib/ezutils/classes/ezmailtransport.php' );
+
             $mail = new eZMail( );
             $emailSender = eZINI::instance( 'xrowecommerce.ini' )->variable( 'MailSettings', 'Email' );
             $htmlMode = eZINI::instance( 'xrowecommerce.ini' )->variable( 'MailSettings', 'HTMLEmail' );
