@@ -47,6 +47,7 @@ DisplayShipping=enabled
 [InvoiceSettings]
 ShowFooter=enabled
 CompanyName=Example Inc
+#CompanyAddress[]
 CompanyWebsite=http://www.example.com/
 CompanyPhone=+1 555 123456
 * */ ?>

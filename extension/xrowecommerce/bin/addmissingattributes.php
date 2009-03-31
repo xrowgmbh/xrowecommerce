@@ -229,6 +229,14 @@ function updateClasses( $ident )
             'data_type_string' => 'ezstring' 
         );
     }
+    if ( !attributeIdentifierExists( $class, 's_email' ) )
+    {
+        $attributes[] = array( 
+            'identifier' => 's_email', 
+            'name' => 'Shipping email', 
+            'data_type_string' => 'ezemail' 
+        );
+    }
     $installer->addClassAttributes( array( 
         'class' => array( 
             'identifier' => $ident 
