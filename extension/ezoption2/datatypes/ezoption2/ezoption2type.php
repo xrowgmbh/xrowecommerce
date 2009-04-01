@@ -410,10 +410,14 @@ class eZOption2Type extends eZDataType
     function productOptionInformation( $objectAttribute, $optionID, $productItem )
     {
         $option = $objectAttribute->attribute( 'content' );
+        var_dump($optionID);
+        #var_dump($option->attribute( 'option_list' ));
+        
         foreach ( $option->attribute( 'option_list' ) as $optionArray )
         {
             if ( $optionArray['id'] == $optionID )
             {
+            	var_dump($optionArray);
                 return array( 
                     'id' => $optionArray['id'] , 
                     'name' => $option->attribute( 'name' ) , 
