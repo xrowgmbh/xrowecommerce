@@ -164,7 +164,6 @@ if ( $order instanceof eZOrder )
     {
         
         $accountInfo = $order->accountInformation();
-        var_dump( $accountInfo );
         foreach ( $accountInfo as $name => $value )
         {
             $$name = $value;
