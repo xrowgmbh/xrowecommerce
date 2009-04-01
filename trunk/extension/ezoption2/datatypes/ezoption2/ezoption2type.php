@@ -410,7 +410,7 @@ class eZOption2Type extends eZDataType
     function productOptionInformation( $objectAttribute, $optionID, $productItem )
     {
         $option = $objectAttribute->attribute( 'content' );
-       
+        
         foreach ( $option->attribute( 'option_list' ) as $optionArray )
         {
             if ( $optionArray['id'] == $optionID )
@@ -554,6 +554,7 @@ class eZOption2Type extends eZDataType
         #echo $xml . "\n";
         $dom2 = new DOMDocument( '1.0', 'utf-8' );
         $success = $dom2->loadXML( $xml );
+        var_dump( $xml );
         $options = $dom2->getElementsByTagName( "option" );
         $current = array();
         if ( $options->length > 0 )
@@ -580,8 +581,11 @@ class eZOption2Type extends eZDataType
             {
                 foreach ( $toptions as $toption )
                 {
-                    if ( $current[$toption->getAttribute( 'id' )] )
+                    if ( array_key_exists( $toption->getAttribute( 'id' ), $current ) )
                     {
+                        $toption->setAttribute( 'weight', $current[$toption->getAttribute( 'id' )]->getAttribute( 'weight' ) );
+                        
+                        $toption->replaceChild( $dom->importNode( $current[$toption->getAttribute( 'id' )]->firstChild, true ), $toption->firstChild );
                         $txpath = new DOMXPath( $dom );
                         $tentries = $txpath->query( 'multi_price', $toption );
                         $xpath = new DOMXPath( $dom2 );
@@ -600,10 +604,11 @@ class eZOption2Type extends eZDataType
                         {
                             $toption->appendChild( $dom->importNode( $entries->item( 0 ), true ) );
                         }
+                    
                     }
                     else
                     {
-                        $toption->parentNode->removeChild( $toption );
+                        $toptionNode->removeChild( $toption );
                     }
                 }
                 foreach ( array_keys( $current ) as $key )
