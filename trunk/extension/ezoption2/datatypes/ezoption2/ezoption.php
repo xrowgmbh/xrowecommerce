@@ -1,54 +1,5 @@
 <?php
 
-//
-// Definition of eZOption class
-//
-// Created on: <28-Jun-2002 11:05:48 bf>
-//
-// ## BEGIN COPYRIGHT, LICENSE AND WARRANTY NOTICE ##
-// SOFTWARE NAME: eZ Publish
-// SOFTWARE RELEASE: 4.0.x
-// COPYRIGHT NOTICE: Copyright (C) 1999-2007 eZ Systems AS
-// SOFTWARE LICENSE: GNU General Public License v2.0
-// NOTICE: >
-//   This program is free software; you can redistribute it and/or
-//   modify it under the terms of version 2.0  of the GNU General
-//   Public License as published by the Free Software Foundation.
-//
-//   This program is distributed in the hope that it will be useful,
-//   but WITHOUT ANY WARRANTY; without even the implied warranty of
-//   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-//   GNU General Public License for more details.
-//
-//   You should have received a copy of version 2.0 of the GNU General
-//   Public License along with this program; if not, write to the Free
-//   Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
-//   MA 02110-1301, USA.
-//
-//
-// ## END COPYRIGHT, LICENSE AND WARRANTY NOTICE ##
-//
-
-
-/*!
-  \class eZOption ezoption.php
-  \ingroup eZDatatype
-  \brief eZOption handles option set datatypes
-
-  \code
-
-  //include_once( "kernel/classes/datatypes/ezoption/ezoption.php" );
-
-  $option = new eZOption( "Colour" );
-  $option->addValue( "Red" );
-  $option->addValue( "Green" );
-
-  // Serialize the class to an XML document
-  $xmlString = $option->xmlString();
-
-  \endcode
-*/
-
 class eZOption2
 {
 
@@ -84,7 +35,14 @@ class eZOption2
     {
         return $this->Name;
     }
-
+static function randomINT(){
+	return str_replace( '.', '', microtime(true) );
+	//below is not better
+    $utime = preg_match("/^(.*?) (.*?)$/", microtime(), $match);
+    $utime = $match[2] + $match[1];
+    $utime *=  1000000;
+    return (int)$utime;
+}
     /*!
      Adds an option
     */
@@ -99,7 +57,8 @@ class eZOption2
         $valueArray['additional_price'] = isset( $valueArray['additional_price'] ) ? $valueArray['additional_price'] : 0;
         if( !$valueArray['id'] )
         {
-            $valueArray['id'] = uniqid( "option-" );
+        	// must be int based else we can`t store it.
+            $valueArray['id'] = self::randomINT();
         }
         $valueArray['is_default'] = false;
         $this->Options[] = $valueArray;
@@ -123,7 +82,13 @@ class eZOption2
         $shiftvalue = 0;
         foreach ( $array_remove as $id )
         {
-            array_splice( $this->Options, $id - $shiftvalue, 1 );
+            foreach ( $this->Options as $key => $option)
+            {
+	           if (  $option['id'] == $id  )
+	           {
+	           	 unset ( $this->Options[$key]);
+	           }
+            }
             $shiftvalue ++;
         }
         $this->OptionCount -= $shiftvalue;

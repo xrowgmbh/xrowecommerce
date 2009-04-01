@@ -53,7 +53,6 @@ class eZOptionMultiPrice extends eZMultiPrice
             // @TODO
             if ( is_object( $this->ContentObjectAttribute ) )
             {
-                var_dump( "fetch" );
                 $this->PriceList = self::fetch();
             }
             
