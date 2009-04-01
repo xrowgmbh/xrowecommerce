@@ -43,11 +43,11 @@ for (i = 0; i < field.length; i++)
 <h1>{"Shopping Cart"|i18n("extension/xrowecommerce")}</h1>
 {if ezini( 'Settings', 'Catalogueorder', 'xrowecommerce.ini' )|eq('enabled')}
     {include uri="design:shop/basket_catalogue_order.tpl"}
-	<h2>{"Shopping Cart"|i18n("extension/xrowecommerce")}</h2>
+    <h2>{"Shopping Cart"|i18n("extension/xrowecommerce")}</h2>
 {/if}
 
 
-        
+
         {if $removed_items}
             <div class="warning">
             <h2>{"The following items were removed from your cart, because the products were changed"|i18n("extension/xrowecommerce",,)}</h2>
@@ -87,14 +87,14 @@ for (i = 0; i < field.length; i++)
     {/section}
     {if $basket.items}
     <form method="post" name="basket" action={"shop/basket/"|ezurl}>
-    <input type="submit" class="hide" sytle="display: hide;" name="CheckoutButton" value={'Checkout'|i18n( 'extension/xrowecommerce' )} />
+    <input type="submit" class="hide" sytle="display: hide;" name="CheckoutButton" value={'Checkout'|i18n( 'extension/xrowecommerce' )|wash} />
     <div id="buttonblock-top" class="buttonblock">
 
-        <input id="continue-schopping-button" class="right-arrow" type="submit" name="ContinueShoppingButton" value="{'Continue'|i18n("extension/xrowecommerce")}" title="{'Continue Shopping'|i18n("extension/xrowecommerce")}"/>
-        <input id="empty-cart-button" type="button" onclick="empty_basket.submit();" class="button small-action" name="EmptyShoppingCartButton" value="{'Empty Cart'|i18n( 'extension/xrowecommerce' )}" title="Use this button to empty your shopping cart." />
-        
-        <input id="store-button" type="submit" class="right-arrow " name="StoreChangesButton" value={'Update'|i18n( 'extension/xrowecommerce' )} title="Use this button to update your shopping cart." />
-        <input id="checkout-button" type="submit" class="right-arrow2 continue-button" name="CheckoutButton" value={'Checkout'|i18n( 'extension/xrowecommerce' )} title="Use this button to place your order." />
+        <input id="continue-schopping-button" class="right-arrow" type="submit" name="ContinueShoppingButton" value="{'Continue'|i18n("extension/xrowecommerce")}" title="{'Continue Shopping'|i18n("extension/xrowecommerce")|wash}"/>
+        <input id="empty-cart-button" type="button" onclick="empty_basket.submit();" class="button small-action" name="EmptyShoppingCartButton" value="{'Empty Cart'|i18n( 'extension/xrowecommerce' )}" title="{'Use this button to empty your shopping cart.'|i18n( 'extension/xrowecommerce' )|wash}" />
+
+        <input id="store-button" type="submit" class="right-arrow " name="StoreChangesButton" value="{'Update'|i18n( 'extension/xrowecommerce' )|wash}" title="{'Use this button to update your shopping cart.'|i18n( 'extension/xrowecommerce' )|wash}" />
+        <input id="checkout-button" type="submit" class="right-arrow2 continue-button" name="CheckoutButton" value={'Checkout'|i18n( 'extension/xrowecommerce' )|wash} title="{'Use this button to place your order.'|i18n( 'extension/xrowecommerce' )|wash}" />
     </div>
     <div class="break"></div>
     {def $currency = fetch( 'shop', 'currency', hash( 'code', $basket.productcollection.currency_code ) )
@@ -104,7 +104,7 @@ for (i = 0; i < field.length; i++)
         {set locale = $currency.locale
              symbol = $currency.symbol}
     {/if}
-    
+
     <div class="content-basket">
 
     <table class="order">
@@ -153,7 +153,7 @@ for (i = 0; i < field.length; i++)
             </td>
             {if and( eq(ezini( 'BasketInformation', 'DisplayTax', 'xrowecommerce.ini' ), 'enabled' ), ezini( 'Settings', 'ShowColumnTax', 'xrowecommerce.ini' )|eq('enabled') )}
             <td class="basketspace">
-            
+
                 {if ne( $product_item.vat_value, -1 )}
                     {$product_item.vat_value} %
                 {else}
@@ -174,8 +174,8 @@ for (i = 0; i < field.length; i++)
         {/if}
      </tr>
      {/foreach}
-    
-    
+
+
 {def $taxpercent = mul( div(sub($basket.total_inc_vat, $basket.total_ex_vat), $basket.total_ex_vat), 100)
      $percentage = mul( div(sub($basket.total_inc_vat, $basket.total_ex_vat), $basket.total_ex_vat), 100)|l10n('number') }
 
@@ -208,11 +208,11 @@ for (i = 0; i < field.length; i++)
             </tr>
             {if eq(ezini( 'BasketInformation', 'DisplayShipping', 'xrowecommerce.ini' ), 'enabled' )}
             <tr class="orderitem-line">
-                <td colspan="{$cols|sub(2)}" class="align_right">   
+                <td colspan="{$cols|sub(2)}" class="align_right">
                     {"Estimated Shipping and Handling"|i18n("extension/xrowecommerce")}
                 </td>
                 <td class="price totalprice">
-                    {$basket.items_info.additional_info.shipping_total.total_price_inc_vat|l10n( 'currency', $locale, $symbol )}            
+                    {$basket.items_info.additional_info.shipping_total.total_price_inc_vat|l10n( 'currency', $locale, $symbol )}
                 </td>
                 <td class="noborder">&nbsp;</td>
             </tr>
@@ -235,7 +235,7 @@ for (i = 0; i < field.length; i++)
                     </strong>
                 </td>
                 <td class="price totalprice">
-                    {$basket.total_inc_vat|l10n( 'currency', $locale, $symbol )}            
+                    {$basket.total_inc_vat|l10n( 'currency', $locale, $symbol )}
                 </td>
                 <td class="noborder">&nbsp;</td>
             </tr>
@@ -244,7 +244,7 @@ for (i = 0; i < field.length; i++)
 
         <input id="continue-schopping-button" class="right-arrow" type="submit" name="ContinueShoppingButton" value="{'Continue'|i18n("extension/xrowecommerce")}" title="{'Continue Shopping'|i18n("extension/xrowecommerce")}"/>
         <input id="empty-cart-button" type="button" onclick="empty_basket.submit();" class="button small-action" name="EmptyShoppingCartButton" value="{'Empty Cart'|i18n( 'extension/xrowecommerce' )}" title="Use this button to empty your shopping cart." />
-        
+
         <input id="store-button" type="submit" class="right-arrow " name="StoreChangesButton" value={'Update'|i18n( 'extension/xrowecommerce' )} title="Use this button to update your shopping cart." />
         <input id="checkout-button" type="submit" class="right-arrow2 continue-button" name="CheckoutButton" value={'Checkout'|i18n( 'extension/xrowecommerce' )} title="Use this button to place your order." />
     </div>
@@ -253,7 +253,7 @@ for (i = 0; i < field.length; i++)
  {* ####### Login Box ######## *}
     {if eq(ezini( 'BasketInformation', 'DisplayLogin', 'xrowecommerce.ini' ), 'enabled' )}
          {def $user=fetch( 'user', 'current_user' )}
-         {if $user.contentobject.id|eq(ezini( 'UserSettings', 'AnonymousUserID' ))}
+         {if $user.is_logged_in|not()}
                         <div class="loginbox">
                             <p>{'Already a user?'|i18n("extension/xrowecommerce",'User name')}</p>
                             <form method="post" action={"user/login"|ezurl}">
@@ -277,7 +277,7 @@ for (i = 0; i < field.length; i++)
     {else}
     <div class="feedback">
         <form method="post" name="basket" action={"xrowecommerce/basket"|ezurl}>
-            <p><b>{"You have no items in your shopping cart"|i18n("extension/xrowecommerce")}</b></p>
+            <p><b>{"You have no items in your shopping cart"|i18n("extension/xrowecommerce")|wash}</b></p>
             <div class="buttonblock">
                 <input id="continue-button" class="right-arrow " type="submit" name="ContinueShoppingButton" value="{'Continue'|i18n("extension/xrowecommerce")}" />
             </div>
@@ -291,7 +291,7 @@ for (i = 0; i < field.length; i++)
 {foreach $basket.items as $key => $product_item sequence array(bglight,bgdark) as $sequence}
     <input type="hidden" name="ProductItemIDList[]" value="{$product_item.id}" />
     <input type="hidden" name="RemoveProductItemDeleteList[]" value="{$product_item.id}" />
-    
+
     <input class="quantity" type="hidden" name="ProductItemCountList[]" value="{$product_item.item_count}" size="3"/>
 {/foreach}
 </form>
