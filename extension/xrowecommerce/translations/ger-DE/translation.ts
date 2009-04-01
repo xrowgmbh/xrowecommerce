@@ -1551,7 +1551,7 @@
     </message>
     <message>
         <source>Your notes on order</source>
-        <translation>Ihre Anmerkungen an Bestellung</translation>
+        <translation>Ihre Anmerkung(en) zur Bestellung</translation>
     </message>
     <message>
         <source>Print order</source>
