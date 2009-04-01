@@ -966,7 +966,7 @@
     </message>
     <message>
         <source>Continue</source>
-        <translation>Fortfahren</translation>
+        <translation>Weiter einkaufen</translation>
     </message>
     <message>
         <source>Unit Price</source>
