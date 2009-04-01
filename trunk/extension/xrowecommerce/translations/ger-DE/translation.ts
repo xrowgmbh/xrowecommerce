@@ -489,6 +489,24 @@
     </message>
 </context>
 <context>
+    <name>extension/xrowcommerce/productvariation</name>
+    <message>
+        <source>yes</source>
+        <translation>ja</translation>
+    </message>
+    <message>
+        <source>no</source>
+        <translation>nein</translation>
+    </message>
+</context>
+<context>
+    <name>extension/xrowe&quot;extension/xrowecommerce/design/xrowecommerce/templates/shop/orderemail.tpl&quot;commerce</name>
+    <message>
+        <source>The details of the order are below.  If you have a question, please do not reply to this email.</source>
+        <translation>Anbei die Details Ihrer Bestellung. Wenn Sie eine Frage haben, antworten Sie bitte nicht an diese Emailadresse.</translation>
+    </message>
+</context>
+<context>
     <name>extension/xrowecommerce</name>
     <message>
         <source>Fraud detected</source>
@@ -983,10 +1001,6 @@
         <translation>Vermerk</translation>
     </message>
     <message>
-        <source>Price in ?</source>
-        <translation type="obsolete">Preis in ?</translation>
-    </message>
-    <message>
         <source>Delete</source>
         <translation>Löschen</translation>
     </message>
@@ -1287,10 +1301,6 @@
         <translation>Was ist automatische Auslieferung?</translation>
     </message>
     <message>
-        <source>Use our Automatic Delivery service to have this item sent to you as often as you like.  You?ll get priority on our inventory and save time.</source>
-        <translation type="obsolete">Benutzen Sie unseren Servive &quot;Automatische Auslieferung&quot; um diesen Artikel so oft geliefert zu bekommen wie und wann Sie mögen. Ihre Bestellungen bekommen höhere Priorität beim Lagerbestand und sie sparen Zeit.</translation>
-    </message>
-    <message>
         <source>By placing your initial Automatic Delivery order and setting up an Automatic Delivery schedule, you authorize us to charge the same credit card for future Automatic Delivery orders until you cancel.</source>
         <translation>Beim Einrichten der automatischen Auslieferung und Einrichten des Auslieferungsplanes authorisieren Sie uns für zukünftige Bestellungen den erforderlichen Betrag abzubuchen.</translation>
     </message>
@@ -1335,10 +1345,6 @@
         <translation>Danke für Ihre Bestellung bei</translation>
     </message>
     <message>
-        <source>The details of the order are below.  If you have a question, please do not reply to this email.</source>
-        <translation>Anbei die Details Ihrer Bestellung. Wenn Sie eine Frage haben, antworten Sie bitte nicht an diese Emailadresse.</translation>
-    </message>
-    <message>
         <source>Rather, email</source>
         <translation>Vielmehr, emailen Sie</translation>
     </message>
@@ -1353,10 +1359,6 @@
     <message>
         <source>Order ID</source>
         <translation>Bestellnummer</translation>
-    </message>
-    <message>
-        <source>Grand Total</source>
-        <translation type="obsolete">Gesamtsumme</translation>
     </message>
     <message>
         <source>The Staff at</source>
@@ -1499,10 +1501,6 @@
         <translation>Bestellung abbrechen</translation>
     </message>
     <message>
-        <source>Show the conditions of service.</source>
-        <translation type="obsolete">Zeige die Servicebedingungen.</translation>
-    </message>
-    <message>
         <source>I have read the %linkstart%general terms and conditions%linkend% and accept them.</source>
         <translation>Ich habe die %linkstart% allgemeinen Geschäftsbedingungen %linkend% gelesen und nehmen diese an.</translation>
     </message>
@@ -1568,10 +1566,6 @@
         <translation>Weiter einkaufen</translation>
     </message>
     <message>
-        <source>Website</source>
-        <translation type="obsolete">Webseite</translation>
-    </message>
-    <message>
         <source>Use our Automatic Delivery service to have this item sent to you as often as you like.  You&#xe2;&#x80;&#x99;ll get priority on our inventory and save time.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1581,6 +1575,26 @@
     </message>
     <message>
         <source>Show the terms and conditions.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Use this button to empty your shopping cart.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Use this button to update your shopping cart.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Use this button to place your order.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The email address isn&apos;t given.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The email address isn&apos;t valid.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

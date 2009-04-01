@@ -48,9 +48,9 @@ class xrowProductBooleanType extends xrowProductDataType
     {
         $content = $variation->attribute( $column );
         if ( $content == 1 )
-            return ezi18n( 'yes', 'extension/xrowcommerce/productvariation' );
+            return ezi18n( 'extension/xrowcommerce/productvariation', 'yes' );
         else
-            return ezi18n( 'no', 'extension/xrowcommerce/productvariation' );
+            return ezi18n( 'extension/xrowcommerce/productvariation', 'no' );
     }
 
     /**
