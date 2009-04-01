@@ -220,26 +220,12 @@
 <div class="country">
     <label>{'Country'|i18n('extension/xrowecommerce')}<span class="required">*</span></label>
     <div class="labelbreak"></div>
-    {def $country_default_ini=ezini( 'ShopAccountHandlerDefaults', 'DefaultCountryCode' )}
-    {def $country_default=''}
-    {def $country_list_item_code=''}
 
-    {def $is_set=is_set($country)}
-    {if $is_set}
-        {if $country|ne('')}
-            {set $country=$country|wash()}
-        {else}
-            {set $country=$country_default_ini}
-        {/if}
-    {else}
-        {def $country=$country_default_ini}
-    {/if}
     {def $countries=fetch( 'content', 'country_list', array(false, false))}
             <select name="Country" id="country" onchange="shipping(this.value);">
                 <option value="">&nbsp;</option>
                 {foreach $countries as $country_list_item}
-                {if $country_list_item.Alpha3|eq('')}{set $country_list_item_code=$country_list_item.Alpha2}{else}{set $country_list_item_code=$country_list_item.Alpha3}{/if}
-                 <option value="{$country_list_item_code}" {if $current_user.is_logged_in}{if eq( $country, $country_list_item.Alpha3 )} selected="selected"{/if}{else}{if eq( $country, $country_list_item_code )} selected="selected"{/if}{/if}>
+                 <option value="{$country_list_item.Alpha3}" {if and( $country|ne(''), eq( $country, $country_list_item.Alpha3 ))} selected="selected"{/if}>
                     {$country_list_item.Name}
                 </option>
                 {/foreach}
@@ -485,29 +471,12 @@
     <label>{'Country'|i18n('extension/xrowecommerce')}<span class="required">*</span></label>
     <div class="labelbreak"></div>
 
-
-    {set $country_default=''}
-    {set $is_set=is_set($s_country)}
-    {if is_set($s_country)|not}
-        {def $s_country=''}
-    {/if}
-    {if and($s_country|eq(''),$country)}
-            {set $s_country=$country|wash()}
-    {/if}
-    {if and($s_country|eq(''),$country|not)}
-            {set $s_country=$country_default_ini|wash()}
-    {/if}
-    {set $country_list_item_code=''}
-    <input type="hidden" name="sik_country" id="sik_country" value="USA" />
-            <select name="s_Country" id="scountry" onchange="shipping(document.register.country.value);">
+            <select name="s_country" id="scountry" onchange="shipping(document.register.country.value);">
                 <option value="">&nbsp;</option>
-                {foreach $countries as $country_id => $country_list_item}
-                 {if $country_list_item.Alpha3|eq('')}
-                 {set $country_list_item_code=$country_list_item.Alpha2}
-                 {else}
-                 {set $country_list_item_code=$country_list_item.Alpha3}
-                 {/if}
-                 <option value="{$country_list_item_code}" {if $current_user.is_logged_in}{if eq($s_country,$country_list_item_code)} selected="selected"{/if}{else}{if eq($s_country,$country_list_item_code)} selected="selected"{/if}{/if}>{$country_list_item.Name}</option>
+                {foreach $countries as $country_list_item}
+                 <option value="{$country_list_item.Alpha3}" {if and( $s_country|ne(''), eq( $s_country, $country_list_item.Alpha3 ))} selected="selected"{/if}>
+                    {$country_list_item.Name}
+                </option>
                 {/foreach}
             </select>
 </div>
@@ -608,7 +577,7 @@ lang: RecaptchaLang,
         }
     if (document.register.Shipping.checked == true)
         {
-            country = document.register.Country.value;
+            country = document.register.country.value;
         }
     if (country == "USA")
     {
@@ -678,7 +647,7 @@ if (status)
         document.register.saddress1.value = document.register.address1.value;
         document.register.saddress2.value = document.register.address2.value;
         document.register.scity.value = document.register.city.value;
-        document.register.scountry.value = document.register.country.value;
+        document.register.scountry.selectedIndex = document.register.country.selectedIndex;
         document.getElementById("shippinginfo").style.display = 'block';
     }
 }

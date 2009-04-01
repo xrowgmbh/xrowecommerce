@@ -21,6 +21,7 @@ $email = '';
 // Initialize variables
 $shippingtype = $shipping = $s_email = $s_last_name = $s_first_name = $s_address1 = $s_address2 = $s_zip = $s_city = $s_state = $s_country = $s_phone = $s_mi = $address1 = $address2 = $zip = $city = $state = $country = $phone = $recaptcha = $mi = '';
 $userobject = $user->attribute( 'contentobject' );
+$country = eZINI::instance( 'site.ini' )->variable( 'ShopAccountHandlerDefaults', 'DefaultCountryCode' );
 
 if ( $user->isLoggedIn() and in_array( $userobject->attribute( 'class_identifier' ), eZINI::instance( 'xrowecommerce.ini' )->variable( 'Settings', 'ShopUserClassList' ) ) )
 {
@@ -290,7 +291,6 @@ if ( $module->isCurrentAction( 'Store' ) )
         }
         if ( in_array( $Alpha2, $ids ) )
         {
-            
             $matches = array();
             if ( preg_match( "/^(" . join( '|', $ids ) . ")([0-9]+)/i", $tax_id, $matches ) )
             {
@@ -341,13 +341,13 @@ if ( $module->isCurrentAction( 'Store' ) )
     {
         $no_partial_delivery = '0';
     }
-    if( $http->hasPostVariable( "Shipping" ) )
+    if ( $http->hasPostVariable( "Shipping" ) )
     {
         $shipping = true;
     }
     else
     {
-    	$shipping = false;
+        $shipping = false;
     }
     $shippingtype = $http->postVariable( "ShippingType" );
     $shippingdestination = $country;
