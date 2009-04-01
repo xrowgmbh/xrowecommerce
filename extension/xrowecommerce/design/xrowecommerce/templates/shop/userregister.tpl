@@ -257,7 +257,7 @@
 <div class="block">
     <label>{'Fax'|i18n('extension/xrowecommerce')}</label>
     <div class="labelbreak"></div>
-    <input type="text" name="Fax" id="fax" class="phone" value="{$phone|wash}" />
+    <input type="text" name="Fax" id="fax" class="fax" value="{$fax|wash}" />
 </div>
 {/if}
 <div class="block">
