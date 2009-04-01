@@ -1478,11 +1478,11 @@
     </message>
     <message>
         <source>Continue Shopping</source>
-        <translation>Weiter einkaufen</translation>
+        <translation type="obsolete">Weiter einkaufen</translation>
     </message>
     <message>
         <source>Empty Cart</source>
-        <translation>Einkaufswagen leeren</translation>
+        <translation type="obsolete">Einkaufswagen leeren</translation>
     </message>
     <message>
         <source>Position</source>
@@ -1596,6 +1596,10 @@
     <message>
         <source>The email address isn&apos;t valid.</source>
         <translation>Die E-Mail Adresse ist ungültig.</translation>
+    </message>
+    <message>
+        <source>Empty cart</source>
+        <translation>Einkaufswagen leeren</translation>
     </message>
 </context>
 <context>
