@@ -1478,11 +1478,11 @@
     </message>
     <message>
         <source>Continue Shopping</source>
-        <translation type="obsolete">Weiter einkaufen</translation>
+        <translation>Weiter einkaufen</translation>
     </message>
     <message>
         <source>Empty Cart</source>
-        <translation type="obsolete">Einkaufswagen leeren</translation>
+        <translation>Einkaufswagen leeren</translation>
     </message>
     <message>
         <source>Position</source>
