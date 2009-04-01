@@ -297,9 +297,8 @@ class eZShippingInterfaceType extends eZWorkflowEventType
         
         #### SHIPPING COST CALCULATION
         $shippingerror = false;
-        
+
         $gateway = xrowShippingInterface::instanceByMethod( $shippingtype );
-        
         if ( $gateway )
         {
             try
@@ -313,7 +312,7 @@ class eZShippingInterfaceType extends eZWorkflowEventType
                 $gateway->setAddressTo( $shipping_country, $shipping_state, $shipping_zip, $shipping_city );
                 $cost = $gateway->getPrice();
                 $description = $gateway->description();
-                
+
                 if ( $freeshippingproduct )
                 {
                     if ( $cost >= $free_shippingitem_reduce )
