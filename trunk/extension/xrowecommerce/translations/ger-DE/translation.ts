@@ -160,11 +160,11 @@
     </message>
     <message>
         <source>Total (ex. VAT)</source>
-        <translation>Summe (ohne MwSt.)</translation>
+        <translation>Summe (exkl. USt.)</translation>
     </message>
     <message>
         <source>Total (inc. VAT)</source>
-        <translation>Summe (mit MwSt.)</translation>
+        <translation>Summe (inkl. USt.)</translation>
     </message>
     <message>
         <source>Status</source>
@@ -267,11 +267,11 @@
     </message>
     <message>
         <source>Products (ex. VAT)</source>
-        <translation>Produkte (ohne MwSt.)</translation>
+        <translation>Produkte (exkl. USt.)</translation>
     </message>
     <message>
         <source>Products (inc. VAT)</source>
-        <translation>Produkte (mit MwSt.)</translation>
+        <translation>Produkte (inkl. USt.)</translation>
     </message>
     <message>
         <source>&amp;nbsp;</source>
@@ -295,11 +295,11 @@
     </message>
     <message>
         <source>Total (ex. VAT)</source>
-        <translation>Summe (ohne MwSt.)</translation>
+        <translation>Summe (exkl. USt.)</translation>
     </message>
     <message>
         <source>Total (inc. VAT)</source>
-        <translation>Summe (mit MwSt.)</translation>
+        <translation>Summe (inkl. USt.)</translation>
     </message>
     <message>
         <source>Shipping Total</source>
@@ -342,11 +342,11 @@
     </message>
     <message>
         <source>Price ex. VAT</source>
-        <translation>Preis ohne MwSt</translation>
+        <translation>Preis exkl. USt.</translation>
     </message>
     <message>
         <source>Price inc. VAT</source>
-        <translation>Preis mit MwSt</translation>
+        <translation>Preis inkl. USt.</translation>
     </message>
     <message>
         <source>Discount</source>
@@ -354,11 +354,11 @@
     </message>
     <message>
         <source>Total Price ex. VAT</source>
-        <translation>Gesamtbetrag ohne MwSt</translation>
+        <translation>Gesamtbetrag exkl. USt.</translation>
     </message>
     <message>
         <source>Total Price inc. VAT</source>
-        <translation>Gesamtbetrag mit MwSt</translation>
+        <translation>Gesamtbetrag inkl. USt.</translation>
     </message>
     <message>
         <source>Remove Item</source>
@@ -530,7 +530,7 @@
     </message>
     <message>
         <source>Subtotal Ex. Tax</source>
-        <translation>Zwischensumme ohne MwSt.</translation>
+        <translation>Zwischensumme exkl. USt.</translation>
     </message>
     <message>
         <source>Estimated Shipping and Handling</source>
@@ -538,7 +538,7 @@
     </message>
     <message>
         <source>Estimated Tax</source>
-        <translation>Voraussichtliche MwSt.</translation>
+        <translation>Voraussichtliche USt.</translation>
     </message>
     <message>
         <source>Username</source>
@@ -627,7 +627,7 @@
     </message>
     <message>
         <source>Tax</source>
-        <translation>MwSt.</translation>
+        <translation>USt.</translation>
     </message>
     <message>
         <source>Phone</source>
@@ -695,7 +695,7 @@
     </message>
     <message>
         <source>City</source>
-        <translation>Stadt</translation>
+        <translation>Ort</translation>
     </message>
     <message>
         <source>State</source>
@@ -946,11 +946,11 @@
     </message>
     <message>
         <source>Tax is unknown</source>
-        <translation>MwSt. ist unbekannt</translation>
+        <translation>USt. ist unbekannt</translation>
     </message>
     <message>
         <source>Tax percentage is not yet known for some of the items being purchased.</source>
-        <translation>Die Höhe der Mehrwertsteuer ist für einige der gekauften Artikel noch nicht bekannt.</translation>
+        <translation>Die Höhe der Umsatzsteuer ist für einige der gekauften Artikel noch nicht bekannt.</translation>
     </message>
     <message>
         <source>This probably means that some information about you is not yet available and will be obtained during checkout.</source>
@@ -1030,7 +1030,7 @@
     </message>
     <message>
         <source>Subtotal ex. tax</source>
-        <translation>Zwischensumme ohne MwSt</translation>
+        <translation>Zwischensumme exkl. USt.</translation>
     </message>
     <message>
         <source>Order Receipt #%order_id </source>
@@ -1222,15 +1222,15 @@
     </message>
     <message>
         <source>Total (inc Tax)</source>
-        <translation>Summe (mit MwSt.)</translation>
+        <translation>Summe (inkl. USt.)</translation>
     </message>
     <message>
         <source>Total (ex Tax)</source>
-        <translation>Summe (ohne MwSt.)</translation>
+        <translation>Summe (exkl. USt.)</translation>
     </message>
     <message>
         <source>Total Tax</source>
-        <translation>MwSt. gesamt</translation>
+        <translation>USt. gesamt</translation>
     </message>
     <message>
         <source>Total NY Tax</source>
@@ -1575,27 +1575,27 @@
     </message>
     <message>
         <source>Show the terms and conditions.</source>
-        <translation type="unfinished"></translation>
+        <translation>Allgemeine Geschäftsbedingungen anzeigen.</translation>
     </message>
     <message>
         <source>Use this button to empty your shopping cart.</source>
-        <translation type="unfinished"></translation>
+        <translation>Verwenden Sie diesen Schaltknopf, um den Einkaufswagen auszuleeren.</translation>
     </message>
     <message>
         <source>Use this button to update your shopping cart.</source>
-        <translation type="unfinished"></translation>
+        <translation>Verwenden Sie diesen Schaltknopf, um den Einkaufswagen zu aktualisieren.</translation>
     </message>
     <message>
         <source>Use this button to place your order.</source>
-        <translation type="unfinished"></translation>
+        <translation>Verwenden Sie diesen Button, um die Bestellung abzusenden.</translation>
     </message>
     <message>
         <source>The email address isn&apos;t given.</source>
-        <translation type="unfinished"></translation>
+        <translation>Die E-Mail Adresse wurde nicht angegeben.</translation>
     </message>
     <message>
         <source>The email address isn&apos;t valid.</source>
-        <translation type="unfinished"></translation>
+        <translation>Die E-Mail Adresse ist ungültig.</translation>
     </message>
 </context>
 <context>
