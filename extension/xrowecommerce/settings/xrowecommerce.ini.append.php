@@ -38,7 +38,7 @@ ShopUserClassList[]=client
 Email=
 #Define if mail should be send out on checkout 
 SendOrderEmail=enabled
-HTMLEmail=disabled
+HTMLEmail=enabled
 
 [BasketInformation]
 DisplayTax=disabled
