@@ -334,17 +334,19 @@ class eZOption2Type extends eZDataType
                     {
                         if ( ! $http->hasPostVariable( 'BrowseCancelButton' ) )
                         {
-                            $selectedObjectArray = $http->hasPostVariable( "SelectedObjectIDArray" );
                             $selectedObjectIDArray = $http->postVariable( "SelectedObjectIDArray" );
                             
                             // Delete the old version from ezcontentobject_link if count of translations > 1
                             #$this->removeContentObjectRelation( $contentObjectAttribute );
-                            $option = $contentObjectAttribute->content();
-                            $optionarray = $option->Options;
-                            $objectID = $selectedObjectIDArray[0];
-                            $optionarray[$params[1]]["image"] = $objectID;
-                            $option->Options = $optionarray;
-                            $contentObjectAttribute->setAttribute( 'data_Text', $option );
+                            $options = $contentObjectAttribute->content();
+                            foreach ( $options->Options as $key => $option )
+                            {
+                                if ( $option['id'] == $params[1] and isset( $selectedObjectIDArray[0] ) )
+                                {
+                                    $options->Options[$key]["image"] = $selectedObjectIDArray[0];
+                                }
+                            }
+
                             $contentObjectAttribute->store();
                         }
                     }
@@ -386,12 +388,15 @@ class eZOption2Type extends eZDataType
             case "remove_object":
                 {
                     // Delete the old version from ezcontentobject_link if count of translations > 1
-                    $option = $contentObjectAttribute->content();
-                    $optionarray = $option->Options;
-                    $objectID = $selectedObjectIDArray[0];
-                    $optionarray[$params[1]]["image"] = "";
-                    $option->Options = $optionarray;
-                    $contentObjectAttribute->setAttribute( 'data_Text', $option );
+                    $options = $contentObjectAttribute->content();
+
+                    foreach ( $options->Options as $key => $option )
+                    {
+                        if ( $option['id'] == $params[1] )
+                        {
+                            $options->Options[$key]["image"] = '';
+                        }
+                    }
                     $contentObjectAttribute->store();
                 }
                 break;
