@@ -129,7 +129,15 @@ function updateClasses( $ident )
             'data_type_string' => 'ezstring' 
         );
     }
-    
+    if ( !attributeIdentifierExists( $class, 'shippingaddress' ) )
+    {
+        $attributes[] = array( 
+            'identifier' => 'shippingaddress', 
+            'name' => 'Billing and shipping addresses are identical', 
+            'data_type_string' => 'ezboolean',
+            'default_value' => '1' 
+        );
+    }
     if ( !attributeIdentifierExists( $class, 's_company_name' ) )
     {
         $attributes[] = array( 
