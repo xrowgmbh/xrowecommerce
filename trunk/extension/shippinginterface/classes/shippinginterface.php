@@ -25,7 +25,7 @@ class ShippingInterface
     public $services = "";
     public $weight_unit = "";
     public $weight = "";
-    
+    public $order;
     public $PackagingType = "";
     public $PickupType = "";
     
@@ -125,7 +125,10 @@ class ShippingInterface
             "city" => $from_city 
         );
     }
-
+    function setOrder( eZOrder $order )
+    {
+        $this->order = $order;
+    }
     function setWeight( $lbs )
     {
         $this->weight = $lbs;

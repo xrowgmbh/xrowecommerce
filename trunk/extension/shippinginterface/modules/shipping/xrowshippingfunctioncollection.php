@@ -1,17 +1,22 @@
 <?php
+
 class xrowShippingFunctionCollection
 {
 
-	function listMethods()
-	{
+    function listMethods()
+    {
+        return array( 
+            'result' => xrowShippingInterface::fetchActive() 
+        );
+    }
 
-        return array( 'result' => xrowShippingInterface::fetchActive() );
-	}
-	function listAllMethods()
-	{
-
-        return array( 'result' => xrowShippingInterface::fetchAll() );
-	}
+    function listAllMethods()
+    {
+        
+        return array( 
+            'result' => xrowShippingInterface::fetchAll() 
+        );
+    }
 }
 
 ?>

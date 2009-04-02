@@ -55,12 +55,16 @@ class xrowShippingInterface {
 	static function fetchActive() {
 		$result = array();
 		$db = eZDB::instance();
+		
 		$list = $db->arrayQuery( "SELECT `data_text3` FROM ezworkflow_event WHERE `workflow_type_string` = 'event_ezshippinginterface' AND `version` = 0;" );
-		if ( count( $list ) != 1 )
+		if ( count( $list ) == 0 )
 		{
-			eZDebug::writeError( "Shipping Worflow is not properly setup. It exists more then one time or not at all.", "xrowShippingInterface::fetchActive()" );
-			return array();
+            throw new Exception( "Shipping worflow is not properly setup. It exists not at all." );
 		}
+	    if ( count( $list ) > 1 )
+        {
+            throw new Exception( "Shipping worflow is not properly setup. It exists more then one time."  );
+        }
 		$active = unserialize( $list[0]['data_text3'] );
 		foreach ( xrowShippingInterface::fetchAll() as $method )
 		{		
