@@ -308,6 +308,7 @@ class eZShippingInterfaceType extends eZWorkflowEventType
                 {
                     $totalweight = 1;
                 }
+                $gateway->setOrder( $order );
                 $gateway->setWeight( $totalweight );
                 $gateway->setAddressTo( $shipping_country, $shipping_state, $shipping_zip, $shipping_city );
                 $cost = $gateway->getPrice();
