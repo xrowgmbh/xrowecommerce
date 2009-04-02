@@ -23,13 +23,21 @@ class xrowECommerceConfirmOrderHandler
             require_once ( "kernel/common/template.php" );
             $tpl = templateInit();
             $tpl->setVariable( 'order', $order );
-            $templateResult = $tpl->fetch( 'design:shop/orderemail.tpl' );
-            
+            $htmlMode = eZINI::instance( 'xrowecommerce.ini' )->variable( 'MailSettings', 'HTMLEmail' );
+            if ( $htmlMode == 'enabled' )
+            {
+                $templateResult = $tpl->fetch( 'design:shop/orderemail/html/orderemail.tpl' );
+            }
+            else
+            {
+                $templateResult = $tpl->fetch( 'design:shop/orderemail/text/orderemail.tpl' );
+            }
+
             $subject = $tpl->variable( 'subject' );
 
             $mail = new eZMail( );
             $emailSender = eZINI::instance( 'xrowecommerce.ini' )->variable( 'MailSettings', 'Email' );
-            $htmlMode = eZINI::instance( 'xrowecommerce.ini' )->variable( 'MailSettings', 'HTMLEmail' );
+            
             if ( ! $emailSender )
             {
                 $emailSender = $ini->variable( 'MailSettings', 'EmailSender' );

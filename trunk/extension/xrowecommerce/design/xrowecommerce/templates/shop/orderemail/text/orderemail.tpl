@@ -1,5 +1,5 @@
 {set-block scope=root variable=subject}{ezini( 'InvoiceSettings', 'CompanyName', 'xrowecommmerce.ini'  )} {"Order"|i18n("extension/xrowecommerce")} #{$order.order_nr}{/set-block}
-{include uri="design:shop/orderemail/pre_text.tpl"}
+{include uri="design:shop/orderemail/text/pre_text.tpl"}
 ----------------------------------------------
 
 {'Order ID'|i18n( 'extension/xrowecommerce' )}: {$order.order_nr}
@@ -20,7 +20,7 @@
 {/if}
 {foreach $order.product_items as $product_item}
 
-{include uri="design:shop/orderemail/product_cell_view.tpl"}
+{include uri="design:shop/orderemail/text/product_cell_view.tpl"}
 
 {/foreach}
 
@@ -43,6 +43,6 @@
 {'Total'|i18n( 'extension/xrowecommerce' )}: {$order.total_inc_vat|l10n( 'currency', $locale, $symbol )}
 ----------------------------------------------
  
-{include uri="design:shop/orderemail/post_text.tpl"}
+{include uri="design:shop/orderemail/text/post_text.tpl"}
 
 {undef $currency $locale $symbol}
