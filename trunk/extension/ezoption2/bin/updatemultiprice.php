@@ -42,6 +42,10 @@ while ( $attributes = eZPersistentObject::fetchObjectList( eZContentObjectAttrib
             if ( $optionNode->hasAttribute( 'additional_price' ) )
             {
                 $price = $optionNode->getAttribute( 'additional_price' );
+                if ( empty( $price ) )
+                {
+                	$price = '0.00';
+                }
                 $optionNode->removeAttribute( 'additional_price' );
                 
                 $multi_price = $doc->createElement( "multi_price" );
