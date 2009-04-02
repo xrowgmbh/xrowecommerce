@@ -1335,10 +1335,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Grand Total</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>The Staff at</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1496,10 +1492,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Show the conditions of service.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Additional Information</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1568,7 +1560,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Website</source>
+        <source>Show the terms and conditions.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2134,6 +2126,10 @@
     </message>
     <message>
         <source>Statistics</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Basket</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
