@@ -8,7 +8,7 @@
 {include uri="design:shop/basket_navigator.tpl" step='2'}
 
 {include uri="design:shop/userregister_preface.tpl"}
-{if $input_error}
+{if and( $input_error, $errors|count|eq(0) )}
 <div class="warning">
 <h2>{'Validation error'|i18n('extension/xrowecommerce')}</h2>
 <ul>

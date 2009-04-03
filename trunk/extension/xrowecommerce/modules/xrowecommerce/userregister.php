@@ -313,6 +313,11 @@ if ( $module->isCurrentAction( 'Store' ) )
                     eZDebug::writeError( $e->getMessage(), 'TAX ID Validation problem' );
                 }
             }
+            else
+            {
+                $errors[] = ezi18n( 'extension/xrowecommerce', 'Your companies tax ID number is not valid.' );
+                $inputIsValid = false;
+            }
         }
     }
     $phone = $http->postVariable( "Phone" );
