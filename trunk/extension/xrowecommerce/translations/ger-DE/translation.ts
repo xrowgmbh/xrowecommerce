@@ -850,7 +850,7 @@
     </message>
     <message>
         <source>Register user</source>
-        <translation>Benutzer Registrieren</translation>
+        <translation>Benutzer registrieren</translation>
     </message>
     <message>
         <source>Account Information</source>
