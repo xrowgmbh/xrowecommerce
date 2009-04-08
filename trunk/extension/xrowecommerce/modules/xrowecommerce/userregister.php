@@ -289,7 +289,7 @@ if ( $module->isCurrentAction( 'Store' ) )
             $errors[] = ezi18n( 'extension/xrowecommerce', 'Please enter a your companies tax ID number.' );
             $inputIsValid = false;
         }
-        if ( in_array( $Alpha2, $ids ) )
+        if ( in_array( $Alpha2, $ids ) and $company_name )
         {
             $matches = array();
             if ( preg_match( "/^(" . join( '|', $ids ) . ")([0-9]+)/i", $tax_id, $matches ) )
