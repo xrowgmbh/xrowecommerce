@@ -1482,7 +1482,7 @@
     </message>
     <message>
         <source>Empty Cart</source>
-        <translation>Einkaufswagen leeren</translation>
+        <translation>Warenkorb leeren</translation>
     </message>
     <message>
         <source>Position</source>
@@ -1579,11 +1579,11 @@
     </message>
     <message>
         <source>Use this button to empty your shopping cart.</source>
-        <translation>Verwenden Sie diesen Schaltknopf, um den Einkaufswagen auszuleeren.</translation>
+        <translation>Verwenden Sie diesen Schaltknopf, um den Warenkorb auszuleeren.</translation>
     </message>
     <message>
         <source>Use this button to update your shopping cart.</source>
-        <translation>Verwenden Sie diesen Schaltknopf, um den Einkaufswagen zu aktualisieren.</translation>
+        <translation>Verwenden Sie diesen Schaltknopf, um den Warenkorb zu aktualisieren.</translation>
     </message>
     <message>
         <source>Use this button to place your order.</source>
@@ -1599,7 +1599,7 @@
     </message>
     <message>
         <source>Empty cart</source>
-        <translation>Einkaufswagen leeren</translation>
+        <translation>Warenkorb leeren</translation>
     </message>
 </context>
 <context>
