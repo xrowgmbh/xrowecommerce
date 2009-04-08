@@ -27,3 +27,6 @@ http://issues.ez.no/IssueView.php?Id=14703&activeItem=1
 #### Modified files:
 kernel/classes/ezproductcollectionitem.php
 
+4.0.3: Line 240
+add amount
+$optionData = $dataType->productOptionInformation( $objectAttribute, $option->attribute( 'option_item_id' ), $option, $this->attribute( 'item_count' ) );

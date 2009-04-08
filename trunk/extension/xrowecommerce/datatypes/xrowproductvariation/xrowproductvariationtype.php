@@ -721,7 +721,6 @@ class xrowProductVariationType extends eZDataType
         $price = 0.0;
         $name = '';
         $value = '';
-        $cObj = $objectAttribute->content();
         $variation = xrowProductData::fetch( $optionID );
         if ( $variation )
         {
@@ -730,6 +729,7 @@ class xrowProductVariationType extends eZDataType
         	if ( $priceIdentifier != '' )
         	{
         		$priceID = $variation->attribute( $priceIdentifier );
+        		//eZDebug::writeDebug( $amount, 'amount' );
         		$price = xrowProductPrice::fetchPriceByAmount( $priceID, $amount );
         	}
         	$name = $variation->getVariationName();
