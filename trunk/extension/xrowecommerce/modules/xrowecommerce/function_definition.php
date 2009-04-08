@@ -34,5 +34,18 @@ $FunctionList['variation'] = array( 'name' => 'variation',
                                                                   'type' => 'integer',
                                                                   'required' => true ) ) );
 
+$FunctionList['sliding_price'] = array( 'name' => 'sliding_price',
+                                    'operation_types' => array( 'read' ),
+                                    'call_method' => array( 'class' => 'xrowECommerceFunctionCollection',
+                                                            'method' => 'fetchSlidingPrice' ),
+                                    'parameter_type' => 'standard',
+                                    'parameters' => array( array( 'name' => 'price_id',
+                                                                  'type' => 'integer',
+                                                                  'required' => true ),
+                                                           array( 'name' => 'amount',
+                                                                  'type' => 'integer',
+                                                                  'required' => false )
+                                                            ) );
+
 
 ?>

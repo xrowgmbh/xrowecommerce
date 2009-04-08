@@ -81,7 +81,6 @@ class xrowProductPrice extends eZPersistentObject
      *
      * @param int $priceID
      * @param int $amount
-     * @param string $code
      * @return float
      */
     public static function fetchPriceByAmount( $priceID, $amount )
@@ -110,6 +109,29 @@ class xrowProductPrice extends eZPersistentObject
         }
         eZDebug::writeDebug( 'price not found', 'xrowProductPrice::fetchPriceByAmount()' );
         return 0.0;
+    }
+
+    /**
+     * Fetches sliding prices by price ID
+     *
+     * @param int $priceID
+     * @return mixed
+     */
+    public static function fetchSlidingPriceArray( $priceID )
+    {
+        //eZDebug::writeDebug( $amount, 'amount' );
+        $db = eZDB::instance();
+    	$sql = "SELECT DISTINCT amount FROM xrowproduct_price WHERE price_id = '$priceID'";
+    	$amountArray = $db->arrayQuery( $sql );
+
+    	$result = array();
+    	foreach ( $amountArray as $item )
+    	{
+    		$amount = $item['amount'];
+    		$result[$amount] = self::fetchPriceByAmount( $priceID, $amount );
+    	}
+
+    	return $result;
     }
 
     /**

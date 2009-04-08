@@ -39,6 +39,29 @@ class xrowECommerceFunctionCollection
         return $result;
     }
 
+    /**
+     * Returns a sliding price if amount is given or
+     * an array of sliding prices
+     *
+     * @param int $priceID
+     * @return mixed
+     */
+    public function fetchSlidingPrice( $price_id, $amount = false )
+    {
+        if ( $amount === false )
+        {
+        	$slidingArray = xrowProductPrice::fetchSlidingPriceArray( $price_id );
+        	$result = array( 'result' => $slidingArray );
+        }
+        else
+        {
+        	$price = xrowProductPrice::fetchPriceByAmount( $price_id, $amount );
+        	$result = array( 'result' => $price );
+        }
+
+        return $result;
+    }
+
 }
 
 ?>
