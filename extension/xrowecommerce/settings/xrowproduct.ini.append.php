@@ -43,5 +43,11 @@ VATTypeID=1
 # Show hidden fields, necerssary on admin site
 # ShowHiddenFields=true
 
+# attribute variation identifier of the price column
+PriceIdentifier=price
+
+[ImportSettings]
+# Separator for csv import
+Separator=;
 
 */ ?>
