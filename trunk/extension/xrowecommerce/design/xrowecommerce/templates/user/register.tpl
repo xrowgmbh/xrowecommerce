@@ -72,7 +72,7 @@
                         <input type="hidden" name="ContentObjectAttribute_id[]" value="{$ca.company_name.id}" />
                     </div>
                     {/if}
-                    {if eq(ezini( 'Settings', 'CompanyForm', 'xrowecommerce.ini' ), 'enabled' )}
+                    {if eq(ezini( 'Settings', 'CompanyAdditional', 'xrowecommerce.ini' ), 'enabled' )}
                     <div>
                         <label>{'Form of company'|i18n('extension/xrowecommerce')}</label>
                         <div class="labelbreak"></div>
@@ -212,7 +212,7 @@
                         <input type="hidden" name="ContentObjectAttribute_id[]" value="{$ca.s_company_name.id}" />
                     </div>
                     {/if}
-                    {if eq(ezini( 'Settings', 'CompanyForm', 'xrowecommerce.ini' ), 'enabled' )}
+                    {if eq(ezini( 'Settings', 'CompanyAdditional', 'xrowecommerce.ini' ), 'enabled' )}
                     <div class="block">
                         <label>{'Form of company'|i18n('extension/xrowecommerce')}</label>
                         <div class="labelbreak"></div>
