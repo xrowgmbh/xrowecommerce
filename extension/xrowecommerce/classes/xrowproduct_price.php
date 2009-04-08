@@ -143,8 +143,9 @@ class xrowProductPrice extends eZPersistentObject
     	if ( !isset( $GLOBALS['xrowpricecountryarray'] ) )
     	{
             $xrowINI = eZINI::instance( 'xrowproduct.ini');
-            $countryArray = $xrowINI->variable( 'PriceSettings', 'CountryArray' );
-            $GLOBALS['xrowpricecountryarray'] = array_keys( $countryArray );
+            $countryArray = $xrowINI->variable( 'PriceSettings', 'PrioCountryArray' );
+            ksort( $countryArray );
+            $GLOBALS['xrowpricecountryarray'] = array_values( $countryArray );
     	}
     	return $GLOBALS['xrowpricecountryarray'];
     }

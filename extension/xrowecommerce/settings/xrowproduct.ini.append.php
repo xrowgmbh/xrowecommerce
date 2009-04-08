@@ -21,10 +21,24 @@ IsVATInclude=false
 VATTypeID=1
 
 # Which price of which country should be shown
-#PreferedCountry=AUT
+# PreferedCountry=AUT
 
 # Country which has the default price (input is required)
 #DefaultCountry=AUT
+
+# A list of countries for all supported currencies / values
+# CountryArray[GER]=EUR
+# CountryArray[AUT]=EUR
+#CountryArray[]
+
+# A list of priorized countries
+# PrioCountryArray[0]=GER
+# PrioCountryArray[1]=AUT
+# In that case the default country/currency is GER.
+# If no value is given, the fallback is AUT
+# If there is no fallback, the array needs to be filled with the default
+# country/currency
+# PrioCountryArray[]
 
 # Show hidden fields, necerssary on admin site
 # ShowHiddenFields=true
