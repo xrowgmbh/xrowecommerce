@@ -371,25 +371,17 @@ class xrowProductTemplate extends eZPersistentObject
     }
 
     /**
-     * Search the price datatype in the attribute list
-     * and returns the identifier.
+     * Returns the col name of the price
      * @return string
      */
-    public function findPriceAttributeIdentifier()
+    public static function findPriceAttributeIdentifier()
     {
-    	$this->updateAttributes();
-    	$attributeList = $this->attributeList();
-        foreach ( $attributeList as $attribute )
-        {
-            $dataType = $attribute['attribute']->dataType();
-
-        	if ( $dataType->DataTypeString == 'price' )
-            {
-            	return  $attribute['attribute']->attribute( 'identifier' );
-            }
-        }
-        eZDebug::writeError( 'Price field not found', 'xrowProductTemplate::findPriceAttributeIdentifier()' );
-        return '';
+    	if ( !isset( $GLOBALS['xrowproductpriceidentifier'] ) )
+    	{
+	    	$xINI = eZINI::instance( 'xrowproduct.ini' );
+	    	$GLOBALS['xrowproductpriceidentifier'] = $xINI->variable( 'PriceSettings', 'PriceIdentifier' );
+    	}
+	    return $GLOBALS['xrowproductpriceidentifier'];
     }
 
      /// \privatesection

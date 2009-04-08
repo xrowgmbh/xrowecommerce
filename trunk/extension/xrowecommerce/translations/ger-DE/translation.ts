@@ -111,6 +111,10 @@
         <source>Product templates</source>
         <translation>Produkt Vorlagen</translation>
     </message>
+    <message>
+        <source>Price import</source>
+        <translation>Preis Import</translation>
+    </message>
 </context>
 <context>
     <name>design/admin/shop/orderlist</name>
@@ -486,6 +490,17 @@
     <message>
         <source>Select which nodes from which classes can be selected</source>
         <translation>Welche Knoten von welchen Klassen können ausgewählt werden</translation>
+    </message>
+</context>
+<context>
+    <name>design/standard/content/datatype</name>
+    <message>
+        <source>CSV File for import</source>
+        <translation>CSV Datei Import</translation>
+    </message>
+    <message>
+        <source>Country</source>
+        <translation>Land</translation>
     </message>
 </context>
 <context>
@@ -1600,6 +1615,74 @@
     <message>
         <source>Empty cart</source>
         <translation>Warenkorb leeren</translation>
+    </message>
+    <message>
+        <source>Price import</source>
+        <translation>Preis Import</translation>
+    </message>
+    <message>
+        <source>Start price import</source>
+        <translation>Preis Import starten</translation>
+    </message>
+    <message>
+        <source>Start the price import.</source>
+        <translation>Starten Sie hier den Preis Import.</translation>
+    </message>
+    <message>
+        <source>Import error</source>
+        <translation>Import Fehler</translation>
+    </message>
+    <message>
+        <source>Import report</source>
+        <translation>Import Report</translation>
+    </message>
+    <message>
+        <source>Total lines in file</source>
+        <translation>Anzahl der Zeilen in der Datei</translation>
+    </message>
+    <message>
+        <source>Prices updated</source>
+        <translation>Aktualisierte Preise</translation>
+    </message>
+    <message>
+        <source>Same price</source>
+        <translation>Gleicher Preis</translation>
+    </message>
+    <message>
+        <source>Empty lines</source>
+        <translation>Leerzeilen</translation>
+    </message>
+    <message>
+        <source>SKU not found</source>
+        <translation>Artikelnummer nicht gefunden</translation>
+    </message>
+    <message>
+        <source>Price was not a valid number</source>
+        <translation>Preis war keine gültige Zahl</translation>
+    </message>
+    <message>
+        <source>New price created</source>
+        <translation>Neuer Preis erstellt</translation>
+    </message>
+    <message>
+        <source>New sliding price (not imported)</source>
+        <translation>Neuer Staffelpreis (konnte nicht importiert werden)</translation>
+    </message>
+    <message>
+        <source>These SKUs were not found, prices couldn&apos;t be imported:</source>
+        <translation>Diese Artikelnummern wurden nicht gefunden, Preise konnten nicht importiert werden:</translation>
+    </message>
+    <message>
+        <source>Cannot fetch uploaded file, please choose a valid CSV file.</source>
+        <translation>Konnte Datei nicht verarbeiten, bitte wählen Sie eine gültige CSV Datei aus.</translation>
+    </message>
+    <message>
+        <source>File has a wrong extension. Only CSV files are supported.</source>
+        <translation>Datei hat falsche Erweiterung. Nur CSV Dateien werden unterstützt.</translation>
+    </message>
+    <message>
+        <source>Empty file uploaded.</source>
+        <translation>Leere Datei hochgeladen.</translation>
     </message>
 </context>
 <context>

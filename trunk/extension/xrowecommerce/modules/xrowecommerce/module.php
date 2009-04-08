@@ -12,12 +12,14 @@ $ViewList["userregister"] = array(
                                     'CancelButton' => 'Cancel'
                                     )
     );
+
 $ViewList["basket"] = array(
     "functions" => array( 'buy' ),
     "script" => "basket.php",
     "default_navigation_part" => 'ezshopnavigationpart',
     'unordered_params' => array( 'error' => 'Error' ),
     "params" => array(  ) );
+
 $ViewList["multiadd"] = array(
     "functions" => array( 'buy' ),
     "script" => "multiadd.php",
@@ -29,11 +31,18 @@ $ViewList["statistics"] = array(
     "script" => "orderstatistics.php",
     "default_navigation_part" => 'ezshopnavigationpart',
     "params" => array( 'StartYear', 'StartMonth', 'StopMonth', 'StartDay', 'StopDay' ) );
+
 $ViewList["invoiceprint"] = array(
     "functions" => array( 'buy' ),
     "script" => "invoiceprint.php",
     "default_navigation_part" => 'ezshopnavigationpart',
     "params" => array( "OrderID" ) );
+
+$ViewList["priceimport"] = array(
+    "functions" => array( 'administrate' ),
+    "script" => "price_import.php",
+    "default_navigation_part" => 'ezshopnavigationpart',
+    "params" => array() );
 
 $Payment = array(
     'name' => 'Payment',
