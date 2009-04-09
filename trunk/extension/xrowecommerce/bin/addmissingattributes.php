@@ -23,225 +23,250 @@ function updateClasses( $ident )
     $installer = new eZSiteInstaller( );
     $class = eZContentClass::fetchByIdentifier( $ident );
     $attributes = array();
-    if ( !attributeIdentifierExists( $class, 'company_name' ) )
+    if ( ! attributeIdentifierExists( $class, 'company_name' ) )
     {
         $attributes[] = array( 
             'identifier' => 'company_name' , 
+            'can_translate' => false , 
             'name' => 'Company name' , 
             'data_type_string' => 'ezstring' 
         );
     
     }
-    if ( !attributeIdentifierExists( $class, 'company_additional' ) )
+    if ( ! attributeIdentifierExists( $class, 'company_additional' ) )
     {
         $attributes[] = array( 
-            'identifier' => 'company_additional', 
-            'name' => 'Company additional', 
+            'identifier' => 'company_additional' , 
+            'can_translate' => false , 
+            'name' => 'Company additional' , 
             'data_type_string' => 'ezstring' 
         );
     
     }
-    if ( !attributeIdentifierExists( $class, 'tax_id' ) )
+    if ( ! attributeIdentifierExists( $class, 'tax_id' ) )
     {
         $attributes[] = array( 
-            'identifier' => 'tax_id', 
-            'name' => 'Tax ID', 
+            'identifier' => 'tax_id' , 
+            'can_translate' => false , 
+            'name' => 'Tax ID' , 
             'data_type_string' => 'ezstring' 
         );
     }
-    if ( !attributeIdentifierExists( $class, 'first_name' ) )
+    if ( ! attributeIdentifierExists( $class, 'first_name' ) )
     {
         $attributes[] = array( 
-            'identifier' => 'first_name', 
-            'name' => 'First Name', 
+            'identifier' => 'first_name' , 
+            'can_translate' => false , 
+            'name' => 'First Name' , 
             'data_type_string' => 'ezstring' 
         );
     }
-    if ( !attributeIdentifierExists( $class, 'last_name' ) )
+    if ( ! attributeIdentifierExists( $class, 'last_name' ) )
     {
         $attributes[] = array( 
-            'identifier' => 'last_name', 
-            'name' => 'Last Name', 
+            'identifier' => 'last_name' , 
+            'can_translate' => false , 
+            'name' => 'Last Name' , 
             'data_type_string' => 'ezstring' 
         );
     }
-    if ( !attributeIdentifierExists( $class, 'address1' ) )
+    if ( ! attributeIdentifierExists( $class, 'address1' ) )
     {
         $attributes[] = array( 
-            'identifier' => 'address1', 
-            'name' => 'Address', 
+            'identifier' => 'address1' , 
+            'can_translate' => false , 
+            'name' => 'Address' , 
             'data_type_string' => 'ezstring' 
         );
     }
-    if ( !attributeIdentifierExists( $class, 'address2' ) )
+    if ( ! attributeIdentifierExists( $class, 'address2' ) )
     {
         $attributes[] = array( 
-            'identifier' => 'address2', 
-            'name' => 'Additional address', 
+            'identifier' => 'address2' , 
+            'can_translate' => false , 
+            'name' => 'Additional address' , 
             'data_type_string' => 'ezstring' 
         );
     }
-    if ( !attributeIdentifierExists( $class, 'state' ) )
+    if ( ! attributeIdentifierExists( $class, 'state' ) )
     {
         $attributes[] = array( 
-            'identifier' => 'state', 
-            'name' => 'State', 
+            'identifier' => 'state' , 
+            'can_translate' => false , 
+            'name' => 'State' , 
             'data_type_string' => 'ezstring' 
         );
     }
-    if ( !attributeIdentifierExists( $class, 'zip' ) )
+    if ( ! attributeIdentifierExists( $class, 'zip' ) )
     {
         $attributes[] = array( 
-            'identifier' => 'zip', 
-            'name' => 'ZIP', 
+            'identifier' => 'zip' , 
+            'can_translate' => false , 
+            'name' => 'ZIP' , 
             'data_type_string' => 'ezstring' 
         );
     }
-    if ( !attributeIdentifierExists( $class, 'city' ) )
+    if ( ! attributeIdentifierExists( $class, 'city' ) )
     {
         $attributes[] = array( 
-            'identifier' => 'city', 
-            'name' => 'City', 
+            'identifier' => 'city' , 
+            'can_translate' => false , 
+            'name' => 'City' , 
             'data_type_string' => 'ezstring' 
         );
     }
-    if ( !attributeIdentifierExists( $class, 'country' ) )
+    if ( ! attributeIdentifierExists( $class, 'country' ) )
     {
         $attributes[] = array( 
-            'identifier' => 'country', 
-            'name' => 'Country', 
+            'identifier' => 'country' , 
+            'can_translate' => false , 
+            'name' => 'Country' , 
             'data_type_string' => 'ezcountry' 
         );
     }
-    if ( !attributeIdentifierExists( $class, 'phone' ) )
+    if ( ! attributeIdentifierExists( $class, 'phone' ) )
     {
         $attributes[] = array( 
-            'identifier' => 'phone', 
-            'name' => 'Phone', 
+            'identifier' => 'phone' , 
+            'can_translate' => false , 
+            'name' => 'Phone' , 
             'data_type_string' => 'ezstring' 
         );
     }
-    if ( !attributeIdentifierExists( $class, 'fax' ) )
+    if ( ! attributeIdentifierExists( $class, 'fax' ) )
     {
         $attributes[] = array( 
-            'identifier' => 'fax', 
-            'name' => 'Fax', 
+            'identifier' => 'fax' , 
+            'name' => 'Fax' , 
             'data_type_string' => 'ezstring' 
         );
     }
-    if ( !attributeIdentifierExists( $class, 'shippingaddress' ) )
+    if ( ! attributeIdentifierExists( $class, 'shippingaddress' ) )
     {
         $attributes[] = array( 
-            'identifier' => 'shippingaddress', 
-            'name' => 'Billing and shipping addresses are identical', 
-            'data_type_string' => 'ezboolean',
+            'identifier' => 'shippingaddress' , 
+            'can_translate' => false , 
+            'name' => 'Billing and shipping addresses are identical' , 
+            'data_type_string' => 'ezboolean' , 
             'default_value' => '1' 
         );
     }
-    if ( !attributeIdentifierExists( $class, 's_company_name' ) )
+    if ( ! attributeIdentifierExists( $class, 's_company_name' ) )
     {
         $attributes[] = array( 
             'identifier' => 's_company_name' , 
+            'can_translate' => false , 
             'name' => 'Shipping company name' , 
             'data_type_string' => 'ezstring' 
         );
     
     }
-    if ( !attributeIdentifierExists( $class, 's_company_additional' ) )
+    if ( ! attributeIdentifierExists( $class, 's_company_additional' ) )
     {
         $attributes[] = array( 
-            'identifier' => 's_company_additional', 
-            'name' => 'Shipping company additional', 
+            'identifier' => 's_company_additional' , 
+            'can_translate' => false , 
+            'name' => 'Shipping company additional' , 
             'data_type_string' => 'ezstring' 
         );
     
     }
-
-    if ( !attributeIdentifierExists( $class, 's_first_name' ) )
+    
+    if ( ! attributeIdentifierExists( $class, 's_first_name' ) )
     {
         $attributes[] = array( 
-            'identifier' => 's_first_name', 
-            'name' => 'Shipping first name', 
+            'identifier' => 's_first_name' , 
+            'can_translate' => false , 
+            'name' => 'Shipping first name' , 
             'data_type_string' => 'ezstring' 
         );
     }
-    if ( !attributeIdentifierExists( $class, 's_last_name' ) )
+    if ( ! attributeIdentifierExists( $class, 's_last_name' ) )
     {
         $attributes[] = array( 
-            'identifier' => 's_last_name', 
-            'name' => 'Shipping last name', 
+            'identifier' => 's_last_name' , 
+            'can_translate' => false , 
+            'name' => 'Shipping last name' , 
             'data_type_string' => 'ezstring' 
         );
     }
-    if ( !attributeIdentifierExists( $class, 's_address1' ) )
+    if ( ! attributeIdentifierExists( $class, 's_address1' ) )
     {
         $attributes[] = array( 
-            'identifier' => 's_address1', 
-            'name' => 'Address', 
+            'identifier' => 's_address1' , 
+            'name' => 'Address' , 
             'data_type_string' => 'ezstring' 
         );
     }
-    if ( !attributeIdentifierExists( $class, 's_address2' ) )
+    if ( ! attributeIdentifierExists( $class, 's_address2' ) )
     {
         $attributes[] = array( 
-            'identifier' => 's_address2', 
-            'name' => 'Shipping additional address', 
+            'identifier' => 's_address2' , 
+            'can_translate' => false , 
+            'name' => 'Shipping additional address' , 
             'data_type_string' => 'ezstring' 
         );
     }
-    if ( !attributeIdentifierExists( $class, 's_state' ) )
+    if ( ! attributeIdentifierExists( $class, 's_state' ) )
     {
         $attributes[] = array( 
-            'identifier' => 's_state', 
-            'name' => 'Shipping state', 
+            'identifier' => 's_state' , 
+            'can_translate' => false , 
+            'name' => 'Shipping state' , 
             'data_type_string' => 'ezstring' 
         );
     }
-    if ( !attributeIdentifierExists( $class, 's_zip' ) )
+    if ( ! attributeIdentifierExists( $class, 's_zip' ) )
     {
         $attributes[] = array( 
-            'identifier' => 's_zip', 
-            'name' => 'Shippping ZIP', 
+            'identifier' => 's_zip' , 
+            'can_translate' => false , 
+            'name' => 'Shippping ZIP' , 
             'data_type_string' => 'ezstring' 
         );
     }
-    if ( !attributeIdentifierExists( $class, 's_city' ) )
+    if ( ! attributeIdentifierExists( $class, 's_city' ) )
     {
         $attributes[] = array( 
-            'identifier' => 's_city', 
-            'name' => 'Shipping City', 
+            'identifier' => 's_city' , 
+            'can_translate' => false , 
+            'name' => 'Shipping City' , 
             'data_type_string' => 'ezstring' 
         );
     }
-    if ( !attributeIdentifierExists( $class, 's_country' ) )
+    if ( ! attributeIdentifierExists( $class, 's_country' ) )
     {
         $attributes[] = array( 
-            'identifier' => 's_country', 
-            'name' => 'Shipping country', 
+            'identifier' => 's_country' , 
+            'can_translate' => false , 
+            'name' => 'Shipping country' , 
             'data_type_string' => 'ezcountry' 
         );
     }
-    if ( !attributeIdentifierExists( $class, 's_phone' ) )
+    if ( ! attributeIdentifierExists( $class, 's_phone' ) )
     {
         $attributes[] = array( 
-            'identifier' => 's_phone', 
-            'name' => 'Shipping Phone', 
+            'identifier' => 's_phone' , 
+            'can_translate' => false , 
+            'name' => 'Shipping Phone' , 
             'data_type_string' => 'ezstring' 
         );
     }
-    if ( !attributeIdentifierExists( $class, 's_fax' ) )
+    if ( ! attributeIdentifierExists( $class, 's_fax' ) )
     {
         $attributes[] = array( 
-            'identifier' => 's_fax', 
-            'name' => 'Shipping Fax', 
+            'identifier' => 's_fax' , 
+            'can_translate' => false , 
+            'name' => 'Shipping Fax' , 
             'data_type_string' => 'ezstring' 
         );
     }
-    if ( !attributeIdentifierExists( $class, 's_email' ) )
+    if ( ! attributeIdentifierExists( $class, 's_email' ) )
     {
         $attributes[] = array( 
-            'identifier' => 's_email', 
-            'name' => 'Shipping email', 
+            'identifier' => 's_email' , 
+            'can_translate' => false , 
+            'name' => 'Shipping email' , 
             'data_type_string' => 'ezemail' 
         );
     }
@@ -265,13 +290,14 @@ $script = eZScript::instance( array(
 ) );
 $script->startup();
 
-$scriptOptions = $script->getOptions( "[class:]", "", array( 'class' => 'Class to update'), false, array( 
+$scriptOptions = $script->getOptions( "[class:]", "", array( 
+    'class' => 'Class to update' 
+), false, array( 
     'user' => true 
 ) );
 
-
 $script->initialize();
-if ( !isset( $scriptOptions['class'] ) )
+if ( ! isset( $scriptOptions['class'] ) )
 {
     $cli->error( 'Please supply the class parameter' );
     $script->shutdown( 1 );
