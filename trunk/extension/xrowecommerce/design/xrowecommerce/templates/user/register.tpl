@@ -38,11 +38,7 @@
             </div>
             <div class="break"></div>
         </div>
-        <div class="billing_shipping">
-            <div class="billing">
-                <h3>{'Billing Information'|i18n('extension/xrowecommerce')}</h3>
-                <p>{'Please enter your billing address exactly as it appears on your credit card statement.'|i18n('extension/xrowecommerce')}</p>
-                <p><span class="required">* {'Required field'|i18n('extension/xrowecommerce')}</span></p>
+        
                 {section show=and( and( is_set( $checkErrNodeId ), $checkErrNodeId ), eq( $checkErrNodeId, true ) )}
                  <div class="message-error">
                     <h3><span class="time">[{currentdate()|l10n( shortdatetime )}]</span> {$errMsg}</h3>
@@ -55,13 +51,21 @@
                     <ul>
                         <li>{$UnvalidatedAttributes:item.name}: {$UnvalidatedAttributes:item.description}</li>
                     </ul>
+                    <div class="break"></div>
                 </div>
                 {section-else}
                 <div class="feedback">
                     <h3>{"Input was stored successfully"|i18n("extension/xrowecommerce")}</h3>
                 </div>
                 {/section}
-                {/section}        
+                {/section} 
+        
+        <div class="billing_shipping">
+            <div class="billing">
+                <h3>{'Billing Information'|i18n('extension/xrowecommerce')}</h3>
+                <p>{'Please enter your billing address exactly as it appears on your credit card statement.'|i18n('extension/xrowecommerce')}</p>
+                <p><span class="required">* {'Required field'|i18n('extension/xrowecommerce')}</span></p>
+       
                 <div class="block">
                     {if eq(ezini( 'Settings', 'CompanyName', 'xrowecommerce.ini' ), 'enabled' )}
                     <div class="block">
@@ -145,28 +149,28 @@
                     <div class="country">
                         <label><span class="required">*</span>{'Country'|i18n('extension/xrowecommerce')}</label>
                         <div class="labelbreak"></div>
+                        {def $country = $ca.country.content.value}
+
                         {def $country_default_ini=ezini( 'ShopAccountHandlerDefaults', 'DefaultCountryCode' )}
                         {def $country_default=''}
                         {def $country_list_item_code=''}
-                        {def $is_set=is_set($country)}
-                        {if $is_set}
-                            {if $country|ne('')}
-                                {set $country=$country|wash()}
-                            {else}
-                                {set $country=$country_default_ini}
-                            {/if}
-                        {else}
-                            {def $country=$country_default_ini}
-                        {/if}
-                        {def $countries=fetch( 'content', 'country_list', array(false, false))}
-                        <input type="hidden" name="ContentObjectAttribute_id[]" value="{$ca.country.id}" />
-                        <select name=ContentObjectAttribute_country_{$ca.country.id} id="country" onchange="shipping(this.value);">
+                        {def $countries=fetch( 'content', 'country_list')}
+                        {*<input type="hidden" name="ContentObjectAttribute_id[]" value="{$ca.country.id}" />*}
+                        <select name="ContentObjectAttribute_country_{$ca.country.id}[]" id="country" onchange="shipping(this.value);">
                             <option value="">&nbsp;</option>
-                            {foreach $countries as $country_list_item}
-                            {if $country_list_item.Alpha3|eq('')}{set $country_list_item_code=$country_list_item.Alpha2}{else}{set $country_list_item_code=$country_list_item.Alpha3}{/if}
-                            <option value="{$country_list_item_code}" {if $current_user.is_logged_in}{if eq( $country, $country_list_item.Alpha3 )} selected="selected"{/if}{else}{if eq( $country, $country_list_item_code )} selected="selected"{/if}{/if}>
-                            {$country_list_item.Name}
-                            </option>
+                            {def $alpha_2 = ''}
+                            {foreach $countries as $key => $current_country}
+                                 {set $alpha_2 = $current_country.Alpha2}
+                                 {if $country|ne( '' )}
+                                    {if $country|is_array|not}
+                                        {* Backwards compatability *}
+                                        <option {if $country|eq( $current_country.Name )}selected="selected"{/if} value="{$alpha_2}">{$current_country.Name}</option>
+                                    {else}
+                                        <option {if is_set( $country.$alpha_2 )}selected="selected"{/if} value="{$alpha_2}">{$current_country.Name}</option>
+                                    {/if}
+                                 {else}
+                                        <option {if is_set( $class_content.default_countries.$alpha_2 )}selected="selected"{/if} value="{$alpha_2}">{$current_country.Name}</option>
+                                 {/if}
                             {/foreach}
                         </select>
                     </div>
@@ -179,7 +183,7 @@
                     </div>
                     {if eq(ezini( 'Settings', 'Fax', 'xrowecommerce.ini' ), 'enabled' )}
                     <div class="block">
-                        <label><span class="required">*</span>{'Fax'|i18n('extension/xrowecommerce')}</label>
+                        <label>{'Fax'|i18n('extension/xrowecommerce')}</label>
                         <div class="labelbreak"></div>
                         <input class="box" type="text" name="{$castring}{$ca.fax.id}" value="{$ca.fax.content|wash()}" />
                         <input type="hidden" name="ContentObjectAttribute_id[]" value="{$ca.fax.id}" />
@@ -191,7 +195,7 @@
                 <h3>{'Shipping Information'|i18n('extension/xrowecommerce')}</h3>
                 <table border="0">
                     <tr>
-                        <td>
+                        <td class="td_ie7">
                             <input onchange="change(this.checked);" name="ContentObjectAttribute_data_boolean_{$ca.shippingaddress.id}" value="" type="checkbox" {$ca.shippingaddress.data_int|choose( '', 'checked="checked"' )} />
                             <input type="hidden" name="ContentObjectAttribute_id[]" value="{$ca.shippingaddress.id}" />
                         </td>
@@ -276,31 +280,30 @@
                     <div class="country">
                         <label><span class="required">*</span>{'Country'|i18n('extension/xrowecommerce')}</label>
                         <div class="labelbreak"></div>
-                        {set $country_default=''}
-                        {def $is_set=is_set($s_country)}
-                        {if is_set($s_country)|not}
-                        {def $s_country=''}
-                        {/if}
-                        {if and($s_country|eq(''),$country)}
-                        {set $s_country=$country|wash()}
-                        {/if}
-                        {if and($s_country|eq(''),$country|not)}
-                        {set $s_country=$country_default_ini|wash()}
-                        {/if}
-                        {def $countries=fetch( 'content', 'country_list', array(false, false))
-                             $country_list_item_code=''}
-                        <input type="hidden" name="ContentObjectAttribute_id[]" value="{$ca.s_country.id}" />
+                        {def $s_country = $ca.s_country.content.value}
+                        
+                        {def $s_countries=fetch( 'content', 'country_list')
+                             $s_country_list_item_code=''}
+                        {*<input type="hidden" name="ContentObjectAttribute_id[]" value="{$ca.s_country.id}" />*}
                         <input type="hidden" name="sik_country" id="sik_country" value="USA" />
-                        <select name="ContentObjectAttribute_country_{$ca.s_country.id}" id="scountry" onchange="shipping(document.register.country.value);">
+                        <select name="ContentObjectAttribute_country_{$ca.s_country.id}[]" id="scountry" onchange="shipping(document.register.country.value);">
                             <option value="">&nbsp;</option>
-                            {foreach $countries as $country_id => $country_list_item}
-                            {if $country_list_item.Alpha3|eq('')}
-                            {set $country_list_item_code=$country_list_item.Alpha2}
-                            {else}
-                            {set $country_list_item_code=$country_list_item.Alpha3}
-                            {/if}
-                            <option value="{$country_list_item_code}" {if $current_user.is_logged_in}{if eq($s_country,$country_list_item_code)} selected="selected"{/if}{else}{if eq($s_country,$country_list_item_code)} selected="selected"{/if}{/if}>{$country_list_item.Name}</option>
-                            {/foreach}
+                            
+{foreach $s_countries as $key => $s_current_country}
+     {set $alpha_2 = $s_current_country.Alpha2}
+     {if $s_country|ne( '' )}
+        {if $s_country|is_array|not}
+            {* Backwards compatability *}
+            <option {if $s_country|eq( $s_current_country.Name )}selected="selected"{/if} value="{$alpha_2}">{$s_current_country.Name}</option>
+        {else}
+            <option {if is_set( $s_country.$alpha_2 )}selected="selected"{/if} value="{$alpha_2}">{$s_current_country.Name}</option>
+        {/if}
+     {else}
+            <option {if is_set( $class_content.default_countries.$alpha_2 )}selected="selected"{/if} value="{$alpha_2}">{$s_current_country.Name}</option>
+     {/if}
+{/foreach}                            
+
+                            
                         </select>
                     </div>
                     <div class="break"></div>
