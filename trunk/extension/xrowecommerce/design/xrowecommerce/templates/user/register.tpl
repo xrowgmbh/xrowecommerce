@@ -322,11 +322,12 @@
                     <div class="break"></div>
                 </div>
             </div>
+        </div>
+            <div class="break"></div>
             <div class="buttonblock">
                 <input class="button" type="submit" name="DCancelButton" value="{'Cancel'|i18n('extension/xrowecommerce')}" />
                 <input class="button" type="submit" name="PublishButton" value="{'Continue'|i18n('extension/xrowecommerce')}" />
             </div>
-        </div>
     </form>
 </div>
 <script type="text/javascript">
