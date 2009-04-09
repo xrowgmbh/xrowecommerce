@@ -873,7 +873,7 @@
     </message>
     <message>
         <source>Login</source>
-        <translation>Anmelden</translation>
+        <translation>Benutzername</translation>
     </message>
     <message>
         <source>Confirm Password</source>
@@ -981,7 +981,7 @@
     </message>
     <message>
         <source>Continue</source>
-        <translation>Weiter einkaufen</translation>
+        <translation>Weiter</translation>
     </message>
     <message>
         <source>Unit Price</source>

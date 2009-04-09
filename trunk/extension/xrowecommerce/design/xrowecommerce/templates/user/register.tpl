@@ -4,7 +4,6 @@
 
 <div class="shop-basket user_register">
     <form enctype="multipart/form-data"  action={"/user/register/"|ezurl} method="post" name="Register">
-        <input type="hidden" name="RedirectAfterUserRegister" value={"/"|ezurl()} />
         <h2>{"Register user"|i18n("extension/xrowecommerce")}</h2>
         <div class="accountinfo">
             <h3>{'Account Information'|i18n('extension/xrowecommerce')}</h3>
@@ -322,7 +321,7 @@
             </div>
             <div class="buttonblock">
                 <input class="button" type="submit" name="DCancelButton" value="{'Cancel'|i18n('extension/xrowecommerce')}" />
-                <input class="button" type="submit" name="PublishButton" value="Update" />
+                <input class="button" type="submit" name="PublishButton" value="{'Continue'|i18n('extension/xrowecommerce')}" />
             </div>
         </div>
     </form>
