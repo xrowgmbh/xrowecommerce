@@ -206,7 +206,7 @@
                         </td>
                     </tr>
                 </table>
-                <div class="block" id="shippinginfo")}>
+                <div class="block" id="shippinginfo">
                     {if eq(ezini( 'Settings', 'CompanyName', 'xrowecommerce.ini' ), 'enabled' )}
                     <div class="block">
                         <label><span class="required">*</span>{'Company name'|i18n('extension/xrowecommerce')}</label>
