@@ -345,9 +345,9 @@ if (status)
 
 function shipping(status)
 {ldelim}
-if (document.register.Shipping.checked == false)
+if (document.register.shipping.checked == false)
     {ldelim}
-        status = document.register.scountry.value;
+        status = document.register.s_country.value;
     {rdelim}
 {rdelim}
 </script>
