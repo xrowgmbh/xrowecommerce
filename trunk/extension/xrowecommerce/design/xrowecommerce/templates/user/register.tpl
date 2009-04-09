@@ -193,19 +193,13 @@
             </div>
             <div class="shipping">
                 <h3>{'Shipping Information'|i18n('extension/xrowecommerce')}</h3>
-                <table border="0">
-                    <tr>
-                        <td class="td_ie7">
-                            <input onchange="change(this.checked);" name="ContentObjectAttribute_data_boolean_{$ca.shippingaddress.id}" value="" type="checkbox" {$ca.shippingaddress.data_int|choose( '', 'checked="checked"' )} />
-                            <input type="hidden" name="ContentObjectAttribute_id[]" value="{$ca.shippingaddress.id}" />
-                        </td>
-                        <td>
-                            <p>
-                                {'My billing and shipping addresses are identical.'|i18n('extension/xrowecommerce')}
-                            </p>
-                        </td>
-                    </tr>
-                </table>
+<input type="hidden" name="ContentObjectAttribute_id[]" value="{$ca.shippingaddress.id}" />
+<label class="shipping-checkbox" for="ContentObjectAttribute_data_boolean_{$ca.shippingaddress.id}">
+    <input onchange="change(this.checked);" name="ContentObjectAttribute_data_boolean_{$ca.shippingaddress.id}" value="" type="checkbox" {$ca.shippingaddress.data_int|choose( '', 'checked="checked"' )} />
+    {'My billing and shipping addresses are identical.'|i18n('extension/xrowecommerce')}
+</label>
+
+
                 <div class="block" id="shippinginfo">
                     {if eq(ezini( 'Settings', 'CompanyName', 'xrowecommerce.ini' ), 'enabled' )}
                     <div class="block">
