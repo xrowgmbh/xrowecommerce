@@ -9,14 +9,13 @@ class eZOption2
     {
         if ( $init )
         {
-        	$this->decodeXML( $contentObjectAttribute->attribute( "data_text" ) );
+            $this->decodeXML( $contentObjectAttribute->attribute( "data_text" ) );
         }
         if ( $name !== false )
         {
             $this->Name = $name;
         }
         $this->contentObjectAttribute = $contentObjectAttribute;
-        
     
     }
 
@@ -35,14 +34,36 @@ class eZOption2
     {
         return $this->Name;
     }
-static function randomINT(){
-	return str_replace( '.', '', microtime(true) );
-	//below is not better
-    $utime = preg_match("/^(.*?) (.*?)$/", microtime(), $match);
-    $utime = $match[2] + $match[1];
-    $utime *=  1000000;
-    return (int)$utime;
-}
+
+    /*
+     * Max size of a mysql int is 2147483647 http://dev.mysql.com/doc/refman/5.0/en/numeric-types.html
+     * So we will produce only to the size of 10^10
+    */
+    static function randomINT()
+    {
+        $length = 10;
+        $letters = '1234567890';
+        $s = '';
+        $lettersLength = strlen( $letters ) - 1;
+        
+        for ( $i = 0; $i < $length; $i ++ )
+        {
+            $s .= $letters[rand( 0, $lettersLength )];
+        }
+        
+        return (int) $s;
+    }
+    /* old random int function produces too big numbers
+    static function randomINT()
+    {
+        return str_replace( '.', '', microtime( true ) );
+        //below is not better
+        $utime = preg_match( "/^(.*?) (.*?)$/", microtime(), $match );
+        $utime = $match[2] + $match[1];
+        $utime *= 1000000;
+        return (int) $utime;
+    }
+    */
     /*!
      Adds an option
     */
@@ -55,9 +76,9 @@ static function randomINT(){
         $valueArray['image'] = isset( $valueArray['image'] ) ? $valueArray['image'] : null;
         $valueArray['description'] = isset( $valueArray['description'] ) ? $valueArray['description'] : '';
         $valueArray['additional_price'] = isset( $valueArray['additional_price'] ) ? $valueArray['additional_price'] : 0;
-        if( !$valueArray['id'] )
+        if ( ! array_key_exists( 'id', $valueArray ) )
         {
-        	// must be int based else we can`t store it.
+            // must be int based else we can`t store it.
             $valueArray['id'] = self::randomINT();
         }
         $valueArray['is_default'] = false;
@@ -68,11 +89,11 @@ static function randomINT(){
 
     function insertOption( $valueArray, $beforeID )
     {
-    	throw new Exception("deprecated ".__METHOD__);
-    	$valueArray['is_default'] = false;
-    	$valueArray['id'] = $this->OptionCount;
+        throw new Exception( "deprecated " . __METHOD__ );
+        $valueArray['is_default'] = false;
+        $valueArray['id'] = $this->OptionCount;
         array_splice( $this->Options, $beforeID, 0, array( 
-      $valueArray
+            $valueArray 
         ) );
         $this->OptionCount += 1;
     }
@@ -82,12 +103,12 @@ static function randomINT(){
         $shiftvalue = 0;
         foreach ( $array_remove as $id )
         {
-            foreach ( $this->Options as $key => $option)
+            foreach ( $this->Options as $key => $option )
             {
-	           if (  $option['id'] == $id  )
-	           {
-	           	 unset ( $this->Options[$key]);
-	           }
+                if ( $option['id'] == $id )
+                {
+                    unset( $this->Options[$key] );
+                }
             }
             $shiftvalue ++;
         }
@@ -192,7 +213,7 @@ static function randomINT(){
                     }
                 }
                 $this->addOption( array( 
-                    'id' => $optionNode->getAttribute( 'id' ),
+                    'id' => $optionNode->getAttribute( 'id' ) , 
                     'value' => $optionNode->textContent , 
                     'description' => $optionNode->getAttribute( 'description' ) , 
                     'comment' => $optionNode->getAttribute( 'comment' ) , 
@@ -200,9 +221,8 @@ static function randomINT(){
                     'image' => $optionNode->getAttribute( 'image' ) , 
                     'additional_price' => $optionNode->getAttribute( 'additional_price' ) , 
                     'multi_price' => new eZOptionMultiPrice( $PriceList ) 
-                ) )
-
-                ;
+                ) );
+            
             }
         
         }

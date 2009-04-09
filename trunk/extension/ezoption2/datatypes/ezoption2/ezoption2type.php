@@ -415,8 +415,8 @@ class eZOption2Type extends eZDataType
     function productOptionInformation( $objectAttribute, $optionID, $productItem )
     {
         $option = $objectAttribute->attribute( 'content' );
-        
-        foreach ( $option->attribute( 'option_list' ) as $optionArray )
+        $list = $option->attribute( 'option_list' );
+        foreach ( $list as $optionArray )
         {
             if ( $optionArray['id'] == $optionID )
             {
@@ -559,7 +559,6 @@ class eZOption2Type extends eZDataType
         #echo $xml . "\n";
         $dom2 = new DOMDocument( '1.0', 'utf-8' );
         $success = $dom2->loadXML( $xml );
-        var_dump( $xml );
         $options = $dom2->getElementsByTagName( "option" );
         $current = array();
         if ( $options->length > 0 )
