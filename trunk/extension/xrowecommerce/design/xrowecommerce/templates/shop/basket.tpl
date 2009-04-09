@@ -146,7 +146,7 @@ for (i = 0; i < field.length; i++)
             {/if}
             <td class="basketspace quantity">
                 <input type="hidden" name="ProductItemIDList[]" value="{$product_item.id}" />
-                <input class="quantity" type="text" name="ProductItemCountList[]" value="{$product_item.item_count}" size="4" maxlength="3" />
+                <input class="quantity" type="text" name="ProductItemCountList[]" value="{$product_item.item_count}" size="5" maxlength="4" />
             </td>
             <td class="cart_item basketspace">
                 {include uri="design:shop/product_cell_view.tpl" view="basket"}
