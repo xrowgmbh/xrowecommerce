@@ -210,7 +210,7 @@ class xrowECommerce
         $vies = new SoapClient( $wsdl );
 
         $nii = new checkVat( $cc, $vat );
-        
+
         try
         {
             $ret = $vies->checkVat( $nii );

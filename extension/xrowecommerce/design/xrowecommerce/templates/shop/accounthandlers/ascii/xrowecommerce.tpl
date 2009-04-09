@@ -10,7 +10,7 @@
  
 {/if}
 {if and( eq(ezini( 'Settings', 'TaxID', 'xrowecommerce.ini' ), 'enabled' ), $order.account_information.tax_id)}
-{'Tax ID'|i18n('extension/xrowecommerce')}: {$order.account_information.tax_id}
+{'Tax ID'|i18n('extension/xrowecommerce')}: {$order.account_information.tax_id} {if $order.account_information.tax_id_valid|not} ({'unconfirmed'|i18n('extension/xrowecommerce')}){/if}
  
 {/if}
 {'Name'|i18n( 'extension/xrowecommerce')}: {$order.account_information.first_name} {$order.account_information.mi} {$order.account_information.last_name}
