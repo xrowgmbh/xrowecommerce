@@ -12,7 +12,10 @@ $ViewList["userregister"] = array(
                                     'CancelButton' => 'Cancel'
                                     )
     );
-
+$ViewList["register"] = array(
+    "functions" => array( ),
+    "script" => "register.php"
+    );
 $ViewList["basket"] = array(
     "functions" => array( 'buy' ),
     "script" => "basket.php",
