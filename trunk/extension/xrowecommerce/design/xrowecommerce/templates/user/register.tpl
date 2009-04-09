@@ -194,8 +194,8 @@
             <div class="shipping">
                 <h3>{'Shipping Information'|i18n('extension/xrowecommerce')}</h3>
 <input type="hidden" name="ContentObjectAttribute_id[]" value="{$ca.shippingaddress.id}" />
-<label class="shipping-checkbox" onclick="change();" for="ContentObjectAttribute_data_boolean_{$ca.shippingaddress.id}">
-    <input onchange="change(this.checked);" name="ContentObjectAttribute_data_boolean_{$ca.shippingaddress.id}" value="" type="checkbox" {$ca.shippingaddress.data_int|choose( '', 'checked="checked"' )} />
+<label class="shipping-checkbox" for="ContentObjectAttribute_data_boolean_{$ca.shippingaddress.id}">
+    <input onchange="change();" id="ContentObjectAttribute_data_boolean_{$ca.shippingaddress.id}" name="ContentObjectAttribute_data_boolean_{$ca.shippingaddress.id}" value="" type="checkbox" {$ca.shippingaddress.data_int|choose( '', 'checked="checked"' )} />
     {'My billing and shipping addresses are identical.'|i18n('extension/xrowecommerce')}
 </label>
 
@@ -327,6 +327,7 @@
 <script type="text/javascript">
 function change()
 {ldelim}
+alert("asdasd");
 if (document.getElementById( 'ContentObjectAttribute_data_boolean_{$ca.shippingaddress.id}' ).checked)
     {ldelim}
     document.getElementById( 'shippinginfo' ).style.display = 'none';
