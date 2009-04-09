@@ -73,8 +73,16 @@ if ( $user->isLoggedIn() and in_array( $userobject->attribute( 'class_identifier
     }
     if ( isset( $userMap['country'] ) )
     {
+/*Warning  datatype MIGHT return different values depending on setup*/
     	$country = $userMap['country']->content();
+if( is_array( $country['value'] ) )
+{
+	$country = array_shift($country['value']);
+}
+else
+{
         $country = eZCountryType::fetchCountry( $country['value'], false );
+}
         $country = $country['Alpha3'];
     }
     if ( isset( $userMap['phone'] ) )
@@ -144,7 +152,14 @@ if ( $user->isLoggedIn() and in_array( $userobject->attribute( 'class_identifier
         if ( isset( $userMap['s_country'] ) )
         {
             $s_country = $userMap['s_country']->content();
-            $s_country = eZCountryType::fetchCountry( $s_country['value'], false );
+if( is_array( $s_country['value'] ) )
+{ 
+        $s_country = array_shift($s_country['value']);
+}
+else
+{
+        $s_country = eZCountryType::fetchCountry( $s_country['value'], false );
+}
             $s_country = $s_country['Alpha3'];
         }
         if ( isset( $userMap['s_phone'] ) )
@@ -367,14 +382,14 @@ if ( $module->isCurrentAction( 'Store' ) )
     
     if ( $shipping != "1" )
     {
-        $s_company_name = $http->postVariable( "s_companyname" );
+        $s_company_name = $http->postVariable( "s_company_name" );
         
-        $s_company_additional = $http->postVariable( "s_companyadditional" );
+        $s_company_additional = $http->postVariable( "s_company_additional" );
         
-        $s_first_name = $http->postVariable( "s_firstname" );
+        $s_first_name = $http->postVariable( "s_first_name" );
         if ( trim( $s_first_name ) == "" )
             $inputIsValid = false;
-        $s_last_name = $http->postVariable( "s_lastname" );
+        $s_last_name = $http->postVariable( "s_last_name" );
         if ( trim( $s_last_name ) == "" )
             $inputIsValid = false;
         $s_mi = $http->postVariable( "s_mi" );
