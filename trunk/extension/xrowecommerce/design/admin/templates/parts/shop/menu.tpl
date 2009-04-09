@@ -56,6 +56,7 @@
     <li><div><a href={'/productvariation/attributelist'|ezurl}>{'Product attributes'|i18n( 'design/admin/parts/shop/menu' )}</a></div></li>
     <li><div><a href={'/productvariation/templatelist'|ezurl}>{'Product templates'|i18n( 'design/admin/parts/shop/menu' )}</a></div></li>
     <li><div><a href={'/xrowecommerce/priceimport'|ezurl}>{'Price import'|i18n( 'design/admin/parts/shop/menu' )}</a></div></li>
+    <li><div><a href={'/xrowecommerce/priceexport'|ezurl}>{'Price export'|i18n( 'design/admin/parts/shop/menu' )}</a></div></li>
 </ul>
 
 {/if}

@@ -105,7 +105,7 @@
     </message>
     <message>
         <source>Product attributes</source>
-        <translation>Produkte Attribute</translation>
+        <translation>Produkt Attribute</translation>
     </message>
     <message>
         <source>Product templates</source>
@@ -114,6 +114,10 @@
     <message>
         <source>Price import</source>
         <translation>Preis Import</translation>
+    </message>
+    <message>
+        <source>Price export</source>
+        <translation>Preis Export</translation>
     </message>
 </context>
 <context>
@@ -1683,6 +1687,26 @@
     <message>
         <source>Empty file uploaded.</source>
         <translation>Leere Datei hochgeladen.</translation>
+    </message>
+    <message>
+        <source>Price export</source>
+        <translation>Preis Export</translation>
+    </message>
+    <message>
+        <source>Export error</source>
+        <translation>Export Fehler</translation>
+    </message>
+    <message>
+        <source>Start price export</source>
+        <translation>Preis Export starten</translation>
+    </message>
+    <message>
+        <source>Start the price export.</source>
+        <translation>Starten Sie hier den preis Export.</translation>
+    </message>
+    <message>
+        <source>unconfirmed</source>
+        <translation>unbestätigt</translation>
     </message>
 </context>
 <context>
