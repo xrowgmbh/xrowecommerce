@@ -47,6 +47,12 @@ $ViewList["priceimport"] = array(
     "default_navigation_part" => 'ezshopnavigationpart',
     "params" => array() );
 
+$ViewList["priceexport"] = array(
+    "functions" => array( 'administrate' ),
+    "script" => "price_export.php",
+    "default_navigation_part" => 'ezshopnavigationpart',
+    "params" => array() );
+
 $Payment = array(
     'name' => 'Payment',
     'values' => array(),

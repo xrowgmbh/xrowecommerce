@@ -50,4 +50,23 @@ PriceIdentifier=price
 # Separator for csv import
 Separator=;
 
+[ExportSettings]
+# Separator for csv export
+Separator=;
+# Precision - round the prices
+Precision=2
+# which content classes should be exported?
+# ExportClassArray[<classidentifier>]=<attributeidentifier>
+ExportClassArray[]
+ExportNodeID=2
+
+# identifier of SKU field
+SKUIdentifier=sku
+
+# Line ending for export
+LineEnding=\r\n
+
+# Decimal point
+DecimalPoint=,
+
 */ ?>
