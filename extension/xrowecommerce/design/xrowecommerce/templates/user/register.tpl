@@ -327,7 +327,6 @@
 <script type="text/javascript">
 function change()
 {ldelim}
-alert("asdasd");
 if (document.getElementById( 'ContentObjectAttribute_data_boolean_{$ca.shippingaddress.id}' ).checked)
     {ldelim}
     document.getElementById( 'shippinginfo' ).style.display = 'none';
