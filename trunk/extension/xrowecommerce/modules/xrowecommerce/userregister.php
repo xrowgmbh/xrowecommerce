@@ -73,7 +73,9 @@ if ( $user->isLoggedIn() and in_array( $userobject->attribute( 'class_identifier
     }
     if ( isset( $userMap['country'] ) )
     {
-        $country = $userMap['country']->attribute( 'data_text' );
+    	$country = $userMap['country']->content();
+        $country = eZCountryType::fetchCountry( $country['value'], false );
+        $country = $country['Alpha3'];
     }
     if ( isset( $userMap['phone'] ) )
     {
@@ -141,7 +143,9 @@ if ( $user->isLoggedIn() and in_array( $userobject->attribute( 'class_identifier
         }
         if ( isset( $userMap['s_country'] ) )
         {
-            $s_country = $userMap['s_country']->attribute( 'data_text' );
+            $s_country = $userMap['s_country']->content();
+            $s_country = eZCountryType::fetchCountry( $s_country['value'], false );
+            $s_country = $s_country['Alpha3'];
         }
         if ( isset( $userMap['s_phone'] ) )
         {
@@ -185,25 +189,25 @@ if ( $module->isCurrentAction( 'Store' ) )
 {
     $inputIsValid = true;
     
-    $company_name = $http->postVariable( "companyname" );
+    $company_name = $http->postVariable( "company_name" );
     
-    $company_additional = $http->postVariable( "companyadditional" );
+    $company_additional = $http->postVariable( "company_additional" );
     
-    $first_name = $http->postVariable( "FirstName" );
+    $first_name = $http->postVariable( "first_name" );
     if ( trim( $first_name ) == "" )
         $inputIsValid = false;
     
-    $last_name = $http->postVariable( "LastName" );
+    $last_name = $http->postVariable( "last_name" );
     if ( trim( $last_name ) == "" )
         $inputIsValid = false;
     
-    $mi = $http->postVariable( "MI" );
+    $mi = $http->postVariable( "mi" );
     if ( eZINI::instance( 'xrowecommerce.ini' )->variable( 'Settings', 'MI' ) == 'enabled' )
     {
         if ( trim( $mi ) == "" )
             $inputIsValid = false;
     }
-    $email = $http->postVariable( "EMail" );
+    $email = $http->postVariable( "email" );
     if ( empty( $email ) )
     {
         $errors[] = ezi18n( 'extension/xrowecommerce', "The email address isn't given." );
@@ -217,12 +221,12 @@ if ( $module->isCurrentAction( 'Store' ) )
             $inputIsValid = false;
         }
     }
-    $address1 = $http->postVariable( "Address1" );
-    $address2 = $http->postVariable( "Address2" );
+    $address1 = $http->postVariable( "address1" );
+    $address2 = $http->postVariable( "address2" );
     if ( trim( $address1 ) == "" )
         $inputIsValid = false;
     
-    $state = $http->postVariable( "State" );
+    $state = $http->postVariable( "state" );
     
     if ( eZINI::instance( 'xrowecommerce.ini' )->variable( 'Settings', 'State' ) == 'enabled' )
     {
@@ -230,15 +234,15 @@ if ( $module->isCurrentAction( 'Store' ) )
             $inputIsValid = false;
     }
     
-    $city = $http->postVariable( "City" );
+    $city = $http->postVariable( "city" );
     if ( trim( $city ) == "" )
         $inputIsValid = false;
     
-    $zip = $http->postVariable( "Zip" );
+    $zip = $http->postVariable( "zip" );
     if ( trim( $zip ) == "" )
         $inputIsValid = false;
     
-    $country = $http->postVariable( "Country" );
+    $country = $http->postVariable( "country" );
     if ( trim( $country ) == "" )
     {
         $inputIsValid = false;
@@ -250,7 +254,7 @@ if ( $module->isCurrentAction( 'Store' ) )
             $inputIsValid = false;
         }
     }
-    if ( $http->hasPostVariable( "TaxID" ) )
+    if ( $http->hasPostVariable( "tax_id" ) )
     {
         $ezcountry = eZCountryType::fetchCountry( $country, 'Alpha3' );
         $Alpha2 = $ezcountry['Alpha2'];
@@ -283,7 +287,7 @@ if ( $module->isCurrentAction( 'Store' ) )
             "SI" , 
             "SK" 
         );
-        $tax_id = strtoupper( str_replace( " ", "", trim( $http->postVariable( "TaxID" ) ) ) );
+        $tax_id = strtoupper( str_replace( " ", "", trim( $http->postVariable( "tax_id" ) ) ) );
         if ( empty( $tax_id ) and $company_name and in_array( $Alpha2, $ids ) )
         {
             $errors[] = ezi18n( 'extension/xrowecommerce', 'Please enter a your companies tax ID number.' );
@@ -307,6 +311,10 @@ if ( $module->isCurrentAction( 'Store' ) )
                         $errors[] = ezi18n( 'extension/xrowecommerce', 'Your companies tax ID number is not valid.' );
                         $inputIsValid = false;
                     }
+                    else 
+                    {
+                    	$tax_id_valid = true;
+                    }
                 }
                 catch ( Exception $e )
                 {
@@ -320,11 +328,11 @@ if ( $module->isCurrentAction( 'Store' ) )
             }
         }
     }
-    $phone = $http->postVariable( "Phone" );
+    $phone = $http->postVariable( "phone" );
     if ( trim( $phone ) == "" )
         $inputIsValid = false;
     
-    $fax = $http->postVariable( "Fax" );
+    $fax = $http->postVariable( "fax" );
     if ( $http->hasPostVariable( "PaymentMethod" ) )
     {
         $payment_method = $http->postVariable( "PaymentMethod" );
@@ -346,7 +354,7 @@ if ( $module->isCurrentAction( 'Store' ) )
     {
         $no_partial_delivery = '0';
     }
-    if ( $http->hasPostVariable( "Shipping" ) )
+    if ( $http->hasPostVariable( "shipping" ) )
     {
         $shipping = true;
     }
@@ -354,24 +362,24 @@ if ( $module->isCurrentAction( 'Store' ) )
     {
         $shipping = false;
     }
-    $shippingtype = $http->postVariable( "ShippingType" );
+    $shippingtype = $http->postVariable( "shippingtype" );
     $shippingdestination = $country;
     
     if ( $shipping != "1" )
     {
-        $s_company_name = $http->postVariable( "s_CompanyName" );
+        $s_company_name = $http->postVariable( "s_companyname" );
         
-        $s_company_additional = $http->postVariable( "s_CompanyAdditional" );
+        $s_company_additional = $http->postVariable( "s_companyadditional" );
         
-        $s_first_name = $http->postVariable( "s_FirstName" );
+        $s_first_name = $http->postVariable( "s_firstname" );
         if ( trim( $s_first_name ) == "" )
             $inputIsValid = false;
-        $s_last_name = $http->postVariable( "s_LastName" );
+        $s_last_name = $http->postVariable( "s_lastname" );
         if ( trim( $s_last_name ) == "" )
             $inputIsValid = false;
-        $s_mi = $http->postVariable( "s_MI" );
+        $s_mi = $http->postVariable( "s_mi" );
         
-        $s_email = $http->postVariable( "s_EMail" );
+        $s_email = $http->postVariable( "s_email" );
         if ( empty( $s_email ) )
         {
             $errors[] = ezi18n( 'extension/xrowecommerce', "The email address isn't given." );
@@ -385,22 +393,22 @@ if ( $module->isCurrentAction( 'Store' ) )
                 $inputIsValid = false;
             }
         }
-        $s_address1 = $http->postVariable( "s_Address1" );
-        $s_address2 = $http->postVariable( "s_Address2" );
+        $s_address1 = $http->postVariable( "s_address1" );
+        $s_address2 = $http->postVariable( "s_address2" );
         if ( trim( $s_address1 ) == "" )
             $inputIsValid = false;
         
-        $s_city = $http->postVariable( "s_City" );
+        $s_city = $http->postVariable( "s_city" );
         if ( trim( $s_city ) == "" )
             $inputIsValid = false;
         
-        $s_zip = $http->postVariable( "s_Zip" );
+        $s_zip = $http->postVariable( "s_zip" );
         if ( trim( $s_zip ) == "" )
             $inputIsValid = false;
         
-        $s_state = $http->postVariable( "s_State" );
+        $s_state = $http->postVariable( "s_state" );
         
-        $s_country = $http->postVariable( "s_Country" );
+        $s_country = $http->postVariable( "s_country" );
         if ( trim( $s_country ) == "" )
         {
             $inputIsValid = false;
@@ -413,11 +421,11 @@ if ( $module->isCurrentAction( 'Store' ) )
             }
         }
         
-        $s_phone = $http->postVariable( "s_Phone" );
+        $s_phone = $http->postVariable( "s_phone" );
         if ( trim( $s_phone ) == "" )
             $inputIsValid = false;
         
-        $s_fax = $http->postVariable( "s_Fax" );
+        $s_fax = $http->postVariable( "s_fax" );
         
         $shippingdestination = $s_country;
         /*
@@ -492,7 +500,16 @@ if ( $module->isCurrentAction( 'Store' ) )
         
         $tax_idNode = $doc->createElement( "tax_id", $tax_id );
         $root->appendChild( $tax_idNode );
-        
+        if ( $tax_id and $tax_id_valid )
+        {
+        	$tax_idNode = $doc->createElement( "tax_id_valid", '1' );
+            $root->appendChild( $tax_idNode );
+        }
+        elseif( $tax_id )
+        {
+        	$tax_idNode = $doc->createElement( "tax_id_valid", '0' );
+            $root->appendChild( $tax_idNode );
+        }
         $first_nameNode = $doc->createElement( "first_name", $first_name );
         $root->appendChild( $first_nameNode );
         

@@ -203,7 +203,8 @@ class xrowECommerceShopAccountHandler
         $fields = array( 
             'company_name' , 
             'company_additional' , 
-            'tax_id' , 
+            'tax_id' ,
+            'tax_id_valid',
             'first_name' , 
             'mi' , 
             'last_name' , 
@@ -264,48 +265,6 @@ class xrowECommerceShopAccountHandler
         }
         
         return $result;
-        /* old result array for reference
-        $ttest = array( 
-            'companyname' => $companyNameText , 
-            'companyadditional' => $companyAdditionalText , 
-            'tax_id' => $taxIdText , 
-            'first_name' => $firstNameText , 
-            'mi' => $miText , 
-            'last_name' => $lastNameText , 
-            'address1' => $address1Text , 
-            'address2' => $address2Text , 
-            'city' => $cityText , 
-            'state' => $stateText , 
-            'zip' => $zipText , 
-            'country' => $countryText , 
-            'phone' => $phoneText , 
-            'fax' => $faxText , 
-            'email' => $emailText , 
-            'shipping' => $shippingText , 
-            'shippingtype' => $shippingTypeText , 
-            'paymentmethod' => $paymentMethodText , 
-            's_company_name' => $s_companyNameText , 
-            's_company_additional' => $s_companyAdditionalText , 
-            's_first_name' => $s_firstNameText , 
-            's_mi' => $s_miText , 
-            's_last_name' => $s_lastNameText , 
-            's_address1' => $s_address1Text , 
-            's_address2' => $s_address2Text , 
-            's_city' => $s_cityText , 
-            's_state' => $s_stateText , 
-            's_zip' => $s_zipText , 
-            's_country' => $s_countryText , 
-            's_phone' => $s_phoneText , 
-            's_fax' => $s_faxText , 
-            'coupon_code' => $CouponCode , 
-            'ezauthorize_transaction_id' => $s_ezauthorize_transaction_idText , 
-            'ezauthorize_card_name' => $s_ezauthorize_card_nameText , 
-            'ezauthorize_card_number' => $s_ezauthorize_card_numberText , 
-            'ezauthorize_card_date' => $s_ezauthorize_card_dateText , 
-            'ezauthorize_card_type' => $s_ezauthorize_card_typeText , 
-            's_email' => $s_emailText 
-        );
-*/
     }
 }
 

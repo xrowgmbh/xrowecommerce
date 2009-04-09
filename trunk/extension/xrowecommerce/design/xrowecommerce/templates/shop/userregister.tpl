@@ -38,63 +38,63 @@
     <div class="ur_companyname">
         <label>{'Company name'|i18n('extension/xrowecommerce')}</label>
         <div class="labelbreak"></div>
-        <input type="text" name="companyname" value="{$company_name|wash}" />
+        <input type="text" name="company_name" id="company_name" value="{$company_name|wash}" />
     </div>
 {/if}
 {if eq(ezini( 'Settings', 'CompanyAdditional', 'xrowecommerce.ini' ), 'enabled' )}
     <div class="ur_company_additional">
         <label>{'Company additional information'|i18n('extension/xrowecommerce')}</label>
         <div class="labelbreak"></div>
-        <input type="text" name="companyadditional" value="{$company_additional|wash}" />
+        <input type="text" name="company_additional" id="company_additional" value="{$company_additional|wash}" />
     </div>
 {/if}
 {if eq(ezini( 'Settings', 'TaxID', 'xrowecommerce.ini' ), 'enabled' )}
     <div class="ur_taxid">
         <label>{'Tax ID'|i18n('extension/xrowecommerce')}</label>
         <div class="labelbreak"></div>
-        <input type="text" name="TaxID" value="{$tax_id|wash}" />
+        <input type="text" name="taxid" value="{$tax_id|wash}" />
     </div>
 {/if}
 	<div class="ur_firstname">
     	<label>{'First name'|i18n('extension/xrowecommerce')}<span class="required">*</span></label>
     	<div class="labelbreak"></div>
-    	<input type="text" name="FirstName" id="firstname" value="{$first_name|wash}" />
+    	<input type="text" name="first_name" id="first_name" value="{$first_name|wash}" />
     </div>
 {if eq(ezini( 'Settings', 'MI', 'xrowecommerce.ini' ), 'enabled' )}
 	<div class="ur_mi">
     	<label>{'MI'|i18n('extension/xrowecommerce')}</label>
     	<div class="labelbreak"></div>
-    	<input class="halfbox" type="text" name="MI" id="mi" size="2" value="{$mi|wash}" />
+    	<input class="halfbox" type="text" name="mi" id="mi" size="2" value="{$mi|wash}" />
     </div>
 {/if}
     <div class="ur_lastname">
     	<label>{'Last name'|i18n('extension/xrowecommerce')}<span class="required">*</span></label>
     	<div class="labelbreak"></div>
-    	<input type="text" name="LastName" id="lastname" value="{$last_name|wash}" />
+    	<input type="text" name="last_name" id="last_name" value="{$last_name|wash}" />
     </div>
 
 	<div class="block">
 		<label>{'Address 1'|i18n('extension/xrowecommerce')}<span class="required">*</span></label>
 		<div class="labelbreak"></div>
-		<input class="box" type="text" name="Address1" id="address1" size="20" value="{$address1|wash}" />
+		<input class="box" type="text" name="address1" id="address1" size="20" value="{$address1|wash}" />
 	</div>
 
 	<div class="block">
 		<label>{'Address 2'|i18n('extension/xrowecommerce')}</label>
 		<div class="labelbreak"></div>
-		<input class="box" type="text" name="Address2" id="address2" size="20" value="{$address2|wash}" />
+		<input class="box" type="text" name="address2" id="address2" size="20" value="{$address2|wash}" />
 	</div>
 
 	<div class="city">
     	<label>{'City'|i18n('extension/xrowecommerce')}<span class="required">*</span></label>
     	<div class="labelbreak"></div>
-    	<input type="text" name="City" id="city" value="{$city|wash}" />
+    	<input type="text" name="city" id="city" value="{$city|wash}" />
     </div>
 {if eq(ezini( 'Settings', 'State', 'xrowecommerce.ini' ), 'enabled' )}
     <div class="state">
     	<label>{'State / Province'|i18n('extension/xrowecommerce')}</label>
     	<div class="labelbreak"></div>
-	    <select class="state" name="State" id="state">
+	    <select class="state" name="state" id="state">
 	    <option value="">&nbsp;</option>
 	    	<optgroup label="USA">
     			<option  {if eq($state,'AL')} selected="selected" {/if} >AL</option>
@@ -213,7 +213,7 @@
 <div class="zip">
     <label>{'ZIP'|i18n('extension/xrowecommerce')}<span class="required">*</span></label>
     <div class="labelbreak"></div>
-    <input type="text" class="zip" name="Zip" id="zip" value="{$zip|wash}" />
+    <input type="text" class="zip" name="zip" id="zip" value="{$zip|wash}" />
 </div>
     <div class="break"></div>
 
@@ -222,7 +222,7 @@
     <div class="labelbreak"></div>
 
     {def $countries=fetch( 'content', 'country_list', array(false, false))}
-            <select name="Country" id="country" onchange="shipping(this.value);">
+            <select name="country" id="country" onchange="changeshipping(this.value);">
                 <option value="">&nbsp;</option>
                 {foreach $countries as $country_list_item}
                  <option value="{$country_list_item.Alpha3}" {if and( $country|ne(''), eq( $country, $country_list_item.Alpha3 ))} selected="selected"{/if}>
@@ -237,19 +237,19 @@
 <div class="block">
 	<label>{'Phone'|i18n('extension/xrowecommerce')}<span class="required">*</span></label>
 	<div class="labelbreak"></div>
-	<input type="text" name="Phone" class="phone" id="phone" value="{$phone|wash}" />
+	<input type="text" name="phone" class="phone" id="phone" value="{$phone|wash}" />
 </div>
 {if eq(ezini( 'Settings', 'Fax', 'xrowecommerce.ini' ), 'enabled' )}
 <div class="block">
     <label>{'Fax'|i18n('extension/xrowecommerce')}</label>
     <div class="labelbreak"></div>
-    <input type="text" name="Fax" id="fax" class="fax" value="{$fax|wash}" />
+    <input type="text" name="fax" id="fax" class="fax" value="{$fax|wash}" />
 </div>
 {/if}
 <div class="block">
 	<label>{'E-mail'|i18n('extension/xrowecommerce')}<span class="required">*</span></label>
 	<div class="labelbreak"></div>
-	<input class="phone" type="text" name="EMail" id="email" value="{$email|wash}" />
+	<input class="phone" type="text" name="email" id="email" value="{$email|wash}" />
 </div>
     <div class="break"></div>
 
@@ -258,7 +258,7 @@
 <div class="block">
 	<label>{'Shipping'|i18n('extension/xrowecommerce')}<span class="required">*</span></label>
 	<div class="labelbreak"></div>
-	<select name="ShippingType">
+	<select name="shippingtype">
 	{foreach $shipping_methods as $shipping}
 	<option value="{$shipping.identifier}" {if $shippingtype|eq($shipping.identifier)} selected="selected" {/if}>{$shipping.name}</option>
 	{/foreach}
@@ -284,7 +284,7 @@
 {* right column *}
 <div class="shipping">
 <h3>{'Shipping Information'|i18n( 'extension/xrowecommerce' )}</h3>
-<label class="shipping-checkbox" for="shipping-checkbox"><input class="shipping-checkbox" id="shipping-checkbox" name="Shipping" value="1" type="checkbox" {if $shipping} checked="checked" {/if} onchange="change(this.checked); shipping(document.register.country.value);" />{'My billing and shipping addresses are identical.'|i18n('extension/xrowecommerce')}</label>
+<label class="shipping-checkbox" for="shipping-checkbox"><input class="shipping-checkbox" id="shipping-checkbox" name="shipping" value="1" type="checkbox" {if $shipping} checked="checked" {/if} onchange="change(this.checked); changeshipping(document.register.country.value);" />{'My billing and shipping addresses are identical.'|i18n('extension/xrowecommerce')}</label>
 
 
 <div class="block" id="shippinginfo"{if $shipping} style="display: none;"{else} style="display: block;"{/if}>
@@ -293,7 +293,7 @@
     <div class="ur_companyname">
         <label>{'Company name'|i18n('extension/xrowecommerce')}</label>
         <div class="labelbreak"></div>
-        <input type="text" name="scompanyname" id="scompanyname" value="{$scompany_name|wash}" />
+        <input type="text" name="s_company_name" id="s_company_name" value="{$s_company_name|wash}" />
 
     </div>
 {/if}
@@ -301,50 +301,50 @@
     <div class="ur_company_additional">
         <label>{'Company additional information'|i18n('extension/xrowecommerce')}</label>
         <div class="labelbreak"></div>
-        <input type="text" name="scompanyadditional" id="scompanyadditional" value="{$scompanyadditional|wash}" />
+        <input type="text" name="s_company_additional" id="s_company_additional" value="{$s_company_additional|wash}" />
     </div>
 {/if}
 	<div class="ur_firstname">
     	<label>{'First name'|i18n('extension/xrowecommerce')}<span class="required">*</span></label>
     	<div class="labelbreak"></div>
-    	<input type="text" name="s_FirstName" id="sfirstname" value="{$s_first_name|wash}" />
+    	<input type="text" name="s_first_name" id="s_first_name" value="{$s_first_name|wash}" />
     </div>
 {if eq(ezini( 'Settings', 'MI', 'xrowecommerce.ini' ), 'enabled' )}
 	<div class="ur_mi">
     	<label>{'MI'|i18n('extension/xrowecommerce')}</label>
     	<div class="labelbreak"></div>
-    	<input class="halfbox" type="text" name="s_MI" id="smi" size="2" value="{$s_mi|wash}" />
+    	<input class="halfbox" type="text" name="s_mi" id="s_mi" size="2" value="{$s_mi|wash}" />
     </div>
 {/if}
     <div class="ur_lastname">
     	<label>{'Last name'|i18n('extension/xrowecommerce')}<span class="required">*</span></label>
     	<div class="labelbreak"></div>
-    	<input type="text" name="s_LastName" id="slastname" value="{$s_last_name|wash}" />
+    	<input type="text" name="s_last_name" id="s_last_name" value="{$s_last_name|wash}" />
     </div>
 
 	<div class="block">
 		<label>{'Address 1'|i18n('extension/xrowecommerce')}<span class="required">*</span></label>
 		<div class="labelbreak"></div>
-		<input class="box" type="text" name="s_Address1" id="saddress1" size="20" value="{$s_address1|wash}" />
+		<input class="box" type="text" name="s_address1" id="s_address1" size="20" value="{$s_address1|wash}" />
 	</div>
 
 	<div class="block">
 		<label>{'Address 2'|i18n('extension/xrowecommerce')}</label>
 		<div class="labelbreak"></div>
-		<input class="box" type="text" name="s_Address2" size="20" id="saddress2" value="{$s_address2|wash}" />
+		<input class="box" type="text" name="s_address2" size="20" id="saddress2" value="{$s_address2|wash}" />
 	</div>
 
 
 	<div class="city">
     	<label>{'City'|i18n('extension/xrowecommerce')}<span class="required">*</span></label>
     	<div class="labelbreak"></div>
-    	<input type="text" name="s_City" value="{$s_city|wash}" id="scity" />
+    	<input type="text" name="s_city" value="{$s_city|wash}" id="scity" />
     </div>
 {if eq(ezini( 'Settings', 'State', 'xrowecommerce.ini' ), 'enabled' )}
     <div class="state">
     	<label>{'State / Province'|i18n('extension/xrowecommerce')}</label>
     	<div class="labelbreak"></div>
-    <select name="s_State" id="sstate">
+    <select name="s_state" id="s_state">
             <option value="">&nbsp;</option>
 	    	<optgroup label="USA">
     			<option  {if eq($s_state,'AL')} selected="selected" {/if} >AL</option>
@@ -463,7 +463,7 @@
 <div class="zip">
     <label>{'Zip'|i18n('extension/xrowecommerce')}<span class="required">*</span></label>
     <div class="labelbreak"></div>
-    <input type="text" name="s_Zip" id="szip" value="{$s_zip|wash}"/>
+    <input type="text" name="s_zip" id="s_zip" value="{$s_zip|wash}"/>
 </div>
     <div class="break"></div>
 
@@ -471,7 +471,7 @@
     <label>{'Country'|i18n('extension/xrowecommerce')}<span class="required">*</span></label>
     <div class="labelbreak"></div>
 
-            <select name="s_country" id="scountry" onchange="shipping(document.register.country.value);">
+            <select name="s_country" id="s_country" onchange="changeshipping(document.register.country.value);">
                 <option value="">&nbsp;</option>
                 {foreach $countries as $country_list_item}
                  <option value="{$country_list_item.Alpha3}" {if and( $s_country|ne(''), eq( $s_country, $country_list_item.Alpha3 ))} selected="selected"{/if}>
@@ -485,20 +485,20 @@
 <div class="block">
 	<label>{'Phone'|i18n('extension/xrowecommerce')}<span class="required">*</span></label>
 	<div class="labelbreak"></div>
-	<input class="phone" type="text" id="sphone" name="s_Phone" value="{$s_phone|wash}" />
+	<input class="phone" type="text" id="s_phone" name="s_phone" value="{$s_phone|wash}" />
 </div>
 
 {if eq(ezini( 'Settings', 'Fax', 'xrowecommerce.ini' ), 'enabled' )}
 <div class="block">
     <label>{'Fax'|i18n( 'extension/xrowecommerce' )}</label>
     <div class="labelbreak"></div>
-    <input class="phone" type="text" id="sfax" name="s_Fax" value="{$s_fax|wash}" />
+    <input class="phone" type="text" id="s_fax" name="s_fax" value="{$s_fax|wash}" />
 </div>
 {/if}
 <div class="block">
 	<label>{'E-mail'|i18n('extension/xrowecommerce')}<span class="required">*</span></label>
 	<div class="labelbreak"></div>
-	<input class="phone" type="text" name="s_EMail" id="semail" value="{$s_email|wash}" />
+	<input class="phone" type="text" name="s_email" id="semail" value="{$s_email|wash}" />
 </div>
     <div class="break"></div>
 
@@ -571,38 +571,38 @@ lang: RecaptchaLang,
 </div>
 {literal}
 <script type="text/javascript">
-    if (document.register.Shipping.checked == false)
+    if (document.register.shipping.checked == false)
         {
-            country = document.register.scountry.value;
+            country = document.register.s_country.value;
         }
-    if (document.register.Shipping.checked == true)
+    if (document.register.shipping.checked == true)
         {
             country = document.register.country.value;
         }
     if (country == "USA")
     {
-        for (i = 0; i < document.register.ShippingType.length; ++i)
+        for (i = 0; i < document.register.shippingtype.length; ++i)
         {
-            if ( document.register.ShippingType[i].value >= 6  &&  document.register.ShippingType[i].value <= 7 )
-                document.register.ShippingType.options[i].disabled = true;
-            else document.register.ShippingType.options[i].disabled = false;
+            if ( document.register.shippingtype[i].value >= 6  &&  document.register.shippingtype[i].value <= 7 )
+                document.register.shippingtype.options[i].disabled = true;
+            else document.register.shippingtype.options[i].disabled = false;
         }
-        if (document.register.ShippingType.selectedIndex+3 >=6 && document.register.ShippingType.selectedIndex+3 <=7)
-            document.register.ShippingType.options[0].selected = true;
+        if (document.register.shippingtype.selectedIndex+3 >=6 && document.register.shippingtype.selectedIndex+3 <=7)
+            document.register.shippingtype.options[0].selected = true;
     }
     else
     {
-        for (i = 0; i < document.register.ShippingType.length; ++i)
+        for (i = 0; i < document.register.shippingtype.length; ++i)
         {
-            if ( document.register.ShippingType[i].value >= 3  &&  document.register.ShippingType[i].value <= 5 )
-                document.register.ShippingType.options[i].disabled = true;
-            else document.register.ShippingType.options[i].disabled = false;
+            if ( document.register.shippingtype[i].value >= 3  &&  document.register.shippingtype[i].value <= 5 )
+                document.register.shippingtype.options[i].disabled = true;
+            else document.register.shippingtype.options[i].disabled = false;
         }
-            if (document.register.ShippingType.selectedIndex+3 >=3 && document.register.ShippingType.selectedIndex+3 <=5)
+            if (document.register.shippingtype.selectedIndex+3 >=3 && document.register.shippingtype.selectedIndex+3 <=5)
         {
-        	if ( document.register.ShippingType.options[3] )
+        	if ( document.register.shippingtype.options[3] )
         	{
-            	document.register.ShippingType.options[3].selected = true;
+            	document.register.shippingtype.options[3].selected = true;
             }
         }
     }
@@ -621,44 +621,44 @@ if (status)
     }
     else
     {
-    if( document.register.companyname )
+    if( document.register.company_name )
     {
-        document.register.scompanyname.value = document.register.companyname.value;
+        document.register.s_company_name.value = document.register.company_name.value;
     }
-    if( document.register.companyadditional )
+    if( document.register.company_additional )
     {
-        document.register.scompanyadditional.value = document.register.companyadditional.value;
+        document.register.s_company_additional.value = document.register.company_additional.value;
     }
     if( document.register.mi )
     {
-    	document.register.smi.value = document.register.mi.value;
+    	document.register.s_mi.value = document.register.mi.value;
     }
     if( document.register.state )
     {
-        document.register.sstate.value = document.register.state.value;
+        document.register.s_state.value = document.register.state.value;
     }
-        document.register.sfirstname.value = document.register.firstname.value;
-        document.register.slastname.value = document.register.lastname.value;
+        document.register.s_first_name.value = document.register.first_name.value;
+        document.register.s_last_name.value = document.register.last_name.value;
         
-        document.register.szip.value = document.register.zip.value;
-        document.register.sphone.value = document.register.phone.value;
-        document.register.sfax.value = document.register.fax.value;
-        document.register.semail.value = document.register.email.value;
-        document.register.saddress1.value = document.register.address1.value;
-        document.register.saddress2.value = document.register.address2.value;
-        document.register.scity.value = document.register.city.value;
-        document.register.scountry.selectedIndex = document.register.country.selectedIndex;
+        document.register.s_zip.value = document.register.zip.value;
+        document.register.s_phone.value = document.register.phone.value;
+        document.register.s_fax.value = document.register.fax.value;
+        document.register.s_email.value = document.register.email.value;
+        document.register.s_address1.value = document.register.address1.value;
+        document.register.s_address2.value = document.register.address2.value;
+        document.register.s_city.value = document.register.city.value;
+        document.register.s_country.selectedIndex = document.register.country.selectedIndex;
         document.getElementById("shippinginfo").style.display = 'block';
     }
 }
 
-function shipping(status)
+function changeshipping(status)
 {
-	if ( document.register.ShippingType == null )
+	if ( document.register.shippingtype == null )
 	{
 		return false;
 	}
-    if ( document.register.Shipping.checked == false)
+    if ( document.register.shipping.checked == false)
     {
         status = document.register.scountry.value;
         document.getElementById("shippinginfo").style.display = 'block';
@@ -666,28 +666,28 @@ function shipping(status)
     
     if (status == "USA")
     {
-        for (i = 0; i < document.register.ShippingType.length; ++i)
+        for (i = 0; i < document.register.shippingtype.length; ++i)
         {
-            if ( document.register.ShippingType[i].value >= 6  &&  document.register.ShippingType[i].value <= 7 )
-                document.register.ShippingType.options[i].disabled = true;
-            else document.register.ShippingType.options[i].disabled = false;
+            if ( document.register.shippingtype[i].value >= 6  &&  document.register.shippingtype[i].value <= 7 )
+                document.register.shippingtype.options[i].disabled = true;
+            else document.register.shippingtype.options[i].disabled = false;
         }
-        if (document.register.ShippingType.selectedIndex+3 >=6 && document.register.ShippingType.selectedIndex+3 <=7)
-            document.register.ShippingType.options[0].selected = true;
+        if (document.register.shippingtype.selectedIndex+3 >=6 && document.register.shippingtype.selectedIndex+3 <=7)
+            document.register.shippingtype.options[0].selected = true;
     }
     else
     {
-        for (i = 0; i < document.register.ShippingType.length; ++i)
+        for (i = 0; i < document.register.shippingtype.length; ++i)
         {
-            if ( document.register.ShippingType[i].value >= 3  &&  document.register.ShippingType[i].value <= 5 )
-                document.register.ShippingType.options[i].disabled = true;
-            else document.register.ShippingType.options[i].disabled = false;
+            if ( document.register.shippingtype[i].value >= 3  &&  document.register.shippingtype[i].value <= 5 )
+                document.register.shippingtype.options[i].disabled = true;
+            else document.register.shippingtype.options[i].disabled = false;
         }
-        if (document.register.ShippingType.selectedIndex+3 >=3 && document.register.ShippingType.selectedIndex+3 <=5)
+        if (document.register.shippingtype.selectedIndex+3 >=3 && document.register.shippingtype.selectedIndex+3 <=5)
         {
-        	if ( document.register.ShippingType.options[3] )
+        	if ( document.register.shippingtype.options[3] )
         	{
-            	document.register.ShippingType.options[3].selected = true;
+            	document.register.shippingtype.options[3].selected = true;
             }
         }
     }
