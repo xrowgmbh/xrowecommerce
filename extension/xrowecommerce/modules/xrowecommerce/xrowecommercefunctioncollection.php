@@ -62,6 +62,16 @@ class xrowECommerceFunctionCollection
         return $result;
     }
 
+    public function hasSlidingPrice( $attribute_id, $version, $language )
+    {
+    	$result = array( 'result' => false );
+    	if ( $attribute_id > 0 )
+    	{
+    		$result['result'] = xrowProductData::hasSlidingPrice( $attribute_id, $version, $language );
+    	}
+    	return $result;
+    }
+
 }
 
 ?>
