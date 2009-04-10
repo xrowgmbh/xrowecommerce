@@ -310,6 +310,45 @@ class xrowProductData extends eZPersistentObject
         $result = eZContentObjectAttribute::fetch( $this->attribute( 'attribute_id' ), $this->attribute( 'version' ) );
         return $result;
     }
+
+    /**
+     * return true if the given attribute has sliding prices
+     *
+     * @param int $attribute_id
+     * @param int $version
+     * @param string $language
+     * @return bool
+     */
+    public static function hasSlidingPrice( $attribute_id, $version, $language )
+    {
+        $xINI = eZINI::instance( 'xrowproduct.ini' );
+        $priceField = $xINI->variable( 'PriceSettings', 'PriceIdentifier' );
+
+    	$db = eZDB::instance();
+        $sql = "SELECT
+                    COUNT(*) counter
+                FROM
+                    xrowproduct_data a,
+                    xrowproduct_price b
+                WHERE
+                    a.attribute_id = '$attribute_id'
+                    AND a.version = '$version'
+                    AND a.language_code = '$language'
+                    AND a.$priceField = b.price_id
+                    AND b.amount > 1";
+
+        eZDebug::writeDebug( $sql, 'sql' );
+        $result = $db->arrayQuery( $sql );
+
+        if ( $result[0]['counter'] > 0 )
+        {
+        	return true;
+        }
+        else
+        {
+        	return false;
+        }
+    }
 }
 
 ?>

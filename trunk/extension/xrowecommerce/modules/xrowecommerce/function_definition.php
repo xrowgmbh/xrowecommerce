@@ -47,5 +47,20 @@ $FunctionList['sliding_price'] = array( 'name' => 'sliding_price',
                                                                   'required' => false )
                                                             ) );
 
+$FunctionList['has_sliding_price'] = array( 'name' => 'sliding_price',
+                                    'operation_types' => array( 'read' ),
+                                    'call_method' => array( 'class' => 'xrowECommerceFunctionCollection',
+                                                            'method' => 'hasSlidingPrice' ),
+                                    'parameter_type' => 'standard',
+                                    'parameters' => array( array( 'name' => 'attribute_id',
+                                                                  'type' => 'integer',
+                                                                  'required' => true ),
+                                                           array( 'name' => 'version',
+                                                                  'type' => 'integer',
+                                                                  'required' => true ),
+                                                           array( 'name' => 'language',
+                                                                  'type' => 'string',
+                                                                  'required' => true ),
+                                                            ) );
 
 ?>
