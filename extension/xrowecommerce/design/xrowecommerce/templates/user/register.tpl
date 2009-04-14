@@ -3,7 +3,7 @@
      $castring="ContentObjectAttribute_ezstring_data_text_"}
 
 <div class="shop-basket user_register">
-    <form enctype="multipart/form-data"  action={"/user/register/"|ezurl} method="post" name="Register">
+    <form enctype="multipart/form-data"  action={"/user/register/"|ezurl} method="post" name="Register" id="register">
         <h2>{"Register user"|i18n("extension/xrowecommerce")}</h2>
         <div class="accountinfo">
             <h3>{'Account Information'|i18n('extension/xrowecommerce')}</h3>
@@ -156,7 +156,7 @@
                         {def $country_list_item_code=''}
                         {def $countries=fetch( 'content', 'country_list')}
                         {*<input type="hidden" name="ContentObjectAttribute_id[]" value="{$ca.country.id}" />*}
-                        <select name="ContentObjectAttribute_country_{$ca.country.id}[]" id="country" onchange="shipping(this.value);">
+                        <select name="ContentObjectAttribute_country_{$ca.country.id}[]" id="country">
                             <option value="">&nbsp;</option>
                             {def $alpha_2 = ''}
                             {foreach $countries as $key => $current_country}
@@ -195,7 +195,7 @@
                 <h3>{'Shipping Information'|i18n('extension/xrowecommerce')}</h3>
 <input type="hidden" name="ContentObjectAttribute_id[]" value="{$ca.shippingaddress.id}" />
 <label class="shipping-checkbox" for="ContentObjectAttribute_data_boolean_{$ca.shippingaddress.id}">
-    <input onchange="change();" id="ContentObjectAttribute_data_boolean_{$ca.shippingaddress.id}" name="ContentObjectAttribute_data_boolean_{$ca.shippingaddress.id}" value="" type="checkbox" {$ca.shippingaddress.data_int|choose( '', 'checked="checked"' )} />
+    <input onchange="change();" id="ContentObjectAttribute_data_boolean_{$ca.shippingaddress.id}"  name="ContentObjectAttribute_data_boolean_{$ca.shippingaddress.id}" value="" type="checkbox" {$ca.shippingaddress.data_int|choose( '', 'checked="checked"' )} />
     {'My billing and shipping addresses are identical.'|i18n('extension/xrowecommerce')}
 </label>
 
@@ -280,7 +280,7 @@
                              $s_country_list_item_code=''}
                         {*<input type="hidden" name="ContentObjectAttribute_id[]" value="{$ca.s_country.id}" />*}
                         <input type="hidden" name="sik_country" id="sik_country" value="USA" />
-                        <select name="ContentObjectAttribute_country_{$ca.s_country.id}[]" id="scountry" onchange="shipping(document.register.country.value);">
+                        <select name="ContentObjectAttribute_country_{$ca.s_country.id}[]" id="scountry">
                             <option value="">&nbsp;</option>
                             
 {foreach $s_countries as $key => $s_current_country}
@@ -337,11 +337,4 @@ if (document.getElementById( 'ContentObjectAttribute_data_boolean_{$ca.shippinga
     {rdelim}
 {rdelim}
 
-function shipping(status)
-{ldelim}
-if (document.register.shipping.checked == false)
-    {ldelim}
-        status = document.register.s_country.value;
-    {rdelim}
-{rdelim}
 </script>
