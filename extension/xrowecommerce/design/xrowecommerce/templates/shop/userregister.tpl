@@ -290,7 +290,7 @@
 <div class="block" id="shippinginfo"{if $shipping} style="display: none;"{else} style="display: block;"{/if}>
 <p><span class="required">* {'Required field'|i18n('extension/xrowecommerce')}</span></p>
 {if eq(ezini( 'Settings', 'CompanyName', 'xrowecommerce.ini' ), 'enabled' )}
-    <div class="ur_companyname">
+    <div class="ur_companyname block">
         <label>{'Company name'|i18n('extension/xrowecommerce')}</label>
         <div class="labelbreak"></div>
         <input type="text" name="s_company_name" id="s_company_name" value="{$s_company_name|wash}" />
@@ -298,25 +298,25 @@
     </div>
 {/if}
 {if eq(ezini( 'Settings', 'CompanyAdditional', 'xrowecommerce.ini' ), 'enabled' )}
-    <div class="ur_company_additional">
+    <div class="ur_company_additional block">
         <label>{'Company additional information'|i18n('extension/xrowecommerce')}</label>
         <div class="labelbreak"></div>
         <input type="text" name="s_company_additional" id="s_company_additional" value="{$s_company_additional|wash}" />
     </div>
 {/if}
-	<div class="ur_firstname">
+	<div class="ur_firstname block">
     	<label>{'First name'|i18n('extension/xrowecommerce')}<span class="required">*</span></label>
     	<div class="labelbreak"></div>
     	<input type="text" name="s_first_name" id="s_first_name" value="{$s_first_name|wash}" />
     </div>
 {if eq(ezini( 'Settings', 'MI', 'xrowecommerce.ini' ), 'enabled' )}
-	<div class="ur_mi">
+	<div class="ur_mi block">
     	<label>{'MI'|i18n('extension/xrowecommerce')}</label>
     	<div class="labelbreak"></div>
     	<input class="halfbox" type="text" name="s_mi" id="s_mi" size="2" value="{$s_mi|wash}" />
     </div>
 {/if}
-    <div class="ur_lastname">
+    <div class="ur_lastname block">
     	<label>{'Last name'|i18n('extension/xrowecommerce')}<span class="required">*</span></label>
     	<div class="labelbreak"></div>
     	<input type="text" name="s_last_name" id="s_last_name" value="{$s_last_name|wash}" />
@@ -335,13 +335,13 @@
 	</div>
 
 
-	<div class="city">
+	<div class="city block">
     	<label>{'City'|i18n('extension/xrowecommerce')}<span class="required">*</span></label>
     	<div class="labelbreak"></div>
     	<input type="text" name="s_city" value="{$s_city|wash}" id="scity" />
     </div>
 {if eq(ezini( 'Settings', 'State', 'xrowecommerce.ini' ), 'enabled' )}
-    <div class="state">
+    <div class="state block">
     	<label>{'State / Province'|i18n('extension/xrowecommerce')}</label>
     	<div class="labelbreak"></div>
     <select name="s_state" id="s_state">
@@ -460,14 +460,14 @@
     <div class="break"></div>
 {/if}
 
-<div class="zip">
+<div class="zip block">
     <label>{'Zip'|i18n('extension/xrowecommerce')}<span class="required">*</span></label>
     <div class="labelbreak"></div>
     <input type="text" name="s_zip" id="s_zip" value="{$current_user.contentobject.data_map.s_zip_code.data_text|wash}"/>
 </div>
     <div class="break"></div>
 
-<div class="country">
+<div class="country block">
     <label>{'Country'|i18n('extension/xrowecommerce')}<span class="required">*</span></label>
     <div class="labelbreak"></div>
 
