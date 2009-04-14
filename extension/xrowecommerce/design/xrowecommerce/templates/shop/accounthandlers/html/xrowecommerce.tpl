@@ -14,7 +14,7 @@
 {if and( eq(ezini( 'Settings', 'CompanyAdditional', 'xrowecommerce.ini' ), 'enabled' ), $order.account_information.company_additional)}
         <tr><th>{'Company additional information'|i18n('extension/xrowecommerce')}: </th><td>{$order.account_information.company_additional|wash}</td></tr>
 {/if}
-{$order.account_information|attribute(show,2)}vmmvvmmvv
+{$order.account_information}
                 {if and( eq(ezini( 'Settings', 'TaxID', 'xrowecommerce.ini' ), 'enabled' ), $order.account_information.tax_id)}
                     <tr><th>{'Tax ID'|i18n('extension/xrowecommerce')}: </th><td>{$order.account_information.tax_id|wash} {if $order.account_information.tax_id_valid|eq('0')} ({'unconfirmed'|i18n('extension/xrowecommerce')}){/if}</td></tr>
                 {/if}
