@@ -615,28 +615,28 @@ lang: RecaptchaLang,
 {literal}
 function change(status)
 {
-if (status)
+    if (status)
     {
         document.getElementById("shippinginfo").style.display = 'none';
     }
     else
     {
-    if( document.register.company_name )
-    {
-        document.register.s_company_name.value = document.register.company_name.value;
-    }
-    if( document.register.company_additional )
-    {
-        document.register.s_company_additional.value = document.register.company_additional.value;
-    }
-    if( document.register.mi )
-    {
-    	document.register.s_mi.value = document.register.mi.value;
-    }
-    if( document.register.state )
-    {
-        document.register.s_state.value = document.register.state.value;
-    }
+        if( document.register.company_name )
+        {
+            document.register.s_company_name.value = document.register.company_name.value;
+        }
+        if( document.register.company_additional )
+        {
+            document.register.s_company_additional.value = document.register.company_additional.value;
+        }
+        if( document.register.mi )
+        {
+        	document.register.s_mi.value = document.register.mi.value;
+        }
+        if( document.register.state )
+        {
+            document.register.s_state.value = document.register.state.value;
+        }
         document.register.s_first_name.value = document.register.first_name.value;
         document.register.s_last_name.value = document.register.last_name.value;
         
@@ -664,7 +664,7 @@ function changeshipping(status)
 	}
     if ( document.register.shipping.checked == false)
     {
-        status = document.register.scountry.value;
+        status = document.register.s_country.value;
         document.getElementById("shippinginfo").style.display = 'block';
     }
     
