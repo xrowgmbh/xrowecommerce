@@ -35,39 +35,39 @@
 
 
 {if eq(ezini( 'Settings', 'CompanyName', 'xrowecommerce.ini' ), 'enabled' )}
-    <div class="ur_companyname">
+    <div class="ur_companyname block">
         <label>{'Company name'|i18n('extension/xrowecommerce')}</label>
         <div class="labelbreak"></div>
         <input type="text" name="company_name" id="company_name" value="{$company_name|wash}" />
     </div>
 {/if}
 {if eq(ezini( 'Settings', 'CompanyAdditional', 'xrowecommerce.ini' ), 'enabled' )}
-    <div class="ur_company_additional">
+    <div class="ur_company_additional block">
         <label>{'Company additional information'|i18n('extension/xrowecommerce')}</label>
         <div class="labelbreak"></div>
         <input type="text" name="company_additional" id="company_additional" value="{$company_additional|wash}" />
     </div>
 {/if}
 {if eq(ezini( 'Settings', 'TaxID', 'xrowecommerce.ini' ), 'enabled' )}
-    <div class="ur_taxid">
+    <div class="ur_taxid block">
         <label>{'Tax ID'|i18n('extension/xrowecommerce')}</label>
         <div class="labelbreak"></div>
         <input type="text" name="taxid" value="{$tax_id|wash}" />
     </div>
 {/if}
-	<div class="ur_firstname">
+	<div class="ur_firstname block">
     	<label>{'First name'|i18n('extension/xrowecommerce')}<span class="required">*</span></label>
     	<div class="labelbreak"></div>
     	<input type="text" name="first_name" id="first_name" value="{$first_name|wash}" />
     </div>
 {if eq(ezini( 'Settings', 'MI', 'xrowecommerce.ini' ), 'enabled' )}
-	<div class="ur_mi">
+	<div class="ur_mi block">
     	<label>{'MI'|i18n('extension/xrowecommerce')}</label>
     	<div class="labelbreak"></div>
     	<input class="halfbox" type="text" name="mi" id="mi" size="2" value="{$mi|wash}" />
     </div>
 {/if}
-    <div class="ur_lastname">
+    <div class="ur_lastname block">
     	<label>{'Last name'|i18n('extension/xrowecommerce')}<span class="required">*</span></label>
     	<div class="labelbreak"></div>
     	<input type="text" name="last_name" id="last_name" value="{$last_name|wash}" />
@@ -85,13 +85,13 @@
 		<input class="box" type="text" name="address2" id="address2" size="20" value="{$address2|wash}" />
 	</div>
 
-	<div class="city">
+	<div class="city block">
     	<label>{'City'|i18n('extension/xrowecommerce')}<span class="required">*</span></label>
     	<div class="labelbreak"></div>
     	<input type="text" name="city" id="city" value="{$city|wash}" />
     </div>
 {if eq(ezini( 'Settings', 'State', 'xrowecommerce.ini' ), 'enabled' )}
-    <div class="state">
+    <div class="state block">
     	<label>{'State / Province'|i18n('extension/xrowecommerce')}</label>
     	<div class="labelbreak"></div>
 	    <select class="state" name="state" id="state">
@@ -210,14 +210,14 @@
 {/if}    
     <div class="break"></div>
 
-<div class="zip">
+<div class="zip block">
     <label>{'ZIP'|i18n('extension/xrowecommerce')}<span class="required">*</span></label>
     <div class="labelbreak"></div>
-    <input type="text" class="zip" name="zip" id="zip" value="{$zip|wash}" />
+    <input type="text" class="zip" name="zip" id="zip" value="{$current_user.contentobject.data_map.zip_code.data_text|wash}" />
 </div>
     <div class="break"></div>
 
-<div class="country">
+<div class="country block">
     <label>{'Country'|i18n('extension/xrowecommerce')}<span class="required">*</span></label>
     <div class="labelbreak"></div>
 
@@ -463,7 +463,7 @@
 <div class="zip">
     <label>{'Zip'|i18n('extension/xrowecommerce')}<span class="required">*</span></label>
     <div class="labelbreak"></div>
-    <input type="text" name="s_zip" id="s_zip" value="{$s_zip|wash}"/>
+    <input type="text" name="s_zip" id="s_zip" value="{$current_user.contentobject.data_map.s_zip_code.data_text|wash}"/>
 </div>
     <div class="break"></div>
 
@@ -642,7 +642,11 @@ if (status)
         
         document.register.s_zip.value = document.register.zip.value;
         document.register.s_phone.value = document.register.phone.value;
-        document.register.s_fax.value = document.register.fax.value;
+        {/literal}
+        {if eq(ezini( 'Settings', 'Fax', 'xrowecommerce.ini' ), 'enabled' )}
+                document.register.s_fax.value = document.register.fax.value;
+        {/if}
+        {literal}
         document.register.s_email.value = document.register.email.value;
         document.register.s_address1.value = document.register.address1.value;
         document.register.s_address2.value = document.register.address2.value;
