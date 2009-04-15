@@ -51,7 +51,8 @@ class xrowProductData extends eZPersistentObject
             $GLOBALS['xrowproductdata_def'] = array_merge( $def,
                                                             array(
                                                                   'function_attributes' => array( 'template' => 'fetchTemplate',
-                                                                                                  'contentobject_attribute' => 'contentObjectAttribute' ),
+                                                                                                  'contentobject_attribute' => 'contentObjectAttribute',
+                                                                                                  'variation_name' => 'getVariationName' ),
                                                                   'keys' => array( 'id' ),
                                                                   'sort' => array( 'id' => 'asc' ),
                                                                   'class_name' => 'xrowProductData',
@@ -337,7 +338,6 @@ class xrowProductData extends eZPersistentObject
                     AND a.$priceField = b.price_id
                     AND b.amount > 1";
 
-        eZDebug::writeDebug( $sql, 'sql' );
         $result = $db->arrayQuery( $sql );
 
         if ( $result[0]['counter'] > 0 )
@@ -347,6 +347,48 @@ class xrowProductData extends eZPersistentObject
         else
         {
         	return false;
+        }
+    }
+
+    /**
+     * Fetches the first variation data where the given sku is found
+     *
+     * @param string $sku
+     * @param bool $asObject
+     * @return mixed
+     */
+    public static function fetchDataBySKU( $sku, $asObject = true )
+    {
+    	$xINI = eZINI::instance( 'xrowproduct.ini' );
+        $skuField = $xINI->variable( 'ExportSettings', 'SKUIdentifier' );
+
+        $defaultLanguage = eZContentLanguage::topPriorityLanguage();
+        $languageCode = $defaultLanguage->attribute( 'locale' );
+
+        $db = eZDB::instance();
+        $skuSql = $db->escapeString( $sku );
+        $sql = "SELECT
+                    a.*
+                FROM
+                    xrowproduct_data a,
+                    ezcontentobject_tree b
+                WHERE
+                    a.$skuField = '$skuSql'
+                    AND a.language_code = '$languageCode'
+                    AND a.object_id = b.contentobject_id
+                    AND a.version = b.contentobject_version
+                    AND b.contentobject_is_published = 1
+                    AND b.is_hidden = 0
+                    AND b.is_invisible = 0";
+
+        $result = $db->arrayQuery( $sql );
+
+        if ( count( $result ) > 0 )
+        {
+        	if ( $asObject )
+                return new xrowProductData( $result[0] );
+            else
+                return $result[0];
         }
     }
 }
