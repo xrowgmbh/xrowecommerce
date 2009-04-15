@@ -53,6 +53,11 @@ $ViewList["priceexport"] = array(
     "default_navigation_part" => 'ezshopnavigationpart',
     "params" => array() );
 
+$ViewList["directorder"] = array(
+    "script" => "direct_order.php",
+    "default_navigation_part" => 'ezshopnavigationpart',
+    "params" => array() );
+
 $Payment = array(
     'name' => 'Payment',
     'values' => array(),

@@ -45,3 +45,59 @@ td.error
 {
     white-space: nowrap;
 }
+
+.directorder
+{
+    width: 100%;
+    border: 1px solid #00426a;
+    border-collapse: collapse;
+}
+
+.directorder th
+{
+    color: #015197;
+    background-color: #daebf7;
+    padding: 5px;
+    text-align: center;
+    border: 1px solid #00426a;
+}
+
+.directorder td
+{
+    background-color: #ffffff;
+    padding: 3px;
+    border: 1px solid #00426a;
+}
+
+.directorder td.sku
+{
+    width: 65px;
+    text-align: center;
+}
+
+.directorder td.sku input.sku
+{
+    width: 60px;
+}
+
+.directorder td.amount
+{
+    width: 45px;
+    text-align: center;
+}
+
+.directorder td.amount input.amount
+{
+    width: 40px;
+}
+
+.directorder td.description
+{
+    width: 70%;
+}
+
+.directorder td.delete
+{
+    width: 80px;
+    text-align: center;
+}
