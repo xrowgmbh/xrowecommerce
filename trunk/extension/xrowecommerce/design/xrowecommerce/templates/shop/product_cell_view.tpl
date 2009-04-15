@@ -12,7 +12,11 @@ $product_item is the current product in the cart
 {def $type=""}
 {def $prod=fetch( 'content', 'node', hash( 'node_id', $product_item.node_id ) )}
 {if $product_item.item_object.option_list|count|gt(0)}
-    {def $vary=$product_item.item_object.contentobject.data_map.variation.content.option_list[$product_item.item_object.option_list.0.option_item_id]}
+{foreach $product_item.item_object.contentobject.data_map.option.content.option_list as $vary$vary}
+        {if $product_item.item_object.option_list.0.option_item_id|eq($vary.id)}
+                {break}
+        {/if}
+{/foreach}
     {foreach $product_item.item_object.option_list as $option_item}
                <div class="product-image">
                    {if $vary.image|is_object(true)}
