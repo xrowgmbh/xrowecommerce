@@ -71,8 +71,7 @@ if ( $http->hasPostVariable( 'ImportButton' ) )
                                 #eZDebug::writeDebug( $priceList, 'price list' );
                                 for ( $i = 1; $i < count( $lineArray ); $i++ )
 	                            {
-	                                $price = str_replace(" ", "", $lineArray[$i] );
-	                                $price = $locale->internalNumber( $price );
+	                                $price = $locale->internalNumber( $lineArray[$i] );
 	                                #eZDebug::writeDebug( $price, 'new price' );
 
 							        $ok = $validator->validate( $price );
