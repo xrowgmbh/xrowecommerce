@@ -75,6 +75,7 @@
         </td>
         {/if}
         <td class="basketspace price">
+            {if $product_item.discount_percent}
             {def $discount = $product_item.price_ex_vat|div(100)|mul($product_item.discount_percent)
                  $price = $product_item.price_ex_vat|sub($discount)} 
             {else}
