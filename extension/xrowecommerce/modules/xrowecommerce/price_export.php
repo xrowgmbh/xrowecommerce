@@ -25,6 +25,8 @@ if ( $http->hasPostVariable( 'ExportButton' ) )
     $priceField = $xINI->variable( 'PriceSettings', 'PriceIdentifier' );
     $decPoint = $xINI->variable( 'ExportSettings', 'DecimalPoint' );
 
+    $defaultLanguage = eZContentLanguage::topPriorityLanguage();
+    $languageCode = $defaultLanguage->attribute( 'locale' );
 
     /**
      * Fetch all products, even hidden ones
@@ -55,41 +57,51 @@ if ( $http->hasPostVariable( 'ExportButton' ) )
 
     			foreach ( $productArray as $product )
     			{
-    				$dataMap = $product->attribute( 'data_map' );
+    				//$dataMap = $product->attribute( 'data_map' );
     				$classIdentifier = $product->attribute( 'class_identifier' );
     				$attributeID = $exportClasses[$classIdentifier];
-    				$variationAttribute = $dataMap[$attributeID];
+    				$classAttributeID = (int) eZContentObjectTreeNode::classAttributeIDByIdentifier( $classIdentifier . '/' . $attributeID );
 
-    				$id = $variationAttribute->attribute( 'id' );
-			        $version = $variationAttribute->attribute( 'version' );
-			        $languageCode = $variationAttribute->attribute( 'language_code' );
+                    $variationAttribute = eZPersistentObject::fetchObject( eZContentObjectAttribute::definition(),
+                                                null,
+                                                array( 'contentclassattribute_id' => $classAttributeID,
+                                                       'contentobject_id' => (int) $product->attribute( 'contentobject_id' ),
+                                                       'version' => (int) $product->attribute( 'contentobject_version' ),
+                                                       'language_code' => $languageCode ),
+                                                true );
 
-			        $dataArray = xrowProductData::fetchList( array( 'attribute_id' => $id,
-                                                               'version' => $version,
-                                                               'language_code' => $languageCode ),
-                                                        true,
-                                                        false,
-                                                        false );
+                    if ( $variationAttribute instanceof eZContentObjectAttribute )
+                    {
+	                    $id = $variationAttribute->attribute( 'id' );
+	                    $version = $variationAttribute->attribute( 'version' );
 
-                    foreach ( $dataArray as $variation )
-    				{
-    					$sku = $variation->attribute( $skuField );
-    					if ( !isset( $exportArray[$sku] ) )
-    					{
-	    					$exportArray[$sku] = array( $sku );
-	    					$priceID = $variation->attribute( $priceField );
-	                        $priceList = xrowProductPrice::fetchList( array( 'price_id' => $priceID, 'country' => $country ),
-	                                                                          true,
-	                                                                          false,
-	                                                                          false,
-	                                                                          array( 'amount' => 'asc' ) );
+	                    $dataArray = xrowProductData::fetchList( array( 'attribute_id' => $id,
+	                                                               'version' => $version,
+	                                                               'language_code' => $languageCode ),
+	                                                        true,
+	                                                        false,
+	                                                        false );
 
-	                        foreach ( $priceList as $price )
+	                    foreach ( $dataArray as $variation )
+	                    {
+	                        $sku = $variation->attribute( $skuField );
+	                        if ( !isset( $exportArray[$sku] ) )
 	                        {
-	                            $exportArray[$sku][] = number_format( round( $price->attribute( 'price' ), $precision ), $precision, $decPoint, '' );
+	                            $exportArray[$sku] = array( $sku );
+	                            $priceID = $variation->attribute( $priceField );
+	                            $priceList = xrowProductPrice::fetchList( array( 'price_id' => $priceID, 'country' => $country ),
+	                                                                              true,
+	                                                                              false,
+	                                                                              false,
+	                                                                              array( 'amount' => 'asc' ) );
+
+	                            foreach ( $priceList as $price )
+	                            {
+	                                $exportArray[$sku][] = number_format( $price->attribute( 'price' ), $precision, $decPoint, '' );
+	                            }
 	                        }
-    					}
-    				}
+	                    }
+                    }
     			}
     			$offset += $limit;
                 /**
@@ -97,8 +109,6 @@ if ( $http->hasPostVariable( 'ExportButton' ) )
                  */
 			    global $eZContentObjectContentObjectCache;
 			    unset( $eZContentObjectContentObjectCache );
-			    global $eZContentObjectDataMapCache;
-			    unset( $eZContentObjectDataMapCache );
 			    global $eZContentObjectVersionCache;
 			    unset( $eZContentObjectVersionCache );
 
