@@ -132,7 +132,7 @@ for (i = 0; i < field.length; i++)
                 {"Total Price"|i18n("extension/xrowecommerce")}
             </th>
             {if ezini( 'Settings', 'ShowColumnRemove', 'xrowecommerce.ini')|eq('enabled')}
-            <th>{*<a class="mark-all" onclick="toggleAll('RemoveProductItemDeleteList[]');">Mark all</a>*}
+            <th>
                <input id="delete-button" class="icon" type="image" name="RemoveProductItemButton" src={'shop/basket-delete-icon.gif'|ezimage} value={'Delete'|i18n( 'extension/xrowecommerce' )} title="{'Use this button to remove items from your shopping cart.'|i18n( 'extension/xrowecommerce' )}" />
             </th>
             {/if}
@@ -162,6 +162,7 @@ for (i = 0; i < field.length; i++)
             </td>
             {/if}
         <td class="basketspace price">
+            {if $product_item.discount_percent}
             {def $discount = $product_item.price_ex_vat|div(100)|mul($product_item.discount_percent)
                  $price = $product_item.price_ex_vat|sub($discount)} 
             {else}
@@ -202,7 +203,7 @@ for (i = 0; i < field.length; i++)
             &nbsp;
         </td>
     </tr>
-    {/if}
+{/if}
             <tr class="subtotal-line">
                  <td colspan="{$cols|sub(2)}" class="align_right">
                     {"Subtotal Ex. Tax"|i18n("extension/xrowecommerce")}
@@ -248,7 +249,7 @@ for (i = 0; i < field.length; i++)
     </table>
      <div id="buttonblock-bottom" class="buttonblock">
 
-        <input id="continue-shopping-button" class="right-arrow" type="submit" name="ContinueShoppingButton" value="{'Continue'|i18n("extension/xrowecommerce")}" title="{'Continue Shopping'|i18n("extension/xrowecommerce")}"/>
+        <input id="continue-shopping-button" class="right-arrow" type="submit" name="ContinueShoppingButton" value="{'Continue shopping'|i18n("extension/xrowecommerce")}" title="{'Continue Shopping'|i18n("extension/xrowecommerce")}"/>
         <input id="empty-cart-button" type="button" onclick="empty_basket.submit();" class="button small-action" name="EmptyShoppingCartButton" value="{'Empty Cart'|i18n( 'extension/xrowecommerce' )}" title="{'Use this button to empty your shopping cart.'|i18n( 'extension/xrowecommerce' )|wash}" />
 
         <input id="store-button" type="submit" class="right-arrow " name="StoreChangesButton" value={'Update'|i18n( 'extension/xrowecommerce' )} title="{'Use this button to update your shopping cart.'|i18n( 'extension/xrowecommerce' )|wash}" />
@@ -257,35 +258,35 @@ for (i = 0; i < field.length; i++)
    </div>
  </form>
  {* ####### Login Box ######## *}
-    {if eq(ezini( 'BasketInformation', 'DisplayLogin', 'xrowecommerce.ini' ), 'enabled' )}
-         {def $user=fetch( 'user', 'current_user' )}
-         {if $user.is_logged_in|not()}
-                        <div class="loginbox">
-                            <p>{'Already a user?'|i18n("extension/xrowecommerce",'User name')}</p>
-                            <form method="post" action={"user/login"|ezurl}">
-                                <div class="wrap">
-                                    <label for="id1">{"Username"|i18n("extension/xrowecommerce",'Username')}</label><div class="labelbreak"></div>
-                                    <input type="text" name="Login" id="id1" value="{$User:login|wash}" tabindex="1" />
-                                </div>
-                                <div class="wrap">
-                                    <label for="id2">{"Password"|i18n("extension/xrowecommerce")}</label><div class="labelbreak"></div>
-                                    <input type="password" name="Password" id="id2" value="" tabindex="1" />
-                                </div>
-                                <div class="login-button">
-                                    <input class="button" type="submit" name="LoginButton" value="{'Login'|i18n('extension/xrowecommerce')}" tabindex="1">
-                                </div>
-                                <input type="hidden" name="RedirectURI" value={"xrowecommerce/userregister"|ezroot} />
-                             </form>
-                        </div>
+        {if eq(ezini( 'BasketInformation', 'DisplayLogin', 'xrowecommerce.ini' ), 'enabled' )}
+             {def $user=fetch( 'user', 'current_user' )}
+             {if $user.is_logged_in|not()}
+                            <div class="loginbox">
+                                <p>{'Already a user?'|i18n("extension/xrowecommerce",'User name')}</p>
+                                <form method="post" action={"user/login"|ezurl}">
+                                    <div class="wrap">
+                                        <label for="id1">{"Username"|i18n("extension/xrowecommerce",'Username')}</label><div class="labelbreak"></div>
+                                        <input type="text" name="Login" id="id1" value="{$User:login|wash}" tabindex="1" />
+                                    </div>
+                                    <div class="wrap">
+                                        <label for="id2">{"Password"|i18n("extension/xrowecommerce")}</label><div class="labelbreak"></div>
+                                        <input type="password" name="Password" id="id2" value="" tabindex="1" />
+                                    </div>
+                                    <div class="login-button">
+                                        <input class="button" type="submit" name="LoginButton" value="{'Login'|i18n('extension/xrowecommerce')}" tabindex="1">
+                                    </div>
+                                    <input type="hidden" name="RedirectURI" value={"xrowecommerce/userregister"|ezroot} />
+                                 </form>
+                            </div>
+            {/if}
         {/if}
-    {/if}
     {undef $currency $locale $symbol}
     {else}
     <div class="feedback">
         <form method="post" name="basket" action={"xrowecommerce/basket"|ezurl}>
-            <p><b>{"You have no items in your shopping cart"|i18n("extension/xrowecommerce")|wash}</b></p>
+            <p><b>{"You have no items in your shopping cart"|i18n("extension/xrowecommerce")|wash()}</b></p>
             <div class="buttonblock">
-                <input id="continue-button" class="right-arrow " type="submit" name="ContinueShoppingButton" value="{'Continue'|i18n("extension/xrowecommerce")}" />
+                <input id="continue-button" class="right-arrow " type="submit" name="ContinueShoppingButton" value="{'Continue shopping'|i18n("extension/xrowecommerce")}" />
             </div>
         </form>
     </div>
@@ -297,7 +298,6 @@ for (i = 0; i < field.length; i++)
 {foreach $basket.items as $key => $product_item sequence array(bglight,bgdark) as $sequence}
     <input type="hidden" name="ProductItemIDList[]" value="{$product_item.id}" />
     <input type="hidden" name="RemoveProductItemDeleteList[]" value="{$product_item.id}" />
-
     <input class="quantity" type="hidden" name="ProductItemCountList[]" value="{$product_item.item_count}" size="3"/>
 {/foreach}
 </form>
