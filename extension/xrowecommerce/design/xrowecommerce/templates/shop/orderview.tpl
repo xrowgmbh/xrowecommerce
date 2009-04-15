@@ -75,7 +75,13 @@
         </td>
         {/if}
         <td class="basketspace price">
-        {$product_item.price_ex_vat|l10n( 'currency', $locale, $symbol )}
+            {def $discount = $product_item.price_ex_vat|div(100)|mul($product_item.discount_percent)
+                 $price = $product_item.price_ex_vat|sub($discount)} 
+            {else}
+                {def $price = $product_item.price_ex_vat}
+            {/if}
+            {$price|l10n( 'currency', $locale, $symbol )}
+            {undef $discount $price}
         </td>
         <td class="align_right basketspace totalprice">
         {$product_item.total_price_ex_vat|l10n( 'currency', $locale, $symbol )}
