@@ -787,7 +787,7 @@
     </message>
     <message>
         <source>Address 1</source>
-        <translation>Adresszeile 1</translation>
+        <translation>Straße und Hausnummer</translation>
     </message>
     <message>
         <source>Address 2</source>
@@ -1340,7 +1340,7 @@
     </message>
     <message>
         <source>Address1</source>
-        <translation>Adresszeile 1</translation>
+        <translation>Straße und Hausnummer</translation>
     </message>
     <message>
         <source>Address2</source>

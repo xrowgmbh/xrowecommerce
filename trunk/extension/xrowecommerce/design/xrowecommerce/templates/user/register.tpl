@@ -307,6 +307,14 @@
                         <input class="box" type="text" name="{$castring}{$ca.s_phone.id}" value="{$ca.s_phone.content|wash()}" />
                         <input type="hidden" name="ContentObjectAttribute_id[]" value="{$ca.s_phone.id}" />
                     </div>
+                    {if eq(ezini( 'Settings', 'Fax', 'xrowecommerce.ini' ), 'enabled' )}
+                    <div class="block">
+                        <label>{'Fax'|i18n('extension/xrowecommerce')}</label>
+                        <div class="labelbreak"></div>
+                        <input class="box" type="text" name="{$castring}{$ca.s_fax.id}" value="{$ca.s_fax.content|wash()}" />
+                        <input type="hidden" name="ContentObjectAttribute_id[]" value="{$ca.s_fax.id}" />
+                    </div>
+                    {/if}
                     <div class="block">
                         <label><span class="required">*</span>{'E-mail'|i18n('extension/xrowecommerce')}</label>
                         <div class="labelbreak"></div>
