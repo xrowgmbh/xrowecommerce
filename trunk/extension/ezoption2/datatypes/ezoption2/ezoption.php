@@ -7,16 +7,22 @@ class eZOption2
     */
     function eZOption2( $contentObjectAttribute, $name = false, $init = true )
     {
+if($contentObjectAttribute)
+{
+        $this->contentObjectAttribute = $contentObjectAttribute;
+}
+else
+{
+        throw new Exception( "Missing Content Object Attribute");
+}
         if ( $init )
         {
-            $this->decodeXML( $contentObjectAttribute->attribute( "data_text" ) );
+            $this->decodeXML( );
         }
         if ( $name !== false )
         {
             $this->Name = $name;
         }
-        $this->contentObjectAttribute = $contentObjectAttribute;
-    
     }
 
     /*!
@@ -177,12 +183,12 @@ class eZOption2
     /*!
      Will decode an xml string and initialize the eZ option object
     */
-    function decodeXML( $xmlString )
+    function decodeXML( )
     {
-        if ( $xmlString != "" )
+        if ( $this->contentObjectAttribute->attribute( "data_text" ) != "" )
         {
             $dom = new DOMDocument( '1.0', 'utf-8' );
-            $success = $dom->loadXML( $xmlString );
+            $success = $dom->loadXML( $this->contentObjectAttribute->attribute( "data_text" ) );
             
             // set the name of the node
             $nameNode = $dom->getElementsByTagName( "name" )->item( 0 );
@@ -220,7 +226,7 @@ class eZOption2
                     'weight' => $optionNode->getAttribute( 'weight' ) , 
                     'image' => $optionNode->getAttribute( 'image' ) , 
                     'additional_price' => $optionNode->getAttribute( 'additional_price' ) , 
-                    'multi_price' => new eZOptionMultiPrice( $PriceList ) 
+                    'multi_price' => new eZOptionMultiPrice( $PriceList, $this->contentObjectAttribute ) 
                 ) );
             
             }
