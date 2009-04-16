@@ -259,8 +259,8 @@
 	<label>{'Shipping'|i18n('extension/xrowecommerce')}<span class="required">*</span></label>
 	<div class="labelbreak"></div>
 	<select name="shippingtype">
-	{foreach $shipping_methods as $shipping}
-	<option value="{$shipping.identifier}" {if $shippingtype|eq($shipping.identifier)} selected="selected" {/if}>{$shipping.name}</option>
+	{foreach $shipping_methods as $shipping_method}
+	<option value="{$shipping_method.identifier}" {if $shippingtype|eq($shipping_method.identifier)} selected="selected" {/if}>{$shipping_method.name}</option>
 	{/foreach}
 	</select>
 </div>
