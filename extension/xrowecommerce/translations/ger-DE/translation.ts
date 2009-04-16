@@ -1739,7 +1739,7 @@ Sie werden in unserem Lager bevorzugt behandelt und sparen Zeit.</translation>
     </message>
     <message>
         <source>Estimated shipping and handling</source>
-        <translation>Voraussichtliche Versand- und Handling Kosten</translation>
+        <translation>Voraussichtliche Versand- und Verpackungskosten</translation>
     </message>
     <message>
         <source>Product not found. Please correct the SKU.</source>
