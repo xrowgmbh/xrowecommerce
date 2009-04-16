@@ -490,6 +490,13 @@
     </message>
 </context>
 <context>
+    <name>design/ezwebin/collectedinfo/form</name>
+    <message>
+        <source>Homepage</source>
+        <translation>Startseite</translation>
+    </message>
+</context>
+<context>
     <name>design/standard/class/datatype</name>
     <message>
         <source>Select which nodes from which classes can be selected</source>
@@ -553,7 +560,7 @@
     </message>
     <message>
         <source>Estimated Shipping and Handling</source>
-        <translation>Voraussichtliche Versand- und Verpackungskosten</translation>
+        <translation type="obsolete">Voraussichtliche Versand- und Verpackungskosten</translation>
     </message>
     <message>
         <source>Estimated Tax</source>
@@ -1711,7 +1718,7 @@ Sie werden in unserem Lager bevorzugt behandelt und sparen Zeit.</translation>
     </message>
     <message>
         <source>Website</source>
-        <translation>Webseite</translation>
+        <translation type="obsolete">Webseite</translation>
     </message>
     <message>
         <source>Billing
@@ -1725,6 +1732,14 @@ Sie werden in unserem Lager bevorzugt behandelt und sparen Zeit.</translation>
     <message>
         <source>Order receipt #%order_id </source>
         <translation>Bestellbeleg Nr. %order_id</translation>
+    </message>
+    <message>
+        <source>Total price</source>
+        <translation>Gesamtpreis</translation>
+    </message>
+    <message>
+        <source>Estimated shipping and handling</source>
+        <translation>Voraussichtliche Versand- und Handling Kosten</translation>
     </message>
 </context>
 <context>
