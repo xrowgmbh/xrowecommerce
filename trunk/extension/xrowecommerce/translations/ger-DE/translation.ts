@@ -299,7 +299,7 @@
     </message>
     <message>
         <source>Quantity</source>
-        <translation>Anzahl</translation>
+        <translation>Menge</translation>
     </message>
     <message>
         <source>Total (ex. VAT)</source>
@@ -633,7 +633,7 @@
     </message>
     <message>
         <source>Quantity</source>
-        <translation>Anzahl</translation>
+        <translation>Menge</translation>
     </message>
     <message>
         <source>SKU</source>
@@ -1741,6 +1741,10 @@ Sie werden in unserem Lager bevorzugt behandelt und sparen Zeit.</translation>
         <source>Estimated shipping and handling</source>
         <translation>Voraussichtliche Versand- und Handling Kosten</translation>
     </message>
+    <message>
+        <source>Product not found. Please correct the SKU.</source>
+        <translation>Produkt nicht gefunden. Bitte überprüfen Sie die Artikelnummer.</translation>
+    </message>
 </context>
 <context>
     <name>extension/xrowecommerce/directorder</name>
@@ -2119,7 +2123,7 @@ Es ist nicht möglich, den Datentyp danach zu ändern.</translation>
     </message>
     <message>
         <source>Amount</source>
-        <translation>Anzahl</translation>
+        <translation>Menge</translation>
     </message>
     <message>
         <source>Add price</source>
@@ -2139,11 +2143,11 @@ Es ist nicht möglich, den Datentyp danach zu ändern.</translation>
     </message>
     <message>
         <source>Please enter a price for 1 item.</source>
-        <translation>Bitte geben Sie den Preis für die Anzahl 1 des Produkts ein.</translation>
+        <translation>Bitte geben Sie den Preis für 1 Produkt ein.</translation>
     </message>
     <message>
         <source>Please correct the amount marked with a red *</source>
-        <translation>Bitte korrigieren Sie die Anzahl, die mit einem roten * (Stern) markiert ist</translation>
+        <translation>Bitte korrigieren Sie die Menge, die mit einem roten * (Stern) markiert ist</translation>
     </message>
     <message>
         <source>SKU already in use.</source>
