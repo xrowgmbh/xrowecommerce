@@ -190,6 +190,7 @@ if ( $order instanceof eZOrder )
         }
     }
 }
+var_dump( $shipping);
 /*
 // Check if user has an earlier order, copy order info from that one
 $orderList = eZOrder::activeByUserID( $user->attribute( 'contentobject_id' ) );
