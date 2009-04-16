@@ -82,6 +82,12 @@
         <th>{'Phone'|i18n('extension/xrowecommerce')}:</th>
         <td>{$order.account_information.phone|wash}</td>
     </tr>
+    {if eq(ezini( 'Settings', 'Fax', 'xrowecommerce.ini' ), 'enabled' )}
+    <tr>
+        <th>{'Fax'|i18n('extension/xrowecommerce')}:</th>
+        <td>{$order.account_information.fax|wash}</td>
+    </tr>
+    {/if}
     <tr>
         <th>{'Shipping'|i18n('extension/xrowecommerce')}:</th>
         <td>{if $shiplist} {foreach $shiplist as $method} {if $method.identifier|eq($order.account_information.shippingtype)}
@@ -131,6 +137,12 @@
         <th>{'Phone'|i18n('extension/xrowecommerce')}:</th>
         <td>{$order.account_information.phone|wash}</td>
     </tr>
+    {if eq(ezini( 'Settings', 'Fax', 'xrowecommerce.ini' ), 'enabled' )}
+    <tr>
+        <th>{'Fax'|i18n('extension/xrowecommerce')}:</th>
+        <td>{$order.account_information.fax|wash}</td>
+    </tr>
+    {/if}
     <tr>
         <th>{'Shipping'|i18n('extension/xrowecommerce')}:</th>
         <td>{foreach $shiplist as $method}
@@ -184,6 +196,12 @@
         <th>{'Phone'|i18n('extension/xrowecommerce')}:</th>
         <td>{$order.account_information.s_phone|wash}</td>
     </tr>
+    {if eq(ezini( 'Settings', 'Fax', 'xrowecommerce.ini' ), 'enabled' )}
+    <tr>
+        <th>{'Fax'|i18n('extension/xrowecommerce')}:</th>
+        <td>{$order.account_information.s_fax|wash}</td>
+    </tr>
+    {/if}
     <tr>
         <th>{'Email'|i18n('extension/xrowecommerce')}:</th>
         <td>{$order.account_information.s_email|wash}</td>
