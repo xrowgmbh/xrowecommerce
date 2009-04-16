@@ -93,11 +93,16 @@ td.error
 
 .directorder td.description
 {
-    width: 70%;
+    width: 65%;
 }
 
 .directorder td.delete
 {
     width: 80px;
     text-align: center;
+}
+
+.error
+{
+    color: red;
 }

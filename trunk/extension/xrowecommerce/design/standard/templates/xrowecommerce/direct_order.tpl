@@ -58,9 +58,7 @@ function delRows( tbody, row )
     <tbody>
     <tr id="orderrow">
         <td class="sku"><input class="sku" type="text" maxlength="10" length="5" name="SKUArray[]" value="" /></td>
-{*
         <td class="amount"><input class="amount" type="text" maxlength="5" length="3" name="AmountArray[]" value="" /></td>
-*}
         <td class="description">&nbsp;</td>
         <td class="delete nowrap"><input type="button" class="button" name="Delete[]" value="{"Delete"|i18n( 'extension/xrowecommerce/directorder')|wash}" title="{"Delete this row"|i18n( 'extension/xrowecommerce/directorder')|wash}" onclick="return delRows( this.parentNode.parentNode.parentNode.parentNode, this.parentNode.parentNode.parentNode );" /></td>
     </tr>
@@ -83,9 +81,7 @@ function delRows( tbody, row )
             <thead>
             <tr>
                 <th>{"SKU"|i18n( 'extension/xrowecommerce/directorder')|wash}</th>
-{*
                 <th>{"Amount"|i18n( 'extension/xrowecommerce/directorder')|wash}</th>
-*}
                 <th>{"Description"|i18n( 'extension/xrowecommerce/directorder')|wash}</th>
                 <th>&nbsp;</th>
             </tr>
@@ -95,11 +91,9 @@ function delRows( tbody, row )
             {foreach $sku_array as $key => $item}
             <tr>
                 <td class="sku"><input class="sku" type="text" maxlength="10" length="5" name="SKUArray[]" value="{$item|wash}" /></td>
-{*
                 <td class="amount"><input class="amount" type="text" maxlength="5" length="3" name="AmountArray[]" value="{$amount_array.$key|wash}" /></td>
-*}
                 <td class="description">
-                {if $desc_array.$key}
+                {if and( $item|count_chars|gt(0), $desc_array.$key )}
                     {def $var_object=fetch( 'content', 'object', hash( 'object_id', $desc_array.$key.object_id ))}
 
                     <div class="product-image">
@@ -120,6 +114,9 @@ function delRows( tbody, row )
                         {$desc_array.$key.variation_name|wash}
                    </p>
                    {undef $var_object}
+                {/if}
+                {if and( $item|count_chars|gt(0), $desc_array.$key|not() )}
+                    <p class="error">{'Product not found. Please correct the SKU.'|i18n("extension/xrowecommerce")}</p>
                 {/if}
                 </td>
                 <td class="delete nowrap"><input type="button" class="button" name="Delete[]" value="{"Delete"|i18n( 'extension/xrowecommerce/directorder')|wash}" title="{"Delete this row"|i18n( 'extension/xrowecommerce/directorder')|wash}" onclick="return delRows( this.parentNode.parentNode.parentNode.parentNode, this.parentNode.parentNode.parentNode );" /></td>
