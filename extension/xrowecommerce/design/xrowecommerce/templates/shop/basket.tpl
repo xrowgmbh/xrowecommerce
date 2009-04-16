@@ -88,6 +88,8 @@ for (i = 0; i < field.length; i++)
     {if $basket.items}
     <form method="post" name="basket" action={"shop/basket/"|ezurl}>
     <input type="submit" class="hide" sytle="display: hide;" name="CheckoutButton" value={'Checkout'|i18n( 'extension/xrowecommerce' )|wash} />
+    
+    {include uri="design:shop/basket_hint.tpl"}
     <div id="buttonblock-top" class="buttonblock">
 
         <input id="continue-shopping-button" class="right-arrow" type="submit" name="ContinueShoppingButton" value="{'Continue shopping'|i18n("extension/xrowecommerce")}" title="{'Continue shopping'|i18n("extension/xrowecommerce")|wash}"/>
@@ -96,6 +98,7 @@ for (i = 0; i < field.length; i++)
         <input id="store-button" type="submit" class="right-arrow " name="StoreChangesButton" value="{'Update'|i18n( 'extension/xrowecommerce' )|wash}" title="{'Use this button to update your shopping cart.'|i18n( 'extension/xrowecommerce' )|wash}" />
         <input id="checkout-button" type="submit" class="right-arrow2 continue-button" name="CheckoutButton" value={'Checkout'|i18n( 'extension/xrowecommerce' )|wash} title="{'Use this button to place your order.'|i18n( 'extension/xrowecommerce' )|wash}" />
     </div>
+    
     <div class="break"></div>
     {def $currency = fetch( 'shop', 'currency', hash( 'code', $basket.productcollection.currency_code ) )
          $locale = false()
