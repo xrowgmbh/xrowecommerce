@@ -7,7 +7,7 @@
 {/if}
 
 <div class="shop shop-orderview">
-    <h1>{"Order Receipt #%order_id "|i18n("extension/xrowecommerce",,
+    <h1>{"Order receipt #%order_id "|i18n("extension/xrowecommerce",,
          hash( '%order_id', $order.order_nr,
                '%order_status', $order.status_name ) )}</h1>
 
