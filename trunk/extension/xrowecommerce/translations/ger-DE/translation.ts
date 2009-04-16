@@ -1718,7 +1718,7 @@ Sie werden in unserem Lager bevorzugt behandelt und sparen Zeit.</translation>
     </message>
     <message>
         <source>Website</source>
-        <translation type="obsolete">Webseite</translation>
+        <translation>Webseite</translation>
     </message>
     <message>
         <source>Billing
