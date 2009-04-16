@@ -126,10 +126,10 @@ for (i = 0; i < field.length; i++)
             </th>
             {/if}
             <th>
-                {"Unit Price"|i18n("extension/xrowecommerce")}
+                {"Unit price"|i18n("extension/xrowecommerce")}
             </th>
             <th class="totalprice">
-                {"Total Price"|i18n("extension/xrowecommerce")}
+                {"Total price"|i18n("extension/xrowecommerce")}
             </th>
             {if ezini( 'Settings', 'ShowColumnRemove', 'xrowecommerce.ini')|eq('enabled')}
             <th>
@@ -164,7 +164,7 @@ for (i = 0; i < field.length; i++)
         <td class="basketspace price">
             {if $product_item.discount_percent}
             {def $discount = $product_item.price_ex_vat|div(100)|mul($product_item.discount_percent)
-                 $price = $product_item.price_ex_vat|sub($discount)} 
+                 $price = $product_item.price_ex_vat|sub($discount)}
             {else}
                 {def $price = $product_item.price_ex_vat}
             {/if}
@@ -206,7 +206,7 @@ for (i = 0; i < field.length; i++)
 {/if}
             <tr class="subtotal-line">
                  <td colspan="{$cols|sub(2)}" class="align_right">
-                    {"Subtotal Ex. Tax"|i18n("extension/xrowecommerce")}
+                    {"Subtotal ex. tax"|i18n("extension/xrowecommerce")}
                  </td>
                  <td class="totalprice">
                      <b class="price">{$basket.total_ex_vat|l10n( 'currency', $locale, $symbol )}</b>
@@ -216,7 +216,7 @@ for (i = 0; i < field.length; i++)
             {if eq(ezini( 'BasketInformation', 'DisplayShipping', 'xrowecommerce.ini' ), 'enabled' )}
             <tr class="orderitem-line">
                 <td colspan="{$cols|sub(2)}" class="align_right">
-                    {"Estimated Shipping and Handling"|i18n("extension/xrowecommerce")}
+                    {"Estimated shipping and handling"|i18n("extension/xrowecommerce")}
                 </td>
                 <td class="price totalprice">
                     {$basket.items_info.additional_info.shipping_total.total_price_inc_vat|l10n( 'currency', $locale, $symbol )}
