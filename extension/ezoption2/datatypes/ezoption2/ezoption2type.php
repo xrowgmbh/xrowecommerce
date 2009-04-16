@@ -214,7 +214,7 @@ class eZOption2Type extends eZDataType
                 'description' => $optionDescriptionArray[$id] , 
                 'image' => $optionImageArray[$id] , 
                 'additional_price' => ( isset( $optionAdditionalPriceArray[$id] ) ? $optionAdditionalPriceArray[$id] : 0 ) , 
-                'multi_price' => new eZOptionMultiPrice( $optionPriceArray ) 
+                'multi_price' => new eZOptionMultiPrice( $optionPriceArray, $contentObjectAttribute ) 
             ) );
         }
         $contentObjectAttribute->setContent( $option );
@@ -308,7 +308,7 @@ class eZOption2Type extends eZDataType
                         }
                     }
                     $option->addOption( array( 
-                        'multi_price' => new eZOptionMultiPrice( $priceList ) 
+                        'multi_price' => new eZOptionMultiPrice( $priceList, $contentObjectAttribute ) 
                     ) );
                     
                     $contentObjectAttribute->setContent( $option );
