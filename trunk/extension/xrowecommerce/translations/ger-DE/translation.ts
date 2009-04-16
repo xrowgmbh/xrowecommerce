@@ -730,7 +730,7 @@
     </message>
     <message>
         <source>Billing Address</source>
-        <translation>Rechnungsadresse</translation>
+        <translation type="obsolete">Rechnungsadresse</translation>
     </message>
     <message>
         <source>Shipping Address</source>
@@ -1053,7 +1053,7 @@
     </message>
     <message>
         <source>Order Receipt #%order_id </source>
-        <translation>Auftragsbestätigung Nr %order_id</translation>
+        <translation type="obsolete">Auftragsbestätigung Nr %order_id</translation>
     </message>
     <message>
         <source>SKU number</source>
@@ -1586,11 +1586,12 @@
     </message>
     <message>
         <source>Use our Automatic Delivery service to have this item sent to you as often as you like.  You&#xe2;&#x80;&#x99;ll get priority on our inventory and save time.</source>
-        <translation type="unfinished"></translation>
+        <translation>Benutzen Sie unseren automatischen Lieferservice so oft sie wollen.
+Sie werden in unserem Lager bevorzugt behandelt und sparen Zeit.</translation>
     </message>
     <message>
         <source>Price in &#xe2;&#x82;&#xac;</source>
-        <translation type="unfinished"></translation>
+        <translation>Preis in €</translation>
     </message>
     <message>
         <source>Show the terms and conditions.</source>
@@ -1707,6 +1708,74 @@
     <message>
         <source>unconfirmed</source>
         <translation>unbestätigt</translation>
+    </message>
+    <message>
+        <source>Website</source>
+        <translation>Webseite</translation>
+    </message>
+    <message>
+        <source>Billing
+    Address</source>
+        <translation>Rechnungsadresse</translation>
+    </message>
+    <message>
+        <source>Order confirmation email from</source>
+        <translation>Bestellbestätigungsemail von</translation>
+    </message>
+    <message>
+        <source>Order receipt #%order_id </source>
+        <translation>Bestellbeleg Nr. %order_id</translation>
+    </message>
+</context>
+<context>
+    <name>extension/xrowecommerce/directorder</name>
+    <message>
+        <source>Delete</source>
+        <translation>Löschen</translation>
+    </message>
+    <message>
+        <source>Delete this row</source>
+        <translation>Diese Zeile löschen</translation>
+    </message>
+    <message>
+        <source>Add online order from catalogue</source>
+        <translation>Onlinebestellung vom Katalog hinzufügen</translation>
+    </message>
+    <message>
+        <source>Add your desired products to the shopping cart.</source>
+        <translation>Fügen Sie Ihre gewünschten Produkte dem Warenkorb hinzu.</translation>
+    </message>
+    <message>
+        <source>SKU</source>
+        <translation>Artikelnummer</translation>
+    </message>
+    <message>
+        <source>Amount</source>
+        <translation>Menge</translation>
+    </message>
+    <message>
+        <source>Description</source>
+        <translation>Beschreibung</translation>
+    </message>
+    <message>
+        <source>Add rows</source>
+        <translation>Zeile hinzufügen</translation>
+    </message>
+    <message>
+        <source>Search products</source>
+        <translation>Produkte suchen</translation>
+    </message>
+    <message>
+        <source>Add to shopping cart</source>
+        <translation>Dem Warenkorb hinzufügen</translation>
+    </message>
+    <message>
+        <source>Add products to shopping cart</source>
+        <translation>Fügen Sie Ihre gewünschten Produkte dem Warenkorb hinzu</translation>
+    </message>
+    <message>
+        <source>Direct order</source>
+        <translation>Direkt bestellen</translation>
     </message>
 </context>
 <context>
