@@ -12,7 +12,7 @@
                 <span class="required">* {'Required field'|i18n("extension/xrowecommerce")}</span>
             </p>
             <div class="block">
-                <label><span class="required">*</span>{'Login'|i18n('extension/xrowecommerce')}</label>
+                <label><span class="required">*</span>{"Username"|i18n("extension/xrowecommerce")}</label>
                 <div class="labelbreak"></div>
                 <input type="hidden" name="ContentObjectAttribute_id[]" value="{$ca.user_account.id}" />
                 <input type="text" name="ContentObjectAttribute_data_user_login_{$ca.user_account.id}" value="{$ca.user_account.content.login}" size="20" />

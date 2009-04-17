@@ -884,7 +884,7 @@
     </message>
     <message>
         <source>Login</source>
-        <translation>Benutzername</translation>
+        <translation>Anmelden</translation>
     </message>
     <message>
         <source>Confirm Password</source>
