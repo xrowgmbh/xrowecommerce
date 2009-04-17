@@ -1696,11 +1696,6 @@
         <translation>Webseite</translation>
     </message>
     <message>
-        <source>Billing
-    Address</source>
-        <translation>Rechnungsadresse</translation>
-    </message>
-    <message>
         <source>Order confirmation email from</source>
         <translation>Bestellbestätigungsemail von</translation>
     </message>
@@ -1721,16 +1716,24 @@
         <translation>Produkt nicht gefunden. Bitte überprüfen Sie die Artikelnummer.</translation>
     </message>
     <message>
-        <source>Use our Automatic Delivery service to have this item sent to you as often as you like.  You?ll get priority on our inventory and save time.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Billing &amp; shipping address</source>
-        <translation type="unfinished"></translation>
+        <translation>Rechnungs- &amp; Lieferadresse</translation>
     </message>
     <message>
-        <source>Price in ?</source>
-        <translation type="unfinished"></translation>
+        <source>Apartment, suite, unit, building, floor, etc.</source>
+        <translation>Wohnung, Suite, Wohneinheit, Gebäude, Stockwerk usw.</translation>
+    </message>
+    <message>
+        <source>Street address, P.O. box, company name, c/o</source>
+        <translation>Straße und Hausnummer, Postfach, Firmenname, wohnhaft bei</translation>
+    </message>
+    <message>
+        <source>Billing Address</source>
+        <translation>Rechnungsadresse</translation>
+    </message>
+    <message>
+        <source>Use our Automatic Delivery service to have this item sent to you as often as you like. You&apos;ll get priority on our inventory and save time.</source>
+        <translation>Benutzen Sie unseren automatischen Lieferservice um diesen Artikel so oft geliefert zu bekommen wie Sie möchten. Sie werden in unserem Lager bevorzugt und sparen Zeit.</translation>
     </message>
 </context>
 <context>

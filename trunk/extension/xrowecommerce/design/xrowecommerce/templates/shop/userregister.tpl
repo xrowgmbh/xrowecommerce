@@ -76,15 +76,15 @@
 	<div class="block">
 		<label>{'Address 1'|i18n('extension/xrowecommerce')}<span class="required">*</span></label>
 		<div class="labelbreak"></div>
-		<input class="box" type="text" name="address1" id="address1" size="20" value="{$address1|wash}" />
+		<input class="box" type="text" name="address1" id="address1" size="20" value="{$address1|wash}" title="{'Street address, P.O. box, company name, c/o'|i18n('extension/xrowecommerce')}" />
 	</div>
-
+{if eq(ezini( 'Settings', 'Address2', 'xrowecommerce.ini' ), 'enabled' )}
 	<div class="block">
 		<label>{'Address 2'|i18n('extension/xrowecommerce')}</label>
 		<div class="labelbreak"></div>
-		<input class="box" type="text" name="address2" id="address2" size="20" value="{$address2|wash}" />
+		<input class="box" type="text" name="address2" id="address2" size="20" value="{$address2|wash}" title="{'Apartment, suite, unit, building, floor, etc.'|i18n('extension/xrowecommerce')}" />
 	</div>
-
+{/if}
 	<div class="city block">
     	<label>{'City'|i18n('extension/xrowecommerce')}<span class="required">*</span></label>
     	<div class="labelbreak"></div>

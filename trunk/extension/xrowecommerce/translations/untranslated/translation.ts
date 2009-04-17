@@ -1576,14 +1576,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Use our Automatic Delivery service to have this item sent to you as often as you like.  You?ll get priority on our inventory and save time.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Price in ?</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Show the terms and conditions.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1676,11 +1668,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Billing
-    Address</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Empty cart</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1730,6 +1717,22 @@
     </message>
     <message>
         <source>The email address isn&apos;t valid.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Apartment, suite, unit, building, floor, etc.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Street address, P.O. box, company name, c/o</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Billing Address</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Use our Automatic Delivery service to have this item sent to you as often as you like. You&apos;ll get priority on our inventory and save time.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

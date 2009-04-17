@@ -10,6 +10,7 @@ Coupon=disabled
 Catalogueorder=disabled
 CompanyName=disabled
 CompanyAdditional=disabled
+Address2=enabled
 NoPartialDelivery=enabled
 Reference=enabled
 Message=enabled
