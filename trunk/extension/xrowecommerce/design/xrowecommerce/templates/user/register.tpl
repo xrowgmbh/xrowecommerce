@@ -4,7 +4,7 @@
 
 <div class="shop-basket user_register">
     <form enctype="multipart/form-data"  action={"/user/register/"|ezurl} method="post" name="Register" id="register">
-        <h2>{"Register user"|i18n("extension/xrowecommerce")}</h2>
+        <h1>{"Register user"|i18n("extension/xrowecommerce")}</h1>
         <div class="accountinfo">
             <h3>{'Account Information'|i18n('extension/xrowecommerce')}</h3>
             <p>{"Enter your email address, login and password."|i18n("extension/xrowecommerce")}</p>
@@ -134,7 +134,7 @@
                         <label>{'State / Province'|i18n('extension/xrowecommerce')}</label>
                         <div class="labelbreak"></div>
                         <input type="hidden" name="ContentObjectAttribute_id[]" value="{$ca.state.id}" />
-                        {attribute_edit_gui attribute_base=$attribute_base attribute=$ca.s_state}
+                        {attribute_edit_gui attribute_base=$attribute_base attribute=$ca.state}
                     </div>
                     {/if}
                     <div class="break"></div>
@@ -193,11 +193,11 @@
             </div>
             <div class="shipping">
                 <h3>{'Shipping Information'|i18n('extension/xrowecommerce')}</h3>
-<input type="hidden" name="ContentObjectAttribute_id[]" value="{$ca.shippingaddress.id}" />
-<label class="shipping-checkbox" for="ContentObjectAttribute_data_boolean_{$ca.shippingaddress.id}">
-    <input onchange="change();" id="ContentObjectAttribute_data_boolean_{$ca.shippingaddress.id}"  name="ContentObjectAttribute_data_boolean_{$ca.shippingaddress.id}" value="" type="checkbox" {$ca.shippingaddress.data_int|choose( '', 'checked="checked"' )} />
-    {'My billing and shipping addresses are identical.'|i18n('extension/xrowecommerce')}
-</label>
+                <input type="hidden" name="ContentObjectAttribute_id[]" value="{$ca.shippingaddress.id}" />
+                <label class="shipping-checkbox" for="ContentObjectAttribute_data_boolean_{$ca.shippingaddress.id}">
+                    <input onchange="change();" id="ContentObjectAttribute_data_boolean_{$ca.shippingaddress.id}"  name="ContentObjectAttribute_data_boolean_{$ca.shippingaddress.id}" value="" type="checkbox" {$ca.shippingaddress.data_int|choose( '', 'checked="checked"' )} />
+                    {'My billing and shipping addresses are identical.'|i18n('extension/xrowecommerce')}
+                </label>
 
 
                 <div class="block" id="shippinginfo">
@@ -224,14 +224,14 @@
                         <input type="hidden" name="ContentObjectAttribute_id[]" value="{$ca.s_first_name.id}" />
                     </div>
                     {if eq(ezini( 'Settings', 'MI', 'xrowecommerce.ini' ), 'enabled' )}
-                    <div>
+                    <div class="block">
                         <label>{'MI'|i18n('extension/xrowecommerce')}</label>
                         <div class="labelbreak"></div>
                         <input type="text" name="ContentObjectAttribute_ezstring_data_text_{$ca.s_mi.id}" size="2" value="{$ca.s_mi.content|wash()}" />
                         <input type="hidden" name="ContentObjectAttribute_id[]" value="{$ca.s_mi.id}" />
                     </div>
                     {/if}
-                    <div>
+                    <div class="block">
                         <label><span class="required">*</span>{'Last name'|i18n('extension/xrowecommerce')}</label>
                         <div class="labelbreak"></div>
                         <input type="text" name="ContentObjectAttribute_ezstring_data_text_{$ca.s_last_name.id}" value="{$ca.s_last_name.content|wash()}" />
