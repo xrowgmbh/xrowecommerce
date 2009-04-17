@@ -251,21 +251,20 @@
 	<div class="labelbreak"></div>
 	<input class="phone" type="text" name="email" id="email" value="{$email|wash}" />
 </div>
-    <div class="break"></div>
-
+<div class="break"></div>
 {def $shipping_methods=fetch( 'shipping', 'list_methods' )}
 {if $shipping_methods|count|gt(0)}
-<div class="block">
-	<label>{'Shipping'|i18n('extension/xrowecommerce')}<span class="required">*</span></label>
-	<div class="labelbreak"></div>
-	<select name="shippingtype">
-	{foreach $shipping_methods as $shipping_method}
-	<option value="{$shipping_method.identifier}" {if $shippingtype|eq($shipping_method.identifier)} selected="selected" {/if}>{$shipping_method.name}</option>
-	{/foreach}
-	</select>
-</div>
+    <div class="block"{if eq(ezini( 'BasketInformation', 'DisplayShipping', 'xrowecommerce.ini' ), 'disabled' )} style="display: none;"{/if} >
+        <label>{'Shipping'|i18n('extension/xrowecommerce')}<span class="required">*</span></label>
+        <div class="labelbreak"></div>
+        <select name="shippingtype">
+            {foreach $shipping_methods as $shipping_method}
+            <option value="{$shipping_method.identifier}" {if $shippingtype|eq($shipping_method.identifier)} selected="selected" {/if}>{$shipping_method.name}</option>
+            {/foreach}
+        </select>
+    </div>
 {/if}
-    <div class="break"></div>
+        <div class="break"></div>
 </div> {*LEFT COL END*}
 
 {if ezini('Settings','Coupon','xrowecommerce.ini')|eq('enabled')}
