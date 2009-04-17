@@ -18,9 +18,11 @@ function insertAfter( newElement, targetElement )
 function addrow( fromid, toid )
 {
     var fromtr = document.getElementById( fromid );
+
     var to_tbody = document.getElementById( toid );
     var newindex = to_tbody.rows.length;
     var newRow = document.createElement( 'TR' );
+
     if ( newindex % 2 == 0 )
         newRow.className = 'bgdark';
     else
@@ -31,7 +33,29 @@ function addrow( fromid, toid )
     else
         to_tbody.appendChild( newRow );
 
-    newRow.innerHTML = fromtr.innerHTML;
+    var child = false;
+    var newtd = false;
+    var tdchildren = fromtr.childNodes;
+
+    for ( var i = 0; i < tdchildren.length; i++ )
+    {
+        if ( tdchildren[i].nodeName == 'TD' )
+        {
+            child = tdchildren[i];
+            newtd = document.createElement( 'TD' );
+            if ( newRow.childNodes.length > 0 )
+                insertAfter( newtd, newRow.lastChild );
+            else
+                newRow.appendChild( newtd );
+            newdiv = document.createElement( 'DIV' );
+            newdiv.className = child.className;
+            newtd.className = child.className;
+
+            newtd.appendChild( newdiv );
+
+            newdiv.innerHTML = child.innerHTML;
+        }
+    }
 }
 
 function addrows( fromid, toid, amount )
@@ -57,10 +81,10 @@ function delRows( tbody, row )
     <table>
     <tbody>
     <tr id="orderrow">
-        <td class="sku"><input class="sku" type="text" maxlength="10" length="5" name="SKUArray[]" value="" /></td>
-        <td class="amount"><input class="amount" type="text" maxlength="5" length="3" name="AmountArray[]" value="" /></td>
+        <td class="sku"><input class="sku" type="text" maxlength="10" size="5" name="SKUArray[]" value="" /></td>
+        <td class="amount"><input class="amount" type="text" maxlength="5" size="3" name="AmountArray[]" value="" /></td>
         <td class="description">&nbsp;</td>
-        <td class="delete nowrap"><input type="button" class="button" name="Delete[]" value="{"Delete"|i18n( 'extension/xrowecommerce/directorder')|wash}" title="{"Delete this row"|i18n( 'extension/xrowecommerce/directorder')|wash}" onclick="return delRows( this.parentNode.parentNode.parentNode.parentNode, this.parentNode.parentNode.parentNode );" /></td>
+        <td class="delete"><input type="button" class="button" name="Delete[]" value="{"Delete"|i18n( 'extension/xrowecommerce/directorder')|wash}" title="{"Delete this row"|i18n( 'extension/xrowecommerce/directorder')|wash}" onclick="return delRows( this.parentNode.parentNode.parentNode.parentNode, this.parentNode.parentNode.parentNode );" /></td>
     </tr>
     </tbody>
     </table>
@@ -90,8 +114,8 @@ function delRows( tbody, row )
 {if $sku_array|count|gt(0)}
             {foreach $sku_array as $key => $item}
             <tr>
-                <td class="sku"><input class="sku" type="text" maxlength="10" length="5" name="SKUArray[]" value="{$item|wash}" /></td>
-                <td class="amount"><input class="amount" type="text" maxlength="5" length="3" name="AmountArray[]" value="{$amount_array.$key|wash}" /></td>
+                <td class="sku"><input class="sku" type="text" maxlength="10" size="5" name="SKUArray[]" value="{$item|wash}" /></td>
+                <td class="amount"><input class="amount" type="text" maxlength="5" size="3" name="AmountArray[]" value="{$amount_array.$key|wash}" /></td>
                 <td class="description">
                 {if and( $item|count_chars|gt(0), $desc_array.$key )}
                     {def $var_object=fetch( 'content', 'object', hash( 'object_id', $desc_array.$key.object_id ))}
@@ -107,9 +131,6 @@ function delRows( tbody, row )
                         <a class="basketlink" href={$var_object.main_node.url_alias|ezurl}>{attribute_view_gui attribute=$var_object.data_map.name}</a>
                    </p>
 
-                   <p class="product-id">
-                       {'SKU number'|i18n("extension/xrowecommerce")}: {$item|wash}
-                   </p>
                    <p>
                         {$desc_array.$key.variation_name|wash}
                    </p>

@@ -56,7 +56,7 @@
 <table cellpadding="0" cellspacing="0" border="0" width="100%">
     <tbody>
         <tr id="variationtemplate_{$id}">
-            <td valign="top" class="tight"><img src={"trash-icon-16x16.gif"|ezimage} alt="{"Delete attribute"|i18n( 'extension/xrowecommerce/productvariation' )|wash}"  width="16" height="16" onclick="return this.parentNode.parentNode.parentNode.removeChild( this.parentNode.parentNode );" /></td>
+            <td valign="top" class="tight"><img src={"trash-icon-16x16.gif"|ezimage} alt="{"Delete attribute"|i18n( 'extension/xrowecommerce/productvariation' )|wash}"  width="16" height="16" onclick="return this.parentNode.parentNode.parentNode.parentNode.removeChild( this.parentNode.parentNode.parentNode );" /></td>
 {foreach $content.template.attribute_list as $variation_attribute_id => $variation_attribute}
             <td valign="top" id="variationtemplate_td_{$id}_{$variation_attribute_id}_{$variation_attribute.attribute.data_type}">
             {include uri=concat( "design:productvariation/variation/default/", $variation_attribute.attribute.data_type, ".tpl" )
@@ -68,8 +68,8 @@
                      variation_attribute_id=$variation_attribute_id}
             </td>
 {/foreach}
-            <td valign="top" class="tight"><img src={"button-move_up.gif"|ezimage} alt="{'Move up'|i18n('extension/xrowecommerce/productvariation')}"  width="16" height="16" onclick="return xrow_move(  {ldelim} direction: 'up', tr: this.parentNode.parentNode {rdelim} );" /></td>
-        <td valign="top" class="tight"><img src={"button-move_down.gif"|ezimage} alt="{'Move down'|i18n('extension/xrowecommerce/productvariation')}" width="16" height="16" title="Move down" onclick="return xrow_move( {ldelim} direction: 'down', tr: this.parentNode.parentNode {rdelim});" /></td>
+            <td valign="top" class="tight"><img src={"button-move_up.gif"|ezimage} alt="{'Move up'|i18n('extension/xrowecommerce/productvariation')}"  width="16" height="16" onclick="return xrow_move(  {ldelim} direction: 'up', tr: this.parentNode.parentNode.parentNode {rdelim} );" /></td>
+        <td valign="top" class="tight"><img src={"button-move_down.gif"|ezimage} alt="{'Move down'|i18n('extension/xrowecommerce/productvariation')}" width="16" height="16" title="Move down" onclick="return xrow_move( {ldelim} direction: 'down', tr: this.parentNode.parentNode.parentNode {rdelim});" /></td>
         </tr>
     </tbody>
 </table>
@@ -110,11 +110,11 @@
 {foreach $content.data as $line => $data_array}
 
 <tr id="variationtemplate_{$id}_{$line}">
-    <td valign="top" class="tight"><img src={"trash-icon-16x16.gif"|ezimage} alt="{"Delete attribute"|i18n( 'extension/xrowecommerce/productvariation' )|wash}"  width="16" height="16" onclick="return this.parentNode.parentNode.parentNode.removeChild( this.parentNode.parentNode );" /><input type="hidden" name="XrowProductVariation[{$attribute.id}][{$line}][id]" value="{$data_array.id}" /></td>
+    <td valign="top" class="tight"><div><img src={"trash-icon-16x16.gif"|ezimage} alt="{"Delete attribute"|i18n( 'extension/xrowecommerce/productvariation' )|wash}"  width="16" height="16" onclick="return this.parentNode.parentNode.parentNode.parentNode.removeChild( this.parentNode.parentNode.parentNode );" /><input type="hidden" name="XrowProductVariation[{$attribute.id}][{$line}][id]" value="{$data_array.id}" /></div></td>
 {foreach $content.template.attribute_list as $key => $template_item}
 {set $data=$data_array[$template_item.attribute.identifier]}
     <td valign="top" id="variationtemplate_td_{$id}_{$line}_{$template_item.attribute.identifier}"{if is_set( $error[$line][$template_item.attribute.identifier] )} class="error"{/if}>
-
+        <div>
             {include uri=concat( "design:productvariation/variation/edit/", $data.template_item.attribute.data_type, ".tpl" )
                      attribute=$attribute
                      error=$error
@@ -122,12 +122,13 @@
                      content=$data.content
                      line=$line
                      column=$template_item.attribute.identifier}
+        </div>
     </td>
 
 {/foreach}
 
-    <td valign="top" class="tight"><img src={"button-move_up.gif"|ezimage} alt="{"Move up"|i18n('extension/xrowecommerce/productvariation')}"  title="{"Move up"|i18n('extension/xrowecommerce/productvariation')}" width="16" height="16" onclick="return xrow_move(  {ldelim} direction: 'up', tr: this.parentNode.parentNode {rdelim} );" /></td>
-    <td valign="top" class="tight"><img src={"button-move_down.gif"|ezimage} alt="{"Move down"|i18n('extension/xrowecommerce/productvariation')}" width="16" height="16" title="{"Move down"|i18n('extension/xrowecommerce/productvariation')}" onclick="return xrow_move( {ldelim} direction: 'down', tr: this.parentNode.parentNode {rdelim});" /></td>
+    <td valign="top" class="tight"><div><img src={"button-move_up.gif"|ezimage} alt="{"Move up"|i18n('extension/xrowecommerce/productvariation')}"  title="{"Move up"|i18n('extension/xrowecommerce/productvariation')}" width="16" height="16" onclick="return xrow_move(  {ldelim} direction: 'up', tr: this.parentNode.parentNode.parentNode {rdelim} );" /></div></td>
+    <td valign="top" class="tight"><div><img src={"button-move_down.gif"|ezimage} alt="{"Move down"|i18n('extension/xrowecommerce/productvariation')}" width="16" height="16" title="{"Move down"|i18n('extension/xrowecommerce/productvariation')}" onclick="return xrow_move( {ldelim} direction: 'down', tr: this.parentNode.parentNode.parentNode {rdelim});" /></div></td>
 </tr>
 
 {/foreach}
