@@ -83,10 +83,14 @@ function addAttribute( attributeDivIdentifier, tbody_id, selectbox_id, noinfo_id
         newRow.setAttribute( 'id', 'xrow_tr_attribute_' + attributeDivIdentifier );
         var cell1 = document.createElement( "TD" );
         cell1.vAlign = 'top';
-        cell1.innerHTML = attributeDiv.innerHTML;
-        attributeDiv.innerHTML = '';
 
         newRow.appendChild( cell1 );
+
+        var newdiv = document.createElement( "DIV" );
+        cell1.appendChild( newdiv );
+
+        newdiv.innerHTML = attributeDiv.innerHTML;
+        attributeDiv.innerHTML = '';
 
         if ( rowcount > 0 )
             insertAfter( newRow, tbody.lastChild );
@@ -121,7 +125,7 @@ function xrow_delete_template( divtag, container, identifier, name, msg, selectb
         {
             var condiv = document.getElementById( container );
             if ( condiv )
-                condiv.innerHTML = attribute_tr.innerHTML;
+                condiv.innerHTML = attribute_tr.getElementsByTagName( 'TD' )[0].getElementsByTagName( 'DIV' )[0].innerHTML;
             var tr_parent = attribute_tr.parentNode;
             tr_parent.removeChild( attribute_tr );
         }
@@ -183,7 +187,28 @@ function addVariation( fromid, toid )
         else
             to_tbody.appendChild( newRow );
 
-        newRow.innerHTML = temphtml;
+        var child = false;
+        var newtd = false;
+        var tdchildren = fromtr.childNodes;
+
+        for ( var i = 0; i < tdchildren.length; i++ )
+        {
+            if ( tdchildren[i].nodeName == 'TD' )
+            {
+                child = tdchildren[i];
+
+                newtd = document.createElement( 'TD' );
+                if ( newRow.childNodes.length > 0 )
+                    insertAfter( newtd, newRow.lastChild );
+                else
+                    newRow.appendChild( newtd );
+                newdiv = document.createElement( 'DIV' );
+                newtd.className = child.className;
+
+                newtd.appendChild( newdiv );
+                newdiv.innerHTML = child.innerHTML;
+            }
+        }
 
         newindex++;
     }
@@ -219,7 +244,10 @@ function xrowaddpriceline( fromid, toid, line )
         var newtd = document.createElement( 'TD' );
         newRow.appendChild( newtd );
 
-        newtd.innerHTML = temphtml;
+        var newdiv = document.createElement( 'DIV' );
+        newtd.appendChild( newdiv );
+
+        newdiv.innerHTML = temphtml;
 
     }
 }

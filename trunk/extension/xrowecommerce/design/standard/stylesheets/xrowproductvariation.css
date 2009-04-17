@@ -71,35 +71,35 @@ td.error
 
 .directorder td.sku
 {
-    width: 65px;
     text-align: center;
 }
 
 .directorder td.sku input.sku
 {
-    width: 60px;
+    width: 50px;
 }
 
-.directorder td.amount
+.directorder td.amount, .directorder td.amount div.amount
 {
-    width: 45px;
     text-align: center;
 }
 
-.directorder td.amount input.amount
+.directorder div.amount input.amount
 {
     width: 40px;
+    margin: 0px 10px;
 }
 
 .directorder td.description
 {
-    width: 65%;
+    width: 440px;
 }
 
-.directorder td.delete
+.directorder td.delete div.delete
 {
-    width: 80px;
+    width: 110px !important;
     text-align: center;
+    margin-left: 10px;
 }
 
 .error
