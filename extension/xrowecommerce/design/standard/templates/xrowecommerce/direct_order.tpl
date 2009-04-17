@@ -68,8 +68,7 @@ function addrows( fromid, toid, amount )
 
 function delRows( tbody, row )
 {
-    if ( tbody.rows.length > 1 )
-        tbody.removeChild( row );
+    tbody.removeChild( row );
     return true;
 }
 
@@ -84,7 +83,7 @@ function delRows( tbody, row )
         <td class="sku"><input class="sku" type="text" maxlength="10" size="5" name="SKUArray[]" value="" /></td>
         <td class="amount"><input class="amount" type="text" maxlength="5" size="3" name="AmountArray[]" value="" /></td>
         <td class="description">&nbsp;</td>
-        <td class="delete"><input type="button" class="button" name="Delete[]" value="{"Delete"|i18n( 'extension/xrowecommerce/directorder')|wash}" title="{"Delete this row"|i18n( 'extension/xrowecommerce/directorder')|wash}" onclick="return delRows( this.parentNode.parentNode.parentNode.parentNode, this.parentNode.parentNode.parentNode );" /></td>
+        <td class="delete"><input type="button" class="button" name="Delete[]" value="{"Delete"|i18n( 'extension/xrowecommerce/directorder')|wash}" title="{"Delete this row"|i18n( 'extension/xrowecommerce/directorder')|wash}" onclick="return delRows( this.parentNode.parentNode.parentNode.parentNode.parentNode, this.parentNode.parentNode.parentNode.parentNode );" /></td>
     </tr>
     </tbody>
     </table>
@@ -140,7 +139,7 @@ function delRows( tbody, row )
                     <p class="error">{'Product not found. Please correct the SKU.'|i18n("extension/xrowecommerce")}</p>
                 {/if}
                 </td>
-                <td class="delete nowrap"><input type="button" class="button" name="Delete[]" value="{"Delete"|i18n( 'extension/xrowecommerce/directorder')|wash}" title="{"Delete this row"|i18n( 'extension/xrowecommerce/directorder')|wash}" onclick="return delRows( this.parentNode.parentNode.parentNode.parentNode, this.parentNode.parentNode.parentNode );" /></td>
+                <td class="delete"><div class="delete"><input type="button" class="button" name="Delete[]" value="{"Delete"|i18n( 'extension/xrowecommerce/directorder')|wash}" title="{"Delete this row"|i18n( 'extension/xrowecommerce/directorder')|wash}" onclick="return delRows( this.parentNode.parentNode.parentNode.parentNode.parentNode, this.parentNode.parentNode.parentNode.parentNode );" /></div></td>
             </tr>
             {/foreach}
 
