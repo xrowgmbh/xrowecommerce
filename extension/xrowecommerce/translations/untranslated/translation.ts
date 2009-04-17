@@ -111,6 +111,14 @@
         <source>Product templates</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Price import</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Price export</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>design/admin/shop/orderlist</name>
@@ -482,9 +490,45 @@
     </message>
 </context>
 <context>
+    <name>design/ezwebin/collectedinfo/form</name>
+    <message>
+        <source>Homepage</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>design/standard/class/datatype</name>
     <message>
         <source>Select which nodes from which classes can be selected</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>design/standard/content/datatype</name>
+    <message>
+        <source>Country</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>CSV File for import</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>extension/xrowcommerce/productvariation</name>
+    <message>
+        <source>yes</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>no</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>extension/xrowe&quot;extension/xrowecommerce/design/xrowecommerce/templates/shop/orderemail.tpl&quot;commerce</name>
+    <message>
+        <source>The details of the order are below.  If you have a question, please do not reply to this email.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -512,10 +556,6 @@
     </message>
     <message>
         <source>Subtotal Ex. Tax</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Estimated Shipping and Handling</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -668,10 +708,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Delivery &amp; Shipping Address</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Address</source>
         <translation type="unfinished"></translation>
     </message>
@@ -689,10 +725,6 @@
     </message>
     <message>
         <source>Country</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Billing Address</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1015,10 +1047,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Order Receipt #%order_id </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>SKU number</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1315,10 +1343,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>The details of the order are below.  If you have a question, please do not reply to this email.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Rather, email</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1561,6 +1585,202 @@
     </message>
     <message>
         <source>Show the terms and conditions.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Price export</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Export error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Start price export</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Start the price export.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Price import</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Import error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Import report</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Total lines in file</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Prices updated</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Same price</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Empty lines</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>SKU not found</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Price was not a valid number</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>New price created</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>New sliding price (not imported)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>These SKUs were not found, prices couldn&apos;t be imported:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Start price import</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Start the price import.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Website</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Product not found. Please correct the SKU.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>unconfirmed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Billing &amp; shipping address</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Billing
+    Address</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Empty cart</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Use this button to empty your shopping cart.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Use this button to update your shopping cart.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Use this button to place your order.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Total price</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Estimated shipping and handling</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Order confirmation email from</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Order receipt #%order_id </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Cannot fetch uploaded file, please choose a valid CSV file.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>File has a wrong extension. Only CSV files are supported.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Empty file uploaded.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The email address isn&apos;t given.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The email address isn&apos;t valid.</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>extension/xrowecommerce/directorder</name>
+    <message>
+        <source>Delete</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Delete this row</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add online order from catalogue</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add your desired products to the shopping cart.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>SKU</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Amount</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Description</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add rows</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Search products</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add to shopping cart</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add products to shopping cart</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Direct order</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2059,6 +2279,10 @@
     <message>
         <source>Stores text of the variation</source>
         <comment>Datatype description</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Show in select box:</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

@@ -42,7 +42,7 @@
 {if eq($order.account_information.shipping,1)}
 <table id="combined-address-table" border="0" cellspacing="0"
     cellpadding="0" class="order_box">
-    <caption>{"Delivery & Shipping Address"|i18n("extension/xrowecommerce")|wash}</caption>
+    <caption>{"Billing & shipping address"|i18n("extension/xrowecommerce")|wash}</caption>
     <tr>
         <th>{'To'|i18n('extension/xrowecommerce')}:</th>
         <td>{if $order.account_information.company_name|wash}{$order.account_information.company_name|wash}

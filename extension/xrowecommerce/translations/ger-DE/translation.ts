@@ -559,10 +559,6 @@
         <translation>Zwischensumme exkl. USt.</translation>
     </message>
     <message>
-        <source>Estimated Shipping and Handling</source>
-        <translation type="obsolete">Voraussichtliche Versand- und Verpackungskosten</translation>
-    </message>
-    <message>
         <source>Estimated Tax</source>
         <translation>Voraussichtliche USt.</translation>
     </message>
@@ -712,10 +708,6 @@
         <translation>Email</translation>
     </message>
     <message>
-        <source>Delivery &amp; Shipping Address</source>
-        <translation>Versand &amp; Lieferadresse</translation>
-    </message>
-    <message>
         <source>Address</source>
         <translation>Adresse</translation>
     </message>
@@ -734,10 +726,6 @@
     <message>
         <source>Country</source>
         <translation>Land</translation>
-    </message>
-    <message>
-        <source>Billing Address</source>
-        <translation type="obsolete">Rechnungsadresse</translation>
     </message>
     <message>
         <source>Shipping Address</source>
@@ -1057,10 +1045,6 @@
     <message>
         <source>Subtotal ex. tax</source>
         <translation>Zwischensumme exkl. USt.</translation>
-    </message>
-    <message>
-        <source>Order Receipt #%order_id </source>
-        <translation type="obsolete">Auftragsbestätigung Nr %order_id</translation>
     </message>
     <message>
         <source>SKU number</source>
@@ -1592,15 +1576,6 @@
         <translation>Weiter einkaufen</translation>
     </message>
     <message>
-        <source>Use our Automatic Delivery service to have this item sent to you as often as you like.  You&#xe2;&#x80;&#x99;ll get priority on our inventory and save time.</source>
-        <translation>Benutzen Sie unseren automatischen Lieferservice so oft sie wollen.
-Sie werden in unserem Lager bevorzugt behandelt und sparen Zeit.</translation>
-    </message>
-    <message>
-        <source>Price in &#xe2;&#x82;&#xac;</source>
-        <translation>Preis in €</translation>
-    </message>
-    <message>
         <source>Show the terms and conditions.</source>
         <translation>Allgemeine Geschäftsbedingungen anzeigen.</translation>
     </message>
@@ -1744,6 +1719,18 @@ Sie werden in unserem Lager bevorzugt behandelt und sparen Zeit.</translation>
     <message>
         <source>Product not found. Please correct the SKU.</source>
         <translation>Produkt nicht gefunden. Bitte überprüfen Sie die Artikelnummer.</translation>
+    </message>
+    <message>
+        <source>Use our Automatic Delivery service to have this item sent to you as often as you like.  You?ll get priority on our inventory and save time.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Billing &amp; shipping address</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Price in ?</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

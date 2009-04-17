@@ -252,9 +252,10 @@
 	<input class="phone" type="text" name="email" id="email" value="{$email|wash}" />
 </div>
 <div class="break"></div>
+
 {def $shipping_methods=fetch( 'shipping', 'list_methods' )}
-{if $shipping_methods|count|gt(0)}
-    <div class="block"{if eq(ezini( 'BasketInformation', 'DisplayShipping', 'xrowecommerce.ini' ), 'disabled' )} style="display: none;"{/if} >
+{if $shipping_methods|count|gt(1)}
+    <div class="block">
         <label>{'Shipping'|i18n('extension/xrowecommerce')}<span class="required">*</span></label>
         <div class="labelbreak"></div>
         <select name="shippingtype">
@@ -263,8 +264,11 @@
             {/foreach}
         </select>
     </div>
+{elseif $shipping_methods|count|eq(1)}
+<input name="shippingtype" value="{$shipping_methods.0.identifier}" type="hidden">
 {/if}
-        <div class="break"></div>
+<div class="break"></div>
+
 </div> {*LEFT COL END*}
 
 {if ezini('Settings','Coupon','xrowecommerce.ini')|eq('enabled')}
@@ -283,8 +287,7 @@
 {* right column *}
 <div class="shipping">
 <h3>{'Shipping Information'|i18n( 'extension/xrowecommerce' )}</h3>
-<label class="shipping-checkbox" for="shipping-checkbox"><input class="shipping-checkbox" id="shipping-checkbox" name="shipping" value="1" type="checkbox" {if $shipping} checked="checked" {/if} onchange="change(this.checked); changeshipping(document.register.country.value);" />{'My billing and shipping addresses are identical.'|i18n('extension/xrowecommerce')}</label>
-
+<label onclick="change();" class="shipping-checkbox" for="shipping-checkbox"><input class="shipping-checkbox" id="shipping-checkbox" name="shipping" value="1" type="checkbox" {if $shipping} checked="checked" {/if} onclick="change(); changeshipping(document.register.country.value);" />{'My billing and shipping addresses are identical.'|i18n('extension/xrowecommerce')}</label>
 
 <div class="block" id="shippinginfo"{if $shipping} style="display: none;"{else} style="display: block;"{/if}>
 <p><span class="required">* {'Required field'|i18n('extension/xrowecommerce')}</span></p>
@@ -612,14 +615,15 @@ lang: RecaptchaLang,
 
 <script type="text/javascript">
 {literal}
-function change(status)
+function change()
 {
-    if (status)
+    if (document.getElementById( 'shipping-checkbox' ).checked)
     {
         document.getElementById("shippinginfo").style.display = 'none';
     }
     else
     {
+        document.getElementById("shippinginfo").style.display = 'block';
         if( document.register.company_name )
         {
             document.register.s_company_name.value = document.register.company_name.value;
@@ -651,7 +655,7 @@ function change(status)
         document.register.s_address2.value = document.register.address2.value;
         document.register.s_city.value = document.register.city.value;
         document.register.s_country.selectedIndex = document.register.country.selectedIndex;
-        document.getElementById("shippinginfo").style.display = 'block';
+
     }
 }
 
