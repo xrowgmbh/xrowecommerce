@@ -97,7 +97,7 @@ td.error
 
 .directorder td.delete div.delete
 {
-    width: 110px !important;
+    width: 110px;
     text-align: center;
     margin-left: 10px;
 }
