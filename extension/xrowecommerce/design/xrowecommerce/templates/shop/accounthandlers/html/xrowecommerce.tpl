@@ -97,8 +97,7 @@
 {else}
 <table id="billing-address-table" class="order_box" border="0"
     cellspacing="0" cellpadding="0">
-    <caption>{"Billing
-    Address"|i18n("extension/xrowecommerce")}</caption>
+    <caption>{"Billing Address"|i18n("extension/xrowecommerce")}</caption>
     <tr>
         <th>{'Name'|i18n('extension/xrowecommerce')}:</th>
         <td>{if $order.account_information.company_name|wash}{$order.account_information.company_name|wash}

@@ -92,15 +92,17 @@
                 <div class="block">
                     <label><span class="required">*</span>{'Address 1'|i18n('extension/xrowecommerce')}</label>
                     <div class="labelbreak"></div>
-                    <input class="box" type="text" name="ContentObjectAttribute_ezstring_data_text_{$ca.address1.id}" size="20" value="{$ca.address1.content|wash()}" />
+                    <input class="box" type="text" name="ContentObjectAttribute_ezstring_data_text_{$ca.address1.id}" size="20" value="{$ca.address1.content|wash()}" title="{'Apartment, suite, unit, building, floor, etc.'|i18n('extension/xrowecommerce')}" />
                     <input type="hidden" name="ContentObjectAttribute_id[]" value="{$ca.address1.id}" />
                 </div>
+                {if eq(ezini( 'Settings', 'Address2', 'xrowecommerce.ini' ), 'enabled' )}
                 <div class="block">
                     <label>{'Address 2'|i18n('extension/xrowecommerce')}</label>
                     <div class="labelbreak"></div>
-                    <input class="box" type="text" name="ContentObjectAttribute_ezstring_data_text_{$ca.address2.id}" size="20" value="{$ca.address2.content|wash()}" />
+                    <input class="box" type="text" name="ContentObjectAttribute_ezstring_data_text_{$ca.address2.id}" size="20" value="{$ca.address2.content|wash()}" title="{'Street address, P.O. box, company name, c/o'|i18n('extension/xrowecommerce')}" />
                     <input type="hidden" name="ContentObjectAttribute_id[]" value="{$ca.address2.id}" />
                 </div>
+                {/if}
                 <div class="block">
                     <label><span class="required">*</span>{'City / Town'|i18n('extension/xrowecommerce')}</label>
                     <div class="labelbreak"></div>

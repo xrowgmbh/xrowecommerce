@@ -146,7 +146,7 @@
         
             <div id="overlay1" style="visibility:hidden;">
                 <h3>{'What is Automatic Delivery?'|i18n( 'extension/xrowecommerce')}</h3>
-                <p>{'Use our Automatic Delivery service to have this item sent to you as often as you like.  You’ll get priority on our inventory and save time.'|i18n( 'extension/xrowecommerce')}</p>
+                <p>{"Use our Automatic Delivery service to have this item sent to you as often as you like. You'll get priority on our inventory and save time."|i18n( 'extension/xrowecommerce')}</p>
                 <p>{'By placing your initial Automatic Delivery order and setting up an Automatic Delivery schedule, you authorize us to charge the same credit card for future Automatic Delivery orders until you cancel.'|i18n( 'extension/xrowecommerce')}</p>
                 <p>{'Since the accuracy of your credit card, shipping and billing information is vital to Automatic Delivery, please promptly submit changes through the my account section.'|i18n( 'extension/xrowecommerce')}</p>
             </div>
