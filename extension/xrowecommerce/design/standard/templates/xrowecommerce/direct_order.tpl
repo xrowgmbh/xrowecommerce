@@ -158,6 +158,6 @@ function delRows( tbody, row )
 </form>
 <script type="text/javascript">
 <!--
-    addrows( 'orderrow', 'ordertablebody', {sub( 10, $sku_array|count )} );
+    addrows( 'orderrow', 'ordertablebody', {sub( 5, $sku_array|count )} );
 -->
 </script>
