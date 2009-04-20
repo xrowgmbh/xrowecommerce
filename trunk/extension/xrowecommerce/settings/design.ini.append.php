@@ -8,6 +8,7 @@ JavaScriptList[]=xrowproductvariation.js
 
 [StylesheetSettings]
 CSSFileList[]=xrowproductvariation.css
+CSSFileList[]=backend.css
 
 
 */ ?>

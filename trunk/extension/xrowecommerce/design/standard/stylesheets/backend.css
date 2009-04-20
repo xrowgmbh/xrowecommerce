@@ -1,0 +1,21 @@
+div.shop-account table th
+{
+    text-align: left;
+    padding: 0.3em;
+    width: 250px;
+}
+
+div.shop-account table td
+{
+    text-align: left;
+    padding: 0.3em;
+}
+
+div.shop-account table caption
+{
+    text-decoration: underline;
+    font-weight: 900;
+    text-align: left;
+    font-size: 14px;
+    padding: 1em 0 0.5em 0;
+}
