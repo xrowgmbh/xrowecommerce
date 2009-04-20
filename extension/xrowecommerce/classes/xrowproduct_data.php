@@ -374,7 +374,6 @@ class xrowProductData extends eZPersistentObject
                     ezcontentobject_tree b
                 WHERE
                     a.$skuField = '$skuSql'
-                    AND a.language_code = '$languageCode'
                     AND a.object_id = b.contentobject_id
                     AND a.version = b.contentobject_version
                     AND b.contentobject_is_published = 1
@@ -385,10 +384,36 @@ class xrowProductData extends eZPersistentObject
 
         if ( count( $result ) > 0 )
         {
-        	if ( $asObject )
-                return new xrowProductData( $result[0] );
-            else
-                return $result[0];
+        	$languageArray = array();
+        	foreach( $result as $item )
+        	{
+        		$language = $item['language_code'];
+        		$languageArray[$language] = $item;
+        	}
+
+        	if ( isset( $languageArray[$languageCode] ) )
+        	{
+        		if ( $asObject )
+                    return new xrowProductData( $languageArray[$languageCode] );
+                else
+                    return $languageArray[$languageCode];
+        	}
+        	else
+        	{
+        		$prioLangArray = eZContentLanguage::prioritizedLanguageCodes();
+                foreach ( $prioLangArray as $currentLang )
+                {
+		            if ( $languageCode == $currentLang )
+                        continue;
+                	if ( isset( $languageArray[$currentLang] ) )
+		            {
+		                if ( $asObject )
+		                    return new xrowProductData( $languageArray[$currentLang] );
+		                else
+		                    return $languageArray[$currentLang];
+		            }
+                }
+        	}
         }
     }
 }
