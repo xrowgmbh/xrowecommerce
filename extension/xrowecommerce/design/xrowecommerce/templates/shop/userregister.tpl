@@ -207,7 +207,7 @@
 		     </optgroup>
 	    </select>
     </div>
-{/if}    
+{/if}
     <div class="break"></div>
 
 <div class="zip block">
@@ -226,7 +226,7 @@
                 <option value="">&nbsp;</option>
                 {foreach $countries as $country_list_item}
                  <option value="{$country_list_item.Alpha3}" {if and( $country|ne(''), eq( $country, $country_list_item.Alpha3 ))} selected="selected"{/if}>
-                    {$country_list_item.Name}
+                    {$country_list_item.Name|wash}
                 </option>
                 {/foreach}
             </select>
@@ -517,19 +517,19 @@
 {* Captcha *}
 {def $access=fetch( 'user', 'has_access_to',
                     hash( 'module',   'xrowecommerce',
-                          'function', 'bypass_captcha' ) )} 
+                          'function', 'bypass_captcha' ) )}
 {if and( ezini('Settings','Captcha','xrowecommerce.ini')|eq('enabled'), $access|not, ezhttp( 'xrowCaptchaSolved', 'session' )|not)}
 
-<div class="block">        
+<div class="block">
         <label>{'Verification'|i18n('extension/xrowecommerce')}<span class="required">*</span></label>
-        <div class="labelbreak"></div>  
+        <div class="labelbreak"></div>
 {def $lang=ezini('Display','OverrideLang','recaptcha.ini')}
 {if $lang|eq('')}{set $lang="en"}{/if}
-<script type="text/javascript">             
+<script type="text/javascript">
 RecaptchaTheme='{ezini('Display','Theme','recaptcha.ini')}';
 RecaptchaLang='{$lang}';
 {literal}
-var RecaptchaOptions = {        
+var RecaptchaOptions = {
 theme: RecaptchaTheme,
 lang: RecaptchaLang,
 };
@@ -537,30 +537,30 @@ lang: RecaptchaLang,
 </script>
 {recaptcha_get_html()}
 </div>
-{/if}      
+{/if}
 {* Captcha *}
 
 
 {* Your No Partial Delivery *}
 {if and( ezini('Settings','NoPartialDelivery','xrowecommerce.ini')|eq('enabled'))}
-<div class="block">        
+<div class="block">
         <label class="no_partial_delivery" for="no_partial_delivery"><input class="no_partial_delivery" type="checkbox" name="no_partial_delivery" id="no_partial_delivery" {if $no_partial_delivery} checked="checked" {/if} value="1" />{'No partial delivery'|i18n('extension/xrowecommerce')}</label>
-       
+
 </div>
 {/if}
 {* Your Reference *}
 {if and( ezini('Settings','Reference','xrowecommerce.ini')|eq('enabled'))}
-<div class="block">        
+<div class="block">
         <label for="reference">{'Your reference'|i18n('extension/xrowecommerce')}</label>
-        <div class="labelbreak"></div>  
+        <div class="labelbreak"></div>
         <input class="reference" type="text" name="reference" id="reference" value="{$reference|wash}" />
 </div>
 {/if}
 {* Your Message *}
 {if and( ezini('Settings','Message','xrowecommerce.ini')|eq('enabled'))}
-<div class="block">        
+<div class="block">
         <label for="message">{'Your notes on order'|i18n('extension/xrowecommerce')}</label>
-        <div class="labelbreak"></div>  
+        <div class="labelbreak"></div>
         <textarea class="message" name="message" id="message" rows="10" cols="50">{$message|wash}</textarea>
 </div>
 {/if}
@@ -642,7 +642,7 @@ function change()
         }
         document.register.s_first_name.value = document.register.first_name.value;
         document.register.s_last_name.value = document.register.last_name.value;
-        
+
         document.register.s_zip.value = document.register.zip.value;
         document.register.s_phone.value = document.register.phone.value;
         {/literal}
@@ -670,7 +670,7 @@ function changeshipping(status)
         status = document.register.s_country.value;
         document.getElementById("shippinginfo").style.display = 'block';
     }
-    
+
     if (status == "USA")
     {
         for (i = 0; i < document.register.shippingtype.length; ++i)
