@@ -160,13 +160,12 @@ document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.
     "{$user_state}",                                        // State
     "{$user_country}"                                      // Country
   );
- {section var=product_item loop=$order.product_items sequence=array(bglight,bgdark)}
+ {foreach $order.product_items as $product_item}
  {def $prod=fetch( 'content', 'node', hash( 'node_id', $product_item.node_id ) )}
- {def $prod=fetch( 'content', 'node', hash( 'node_id', $product_item.node_id ) )}
-    {if $prod.data_map.variation.content.option_list|count|gt(0)}
-        {section var=option_item loop=$product_item.item_object.option_list}
+    {if and( is_set($prod.data_map.variation), $prod.data_map.variation.content.option_list|count|gt(0) )}
+        {foreach $product_item.item_object.option_list as $option_item}
         {def $vary=$product_item.item_object.contentobject.data_map.variation.content.option_list[$product_item.item_object.option_list.0.option_item_id]}
-
+        pageTracker._addItem(
                     "{$order.order_nr}",                                                     // Order ID
                     "{$option_item.value} - {$prod.name|wash()}",                           // SKU
                     "{$vary.comment}    ",                                                 // Product Name
@@ -174,18 +173,18 @@ document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.
                     "{$product_item.price_ex_vat|l10n( 'currency', $locale, $symbol )}", // Price
                     "{$product_item.item_count}"                                        // Quantity
                   );
-        {/section}
+        {/foreach}
     {else}
                   pageTracker._addItem(
                     "{$order.order_nr}",                                                     // Order ID
-                    "{$prod.data_map.product_id.content|wash()} - {$prod.name|wash()}",     // SKU
-                    "{$prod.name|wash()}",                                                 // Product Name 
+                    "{$product_item.object_name|wash()}",     // SKU
+                    "{$product_item.object_name|wash()}",                                                 // Product Name 
                     "{$product_item.item_object.contentobject.main_node.parent.name}",    // Category
                     "{$product_item.price_ex_vat|l10n( 'currency', $locale, $symbol )}", // Price
                     "{$product_item.item_count}"                                        // Quantity
                   );
     {/if}
-{/section}
+{/foreach}
   pageTracker._trackTrans();
 </script>
 </div>
