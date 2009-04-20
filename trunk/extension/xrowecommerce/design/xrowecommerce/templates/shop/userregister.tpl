@@ -85,6 +85,14 @@
 		<input class="box" type="text" name="address2" id="address2" size="20" value="{$address2|wash}" title="{'Apartment, suite, unit, building, floor, etc.'|i18n('extension/xrowecommerce')}" />
 	</div>
 {/if}
+
+    <div class="zip block">
+        <label>{'ZIP'|i18n('extension/xrowecommerce')}<span class="required">*</span></label>
+        <div class="labelbreak"></div>
+        <input type="text" class="zip" name="zip" id="zip" value="{$current_user.contentobject.data_map.zip_code.data_text|wash}" />
+    </div>
+    <div class="break"></div>
+    
 	<div class="city block">
     	<label>{'City'|i18n('extension/xrowecommerce')}<span class="required">*</span></label>
     	<div class="labelbreak"></div>
@@ -210,13 +218,6 @@
 {/if}
     <div class="break"></div>
 
-<div class="zip block">
-    <label>{'ZIP'|i18n('extension/xrowecommerce')}<span class="required">*</span></label>
-    <div class="labelbreak"></div>
-    <input type="text" class="zip" name="zip" id="zip" value="{$current_user.contentobject.data_map.zip_code.data_text|wash}" />
-</div>
-    <div class="break"></div>
-
 <div class="country block">
     <label>{'Country'|i18n('extension/xrowecommerce')}<span class="required">*</span></label>
     <div class="labelbreak"></div>
@@ -336,6 +337,13 @@
 		<input class="box" type="text" name="s_address2" size="20" id="saddress2" value="{$s_address2|wash}" />
 	</div>
     {/if}
+    
+    <div class="zip block">
+        <label>{'Zip'|i18n('extension/xrowecommerce')}<span class="required">*</span></label>
+        <div class="labelbreak"></div>
+        <input type="text" name="s_zip" id="s_zip" value="{$current_user.contentobject.data_map.s_zip_code.data_text|wash}"/>
+    </div>
+    <div class="break"></div>
 
 	<div class="city block">
     	<label>{'City'|i18n('extension/xrowecommerce')}<span class="required">*</span></label>
@@ -461,13 +469,6 @@
     </div>
     <div class="break"></div>
 {/if}
-
-<div class="zip block">
-    <label>{'Zip'|i18n('extension/xrowecommerce')}<span class="required">*</span></label>
-    <div class="labelbreak"></div>
-    <input type="text" name="s_zip" id="s_zip" value="{$current_user.contentobject.data_map.s_zip_code.data_text|wash}"/>
-</div>
-    <div class="break"></div>
 
 <div class="country block">
     <label>{'Country'|i18n('extension/xrowecommerce')}<span class="required">*</span></label>

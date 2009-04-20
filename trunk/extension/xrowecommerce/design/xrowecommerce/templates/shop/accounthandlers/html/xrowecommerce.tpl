@@ -61,6 +61,10 @@
     </tr>
     {/if}
     <tr>
+        <th>{'Zip code'|i18n('extension/xrowecommerce')}:</th>
+        <td>{$order.account_information.zip|wash}</td>
+    </tr>
+    <tr>
         <th>{'City'|i18n('extension/xrowecommerce')}:</th>
         <td>{$order.account_information.city|wash}</td>
     </tr>
@@ -70,10 +74,6 @@
         <td>{$order.account_information.state|wash}</td>
     </tr>
     {/if}
-    <tr>
-        <th>{'Zip code'|i18n('extension/xrowecommerce')}:</th>
-        <td>{$order.account_information.zip|wash}</td>
-    </tr>
     <tr>
         <th>{'Country'|i18n('extension/xrowecommerce')}:</th>
         <td>{set $country=fetch( 'content', 'country_list', hash( 'filter', 'Alpha3', 'value', $order.account_information.country ) )}{$country.Name|wash}</td>
@@ -115,6 +115,10 @@
     </tr>
     {/if}
     <tr>
+        <th>{'Zip code'|i18n('extension/xrowecommerce')}:</th>
+        <td>{$order.account_information.zip|wash}</td>
+    </tr>
+    <tr>
         <th>{'City'|i18n('extension/xrowecommerce')}:</th>
         <td>{$order.account_information.city|wash}</td>
     </tr>
@@ -124,10 +128,6 @@
         <td>{$order.account_information.state|wash}</td>
     </tr>
     {/if}
-    <tr>
-        <th>{'Zip code'|i18n('extension/xrowecommerce')}:</th>
-        <td>{$order.account_information.zip|wash}</td>
-    </tr>
     <tr>
         <th>{'Country'|i18n('extension/xrowecommerce')}:</th>
         <td>{set $country=fetch( 'content', 'country_list', hash( 'filter', 'Alpha3', 'value', $order.account_information.country ) )}{$country.Name|wash}</td>
@@ -174,6 +174,10 @@
     </tr>
     {/if}
     <tr>
+        <th>{'Zip code'|i18n('extension/xrowecommerce')}:</th>
+        <td>{$order.account_information.s_zip|wash}</td>
+    </tr>
+    <tr>
         <th>{'City'|i18n('extension/xrowecommerce')}:</th>
         <td>{$order.account_information.s_city|wash}</td>
     </tr>
@@ -183,10 +187,6 @@
         <td>{$order.account_information.s_state|wash}</td>
     </tr>
     {/if}
-    <tr>
-        <th>{'Zip code'|i18n('extension/xrowecommerce')}:</th>
-        <td>{$order.account_information.s_zip|wash}</td>
-    </tr>
     <tr>
         <th>{'Country'|i18n('extension/xrowecommerce')}:</th>
         <td>{set $country=fetch( 'content', 'country_list', hash( 'filter', 'Alpha3', 'value', $order.account_information.s_country ) )}{$country.Name|wash}</td>
