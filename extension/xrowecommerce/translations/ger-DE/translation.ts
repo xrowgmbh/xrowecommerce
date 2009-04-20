@@ -999,32 +999,8 @@
         <translation>Summe</translation>
     </message>
     <message>
-        <source>Add Catalogue Order</source>
-        <translation>Katalognummer hinzufügen</translation>
-    </message>
-    <message>
-        <source>Article Number</source>
-        <translation>Artikelnummer</translation>
-    </message>
-    <message>
-        <source>Search</source>
-        <translation>Suchen</translation>
-    </message>
-    <message>
-        <source>Notation</source>
-        <translation>Vermerk</translation>
-    </message>
-    <message>
         <source>Delete</source>
         <translation>Löschen</translation>
-    </message>
-    <message>
-        <source>please type in an article number</source>
-        <translation>Bitte geben Sie eine artikelnummer ein</translation>
-    </message>
-    <message>
-        <source>Add Catalogue Item</source>
-        <translation>Katalogartikel hinzufügen</translation>
     </message>
     <message>
         <source>Confirm</source>
