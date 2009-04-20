@@ -217,24 +217,29 @@
         {'No'|i18n('extension/xrowecommerce')} {else}
         {'Yes'|i18n('extension/xrowecommerce')} {/if}</td>
     </tr>
-    {/if} {if $order.account_information.paymentmethod}
-    <tr>
-        <th>{'Payment method'|i18n('extension/xrowecommerce')}:</th>
-        <td>{if $gateways|gt(0)} {foreach $gateways as $gateway}
-        {if $order.account_information.paymentmethod|eq($gateway.value)}{$gateway.Name|wash}{/if}
-        {/foreach} {/if}</td>
-    </tr>
-    {else}
-    <tr>
-        <th>{'Payment method'|i18n('extension/xrowecommerce')}:</th>
-        <td>{'Unkown'|i18n('extension/xrowecommerce')}</td>
-    </tr>
-    {/if} {if and(ezini( 'Settings', 'Reference', 'xrowecommerce.ini' )|eq( 'enabled' ), $order.account_information.reference)}
+    {/if}
+    {if ezini( 'BasketInformation', 'DisplayPaymentmethod', 'xrowecommerce.ini' )|eq( 'enabled' )}
+        {if $order.account_information.paymentmethod}
+        <tr>
+            <th>{'Payment method'|i18n('extension/xrowecommerce')}:</th>
+            <td>{if $gateways|gt(0)} {foreach $gateways as $gateway}
+            {if $order.account_information.paymentmethod|eq($gateway.value)}{$gateway.Name|wash}{/if}
+            {/foreach} {/if}</td>
+        </tr>
+        {else}
+        <tr>
+            <th>{'Payment method'|i18n('extension/xrowecommerce')}:</th>
+            <td>{'Unkown'|i18n('extension/xrowecommerce')}</td>
+        </tr>
+        {/if}
+    {/if}
+    {if and(ezini( 'Settings', 'Reference', 'xrowecommerce.ini' )|eq( 'enabled' ), $order.account_information.reference)}
     <tr>
         <th>{'Reference'|i18n('extension/xrowecommerce')}:</th>
         <td>{$order.account_information.reference|wash}</td>
     </tr>
-    {/if} {if and(ezini( 'Settings', 'Message', 'xrowecommerce.ini' )|eq( 'enabled' ), $order.account_information.message)}
+    {/if}
+    {if and(ezini( 'Settings', 'Message', 'xrowecommerce.ini' )|eq( 'enabled' ), $order.account_information.message)}
     <tr>
         <th>{'Your notes on order'|i18n('extension/xrowecommerce')}:</th>
         <td>{$order.account_information.message|wash()|nl2br()}</td>

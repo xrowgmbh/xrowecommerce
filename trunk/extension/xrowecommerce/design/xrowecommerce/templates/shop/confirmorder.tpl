@@ -11,16 +11,18 @@ function checkCOS( element )
 {
 	{/literal}
 	{if ezini( 'Settings', 'ConditionsOfService', 'xrowecommerce.ini')|ne('enabled')}
-	element.form.submit();
-	var fakebutton = document.createElement('input');
-    fakebutton.name = element.name;
-    fakebutton.type = 'hidden'
-    fakebutton.value = element.value;
-    element.parentNode.appendChild( fakebutton );
-    return true;
+    	{literal}
+        	element.form.submit();
+        	var fakebutton = document.createElement('input');
+            fakebutton.name = element.name;
+            fakebutton.type = 'hidden'
+            fakebutton.value = element.value;
+            element.parentNode.appendChild( fakebutton );
+            return true;
+        {/literal}
     {/if}
     {literal}
-	var container = document.getElementById( 'cos' );
+	var container = document.getElementById( 'cos_cb' );
 	if ( container )
 	{
 		if( container.checked )
@@ -109,18 +111,20 @@ function showAlert()
             {set locale = $currency.locale
                  symbol = $currency.symbol}
         {/if}
-        {if count($hazardous)|gt(0)}
-        
-            <p>{'Hazardous item(s) found in your cart.'|i18n('extension/xrowecommerce')}</p>
-            <p>
-                {'Dear Customer,'|i18n('extension/xrowecommerce')}<br />
-                {"We've removed the following hazardous items from your shopping cart since we are not allowed to ship these items to your destination. For further questions please contact %companyname%."|i18n('extension/xrowecommerce',,hash('%companyname%', ezini( 'InvoiceSettings', 'CompanyName', 'xrowecommmerce.ini'  )))}<br />
-                <ul>
-                    {foreach $hazardous as $item}
-                    <li>{$item.item_count} x <a href={concat("/content/view/full/", $item.contentobject.main_node_id)|ezurl()}>{$item.name}</a></li>
-                    {/foreach}
-                </ul>
-        	</p>
+        {if ezini( 'BasketInformation', 'HazardousItems', 'xrowecommerce.ini' )|eq('enabled')}
+            {if count($hazardous)|gt(0)}
+            
+                <p>{'Hazardous item(s) found in your cart.'|i18n('extension/xrowecommerce')}</p>
+                <p>
+                    {'Dear Customer,'|i18n('extension/xrowecommerce')}<br />
+                    {"We've removed the following hazardous items from your shopping cart since we are not allowed to ship these items to your destination. For further questions please contact %companyname%."|i18n('extension/xrowecommerce',,hash('%companyname%', ezini( 'InvoiceSettings', 'CompanyName', 'xrowecommmerce.ini'  )))}<br />
+                    <ul>
+                        {foreach $hazardous as $item}
+                        <li>{$item.item_count} x <a href={concat("/content/view/full/", $item.contentobject.main_node_id)|ezurl()}>{$item.name}</a></li>
+                        {/foreach}
+                    </ul>
+            	</p>
+            {/if}
         {/if}
         
         {if count( $order.product_items )|gt(0)}
