@@ -45,6 +45,8 @@ HTMLEmail=disabled
 DisplayTax=disabled
 DisplayLogin=enabled
 DisplayShipping=enabled
+DisplayPaymentmethod=enabled
+HazardousItems=disabled
 
 [InvoiceSettings]
 ShowFooter=enabled
