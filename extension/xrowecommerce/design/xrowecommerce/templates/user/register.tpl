@@ -126,6 +126,13 @@
                     </div>
                     {/if}
                     <div>
+                        <label><span class="required">*</span>{'Zip / Postcode'|i18n('extension/xrowecommerce')}</label>
+                        <div class="labelbreak"></div>
+                        <input type="text" name="{$castring}{$ca.zip_code.id}" value="{$ca.zip_code.content|wash()}" />
+                        <input type="hidden" name="ContentObjectAttribute_id[]" value="{$ca.zip_code.id}" />
+                    </div>
+                    <div class="break"></div>
+                    <div>
                         <label><span class="required">*</span>{'City / Town'|i18n('extension/xrowecommerce')}</label>
                         <div class="labelbreak"></div>
                         <input type="text" name="{$castring}{$ca.city.id}" value="{$ca.city.content|wash()}" />
@@ -141,13 +148,6 @@
                     {/if}
                     <div class="break"></div>
                     {undef $state}
-                    <div>
-                        <label><span class="required">*</span>{'Zip / Postcode'|i18n('extension/xrowecommerce')}</label>
-                        <div class="labelbreak"></div>
-                        <input type="text" name="{$castring}{$ca.zip_code.id}" value="{$ca.zip_code.content|wash()}" />
-                        <input type="hidden" name="ContentObjectAttribute_id[]" value="{$ca.zip_code.id}" />
-                    </div>
-                    <div class="break"></div>
                     <div class="country">
                         <label><span class="required">*</span>{'Country'|i18n('extension/xrowecommerce')}</label>
                         <div class="labelbreak"></div>
@@ -251,6 +251,13 @@
                         <input type="hidden" name="ContentObjectAttribute_id[]" value="{$ca.s_address2.id}" />
                     </div>
                     <div>
+                        <label><span class="required">*</span>{'Zip / Postcode'|i18n('extension/xrowecommerce')}</label>
+                        <div class="labelbreak"></div>
+                        <input type="text" name="{$castring}{$ca.s_zip_code.id}" value="{$ca.s_zip_code.content|wash()}" />
+                        <input type="hidden" name="ContentObjectAttribute_id[]" value="{$ca.s_zip_code.id}" />
+                    </div>
+                    <div class="break"></div>
+                    <div>
                         <label><span class="required">*</span>{'City / Town'|i18n('extension/xrowecommerce')}</label>
                         <div class="labelbreak"></div>
                         <input type="text" name="{$castring}{$ca.s_city.id}" value="{$ca.s_city.content|wash()}" />
@@ -264,13 +271,6 @@
                         {attribute_edit_gui attribute_base=$attribute_base attribute=$ca.s_state}
                     </div>
                     {/if}
-                    <div class="break"></div>
-                    <div>
-                        <label><span class="required">*</span>{'Zip / Postcode'|i18n('extension/xrowecommerce')}</label>
-                        <div class="labelbreak"></div>
-                        <input type="text" name="{$castring}{$ca.s_zip_code.id}" value="{$ca.s_zip_code.content|wash()}" />
-                        <input type="hidden" name="ContentObjectAttribute_id[]" value="{$ca.s_zip_code.id}" />
-                    </div>
                     <div class="break"></div>
                     <div class="country">
                         <label><span class="required">*</span>{'Country'|i18n('extension/xrowecommerce')}</label>
