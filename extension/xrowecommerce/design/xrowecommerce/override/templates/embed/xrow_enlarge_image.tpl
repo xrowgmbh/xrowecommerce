@@ -1,3 +1,14 @@
+{if is_set($link_parameters.classification)}
+    {def $lp_class=$link_parameters.classification}
+{else}
+    {def $lp_class=""}
+{/if}
+
+{if is_set($link_parameters.id)}
+    {def $lp_id=$link_parameters.id}
+{else}
+    {def $lp_id=""}
+{/if}
 <div class="content-view-embeddedmedia">
     <div class="class-image">
         <div class="attribute-image">
@@ -7,7 +18,7 @@
                 {/if}
                 {section show=is_set($link_parameters.href)}
                     {section show=is_set($object_parameters.size)}
-                    {attribute_view_gui attribute=$object.data_map.image image_class=$object_parameters.size href=$link_parameters.href|ezurl target=$link_parameters.target link_class=$link_parameters.classification link_id=$link_parameters.id}
+                    {attribute_view_gui attribute=$object.data_map.image image_class=$object_parameters.size href=$link_parameters.href|ezurl target=$link_parameters.target link_class=$lp_class link_id=$lp_id}
                   {section-else}
                     {attribute_view_gui attribute=$object.data_map.image image_class=ezini( 'ImageSettings', 'DefaultEmbedAlias', 'content.ini' ) href=$link_parameters.href|ezurl target=$link_parameters.target link_class=$link_parameters.classification link_id=$link_parameters.id}
                   {/section}
