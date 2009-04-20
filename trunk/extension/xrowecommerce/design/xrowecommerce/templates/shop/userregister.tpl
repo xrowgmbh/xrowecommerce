@@ -653,7 +653,11 @@ function change()
         {literal}
         document.register.s_email.value = document.register.email.value;
         document.register.s_address1.value = document.register.address1.value;
+        {/literal}
+        {if eq(ezini( 'Settings', 'Address2', 'xrowecommerce.ini' ), 'enabled' )}
         document.register.s_address2.value = document.register.address2.value;
+        {/if}
+        {literal}
         document.register.s_city.value = document.register.city.value;
         document.register.s_country.selectedIndex = document.register.country.selectedIndex;
 
