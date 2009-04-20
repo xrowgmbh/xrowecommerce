@@ -329,13 +329,13 @@
 		<div class="labelbreak"></div>
 		<input class="box" type="text" name="s_address1" id="s_address1" size="20" value="{$s_address1|wash}" />
 	</div>
-
+    {if eq(ezini( 'Settings', 'Address2', 'xrowecommerce.ini' ), 'enabled' )}
 	<div class="block">
 		<label>{'Address 2'|i18n('extension/xrowecommerce')}</label>
 		<div class="labelbreak"></div>
 		<input class="box" type="text" name="s_address2" size="20" id="saddress2" value="{$s_address2|wash}" />
 	</div>
-
+    {/if}
 
 	<div class="city block">
     	<label>{'City'|i18n('extension/xrowecommerce')}<span class="required">*</span></label>
