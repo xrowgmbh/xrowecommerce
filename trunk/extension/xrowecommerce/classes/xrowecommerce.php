@@ -15,7 +15,7 @@ class xrowECommerce
     const ACCOUNT_KEY_SECURITYCODE = 'securitycode';
     const ACCOUNT_KEY_MONTH = 'month';
     const ACCOUNT_KEY_YEAR = 'year';
-    const ACCOUNT_KEY_CARDNAME = 'cardname';
+    const ACCOUNT_KEY_NAME = 'name';
     const ACCOUNT_KEY_CREDITCARD = 'creditcard';
     /*!
      \return the number of active orders

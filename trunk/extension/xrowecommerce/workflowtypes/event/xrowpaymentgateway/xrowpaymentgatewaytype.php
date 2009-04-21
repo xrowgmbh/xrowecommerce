@@ -73,7 +73,7 @@ class xrowPaymentGatewayType extends eZWorkflowEventType
         if ( $process->attribute( 'event_state' ) == xrowPaymentGatewayType::GATEWAY_NOT_SELECTED or ! ( $theGateway instanceof eZPaymentGateway ) )
         {
             $this->logger->writeTimedString( 'execute: eZPaymentGatewayType::GATEWAY_NOT_SELECTED' );
-            
+
             if ( ! $this->selectGateway( $event ) )
             {
                 $process->Template = array();
@@ -142,7 +142,7 @@ class xrowPaymentGatewayType extends eZWorkflowEventType
             
             case 'current_gateway':
                 {
-                	return $event->attribute( 'data_text2' ) ? false : $event->attribute( 'data_text2' );
+                	return $event->attribute( 'data_text2' ) ? $event->attribute( 'data_text2' ) : false;
                 }
                 break;
             case 'permissions':
@@ -225,7 +225,6 @@ class xrowPaymentGatewayType extends eZWorkflowEventType
     {
         $theGateway = null;
         $gatewayType = $this->getCurrentGatewayType( $event );
-        
         if ( ! empty( $gatewayType ) )
         {
             $theGateway = $this->createGateway( $gatewayType );
@@ -286,6 +285,10 @@ class xrowPaymentGatewayType extends eZWorkflowEventType
             
             $this->logger->writeTimedString( $selectedGatewaysTypes[0], 'selectGateway' );
             return true;
+        }
+        elseif( $event->attribute( 'data_text2') )
+        {
+        	return true;
         }
         
         $this->logger->writeTimedString( 'selectGateways. multiple gateways, let user choose.' );
