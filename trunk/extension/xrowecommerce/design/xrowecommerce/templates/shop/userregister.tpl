@@ -2,7 +2,7 @@
 <div class="shop shop-userregister">
 
 <form method="post" action={"xrowecommerce/userregister/"|ezurl} name='register' >
-<input type="submit" class="hide" sytle="display: hide;" name="StoreButton" value="{'Continue'|i18n('extension/xrowecommerce')}" />
+<input type="submit" class="hide" style="display: hide;" name="StoreButton" value="{'Continue'|i18n('extension/xrowecommerce')}" />
 <h1>{'My Account'|i18n('extension/xrowecommerce')}</h1>
 
 {include uri="design:shop/basket_navigator.tpl" step='2'}

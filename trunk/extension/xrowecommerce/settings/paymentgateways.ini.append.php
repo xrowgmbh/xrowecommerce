@@ -1,5 +1,5 @@
 [GatewaysSettings]
-AvailableGateways[]=xrowinvoice
-AvailableGateways[]=xrowcashondelivery
-AvailableGateways[]=xrowprepayment
+AvailableGateways[]=xrowInvoice
+AvailableGateways[]=xrowCashOnDelivery
+AvailableGateways[]=xrowAdvancepayment
 GatewaysDirectories[]=extension/xrowecommerce/classes/gateways
