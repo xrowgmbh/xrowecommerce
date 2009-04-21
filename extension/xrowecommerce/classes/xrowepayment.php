@@ -151,17 +151,17 @@ class xrowEPayment
         // validate eurocard
         if ( strlen( $data['ecname'] ) == 0 )
         {
-            $errors = ezi18n( 'extension/xrowecommerce/epayment', 'Please enter the name of the bank account.' );
+            $errors[] = ezi18n( 'extension/xrowecommerce/epayment', 'Please enter the name of the bank account.' );
             $valid = false;
         }
         if ( ! preg_match( "/^[0-9]{1,10}$/", $data['accountnumber'] ) )
         {
-            $errors = ezi18n( 'extension/xrowecommerce/epayment', 'Please enter your correct account number (max. 10 numbers)' );
+            $errors[] = ezi18n( 'extension/xrowecommerce/epayment', 'Please enter your correct account number (max. 10 numbers)' );
             $valid = false;
         }
         if ( ! preg_match( "/^[0-9]{8}$/", $data['bankcode'] ) )
         {
-            $errors = ezi18n( 'extension/xrowecommerce/epayment', 'Please enter your correct bank code (8 numbers)' );
+            $errors[] = ezi18n( 'extension/xrowecommerce/epayment', 'Please enter your correct bank code (8 numbers)' );
             $valid = false;
         }
         if ( $valid )
@@ -179,12 +179,12 @@ class xrowEPayment
         $valid = true;
         if ( $data['name'] == '' )
         {
-            $errors = ezi18n( 'extension/xrowecommerce/epayment', 'Please enter a name' );
+            $errors[] = ezi18n( 'extension/xrowecommerce/epayment', 'Please enter a name' );
             $valid = false;
         }
         if ( ! preg_match( "/^[0-9]{1,19}$/", $data['number'] ) )
         {
-            $errors = ezi18n( 'extension/xrowecommerce/epayment', 'Creditcard number is not a number' );
+            $errors[] = ezi18n( 'extension/xrowecommerce/epayment', 'Credit card number is not a number' );
             $valid = false;
         }
         
@@ -198,14 +198,14 @@ class xrowEPayment
         }
         if ( ! preg_match( "/^[0-9]{3,$maxDigits}$/", $data['securitycode'] ) )
         {
-            $errors = ezi18n( 'extension/xrowecommerce/epayment', 'Please enter the correct security code.' );
+            $errors[] = ezi18n( 'extension/xrowecommerce/epayment', 'Please enter the correct security code.' );
             $valid = false;
         }
         $time = eZDateTime::create( - 1, - 1, - 1, $data['month'], - 1, $data['year'] );
         $now = new eZDateTime( false );
         if ( $now->isGreaterThan( $time ) )
         {
-            $errors = ezi18n( 'extension/xrowecommerce/epayment', 'Your creditcard is expired.' );
+            $errors[] = ezi18n( 'extension/xrowecommerce/epayment', 'Your credit card is expired.' );
             $valid = false;
         }
         if ( $valid )
