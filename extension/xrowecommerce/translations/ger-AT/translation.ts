@@ -1669,7 +1669,7 @@
     </message>
     <message>
         <source>Website</source>
-        <translation>Webseite</translation>
+        <translation type="obsolete">Webseite</translation>
     </message>
     <message>
         <source>Order confirmation email from</source>
@@ -1710,6 +1710,11 @@
     <message>
         <source>Use our Automatic Delivery service to have this item sent to you as often as you like. You&apos;ll get priority on our inventory and save time.</source>
         <translation>Benutzen Sie unseren automatischen Lieferservice um diesen Artikel so oft geliefert zu bekommen wie Sie möchten. Sie werden in unserem Lager bevorzugt und sparen Zeit.</translation>
+    </message>
+    <message>
+        <source>Save</source>
+        <comment>Save Button</comment>
+        <translation>Speichern</translation>
     </message>
 </context>
 <context>
@@ -1761,6 +1766,37 @@
     <message>
         <source>Direct order</source>
         <translation>Direkt bestellen</translation>
+    </message>
+</context>
+<context>
+    <name>extension/xrowecommerce/epayment</name>
+    <message>
+        <source>Please enter the name of the bank account.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please enter your correct account number (max. 10 numbers)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please enter your correct bank code (8 numbers)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please enter a name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Credit card number is not a number</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please enter the correct security code.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Your credit card is expired.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
