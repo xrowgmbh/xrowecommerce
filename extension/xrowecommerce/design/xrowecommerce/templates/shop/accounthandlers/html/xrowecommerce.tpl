@@ -88,11 +88,13 @@
         <td>{$order.account_information.fax|wash}</td>
     </tr>
     {/if}
+    {if eq(ezini( 'BasketInformation', 'DisplayShipping', 'xrowecommerce.ini' ), 'enabled' )}
     <tr>
         <th>{'Shipping'|i18n('extension/xrowecommerce')}:</th>
         <td>{if $shiplist} {foreach $shiplist as $method} {if $method.identifier|eq($order.account_information.shippingtype)}
         {$method.name} {/if} {/foreach} {/if}</td>
     </tr>
+    {/if}
 </table>
 {else}
 <table id="billing-address-table" class="order_box" border="0"
@@ -142,6 +144,7 @@
         <td>{$order.account_information.fax|wash}</td>
     </tr>
     {/if}
+{if eq(ezini( 'BasketInformation', 'DisplayShipping', 'xrowecommerce.ini' ), 'enabled' )}
     <tr>
         <th>{'Shipping'|i18n('extension/xrowecommerce')}:</th>
         <td>{foreach $shiplist as $method}
@@ -151,6 +154,7 @@
             {/foreach}
         </td>
     </tr>
+{/if}
 </table>
 <table id="shipping-address-table" valign="top" class="order_box"
     border="0" cellspacing="0" cellpadding="0">
