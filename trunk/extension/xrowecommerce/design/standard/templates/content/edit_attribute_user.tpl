@@ -273,7 +273,7 @@
 </div>
 <div class="buttonblock">
     <input class="left-arrow2" type="submit" name="DiscardButton" value="{'Cancel'|i18n('extension/xrowecommerce')}" />
-    <input class="right-arrow" type="submit" name="PublishButton" value="{'Update'|i18n('extension/xrowecommerce')}" />
+    <input class="right-arrow" type="submit" name="PublishButton" value="{'Save'|i18n('extension/xrowecommerce', 'Save Button' )}" />
     <input type="hidden" name="DiscardConfirm" value="0" />
     <input type="hidden" name="RedirectURI" value="{concat('/user/edit/',$object.id)}" />
     <input type="hidden" name="RedirectIfDiscarded" value="{concat('/user/edit/',$object.id)}" />
