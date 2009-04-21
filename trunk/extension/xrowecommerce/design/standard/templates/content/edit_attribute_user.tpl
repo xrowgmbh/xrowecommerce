@@ -40,9 +40,9 @@
 
 {* right frame start *}
         <div class="billing">
-            <h3>{'Billing Information'|i18n('extension/xrowecommerce')}</h3>
-            <p>{'Please enter your billing address exactly as it appears on your credit card statement.'|i18n('extension/xrowecommerce')}</p>
-            <p><span class="required">* {'Required field'|i18n('extension/xrowecommerce')}</span></p>
+
+            {include uri="design:content/edit_attribute_user_pretext.tpl"}
+
             <input type="hidden" name="MainNodeID" value="{$main_node_id}" />
             <div class="block">
                 {if eq(ezini( 'Settings', 'CompanyName', 'xrowecommerce.ini' ), 'enabled' )}
@@ -146,6 +146,8 @@
                     <input type="hidden" name="ContentObjectAttribute_id[]" value="{$ca.fax.id}" />
                 </div>
                 {/if}
+
+                {include uri="design:content/edit_attribute_user_custom_left.tpl"}
             </div>
         </div>
 
@@ -255,6 +257,7 @@
                     <input type="hidden" name="ContentObjectAttribute_id[]" value="{$ca.s_email.id}" />
                 </div>
                 <div class="break"></div>
+                {include uri="design:content/edit_attribute_user_custom_right.tpl"}
             </div>
         </div>
     {if $ca.creditcard}
@@ -270,6 +273,7 @@
             </div>
         </div>
     {/if}
+
 </div>
 <div class="buttonblock">
     <input class="left-arrow2" type="submit" name="DiscardButton" value="{'Cancel'|i18n('extension/xrowecommerce')}" />
