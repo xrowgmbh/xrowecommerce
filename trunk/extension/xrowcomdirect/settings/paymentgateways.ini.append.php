@@ -1,3 +1,3 @@
 [GatewaysSettings]
-AvailableGateways[]=xrowComdirect
-GatewaysDirectories[]=extension/xrowcomdirect/classes
+AvailableGateways[]=xrowComdirectCC
+AvailableGateways[]=xrowComdirectEC
