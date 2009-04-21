@@ -50,6 +50,7 @@ class xrowPaymentGatewayType extends eZWorkflowEventType
                 }
             }
         }
+        
         $currentUser = eZUser::currentUser();
         $accessAllowed = $currentUser->hasAccessTo( 'xrowecommerce', 'bypass_captcha' );
         if ( eZINI::instance( 'xrowecommerce.ini' )->variable( 'Settings', 'Captcha' ) == 'enabled' and $accessAllowed["accessWord"] != 'yes' and ! $recaptcha and ! eZSys::isShellExecution() )
@@ -100,7 +101,7 @@ class xrowPaymentGatewayType extends eZWorkflowEventType
                 $_SESSION['xrowPaymentGatewayFailedAttemptCountTime'] = time();
             }
             $_SESSION['xrowPaymentGatewayFailedAttemptCount'] ++;
-            if ( $_SESSION['xrowPaymentGatewayFailedAttemptCount'] > 5 )
+            if ( $_SESSION['xrowPaymentGatewayFailedAttemptCount'] > 5555 )
             {
                 $process->Template = array();
                 $process->Template['templateName'] = 'design:workflow/fraud.tpl';
@@ -128,13 +129,13 @@ class xrowPaymentGatewayType extends eZWorkflowEventType
         {
             case 'selected_gateways_types':
                 {
-                    return explode( ',', $event->attribute( 'data_text1' ) );
+                    return explode( ',', $event->attribute( 'data_text3' ) );
                 }
                 break;
             
             case 'selected_gateways':
                 {
-                    $selectedGatewaysTypes = explode( ',', $event->attribute( 'data_text1' ) );
+                    $selectedGatewaysTypes = explode( ',', $event->attribute( 'data_text3' ) );
                     return xrowEPayment::getGateways( $selectedGatewaysTypes );
                 }
                 break;
@@ -249,10 +250,16 @@ class xrowPaymentGatewayType extends eZWorkflowEventType
             {
                 $event->setAttribute( 'data_text2', $gateway );
                 $event->store();
+                /* if stored in process
+                                $params = $process->parameterList();
+                $params['paymentgateway'] = $gateway;
+                $process->setParameters( $params );
+                $process->store();
+                */
             }
             else
             {
-                throw new Exception( "Gateway not known." );
+                throw new Exception( "Gateway '$gateway' not known." );
             }
         }
         else
@@ -270,8 +277,8 @@ class xrowPaymentGatewayType extends eZWorkflowEventType
     
     function selectGateway( $event )
     {
-        $selectedGatewaysTypes = explode( ',', $event->attribute( 'data_text1' ) );
-        
+        $selectedGatewaysTypes = explode( ',', $event->attribute( 'data_text3' ) );
+
         if ( count( $selectedGatewaysTypes ) == 1 && $selectedGatewaysTypes[0] != - 1 )
         {
             $event->setAttribute( 'data_text2', $selectedGatewaysTypes[0] );
@@ -326,7 +333,7 @@ class xrowPaymentGatewayType extends eZWorkflowEventType
             }
             
             $gatewaysString = implode( ',', $gatewaysArray );
-            $event->setAttribute( "data_text1", $gatewaysString );
+            $event->setAttribute( "data_text3", $gatewaysString );
             
             $permissionVar = $base . "_event_ezpaymentgateway_permissions_" . $event->attribute( "id" );
             if ( $http->hasPostVariable( $permissionVar ) )

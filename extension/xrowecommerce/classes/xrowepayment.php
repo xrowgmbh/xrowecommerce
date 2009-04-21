@@ -2,6 +2,11 @@
 
 class xrowEPayment
 {
+    const MASTERCARD = 1;
+    const VISA = 2;
+    const DISCOVER = 3;
+    const AMERICANEXPRESS = 4;
+    const EUROCARD = 5;
 
     static function allowedGatewayListByUser( eZUser $user = null )
     {
@@ -116,66 +121,121 @@ class xrowEPayment
         return $gateways;
     }
 
+    static function validateCardData( $data, &$errors )
+    {
+        switch ( $data[xrowECommerce::ACCOUNT_KEY_TYPE] )
+        {
+            case xrowEPayment::MASTERCARD:
+            case xrowEPayment::VISA:
+            case xrowEPayment::DISCOVER:
+            case xrowEPayment::AMERICANEXPRESS:
+                {
+                    return self::validateCCData( $data, $errors );
+                }
+                break;
+            
+            case xrowEPayment::EUROCARD:
+                {
+                    return self::validateECData( $data, $errors );
+                }
+                break;
+            
+            default:
+                throw new Exception( "Type not given." );
+        }
+    }
+
+    static function validateECData( $data, &$errors )
+    {
+        $valid = true;
+        // validate eurocard
+        if ( strlen( $data['ecname'] ) == 0 )
+        {
+            $errors = ezi18n( 'extension/xrowecommerce/epayment', 'Please enter the name of the bank account.' );
+            $valid = false;
+        }
+        if ( ! preg_match( "/^[0-9]{1,10}$/", $data['accountnumber'] ) )
+        {
+            $errors = ezi18n( 'extension/xrowecommerce/epayment', 'Please enter your correct account number (max. 10 numbers)' );
+            $valid = false;
+        }
+        if ( ! preg_match( "/^[0-9]{8}$/", $data['bankcode'] ) )
+        {
+            $errors = ezi18n( 'extension/xrowecommerce/epayment', 'Please enter your correct bank code (8 numbers)' );
+            $valid = false;
+        }
+        if ( $valid )
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    static function validateCCData( $data, &$errors )
+    {
+        $valid = true;
+        if ( $data['name'] == '' )
+        {
+            $errors = ezi18n( 'extension/xrowecommerce/epayment', 'Please enter a name' );
+            $valid = false;
+        }
+        if ( ! preg_match( "/^[0-9]{1,19}$/", $data['number'] ) )
+        {
+            $errors = ezi18n( 'extension/xrowecommerce/epayment', 'Creditcard number is not a number' );
+            $valid = false;
+        }
+        
+        if ( $data['type'] == xrowEPayment::AMERICANEXPRESS )
+        {
+            $maxDigits = 4;
+        }
+        else
+        {
+            $maxDigits = 3;
+        }
+        if ( ! preg_match( "/^[0-9]{3,$maxDigits}$/", $data['securitycode'] ) )
+        {
+            $errors = ezi18n( 'extension/xrowecommerce/epayment', 'Please enter the correct security code.' );
+            $valid = false;
+        }
+        $time = eZDateTime::create( - 1, - 1, - 1, $data['month'], - 1, $data['year'] );
+        $now = new eZDateTime( false );
+        if ( $now->isGreaterThan( $time ) )
+        {
+            $errors = ezi18n( 'extension/xrowecommerce/epayment', 'Your creditcard is expired.' );
+            $valid = false;
+        }
+        if ( $valid )
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    
+    }
+
     /*!
     Searches 'available' gateways( built-in or as extensions ).
     */
     
     static function loadAndRegisterGateways()
     {
-        self::loadAndRegisterBuiltInGateways();
-        self::loadAndRegisterExtensionGateways();
-    }
-
-    static function loadAndRegisterBuiltInGateways()
-    {
         $gatewaysINI = eZINI::instance( 'paymentgateways.ini' );
-        $gatewaysTypes = $gatewaysINI->variable( 'GatewaysSettings', 'AvailableGateways' );
-        $gatewaysDir = $gatewaysINI->variable( 'GatewaysSettings', 'GatewaysDirectories' );
-        
-        if ( is_array( $gatewaysDir ) && is_array( $gatewaysTypes ) )
+        foreach ( $gatewaysINI->variable( 'GatewaysSettings', 'AvailableGateways' ) as $name )
         {
-            foreach ( $gatewaysDir as $dir )
+            $classname = $name . 'Gateway';
+            $test = new $classname( );
+            if ( ! ( $test instanceof eZPaymentGateway ) )
             {
-                foreach ( $gatewaysTypes as $gateway )
-                {
-                    $gatewayPath = "$dir/$gateway/classes/" . $gateway . 'gateway.php';
-                    if ( file_exists( $gatewayPath ) )
-                    {
-                        include_once ( $gatewayPath );
-                    }
-                }
+                throw new Exception( "'$name' isn't a valid payment gateway." );
             }
         }
     }
-
-    static function loadAndRegisterExtensionGateways()
-    {
-        $gatewaysINI = eZINI::instance( 'paymentgateways.ini' );
-        $siteINI = eZINI::instance( 'site.ini' );
-        $extensionDirectory = $siteINI->variable( 'ExtensionSettings', 'ExtensionDirectory' );
-        $activeExtensions = eZExtension::activeExtensions();
-        
-        foreach ( $activeExtensions as $extension )
-        {
-            $gatewayPath = "$extensionDirectory/$extension/classes/" . $extension . 'gateway.php';
-            if ( file_exists( $gatewayPath ) )
-            {
-                include_once ( $gatewayPath );
-            }
-        }
-        foreach ( $gatewaysINI->variable( 'GatewaysSettings', 'GatewaysDirectories' ) as $dir )
-        {
-            foreach ( $gatewaysINI->variable( 'GatewaysSettings', 'AvailableGateways' ) as $name )
-            {
-                $gatewayPath = $dir . '/' . $name . 'gateway.php';
-                if ( file_exists( $gatewayPath ) )
-                {
-                    include_once ( $gatewayPath );
-                }
-            }
-        }
-    }
-
 }
 
 ?>

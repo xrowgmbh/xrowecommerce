@@ -6,7 +6,17 @@ class xrowECommerce
     const ACCOUNT_KEY_COUPON = 'coupon';
     /* tax identification number / Umsatzsteuer-Identifikationsnummer */
     const ACCOUNT_KEY_TAXID = 'taxid';
-
+    /* Credit card related keys */
+    const ACCOUNT_KEY_ECNAME = 'ecname';
+    const ACCOUNT_KEY_ACCOUNTNUMBER = 'accountnumber';
+    const ACCOUNT_KEY_BANKCODE = 'bankcode';
+    const ACCOUNT_KEY_TYPE = 'type';
+    const ACCOUNT_KEY_NUMBER = 'number';
+    const ACCOUNT_KEY_SECURITYCODE = 'securitycode';
+    const ACCOUNT_KEY_MONTH = 'month';
+    const ACCOUNT_KEY_YEAR = 'year';
+    const ACCOUNT_KEY_CARDNAME = 'cardname';
+    const ACCOUNT_KEY_CREDITCARD = 'creditcard';
     /*!
      \return the number of active orders
     */
@@ -231,6 +241,63 @@ class xrowECommerce
             throw new Exception( $faults[$ret] );
         }
         return $ret->valid;
+    }
+    /**
+     * @param string $xmlDoc XML data
+     * @return array
+     */
+    static function createArrayfromXML( $xmlDoc )
+    {
+        return self::createArrayfromDOMNODE(simplexml_load_string( $xmlDoc ));
+    }
+    /**
+     * @param SimpleXMLElement $xml
+     * @return array
+     */
+    static function createArrayfromDOMNODE( $xml )
+    {
+        
+        if ($xml instanceof SimpleXMLElement) {
+            $children = $xml->children();
+            $return = null;
+        }
+
+        foreach ($children as $element => $value) {
+            if ($value instanceof SimpleXMLElement) {
+                $values = (array)$value->children();
+
+                if (count($values) > 0) {
+                    if (is_array($return[$element])) {
+                        //hook
+                        foreach ($return[$element] as $k=>$v) {
+                            if (!is_int($k)) {
+                                $return[$element][0][$k] = $v;
+                                unset($return[$element][$k]);
+                            }
+                        }
+                        $return[$element][] = self::createArrayfromDOMNODE($value);
+                    } else {
+                        $return[$element] = self::createArrayfromDOMNODE($value);
+                    }
+                } else {
+                    if (!isset($return[$element])) {
+                        $return[$element] = (string)$value;
+                    } else {
+                        if (!is_array($return[$element])) {
+                            $return[$element] = array($return[$element], (string)$value);
+                        } else {
+                            $return[$element][] = (string)$value;
+                        }
+                    }
+                }
+            }
+        }
+
+        if (is_array($return)) {
+            return $return;
+        } else {
+            return false;
+        }
     }
 }
 
