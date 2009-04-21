@@ -167,15 +167,11 @@ function addVariation( fromid, toid )
     var to_tbody = document.getElementById( toid );
     if ( fromtr && to_tbody )
     {
-        //var newindex = to_tbody.rows.length;
-        //alert( newindex );
-        var temphtml = fromtr.innerHTML;
+        var newindex = to_tbody.rows.length;
+        var temphtml = '';
         var pattern1 = /xxxrownumberxxx/gi;
-        temphtml = temphtml.replace( pattern1, newindex);
-
         var pattern2 = /DefaultXrowProductVariation/gi;
-        temphtml = temphtml.replace( pattern2, 'XrowProductVariation' );
-        //alert( temphtml );
+
         var newRow = document.createElement( 'TR' );
         if ( newindex % 2 == 0 )
             newRow.className = 'bgdark';
@@ -206,7 +202,12 @@ function addVariation( fromid, toid )
                 newtd.className = child.className;
 
                 newtd.appendChild( newdiv );
-                newdiv.innerHTML = child.innerHTML;
+
+                temphtml = child.innerHTML;
+                temphtml = temphtml.replace( pattern1, newindex);
+                temphtml = temphtml.replace( pattern2, 'XrowProductVariation' );
+
+                newdiv.innerHTML = temphtml;
             }
         }
 
