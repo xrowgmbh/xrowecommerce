@@ -201,10 +201,10 @@ class xrowEPayment
             $errors[] = ezi18n( 'extension/xrowecommerce/epayment', 'Please enter the correct security code.' );
             $valid = false;
         }
-        $time = DateTime::createFromFormat( 'my'. $data['month'] . $data['year'] );
-        $now = new DateTime();
-
-        if ( $now->format('U') > $time->format('U') )
+        $time = DateTime::createFromFormat( 'my' . $data['month'] . $data['year'] );
+        $now = new DateTime( );
+        
+        if ( $now->format( 'U' ) > $time->format( 'U' ) )
         {
             $errors[] = ezi18n( 'extension/xrowecommerce/epayment', 'Your credit card is expired.' );
             $valid = false;
@@ -230,10 +230,13 @@ class xrowEPayment
         foreach ( $gatewaysINI->variable( 'GatewaysSettings', 'AvailableGateways' ) as $name )
         {
             $classname = $name . 'Gateway';
-            $test = new $classname( );
-            if ( ! ( $test instanceof eZPaymentGateway ) )
+            if ( class_exists( $classname ) )
             {
-                throw new Exception( "'$name' isn't a valid payment gateway." );
+                $test = new $classname( );
+                if ( ! ( $test instanceof eZPaymentGateway ) )
+                {
+                    throw new Exception( "'$name' isn't a valid payment gateway." );
+                }
             }
         }
     }
