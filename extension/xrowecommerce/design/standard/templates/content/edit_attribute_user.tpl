@@ -114,7 +114,7 @@
                     <div class="labelbreak"></div>
                     <input type="text" name="{$castring}{$ca.city.id}" value="{$ca.city.content|wash()}" />
                     <input type="hidden" name="ContentObjectAttribute_id[]" value="{$ca.city.id}" />
-                </div>    
+                </div>
                 {if eq(ezini( 'Settings', 'State', 'xrowecommerce.ini' ), 'enabled' )}
                 <div>
                     <label>{'State / Province'|i18n('extension/xrowecommerce')}</label>
@@ -276,7 +276,7 @@
     <input class="right-arrow" type="submit" name="PublishButton" value="{'Update'|i18n('extension/xrowecommerce')}" />
     <input type="hidden" name="DiscardConfirm" value="0" />
     <input type="hidden" name="RedirectURI" value="{concat('/user/edit/',$object.id)}" />
-    <input type="hidden" name="RedirectIfDiscarded" value="{concat('/user/edit/',$object.id)}" /> 
+    <input type="hidden" name="RedirectIfDiscarded" value="{concat('/user/edit/',$object.id)}" />
 </div>
 
 {* right frame end *}
@@ -294,3 +294,5 @@ if (document.getElementById( 'ContentObjectAttribute_data_boolean_{$ca.shippinga
     {rdelim}
 {rdelim}
 </script>
+
+</div>
