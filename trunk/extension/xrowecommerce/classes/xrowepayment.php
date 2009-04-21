@@ -149,17 +149,17 @@ class xrowEPayment
     {
         $valid = true;
         // validate eurocard
-        if ( strlen( $data['ecname'] ) == 0 )
+        if ( strlen( $data[xrowECommerce::ACCOUNT_KEY_ECNAME] ) == 0 )
         {
             $errors[] = ezi18n( 'extension/xrowecommerce/epayment', 'Please enter the name of the bank account.' );
             $valid = false;
         }
-        if ( ! preg_match( "/^[0-9]{1,10}$/", $data['accountnumber'] ) )
+        if ( ! preg_match( "/^[0-9]{1,10}$/", $data[xrowECommerce::ACCOUNT_KEY_ACCOUNTNUMBER] ) )
         {
             $errors[] = ezi18n( 'extension/xrowecommerce/epayment', 'Please enter your correct account number (max. 10 numbers)' );
             $valid = false;
         }
-        if ( ! preg_match( "/^[0-9]{8}$/", $data['bankcode'] ) )
+        if ( ! preg_match( "/^[0-9]{8}$/", $data[xrowECommerce::ACCOUNT_KEY_BANKCODE] ) )
         {
             $errors[] = ezi18n( 'extension/xrowecommerce/epayment', 'Please enter your correct bank code (8 numbers)' );
             $valid = false;
@@ -177,18 +177,18 @@ class xrowEPayment
     static function validateCCData( $data, &$errors )
     {
         $valid = true;
-        if ( $data['name'] == '' )
+        if ( $data[xrowECommerce::ACCOUNT_KEY_NAME] == '' )
         {
             $errors[] = ezi18n( 'extension/xrowecommerce/epayment', 'Please enter a name' );
             $valid = false;
         }
-        if ( ! preg_match( "/^[0-9]{1,19}$/", $data['number'] ) )
+        if ( ! preg_match( "/^[0-9]{1,19}$/", $data[xrowECommerce::ACCOUNT_KEY_NUMBER] ) )
         {
             $errors[] = ezi18n( 'extension/xrowecommerce/epayment', 'Credit card number is not a number' );
             $valid = false;
         }
         
-        if ( $data['type'] == xrowEPayment::AMERICANEXPRESS )
+        if ( $data[xrowECommerce::ACCOUNT_KEY_TYPE] == xrowEPayment::AMERICANEXPRESS )
         {
             $maxDigits = 4;
         }
@@ -196,14 +196,15 @@ class xrowEPayment
         {
             $maxDigits = 3;
         }
-        if ( ! preg_match( "/^[0-9]{3,$maxDigits}$/", $data['securitycode'] ) )
+        if ( ! preg_match( "/^[0-9]{3,$maxDigits}$/", $data[xrowECommerce::ACCOUNT_KEY_SECURITYCODE] ) )
         {
             $errors[] = ezi18n( 'extension/xrowecommerce/epayment', 'Please enter the correct security code.' );
             $valid = false;
         }
-        $time = eZDateTime::create( - 1, - 1, - 1, $data['month'], - 1, $data['year'] );
-        $now = new eZDateTime( false );
-        if ( $now->isGreaterThan( $time ) )
+        $time = DateTime::createFromFormat( 'my'. $data['month'] . $data['year'] );
+        $now = new DateTime();
+
+        if ( $now->format('U') > $time->format('U') )
         {
             $errors[] = ezi18n( 'extension/xrowecommerce/epayment', 'Your credit card is expired.' );
             $valid = false;
