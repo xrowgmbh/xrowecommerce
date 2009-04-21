@@ -104,7 +104,7 @@ class xrowComdirectBaseGateway extends eZPaymentGateway
             {
                 $year = $this->data['year'];
             }
-            $expdat = $year . xrowComdirectGateway::addLeadingZero( $this->data['month'] );
+            $expdat = $year . self::addLeadingZero( $this->data['month'] );
             
             $fields = array( 
                 'creditc' => $this->data[xrowECommerce::ACCOUNT_KEY_NUMBER] , 
@@ -186,7 +186,7 @@ class xrowComdirectBaseGateway extends eZPaymentGateway
     */
     function &createPaymentObject( &$processID, &$orderID )
     {
-        return eZPaymentObject::createNew( $processID, $orderID, 'xrowComdirect' );
+        return eZPaymentObject::createNew( $processID, $orderID, self::GATEWAY_STRING );
     }
 
     static function addLeadingZero( $value )
