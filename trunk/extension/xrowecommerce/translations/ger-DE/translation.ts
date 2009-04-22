@@ -1668,10 +1668,6 @@
         <translation>unbestätigt</translation>
     </message>
     <message>
-        <source>Website</source>
-        <translation type="obsolete">Webseite</translation>
-    </message>
-    <message>
         <source>Order confirmation email from</source>
         <translation>Bestellbestätigungsemail von</translation>
     </message>
@@ -1714,7 +1710,7 @@
     <message>
         <source>Save</source>
         <comment>Save Button</comment>
-        <translation type="unfinished">Speichern</translation>
+        <translation>Speichern</translation>
     </message>
 </context>
 <context>
@@ -1772,31 +1768,31 @@
     <name>extension/xrowecommerce/epayment</name>
     <message>
         <source>Please enter the name of the bank account.</source>
-        <translation type="unfinished"></translation>
+        <translation>Bitte geben Sie den Namen Ihres Bankkontos ein.</translation>
     </message>
     <message>
         <source>Please enter your correct account number (max. 10 numbers)</source>
-        <translation type="unfinished"></translation>
+        <translation>Bitte geben Sie Ihre korrekte Kontonummer ein (max. 10 Stellen)</translation>
     </message>
     <message>
         <source>Please enter your correct bank code (8 numbers)</source>
-        <translation type="unfinished"></translation>
+        <translation>Bitte geben Sie Ihre korrekte Bankleitzahl ein (max. 8 Stellen)</translation>
     </message>
     <message>
         <source>Please enter a name</source>
-        <translation type="unfinished"></translation>
+        <translation>Bitte geben Sie einen Namen ein</translation>
     </message>
     <message>
         <source>Credit card number is not a number</source>
-        <translation type="unfinished"></translation>
+        <translation>Die Kreditkartennummer ist keine Zahl</translation>
     </message>
     <message>
         <source>Please enter the correct security code.</source>
-        <translation type="unfinished"></translation>
+        <translation>Bitte geben Sie den gültigen Sicherheitsschlüssel an.</translation>
     </message>
     <message>
         <source>Your credit card is expired.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ihre Kreditkarte ist abgelaufen.</translation>
     </message>
 </context>
 <context>
