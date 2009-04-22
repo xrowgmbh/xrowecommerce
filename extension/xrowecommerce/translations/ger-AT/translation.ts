@@ -1668,10 +1668,6 @@
         <translation>unbestätigt</translation>
     </message>
     <message>
-        <source>Website</source>
-        <translation type="obsolete">Webseite</translation>
-    </message>
-    <message>
         <source>Order confirmation email from</source>
         <translation>Bestellbestätigungsemail von</translation>
     </message>
