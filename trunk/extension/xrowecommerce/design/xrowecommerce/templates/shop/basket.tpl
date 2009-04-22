@@ -260,6 +260,7 @@ for (i = 0; i < field.length; i++)
     </div>
    </div>
  </form>
+ 
  {* ####### Login Box ######## *}
         {if eq(ezini( 'BasketInformation', 'DisplayLogin', 'xrowecommerce.ini' ), 'enabled' )}
              {def $user=fetch( 'user', 'current_user' )}
@@ -284,6 +285,7 @@ for (i = 0; i < field.length; i++)
             {/if}
         {/if}
     {undef $currency $locale $symbol}
+    {include uri="design:shop/basket_hint_bottom.tpl"}
     {else}
     <div class="feedback">
         <form method="post" name="basket" action={"xrowecommerce/basket"|ezurl}>
