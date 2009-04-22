@@ -3,6 +3,7 @@
 class xrowComdirectBaseGateway extends eZPaymentGateway
 {
     const MAX_STRING_LEN = 27;
+
     function execute( $process, $event )
     {
         $http = eZHTTPTool::instance();
@@ -26,37 +27,41 @@ class xrowComdirectBaseGateway extends eZPaymentGateway
         $xmlDoc = $order->attribute( 'data_text_1' );
         $clientInfo = simplexml_load_string( $xmlDoc );
         $this->data = $clientInfo[xrowECommerce::ACCOUNT_KEY_CREDITCARD];
-
+        
         if ( $http->hasPostVariable( 'validate' ) )
         {
-        	if( $http->postVariable( 'cardtype' ) == xrowEPayment::EUROCARD )
-        	{
-            $this->data[xrowECommerce::ACCOUNT_KEY_ECNAME] = trim( $http->postVariable( 'name' ) );
-            $this->data[xrowECommerce::ACCOUNT_KEY_TYPE] = $http->postVariable( 'cardtype' );
-            $this->data[xrowECommerce::ACCOUNT_KEY_ACCOUNTNUMBER] = $http->postVariable( 'number' );
-            $this->data[xrowECommerce::ACCOUNT_KEY_BANKCODE] = $http->postVariable( 'bankcode' );
-        	}
-        	else
-        	{
-            $this->data[xrowECommerce::ACCOUNT_KEY_NAME] = trim( $http->postVariable( 'name' ) );
-            $this->data[xrowECommerce::ACCOUNT_KEY_TYPE] = $http->postVariable( 'cardtype' );
-            $this->data[xrowECommerce::ACCOUNT_KEY_NUMBER] = $http->postVariable( 'number' );
-            $this->data[xrowECommerce::ACCOUNT_KEY_MONTH] = $http->postVariable( 'expirationmonth' );
-            $this->data[xrowECommerce::ACCOUNT_KEY_YEAR] = $http->postVariable( 'expirationyear' );
-            $this->data[xrowECommerce::ACCOUNT_KEY_SECURITYCODE] = $http->postVariable( 'securitycode' );
-        	}
+            if ( $http->postVariable( 'cardtype' ) == xrowEPayment::EUROCARD )
+            {
+                $this->data[xrowECommerce::ACCOUNT_KEY_ECNAME] = trim( $http->postVariable( 'name' ) );
+                $this->data[xrowECommerce::ACCOUNT_KEY_TYPE] = $http->postVariable( 'cardtype' );
+                $this->data[xrowECommerce::ACCOUNT_KEY_ACCOUNTNUMBER] = $http->postVariable( 'number' );
+                $this->data[xrowECommerce::ACCOUNT_KEY_BANKCODE] = $http->postVariable( 'bankcode' );
+            }
+            else
+            {
+                $this->data[xrowECommerce::ACCOUNT_KEY_NAME] = trim( $http->postVariable( 'name' ) );
+                $this->data[xrowECommerce::ACCOUNT_KEY_TYPE] = $http->postVariable( 'cardtype' );
+                $this->data[xrowECommerce::ACCOUNT_KEY_NUMBER] = $http->postVariable( 'number' );
+                $this->data[xrowECommerce::ACCOUNT_KEY_MONTH] = $http->postVariable( 'expirationmonth' );
+                $this->data[xrowECommerce::ACCOUNT_KEY_YEAR] = $http->postVariable( 'expirationyear' );
+                $this->data[xrowECommerce::ACCOUNT_KEY_SECURITYCODE] = $http->postVariable( 'securitycode' );
+            }
         }
         $errors = array();
         
         if ( $this->data === null or ( $this->data and ! xrowEPayment::validateCardData( $this->data, $errors ) ) )
         {
+            $class = get_class( $this );
             $process->Template = array();
-            $process->Template['templateName'] = 'design:workflow/comdirectgateway.tpl';
+            $process->Template['templateName'] = constant( $class . '::TEMPLATE' );
             $process->Template['templateVars'] = array( 
                 'event' => $event , 
                 'errors' => $errors 
             );
-            $process->Template['templateVars'] = array_merge( $process->Template['templateVars'], $this->data );
+            if ( $this->data )
+            {
+                $process->Template['templateVars'] = array_merge( $process->Template['templateVars'], $this->data );
+            }
             return eZWorkflowType::STATUS_FETCH_TEMPLATE_REPEAT;
         }
         
@@ -76,8 +81,19 @@ class xrowComdirectBaseGateway extends eZPaymentGateway
         // only EUR is supported
         $currencyCode = 'EUR';
         $command = 'authorization';
-        $maxlen = self::MAX_STRING_LEN - strlen( $order->OrderNr ) - 1;
-        $bookingstr = substr( $comini->variable( 'Settings', 'BookingString' ), 0, $maxlen ) . " " . $order->OrderNr;
+        if ( $order->OrderNr )
+        {
+            $transactionstring = $comini->variable( 'Settings', 'BookingString' );
+            $number = $order->OrderNr;
+        }
+        else
+        {
+            $transactionstring = $comini->variable( 'Settings', 'TransactionString' );
+            $number = $order->ID;
+        }
+        
+        $maxlen = self::MAX_STRING_LEN - strlen( $number ) - 1;
+        $bookingstr = substr( $transactionstring, 0, $maxlen ) . " " . $number;
         //alllowed a-zA-Z0-9._-
         $allowed = "/[^a-z0-9\\.\\-\\_]/i";
         $bookingstr = preg_replace( $allowed, "_", $bookingstr );
@@ -127,7 +143,7 @@ class xrowComdirectBaseGateway extends eZPaymentGateway
         {
             throw new Exception( "Certificate file cacert.pem not found." );
         }
-        
+        eZDebug::writeDebug( $fields, 'Payment server request' );
         try
         {
             $result = $request->send()->getBody();
@@ -144,8 +160,7 @@ class xrowComdirectBaseGateway extends eZPaymentGateway
             
             $this->data['servercode'] = $serverAnswer['rc'];
             $this->data['transactionid'] = $serverAnswer['trefnum'];
-            $this->data['servermsg'] = $codepage->convertString( $serverAnswer['rmsg'] );
-            
+            $this->data['servermsg'] = $serverAnswer['rmsg'];
             // Store data if needed
             #$this->_storeAccountHandlerData( $process );
             eZDebug::writeDebug( $this->data, 'Payment' );
@@ -169,7 +184,19 @@ class xrowComdirectBaseGateway extends eZPaymentGateway
             }
             else
             {
-                eZDebug::writeDebug( 'Payment rejected, reason: ' . $this->data['servermsg'], 'Payment' );
+            	$errors[] = $this->data['servermsg'];
+                $class = get_class( $this );
+                $process->Template = array();
+                $process->Template['templateName'] = constant( $class . '::TEMPLATE' );
+                $process->Template['templateVars'] = array( 
+                    'event' => $event , 
+                    'errors' => $errors 
+                );
+                if ( $this->data )
+                {
+                    $process->Template['templateVars'] = array_merge( $process->Template['templateVars'], $this->data );
+                }
+                return eZWorkflowType::STATUS_FETCH_TEMPLATE_REPEAT;
             }
         
         }
@@ -177,7 +204,7 @@ class xrowComdirectBaseGateway extends eZPaymentGateway
         {
             eZDebug::writeError( $e->toString(), 'error' );
         }
-
+        
         return eZWorkflowType::STATUS_REJECTED;
     }
 
@@ -193,7 +220,7 @@ class xrowComdirectBaseGateway extends eZPaymentGateway
     {
         return sprintf( "%02d", $value );
     }
-    
+
     function _storeAccountHandlerData( &$process )
     {
         // @TODO refelect with php dom
@@ -244,7 +271,7 @@ class xrowComdirectBaseGateway extends eZPaymentGateway
     var $logger;
     // shop account information
     var $data;
-    
+
 }
 
 ?>

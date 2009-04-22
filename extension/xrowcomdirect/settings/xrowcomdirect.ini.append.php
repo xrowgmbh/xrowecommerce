@@ -4,6 +4,8 @@
 # The total can`t be longer as 27 chars
 # alllowed only a-zA-Z0-9._-
 BookingString=INVOICE
+# Is used instead of  BookingString is order isn`t active yet
+TransactionString=ORDERID
 
 [ServerSettings]
 ServerRequestLink=https://coposweb.companydirect.de/posh/cmd/posh/tpl/txn_result.tpl
