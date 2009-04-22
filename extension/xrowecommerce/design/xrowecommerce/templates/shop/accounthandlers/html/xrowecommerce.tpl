@@ -223,18 +223,20 @@
     </tr>
     {/if}
     {if ezini( 'BasketInformation', 'DisplayPaymentmethod', 'xrowecommerce.ini' )|eq( 'enabled' )}
-        {if $order.account_information.paymentmethod}
-        <tr>
-            <th>{'Payment method'|i18n('extension/xrowecommerce')}:</th>
-            <td>{if $gateways|gt(0)} {foreach $gateways as $gateway}
-            {if $order.account_information.paymentmethod|eq($gateway.value)}{$gateway.Name|wash}{/if}
-            {/foreach} {/if}</td>
-        </tr>
-        {else}
-        <tr>
-            <th>{'Payment method'|i18n('extension/xrowecommerce')}:</th>
-            <td>{'Unkown'|i18n('extension/xrowecommerce')}</td>
-        </tr>
+        {if array( '' )|contains( $step )}
+            {if $order.account_information.paymentmethod}
+            <tr>
+                <th>{'Payment method'|i18n('extension/xrowecommerce')}:</th>
+                <td>{if $gateways|gt(0)} {foreach $gateways as $gateway}
+                {if $order.account_information.paymentmethod|eq($gateway.value)}{$gateway.Name|wash}{/if}
+                {/foreach} {/if}</td>
+            </tr>
+            {else}
+            <tr>
+                <th>{'Payment method'|i18n('extension/xrowecommerce')}:</th>
+                <td>{'Unkown'|i18n('extension/xrowecommerce')}</td>
+            </tr>
+            {/if}
         {/if}
     {/if}
     {if and(ezini( 'Settings', 'Reference', 'xrowecommerce.ini' )|eq( 'enabled' ), $order.account_information.reference)}
