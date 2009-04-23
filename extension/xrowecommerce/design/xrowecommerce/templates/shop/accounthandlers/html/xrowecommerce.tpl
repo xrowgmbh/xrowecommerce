@@ -200,10 +200,12 @@
         <td>{$order.account_information.s_phone|wash}</td>
     </tr>
     {if eq(ezini( 'Settings', 'Fax', 'xrowecommerce.ini' ), 'enabled' )}
-    <tr>
-        <th>{'Fax'|i18n('extension/xrowecommerce')}:</th>
-        <td>{$order.account_information.s_fax|wash}</td>
-    </tr>
+        {if eq(ezini( 'ShippingSettings', 'DisplayFax', 'xrowecommerce.ini' ), 'enabled' )}
+        <tr>
+            <th>{'Fax'|i18n('extension/xrowecommerce')}:</th>
+            <td>{$order.account_information.s_fax|wash}</td>
+        </tr>
+        {/if}
     {/if}
     <tr>
         <th>{'Email'|i18n('extension/xrowecommerce')}:</th>

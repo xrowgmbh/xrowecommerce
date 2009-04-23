@@ -27,6 +27,10 @@ CountryWithStatesList[]
 ShopUserClassList[]=client
 # Please use an override instead
 
+[ShippingSettings]
+#fields can be disabled / enabled in the shipping information 
+DisplayFax=enabled
+
 #[MerchantLocations]
 # Use ISO 3 letter country locales
 #Location[]=USA

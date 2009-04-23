@@ -492,11 +492,13 @@
 </div>
 
 {if eq(ezini( 'Settings', 'Fax', 'xrowecommerce.ini' ), 'enabled' )}
-<div class="block">
-    <label>{'Fax'|i18n( 'extension/xrowecommerce' )}</label>
-    <div class="labelbreak"></div>
-    <input class="phone" type="text" id="s_fax" name="s_fax" value="{$s_fax|wash}" />
-</div>
+    {if eq(ezini( 'ShippingSettings', 'DisplayFax', 'xrowecommerce.ini' ), 'enabled' )}
+    <div class="block">
+        <label>{'Fax'|i18n( 'extension/xrowecommerce' )}</label>
+        <div class="labelbreak"></div>
+        <input class="phone" type="text" id="s_fax" name="s_fax" value="{$s_fax|wash}" />
+    </div>
+    {/if}
 {/if}
 <div class="block">
 	<label>{'E-mail'|i18n('extension/xrowecommerce')}<span class="required">*</span></label>
@@ -648,7 +650,9 @@ function change()
         document.register.s_phone.value = document.register.phone.value;
         {/literal}
         {if eq(ezini( 'Settings', 'Fax', 'xrowecommerce.ini' ), 'enabled' )}
-                document.register.s_fax.value = document.register.fax.value;
+            {if eq(ezini( 'ShippingSettings', 'DisplayFax', 'xrowecommerce.ini' ), 'enabled' )}
+            {literal}document.register.s_fax.value = document.register.fax.value;{/literal}
+            {/if}
         {/if}
         {literal}
         document.register.s_email.value = document.register.email.value;
