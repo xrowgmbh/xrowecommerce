@@ -43,11 +43,11 @@ else
 
     /*
      * Max size of a mysql int is 2147483647 http://dev.mysql.com/doc/refman/5.0/en/numeric-types.html
-     * So we will produce only to the size of 10^10
+     * So we will produce only to the size of 10^9
     */
     static function randomINT()
     {
-        $length = 10;
+        $length = 9;
         $letters = '1234567890';
         $s = '';
         $lettersLength = strlen( $letters ) - 1;
