@@ -45,19 +45,23 @@
                  </div>
                 {/section}
                 {section show=$validation.processed}
-                {section name=UnvalidatedAttributes loop=$validation.attributes show=$validation.attributes}
-                <div class="warning">
-                    <h3>{"Input did not validate"|i18n("extension/xrowecommerce")}</h3>
-                    <ul>
-                        <li>{$UnvalidatedAttributes:item.name}: {$UnvalidatedAttributes:item.description}</li>
-                    </ul>
-                    <div class="break"></div>
+                {if $validation.attributes|count()|gt(0)}
+                    <div class="warning">
+                        <h3>{"Input did not validate"|i18n("extension/xrowecommerce")}</h3>
+                {/if}
+                    {section name=UnvalidatedAttributes loop=$validation.attributes show=$validation.attributes}
+                        <ul>
+                            <li><strong>{$UnvalidatedAttributes:item.name}:</strong> {$UnvalidatedAttributes:item.description}</li>
+                        </ul>
+                        <div class="break"></div>
+                    {section-else}
+                    <div class="feedback">
+                        <h3>{"Input was stored successfully"|i18n("extension/xrowecommerce")}</h3>
+                    </div>
+                    {/section}
+                {if $validation.attributes|count()|gt(0)}
                 </div>
-                {section-else}
-                <div class="feedback">
-                    <h3>{"Input was stored successfully"|i18n("extension/xrowecommerce")}</h3>
-                </div>
-                {/section}
+                {/if}
                 {/section} 
         
         <div class="billing_shipping">
