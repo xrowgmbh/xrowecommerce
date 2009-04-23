@@ -202,12 +202,14 @@
                     <input class="box" type="text" name="ContentObjectAttribute_ezstring_data_text_{$ca.s_address1.id}" size="20" value="{$ca.s_address1.content|wash()}" />
                     <input type="hidden" name="ContentObjectAttribute_id[]" value="{$ca.s_address1.id}" />
                 </div>
+                {if eq(ezini( 'Settings', 'Address2', 'xrowecommerce.ini' ), 'enabled' )}
                 <div class="block">
                     <label>{'Address 2'|i18n('extension/xrowecommerce')}</label>
                     <div class="labelbreak"></div>
                     <input class="box" type="text" name="ContentObjectAttribute_ezstring_data_text_{$ca.s_address2.id}" size="20" value="{$ca.s_address2.content|wash()}" />
                     <input type="hidden" name="ContentObjectAttribute_id[]" value="{$ca.s_address2.id}" />
                 </div>
+                {/if}
                 <div class="block">
                     <label><span class="required">*</span>{'Zip / Postcode'|i18n('extension/xrowecommerce')}</label>
                     <div class="labelbreak"></div>
@@ -243,12 +245,14 @@
                     <input type="hidden" name="ContentObjectAttribute_id[]" value="{$ca.s_phone.id}" />
                 </div>
                 {if eq(ezini( 'Settings', 'Fax', 'xrowecommerce.ini' ), 'enabled' )}
-                    <div class="block">
-                    <label>{'Fax'|i18n('extension/xrowecommerce')}</label>
-                    <div class="labelbreak"></div>
-                    <input class="box" type="text" name="{$castring}{$ca.s_fax.id}" value="{$ca.s_fax.content|wash()}" />
-                    <input type="hidden" name="ContentObjectAttribute_id[]" value="{$ca.s_fax.id}" />
-                </div>
+                    {if eq(ezini( 'ShippingSettings', 'DisplayFax', 'xrowecommerce.ini' ), 'enabled' )}
+                        <div class="block">
+                        <label>{'Fax'|i18n('extension/xrowecommerce')}</label>
+                        <div class="labelbreak"></div>
+                        <input class="box" type="text" name="{$castring}{$ca.s_fax.id}" value="{$ca.s_fax.content|wash()}" />
+                        <input type="hidden" name="ContentObjectAttribute_id[]" value="{$ca.s_fax.id}" />
+                    </div>
+                    {/if}
                 {/if}
                 <div class="block">
                     <label><span class="required">*</span>{'E-mail'|i18n('extension/xrowecommerce')}</label>
