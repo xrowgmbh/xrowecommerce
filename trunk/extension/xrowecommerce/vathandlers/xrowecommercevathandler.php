@@ -56,6 +56,10 @@ class xrowECommerceVATHandler
                 {
                 	$taxid = false;
                 }
+                if ( empty( $country ) )
+                {
+                	$country = eZShopFunctions::getPreferredUserCountry();
+                }
                 $percentage = xrowECommerceVATHandler::getTAX( $country, $state, $taxid );
             }
             else
@@ -77,6 +81,11 @@ class xrowECommerceVATHandler
                     $percentage = xrowECommerceVATHandler::getTAX( $country, false, true );
                 }
             }
+        }
+        if ( $order === false and $user->isAnonymous() )
+        {
+            $country = eZShopFunctions::getPreferredUserCountry();
+            $percentage = xrowECommerceVATHandler::getTAX( $country, false, false );
         }
         return $percentage;
     }
