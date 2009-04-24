@@ -1,5 +1,10 @@
 <?php
 
+/*
+    Improves continue shopping button 
+    not needed for eZ 4.2 onwards
+ */
+
 $http = eZHTTPTool::instance();
 $module = $Params['Module'];
 
