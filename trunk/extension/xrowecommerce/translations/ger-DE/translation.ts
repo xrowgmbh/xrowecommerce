@@ -49,7 +49,7 @@
     </message>
     <message>
         <source>VAT rules</source>
-        <translation>Mehrwertsteuer Regeln</translation>
+        <translation>Mehrwertsteueregeln</translation>
     </message>
     <message>
         <source>Product categories</source>
