@@ -341,7 +341,6 @@
             </div>
     </form>
 </div>
-</script>
 
 <script type="text/javascript">
 function change()
