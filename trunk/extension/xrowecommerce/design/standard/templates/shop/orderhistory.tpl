@@ -35,9 +35,12 @@
             	<th>
             	   {"Status"|i18n("design/standard/shop")}
             	</th>
-            	<th colspan="2">
+            	<th>
             	   {"Total inc. TAX"|i18n("design/standard/shop")}
             	</th>
+                <th>
+                    {"View"|i18n("design/standard/shop")}
+                </th>
             </tr>
             {foreach $order_list as $Order sequence array( 'dark', 'light' ) as $style}
                 {set currency = fetch( 'shop', 'currency', hash( 'code', $Order.productcollection.currency_code ) ) }
