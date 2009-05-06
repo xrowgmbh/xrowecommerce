@@ -6,5 +6,7 @@ ModuleList[]=xrowecommerce
 ModuleList[]=customersearch
 ModuleList[]=orderedit
 ModuleList[]=productvariation
+ModuleList[]=order
+
 
 */ ?>

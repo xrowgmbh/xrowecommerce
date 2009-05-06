@@ -2,6 +2,7 @@
 
 [ExtensionSettings]
 DesignExtensions[]=xrowecommerce
+DesignExtensions[]=order
 
 [JavaScriptSettings]
 JavaScriptList[]=xrowproductvariation.js
@@ -9,6 +10,5 @@ JavaScriptList[]=xrowproductvariation.js
 [StylesheetSettings]
 CSSFileList[]=xrowproductvariation.css
 CSSFileList[]=backend.css
-
 
 */ ?>

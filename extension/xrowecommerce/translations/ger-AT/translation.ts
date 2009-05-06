@@ -515,6 +515,49 @@
     </message>
 </context>
 <context>
+    <name>design/standard/shop</name>
+    <message>
+        <source>Order history</source>
+        <translation>Bestellverlauf</translation>
+    </message>
+    <message>
+        <source>Note</source>
+        <translation>Hinweis</translation>
+    </message>
+    <message>
+        <source>The above is information from your last order.</source>
+        <translation>Oben sehen Sie die Informationen Ihrer letzten Bestellung.</translation>
+    </message>
+    <message>
+        <source>Order History</source>
+        <translation>Bestellverlauf</translation>
+    </message>
+    <message>
+        <source>Order No</source>
+        <translation>Bestellnummer</translation>
+    </message>
+    <message>
+        <source>Date</source>
+        <translation>Datum</translation>
+    </message>
+    <message>
+        <source>Status</source>
+        <translation>Status</translation>
+    </message>
+    <message>
+        <source>Total inc. TAX</source>
+        <translation>Summe (inkl. USt.)</translation>
+    </message>
+    <message>
+        <source>View</source>
+        <translation>Ansehen</translation>
+    </message>
+    <message>
+        <source>Print</source>
+        <translation>Drucken</translation>
+    </message>
+</context>
+<context>
     <name>extension/xrowcommerce/productvariation</name>
     <message>
         <source>yes</source>
@@ -1712,6 +1755,18 @@
         <comment>Save Button</comment>
         <translation>Speichern</translation>
     </message>
+    <message>
+        <source>Website</source>
+        <translation>Internetseite</translation>
+    </message>
+    <message>
+        <source>Order date</source>
+        <translation>Bestelldatum</translation>
+    </message>
+    <message>
+        <source>Shipping method</source>
+        <translation>Versandart</translation>
+    </message>
 </context>
 <context>
     <name>extension/xrowecommerce/directorder</name>
@@ -1768,31 +1823,31 @@
     <name>extension/xrowecommerce/epayment</name>
     <message>
         <source>Please enter the name of the bank account.</source>
-        <translation type="unfinished"></translation>
+        <translation>Bitte geben Sie den Kontonamen an.</translation>
     </message>
     <message>
         <source>Please enter your correct account number (max. 10 numbers)</source>
-        <translation type="unfinished"></translation>
+        <translation>Bitte geben Sie Ihre Kontonummer an (max. 10 Zeichen)</translation>
     </message>
     <message>
         <source>Please enter your correct bank code (8 numbers)</source>
-        <translation type="unfinished"></translation>
+        <translation>Bitte geben Sie Ihre korrekte Bankleitzahl an (8 Zeichen)</translation>
     </message>
     <message>
         <source>Please enter a name</source>
-        <translation type="unfinished"></translation>
+        <translation>Bitte geben Sie einen Namen ein</translation>
     </message>
     <message>
         <source>Credit card number is not a number</source>
-        <translation type="unfinished"></translation>
+        <translation>Kreditkartennummer ist keine Zahl</translation>
     </message>
     <message>
         <source>Please enter the correct security code.</source>
-        <translation type="unfinished"></translation>
+        <translation>Bitte geben Sie den korrekten Sicherheitscode ein.</translation>
     </message>
     <message>
         <source>Your credit card is expired.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ihre Kreditkarte ist abgelaufen.</translation>
     </message>
 </context>
 <context>
@@ -2367,6 +2422,10 @@ Es ist nicht möglich, den Datentyp danach zu ändern.</translation>
     <message>
         <source>Basket</source>
         <translation>Warenkorb</translation>
+    </message>
+    <message>
+        <source>Order history</source>
+        <translation>Bestellverlauf</translation>
     </message>
 </context>
 <context>

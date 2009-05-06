@@ -26,5 +26,10 @@ $eZTemplateOperatorArray[] = array(
 	'operator_names' => array ( 'recaptcha_get_html' ), 
 );
 
+$eZTemplateOperatorArray[] = array(
+    'script' => 'extension/xrowecommerce/autoloads/orderhistorytemplateoperator.php', 
+    'class' => 'orderHistoryTemplateOperator', 
+    'operator_names' => array ( 'get_order_history' ), 
+);
 ?>
 
