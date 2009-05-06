@@ -515,6 +515,49 @@
     </message>
 </context>
 <context>
+    <name>design/standard/shop</name>
+    <message>
+        <source>Order history</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Note</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The above is information from your last order.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Order History</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Order No</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Date</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Status</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Total inc. TAX</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>View</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Print</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>extension/xrowcommerce/productvariation</name>
     <message>
         <source>yes</source>
@@ -1712,6 +1755,18 @@
         <comment>Save Button</comment>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Website</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Order date</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Shipping method</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>extension/xrowecommerce/directorder</name>
@@ -2365,6 +2420,10 @@
     </message>
     <message>
         <source>Basket</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Order history</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

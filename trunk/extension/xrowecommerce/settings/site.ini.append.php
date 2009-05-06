@@ -9,4 +9,5 @@ ExtensionAutoloadPath[]=xrowecommerce
 
 [RegionalSettings]
 TranslationExtensions[]=xrowecommerce
+
 */ ?>

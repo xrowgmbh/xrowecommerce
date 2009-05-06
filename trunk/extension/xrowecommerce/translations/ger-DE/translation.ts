@@ -515,6 +515,49 @@
     </message>
 </context>
 <context>
+    <name>design/standard/shop</name>
+    <message>
+        <source>Order history</source>
+        <translation>Bestellverlauf</translation>
+    </message>
+    <message>
+        <source>Note</source>
+        <translation>Hinweis</translation>
+    </message>
+    <message>
+        <source>The above is information from your last order.</source>
+        <translation>Oben sehen Sie die Informationen Ihrer letzten Bestellung.</translation>
+    </message>
+    <message>
+        <source>Order History</source>
+        <translation>Bestellverlauf</translation>
+    </message>
+    <message>
+        <source>Order No</source>
+        <translation>Bestellnummer</translation>
+    </message>
+    <message>
+        <source>Date</source>
+        <translation>Datum</translation>
+    </message>
+    <message>
+        <source>Status</source>
+        <translation>Status</translation>
+    </message>
+    <message>
+        <source>Total inc. TAX</source>
+        <translation>Summe (inkl. USt.)</translation>
+    </message>
+    <message>
+        <source>View</source>
+        <translation>Ansehen</translation>
+    </message>
+    <message>
+        <source>Print</source>
+        <translation>Drucken</translation>
+    </message>
+</context>
+<context>
     <name>extension/xrowcommerce/productvariation</name>
     <message>
         <source>yes</source>
@@ -1712,6 +1755,18 @@
         <comment>Save Button</comment>
         <translation>Speichern</translation>
     </message>
+    <message>
+        <source>Website</source>
+        <translation>Internetseite</translation>
+    </message>
+    <message>
+        <source>Order date</source>
+        <translation>Bestelldatum</translation>
+    </message>
+    <message>
+        <source>Shipping method</source>
+        <translation>Versandart</translation>
+    </message>
 </context>
 <context>
     <name>extension/xrowecommerce/directorder</name>
@@ -2367,6 +2422,10 @@ Es ist nicht möglich, den Datentyp danach zu ändern.</translation>
     <message>
         <source>Basket</source>
         <translation>Warenkorb</translation>
+    </message>
+    <message>
+        <source>Order history</source>
+        <translation>Bestellverlauf</translation>
     </message>
 </context>
 <context>
