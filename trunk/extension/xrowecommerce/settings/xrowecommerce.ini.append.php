@@ -38,6 +38,10 @@ DisplayFax=enabled
 #USA[]=CT
 #USA[]=NY
 
+[TaxSettings]
+CountryIndentifier=country
+CompanyNameIndentifier=company_name
+
 [MailSettings]
 #define the receiver of the order confirmation mail
 Email=

@@ -34,6 +34,7 @@
     <li><div><a href={'/shop/statistics/'|ezurl}>{'Product statistics'|i18n( 'design/admin/parts/shop/menu' )}</a></div></li>
     <li><div><a href={'/shop/vattype/'|ezurl}>{'VAT types'|i18n( 'design/admin/parts/shop/menu' )}</a></div></li>
     <li><div><a href={'/shop/vatrules/'|ezurl}>{'VAT rules'|i18n( 'design/admin/parts/shop/menu' )}</a></div></li>
+    <li><div><a href={'xrowecommerce/tin'|ezurl} title="{'Tax identification numbers'|i18n( 'design/admin/parts/shop/menu' )}">{'Tax identification'|i18n( 'design/admin/parts/shop/menu' )}</a></div></li>
     <li><div><a href={'/shop/productcategories/'|ezurl}>{'Product categories'|i18n( 'design/admin/parts/shop/menu' )}</a></div></li>
     <li><div><a href={'/shop/currencylist/'|ezurl}>{'Currencies'|i18n( 'design/admin/parts/shop/menu' )}</a></div></li>
     <li><div><a href={'/shop/preferredcurrency/'|ezurl}>{'Preferred currency'|i18n( 'design/admin/parts/shop/menu' )}</a></div></li>
@@ -51,7 +52,7 @@
 *}
     <li><div><a href={'/recurringorders/forecast'|ezurl}>{'Recurring order forecast'|i18n( 'design/admin/parts/shop/menu' )}</a></div></li>
     <li><div><a href={'/recurringorders/history'|ezurl}>{'Recurring order history'|i18n( 'design/admin/parts/shop/menu' )}</a></div></li>
-    <li><div>---------------------</div></li>
+    <li><hr /></li>
     <li><div>{"Product variation setup"|i18n( 'design/admin/parts/shop/menu' )}</div></li>
     <li><div><a href={'/productvariation/attributelist'|ezurl}>{'Product attributes'|i18n( 'design/admin/parts/shop/menu' )}</a></div></li>
     <li><div><a href={'/productvariation/templatelist'|ezurl}>{'Product templates'|i18n( 'design/admin/parts/shop/menu' )}</a></div></li>

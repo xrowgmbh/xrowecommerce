@@ -3,6 +3,7 @@
 [DataTypeSettings]
 ExtensionDirectories[]=xrowecommerce
 
+AvailableDataTypes[]=xrowtin
 AvailableDataTypes[]=xrowproductvariation
 
 */ ?>
