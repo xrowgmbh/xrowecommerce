@@ -41,6 +41,12 @@ $ViewList["invoiceprint"] = array(
     "default_navigation_part" => 'ezshopnavigationpart',
     "params" => array( "OrderID" ) );
 
+$ViewList["tin"] = array(
+    "functions" => array( 'administrate' ),
+    "script" => "tin.php",
+    "default_navigation_part" => 'ezshopnavigationpart',
+    "params" => array() );
+
 $ViewList["priceimport"] = array(
     "functions" => array( 'administrate' ),
     "script" => "price_import.php",

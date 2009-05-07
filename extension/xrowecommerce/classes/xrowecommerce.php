@@ -236,7 +236,7 @@ class xrowECommerce
                 'SERVICE_UNAVAILABLE' => 'The SOAP service is unavailable, try again later' , 
                 'MS_UNAVAILABLE' => 'The Member State service is unavailable, try again later or with another Member State' , 
                 'TIMEOUT' => 'The Member State service could not be reached in time, try again later or with another Member State' , 
-                'SERVER_BUSY' => 'The service cannot process your request. Try again later.' 
+                'SERVER_BUSY' => 'Server Busy. The service cannot process your request. Try again later.' 
             );
             throw new Exception( $faults[$ret] );
         }
