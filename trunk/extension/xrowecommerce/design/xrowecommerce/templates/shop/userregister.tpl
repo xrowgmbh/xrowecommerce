@@ -52,7 +52,7 @@
     <div class="ur_taxid block">
         <label>{'Tax ID'|i18n('extension/xrowecommerce')}</label>
         <div class="labelbreak"></div>
-        <input type="text" name="taxid" value="{$tax_id|wash}" />
+        <input type="text" name="taxid" {if and( $tax_id, $tax_id_valid|eq('2') )} readonly="readonly" disabled{/if} value="{$tax_id|wash}" />
     </div>
 {/if}
 	<div class="ur_firstname block">

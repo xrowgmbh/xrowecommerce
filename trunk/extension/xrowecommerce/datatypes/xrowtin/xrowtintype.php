@@ -23,8 +23,8 @@ class xrowTINType extends eZDataType
     {
         $this->eZDataType( self::DATA_TYPE_STRING, ezi18n( 'kernel/classes/datatypes', 'Tax Identification Number', 'Datatype name' ), array( 
             'serialize_supported' => true , 
-            'object_serialize_map' => array(
-                'data_int' => 'int',
+            'object_serialize_map' => array( 
+                'data_int' => 'int' , 
                 'data_text' => 'text' 
             ) 
         ) );
@@ -35,18 +35,29 @@ class xrowTINType extends eZDataType
     */
     function validateObjectAttributeHTTPInput( $http, $base, $contentObjectAttribute )
     {
-        //var_dump($contentObjectAttribute);
+        if ( $http->hasPostVariable( $base . '_xrowtin_data_text_' . $contentObjectAttribute->attribute( 'id' ) ) )
+        {
+            $tax_id = $http->postVariable( $base . '_xrowtin_data_text_' . $contentObjectAttribute->attribute( 'id' ) );
+            $tax_id = strtoupper( str_replace( " ", "", trim( $tax_id ) ) );
+            $classAttribute = $contentObjectAttribute->contentClassAttribute();
+            
+            if ( $tax_id == "" )
+            {
+                if ( ! $classAttribute->attribute( 'is_information_collector' ) and $contentObjectAttribute->validateIsRequired() )
+                {
+                    $contentObjectAttribute->setValidationError( ezi18n( 'kernel/classes/datatypes', 'Input required.' ) );
+                    return eZInputValidator::STATE_INVALID;
+                }
+            }
+        }
         $draft = eZContentObjectVersion::fetchVersion( $contentObjectAttribute->Version, $contentObjectAttribute->ContentObjectID );
         $dm = $draft->dataMap();
         $countryField = eZINI::instance( 'xrowecommerce.ini' )->variable( 'TaxSettings', 'CountryIndentifier' );
         $companyField = eZINI::instance( 'xrowecommerce.ini' )->variable( 'TaxSettings', 'CompanyNameIndentifier' );
-        if ( isset( $dm[$countryField] ) && isset( $dm[$companyField] ) )
+        if ( isset( $dm[$countryField] ) )
         {
             $dm[$countryField]->fetchInput( $http, $base );
-            $dm[$companyField]->fetchInput( $http, $base );
             $countryValue = $dm[$countryField]->content();
-            $companyValue = $dm[$companyField]->content();
-            
             /* Warning  datatype MIGHT return different values depending on setup */
             if ( is_array( $countryValue['value'] ) )
             {
@@ -56,114 +67,100 @@ class xrowTINType extends eZDataType
             {
                 $countryValue = eZCountryType::fetchCountry( $countryValue['value'], false );
             }
-            if ( $companyValue != "" )
+        }
+        else
+        {
+            $contentObjectAttribute->setValidationError( ezi18n( 'extension/xrowtin', 'The class identifier name of the country field is incorrect in xrowecommerce.ini' ) );
+        }
+        if ( isset( $dm[$companyField] ) )
+        {
+            $dm[$companyField]->fetchInput( $http, $base );
+            $companyValue = $dm[$companyField]->content();
+        }
+        else
+        {
+            $contentObjectAttribute->setValidationError( ezi18n( 'extension/xrowtin', 'The class identifier name of the company field is incorrect in xrowecommerce.ini' ) );
+            return eZInputValidator::STATE_INVALID;
+        }
+        if ( $tax_id and empty( $companyValue ) )
+        {
+            $contentObjectAttribute->setValidationError( ezi18n( 'extension/xrowtin', 'Please provide a company name with your companies tax ID.' ) );
+            return eZInputValidator::STATE_INVALID;
+        }
+        if ( $tax_id )
+        {
+            $countryPrefix = substr( $tax_id, 0, 2 );
+            $Alpha2 = $countryValue['Alpha2'];
+            $idsEU = array( 
+                "AT" , 
+                "BE" , 
+                "BG" , 
+                "CY" , 
+                "CZ" , 
+                "DE" , 
+                "DK" , 
+                "EE" , 
+                "EL" , 
+                "ES" , 
+                "FI" , 
+                "FR" , 
+                "GB" , 
+                "HU" , 
+                "IE" , 
+                "IT" , 
+                "LT" , 
+                "LU" , 
+                "LV" , 
+                "MT" , 
+                "NL" , 
+                "PL" , 
+                "PT" , 
+                "RO" , 
+                "SE" , 
+                "SI" , 
+                "SK" 
+            );
+            
+            if ( in_array( $Alpha2, $idsEU ) )
             {
-                if ( $http->hasPostVariable( $base . '_xrowtin_data_text_' . $contentObjectAttribute->attribute( 'id' ) ) )
+                $matches = array();
+                if ( preg_match( "/^(" . join( '|', $idsEU ) . ")([0-9]+)/i", $tax_id, $matches ) )
                 {
-                    $data = $http->postVariable( $base . '_xrowtin_data_text_' . $contentObjectAttribute->attribute( 'id' ) );
-                    $classAttribute = $contentObjectAttribute->contentClassAttribute();
-                    
-                    if ( $data == "" )
+                    if ( $Alpha2 != $matches[1] )
                     {
-                        if ( ! $classAttribute->attribute( 'is_information_collector' ) and $contentObjectAttribute->validateIsRequired() )
-                        {
-                            $contentObjectAttribute->setValidationError( ezi18n( 'kernel/classes/datatypes', 'Input required.' ) );
-                            return eZInputValidator::STATE_INVALID;
-                        }
+                        $contentObjectAttribute->setValidationError( ezi18n( 'extension/xrowtin', 'Country doesn`t match tax ID number.' ) );
+                        return eZInputValidator::STATE_INVALID;
                     }
-                    else
+                    
+                    if ( $contentObjectAttribute->attribute( 'data_int' ) != self::STATUS_VALIDATED_BY_ADMIN )
                     {
-                        //return $this->validateStringHTTPInput( $data, $contentObjectAttribute, $classAttribute );
-                        $tax_id = strtoupper( str_replace( " ", "", trim( $data ) ) );
-                        $countryPrefix = substr( $tax_id, 0, 2 );
-                        $Alpha2 = $countryValue['Alpha2'];
-                        $idsEU = array( 
-                            "AT" , 
-                            "BE" , 
-                            "BG" , 
-                            "CY" , 
-                            "CZ" , 
-                            "DE" , 
-                            "DK" , 
-                            "EE" , 
-                            "EL" , 
-                            "ES" , 
-                            "FI" , 
-                            "FR" , 
-                            "GB" , 
-                            "HU" , 
-                            "IE" , 
-                            "IT" , 
-                            "LT" , 
-                            "LU" , 
-                            "LV" , 
-                            "MT" , 
-                            "NL" , 
-                            "PL" , 
-                            "PT" , 
-                            "RO" , 
-                            "SE" , 
-                            "SI" , 
-                            "SK" 
-                        );
-                        
-                        if ( in_array( $Alpha2, $idsEU ) )
+                        try
                         {
-                            $matches = array();
-                            if ( preg_match( "/^(" . join( '|', $idsEU ) . ")([0-9]+)/i", $tax_id, $matches ) )
-                            {
-                                if ( $Alpha2 != $matches[1] )
-                                {
-                                    $contentObjectAttribute->setValidationError( ezi18n( 'extension/xrowtin', 'Country doesn`t match tax ID number.' ) );
-                                    return eZInputValidator::STATE_INVALID;
-                                }
-                                
-                                if ( $contentObjectAttribute->attribute( 'data_int' ) != self::STATUS_VALIDATED_BY_ADMIN)
-                                {
-                                try
-                                {
-                                    $ret = xrowECommerce::checkVat( $countryPrefix, $matches[2] );
-                                    if ( ! $ret )
-                                    {
-                                        $contentObjectAttribute->setValidationError( ezi18n( 'extension/xrowtin', 'Your companies tax ID number is not valid.' ) );
-                                        return eZInputValidator::STATE_INVALID;
-                                    }
-                                    else
-                                    {
-                                        $contentObjectAttribute->setAttribute( 'data_int', self::STATUS_TMP_VALIDATED );
-                                        $contentObjectAttribute->store();
-                                    }
-                                }
-                                catch ( Exception $e )
-                                {
-                                    eZDebug::writeError( $e->getMessage(), 'TAX ID Validation problem' );
-                                }
-                                }
-                            }
-                            else
+                            $ret = xrowECommerce::checkVat( $countryPrefix, $matches[2] );
+                            if ( ! $ret )
                             {
                                 $contentObjectAttribute->setValidationError( ezi18n( 'extension/xrowtin', 'Your companies tax ID number is not valid.' ) );
                                 return eZInputValidator::STATE_INVALID;
                             }
+                            else
+                            {
+                                $contentObjectAttribute->setAttribute( 'data_int', self::STATUS_TMP_VALIDATED );
+                                $contentObjectAttribute->store();
+                            }
                         }
-                        
-                        return eZInputValidator::STATE_ACCEPTED;
+                        catch ( Exception $e )
+                        {
+                            eZDebug::writeError( $e->getMessage(), 'TAX ID Validation problem' );
+                            return eZInputValidator::STATE_ACCEPTED;
+                        }
                     }
                 }
+                else
+                {
+                    $contentObjectAttribute->setValidationError( ezi18n( 'extension/xrowtin', 'Your companies tax ID number is not valid.' ) );
+                    return eZInputValidator::STATE_INVALID;
+                }
             }
-        }
-        else
-        {
-            if ( ! eZINI::instance( 'xrowtin.ini' )->variable( 'Settings', 'CountryIndentifier' ) )
-            {
-                $contentObjectAttribute->setValidationError( ezi18n( 'extension/xrowtin', 'The name of the countryfield is missing in the xrowtin.ini.append.php ' ) );
-            }
-            
-            if ( ! eZINI::instance( 'xrowtin.ini' )->variable( 'Settings', 'CompanyNameIndentifier' ) )
-            {
-                $contentObjectAttribute->setValidationError( ezi18n( 'extension/xrowtin', 'The name of the companyfield is missing in the xrowtin.ini.append.php ' ) );
-            }
-            return eZInputValidator::STATE_INVALID;
         }
         return eZInputValidator::STATE_ACCEPTED;
     }
@@ -204,8 +201,8 @@ class xrowTINType extends eZDataType
     {
         if ( $http->hasPostVariable( $base . '_xrowtin_data_text_' . $contentObjectAttribute->attribute( 'id' ) ) )
         {
-            $data = $http->postVariable( $base . '_xrowtin_data_text_' . $contentObjectAttribute->attribute( 'id' ) );
-            $tax_id = strtoupper( str_replace( " ", "", trim( $data ) ) );
+            $tax_id = $http->postVariable( $base . '_xrowtin_data_text_' . $contentObjectAttribute->attribute( 'id' ) );
+            $tax_id = strtoupper( str_replace( " ", "", trim( $tax_id ) ) );
             $contentObjectAttribute->setAttribute( 'data_text', $tax_id );
         }
         if ( $http->hasPostVariable( $base . '_xrowtin_status_' . $contentObjectAttribute->attribute( 'id' ) ) )
@@ -225,7 +222,7 @@ class xrowTINType extends eZDataType
         {
             $contentObjectAttribute->setAttribute( 'data_int', self::STATUS_VALIDATED );
         }
-
+        $contentObjectAttribute->store();
         return true;
     }
 
