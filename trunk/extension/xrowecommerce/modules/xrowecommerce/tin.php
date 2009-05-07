@@ -25,10 +25,10 @@ else
 $viewParameters = array( 'offset' => $offset, 'limit'  => $limit );
 
 $db = eZDB::instance();
-$list_count = $db->arrayQuery( "SELECT count( e1.id ) as counter FROM  ezcontentobject e1,ezcontentobject_attribute e WHERE data_type_string = 'xrowtin' AND e1.id = e.contentobject_id AND e1.current_version = e.version AND e.data_int = '0' and sort_key_string != ''" );
+$list_count = $db->arrayQuery( "SELECT count( e1.id ) as counter FROM  ezcontentobject e1,ezcontentobject_attribute e WHERE data_type_string = 'xrowtin' AND e1.id = e.contentobject_id AND e1.current_version = e.version AND ( e.data_int = '1' OR ( e.data_int = '0' AND sort_key_string != '' ) )" );
 $list_count = $list_count[0]['counter'];
 
-$listtmp = $db->arrayQuery( "SELECT e1.id FROM  ezcontentobject e1,ezcontentobject_attribute e WHERE data_type_string = 'xrowtin' AND e1.id = e.contentobject_id AND e1.current_version = e.version AND e.data_int = '0' and sort_key_string != ''", $viewParameters );
+$listtmp = $db->arrayQuery( "SELECT e1.id FROM  ezcontentobject e1,ezcontentobject_attribute e WHERE data_type_string = 'xrowtin' AND e1.id = e.contentobject_id AND e1.current_version = e.version AND ( e.data_int = '1' OR ( e.data_int = '0' AND sort_key_string != '' ) )", $viewParameters );
 
 $records = array();
 foreach ( $listtmp as $item )
