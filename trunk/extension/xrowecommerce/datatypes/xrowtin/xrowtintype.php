@@ -151,11 +151,6 @@ class xrowTINType extends eZDataType
                     }
                 }
             }
-            else
-            {
-                $contentObjectAttribute->setValidationError( ezi18n( 'extension/xrowtin', 'Please provide a company name with your companies tax ID.' ) );
-                return eZInputValidator::STATE_INVALID;
-            }
         }
         else
         {
