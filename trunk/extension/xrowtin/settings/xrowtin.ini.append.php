@@ -1,3 +1,3 @@
 [Settings]
 CountryIndentifier=country
-CompanyNameIndentifier=company
+CompanyNameIndentifier=company_name
