@@ -91,6 +91,11 @@ class xrowTINType extends eZDataType
         {
             $countryPrefix = substr( $tax_id, 0, 2 );
             $Alpha2 = $countryValue['Alpha2'];
+            /* EU doesn`t use ISO all the time */
+            if ( $Alpha2 == 'GR' )
+            {
+                $Alpha2 = 'EL';
+            }
             $idsEU = array( 
                 "AT" , 
                 "BE" , 

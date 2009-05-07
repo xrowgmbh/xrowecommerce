@@ -274,11 +274,16 @@ if ( $module->isCurrentAction( 'Store' ) )
             $inputIsValid = false;
         }
     }
-
+    
     if ( $http->hasPostVariable( "tax_id" ) and $tax_id_valid != xrowTINType::STATUS_VALIDATED_BY_ADMIN )
     {
         $ezcountry = eZCountryType::fetchCountry( $country, 'Alpha3' );
         $Alpha2 = $ezcountry['Alpha2'];
+        /* EU doesn`t use ISO all the time */
+        if ( $Alpha2 == 'GR' )
+        {
+            $Alpha2 = 'EL';
+        }
         $ids = array( 
             "AT" , 
             "BE" , 
