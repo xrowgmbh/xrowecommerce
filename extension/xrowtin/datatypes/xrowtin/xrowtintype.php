@@ -11,6 +11,10 @@
 class xrowTINType extends eZDataType
 {
     const DATA_TYPE_STRING = 'xrowtin';
+    const STATUS_NOT_VALIDATED = 0;
+    const STATUS_VALIDATED = 1;
+    const STATUS_VALIDATED_BY_ADMIN = 2;
+    const STATUS_TMP_VALIDATED = 3;
 
     /*!
      Initializes with a string id and a description.
@@ -33,12 +37,24 @@ class xrowTINType extends eZDataType
         //var_dump($contentObjectAttribute);
         $draft = eZContentObjectVersion::fetchVersion( $contentObjectAttribute->Version, $contentObjectAttribute->ContentObjectID );
         $dm = $draft->dataMap();
-        if ( eZINI::instance( 'xrowtin.ini' )->variable( 'Settings', 'CountryIndentifier' ) && eZINI::instance( 'xrowtin.ini' )->variable( 'Settings', 'CompanyNameIndentifier' ) )
+        $countryField = eZINI::instance( 'xrowtin.ini' )->variable( 'Settings', 'CountryIndentifier' );
+        $companyField = eZINI::instance( 'xrowtin.ini' )->variable( 'Settings', 'CompanyNameIndentifier' );
+        if ( isset( $dm[$countryField] ) && isset( $dm[$companyField] ) )
         {
-            $countryField = eZINI::instance( 'xrowtin.ini' )->variable( 'Settings', 'CountryIndentifier' );
-            $companyField = eZINI::instance( 'xrowtin.ini' )->variable( 'Settings', 'CompanyNameIndentifier' );
+            $dm[$countryField]->fetchInput( $http, $base );
+            $dm[$companyField]->fetchInput( $http, $base );
             $countryValue = $dm[$countryField]->content();
             $companyValue = $dm[$companyField]->content();
+            
+            /* Warning  datatype MIGHT return different values depending on setup */
+            if ( is_array( $countryValue['value'] ) )
+            {
+                $countryValue = array_shift( $countryValue['value'] );
+            }
+            else
+            {
+                $countryValue = eZCountryType::fetchCountry( $countryValue['value'], false );
+            }
             if ( $companyValue != "" )
             {
                 if ( $http->hasPostVariable( $base . '_xrowtin_data_text_' . $contentObjectAttribute->attribute( 'id' ) ) )
@@ -95,11 +111,14 @@ class xrowTINType extends eZDataType
                             $matches = array();
                             if ( preg_match( "/^(" . join( '|', $idsEU ) . ")([0-9]+)/i", $tax_id, $matches ) )
                             {
-                                if ( $countryPrefix != $matches[1] )
+                                if ( $Alpha2 != $matches[1] )
                                 {
                                     $contentObjectAttribute->setValidationError( ezi18n( 'extension/xrowtin', 'Country doesn`t match tax ID number.' ) );
                                     return eZInputValidator::STATE_INVALID;
                                 }
+                                
+                                if ( $contentObjectAttribute->attribute( 'data_int' ) != self::STATUS_VALIDATED_BY_ADMIN)
+                                {
                                 try
                                 {
                                     $ret = xrowECommerce::checkVat( $countryPrefix, $matches[2] );
@@ -108,10 +127,16 @@ class xrowTINType extends eZDataType
                                         $contentObjectAttribute->setValidationError( ezi18n( 'extension/xrowtin', 'Your companies tax ID number is not valid.' ) );
                                         return eZInputValidator::STATE_INVALID;
                                     }
+                                    else
+                                    {
+                                        $contentObjectAttribute->setAttribute( 'data_int', self::STATUS_TMP_VALIDATED );
+                                        $contentObjectAttribute->store();
+                                    }
                                 }
                                 catch ( Exception $e )
                                 {
                                     eZDebug::writeError( $e->getMessage(), 'TAX ID Validation problem' );
+                                }
                                 }
                             }
                             else
@@ -121,10 +146,14 @@ class xrowTINType extends eZDataType
                             }
                         }
                         
-                        
                         return eZInputValidator::STATE_ACCEPTED;
                     }
                 }
+            }
+            else
+            {
+                $contentObjectAttribute->setValidationError( ezi18n( 'extension/xrowtin', 'Please provide a company name with your companies tax ID.' ) );
+                return eZInputValidator::STATE_INVALID;
             }
         }
         else
@@ -180,10 +209,28 @@ class xrowTINType extends eZDataType
         if ( $http->hasPostVariable( $base . '_xrowtin_data_text_' . $contentObjectAttribute->attribute( 'id' ) ) )
         {
             $data = $http->postVariable( $base . '_xrowtin_data_text_' . $contentObjectAttribute->attribute( 'id' ) );
-            $contentObjectAttribute->setAttribute( 'data_text', $data );
-            return true;
+            $tax_id = strtoupper( str_replace( " ", "", trim( $data ) ) );
+            $contentObjectAttribute->setAttribute( 'data_text', $tax_id );
         }
-        return false;
+        if ( $http->hasPostVariable( $base . '_xrowtin_status_' . $contentObjectAttribute->attribute( 'id' ) ) )
+        {
+            $data = $http->postVariable( $base . '_xrowtin_status_' . $contentObjectAttribute->attribute( 'id' ) );
+            if ( $data == self::STATUS_VALIDATED_BY_ADMIN and ( $contentObjectAttribute->attribute( 'data_int' ) == self::STATUS_NOT_VALIDATED or $contentObjectAttribute->attribute( 'data_int' ) == self::STATUS_TMP_VALIDATED or $contentObjectAttribute->attribute( 'data_int' ) == self::STATUS_VALIDATED ) )
+            {
+                $contentObjectAttribute->setAttribute( 'data_int', self::STATUS_VALIDATED_BY_ADMIN );
+            }
+            if ( $data == self::STATUS_NOT_VALIDATED and $contentObjectAttribute->attribute( 'data_int' ) != self::STATUS_TMP_VALIDATED )
+            {
+                $contentObjectAttribute->setAttribute( 'data_int', self::STATUS_NOT_VALIDATED );
+            }
+        }
+        
+        if ( $contentObjectAttribute->attribute( 'data_int' ) == self::STATUS_TMP_VALIDATED )
+        {
+            $contentObjectAttribute->setAttribute( 'data_int', self::STATUS_VALIDATED );
+        }
+
+        return true;
     }
 
     /*!
