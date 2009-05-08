@@ -25,15 +25,21 @@ else
 $viewParameters = array( 'offset' => $offset, 'limit'  => $limit );
 
 $db = eZDB::instance();
-$list_count = $db->arrayQuery( "SELECT count( e1.id ) as counter FROM  ezcontentobject e1,ezcontentobject_attribute e WHERE data_type_string = 'xrowtin' AND e1.id = e.contentobject_id AND e1.current_version = e.version AND ( e.data_int = '1' OR ( e.data_int = '0' AND sort_key_string != '' ) )" );
+$list_count = $db->arrayQuery( "SELECT count( e.contentobject_id ) as counter FROM ezcontentobject_attribute e
+RIGHT JOIN ezcontentclass_attribute ec ON ec.data_type_string = 'xrowtin' AND ec.id = e.contentclassattribute_id  AND ec.version = 0
+RIGHT JOIN ezcontentobject co ON co.id = e.contentobject_id AND co.current_version = e.version
+WHERE e.data_int = '1' OR ( e.data_int = '0' AND sort_key_string != '' )" );
 $list_count = $list_count[0]['counter'];
 
-$listtmp = $db->arrayQuery( "SELECT e1.id FROM  ezcontentobject e1,ezcontentobject_attribute e WHERE data_type_string = 'xrowtin' AND e1.id = e.contentobject_id AND e1.current_version = e.version AND ( e.data_int = '1' OR ( e.data_int = '0' AND sort_key_string != '' ) )", $viewParameters );
+$listtmp = $db->arrayQuery( "SELECT e.contentobject_id FROM ezcontentobject_attribute e
+RIGHT JOIN ezcontentclass_attribute ec ON ec.data_type_string = 'xrowtin' AND ec.id = e.contentclassattribute_id  AND ec.version = 0
+RIGHT JOIN ezcontentobject co ON co.id = e.contentobject_id AND co.current_version = e.version
+WHERE e.data_int = '1' OR ( e.data_int = '0' AND sort_key_string != '' )", $viewParameters );
 
 $records = array();
 foreach ( $listtmp as $item )
 {
-	$list[] = eZContentObject::fetch( $item['id'] );
+	$list[] = eZContentObject::fetch( $item['contentobject_id'] );
 }
 $tpl->setVariable( "list", $list );
 $tpl->setVariable( "list_count", $list_count );
