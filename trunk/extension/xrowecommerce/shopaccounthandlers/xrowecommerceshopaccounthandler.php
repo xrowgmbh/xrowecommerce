@@ -2,41 +2,6 @@
 
 class xrowECommerceShopAccountHandler
 {
-
-    /**
-     * [MerchantLocations]
-     * Locations[]=USA
-     * Locations[]=GER
-     * USA[]=CT
-     * USA[]=NY
-     * 
-     * \public
-     * @return array First element country, Second state
-     */
-    function merchantsLocations()
-    {
-        $ini = eZINI::instance( 'xrowecommerce.ini' );
-        $LocationArray = array();
-        foreach ( $ini->variable( 'MerchantLocations', 'Location' ) as $location )
-        {
-            if ( $ini->hasVariable( 'MerchantLocations', $location ) )
-            {
-                $LocationArray[] = array( 
-                    $location , 
-                    $ini->variable( 'MerchantLocations', $location ) 
-                );
-            }
-            else
-            {
-                $LocationArray[] = array( 
-                    $location 
-                );
-            }
-        }
-        return $LocationArray;
-        #return array( 'USA', array( 'NY', 'CT' ) );
-    }
-
     /**
      * Will verify that the user has supplied the correct user information.
      * Returns true if we have all the information needed about the user.
@@ -173,14 +138,14 @@ class xrowECommerceShopAccountHandler
         {
             $dom = new DOMDocument( '1.0', 'utf-8' );
             $success = $dom->loadXML( $xmlString );
-
+            
             $firstName = $dom->getElementsByTagName( "first_name" )->item( 0 );
             $mi = $dom->getElementsByTagName( "mi" )->item( 0 );
             $lastName = $dom->getElementsByTagName( "last_name" )->item( 0 );
-
+            
             if ( is_object( $mi ) )
             {
-            	$accountName = $firstName->textContent . " " . $mi_tc . " " . $lastName->textContent;
+                $accountName = $firstName->textContent . " " . $mi_tc . " " . $lastName->textContent;
             }
             else
             {
@@ -203,8 +168,8 @@ class xrowECommerceShopAccountHandler
         $fields = array( 
             'company_name' , 
             'company_additional' , 
-            'tax_id' ,
-            'tax_id_valid',
+            'tax_id' , 
+            'tax_id_valid' , 
             'first_name' , 
             'mi' , 
             'last_name' , 
@@ -237,14 +202,13 @@ class xrowECommerceShopAccountHandler
             'reference' , 
             'message' , 
             'no_partial_delivery' , 
-            'coupon_code' ,
+            'coupon_code' , 
             'ezauthorize-transaction-id' , 
             'ezauthorize-card-name' , 
             'ezauthorize-card-number' , 
             'ezauthorize-card-date' , 
             'ezauthorize-card-type' 
-        )
-        ;
+        );
         foreach ( $fields as $field )
         {
             $node = $dom->getElementsByTagName( $field )->item( 0 );

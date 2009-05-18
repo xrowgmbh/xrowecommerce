@@ -277,6 +277,8 @@ if ( $module->isCurrentAction( 'Store' ) )
     
     if ( $http->hasPostVariable( "tax_id" ) and $tax_id_valid != xrowTINType::STATUS_VALIDATED_BY_ADMIN )
     {
+        $merchantcountries = xrowECommerce::merchantsCountries();
+
         $ezcountry = eZCountryType::fetchCountry( $country, 'Alpha3' );
         $Alpha2 = $ezcountry['Alpha2'];
         /* EU doesn`t use ISO all the time */
@@ -314,7 +316,7 @@ if ( $module->isCurrentAction( 'Store' ) )
             "SK" 
         );
         $tax_id = strtoupper( str_replace( " ", "", trim( $http->postVariable( "tax_id" ) ) ) );
-        if ( empty( $tax_id ) and $company_name and in_array( $Alpha2, $ids ) )
+        if ( empty( $tax_id ) and $company_name and in_array( $Alpha2, $ids ) and !in_array( $Alpha2, $merchantcountries ) )
         {
             $errors[] = ezi18n( 'extension/xrowecommerce', 'Please enter a your companies tax ID number.' );
             $inputIsValid = false;
@@ -346,6 +348,18 @@ if ( $module->isCurrentAction( 'Store' ) )
                 {
                     eZDebug::writeError( $e->getMessage(), 'TAX ID Validation problem' );
                 }
+            }
+            elseif ( in_array( $Alpha2, $merchantcountries ) )
+            {
+                if ( empty( $tax_id ) )
+                {
+                
+                }
+            	elseif( !xrowECommerce::validateTIN( $Alpha2, $tax_id, $errors2 ) )
+            	{
+            	   $errors = array_merge( $errors, $errors2 );
+            	   $inputIsValid = false;
+            	}
             }
             else
             {
