@@ -17,6 +17,81 @@ class xrowECommerce
     const ACCOUNT_KEY_YEAR = 'year';
     const ACCOUNT_KEY_NAME = 'name';
     const ACCOUNT_KEY_CREDITCARD = 'creditcard';
+
+    /**
+     * [MerchantLocations]
+     * Locations[]=USA
+     * Locations[]=GER
+     * USA[]=CT
+     * USA[]=NY
+     * 
+     * \public
+     * @return array First element country, Second state
+     */
+    static function merchantsLocations()
+    {
+        $ini = eZINI::instance( 'xrowecommerce.ini' );
+        $LocationArray = array();
+        foreach ( $ini->variable( 'MerchantLocations', 'Location' ) as $location )
+        {
+            if ( $ini->hasVariable( 'MerchantLocations', $location ) )
+            {
+                $LocationArray[] = array( 
+                    $location , 
+                    $ini->variable( 'MerchantLocations', $location ) 
+                );
+            }
+            else
+            {
+                $LocationArray[] = array( 
+                    $location 
+                );
+            }
+        }
+        return $LocationArray;
+    }
+
+    /**
+     * \public
+     * @return array List of countries
+     */
+    static function merchantsCountries( $type = 'Alpha2' )
+    {
+        $countries = array();
+        $LocationArray = self::merchantsLocations();
+        foreach ( $LocationArray as $Location )
+        {
+            $country = eZCountryType::fetchCountry( $Location[0], 'Alpha3' );
+            $countries[] = $country[$type];
+        }
+        return $countries;
+    }
+
+    /*
+     * @param $country Alpha2 code of the country to validate
+     * @param $tax_id Tax Identification Number
+     * @param $errors Resulting Errors
+     * @return boolean
+     */
+    static function validateTIN( $country, $tax_id, &$errors )
+    {
+        $matches = array();
+        switch ( $country )
+        {
+            case 'DE':
+                if ( ! preg_match( "/^([0-9]{13})/i", $tax_id, $matches ) )
+                {
+                    $errors[] = ezi18n( 'extension/xrowecommerce', "A unified german tax id is a number out of 13 digests like '2893081508152'." );
+                    return false;
+                }
+                break;
+            default:
+                return true;
+                break;
+        }
+        return true;
+    }
+
     /*!
      \return the number of active orders
     */
@@ -218,9 +293,9 @@ class xrowECommerce
         $wsdl = 'extension/xrowecommerce/WDSL/checkVatPort.xml';
         
         $vies = new SoapClient( $wsdl );
-
+        
         $nii = new checkVat( $cc, $vat );
-
+        
         try
         {
             $ret = $vies->checkVat( $nii );
@@ -242,14 +317,16 @@ class xrowECommerce
         }
         return $ret->valid;
     }
+
     /**
      * @param string $xmlDoc XML data
      * @return array
      */
     static function createArrayfromXML( $xmlDoc )
     {
-        return self::createArrayfromDOMNODE(simplexml_load_string( $xmlDoc ));
+        return self::createArrayfromDOMNODE( simplexml_load_string( $xmlDoc ) );
     }
+
     /**
      * @param SimpleXMLElement $xml
      * @return array
@@ -257,45 +334,68 @@ class xrowECommerce
     static function createArrayfromDOMNODE( $xml )
     {
         
-        if ($xml instanceof SimpleXMLElement) {
+        if ( $xml instanceof SimpleXMLElement )
+        {
             $children = $xml->children();
             $return = null;
         }
-
-        foreach ($children as $element => $value) {
-            if ($value instanceof SimpleXMLElement) {
-                $values = (array)$value->children();
-
-                if (count($values) > 0) {
-                    if (is_array($return[$element])) {
+        
+        foreach ( $children as $element => $value )
+        {
+            if ( $value instanceof SimpleXMLElement )
+            {
+                $values = (array) $value->children();
+                
+                if ( count( $values ) > 0 )
+                {
+                    if ( is_array( $return[$element] ) )
+                    {
                         //hook
-                        foreach ($return[$element] as $k=>$v) {
-                            if (!is_int($k)) {
+                        foreach ( $return[$element] as $k => $v )
+                        {
+                            if ( ! is_int( $k ) )
+                            {
                                 $return[$element][0][$k] = $v;
-                                unset($return[$element][$k]);
+                                unset( $return[$element][$k] );
                             }
                         }
-                        $return[$element][] = self::createArrayfromDOMNODE($value);
-                    } else {
-                        $return[$element] = self::createArrayfromDOMNODE($value);
+                        $return[$element][] = self::createArrayfromDOMNODE( $value );
                     }
-                } else {
-                    if (!isset($return[$element])) {
-                        $return[$element] = (string)$value;
-                    } else {
-                        if (!is_array($return[$element])) {
-                            $return[$element] = array($return[$element], (string)$value);
-                        } else {
-                            $return[$element][] = (string)$value;
+                    else
+                    {
+                        $return[$element] = self::createArrayfromDOMNODE( $value );
+                    }
+                }
+                else
+                {
+                    if ( ! isset( $return[$element] ) )
+                    {
+                        $return[$element] = (string) $value;
+                    }
+                    else
+                    {
+                        if ( ! is_array( $return[$element] ) )
+                        {
+                            $return[$element] = array( 
+                                $return[$element] , 
+                                (string) $value 
+                            );
+                        }
+                        else
+                        {
+                            $return[$element][] = (string) $value;
                         }
                     }
                 }
             }
         }
-
-        if (is_array($return)) {
+        
+        if ( is_array( $return ) )
+        {
             return $return;
-        } else {
+        }
+        else
+        {
             return false;
         }
     }

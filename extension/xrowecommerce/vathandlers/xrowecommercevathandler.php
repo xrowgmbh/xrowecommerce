@@ -99,8 +99,7 @@ class xrowECommerceVATHandler
         }
         $country = strtoupper( $country );
         $taxmap = xrowECommerceVATHandler::taxMapping();
-        $account = eZShopAccountHandler::instance();
-        $merchant = $account->merchantsLocations();
+        $merchant = xrowECommerce::merchantsLocations();
         
         if ( ! is_array( $merchant ) and count( $merchant ) > 0 )
         {
