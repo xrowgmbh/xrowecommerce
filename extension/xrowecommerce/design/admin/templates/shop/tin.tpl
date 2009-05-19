@@ -1,3 +1,5 @@
+<form name="list" method="post" action={concat( 'xrowecommerce/tin', '/(offset)/', $view_parameters.offset, '/(limit)/',$view_parameters.limit )|ezurl}>
+
 <div class="context-block">
 
 {* DESIGN: Header START *}<div class="box-header"><div class="box-tc"><div class="box-ml"><div class="box-mr"><div class="box-tl"><div class="box-tr">
@@ -20,21 +22,19 @@
         <th class="tight">&nbsp;</th>
     </tr>
    {foreach $list as $object}
-       <tr class="d">
+       <tr>
         <td><a href={$object.main_node.url_alias|ezurl}>{$object.name|wash}</a></td>
-        <td><span style="white-space: nowrap">{$object.data_map.tax_id.content|wash}</span></td>
+        <td><input name="ContentObject[{$object.id}][tax_id]" value="{$object.data_map.tax_id.content|wash}" /></td>
         <td>{$object.data_map.company_name.content|wash}</td>
-        <td><span style="white-space: nowrap">
-{if $object.data_map.tax_id.data_int|eq('0')}{'not validated'|i18n( 'extension/xrowtin' )}{/if}
-{if $object.data_map.tax_id.data_int|eq('1')}{'validated'|i18n( 'extension/xrowtin' )}{/if}
-{if $object.data_map.tax_id.data_int|eq('2')}{'validated by administration'|i18n( 'extension/xrowtin' )}{/if}
-        </span></td>
         <td>
-        <form method="post" action={concat( 'content/action' )|ezurl}>
-        <input type="hidden" name="ContentObjectID" value="{$object.id}" />
-        <input type="hidden" name="RedirectURIAfterPublish" value="xrowecommerce/tin/(offset)/{$view_parameters.offset}/(limit)/{$view_parameters.limit}" />
-        <input type="image" src={'edit.gif'|ezimage} name="EditButton" />
-        </form>
+        <select size="1" name="ContentObject[{$object.id}][status]">
+<option value="0"{if $object.data_map.tax_id.data_int|eq('0')} selected{/if}>{'not validated'|i18n( 'extension/xrowtin' )}</option>
+<option value="1"{if $object.data_map.tax_id.data_int|eq('1')} selected{/if} disabled>{'validated'|i18n( 'extension/xrowtin' )}</option>
+<option value="2"{if $object.data_map.tax_id.data_int|eq('2')} selected{/if}>{'validated by administration'|i18n( 'extension/xrowtin' )}</option>
+</select>
+        </td>
+        <td>
+<img src={'edit.gif'|ezimage} onclick="document.forms['edit-{$object.id}'].submit();" />
 </td>
     </tr>
    {/foreach}
@@ -63,7 +63,23 @@
 
 <div class="controlbar">
 {* DESIGN: Control bar START *}<div class="box-bc"><div class="box-ml"><div class="box-mr"><div class="box-tc"><div class="box-bl"><div class="box-br">
-
 <div class="block">
+<div class="button-right">
+    <input class="button" type="submit" name="Save" value="{'Apply changes'|i18n( 'design/admin/shop/orderlist' )}" title="{'Click this button to store changes if you have modified any of the fields above.'|i18n( 'design/admin/shop/orderlist' )}" />
+</div>
+<div class="break"></div>
+</div>
+
 {* DESIGN: Control bar END *}</div></div></div></div></div></div>
 </div>
+
+</form>
+
+{foreach $list as $object}
+        <form name="edit-{$object.id}" method="post" action={concat( 'content/action' )|ezurl}>
+        <input type="hidden" name="ContentObjectID" value="{$object.id}" />
+        <input type="hidden" name="RedirectURIAfterPublish" value="xrowecommerce/tin/(offset)/{$view_parameters.offset}/(limit)/{$view_parameters.limit}" />
+        
+        <input type="hidden" value="yes" name="EditButton" />
+        </form>
+{/foreach}
