@@ -160,6 +160,21 @@ class xrowTINType extends eZDataType
                         }
                     }
                 }
+                elseif ( in_array( $Alpha2, xrowECommerce::merchantsCountries() ) )
+                {
+                    if ( ! xrowECommerce::validateTIN( $Alpha2, $tax_id, $errors2 ) )
+                    {
+                        foreach ( $errors2 as $error )
+                        {
+                            $contentObjectAttribute->setValidationError( ezi18n( 'extension/xrowtin', $error ) );
+                        }
+                        return eZInputValidator::STATE_INVALID;
+                    }
+                    else
+                    {
+                        return eZInputValidator::STATE_ACCEPTED;
+                    }
+                }
                 else
                 {
                     $contentObjectAttribute->setValidationError( ezi18n( 'extension/xrowtin', 'Your companies tax ID number is not valid.' ) );

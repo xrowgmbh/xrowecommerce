@@ -5,6 +5,30 @@ $module = $Params['Module'];
 
 $http = eZHTTPTool::instance();
 
+if ( $http->hasPostVariable( "Save" ) )
+{
+	$listedit = $http->postVariable( "ContentObject" );
+    foreach ( $listedit as $id => $values )
+    {
+    	$obj = eZContentObject::fetch( $id );
+    	if ( $obj instanceof eZContentObject )
+    	{
+    		$dm = $obj->dataMap();
+
+    		if( $dm['tax_id'] and $dm['tax_id']->attribute( 'data_type_string' ) == xrowTINType::DATA_TYPE_STRING )
+    		{
+    			if( isset( $values['status'] ) )
+    			{
+                    $dm['tax_id']->setAttribute( 'data_int', (int)$values['status'] );
+    			}
+    			$dm['tax_id']->setAttribute( 'data_text', strtoupper( trim( $values['tax_id'] ) ) );
+    			$dm['tax_id']->store();
+    		}
+    	}
+    }
+    eZContentObject::clearCache();
+}
+
 $tpl = templateInit();
 if ( isset( $Params['UserParameters']['offset'] ) and is_numeric( $Params['UserParameters']['offset'] ) )
 {
@@ -45,6 +69,10 @@ $tpl->setVariable( "list", $list );
 $tpl->setVariable( "list_count", $list_count );
 $tpl->setVariable( 'view_parameters', $viewParameters );
 $tpl->setVariable( 'limit', $limit );
+
+
+
+
 $Result = array();
 $Result['path'] = array( array( 'text' => ezi18n( 'extension/xrowecommerce', 'Tax identification numbers' ),
                                 'url' => false ) );
