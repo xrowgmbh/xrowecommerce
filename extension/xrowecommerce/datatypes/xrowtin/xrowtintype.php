@@ -222,7 +222,7 @@ class xrowTINType extends eZDataType
         if ( $http->hasPostVariable( $base . '_xrowtin_data_text_' . $contentObjectAttribute->attribute( 'id' ) ) )
         {
             $tax_id = $http->postVariable( $base . '_xrowtin_data_text_' . $contentObjectAttribute->attribute( 'id' ) );
-            $tax_id = strtoupper( str_replace( " ", "", trim( $tax_id ) ) );
+            $tax_id = strtoupper( trim( $tax_id ) );
             $contentObjectAttribute->setAttribute( 'data_text', $tax_id );
         }
         if ( $http->hasPostVariable( $base . '_xrowtin_status_' . $contentObjectAttribute->attribute( 'id' ) ) )
