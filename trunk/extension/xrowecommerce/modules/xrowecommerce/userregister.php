@@ -315,7 +315,7 @@ if ( $module->isCurrentAction( 'Store' ) )
             "SI" , 
             "SK" 
         );
-        $tax_id = strtoupper( str_replace( " ", "", trim( $http->postVariable( "tax_id" ) ) ) );
+        $tax_id = strtoupper( trim( $http->postVariable( "tax_id" ) ) );
         if ( empty( $tax_id ) and $company_name and in_array( $Alpha2, $ids ) and !in_array( $Alpha2, $merchantcountries ) )
         {
             $errors[] = ezi18n( 'extension/xrowecommerce', 'Please enter a your companies tax ID number.' );
