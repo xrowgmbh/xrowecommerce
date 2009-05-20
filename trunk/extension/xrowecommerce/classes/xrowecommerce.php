@@ -80,7 +80,7 @@ class xrowECommerce
         {
         	case 'DE':
 
-        		$regexp = '/^([0-9]{2,3}[ \/][0-9]{3,4}[ \/][0-9]{4,5}|[0-9]{5}[\/][0-9]{5}|[0-9]{2}[\/][0-9]{3}[\/][0-9]{4}[\/][0-9]{1})$/iU';
+        		$regexp = '/^([0-9]{3}\\/[0-9]{3}\\/[0-9]{5}|[0-9]{3}\\/[0-9]{4}\\/[0-9]{4}|[0-9]{2}[\\40\\/][0-9]{3}[\\40\\/][0-9]{4}\\/?[0-9]|0[0-9]{2}\\40[0-9]{3}\\40[0-9]{5}|[0-9]{5}\\/[0-9]{5})$/i';
         		/* test cases
         		var_dump( preg_match( $regexp, '93815/08152', $matches ) );
         		var_dump( preg_match( $regexp, '181/815/08155', $matches ) );
@@ -94,7 +94,7 @@ class xrowECommerce
                 }
                 else
                 {
-                	$errors[] = ezi18n( 'extension/xrowecommerce', "A german tax id is a number out of 11 digests divided by a space or forward slash like '181/815/08155'. A unified german tax id is a number out of 13 digests like '2893081508152'." );
+                	$errors[] = ezi18n( 'extension/xrowecommerce', 'A tax identification number in the Federal Republic of Germany consists of 10 or 11 digits, depending on the "Bundesland" (State). These are divided into groups of 2 - 5 by forward slashes or blanks like "181/815/08155". A unified german tax identification number is a number out of 13 digests like "2893081508152".' );
                     return false;
                 }
                 break;
