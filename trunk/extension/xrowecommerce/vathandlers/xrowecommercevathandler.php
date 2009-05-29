@@ -11,7 +11,8 @@ class xrowECommerceVATHandler
             'IRL' => 21 , 
             'USA' => array( 
                 'NY' => 8.375 , 
-                'CT' => 6.00 
+                'CT' => 6 ,
+                'PA' => 7                
             ) 
         );
     }
