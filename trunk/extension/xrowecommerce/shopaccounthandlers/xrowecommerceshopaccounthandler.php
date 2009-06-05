@@ -145,11 +145,11 @@ class xrowECommerceShopAccountHandler
             
             if ( is_object( $mi ) )
             {
-                $accountName = $firstName->textContent . " " . $mi_tc . " " . $lastName->textContent;
+                $accountName = $firstName->textContent . " " . $mi->textContent . " " . $lastName->textContent;
             }
             else
             {
-                $mi_tc = '';
+                $accountName = $firstName->textContent . " " . $lastName->textContent;
             }
         }
         return $accountName;

@@ -74,9 +74,31 @@ $Payment = array(
     'function' => 'paymentLimitationList',
     'parameter' => array( false )
     );
+$ViewList["orderlist"] = array(
+    "functions" => array( 'administrate' ),
+    "script" => "orderlist.php",
+    "default_navigation_part" => 'ezshopnavigationpart',
+    "unordered_params" => array( "offset" => "Offset" ),
+    "params" => array(  ) );
+
+$ViewList["removeorder"] = array(
+    "functions" => array( 'remove_order' ),
+    "script" => "removeorder.php",
+    'ui_context' => 'edit',
+    "default_navigation_part" => 'ezshopnavigationpart',
+    "params" => array() );
+
+$ViewList["archiveorder"] = array(
+    "functions" => array( 'administrate' ),
+    "script" => "archiveorder.php",
+    'ui_context' => 'edit',
+    "default_navigation_part" => 'ezshopnavigationpart',
+    "params" => array() );
+
 
 $FunctionList['buy'] = array( );
 $FunctionList['administrate'] = array( );
+$FunctionList['remove_order'] = array( );
 $FunctionList['bypass_captcha'] = array( );
 $FunctionList['payment'] = array( 'Payment' => $Payment );
 ?>

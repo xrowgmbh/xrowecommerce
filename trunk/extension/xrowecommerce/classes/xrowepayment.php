@@ -7,6 +7,25 @@ class xrowEPayment
     const DISCOVER = 3;
     const AMERICANEXPRESS = 4;
     const EUROCARD = 5;
+    const PAYMENT_REQUEST_TYPE_AUTH_ONLY = 0;
+    const PAYMENT_REQUEST_TYPE_AUTH_AND_CAPTURE = 1;
+
+    static function paymentRequestType()
+    {
+        $type = eZINI::instance( 'xrowecommerce.ini' )->variable( 'EPaymentSettings', 'PaymentRequestType' );
+        switch ( $type )
+        {
+            case 'AUTH_ONLY':
+                return self::PAYMENT_REQUEST_TYPE_AUTH_ONLY;
+                break;
+            case 'AUTH_AND_CAPTURE':
+                return self::PAYMENT_REQUEST_TYPE_AUTH_AND_CAPTURE;
+                break;
+            default:
+                throw new Exception( "Invalid Payment Request Type" );
+                break;
+        }
+    }
 
     static function allowedGatewayListByUser( eZUser $user = null )
     {
@@ -201,8 +220,13 @@ class xrowEPayment
             $errors[] = ezi18n( 'extension/xrowecommerce/epayment', 'Please enter the correct security code.' );
             $valid = false;
         }
-        $time = DateTime::createFromFormat( 'my' . $data['month'] . $data['year'] );
-        $now = new DateTime( );
+        $now = new DateTime();
+        $now->setTime( 0, 0, 0 );  
+        # Works from php5.3
+        # $time = DateTime::createFromFormat( 'mY' . $data['month'] . $data['year'] );
+        $time = new DateTime();
+        $time->setDate( $data['year'], $data['month'], $now->format( 'd' ) );
+        $time->setTime( 0, 0, 0 );
         
         if ( $now->format( 'U' ) > $time->format( 'U' ) )
         {

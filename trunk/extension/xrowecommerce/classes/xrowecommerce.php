@@ -17,6 +17,7 @@ class xrowECommerce
     const ACCOUNT_KEY_YEAR = 'year';
     const ACCOUNT_KEY_NAME = 'name';
     const ACCOUNT_KEY_CREDITCARD = 'creditcard';
+    const ACCOUNT_KEY_TRANSACTIONID = 'transactionid';
 
     /**
      * [MerchantLocations]
@@ -25,7 +26,7 @@ class xrowECommerce
      * USA[]=CT
      * USA[]=NY
      * 
-     * \public
+     * @access static
      * @return array First element country, Second state
      */
     static function merchantsLocations()
@@ -52,7 +53,30 @@ class xrowECommerce
     }
 
     /**
-     * \public
+     * @access static
+     * @return xrowOrderStatusDefault
+     */
+    static function instanceStatus( $statusID )
+    {
+        $list = eZINI::instance( 'xrowecommerce.ini' )->variable( 'StatusSettings', 'StatusTypeList' );
+        if ( array_key_exists( $statusID, $list ) and class_exists( $list[$statusID] ) )
+        {
+            $classname = $list[$statusID];
+            $object = new $classname( $statusID );
+            if ( ! $object instanceof xrowOrderStatusDefault )
+            {
+                throw new Exception( "Status is not of class 'xrowOrderStatusDefault'" );
+            }
+            return $object;
+        }
+        else
+        {
+            return new xrowOrderStatusDefault( $statusID );
+        }
+    }
+
+    /**
+     * @access static
      * @return array List of countries
      */
     static function merchantsCountries( $type = 'Alpha2' )
@@ -71,6 +95,7 @@ class xrowECommerce
      * @param $country Alpha2 code of the country to validate
      * @param $tax_id Tax Identification Number
      * @param $errors Resulting Errors
+     * @access static
      * @return boolean
      */
     static function validateTIN( $country, $tax_id, &$errors )
@@ -78,23 +103,23 @@ class xrowECommerce
         $matches = array();
         switch ( $country )
         {
-        	case 'DE':
-
-        		$regexp = '/^([0-9]{3}\\/[0-9]{3}\\/[0-9]{5}|[0-9]{3}\\/[0-9]{4}\\/[0-9]{4}|[0-9]{2}[\\40\\/][0-9]{3}[\\40\\/][0-9]{4}\\/?[0-9]|0[0-9]{2}\\40[0-9]{3}\\40[0-9]{5}|[0-9]{5}\\/[0-9]{5})$/i';
-        		/* test cases
+            case 'DE':
+                
+                $regexp = '/^([0-9]{3}\\/[0-9]{3}\\/[0-9]{5}|[0-9]{3}\\/[0-9]{4}\\/[0-9]{4}|[0-9]{2}[\\40\\/][0-9]{3}[\\40\\/][0-9]{4}\\/?[0-9]|0[0-9]{2}\\40[0-9]{3}\\40[0-9]{5}|[0-9]{5}\\/[0-9]{5})$/i';
+                /* test cases
         		var_dump( preg_match( $regexp, '93815/08152', $matches ) );
         		var_dump( preg_match( $regexp, '181/815/08155', $matches ) );
         		var_dump( preg_match( $regexp, '75 815 08152', $matches ) );
         		var_dump( preg_match( $regexp, '22/815/0815/4', $matches ) );
         		var_dump( preg_match( $regexp, '22444/815/0815/4', $matches ) ); # invalid
                 */
-        		if (  preg_match( "/^([0-9]{13})/i", $tax_id, $matches ) or preg_match( $regexp, $tax_id, $matches ) )
+                if ( preg_match( "/^([0-9]{13})/i", $tax_id, $matches ) or preg_match( $regexp, $tax_id, $matches ) )
                 {
-
+                
                 }
                 else
                 {
-                	$errors[] = ezi18n( 'extension/xrowecommerce', 'A tax identification number in the Federal Republic of Germany consists of 10 or 11 digits, depending on the "Bundesland" (State). These are divided into groups of 2 - 5 by forward slashes or blanks like "181/815/08155". A unified german tax identification number is a number out of 13 digests like "2893081508152".' );
+                    $errors[] = ezi18n( 'extension/xrowecommerce', 'A tax identification number in the Federal Republic of Germany consists of 10 or 11 digits, depending on the "Bundesland" (State). These are divided into groups of 2 - 5 by forward slashes or blanks (e.g. "181/815/08155"). A unified German tax identification number consists of 13 digits like "2893081508152".' );
                     return false;
                 }
                 break;
