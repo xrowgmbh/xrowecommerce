@@ -9,7 +9,25 @@ class xrowEPayment
     const EUROCARD = 5;
     const PAYMENT_REQUEST_TYPE_AUTH_ONLY = 0;
     const PAYMENT_REQUEST_TYPE_AUTH_AND_CAPTURE = 1;
-
+    /**
+     * Instanciates the payment gateway
+     *
+     * @param string $id
+     * @return xrowEPaymentGateway
+     */
+    static function instanceGateway( $id )
+    {
+            $classname = $id . 'Gateway';
+        if ( class_exists( $classname ) )
+        {
+            $gateway = new $classname( );
+        }
+        else
+        {
+            throw new Exception( "Gateway $classname does no longer exist." );
+        }
+    }
+    
     static function paymentRequestType()
     {
         $type = eZINI::instance( 'xrowecommerce.ini' )->variable( 'EPaymentSettings', 'PaymentRequestType' );

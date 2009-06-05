@@ -7,15 +7,7 @@ class xrowOrderStatusCancel extends xrowOrderStatusDefault
     {
         
         $data = $order->attribute( 'account_information' );
-        $classname = $data[xrowECommerce::ACCOUNT_KEY_PAYMENTMETHOD] . 'Gateway';
-        if ( class_exists( $classname ) )
-        {
-            $gateway = new $classname( );
-        }
-        else
-        {
-            throw new Exception( "Gateway $classname does no longer exist." );
-        }
+        $gateway = xrowEPayment::instanceGateway( $data[xrowECommerce::ACCOUNT_KEY_PAYMENTMETHOD] );
         if ( $gateway->cancel( $order ) )
         {
             return true;
