@@ -189,8 +189,7 @@ class xrowProductTemplate extends eZPersistentObject
                 'attribute_list_by_identifier' => 'attributeListByIdentifier' , 
                 'has_attribute_list' => 'hasAttributeList' , 
                 'sortby' => 'sortBy' 
-            )
-             , 
+            ) , 
             'keys' => array( 
                 'id' 
             ) , 
