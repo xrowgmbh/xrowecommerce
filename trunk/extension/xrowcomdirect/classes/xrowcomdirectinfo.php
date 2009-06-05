@@ -6,13 +6,11 @@
 
     used by the extension recurringorders
 */
+/*
+ * @TODO not yet ported to php5
+ */
 class xrowComDirectInfo
 {
-
-    function xrowComDirectInfo()
-    {
-    }
-
     /*!
      \static
      returns true if a card can be used by this gateway

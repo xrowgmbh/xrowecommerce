@@ -4,6 +4,7 @@ class xrowComdirectCCGateway extends xrowComdirectBaseGateway
 {
     const GATEWAY_STRING = 'xrowComdirectCC';
     const TEMPLATE = 'design:workflow/comdirectccgateway.tpl';
+
     function execute( $process, $event )
     {
         return parent::execute( $process, $event );

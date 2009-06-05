@@ -6,7 +6,9 @@
 BookingString=INVOICE
 # Is used instead of  BookingString is order isn`t active yet
 TransactionString=ORDERID
-
+# Sets the defined status id after a successfull payment.
+StatusID=
+ 
 [ServerSettings]
 ServerRequestLink=https://coposweb.companydirect.de/posh/cmd/posh/tpl/txn_result.tpl
 Username=test

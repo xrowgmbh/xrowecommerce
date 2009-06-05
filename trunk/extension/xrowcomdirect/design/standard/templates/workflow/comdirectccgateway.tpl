@@ -57,7 +57,7 @@
   <select id="expirationyear" name="expirationyear">
     <option value="">{"Year"|i18n("extension/xrowcomdirect")}</option>
     {* Dynamic Loop *}
-    {def $curr_year=currentdate()|datetime( 'custom', '%y' )|int }
+    {def $curr_year=currentdate()|datetime( 'custom', '%Y' )|int }
     {for $curr_year to $curr_year|sum(10) as $year}
       {if $year|lt(10)}{set $year=concat('0',$year)}{/if}
     <option value="{$year|wash()}"{if eq($expirationyear, $year)} selected="selected"{/if}>{$year|wash()}</option>
