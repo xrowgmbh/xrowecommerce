@@ -4,12 +4,12 @@ class xrowOrderStatusDefault
 {
     public $statusID;
 
-    function __construct( $statusID )
+    final public function __construct( $statusID )
     {
         $this->statusID = $statusID;
     }
 
-    function disallowedStatusList()
+    final public function disallowedStatusList()
     {
         if ( eZINI::instance( 'xrowecommerce.ini' )->hasVariable( 'StatusSettings', 'StatusDisallowList-' . $this->statusID ) )
         {
@@ -29,7 +29,7 @@ class xrowOrderStatusDefault
         }
     }
 
-    function canChangeStatus( xrowOrderStatusDefault $status )
+    final public function canChangeStatus( xrowOrderStatusDefault $status )
     {
         if ( ! in_array( $status->statusID, self::disallowedStatusList() ) )
         {
@@ -38,7 +38,7 @@ class xrowOrderStatusDefault
         return $allow;
     }
 
-    function changeStatus( eZOrder $order, xrowOrderStatusDefault $status )
+    final public function changeStatus( eZOrder $order, xrowOrderStatusDefault $status )
     {
         if ( $this->canChangeStatus( $status ) )
         {
