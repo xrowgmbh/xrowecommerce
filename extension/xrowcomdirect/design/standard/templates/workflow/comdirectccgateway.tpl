@@ -1,7 +1,7 @@
 <div class="shop shop-basket">
 {include uri="design:shop/basket_navigator.tpl" step='4'}
 
-<h1>{"Payment Information"|i18n("extension/xrowcomdirect")}</h1>
+<h1>{"Payment information"|i18n("extension/xrowcomdirect")}</h1>
 <ul>
 <li>{"Please enter your credit card information"|i18n("extension/xrowcomdirect")}</li>
 </ul>
@@ -18,7 +18,7 @@
 {/if}
 
 <form name="form" action={"/shop/checkout"|ezurl} method="post">
-<input type="submit" class="hide" style="display: hide;" name="validate" value="{'Continue'|i18n('extension/xrowecommerce')}" />
+<input type="submit" class="hide" style="display: hide;" name="validate" value="{'Continue'|i18n('extension/xrowcomdirect')}" />
 
 <table summary="{"Please enter your credit card information"|i18n("extension/xrowcomdirect")}">
 <tr>

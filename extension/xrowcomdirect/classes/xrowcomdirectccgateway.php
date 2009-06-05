@@ -12,6 +12,6 @@ class xrowComdirectCCGateway extends xrowComdirectBaseGateway
 
 }
 
-xrowEPayment::registerGateway( xrowComdirectCCGateway::GATEWAY_STRING, "xrowcomdirectccgateway", ezi18n( 'kernel/classes/datatypes', 'Credit card' ) );
+xrowEPayment::registerGateway( xrowComdirectCCGateway::GATEWAY_STRING, "xrowcomdirectccgateway", ezi18n( 'extension/xrowcomdirect', 'Credit card' ) );
 
 ?>

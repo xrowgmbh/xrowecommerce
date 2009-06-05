@@ -233,11 +233,6 @@ class xrowComdirectBaseGateway extends xrowEPaymentGateway
             $errors[] = $serverAnswer['rmsg'];
             # Umlaut character are converted. They shouldn`t since coposweb says they are latin one.
             #$errors[] = $codepage->convertString( $serverAnswer['rmsg'] );
-            
-
-            // Store data if needed
-            #$this->_storeAccountHandlerData( $process );
-            
 
             if ( $serverAnswer['rc'] === '000' )
             {
@@ -258,8 +253,16 @@ class xrowComdirectBaseGateway extends xrowEPaymentGateway
                     $root->appendChild( $invoice );
                     foreach ( $this->data as $key => $value )
                     {
-                        $node = $doc->createElement( $key, $value );
-                        $root->appendChild( $node );
+                    	if( xrowEPayment::storePaymentInformation() )
+                    	{
+                            $node = $doc->createElement( $key, $value );
+                            $root->appendChild( $node );
+                    	}
+                    	elseif ( in_array( $key, array( 'servercode', 'transactionid', 'servermsg' ) ) )
+                    	{
+                            $node = $doc->createElement( $key, $value );
+                            $root->appendChild( $node );
+                    	}
                     }
                     $order->setAttribute( 'data_text_1', $doc->saveXML() );
                     $order->store();
@@ -307,22 +310,6 @@ class xrowComdirectBaseGateway extends xrowEPaymentGateway
     static function addLeadingZero( $value )
     {
         return sprintf( "%02d", $value );
-    }
-
-    function _storeAccountHandlerData( &$process )
-    {
-        // @TODO refelect with php dom
-        $processParams = $process->attribute( 'parameter_list' );
-        $order = eZOrder::fetch( $processParams['order_id'] );
-        
-        $data = $this->data;
-        
-        $doc = new eZDOMDocument( 'account_information' );
-        $root = XROWRecurringordersCommonFunctions::createDOMTreefromArray( 'shop_account', $data );
-        $doc->setRoot( $root );
-        
-        $order->setAttribute( 'data_text_1', $doc->toString() );
-        $order->store();
     }
 
     function needCleanup()
