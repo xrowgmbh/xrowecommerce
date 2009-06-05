@@ -2,6 +2,7 @@
 
 class xrowProductAttributeNameList extends eZSerializedObjectNameList
 {
+
     function xrowProductAttributeNameList( $serializedNameList = false )
     {
         eZSerializedObjectNameList::eZSerializedObjectNameList( $serializedNameList );
@@ -20,7 +21,7 @@ class xrowProductAttributeNameList extends eZSerializedObjectNameList
             $attributeID = $productAttribute->attribute( 'id' );
             $languages = $productAttribute->attribute( 'languages' );
             $initialLanguageID = $productAttribute->attribute( 'initial_language_id' );
-
+            
             // update existing
             $productAttributeNames = xrowProductAttributeName::fetchList( $attributeID, array_keys( $languages ) );
             foreach ( $productAttributeNames as $attributeName )
@@ -29,12 +30,13 @@ class xrowProductAttributeNameList extends eZSerializedObjectNameList
                 $attributeName->setAttribute( 'name', $this->nameByLanguageLocale( $languageLocale ) );
                 if ( $initialLanguageID == $attributeName->attribute( 'language_id' ) )
                     $attributeName->setAttribute( 'language_id', $initialLanguageID | 1 );
-
+                
                 $attributeName->sync(); // avoid unnecessary sql-updates if nothing changed
+                
 
                 unset( $languages[$languageLocale] );
             }
-
+            
             // create new
             if ( count( $languages ) > 0 )
             {
@@ -43,15 +45,17 @@ class xrowProductAttributeNameList extends eZSerializedObjectNameList
                     $languageID = $language->attribute( 'id' );
                     if ( $initialLanguageID == $languageID )
                         $languageID = $initialLanguageID | 1;
-
-                    $attributeName = new xrowProductAttributeName( array( 'attribute_id' => $attributeID,
-                                                                'language_locale' => $languageLocale,
-                                                                'language_id' => $languageID,
-                                                                'name' => $this->nameByLanguageLocale( $languageLocale ) ) );
+                    
+                    $attributeName = new xrowProductAttributeName( array( 
+                        'attribute_id' => $attributeID , 
+                        'language_locale' => $languageLocale , 
+                        'language_id' => $languageID , 
+                        'name' => $this->nameByLanguageLocale( $languageLocale ) 
+                    ) );
                     $attributeName->store();
                 }
             }
-
+            
             $this->setHasDirtyData( false );
         }
     }
@@ -61,7 +65,7 @@ class xrowProductAttributeNameList extends eZSerializedObjectNameList
         xrowProductAttributeName::removeAttributeName( $productAttribute->attribute( 'id' ) );
     }
 
-
-};
+}
+;
 
 ?>
