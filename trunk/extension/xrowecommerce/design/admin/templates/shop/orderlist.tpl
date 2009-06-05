@@ -184,7 +184,7 @@
 	   <td>
         {def $stati = hash( '0', unpaid,  1, 'paid' )}
         {def $payment = fetch( 'xrowecommerce', 'payment_status', hash( 'id', $order.id ) )}
-        <select {if $payment.status|eq('1')} disabled{/if} name="PaymentStatusList[{$Orders.item.id}]" title="Payment via {$payment.payment_string}">
+        <select {if or( $payment.status|eq('1'), $payment.automatic_status )} disabled{/if} name="PaymentStatusList[{$Orders.item.id}]" title="Payment via {$payment.payment_string}">
         {foreach $stati as $key => $status}
             <option value="{$key}"
                 {if eq( $key, $payment.status )}selected="selected"{/if}>
@@ -232,11 +232,11 @@
 {/if}
 </div>
 <div class="button-right">
-    {section show=and( $order_list|count|gt( 0 ), $can_apply )}
+    {if and( $order_list|count|gt( 0 ), $can_apply )}
     <input class="button" type="submit" name="SaveOrderStatusButton" value="{'Apply changes'|i18n( 'design/admin/shop/orderlist' )}" title="{'Click this button to store changes if you have modified any of the fields above.'|i18n( 'design/admin/shop/orderlist' )}" />
-    {section-else}
+    {else}
     <input class="button-disabled" type="submit" name="SaveOrderStatusButton" value="{'Apply changes'|i18n( 'design/admin/shop/orderlist' )}" disabled="disabled" />
-    {/section}
+    {/if}
 </div>
 <div class="break"></div>
 

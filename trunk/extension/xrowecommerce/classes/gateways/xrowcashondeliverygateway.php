@@ -1,6 +1,7 @@
 <?php
-class xrowCashOnDeliveryGateway extends eZPaymentGateway
+class xrowCashOnDeliveryGateway extends xrowEPaymentGateway
 {
+	const AUTOMATIC_STATUS = false;
     const GATEWAY_STRING = "xrowCashOnDelivery";
     function execute ($process, $event)
     {

@@ -63,7 +63,7 @@ class xrowPaymentObject extends eZPersistentObject
                 'payment_string' => array( 
                     'name' => 'PaymentString' , 
                     'datatype' => 'string' , 
-                    'default' => 'Payment' , 
+                    'default' => '' , 
                     'required' => false 
                 ) , 
                 'status' => array( 
@@ -78,8 +78,17 @@ class xrowPaymentObject extends eZPersistentObject
             ) , 
             'increment_key' => 'id' , 
             'class_name' => 'xrowPaymentObject' , 
-            'name' => 'xrowPaymentObject' 
+            'name' => 'xrowPaymentObject' , 
+            'function_attributes' => array( 
+                'automatic_status' => 'automaticPaymentStatus' 
+            ) 
         );
+    }
+
+    public function automaticPaymentStatus()
+    {
+        $gateway = xrowEPayment::instanceGateway( $this->PaymentString );
+        return constant( get_class( $gateway ) . '::AUTOMATIC_STATUS' );
     }
 
     /*!

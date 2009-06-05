@@ -1,6 +1,7 @@
 <?php
-class xrowAdvancepaymentGateway extends eZPaymentGateway
+class xrowAdvancepaymentGateway extends xrowEPaymentGateway
 {
+	const AUTOMATIC_STATUS = false;
     const GATEWAY_STRING = "xrowAdvancepayment";
     function execute ($process, $event)
     {

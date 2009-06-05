@@ -1,9 +1,9 @@
 <?php
 
-class xrowInvoiceGateway extends eZPaymentGateway
+class xrowInvoiceGateway extends xrowEPaymentGateway
 {
     const GATEWAY_STRING = "xrowInvoice";
-
+    const AUTOMATIC_STATUS = false;
     function execute( $process, $event )
     {
         $processParams = $process->attribute( 'parameter_list' );
