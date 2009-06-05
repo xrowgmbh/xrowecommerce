@@ -9,6 +9,7 @@ class xrowEPayment
     const EUROCARD = 5;
     const PAYMENT_REQUEST_TYPE_AUTH_ONLY = 0;
     const PAYMENT_REQUEST_TYPE_AUTH_AND_CAPTURE = 1;
+
     /**
      * Instanciates the payment gateway
      *
@@ -17,7 +18,7 @@ class xrowEPayment
      */
     static function instanceGateway( $id )
     {
-            $classname = $id . 'Gateway';
+        $classname = $id . 'Gateway';
         if ( class_exists( $classname ) )
         {
             $gateway = new $classname( );
@@ -27,7 +28,7 @@ class xrowEPayment
             throw new Exception( "Gateway $classname does no longer exist." );
         }
     }
-    
+
     static function paymentRequestType()
     {
         $type = eZINI::instance( 'xrowecommerce.ini' )->variable( 'EPaymentSettings', 'PaymentRequestType' );
@@ -238,11 +239,11 @@ class xrowEPayment
             $errors[] = ezi18n( 'extension/xrowecommerce/epayment', 'Please enter the correct security code.' );
             $valid = false;
         }
-        $now = new DateTime();
-        $now->setTime( 0, 0, 0 );  
+        $now = new DateTime( );
+        $now->setTime( 0, 0, 0 );
         # Works from php5.3
         # $time = DateTime::createFromFormat( 'mY' . $data['month'] . $data['year'] );
-        $time = new DateTime();
+        $time = new DateTime( );
         $time->setDate( $data['year'], $data['month'], $now->format( 'd' ) );
         $time->setTime( 0, 0, 0 );
         

@@ -2,11 +2,15 @@
 
 class xrowEPaymentGateway extends eZPaymentGateway
 {
-	const AUTOMATIC_STATUS = true;
-    function capture( eZOrder $order ) {
-    	return true;
+    const AUTOMATIC_STATUS = true;
+
+    function capture( eZOrder $order )
+    {
+        return true;
     }
-    function cancel( eZOrder $order ) {
+
+    function cancel( eZOrder $order )
+    {
         return true;
     }
 }

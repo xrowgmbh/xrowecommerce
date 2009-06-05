@@ -8,7 +8,7 @@ class xrowOrderStatusPaid extends xrowOrderStatusDefault
         if ( xrowEPayment::paymentRequestType() != xrowEPayment::PAYMENT_REQUEST_TYPE_AUTH_AND_CAPTURE )
         {
             $data = $order->attribute( 'account_information' );
-            $classname = $data[xrowECommerce::ACCOUNT_KEY_PAYMENTMETHOD]. 'Gateway';
+            $classname = $data[xrowECommerce::ACCOUNT_KEY_PAYMENTMETHOD] . 'Gateway';
             if ( class_exists( $classname ) )
             {
                 $gateway = new $classname( );

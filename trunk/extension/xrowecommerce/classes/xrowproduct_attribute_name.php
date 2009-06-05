@@ -68,8 +68,7 @@ class xrowProductAttributeName extends eZPersistentObject
                     'default' => '' , 
                     'required' => false 
                 ) 
-            )
-             , 
+            ) , 
             'keys' => array( 
                 'attribute_id' , 
                 'language_locale' 
