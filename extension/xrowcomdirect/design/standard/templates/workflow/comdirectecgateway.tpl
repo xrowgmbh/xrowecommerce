@@ -24,11 +24,11 @@
 <table summary="{"Please enter your credit card information"|i18n("extension/xrowcomdirect")}">
 <tr>
 <td>{"Name of account"|i18n("extension/xrowcomdirect")}:</td>
-<td><input type="text" size="27" name="name" value="{$name|wash()}" /></td>
+<td><input type="text" size="27" name="name" value="{$ecname|wash()}" /></td>
 </tr>
 <tr>
 <td>{"Account number"|i18n("extension/xrowcomdirect")}:</td>
-<td><input id="number" type="text" size="10" name="number" value="{$number|wash()}" /></td>
+<td><input id="number" type="text" size="10" name="number" value="{$accountnumber|wash()}" /></td>
 </tr>
 <tr>
 <td>{"Bank code"|i18n("extension/xrowcomdirect")}: </td>

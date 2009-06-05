@@ -1,19 +1,102 @@
 <?php
 
-class xrowComdirectBaseGateway extends eZPaymentGateway
+class xrowComdirectBaseGateway extends xrowEPaymentGateway
 {
     const MAX_STRING_LEN = 27;
 
-    function execute( $process, $event )
+    public function cancel( eZOrder $order )
     {
-        $http = eZHTTPTool::instance();
-        $shopINI = eZINI::instance( 'shop.ini' );
+        // client data
+        // get order information out of eZXML
+        $xmlDoc = $order->attribute( 'data_text_1' );
+        $clientInfo = simplexml_load_string( $xmlDoc );
+        
+        $fields['trefnum'] = (string) $clientInfo->{xrowECommerce::ACCOUNT_KEY_TRANSACTIONID};
+        
+        $fields['command'] = 'reversal';
+        $serverAnswer = self::transaction( $fields );
+        if ( $serverAnswer['rc'] === '000' )
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    
+    }
+
+    public function capture( eZOrder $order )
+    {
+        // client data
+        // get order information out of eZXML
+        $xmlDoc = $order->attribute( 'data_text_1' );
+        $clientInfo = simplexml_load_string( $xmlDoc );
+        
+        $fields['trefnum'] = (string) $clientInfo->{xrowECommerce::ACCOUNT_KEY_TRANSACTIONID};
+        // get total order amount, including tax
+        $amount = $order->attribute( 'total_inc_vat' );
+        if ( $amount < 1 )
+        {
+            throw new Exception( 'Will not accept tiny payments' );
+        }
+        // amount in cent
+        $fields['amount'] = floor( $amount * 100 );
+        $fields['command'] = 'capture';
+        $serverAnswer = self::transaction( $fields );
+        if ( $serverAnswer['rc'] === '000' )
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    
+    }
+
+    static function transaction( $fields )
+    {
         $xrowcomdirectINI = eZINI::instance( 'xrowcomdirect.ini' );
         
         $user = $xrowcomdirectINI->variable( 'ServerSettings', 'Username' );
         $password = $xrowcomdirectINI->variable( 'ServerSettings', 'Password' );
         $serverLink = $xrowcomdirectINI->variable( 'ServerSettings', 'ServerRequestLink' );
         $requestTimeout = $xrowcomdirectINI->variable( 'ServerSettings', 'RequestTimeout' );
+        
+        $options['timeout'] = 30;
+        $options['httpauth'] = $user . ':' . $password;
+        $options['httpauthtype'] = HTTP_AUTH_BASIC;
+        
+        $request = new HttpRequest( $serverLink, HTTP_METH_POST, $options );
+        $request->addPostFields( $fields );
+        $file = eZSys::rootDir() . '/' . eZExtension::baseDirectory() . '/xrowcomdirect/cacert.pem';
+        if ( ! file_exists( $file ) )
+        {
+            throw new Exception( "Certificate file cacert.pem not found." );
+        }
+        eZDebug::writeDebug( $fields, 'Payment server request' );
+        $result = $request->send()->getBody();
+        eZDebug::writeDebug( $result, 'Payment server answer' );
+        $resultArray = explode( '&', $result );
+        $serverAnswer = array();
+        foreach ( $resultArray as $item )
+        {
+            $dummy = explode( '=', $item, 2 );
+            if ( count( $dummy ) == 2 )
+            {
+                $serverAnswer[urldecode( $dummy[0] )] = urldecode( $dummy[1] );
+            }
+        }
+        eZDebug::writeDebug( $serverAnswer, 'Payment server response' );
+        return $serverAnswer;
+    }
+
+    function execute( $process, $event )
+    {
+        $http = eZHTTPTool::instance();
+        $shopINI = eZINI::instance( 'shop.ini' );
+        $xrowcomdirectINI = eZINI::instance( 'xrowcomdirect.ini' );
         
         // make the order object
         $processParams = $process->attribute( 'parameter_list' );
@@ -51,9 +134,8 @@ class xrowComdirectBaseGateway extends eZPaymentGateway
         
         if ( $this->data === null or ( $this->data and ! xrowEPayment::validateCardData( $this->data, $errors ) ) )
         {
-            $class = get_class( $this );
             $process->Template = array();
-            $process->Template['templateName'] = constant( $class . '::TEMPLATE' );
+            $process->Template['templateName'] = constant( get_class( $this ) . '::TEMPLATE' );
             $process->Template['templateVars'] = array( 
                 'event' => $event , 
                 'errors' => $errors 
@@ -80,7 +162,15 @@ class xrowComdirectBaseGateway extends eZPaymentGateway
         $comini = eZINI::instance( 'xrowcomdirect.ini' );
         // only EUR is supported
         $currencyCode = 'EUR';
-        $command = 'authorization';
+        if ( xrowEPayment::paymentRequestType() == xrowEPayment::PAYMENT_REQUEST_TYPE_AUTH_AND_CAPTURE )
+        {
+            $command = 'authorization';
+        }
+        else
+        {
+            $command = 'preauthorization';
+        }
+        
         if ( $order->OrderNr )
         {
             $transactionstring = $comini->variable( 'Settings', 'BookingString' );
@@ -91,7 +181,7 @@ class xrowComdirectBaseGateway extends eZPaymentGateway
             $transactionstring = $comini->variable( 'Settings', 'TransactionString' );
             $number = $order->ID;
         }
-        
+        $number = $number . " " . time();
         $maxlen = self::MAX_STRING_LEN - strlen( $number ) - 1;
         $bookingstr = substr( $transactionstring, 0, $maxlen ) . " " . $number;
         //alllowed a-zA-Z0-9._-
@@ -132,62 +222,61 @@ class xrowComdirectBaseGateway extends eZPaymentGateway
             );
         }
         
-        $options['timeout'] = 30;
-        $options['httpauth'] = $user . ':' . $password;
-        $options['httpauthtype'] = HTTP_AUTH_BASIC;
-        
-        $request = new HttpRequest( $serverLink, HTTP_METH_POST, $options );
-        $request->addPostFields( $fields );
-        $file = eZSys::rootDir() . '/' . eZExtension::baseDirectory() . '/xrowcomdirect/cacert.pem';
-        if ( ! file_exists( $file ) )
-        {
-            throw new Exception( "Certificate file cacert.pem not found." );
-        }
-        eZDebug::writeDebug( $fields, 'Payment server request' );
         try
         {
-            $result = $request->send()->getBody();
             
-            eZDebug::writeDebug( $result, 'Payment server answer' );
-            $resultArray = explode( '&', $result );
-            $serverAnswer = array();
-            foreach ( $resultArray as $item )
-            {
-                $dummy = explode( '=', $item, 2 );
-                if ( count( $dummy ) == 2 )
-                    $serverAnswer[urldecode( $dummy[0] )] = urldecode( $dummy[1] );
-            }
-            
+            $serverAnswer = self::transaction( $fields );
             $this->data['servercode'] = $serverAnswer['rc'];
             $this->data['transactionid'] = $serverAnswer['trefnum'];
             $this->data['servermsg'] = $serverAnswer['rmsg'];
+            
+            $errors[] = $serverAnswer['rmsg'];
+            # Umlaut character are converted. They shouldn`t since coposweb says they are latin one.
+            #$errors[] = $codepage->convertString( $serverAnswer['rmsg'] );
+            
+
             // Store data if needed
             #$this->_storeAccountHandlerData( $process );
-            eZDebug::writeDebug( $this->data, 'Payment' );
+            
+
             if ( $serverAnswer['rc'] === '000' )
             {
                 // payment is approved
                 eZDebug::writeDebug( 'Payment accepted: ' . $this->data['servermsg'], 'Payment' );
-                $order->modifyStatus( 3 );
+                if ( $command == 'authorization' and (int) $xrowcomdirectINI->variable( 'Settings', 'StatusID' ) )
+                {
+                    $order->modifyStatus( (int) $xrowcomdirectINI->variable( 'Settings', 'StatusID' ) );
+                }
+                
                 $xmlstring = $order->attribute( 'data_text_1' );
                 if ( $xmlstring != null )
                 {
                     $doc = new DOMDocument( );
                     $doc->loadXML( $xmlstring );
                     $root = $doc->documentElement;
-                    $invoice = $doc->createElement( xrowECommerce::ACCOUNT_KEY_PAYMENTMETHOD, self::GATEWAY_STRING );
+                    $invoice = $doc->createElement( xrowECommerce::ACCOUNT_KEY_PAYMENTMETHOD, constant( get_class( $this ) . '::GATEWAY_STRING' ) );
                     $root->appendChild( $invoice );
+                    foreach ( $this->data as $key => $value )
+                    {
+                        $node = $doc->createElement( $key, $value );
+                        $root->appendChild( $node );
+                    }
                     $order->setAttribute( 'data_text_1', $doc->saveXML() );
                     $order->store();
+                }
+                $payment = xrowPaymentObject::createNew( $process->ID, $order->ID, $bookingstr );
+                $payment->store();
+                if ( xrowEPayment::paymentRequestType() == xrowEPayment::PAYMENT_REQUEST_TYPE_AUTH_AND_CAPTURE )
+                {
+                    $payment->modifyStatus( xrowPaymentObject::STATUS_APPROVED );
                 }
                 return eZWorkflowType::STATUS_ACCEPTED;
             }
             else
             {
-            	$errors[] = $this->data['servermsg'];
-                $class = get_class( $this );
+                $errors[] = $this->data['servermsg'];
                 $process->Template = array();
-                $process->Template['templateName'] = constant( $class . '::TEMPLATE' );
+                $process->Template['templateName'] = constant( get_class( $this ) . '::TEMPLATE' );
                 $process->Template['templateVars'] = array( 
                     'event' => $event , 
                     'errors' => $errors 
@@ -198,11 +287,10 @@ class xrowComdirectBaseGateway extends eZPaymentGateway
                 }
                 return eZWorkflowType::STATUS_FETCH_TEMPLATE_REPEAT;
             }
-        
         }
         catch ( HttpException $e )
         {
-            eZDebug::writeError( $e->toString(), 'error' );
+            eZDebug::writeError( $e->getMessage(), 'error' );
         }
         
         return eZWorkflowType::STATUS_REJECTED;
