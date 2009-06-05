@@ -21,7 +21,7 @@ class xrowEPayment
         $classname = $id . 'Gateway';
         if ( class_exists( $classname ) )
         {
-            $gateway = new $classname( );
+            return new $classname( );
         }
         else
         {
