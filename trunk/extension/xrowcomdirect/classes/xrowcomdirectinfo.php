@@ -65,91 +65,14 @@ class xrowComDirectInfo
 
     function validateECData( &$contentObjectAttribute, &$classAttribute, $data )
     {
-        // validate eurocard
-        if ( strlen( $data['ecname'] ) == 0 )
-        {
-            $contentObjectAttribute->setValidationError( ezi18n( 'kernel/classes/datatypes', 'Please enter the name of the bank account.' ) );
-            return false;
-        }
-        if ( ! preg_match( "/^[0-9]{1,10}$/", $data['accountnumber'] ) )
-        {
-            $contentObjectAttribute->setValidationError( ezi18n( 'kernel/classes/datatypes', 'Please enter your correct account number (max. 10 numbers)' ) );
-            return false;
-        }
-        if ( ! preg_match( "/^[0-9]{8}$/", $data['bankcode'] ) )
-        {
-            $contentObjectAttribute->setValidationError( ezi18n( 'kernel/classes/datatypes', 'Please enter your correct bank code (8 numbers)' ) );
-            return false;
-        }
-        
-        $ecINI = & eZINI::instance( 'xrowcomdirect.ini' );
-        $testMode = $ecINI->variable( 'ServerSettings', 'TestMode' ) == 'enabled' ? true : false;
-        
-        if ( ! $testMode )
-        {
-            if ( xrowComDirectInfo::validateECCard( $contentObjectAttribute, $classAttribute, $data ) == false )
-            {
-                $contentObjectAttribute->setValidationError( ezi18n( 'kernel/classes/datatypes', 'The account number or the bank code was not accepted.
-                                                                  Please check the eurocard data.' ) );
-                return false;
-            }
-        }
-        else
-        {
-            eZDebug::writeDebug( 'Test mode enabled.', 'xrowComDirectInfo::validateCardData()' );
-        }
-        return true;
+die("TODO rewrite");
+xrowEPayment::validateECData();
     }
 
     function validateCCData( &$contentObjectAttribute, &$classAttribute, $data )
     {
-        if ( $data['name'] == '' )
-        {
-            $contentObjectAttribute->setValidationError( ezi18n( 'kernel/classes/datatypes', 'Please enter a name' ) );
-            return false;
-        }
-        if ( ! preg_match( "/^[0-9]{1,19}$/", $data['number'] ) )
-        {
-            $contentObjectAttribute->setValidationError( ezi18n( 'kernel/classes/datatypes', 'Creditcard number is not a number' ) );
-            return false;
-        }
-        
-        if ( $data['type'] == XROWCREDITCARD_TYPE_AMERICANEXPRESS )
-            $maxDigits = 4;
-        else
-            $maxDigits = 3;
-        if ( ! preg_match( "/^[0-9]{3,$maxDigits}$/", $data['securitycode'] ) )
-        {
-            $contentObjectAttribute->setValidationError( ezi18n( 'kernel/classes/datatypes', 'Please enter the correct CVV2 code.' ) );
-            return false;
-        }
-        
-        include_once ( 'lib/ezlocale/classes/ezdatetime.php' );
-        $time = eZDateTime::create( - 1, - 1, - 1, $data['month'], - 1, $data['year'] );
-        $now = new eZDateTime( false );
-        if ( $now->isGreaterThan( $time ) )
-        {
-            $contentObjectAttribute->setValidationError( ezi18n( 'kernel/classes/datatypes', 'Your creditcard is expired.' ) );
-            return false;
-        }
-        
-        $ecINI = & eZINI::instance( 'xrowcomdirect.ini' );
-        $testMode = $ecINI->variable( 'ServerSettings', 'TestMode' ) == 'enabled' ? true : false;
-        
-        if ( ! $testMode )
-        {
-            // validate credit card using xrowcomdirect gateway
-            if ( xrowComDirectInfo::validateCreditCard( $contentObjectAttribute, $classAttribute, $data ) == false )
-            {
-                $contentObjectAttribute->setValidationError( ezi18n( 'kernel/classes/datatypes', 'The creditcard was not accepted.
-                                                                  Please check the creditcard data.' ) );
-                return false;
-            }
-        }
-        else
-            eZDebug::writeDebug( 'Test mode enabled.', 'xrowComDirectInfo::validateCCData()' );
-        
-        return true;
+die("TODO rewrite");
+xrowEPayment::validateCCData();
     }
 
     /*!
