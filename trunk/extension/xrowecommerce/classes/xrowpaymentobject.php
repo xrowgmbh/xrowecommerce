@@ -78,7 +78,7 @@ class xrowPaymentObject extends eZPersistentObject
             ) , 
             'increment_key' => 'id' , 
             'class_name' => 'xrowPaymentObject' , 
-            'name' => 'xrowPaymentObject' , 
+            'name' => 'xrowpaymentobject' , 
             'function_attributes' => array( 
                 'automatic_status' => 'automaticPaymentStatus' 
             ) 
