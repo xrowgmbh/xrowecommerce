@@ -2,6 +2,7 @@
 
 class xrowVerification
 {
+
     function verify( $http )
     {
         include_once ( "extension/xrowecommerce/classes/recaptchalib.php" );

@@ -1,10 +1,12 @@
 <?php
+
 /**
  * class xrowProductData
  * Handles the product variation data
  */
 class xrowProductData extends eZPersistentObject
 {
+
     function xrowProductData( $row )
     {
         $this->eZPersistentObject( $row );
@@ -12,53 +14,62 @@ class xrowProductData extends eZPersistentObject
 
     static function definition()
     {
-        if ( !isset( $GLOBALS['xrowproductdata_def'] ) )
+        if ( ! isset( $GLOBALS['xrowproductdata_def'] ) )
         {
             $db = eZDB::instance();
             $sql = "SHOW COLUMNS FROM xrowproduct_data";
             $columnArray = $db->arrayQuery( $sql );
-
+            
             $def = array();
-
+            
             foreach ( $columnArray as $item )
             {
                 $key = $item['Field'];
-
+                
                 $column = array();
                 $column['name'] = $key;
-
+                
                 if ( strtolower( substr( $item['Type'], 0, 7 ) ) == 'varchar' )
                 {
                     $column['datatype'] = 'string';
                     if ( preg_match( "/varchar\((\d{0,3})\)/i", $item['Type'], $matches ) )
                         $column['max_length'] = $matches[1];
                 }
-                else if ( preg_match( "/int/i", $item['Type'], $matches ) )
-                    $column['datatype'] = 'integer';
-                else if ( preg_match( "/float/i", $item['Type'], $matches ) )
-                    $column['datatype'] = 'float';
-                else if ( preg_match( "/text/", $item['Type'], $matches ) )
-                    $column['datatype'] = 'text';
-                else
-                    eZDebug::writeError( 'Unknown column type: ' . $item['Type'], 'xrowProductData::definition()' );
-
+                else 
+                    if ( preg_match( "/int/i", $item['Type'], $matches ) )
+                        $column['datatype'] = 'integer';
+                    else 
+                        if ( preg_match( "/float/i", $item['Type'], $matches ) )
+                            $column['datatype'] = 'float';
+                        else 
+                            if ( preg_match( "/text/", $item['Type'], $matches ) )
+                                $column['datatype'] = 'text';
+                            else
+                                eZDebug::writeError( 'Unknown column type: ' . $item['Type'], 'xrowProductData::definition()' );
+                
                 $column['required'] = false;
                 $column['default'] = null;
                 $key = $key;
                 $def['fields'][$key] = $column;
             }
-
-            $GLOBALS['xrowproductdata_def'] = array_merge( $def,
-                                                            array(
-                                                                  'function_attributes' => array( 'template' => 'fetchTemplate',
-                                                                                                  'contentobject_attribute' => 'contentObjectAttribute',
-                                                                                                  'variation_name' => 'getVariationName' ),
-                                                                  'keys' => array( 'id' ),
-                                                                  'sort' => array( 'id' => 'asc' ),
-                                                                  'class_name' => 'xrowProductData',
-                                                                  'name' => 'xrowproduct_data' ) );
+            
+            $GLOBALS['xrowproductdata_def'] = array_merge( $def, array( 
+                'function_attributes' => array( 
+                    'template' => 'fetchTemplate' , 
+                    'contentobject_attribute' => 'contentObjectAttribute' , 
+                    'variation_name' => 'getVariationName' 
+                ) , 
+                'keys' => array( 
+                    'id' 
+                ) , 
+                'sort' => array( 
+                    'id' => 'asc' 
+                ) , 
+                'class_name' => 'xrowProductData' , 
+                'name' => 'xrowproduct_data' 
+            ) );
         }
-
+        
         return $GLOBALS['xrowproductdata_def'];
     }
 
@@ -86,7 +97,7 @@ class xrowProductData extends eZPersistentObject
         $newVariation->setAttribute( 'language_code', $languageCode );
         if ( $version !== false )
             $newVariation->setAttribute( 'version', $version );
-
+        
         $template = $this->attribute( 'template' );
         if ( $template )
         {
@@ -97,11 +108,7 @@ class xrowProductData extends eZPersistentObject
                 $field = $attribute['attribute']->Identifier;
                 if ( $dataType )
                 {
-                    $newVariation->setAttribute( $field,
-                                                 $dataType->cloneVariation( $this->attribute( $field ),
-                                                                            $this,
-                                                                            $attribute,
-                                                                            $template ) );
+                    $newVariation->setAttribute( $field, $dataType->cloneVariation( $this->attribute( $field ), $this, $attribute, $template ) );
                 }
             }
         }
@@ -113,12 +120,11 @@ class xrowProductData extends eZPersistentObject
         $num = 0;
         if ( $asObject )
             $num = 1;
-        if ( !isset( $GLOBALS['xrowproductdatavariation'][$id][$num] ) )
+        if ( ! isset( $GLOBALS['xrowproductdatavariation'][$id][$num] ) )
         {
-            $GLOBALS['xrowproductdatavariation'][$id][$num] = eZPersistentObject::fetchObject( self::definition(),
-                                                                                               null,
-                                                                                               array( "id" => $id ),
-                                                                                               $asObject );
+            $GLOBALS['xrowproductdatavariation'][$id][$num] = eZPersistentObject::fetchObject( self::definition(), null, array( 
+                "id" => $id 
+            ), $asObject );
         }
         return $GLOBALS['xrowproductdatavariation'][$id][$num];
     }
@@ -128,9 +134,9 @@ class xrowProductData extends eZPersistentObject
         $id = $this->attribute( 'id' );
         if ( $id and isset( $GLOBALS['xrowproductdatavariation'][$id] ) )
             unset( $GLOBALS['xrowproductdatavariation'][$id] );
-
+        
         parent::storeObject( $this, $fieldFilters );
-
+        
         $template = $this->attribute( 'template' );
         if ( $template )
         {
@@ -148,17 +154,15 @@ class xrowProductData extends eZPersistentObject
 
     function metaData()
     {
-    	$result = "";
-    	$template = $this->attribute( 'template' );
+        $result = "";
+        $template = $this->attribute( 'template' );
         if ( $template )
         {
             foreach ( $template->AttributeList as $attribute )
             {
                 $dataType = $attribute['attribute']->dataType();
                 $field = $attribute['attribute']->Identifier;
-                if ( $dataType and
-                     isset( $attribute['search'] ) and
-                     $attribute['search'] == true )
+                if ( $dataType and isset( $attribute['search'] ) and $attribute['search'] == true )
                 {
                     $result .= " " . $dataType->metaData( $this, $field );
                 }
@@ -174,40 +178,36 @@ class xrowProductData extends eZPersistentObject
      */
     public function getVariationName()
     {
-    	$result = "";
+        $result = "";
         $template = $this->attribute( 'template' );
         if ( $template )
         {
             $attribute = $this->contentObjectAttribute();
-        	$cObj = $attribute->content();
-        	if ( $cObj )
-        	{
-        	    $content = $cObj->attribute( 'content' );
-        	    $columnNameArray = $content['column_name_array'];
-        	}
+            $cObj = $attribute->content();
+            if ( $cObj )
+            {
+                $content = $cObj->attribute( 'content' );
+                $columnNameArray = $content['column_name_array'];
+            }
             $xrowIni = eZINI::instance( 'xrowproduct.ini' );
-        	$delimiter = $xrowIni->variable( 'XrowProductDataTypes', 'NameDelimiter' );
-        	foreach ( $template->AttributeList as $attribute )
+            $delimiter = $xrowIni->variable( 'XrowProductDataTypes', 'NameDelimiter' );
+            foreach ( $template->AttributeList as $attribute )
             {
                 $dataType = $attribute['attribute']->dataType();
                 $id = $attribute['attribute']->Identifier;
                 $field = $id;
-                if ( $dataType and
-                     isset( $attribute['search'] ) and
-                     $attribute['search'] === true and
-                     isset( $attribute['frontend'] ) and
-                     $attribute['frontend'] === true )
+                if ( $dataType and isset( $attribute['search'] ) and $attribute['search'] === true and isset( $attribute['frontend'] ) and $attribute['frontend'] === true )
                 {
                     $colName = '';
                     if ( isset( $columnNameArray[$id] ) )
                         $colName = $columnNameArray[$id];
                     else
                         $colName = $attribute['column_name'];
-
+                    
                     $value = $dataType->metaName( $this, $field );
                     if ( $value !== false )
                     {
-                        $result .= " $colName: $value" .  $delimiter;
+                        $result .= " $colName: $value" . $delimiter;
                     }
                 }
             }
@@ -216,38 +216,29 @@ class xrowProductData extends eZPersistentObject
         return $result;
     }
 
-    static function fetchList( $conditions = null,
-                               $asObjects = true,
-                               $offset = false,
-                               $limit = false,
-                               $sortBy = array() )
+    static function fetchList( $conditions = null, $asObjects = true, $offset = false, $limit = false, $sortBy = array() )
     {
         $limitation = null;
         if ( $offset !== false or $limit !== false )
-            $limitation = array( 'offset' => $offset, 'length' => $limit );
-
-        $result = eZPersistentObject::fetchObjectList( self::definition(),
-                                                    null,
-                                                    $conditions,
-                                                    $sortBy,
-                                                    $limitation,
-                                                    $asObjects );
+            $limitation = array( 
+                'offset' => $offset , 
+                'length' => $limit 
+            );
+        
+        $result = eZPersistentObject::fetchObjectList( self::definition(), null, $conditions, $sortBy, $limitation, $asObjects );
         return $result;
     }
 
     static function fetchListCount( $conditions, $type = false )
     {
-        $custom = array( array( 'operation' => 'count( id )',
-                                'name' => 'count' ) );
-
-        $rows = eZPersistentObject::fetchObjectList( self::definition(),
-                                                     array(),
-                                                     $conditions,
-                                                     null,
-                                                     null,
-                                                     false,
-                                                     false,
-                                                     $custom );
+        $custom = array( 
+            array( 
+                'operation' => 'count( id )' , 
+                'name' => 'count' 
+            ) 
+        );
+        
+        $rows = eZPersistentObject::fetchObjectList( self::definition(), array(), $conditions, null, null, false, false, $custom );
         return $rows[0]['count'];
     }
 
@@ -257,10 +248,10 @@ class xrowProductData extends eZPersistentObject
         $db = eZDB::instance();
         $db->begin();
         $attributeList = xrowProductAttribute::fetchList( array(), true, false, false );
-
+        
         if ( count( $attributeList ) > 0 )
         {
-            foreach( $attributeList as $attribute )
+            foreach ( $attributeList as $attribute )
             {
                 $dataType = $attribute->dataType();
                 if ( $dataType )
@@ -269,12 +260,14 @@ class xrowProductData extends eZPersistentObject
                 }
             }
         }
-
+        
         if ( isset( $GLOBALS['xrowproductdatavariation'][$id] ) )
             unset( $GLOBALS['xrowproductdatavariation'][$id] );
-
-        eZPersistentObject::removeObject( $this->definition(), array( 'id' => $id ), null );
-
+        
+        eZPersistentObject::removeObject( $this->definition(), array( 
+            'id' => $id 
+        ), null );
+        
         $db->commit();
     }
 
@@ -292,13 +285,21 @@ class xrowProductData extends eZPersistentObject
         $objectID = $attribute->attribute( 'contentobject_id' );
         $languageCode = $attribute->attribute( 'language_code' );
         $version = $attribute->attribute( 'version' );
-
-    	$params = array( 'contentobject_id' => $objectID,
-                         'version' => $version,
-    	                 'contentclassattribute_id' => $classAttributeID,
-                         'language_code' => array( '!=', $languageCode ) );
-
-        return self::fetchObjectList( eZContentObjectAttribute::definition(), array( 'id', 'language_code' ), $params );
+        
+        $params = array( 
+            'contentobject_id' => $objectID , 
+            'version' => $version , 
+            'contentclassattribute_id' => $classAttributeID , 
+            'language_code' => array( 
+                '!=' , 
+                $languageCode 
+            ) 
+        );
+        
+        return self::fetchObjectList( eZContentObjectAttribute::definition(), array( 
+            'id' , 
+            'language_code' 
+        ), $params );
     }
 
     /**
@@ -324,8 +325,8 @@ class xrowProductData extends eZPersistentObject
     {
         $xINI = eZINI::instance( 'xrowproduct.ini' );
         $priceField = $xINI->variable( 'PriceSettings', 'PriceIdentifier' );
-
-    	$db = eZDB::instance();
+        
+        $db = eZDB::instance();
         $sql = "SELECT
                     COUNT(*) counter
                 FROM
@@ -337,16 +338,16 @@ class xrowProductData extends eZPersistentObject
                     AND a.language_code = '$language'
                     AND a.$priceField = b.price_id
                     AND b.amount > 1";
-
+        
         $result = $db->arrayQuery( $sql );
-
+        
         if ( $result[0]['counter'] > 0 )
         {
-        	return true;
+            return true;
         }
         else
         {
-        	return false;
+            return false;
         }
     }
 
@@ -359,12 +360,12 @@ class xrowProductData extends eZPersistentObject
      */
     public static function fetchDataBySKU( $sku, $asObject = true )
     {
-    	$xINI = eZINI::instance( 'xrowproduct.ini' );
+        $xINI = eZINI::instance( 'xrowproduct.ini' );
         $skuField = $xINI->variable( 'ExportSettings', 'SKUIdentifier' );
-
+        
         $defaultLanguage = eZContentLanguage::topPriorityLanguage();
         $languageCode = $defaultLanguage->attribute( 'locale' );
-
+        
         $db = eZDB::instance();
         $skuSql = $db->escapeString( $sku );
         $sql = "SELECT
@@ -379,41 +380,41 @@ class xrowProductData extends eZPersistentObject
                     AND b.contentobject_is_published = 1
                     AND b.is_hidden = 0
                     AND b.is_invisible = 0";
-
+        
         $result = $db->arrayQuery( $sql );
-
+        
         if ( count( $result ) > 0 )
         {
-        	$languageArray = array();
-        	foreach( $result as $item )
-        	{
-        		$language = $item['language_code'];
-        		$languageArray[$language] = $item;
-        	}
-
-        	if ( isset( $languageArray[$languageCode] ) )
-        	{
-        		if ( $asObject )
+            $languageArray = array();
+            foreach ( $result as $item )
+            {
+                $language = $item['language_code'];
+                $languageArray[$language] = $item;
+            }
+            
+            if ( isset( $languageArray[$languageCode] ) )
+            {
+                if ( $asObject )
                     return new xrowProductData( $languageArray[$languageCode] );
                 else
                     return $languageArray[$languageCode];
-        	}
-        	else
-        	{
-        		$prioLangArray = eZContentLanguage::prioritizedLanguageCodes();
+            }
+            else
+            {
+                $prioLangArray = eZContentLanguage::prioritizedLanguageCodes();
                 foreach ( $prioLangArray as $currentLang )
                 {
-		            if ( $languageCode == $currentLang )
+                    if ( $languageCode == $currentLang )
                         continue;
-                	if ( isset( $languageArray[$currentLang] ) )
-		            {
-		                if ( $asObject )
-		                    return new xrowProductData( $languageArray[$currentLang] );
-		                else
-		                    return $languageArray[$currentLang];
-		            }
+                    if ( isset( $languageArray[$currentLang] ) )
+                    {
+                        if ( $asObject )
+                            return new xrowProductData( $languageArray[$currentLang] );
+                        else
+                            return $languageArray[$currentLang];
+                    }
                 }
-        	}
+            }
         }
     }
 }

@@ -13,23 +13,23 @@ class xrowProductVariationPrice extends eZSimplePrice
     public function __construct( $classAttribute, $contentObjectAttribute, $content, $storedPrice = null )
     {
         eZSimplePrice::eZSimplePrice( $classAttribute, $contentObjectAttribute, $storedPrice );
-
+        
         $isVatIncluded = false;
-
+        
         $productINI = eZINI::instance( 'xrowproduct.ini' );
-        if ( trim( $productINI->variable( 'PriceSettings', 'IsVATInclude') ) == 'false')
+        if ( trim( $productINI->variable( 'PriceSettings', 'IsVATInclude' ) ) == 'false' )
             $isVatIncluded = false;
         else
             $isVatIncluded = true;
-
+        
         $VATID = $productINI->variable( 'PriceSettings', 'VATTypeID' );
-
+        
         $this->setVatIncluded( $isVatIncluded );
         $this->setVatType( $VATID );
-
+        
         $this->IsDataDirty = false;
         $this->ContentObjectAttribute = $contentObjectAttribute;
-
+        
         $this->Content = $content;
     }
 
@@ -38,24 +38,25 @@ class xrowProductVariationPrice extends eZSimplePrice
     */
     public function attributes()
     {
-        return array_unique( array_merge( array( 'content',
-                                                 'template_list',
-                                                 'template_id',
-                                                 'template',
-                                                 'data',
-                                                 'column_name_array',
-                                                 'column_desc_array',
-                                                 'error',
-                                                 'currency_list',
-                                                 'auto_currency_list',
-                                                 'price_list',
-                                                 'auto_price_list',
-                                                 'custom_price_list',
-                                                 'inc_vat_price_list',
-                                                 'ex_vat_price_list',
-                                                 'discount_inc_vat_price_list',
-                                                 'discount_ex_vat_price_list' ),
-                                          eZSimplePrice::attributes() ) );
+        return array_unique( array_merge( array( 
+            'content' , 
+            'template_list' , 
+            'template_id' , 
+            'template' , 
+            'data' , 
+            'column_name_array' , 
+            'column_desc_array' , 
+            'error' , 
+            'currency_list' , 
+            'auto_currency_list' , 
+            'price_list' , 
+            'auto_price_list' , 
+            'custom_price_list' , 
+            'inc_vat_price_list' , 
+            'ex_vat_price_list' , 
+            'discount_inc_vat_price_list' , 
+            'discount_ex_vat_price_list' 
+        ), eZSimplePrice::attributes() ) );
     }
 
     /*!
@@ -74,88 +75,102 @@ class xrowProductVariationPrice extends eZSimplePrice
     {
         switch ( $attr )
         {
-        	case 'content':
-       		{
-       			return $this->Content;
-       		}break;
-        	case 'template_list':
+            case 'content':
+                {
+                    return $this->Content;
+                }
+                break;
+            case 'template_list':
             case 'template_id':
             case 'template':
             case 'data':
             case 'column_name_array':
             case 'column_desc_array':
             case 'error':
-       		{
-       			return $this->Content[$attr];
-       		}break;
-
+                {
+                    return $this->Content[$attr];
+                }
+                break;
+            
             case 'price':
-           	{
-           		// price is added as option
-           		return 0.0;
-           	}break;
-
+                {
+                    // price is added as option
+                    return 0.0;
+                }
+                break;
+            
             case 'currency':
-           	{
-           		return $this->currency();
-           	}break;
-
-           	case 'currency_list':
-            {
-                return $this->currencyList();
-            } break;
-
+                {
+                    return $this->currency();
+                }
+                break;
+            
+            case 'currency_list':
+                {
+                    return $this->currencyList();
+                }
+                break;
+            
             case 'auto_currency_list':
-            {
-                return $this->autoCurrencyList();
-            } break;
-
+                {
+                    return $this->autoCurrencyList();
+                }
+                break;
+            
             case 'price_list':
-            {
-                return $this->priceList();
-            } break;
-
+                {
+                    return $this->priceList();
+                }
+                break;
+            
             case 'inc_vat_price_list':
-            {
-                return $this->incVATPriceList();
-            } break;
-
+                {
+                    return $this->incVATPriceList();
+                }
+                break;
+            
             case 'ex_vat_price_list':
-            {
-                return $this->exVATPriceList();
-            } break;
-
+                {
+                    return $this->exVATPriceList();
+                }
+                break;
+            
             case 'discount_inc_vat_price_list':
-            {
-                return $this->discountIncVATPriceList();
-            } break;
-
+                {
+                    return $this->discountIncVATPriceList();
+                }
+                break;
+            
             case 'discount_ex_vat_price_list':
-            {
-                return $this->discountExVATPriceList();
-            } break;
-
+                {
+                    return $this->discountExVATPriceList();
+                }
+                break;
+            
             case 'auto_price_list':
-            {
-                return $this->autoPriceList();
-            } break;
-
+                {
+                    return $this->autoPriceList();
+                }
+                break;
+            
             case 'custom_price_list':
-            {
-                return $this->customPriceList();
-            } break;
-
-            default :
-            {
-                return eZSimplePrice::attribute( $attr );
-            } break;
+                {
+                    return $this->customPriceList();
+                }
+                break;
+            
+            default:
+                {
+                    return eZSimplePrice::attribute( $attr );
+                }
+                break;
         }
     }
 
     /*!
      functional attribute
     */
-
+    
     function preferredCurrencyCode()
     {
         return eZShopFunctions::preferredCurrencyCode();
@@ -163,11 +178,11 @@ class xrowProductVariationPrice extends eZSimplePrice
 
     function currencyList()
     {
-        if ( !isset( $this->CurrencyList ) )
+        if ( ! isset( $this->CurrencyList ) )
         {
             $this->CurrencyList = eZCurrencyData::fetchList();
         }
-
+        
         return $this->CurrencyList;
     }
 
@@ -176,7 +191,7 @@ class xrowProductVariationPrice extends eZSimplePrice
     */
     function autoCurrencyList()
     {
-
+        
         $autoCurrecyList = $this->currencyList();
         $customPriceList = $this->customPriceList();
         foreach ( $customPriceList as $price )
@@ -187,7 +202,7 @@ class xrowProductVariationPrice extends eZSimplePrice
                 unset( $autoCurrecyList[$currencyCode] );
             }
         }
-
+        
         return $autoCurrecyList;
     }
 
@@ -206,20 +221,19 @@ class xrowProductVariationPrice extends eZSimplePrice
 
     function priceList( $type = false )
     {
-        if ( !isset( $this->PriceList ) )
+        if ( ! isset( $this->PriceList ) )
         {
             if ( is_object( $this->ContentObjectAttribute ) )
             {
-                $this->PriceList = eZMultiPriceData::fetch( $this->ContentObjectAttribute->attribute( 'id' ),
-                                                            $this->ContentObjectAttribute->attribute( 'version' ) );
+                $this->PriceList = eZMultiPriceData::fetch( $this->ContentObjectAttribute->attribute( 'id' ), $this->ContentObjectAttribute->attribute( 'version' ) );
             }
-
-            if ( !$this->PriceList )
+            
+            if ( ! $this->PriceList )
             {
                 $this->PriceList = array();
             }
         }
-
+        
         $priceList = array();
         if ( $type !== false )
         {
@@ -235,7 +249,7 @@ class xrowProductVariationPrice extends eZSimplePrice
         {
             $priceList = $this->PriceList;
         }
-
+        
         return $priceList;
     }
 
@@ -262,43 +276,48 @@ class xrowProductVariationPrice extends eZSimplePrice
     function calcPriceList( $calculationType, $priceType )
     {
         $priceList = $this->priceList( $priceType );
-
+        
         $calculatedPriceList = array();
         foreach ( $priceList as $key => $price )
         {
             switch ( $calculationType )
             {
-                case self::CALCULATION_TYPE_VAT_INCLUDE :
-                {
-                    $value = $this->calcIncVATPrice( $price->attribute( 'value' ) );
-                } break;
-
-                case self::CALCULATION_TYPE_VAT_EXCLUDE :
-                {
-                    $value = $this->calcExVATPrice( $price->attribute( 'value' ) );
-                } break;
-
-                case self::CALCULATION_TYPE_DISCOUNT_INCLUDE :
-                {
-                    $value = $this->calcDiscountIncVATPrice( $price->attribute( 'value' ) );
-                } break;
-
-                case self::CALCULATION_TYPE_DISCOUNT_EXCLUDE :
-                {
-                    $value = $this->calcDiscountIncVATPrice( $price->attribute( 'value' ) );
-                } break;
-
+                case self::CALCULATION_TYPE_VAT_INCLUDE:
+                    {
+                        $value = $this->calcIncVATPrice( $price->attribute( 'value' ) );
+                    }
+                    break;
+                
+                case self::CALCULATION_TYPE_VAT_EXCLUDE:
+                    {
+                        $value = $this->calcExVATPrice( $price->attribute( 'value' ) );
+                    }
+                    break;
+                
+                case self::CALCULATION_TYPE_DISCOUNT_INCLUDE:
+                    {
+                        $value = $this->calcDiscountIncVATPrice( $price->attribute( 'value' ) );
+                    }
+                    break;
+                
+                case self::CALCULATION_TYPE_DISCOUNT_EXCLUDE:
+                    {
+                        $value = $this->calcDiscountIncVATPrice( $price->attribute( 'value' ) );
+                    }
+                    break;
+                
                 default:
-                {
-                    // do nothing
-                } break;
+                    {
+                        // do nothing
+                    }
+                    break;
             }
-
+            
             $calculatedPrice = clone $price;
             $calculatedPrice->setAttribute( 'value', $value );
             $calculatedPriceList[$key] = $calculatedPrice;
         }
-
+        
         return $calculatedPriceList;
     }
 
@@ -329,13 +348,12 @@ class xrowProductVariationPrice extends eZSimplePrice
 
     function setPriceByCurrency( $currencyCode, $value, $type )
     {
-        if ( !$this->updatePrice( $currencyCode, $value, $type ) &&
-             !$this->addPrice( $currencyCode, $value, $type ) )
+        if ( ! $this->updatePrice( $currencyCode, $value, $type ) && ! $this->addPrice( $currencyCode, $value, $type ) )
         {
             eZDebug::writeWarning( "Unable to set price in '$currencyCode'", 'eZMultiPrice::setPrice' );
             return false;
         }
-
+        
         return true;
     }
 
@@ -347,13 +365,13 @@ class xrowProductVariationPrice extends eZSimplePrice
     {
         //include_once( 'kernel/shop/classes/ezcurrencyconverter.php' );
         $converter = eZCurrencyConverter::instance();
-
+        
         $basePrice = $this->basePrice();
         $basePriceValue = $basePrice ? $basePrice->attribute( 'value' ) : 0;
         $baseCurrencyCode = $basePrice ? $basePrice->attribute( 'currency_code' ) : false;
-
+        
         $autoCurrencyList = $this->autoCurrencyList();
-        foreach( $autoCurrencyList as $currencyCode => $currency )
+        foreach ( $autoCurrencyList as $currencyCode => $currency )
         {
             $autoValue = $converter->convert( $baseCurrencyCode, $currencyCode, $basePriceValue );
             $this->setAutoPrice( $currencyCode, $autoValue );
@@ -364,49 +382,44 @@ class xrowProductVariationPrice extends eZSimplePrice
     {
         if ( is_object( $this->ContentObjectAttribute ) && $this->currencyByCode( $currencyCode ) )
         {
-            return eZMultiPriceData::create( $this->ContentObjectAttribute->attribute( 'id' ),
-                                             $this->ContentObjectAttribute->attribute( 'version' ),
-                                             $currencyCode,
-                                             $value,
-                                             $type );
+            return eZMultiPriceData::create( $this->ContentObjectAttribute->attribute( 'id' ), $this->ContentObjectAttribute->attribute( 'version' ), $currencyCode, $value, $type );
         }
         return false;
     }
 
-
     function addPrice( $currencyCode, $value, $type )
     {
         $price = $this->createPrice( $currencyCode, $value, $type );
-        if( $price )
+        if ( $price )
         {
             if ( $value === false )
                 $price->setAttribute( 'value', '0.00' );
-
+            
             $this->PriceList[$price->attribute( 'currency_code' )] = $price;
             $this->setHasDirtyData( true );
         }
-
+        
         return $price;
     }
 
     function updatePrice( $currencyCode, $value, $type )
     {
         $price = $this->priceByCurrency( $currencyCode );
-        if( $price )
+        if ( $price )
         {
             if ( $value !== false )
             {
                 $price->setAttribute( 'value', $value );
             }
-
+            
             if ( $type !== false )
             {
                 $price->setAttribute( 'type', $type );
             }
-
+            
             $this->setHasDirtyData( true );
         }
-
+        
         return $price;
     }
 
@@ -426,15 +439,15 @@ class xrowProductVariationPrice extends eZSimplePrice
     {
         $price = false;
         $priceList = $this->priceList();
-
+        
         if ( isset( $priceList[$currencyCode] ) )
         {
-            if( $type === false || $priceList[$currencyCode]->attribute( 'type' ) == $type )
+            if ( $type === false || $priceList[$currencyCode]->attribute( 'type' ) == $type )
             {
                 $price = $priceList[$currencyCode];
             }
         }
-
+        
         return $price;
     }
 
@@ -449,7 +462,7 @@ class xrowProductVariationPrice extends eZSimplePrice
                 $value = $price->attribute( 'value' );
             }
         }
-
+        
         return $value;
     }
 
@@ -461,7 +474,7 @@ class xrowProductVariationPrice extends eZSimplePrice
         {
             $currency = $currencyList[$currencyCode];
         }
-
+        
         return $currency;
     }
 
@@ -489,6 +502,7 @@ class xrowProductVariationPrice extends eZSimplePrice
     {
         // use value of the first custom price as
         // base price and base currency.
+        
 
         $baseCurrency = false;
         $customPriceList = $this->customPriceList();
@@ -497,7 +511,7 @@ class xrowProductVariationPrice extends eZSimplePrice
         {
             $baseCurrency = $currencies[0];
         }
-
+        
         return $baseCurrency;
     }
 
@@ -511,8 +525,8 @@ class xrowProductVariationPrice extends eZSimplePrice
     {
         return $this->preferredCurrencyCode();
     }
-
-     /// \privatesection
+    
+    /// \privatesection
     public $PriceList;
     public $CurrencyList;
     public $HasDataDirty;

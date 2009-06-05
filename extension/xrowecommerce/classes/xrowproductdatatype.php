@@ -2,6 +2,7 @@
 
 class xrowProductDataType
 {
+
     /*!
      Initializes the datatype with the string id \a $dataTypeString and
      the name \a $name.
@@ -11,22 +12,24 @@ class xrowProductDataType
         $this->DataTypeString = $dataTypeString;
         $this->Name = $name;
         $this->Description = $desc;
-
+        
         $translationAllowed = true;
         if ( isset( $properties['translation_allowed'] ) )
             $translationAllowed = $properties['translation_allowed'];
-
+        
         $required = false;
         if ( isset( $properties['required'] ) )
             $required = $properties['required'];
-
+        
         $unique = false;
         if ( isset( $properties['unique'] ) )
             $unique = $properties['unique'];
-
+        
         $this->Attributes = array();
         $this->Attributes["is_indexable"] = $this->isIndexable();
-        $this->Attributes["properties"] = array( "translation_allowed" => $translationAllowed );
+        $this->Attributes["properties"] = array( 
+            "translation_allowed" => $translationAllowed 
+        );
         $this->Attributes["name"] = $name;
         $this->Attributes["desc"] = $desc;
         $this->Attributes["required"] = $required;
@@ -41,16 +44,16 @@ class xrowProductDataType
     */
     static function create( $dataTypeString )
     {
-        if ( !isset( $GLOBALS['xrowProductDataTypes'][$dataTypeString] ) )
+        if ( ! isset( $GLOBALS['xrowProductDataTypes'][$dataTypeString] ) )
         {
             $types = self::loadAndRegisterAllTypes();
         }
-
+        
         if ( isset( $GLOBALS['xrowProductDataTypes'][$dataTypeString] ) )
         {
             return $GLOBALS['xrowProductDataTypes'][$dataTypeString];
         }
-
+        
         return null;
     }
 
@@ -61,17 +64,17 @@ class xrowProductDataType
     */
     static function registeredDataTypes()
     {
-        if ( !isset( $GLOBALS['xrowProductDataTypes'] ) )
+        if ( ! isset( $GLOBALS['xrowProductDataTypes'] ) )
         {
-        	$GLOBALS['xrowProductDataTypes'] = self::loadAndRegisterAllTypes();
+            $GLOBALS['xrowProductDataTypes'] = self::loadAndRegisterAllTypes();
         }
         return $GLOBALS['xrowProductDataTypes'];
     }
 
     static function allowedTypes()
     {
-        $allowedTypes =& $GLOBALS["xrowProductDataTypeAllowedTypes"];
-        if ( !is_array( $allowedTypes ) )
+        $allowedTypes = & $GLOBALS["xrowProductDataTypeAllowedTypes"];
+        if ( ! is_array( $allowedTypes ) )
         {
             $productINI = eZINI::instance( 'xrowproduct.ini' );
             $allowedTypes = $productINI->variable( 'XrowProductDataTypes', 'ProductDataTypeArray' );
@@ -83,13 +86,13 @@ class xrowProductDataType
     static function loadAndRegisterAllTypes()
     {
         $allowedTypes = self::allowedTypes();
-        $types =& $GLOBALS['xrowProductDataTypes'];
-        if ( !is_array( $types ) )
+        $types = & $GLOBALS['xrowProductDataTypes'];
+        if ( ! is_array( $types ) )
         {
-	        foreach( $allowedTypes as $dataTypeString => $className )
-	        {
-	            $types[$dataTypeString] = new $className;
-	        }
+            foreach ( $allowedTypes as $dataTypeString => $className )
+            {
+                $types[$dataTypeString] = new $className( );
+            }
         }
         return $types;
     }
@@ -119,7 +122,7 @@ class xrowProductDataType
         {
             return $this->Attributes[$attr];
         }
-
+        
         eZDebug::writeError( "Attribute '$attr' does not exist", 'xrowProductDataType::attribute()' );
         $attributeData = null;
         return $attributeData;
@@ -138,16 +141,15 @@ class xrowProductDataType
     function initializeAttribute( $attribute )
     {
         $db = eZDB::instance();
-
-        if ( !isset( $attribute->Data['column_array'] )
-             or count( $attribute->Data['column_array'] ) == 0 )
+        
+        if ( ! isset( $attribute->Data['column_array'] ) or count( $attribute->Data['column_array'] ) == 0 )
         {
             $identifier = $attribute->attribute( 'identifier' );
-
+            
             $db->begin();
             $sql = "ALTER TABLE " . $this->Table;
             $first = true;
-            foreach( $this->ColumnArray as $item )
+            foreach ( $this->ColumnArray as $item )
             {
                 if ( $first )
                     $first = false;
@@ -156,41 +158,41 @@ class xrowProductDataType
                 $columnName = $identifier;
                 if ( strlen( $item['name'] ) > 0 )
                     $columnName .= $item['name'];
-
+                
                 $data = $item;
                 $data['identifier'] = $columnName;
                 $attribute->Data['column_array'][] = $data;
                 $sql .= " ADD COLUMN `$columnName` " . $item['sql_type'];
             }
-
+            
             $db->query( $sql );
             $db->commit();
             $attribute->store();
         }
     }
+
     /**
      * Renames existing columns of product data table
      * @param object $attribute
      * @param string $oldIdentifier
      */
-
+    
     function renameColumns( $attribute, $oldIdentifier )
     {
         $db = eZDB::instance();
-
+        
         if ( strlen( $oldIdentifier ) == 0 )
             return;
-
+        
         $identifier = $attribute->attribute( 'identifier' );
-        if ( isset( $attribute->Data['column_array'] )
-             and count( $attribute->Data['column_array'] ) > 0 )
+        if ( isset( $attribute->Data['column_array'] ) and count( $attribute->Data['column_array'] ) > 0 )
         {
             $identifier = $attribute->attribute( 'identifier' );
-
+            
             $db->begin();
             $sql = "ALTER TABLE " . $this->Table;
             $first = true;
-            foreach( $this->ColumnArray as $key => $item )
+            foreach ( $this->ColumnArray as $key => $item )
             {
                 if ( $first )
                     $first = false;
@@ -203,13 +205,13 @@ class xrowProductDataType
                     $newColumnName .= $item['name'];
                     $oldColumnName .= $item['name'];
                 }
-
+                
                 $data = $item;
                 $data['identifier'] = $newColumnName;
                 $attribute->Data['column_array'][$key] = $data;
                 $sql .= " CHANGE COLUMN `$oldColumnName` `$newColumnName` " . $item['sql_type'];
             }
-
+            
             $db->query( $sql );
             $db->commit();
             $attribute->store();
@@ -227,13 +229,7 @@ class xrowProductDataType
      * @param eZHTTPTool $http
      * @param array $errorArray
      */
-    function validateVariationInput( array $variationArray,
-                                     $line,
-                                     $column,
-                                     eZContentObjectAttribute $contentObjectAttribute,
-                                     $attribute,
-                                     eZHTTPTool $http,
-                                     array &$errorArray )
+    function validateVariationInput( array $variationArray, $line, $column, eZContentObjectAttribute $contentObjectAttribute, $attribute, eZHTTPTool $http, array &$errorArray )
     {
     }
 
@@ -248,13 +244,7 @@ class xrowProductDataType
      * @param xrowProductAttribute $attribute
      * @param eZHTTPTool $http
      */
-    function fetchVariationInput( array &$data,
-                                  $line,
-                                  $column,
-                                  xrowProductData &$variation,
-                                  eZContentObjectAttribute &$contentObjectAttribute,
-                                  xrowProductAttribute &$productAttribute,
-                                  eZHTTPTool $http )
+    function fetchVariationInput( array &$data, $line, $column, xrowProductData &$variation, eZContentObjectAttribute &$contentObjectAttribute, xrowProductAttribute &$productAttribute, eZHTTPTool $http )
     {
         if ( isset( $data[$line][$column] ) )
             $variation->setAttribute( $column, $data[$line][$column] );
@@ -268,13 +258,9 @@ class xrowProductDataType
      * @param unknown_type $attribute
      * @param unknown_type $column
      */
-    function updateVariationInput( xrowProductData $currentVariation,
-                                   xrowProductData &$translationVariation,
-                                   $attribute,
-                                   $column )
+    function updateVariationInput( xrowProductData $currentVariation, xrowProductData &$translationVariation, $attribute, $column )
     {
-        if ( !isset( $attribute['translation'] )
-             or $attribute['translation'] === false )
+        if ( ! isset( $attribute['translation'] ) or $attribute['translation'] === false )
         {
             $translationVariation->setAttribute( $column, $currentVariation->attribute( $column ) );
         }
@@ -315,7 +301,7 @@ class xrowProductDataType
     function hasVariationContent( xrowProductData $variation, $identifier )
     {
         $data = self::variationContent( $variation, $identifier );
-    	if ( $data === null or $data === false or $data === '' )
+        if ( $data === null or $data === false or $data === '' )
             return false;
         else
             return true;
@@ -339,10 +325,7 @@ class xrowProductDataType
      * @param array $error
      * @param string $languageCode
      */
-    function fetchAttributeInput( eZHTTPTool $http,
-                                  xrowProductAttribute &$attribute,
-                                  array &$error,
-                                  $languageCode )
+    function fetchAttributeInput( eZHTTPTool $http, xrowProductAttribute &$attribute, array &$error, $languageCode )
     {
     }
 
@@ -355,10 +338,7 @@ class xrowProductDataType
      * @param string $languageCode
      * @return boolean
      */
-    function validateTemplateInput( xrowProductTemplate &$template,
-                                    xrowProductAttribute &$attribute,
-                                    array &$error,
-                                    $languageCode )
+    function validateTemplateInput( xrowProductTemplate &$template, xrowProductAttribute &$attribute, array &$error, $languageCode )
     {
         return true;
     }
@@ -371,72 +351,70 @@ class xrowProductDataType
      * @param eZHTTPTool $http
      * @param string $languageCode
      */
-    function fetchTemplateInput( xrowProductTemplate &$template,
-                                 xrowProductAttribute &$attribute,
-                                 eZHTTPTool $http,
-                                 $languageCode )
+    function fetchTemplateInput( xrowProductTemplate &$template, xrowProductAttribute &$attribute, eZHTTPTool $http, $languageCode )
     {
         $result = array();
         $id = $attribute->attribute( 'id' );
         $result['id'] = $id;
         $key = "XrowProductTemplate_" . $id . "_";
-
-        $result =& $template->Data['attributes'][$id];
-
+        
+        $result = & $template->Data['attributes'][$id];
+        
         $defaultKey = $key . 'default';
         if ( $http->hasPostVariable( $defaultKey ) )
             $result['default_value_array'][$languageCode] = trim( $http->postVariable( $defaultKey ) );
-
+        
         $requiredKey = $key . 'required';
         if ( $http->hasPostVariable( $requiredKey ) )
             $result['required'] = true;
         else
             $result['required'] = false;
-
+        
         $translationKey = $key . 'translation';
         if ( $http->hasPostVariable( $translationKey ) )
             $result['translation'] = true;
         else
             $result['translation'] = false;
-
+        
         $frontendKey = $key . 'frontend';
         if ( $http->hasPostVariable( $frontendKey ) )
             $result['frontend'] = true;
         else
             $result['frontend'] = false;
-
+        
         $searchKey = $key . 'search';
         if ( $http->hasPostVariable( $searchKey ) )
             $result['search'] = true;
         else
             $result['search'] = false;
-
+        
         $nameKey = $key . 'column_name';
         if ( $http->hasPostVariable( $nameKey ) )
             $result['column_name_array'][$languageCode] = trim( $http->postVariable( $nameKey ) );
-
+        
         $descKey = $key . 'column_desc';
         if ( $http->hasPostVariable( $descKey ) )
             $result['column_desc_array'][$languageCode] = trim( $http->postVariable( $descKey ) );
-
-        if ( !$result['translation'] )
+        
+        if ( ! $result['translation'] )
         {
             $result['default_value'] = $result['default_value_array'][$languageCode];
             $result['default_value_array'] = array();
         }
-
+        
         $uniqueSKUKey = $key . 'unique_sku';
         if ( $http->hasPostVariable( $uniqueSKUKey ) )
             $result['unique_sku'] = true;
         else
             $result['unique_sku'] = false;
-
+        
         $selectKey = $key . 'select';
         if ( $http->hasPostVariable( $selectKey ) )
             $result['select'] = true;
         else
             $result['select'] = false;
     }
+
     /**
      * Deletes the content of the current datatype
      * Needed for complex datatypes
@@ -456,21 +434,12 @@ class xrowProductDataType
      * @param xrowProductTemplate $template
      * @return mixed
      */
-    function cloneVariation( $value,
-                             xrowProductData $variation,
-                             xrowProductAttribute $attribute,
-                             xrowProductTemplate $template )
+    function cloneVariation( $value, xrowProductData $variation, xrowProductAttribute $attribute, xrowProductTemplate $template )
     {
         return $value;
     }
 
-    function templateHTTPAction( xrowProductTemplate &$template,
-                                 xrowProductAttribute &$attribute,
-                                 eZHTTPTool $http,
-                                 $languageCode,
-                                 &$module,
-                                 array $error,
-                                 $action )
+    function templateHTTPAction( xrowProductTemplate &$template, xrowProductAttribute &$attribute, eZHTTPTool $http, $languageCode, &$module, array $error, $action )
     {
     }
 
@@ -514,7 +483,7 @@ class xrowProductDataType
      */
     public function metaName( xrowProductData $variation, $column )
     {
-    	return $variation->attribute( $column );
+        return $variation->attribute( $column );
     }
 
     /*!
@@ -524,8 +493,7 @@ class xrowProductDataType
     {
         return true;
     }
-
-
+    
     /// \privatesection
     /// The datatype string ID, used for uniquely identifying a datatype
     public $DataTypeString;
@@ -533,14 +501,14 @@ class xrowProductDataType
     public $Name;
     /// A short description of the product variation datatype
     public $Description;
-
+    
     public $Attributes;
-
+    
     public $ColumnArray;
-
+    
     public $VariationContent = null;
     public $VariationHasContent = null;
-
+    
     public $Table;
 }
 

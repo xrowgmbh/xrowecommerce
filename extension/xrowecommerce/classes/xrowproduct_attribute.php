@@ -1,10 +1,12 @@
 <?php
+
 /*!
  * class xrowProductAttribute
  * Stores definitions about the product variation attributes
  */
 class xrowProductAttribute extends eZPersistentObject
 {
+
     function xrowProductAttribute( $row = array() )
     {
         if ( is_array( $row ) and count( $row ) > 0 )
@@ -14,87 +16,113 @@ class xrowProductAttribute extends eZPersistentObject
             if ( strlen( $this->SerializedData ) > 0 )
             {
                 $this->Data = @unserialize( $this->SerializedData );
-                if ( isset( $this->Data['column_array'] ) and count( $this->Data['column_array'] ) > 0)
+                if ( isset( $this->Data['column_array'] ) and count( $this->Data['column_array'] ) > 0 )
                 {
                     $columnArray = $this->Data['column_array'];
                 }
             }
-
+            
             $this->dataType( $columnArray );
         }
     }
 
     static function definition()
     {
-        return array( 'fields' => array( 'id' => array( 'name' => 'ID',
-                                                                  'datatype' => 'integer',
-                                                                  'default' => 0,
-                                                                  'required' => true ),
-                                         'name' => array( 'name' => 'Name',
-                                                        'datatype' => 'string',
-                                                        'default' => '',
-                                                        'required' => false,
-                                                        'max_length' => 255 ),
-                                         'identifier' => array( 'name' => 'Identifier',
-                                                        'datatype' => 'string',
-                                                        'default' => '',
-                                                        'required' => true,
-                                                        'max_length' => 255 ),
-                                         'language_mask' => array( 'name' => 'LanguageMask',
-                                                                   'datatype' => 'integer',
-                                                                   'default' => 0,
-                                                                   'required' => false ),
-                                         'initial_language_id' => array( 'name' => "InitialLanguageID",
-                                                                         'datatype' => 'integer',
-                                                                         'default' => 0,
-                                                                         'required' => true,
-                                                                         'foreign_class' => 'eZContentLanguage',
-                                                                         'foreign_attribute' => 'id',
-                                                                         'multiplicity' => '1..*' ),
-                                         'active' => array( 'name' => 'Active',
-                                                                      'datatype' => 'integer',
-                                                                      'default' => 1,
-                                                                      'required' => true ),
-                                         'data_type' => array( 'name' => 'DataTypeString',
-                                                                         'datatype' => 'string',
-                                                                         'default' => '',
-                                                                         'required' => true,
-                                                                         'max_length' => 255 ),
-                                         'created' => array( 'name' => 'Created',
-                                                                  'datatype' => 'integer',
-                                                                  'default' => 0,
-                                                                  'required' => true ),
-                                         'user_id' => array( 'name' => 'UserID',
-                                                                'datatype' => 'integer',
-                                                                'default' => 0,
-                                                                'required' => true,
-                                                                'foreign_class' => 'eZUser',
-                                                                'foreign_attribute' => 'contentobject_id',
-                                                                'multiplicity' => '1..*' ),
-                                         'serialized_data' => array( 'name' => 'SerializedData',
-                                                                 'datatype' => 'text',
-                                                                 'default' => '',
-                                                                 'required' => false ),
-                                        ),
-                      'function_attributes' => array( 'user' => 'fetchUser',
-                                                      'name' => 'name',
-                                                      'desc' => 'description',
-                                                      'languages' => 'languages',
-                                                      'prioritized_languages' => 'prioritizedLanguages',
-                                                      'top_priority_language_locale' => 'topPriorityLanguageLocale',
-                                                      'data' => 'getData',
-                                                      'data_type_list' => 'dataTypeList',
-                                                      'required' => 'required',
-                                                      'translatable' => 'translatable',
-                                                      'unique' => 'unique',
-                                                      'data_type_obj' => 'dataType',
-                                                      'content' => 'content',
-                                                      'has_content' => 'hasContent'
-                                                       ),
-                      'increment_key' => 'id',
-                      'keys' => array( 'id' ),
-                      'class_name' => 'xrowProductAttribute',
-                      'name' => 'xrowproduct_attribute' );
+        return array( 
+            'fields' => array( 
+                'id' => array( 
+                    'name' => 'ID' , 
+                    'datatype' => 'integer' , 
+                    'default' => 0 , 
+                    'required' => true 
+                ) , 
+                'name' => array( 
+                    'name' => 'Name' , 
+                    'datatype' => 'string' , 
+                    'default' => '' , 
+                    'required' => false , 
+                    'max_length' => 255 
+                ) , 
+                'identifier' => array( 
+                    'name' => 'Identifier' , 
+                    'datatype' => 'string' , 
+                    'default' => '' , 
+                    'required' => true , 
+                    'max_length' => 255 
+                ) , 
+                'language_mask' => array( 
+                    'name' => 'LanguageMask' , 
+                    'datatype' => 'integer' , 
+                    'default' => 0 , 
+                    'required' => false 
+                ) , 
+                'initial_language_id' => array( 
+                    'name' => "InitialLanguageID" , 
+                    'datatype' => 'integer' , 
+                    'default' => 0 , 
+                    'required' => true , 
+                    'foreign_class' => 'eZContentLanguage' , 
+                    'foreign_attribute' => 'id' , 
+                    'multiplicity' => '1..*' 
+                ) , 
+                'active' => array( 
+                    'name' => 'Active' , 
+                    'datatype' => 'integer' , 
+                    'default' => 1 , 
+                    'required' => true 
+                ) , 
+                'data_type' => array( 
+                    'name' => 'DataTypeString' , 
+                    'datatype' => 'string' , 
+                    'default' => '' , 
+                    'required' => true , 
+                    'max_length' => 255 
+                ) , 
+                'created' => array( 
+                    'name' => 'Created' , 
+                    'datatype' => 'integer' , 
+                    'default' => 0 , 
+                    'required' => true 
+                ) , 
+                'user_id' => array( 
+                    'name' => 'UserID' , 
+                    'datatype' => 'integer' , 
+                    'default' => 0 , 
+                    'required' => true , 
+                    'foreign_class' => 'eZUser' , 
+                    'foreign_attribute' => 'contentobject_id' , 
+                    'multiplicity' => '1..*' 
+                ) , 
+                'serialized_data' => array( 
+                    'name' => 'SerializedData' , 
+                    'datatype' => 'text' , 
+                    'default' => '' , 
+                    'required' => false 
+                ) 
+            ) , 
+            'function_attributes' => array( 
+                'user' => 'fetchUser' , 
+                'name' => 'name' , 
+                'desc' => 'description' , 
+                'languages' => 'languages' , 
+                'prioritized_languages' => 'prioritizedLanguages' , 
+                'top_priority_language_locale' => 'topPriorityLanguageLocale' , 
+                'data' => 'getData' , 
+                'data_type_list' => 'dataTypeList' , 
+                'required' => 'required' , 
+                'translatable' => 'translatable' , 
+                'unique' => 'unique' , 
+                'data_type_obj' => 'dataType' , 
+                'content' => 'content' , 
+                'has_content' => 'hasContent' 
+            ) , 
+            'increment_key' => 'id' , 
+            'keys' => array( 
+                'id' 
+            ) , 
+            'class_name' => 'xrowProductAttribute' , 
+            'name' => 'xrowproduct_attribute' 
+        );
     }
 
     function store( $fieldFilters = null )
@@ -102,11 +130,11 @@ class xrowProductAttribute extends eZPersistentObject
         $this->SerializedData = '';
         if ( count( $this->Data ) > 0 )
             $this->SerializedData = serialize( $this->Data );
-
+        
         eZPersistentObject::storeObject( $this, $fieldFilters );
-
+        
         $id = $this->attribute( 'id' );
-
+        
         if ( isset( $GLOBALS['xrowProductAttributeCache'][$id] ) )
             unset( $GLOBALS['xrowProductAttributeCache'][$id] );
     }
@@ -117,49 +145,39 @@ class xrowProductAttribute extends eZPersistentObject
             $key = 0;
         else
             $key = 1;
-        if ( !isset( $GLOBALS['xrowProductAttributeCache'][$id][$key] ) )
-            $GLOBALS['xrowProductAttributeCache'][$id][$key] = eZPersistentObject::fetchObject( self::definition(),
-                                                null,
-                                                array( 'id' => $id ),
-                                                $asObject );
-
+        if ( ! isset( $GLOBALS['xrowProductAttributeCache'][$id][$key] ) )
+            $GLOBALS['xrowProductAttributeCache'][$id][$key] = eZPersistentObject::fetchObject( self::definition(), null, array( 
+                'id' => $id 
+            ), $asObject );
+        
         return $GLOBALS['xrowProductAttributeCache'][$id][$key];
     }
 
-    static function fetchList( $conditions = null,
-                               $asObjects = true,
-                               $offset = false,
-                               $limit = false,
-                               $sortBy = array() )
+    static function fetchList( $conditions = null, $asObjects = true, $offset = false, $limit = false, $sortBy = array() )
     {
         $limitation = null;
         if ( $offset !== false or $limit !== false )
-            $limitation = array( 'offset' => $offset, 'length' => $limit );
-
+            $limitation = array( 
+                'offset' => $offset , 
+                'length' => $limit 
+            );
+        
         $def = self::definition();
-
-        $result = eZPersistentObject::fetchObjectList(  $def,
-                                                        null,
-                                                        $conditions,
-                                                        $sortBy,
-                                                        $limitation,
-                                                        $asObjects );
+        
+        $result = eZPersistentObject::fetchObjectList( $def, null, $conditions, $sortBy, $limitation, $asObjects );
         return $result;
     }
 
     static function fetchListCount( $conditions = null, $type = false )
     {
-        $custom = array( array( 'operation' => 'count( id )',
-                                'name' => 'count' ) );
-
-        $rows = eZPersistentObject::fetchObjectList( self::definition(),
-                                                     array(),
-                                                     $conditions,
-                                                     null,
-                                                     null,
-                                                     false,
-                                                     false,
-                                                     $custom );
+        $custom = array( 
+            array( 
+                'operation' => 'count( id )' , 
+                'name' => 'count' 
+            ) 
+        );
+        
+        $rows = eZPersistentObject::fetchObjectList( self::definition(), array(), $conditions, null, null, false, false, $custom );
         return $rows[0]['count'];
     }
 
@@ -182,14 +200,14 @@ class xrowProductAttribute extends eZPersistentObject
     {
         if ( $key == false and $languageLocale == false )
             return $this->Data;
-
+        
         if ( count( $this->Data ) > 0 )
         {
             if ( $languageLocale and isset( $this->Data[$key][$languageLocale] ) )
                 return $this->Data[$key][$languageLocale];
             else
             {
-                if ( !$languageLocale )
+                if ( ! $languageLocale )
                 {
                     $languageList = eZContentLanguage::prioritizedLanguages();
                     foreach ( $languageList as $language )
@@ -202,7 +220,7 @@ class xrowProductAttribute extends eZPersistentObject
                 }
             }
         }
-
+        
         return false;
     }
 
@@ -215,7 +233,7 @@ class xrowProductAttribute extends eZPersistentObject
     function name( $languageLocale = false )
     {
         $name = self::getData( 'name', $languageLocale );
-        if ( !$name )
+        if ( ! $name )
             return $this->Name;
         else
             return $name;
@@ -229,7 +247,7 @@ class xrowProductAttribute extends eZPersistentObject
     function description( $languageLocale = false )
     {
         $desc = self::getData( 'desc', $languageLocale );
-        if ( !$desc )
+        if ( ! $desc )
             return '';
         else
             return $desc;
@@ -266,7 +284,7 @@ class xrowProductAttribute extends eZPersistentObject
      */
     function dataType()
     {
-        if ( !$this->DataType )
+        if ( ! $this->DataType )
         {
             if ( isset( $this->DataTypeString ) and strlen( $this->DataTypeString ) > 0 )
                 $this->DataType = xrowProductDataType::create( $this->DataTypeString );
@@ -358,7 +376,7 @@ class xrowProductAttribute extends eZPersistentObject
             $this->HasContent = $this->DataType->hasAttributeContent( $this );
         return $this->HasContent;
     }
-
+    
     /// \privatesection
     public $ID;
     // serialized array of setup data
