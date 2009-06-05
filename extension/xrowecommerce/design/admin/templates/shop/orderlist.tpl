@@ -74,7 +74,7 @@
 
 {if is_set($email)|not}
 {let can_apply=false()}
-<form name="orderlist" method="post" action={concat( '/shop/orderlist' )|ezurl}>
+<form name="orderlist" method="post" action={concat( '/xrowecommerce/orderlist' )|ezurl}>
 
 <div class="context-block">
 
@@ -88,29 +88,29 @@
 
 {* DESIGN: Content START *}<div class="box-ml"><div class="box-mr"><div class="box-content">
 
-{section show=$order_list}
+{if $order_list}
 <div class="context-toolbar">
 <div class="block">
 <div class="left">
 <p>
-{section show=eq( ezpreference( 'admin_orderlist_sortfield' ), 'user_name' )}
+{if eq( ezpreference( 'admin_orderlist_sortfield' ), 'user_name' )}
     <a href={'/user/preferences/set/admin_orderlist_sortfield/time/shop/orderlist/'|ezurl}>{'Time'|i18n( 'design/admin/shop/orderlist' )}</a>
     <span class="current">{'Customer'|i18n( 'design/admin/shop/orderlist' )}</span>
-{section-else}
+{else}
     <span class="current">{'Time'|i18n( 'design/admin/shop/orderlist' )}</span>
     <a href={'/user/preferences/set/admin_orderlist_sortfield/user_name/shop/orderlist/'|ezurl}>{'Customer'|i18n( 'design/admin/shop/orderlist' )}</a>
-{/section}
+{/if}
 </p>
 </div>
 <div class="right">
 <p>
-{section show=eq( ezpreference( 'admin_orderlist_sortorder' ), 'desc' )}
+{if eq( ezpreference( 'admin_orderlist_sortorder' ), 'desc' )}
     <a href={'/user/preferences/set/admin_orderlist_sortorder/asc/shop/orderlist/'|ezurl}>{'Ascending'|i18n( 'design/admin/shop/orderlist' )}</a>
     <span class="current">{'Descending'|i18n( 'design/admin/shop/orderlist' )}</span>
-{section-else}
+{else}
     <span class="current">{'Ascending'|i18n( 'design/admin/shop/orderlist' )}</span>
     <a href={'/user/preferences/set/admin_orderlist_sortorder/desc/shop/orderlist/'|ezurl}>{'Descending'|i18n( 'design/admin/shop/orderlist' )}</a>
-{/section}
+{/if}
 </p>
 </div>
 
@@ -131,12 +131,13 @@
 	<th class="tight">{'Total (ex. VAT)'|i18n( 'design/admin/shop/orderlist' )}</th>
 	<th class="tight">{'Total (inc. VAT)'|i18n( 'design/admin/shop/orderlist' )}</th>
 	<th class="wide">{'Time'|i18n( 'design/admin/shop/orderlist' )}</th>
-	<th class="wide">{'Status'|i18n( 'design/admin/shop/orderlist' )}</th>
+	<th class="wide">{'Order status'|i18n( 'design/admin/shop/orderlist' )}</th>
+	<th class="wide">{'Payment status'|i18n( 'design/admin/shop/orderlist' )}</th>
 	<th class="wide">{'Actions'|i18n( 'design/admin/shop/orderlist' )}</th>
 </tr>
-{section var=Orders loop=$order_list sequence=array( bglight, bgdark )}
+{foreach $order_list as $order sequence=array( bglight, bgdark )}
 
-{set $currency = fetch( 'shop', 'currency', hash( 'code', $Orders.item.productcollection.currency_code ) )}
+{set $currency = fetch( 'shop', 'currency', hash( 'code', $order.productcollection.currency_code ) )}
 {if $currency}
     {set locale = $currency.locale
          symbol = $currency.symbol}
@@ -147,54 +148,64 @@
 
 <tr class="{$Orders.sequence}">
     <td><input type="checkbox" name="OrderIDArray[]" value="{$Orders.item.id}" title="{'Select order for removal.'|i18n( 'design/admin/shop/orderlist' )}" /></td>
-	<td><a href={concat( '/shop/orderview/', $Orders.item.id, '/' )|ezurl}>{$Orders.item.order_nr}</a></td>
+	<td><a href={concat( '/shop/orderview/', $order.id, '/' )|ezurl}>{$order.order_nr}</a></td>
 	<td>
-	{if is_null($Orders.item.account_name)}
+	{if is_null($order.account_name)}
 	    <s><i>{'( removed )'|i18n( 'design/admin/shop/orderlist' )}</i></s>
 	{else}
-	    <a href={concat( '/shop/customerorderview/', $Orders.item.user_id, '/', $Orders.item.account_email )|ezurl}>{$Orders.item.account_name}</a>
+	    <a href={concat( '/shop/customerorderview/', $order.user_id, '/', $order.account_email )|ezurl}>{$order.account_name}</a>
 	{/if}
 	</td>
 	
 
     {* NOTE: These two attribute calls are slow, they cause the system to generate lots of SQLs.
              The reason is that their values are not cached in the order tables *}
-	<td class="number" align="right">{$Orders.item.total_ex_vat|l10n( 'currency', $locale, $symbol )}</td>
-	<td class="number" align="right">{$Orders.item.total_inc_vat|l10n( 'currency', $locale, $symbol )}</td>
+	<td class="number" align="right">{$order.total_ex_vat|l10n( 'currency', $locale, $symbol )}</td>
+	<td class="number" align="right">{$order.total_inc_vat|l10n( 'currency', $locale, $symbol )}</td>
 
-	<td>{$Orders.item.created|l10n( shortdatetime )}</td>
+	<td>{$order.created|l10n( shortdatetime )}</td>
 	<td>
-    {let order_status_list=$Orders.status_modification_list}
 
-    {section show=$order_status_list|count|gt( 0 )}
+    {if $order.status_modification_list|count|gt( 0 )}
         {set can_apply=true()}
-        <select name="StatusList[{$Orders.item.id}]">
-        {section var=Status loop=$order_status_list}
-            <option value="{$Status.item.status_id}"
-                {section show=eq( $Status.item.status_id, $Orders.item.status_id )}selected="selected"{/section}>
-                {$Status.item.name|wash}</option>
-        {/section}
+        <select name="StatusList[{$order.id}]">
+        {foreach $order.status_modification_list as $Status}
+            <option value="{$Status.status_id}"
+                {if ezini( 'StatusSettings', concat( 'StatusDisallowList-', $order.status_id) ,'xrowecommerce.ini' ) )|contains($Status.status_id)} disabled="disabled"{/if}{if eq( $Status.status_id, $order.status_id )} selected="selected"{/if}>
+                {$Status.name|wash}</option>
+        {/foreach}
         </select>
-    {section-else}
+    {else}
         {* Lets just show the name if we don't have access to change the status *}
-        {$Orders.status_name|wash}
-    {/section}
+        {$order.status_name|wash}
+    {/if}
 
-    {/let}
 	</td>
+	   <td>
+        {def $stati = hash( '0', unpaid,  1, 'paid' )}
+        {def $payment = fetch( 'xrowecommerce', 'payment_status', hash( 'id', $order.id ) )}
+        <select {if $payment.status|eq('1')} disabled{/if} name="PaymentStatusList[{$Orders.item.id}]" title="Payment via {$payment.payment_string}">
+        {foreach $stati as $key => $status}
+            <option value="{$key}"
+                {if eq( $key, $payment.status )}selected="selected"{/if}>
+                {$status|wash}</option>
+        {/foreach}
+        </select>
+        {undef $payment $stati}
+    </td>
 	<td>
-    <a href={concat( 'xrowecommerce/invoiceprint/', $Orders.item.id )|ezurl} target="_blank"><img src={'print_printer.32x32.png'|ezimage} height="28" width="28" alt="" title=""></a>
-	<a href={concat( 'orderedit/edit/', $Orders.item.order_nr)|ezurl}><img src={'images/txt2.png'|ezdesign}  alt="Edit shippingcosts" title="Edit shippingcosts"></a>
+    <a href={concat( 'xrowecommerce/invoiceprint/', $order.id )|ezurl} target="_blank"><img src={'print_printer.32x32.png'|ezimage} height="28" width="28" alt="" title=""></a>
+	<a href={concat( 'orderedit/edit/', $order.order_nr)|ezurl}><img src={'images/txt2.png'|ezdesign}  alt="Edit shippingcosts" title="Edit shippingcosts"></a>
 	</td>
 </tr>
-{/section}
+{/foreach}
 </table>
 {undef $currency $locale $symbol}
-{section-else}
+{else}
 <div class="block">
 <p>{'The order list is empty.'|i18n( 'design/admin/shop/orderlist' )}</p>
 </div>
-{/section}
+{/if}
 
 <div class="context-toolbar">
 {include name=navigator
@@ -212,11 +223,13 @@
 
 <div class="block">
 <div class="button-left">
-{section show=$order_list}
+{if $order_list}
     <input class="button" type="submit" name="ArchiveButton" value="{'Archive selected'|i18n( 'design/admin/shop/orderlist' )}" title="{'Archive selected orders.'|i18n( 'design/admin/shop/orderlist' )}" />
-{section-else}
+    <input class="button" type="submit" name="RemoveButton" value="{'Remove selected'|i18n( 'design/admin/shop/orderlist' )}" title="{'Remove selected orders.'|i18n( 'design/admin/shop/orderlist' )}" />
+{else}
     <input class="button-disabled" type="submit" name="ArchiveButton" value="{'Archive selected'|i18n( 'design/admin/shop/orderlist' )}" disabled="disabled" />
-{/section}
+    <input class="button-disabled" type="submit" name="RemoveButton" value="{'Remove selected'|i18n( 'design/admin/shop/orderlist' )}" disabled="disabled" />
+{/if}
 </div>
 <div class="button-right">
     {section show=and( $order_list|count|gt( 0 ), $can_apply )}

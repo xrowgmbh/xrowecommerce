@@ -1,6 +1,14 @@
 <?php
 
 $FunctionList = array();
+$FunctionList['payment_status'] = array( 'name' => 'payment_status',
+                                    'operation_types' => array( 'read' ),
+                                    'call_method' => array( 'class' => 'xrowECommerceFunctionCollection',
+                                                            'method' => 'paymentStatus' ),
+                                    'parameter_type' => 'standard',
+                                    'parameters' => array( array( 'name' => 'id',
+                                                                  'type' => 'integer',
+                                                                  'required' => true ) ) );
 $FunctionList['get_country_list'] = array( 'name' => 'get_country_list',
                                            'operation_types' => array( 'read' ),
                                            'call_method' => array( 'class' => 'xrowECommerceFunctionCollection',

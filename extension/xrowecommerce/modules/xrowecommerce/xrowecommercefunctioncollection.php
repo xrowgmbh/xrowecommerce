@@ -2,6 +2,12 @@
 
 class xrowECommerceFunctionCollection
 {
+    public function paymentStatus( $id )
+    {
+        return array(
+            'result' => xrowPaymentObject::fetchByOrderID( $id )
+        );
+    }
     public function getCountryList()
     {
         return array(

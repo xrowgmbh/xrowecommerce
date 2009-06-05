@@ -62,4 +62,23 @@ CompanyName=Example Inc
 #CompanyAddress[]
 CompanyWebsite=http://www.example.com/
 CompanyPhone=+1 555 123456
+
+[EPaymentSettings]
+# Payments should be capture right away or later
+# values are AUTH_ONLY or AUTH_AND_CAPTURE
+PaymentRequestType=AUTH_AND_CAPTURE
+
+[StatusSettings]
+# Relate a Status to a type of xrowOrderStatusDefault
+# StatusTypeList[3]=xrowOrderStatusPaid
+# StatusTypeList[1000]=xrowOrderStatusCancel
+StatusTypeList[]
+# Define which status can`t we switched to
+# 
+# StatusDisallowList-1000[]
+# StatusDisallowList-1000[]=1
+# StatusDisallowList-1000[]=2
+# 
+
+
 * */ ?>
