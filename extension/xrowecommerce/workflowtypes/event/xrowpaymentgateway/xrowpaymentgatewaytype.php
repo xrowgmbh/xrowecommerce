@@ -70,6 +70,13 @@ class xrowPaymentGatewayType extends eZWorkflowEventType
             $process->RedirectUrl = 'shop/basket';
             return eZWorkflowType::STATUS_REDIRECT_REPEAT;
         }
+        if ( $http->hasPostVariable( 'CancelButton' ) and $process->attribute( 'event_state' ) == xrowPaymentGatewayType::GATEWAY_SELECTED )
+        {
+            $process->setAttribute( 'event_state', xrowPaymentGatewayType::GATEWAY_NOT_SELECTED );
+            unset( $parameters['paymentgateway'] );
+            $process->setParameters( $parameters );
+            $process->store();
+        }
         $theGateway = $this->getCurrentGateway( $process, $event );
         
         if ( $process->attribute( 'event_state' ) == xrowPaymentGatewayType::GATEWAY_NOT_SELECTED and $theGateway instanceof eZPaymentGateway )
@@ -117,9 +124,9 @@ class xrowPaymentGatewayType extends eZWorkflowEventType
                 return eZWorkflowType::STATUS_FETCH_TEMPLATE_REPEAT;
             }
         }
-        if( $status == eZWorkflowType::STATUS_ACCEPTED )
+        if ( $status == eZWorkflowType::STATUS_ACCEPTED )
         {
-        	
+            
             $order = eZOrder::fetch( $parameters["order_id"] );
             $accountInfo = $order->accountInformation();
             $payment = xrowPaymentObject::createNew( $parameters["order_id"], $accountInfo[xrowECommerce::ACCOUNT_KEY_PAYMENTMETHOD] );

@@ -17,7 +17,7 @@ class xrowPaymentObject extends eZPersistentObject
      \static
     Creates new object.
     */
-    static function createNew( $orderID, $paymentType )
+    static function createNew( $orderID, $paymentType = 'xrowEPaymentGateway' )
     {
         return new xrowPaymentObject( array( 
             'order_id' => $orderID , 

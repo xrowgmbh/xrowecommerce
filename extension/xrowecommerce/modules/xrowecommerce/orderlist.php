@@ -120,7 +120,6 @@ if ( $http->hasPostVariable( 'SaveOrderStatusButton' ) )
         foreach ( $http->postVariable( 'PaymentStatusList' ) as $orderID => $statusID )
         {
             $payment = xrowPaymentObject::fetchByOrderID( $orderID );
-            
             if ( $payment )
             {
                 $payment->modifyStatus( $statusID );

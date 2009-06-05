@@ -64,7 +64,7 @@ else // no action yet: just displaying the template
     }
     $orderNumbersString = implode( ', ', $orderNumbersArray );
 
-    $Module->setTitle( ezi18n( 'shop', 'Remove orders' ) );
+    $Module->setTitle( ezi18n( 'kernel/shop', 'Remove order' ) );
 
     $tpl = templateInit();
     $tpl->setVariable( "module", $Module );

@@ -182,9 +182,9 @@
 
 	</td>
 	   <td>
-        {def $stati = hash( '0', unpaid,  1, 'paid' )}
+        {def $stati = hash( '0', 'unpaid'|i18n( 'design/admin/shop/orderlist' ),  '1', 'paid'|i18n( 'design/admin/shop/orderlist' ) )}
         {def $payment = fetch( 'xrowecommerce', 'payment_status', hash( 'id', $order.id ) )}
-        <select {if or( $payment.status|eq('1'), $payment.automatic_status )} disabled{/if} name="PaymentStatusList[{$Orders.item.id}]" title="Payment via {$payment.payment_string}">
+        <select {if or( $payment.status|eq('1'), $payment.automatic_status )} disabled{/if} name="PaymentStatusList[{$order.id}]" title="Payment via {$payment.payment_string}">
         {foreach $stati as $key => $status}
             <option value="{$key}"
                 {if eq( $key, $payment.status )}selected="selected"{/if}>
