@@ -5,3 +5,6 @@ CREATE TABLE xrowpaymentobject (
   status int(11) NOT NULL default '0',
   PRIMARY KEY  (id)
 ) ENGINE=InnoDB;
+
+
+INSERT INTO ezorder_status (id, is_active, name, status_id) VALUES ( null,1,'Canceled',1000);
