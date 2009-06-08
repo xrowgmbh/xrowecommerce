@@ -98,4 +98,39 @@
         <translation>Zahlungsinformationen</translation>
     </message>
 </context>
+<context>
+    <name>extension/xrowcomdirect/errors</name>
+    <message>
+        <source>Account number mismatches bank code</source>
+        <translation>Kontonummer passt nicht zur Bankleitzahl</translation>
+    </message>
+    <message>
+        <source>Credit card number is invalid</source>
+        <translation>Kreditkartennummer ist falsch</translation>
+    </message>
+    <message>
+        <source>Expiration date is invalid</source>
+        <translation>Ablaufdatum ist falsch</translation>
+    </message>
+    <message>
+        <source>Credit card security code is invalid</source>
+        <translation>Kreditkartensicherheitscode ist falsch</translation>
+    </message>
+    <message>
+        <source>Bank code is invalid</source>
+        <translation>Bankleitzahl ist falsch</translation>
+    </message>
+    <message>
+        <source>Account number is invalid</source>
+        <translation>Kontonummer ist falsch</translation>
+    </message>
+    <message>
+        <source>Account name is invalid</source>
+        <translation>Kontoinhaber ist falsch</translation>
+    </message>
+    <message>
+        <source>Bank code is unknown</source>
+        <translation>Bankleitzahl ist unbekannt</translation>
+    </message>
+</context>
 </TS>

@@ -28,11 +28,11 @@
 </tr>
 <tr>
 <td>{"Account number"|i18n("extension/xrowcomdirect")}:</td>
-<td><input id="number" type="text" size="10" name="number" value="{$accountnumber|wash()}" /></td>
+<td><input id="number" type="text" maxlength="10" size="12" name="number" value="{$accountnumber|wash()}" /></td>
 </tr>
 <tr>
 <td>{"Bank code"|i18n("extension/xrowcomdirect")}: </td>
-<td><input id="bankcode" type="text" size="8" name="bankcode" value="{$bankcode|wash()}" /></td>
+<td><input id="bankcode" type="text" maxlength="8" size="10" name="bankcode" value="{$bankcode|wash()}" /></td>
 </tr>
 <tr>
 <td colspan="2">

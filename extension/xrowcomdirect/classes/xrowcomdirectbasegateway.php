@@ -4,8 +4,37 @@ class xrowComdirectBaseGateway extends xrowEPaymentGateway
 {
     const MAX_STRING_LEN = 27;
 
+    static function getErrorText( $id )
+    {
+        $id = (int) $id;
+        $list = self::getErrorList();
+        if ( array_key_exists( $id, $list ) and $id > 0 )
+        {
+            return $list[$id];
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    static function getErrorList()
+    {
+        return array( 
+            '2014' => ezi18n( 'extension/xrowcomdirect/errors', 'Credit card number is invalid' ) , 
+            '2016' => ezi18n( 'extension/xrowcomdirect/errors', 'Expiration date is invalid' ) , 
+            '2018' => ezi18n( 'extension/xrowcomdirect/errors', 'Credit card security code is invalid' ),
+            '2090' => ezi18n( 'extension/xrowcomdirect/errors', 'Bank code is invalid' ),
+            '2092' => ezi18n( 'extension/xrowcomdirect/errors', 'Account number is invalid' ),
+            '2094' => ezi18n( 'extension/xrowcomdirect/errors', 'Account name is invalid' ),
+            '2202' => ezi18n( 'extension/xrowcomdirect/errors', 'Bank code is unknown' ),
+            '2204' => ezi18n( 'extension/xrowcomdirect/errors', 'Account number mismatches bank code' )
+        );
+    }
+
     public function cancel( eZOrder $order )
     {
+        
         // client data
         // get order information out of eZXML
         $xmlDoc = $order->attribute( 'data_text_1' );
@@ -117,17 +146,17 @@ class xrowComdirectBaseGateway extends xrowEPaymentGateway
             {
                 $this->data[xrowECommerce::ACCOUNT_KEY_ECNAME] = trim( $http->postVariable( 'name' ) );
                 $this->data[xrowECommerce::ACCOUNT_KEY_TYPE] = $http->postVariable( 'cardtype' );
-                $this->data[xrowECommerce::ACCOUNT_KEY_ACCOUNTNUMBER] = $http->postVariable( 'number' );
-                $this->data[xrowECommerce::ACCOUNT_KEY_BANKCODE] = $http->postVariable( 'bankcode' );
+                $this->data[xrowECommerce::ACCOUNT_KEY_ACCOUNTNUMBER] = preg_replace('/\s/', '', $http->postVariable( 'number' ) );
+                $this->data[xrowECommerce::ACCOUNT_KEY_BANKCODE] = preg_replace('/\s/', '', $http->postVariable( 'bankcode' ) );
             }
             else
             {
                 $this->data[xrowECommerce::ACCOUNT_KEY_NAME] = trim( $http->postVariable( 'name' ) );
                 $this->data[xrowECommerce::ACCOUNT_KEY_TYPE] = $http->postVariable( 'cardtype' );
-                $this->data[xrowECommerce::ACCOUNT_KEY_NUMBER] = $http->postVariable( 'number' );
+                $this->data[xrowECommerce::ACCOUNT_KEY_NUMBER] = preg_replace('/\s/', '', $http->postVariable( 'number' ) );
                 $this->data[xrowECommerce::ACCOUNT_KEY_MONTH] = $http->postVariable( 'expirationmonth' );
                 $this->data[xrowECommerce::ACCOUNT_KEY_YEAR] = $http->postVariable( 'expirationyear' );
-                $this->data[xrowECommerce::ACCOUNT_KEY_SECURITYCODE] = $http->postVariable( 'securitycode' );
+                $this->data[xrowECommerce::ACCOUNT_KEY_SECURITYCODE] = preg_replace('/\s/', '', $http->postVariable( 'securitycode' ) );
             }
         }
         $errors = array();
@@ -226,16 +255,17 @@ class xrowComdirectBaseGateway extends xrowEPaymentGateway
         {
             
             $serverAnswer = self::transaction( $fields );
-            $this->data['servercode'] = $serverAnswer['rc'];
-            $this->data['transactionid'] = $serverAnswer['trefnum'];
-            $this->data['servermsg'] = $serverAnswer['rmsg'];
-            
-            $errors[] = $serverAnswer['rmsg'];
-            # Umlaut character are converted. They shouldn`t since coposweb says they are latin one.
-            #$errors[] = $codepage->convertString( $serverAnswer['rmsg'] );
-
-            if ( $serverAnswer['rc'] === '000' )
+            if ( array_key_exists( 'posherr', $serverAnswer ) and self::getErrorText( $serverAnswer['posherr'] ) )
             {
+                $this->data['servermsg'] = self::getErrorText( $serverAnswer['posherr'] );
+            }
+            else
+            {
+                $this->data['servermsg'] = $serverAnswer['rmsg'];
+            }
+            if ( array_key_exists( 'rc', $serverAnswer ) and $serverAnswer['rc'] === '000' )
+            {
+                $this->data['transactionid'] = $serverAnswer['trefnum'];
                 // payment is approved
                 eZDebug::writeDebug( 'Payment accepted: ' . $this->data['servermsg'], 'Payment' );
                 if ( $command == 'authorization' and (int) $xrowcomdirectINI->variable( 'Settings', 'StatusID' ) )
@@ -253,16 +283,20 @@ class xrowComdirectBaseGateway extends xrowEPaymentGateway
                     $root->appendChild( $invoice );
                     foreach ( $this->data as $key => $value )
                     {
-                    	if( xrowEPayment::storePaymentInformation() )
-                    	{
+                        if ( xrowEPayment::storePaymentInformation() )
+                        {
                             $node = $doc->createElement( $key, $value );
                             $root->appendChild( $node );
-                    	}
-                    	elseif ( in_array( $key, array( 'servercode', 'transactionid', 'servermsg' ) ) )
-                    	{
+                        }
+                        elseif ( in_array( $key, array( 
+                            'servercode' , 
+                            'transactionid' , 
+                            'servermsg' 
+                        ) ) )
+                        {
                             $node = $doc->createElement( $key, $value );
                             $root->appendChild( $node );
-                    	}
+                        }
                     }
                     $order->setAttribute( 'data_text_1', $doc->saveXML() );
                     $order->store();
@@ -277,6 +311,8 @@ class xrowComdirectBaseGateway extends xrowEPaymentGateway
             }
             else
             {
+                # Umlaut character are converted. They shouldn`t since coposweb says they are latin one.
+                #$errors[] = $codepage->convertString( $serverAnswer['rmsg'] );
                 $errors[] = $this->data['servermsg'];
                 $process->Template = array();
                 $process->Template['templateName'] = constant( get_class( $this ) . '::TEMPLATE' );
