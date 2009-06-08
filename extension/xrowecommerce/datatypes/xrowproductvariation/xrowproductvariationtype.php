@@ -147,11 +147,12 @@ class xrowProductVariationType extends eZDataType
             if ( $http->hasPostVariable( $dataKey ) )
             {
                 $variationAllArray = $http->postVariable( $dataKey );
+                $objectID = $contentObjectAttribute->attribute( 'contentobject_id' );
+                $contentClassAttributeID = $contentObjectAttribute->attribute( 'contentclassattribute_id' );
+
                 if ( isset( $variationAllArray[$id] ) )
                 {
-                    $objectID = $contentObjectAttribute->attribute( 'contentobject_id' );
-                    $contentClassAttributeID = $contentObjectAttribute->attribute( 'contentclassattribute_id' );
-                	$data = xrowProductData::fetchObjectList( xrowProductData::definition(),
+                    $data = xrowProductData::fetchObjectList( xrowProductData::definition(),
                                                               null,
                                                               array( 'object_id' => $objectID,
                                                                      'contentclassattribute_id' => $contentClassAttributeID,
@@ -186,8 +187,9 @@ class xrowProductVariationType extends eZDataType
                                 foreach ( $item as $currLanguageCode => $translation )
                                 {
                                     if ( $currLanguageCode == $languageCode )
+                                    {
                                         continue;
-
+                                    }
                                     $translationArray[$currID][$currLanguageCode] = $translation;
                                 }
                             }
@@ -202,9 +204,13 @@ class xrowProductVariationType extends eZDataType
                             if ( isset( $variation['id'] ) )
                             {
                                 if ( isset( $delIDArray[$variation['id']] ) )
+                                {
                                     unset( $delIDArray[$variation['id']] );
+                                }
                                 else
+                                {
                                     unset( $variationArray[$line]['id'] );
+                                }
                             }
                         }
                     }
@@ -243,12 +249,15 @@ class xrowProductVariationType extends eZDataType
                                 $row['attribute_id'] = $id;
                                 $row['language_code'] = $languageCode;
                                 $row['version'] = $version;
-                                $row['object_id'] = $contentObjectAttribute->attribute( 'contentobject_id' );
+                                $row['object_id'] = $objectID;
                                 $row['template_id'] = $templateID;
-                                $row['contentclassattribute_id'] = $contentObjectAttribute->attribute( 'contentclassattribute_id' );
+                                $row['contentclassattribute_id'] = $contentClassAttributeID;
+                                $row['placement'] = $placement;
 
                                 $currentData = new xrowProductData( $row );
                             }
+
+                            $currentData->setAttribute( 'placement', $placement );
 
                             foreach( $template->AttributeList as $attribute )
                             {
@@ -280,7 +289,6 @@ class xrowProductVariationType extends eZDataType
 	                                    $content['data'][$placement][$identifier]['raw'] = $currentData->attribute( $identifier );
 	                                    $content['data'][$placement][$identifier]['content'] = $dataType->variationContent( $currentData,
 	                                                                                                                        $identifier );
-
 	                                }
 	                            }
 	                        }
@@ -457,7 +465,13 @@ class xrowProductVariationType extends eZDataType
                     $template->updateAttributes( $languageCode );
                     $sortBy = $content['template']->sortBy();
                     if ( $sortBy )
+                    {
                         $sortBy = array( $sortBy['attribute'] => $sortBy['method'] );
+                    }
+                    else
+                    {
+                    	$sortBy = array( 'placement' => 'asc' );
+                    }
 
                     $data = xrowProductData::fetchList( array( 'attribute_id' => $id,
                                                                'version' => $version,
@@ -530,10 +544,10 @@ class xrowProductVariationType extends eZDataType
     {
     	$content['obj'] = $variation;
         $content['id'] = $variation->attribute( 'id' );
-        $content['placement'] = $variation->attribute( 'placement' );;
+        $content['placement'] = $variation->attribute( 'placement' );
         $content['version'] = $variation->attribute( 'version' );
         $content['template_id'] = $variation->attribute( 'template_id' );
-        $content['object_id'] = $variation->attribute( 'object_id' );;
+        $content['object_id'] = $variation->attribute( 'object_id' );
         $content['attribute_id'] = $variation->attribute( 'attribute_id' );
         $content['language_code'] = $variation->attribute( 'language_code' );
         $content['contentclassattribute_id'] = $variation->attribute( 'contentclassattribute_id' );

@@ -167,7 +167,7 @@ function addVariation( fromid, toid )
     var to_tbody = document.getElementById( toid );
     if ( fromtr && to_tbody )
     {
-        var newindex = to_tbody.rows.length;
+        var newindex = to_tbody.rows.length-1;
         var temphtml = '';
         var pattern1 = /xxxrownumberxxx/gi;
         var pattern2 = /DefaultXrowProductVariation/gi;
