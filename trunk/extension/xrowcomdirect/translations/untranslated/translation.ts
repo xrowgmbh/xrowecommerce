@@ -98,4 +98,39 @@
         <translation type="unfinished"></translation>
     </message>
 </context>
+<context>
+    <name>extension/xrowcomdirect/errors</name>
+    <message>
+        <source>Account number mismatches bank code</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Credit card number is invalid</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Expiration date is invalid</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Credit card security code is invalid</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Bank code is invalid</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Account number is invalid</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Account name is invalid</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Bank code is unknown</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
 </TS>

@@ -23,7 +23,7 @@
 <table summary="{"Please enter your credit card information"|i18n("extension/xrowcomdirect")}">
 <tr>
 <td>{"Name on credit card"|i18n("extension/xrowcomdirect")}:</td>
-<td><input type="text" size="32" name="name" value="{$name|wash()}" /></td>
+<td><input type="text" maxlength="32" size="32" name="name" value="{$name|wash()}" /></td>
 </tr>
 <tr>
 <td>{"Credit card type"|i18n("extension/xrowcomdirect")}:</td>
@@ -37,11 +37,11 @@
 </tr>
 <tr>
 <td>{"Credit card number"|i18n("extension/xrowcomdirect")}:</td>
-<td><input id="number" type="text" size="32" name="number" value="{$number|wash()}" /></td>
+<td><input id="number" type="text" maxlength="16" size="32" name="number" value="{$number|wash()}" /></td>
 </tr>
 <tr>
 <td>{"Credit card security code"|i18n("extension/xrowcomdirect")}: </td>
-<td><input id="securitycode" type="text" size="5" name="securitycode" value="{$securitycode|wash()}" /></td>
+<td><input id="securitycode" type="text" maxlength="4" size="5" name="securitycode" value="{$securitycode|wash()}" /></td>
 </tr>
 <tr>
 <td>{"Expiration date"|i18n("extension/xrowcomdirect")}: </td>
