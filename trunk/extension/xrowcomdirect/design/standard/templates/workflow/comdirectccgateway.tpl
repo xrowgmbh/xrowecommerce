@@ -37,7 +37,7 @@
 </tr>
 <tr>
 <td>{"Credit card number"|i18n("extension/xrowcomdirect")}:</td>
-<td><input id="number" type="text" maxlength="16" size="32" name="number" value="{$number|wash()}" /></td>
+<td><input id="number" type="text" maxlength="19" size="32" name="number" value="{$number|wash()}" /></td>
 </tr>
 <tr>
 <td>{"Credit card security code"|i18n("extension/xrowcomdirect")}: </td>
