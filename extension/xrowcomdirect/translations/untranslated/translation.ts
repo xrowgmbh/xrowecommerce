@@ -132,5 +132,9 @@
         <source>Bank code is unknown</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>The begining or length of credit card number is invalid</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 </TS>

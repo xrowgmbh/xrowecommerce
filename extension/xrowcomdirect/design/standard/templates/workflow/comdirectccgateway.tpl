@@ -49,18 +49,18 @@
   <select id="expirationmonth" name="expirationmonth">
     <option value="">{"Month"|i18n("extension/xrowcomdirect")}</option>
     {* Dynamic Loop *}
-    {for 1 to 12 as $month}
-      {if $month|lt(10)}{set $month=concat('0',$month)}{/if}
-    <option value="{$month|wash()}"{if eq($expirationmonth, $month)} selected="selected"{/if}>{$month|wash()}</option>
+    {for 1 to 12 as $expirationmonth}
+      {if $expirationmonth|lt(10)}{set $expirationmonth=concat('0',$expirationmonth)}{/if}
+    <option value="{$expirationmonth|wash()}"{if eq($expirationmonth, $month)} selected="selected"{/if}>{$expirationmonth|wash()}</option>
     {/for}
   </select>
   <select id="expirationyear" name="expirationyear">
     <option value="">{"Year"|i18n("extension/xrowcomdirect")}</option>
     {* Dynamic Loop *}
     {def $curr_year=currentdate()|datetime( 'custom', '%Y' )|int }
-    {for $curr_year to $curr_year|sum(10) as $year}
-      {if $year|lt(10)}{set $year=concat('0',$year)}{/if}
-    <option value="{$year|wash()}"{if eq($expirationyear, $year)} selected="selected"{/if}>{$year|wash()}</option>
+    {for $curr_year to $curr_year|sum(10) as $expirationyear}
+      {if $expirationyear|lt(10)}{set $expirationyear=concat('0',$expirationyear)}{/if}
+    <option value="{$expirationyear|wash()}"{if eq($expirationyear, $year)} selected="selected"{/if}>{$expirationyear|wash()}</option>
     {/for}
   </select>
 </td>
