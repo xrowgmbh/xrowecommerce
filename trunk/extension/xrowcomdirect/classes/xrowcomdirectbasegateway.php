@@ -24,6 +24,7 @@ class xrowComdirectBaseGateway extends xrowEPaymentGateway
             '2014' => ezi18n( 'extension/xrowcomdirect/errors', 'Credit card number is invalid' ) , 
             '2016' => ezi18n( 'extension/xrowcomdirect/errors', 'Expiration date is invalid' ) , 
             '2018' => ezi18n( 'extension/xrowcomdirect/errors', 'Credit card security code is invalid' ),
+            '2040' => ezi18n( 'extension/xrowcomdirect/errors', 'The begining or length of credit card number is invalid' ),
             '2090' => ezi18n( 'extension/xrowcomdirect/errors', 'Bank code is invalid' ),
             '2092' => ezi18n( 'extension/xrowcomdirect/errors', 'Account number is invalid' ),
             '2094' => ezi18n( 'extension/xrowcomdirect/errors', 'Account name is invalid' ),
