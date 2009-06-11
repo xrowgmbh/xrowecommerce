@@ -21,15 +21,59 @@ class xrowComdirectBaseGateway extends xrowEPaymentGateway
     static function getErrorList()
     {
         return array( 
-            '2014' => ezi18n( 'extension/xrowcomdirect/errors', 'Credit card number is invalid' ) , 
-            '2016' => ezi18n( 'extension/xrowcomdirect/errors', 'Expiration date is invalid' ) , 
-            '2018' => ezi18n( 'extension/xrowcomdirect/errors', 'Credit card security code is invalid' ),
-            '2040' => ezi18n( 'extension/xrowcomdirect/errors', 'The begining or length of credit card number is invalid' ),
-            '2090' => ezi18n( 'extension/xrowcomdirect/errors', 'Bank code is invalid' ),
-            '2092' => ezi18n( 'extension/xrowcomdirect/errors', 'Account number is invalid' ),
-            '2094' => ezi18n( 'extension/xrowcomdirect/errors', 'Account name is invalid' ),
-            '2202' => ezi18n( 'extension/xrowcomdirect/errors', 'Bank code is unknown' ),
-            '2204' => ezi18n( 'extension/xrowcomdirect/errors', 'Account number mismatches bank code' )
+            '005' => ezi18n( 'extension/xrowcomdirect/errors', 'Approval has been rejected' ) , 
+            '033' => ezi18n( 'extension/xrowcomdirect/errors', 'Expiration date invalid' ) , 
+            '090' => ezi18n( 'extension/xrowcomdirect/errors', 'Authorizing authority not available at present' ) , 
+            '091' => ezi18n( 'extension/xrowcomdirect/errors', 'Authorizing authority not available at present' ) , 
+            '096' => ezi18n( 'extension/xrowcomdirect/errors', 'Not able to process at present' ) , 
+            '100' => ezi18n( 'extension/xrowcomdirect/errors', 'Transaction not completed successfully' ) , 
+            '2014' => ezi18n( 'extension/xrowcomdirect/errors', 'Card number incorrect' ) , 
+            '2016' => ezi18n( 'extension/xrowcomdirect/errors', 'Date of validity incorrect' ) , 
+            '2018' => ezi18n( 'extension/xrowcomdirect/errors', 'Verification code failed' ) , 
+            '2040' => ezi18n( 'extension/xrowcomdirect/errors', 'First part or length of the card number incorrect' ) , 
+            '2042' => ezi18n( 'extension/xrowcomdirect/errors', 'Check sum of the card number incorrect' ) , 
+            '2048' => ezi18n( 'extension/xrowcomdirect/errors', 'Card expired' ) , 
+            '2090' => ezi18n( 'extension/xrowcomdirect/errors', 'Bank code incorrect' ) , 
+            '2092' => ezi18n( 'extension/xrowcomdirect/errors', 'Account number incorrect' ) , 
+            '2094' => ezi18n( 'extension/xrowcomdirect/errors', 'Account name incorrect' ) , 
+            '2202' => ezi18n( 'extension/xrowcomdirect/errors', 'Bank code unknown' ) , 
+            '2204' => ezi18n( 'extension/xrowcomdirect/errors', 'Account number does not correspond to the bank code' ) 
+        );
+    }
+
+    static function getAdditionalErrorText( $id )
+    {
+        $id = (int) $id;
+        $list = self::getAdditionalErrorList();
+        if ( array_key_exists( $id, $list ) and $id > 0 )
+        {
+            return $list[$id];
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    static function getAdditionalErrorList()
+    {
+        return array( 
+            '006' => ezi18n( 'extension/xrowcomdirect/errors', 'Not able to process at present. Try again later or select a different method of payment.' ) , 
+            '009' => ezi18n( 'extension/xrowcomdirect/errors', 'Not able to process at present. Try again later or select a different method of payment.' ) , 
+            '090' => ezi18n( 'extension/xrowcomdirect/errors', 'Not able to process at present. Try again later or select a different method of payment.' ) , 
+            '091' => ezi18n( 'extension/xrowcomdirect/errors', 'Not able to process at present. Try again later or select a different method of payment.' ) , 
+            '096' => ezi18n( 'extension/xrowcomdirect/errors', 'Not able to process at present. Try again later or select a different method of payment.' ) , 
+            '8001' => ezi18n( 'extension/xrowcomdirect/errors', 'Not able to process at present. Try again later or select a different method of payment.' ) , 
+            '8003' => ezi18n( 'extension/xrowcomdirect/errors', 'Not able to process at present. Try again later or select a different method of payment.' ) , 
+            '8005' => ezi18n( 'extension/xrowcomdirect/errors', 'Not able to process at present. Try again later or select a different method of payment.' ) , 
+            '8007' => ezi18n( 'extension/xrowcomdirect/errors', 'Not able to process at present. Try again later or select a different method of payment.' ) , 
+            '8009' => ezi18n( 'extension/xrowcomdirect/errors', 'Not able to process at present. Try again later or select a different method of payment.' ) , 
+            '8011' => ezi18n( 'extension/xrowcomdirect/errors', 'Not able to process at present. Try again later or select a different method of payment.' ) , 
+            '8031' => ezi18n( 'extension/xrowcomdirect/errors', 'Not able to process at present. Try again later or select a different method of payment.' ) , 
+            '8033' => ezi18n( 'extension/xrowcomdirect/errors', 'Not able to process at present. Try again later or select a different method of payment.' ) , 
+            '9001' => ezi18n( 'extension/xrowcomdirect/errors', 'Not able to process at present. Try again later or select a different method of payment.' ) , 
+            '9901' => ezi18n( 'extension/xrowcomdirect/errors', 'Not able to process at present. Try again later or select a different method of payment.' ) , 
+            '9903' => ezi18n( 'extension/xrowcomdirect/errors', 'Not able to process at present. Try again later or select a different method of payment.' ) 
         );
     }
 
@@ -51,7 +95,7 @@ class xrowComdirectBaseGateway extends xrowEPaymentGateway
         }
         else
         {
-            return false;
+            throw new xrowPaymentErrorException( "Error #" . $serverAnswer['posherr'] . ": " . $serverAnswer['rmsg'] );        
         }
     
     }
@@ -80,7 +124,7 @@ class xrowComdirectBaseGateway extends xrowEPaymentGateway
         }
         else
         {
-            return false;
+            throw new xrowPaymentErrorException( "Error #" . $serverAnswer['posherr'] . ": " . $serverAnswer['rmsg'] );
         }
     
     }
@@ -106,7 +150,14 @@ class xrowComdirectBaseGateway extends xrowEPaymentGateway
             throw new Exception( "Certificate file cacert.pem not found." );
         }
         eZDebug::writeDebug( $fields, 'Payment server request' );
-        $result = $request->send()->getBody();
+        try
+        {
+            $result = $request->send()->getBody();
+        }
+        catch ( Exception $e )
+        {
+            throw new xrowPaymentErrorException( "Payment gateway not available" );
+        }
         eZDebug::writeDebug( $result, 'Payment server answer' );
         $resultArray = explode( '&', $result );
         $serverAnswer = array();
@@ -147,17 +198,17 @@ class xrowComdirectBaseGateway extends xrowEPaymentGateway
             {
                 $this->data[xrowECommerce::ACCOUNT_KEY_ECNAME] = trim( $http->postVariable( 'name' ) );
                 $this->data[xrowECommerce::ACCOUNT_KEY_TYPE] = $http->postVariable( 'cardtype' );
-                $this->data[xrowECommerce::ACCOUNT_KEY_ACCOUNTNUMBER] = preg_replace('/\s/', '', $http->postVariable( 'number' ) );
-                $this->data[xrowECommerce::ACCOUNT_KEY_BANKCODE] = preg_replace('/\s/', '', $http->postVariable( 'bankcode' ) );
+                $this->data[xrowECommerce::ACCOUNT_KEY_ACCOUNTNUMBER] = preg_replace( '/\s/', '', $http->postVariable( 'number' ) );
+                $this->data[xrowECommerce::ACCOUNT_KEY_BANKCODE] = preg_replace( '/\s/', '', $http->postVariable( 'bankcode' ) );
             }
             else
             {
                 $this->data[xrowECommerce::ACCOUNT_KEY_NAME] = trim( $http->postVariable( 'name' ) );
                 $this->data[xrowECommerce::ACCOUNT_KEY_TYPE] = $http->postVariable( 'cardtype' );
-                $this->data[xrowECommerce::ACCOUNT_KEY_NUMBER] = preg_replace('/\s/', '', $http->postVariable( 'number' ) );
+                $this->data[xrowECommerce::ACCOUNT_KEY_NUMBER] = preg_replace( '/\s/', '', $http->postVariable( 'number' ) );
                 $this->data[xrowECommerce::ACCOUNT_KEY_MONTH] = $http->postVariable( 'expirationmonth' );
                 $this->data[xrowECommerce::ACCOUNT_KEY_YEAR] = $http->postVariable( 'expirationyear' );
-                $this->data[xrowECommerce::ACCOUNT_KEY_SECURITYCODE] = preg_replace('/\s/', '', $http->postVariable( 'securitycode' ) );
+                $this->data[xrowECommerce::ACCOUNT_KEY_SECURITYCODE] = preg_replace( '/\s/', '', $http->postVariable( 'securitycode' ) );
             }
         }
         $errors = array();
@@ -256,14 +307,6 @@ class xrowComdirectBaseGateway extends xrowEPaymentGateway
         {
             
             $serverAnswer = self::transaction( $fields );
-            if ( array_key_exists( 'posherr', $serverAnswer ) and self::getErrorText( $serverAnswer['posherr'] ) )
-            {
-                $this->data['servermsg'] = self::getErrorText( $serverAnswer['posherr'] );
-            }
-            else
-            {
-                $this->data['servermsg'] = $serverAnswer['rmsg'];
-            }
             if ( array_key_exists( 'rc', $serverAnswer ) and $serverAnswer['rc'] === '000' )
             {
                 $this->data['transactionid'] = $serverAnswer['trefnum'];
@@ -312,9 +355,22 @@ class xrowComdirectBaseGateway extends xrowEPaymentGateway
             }
             else
             {
+                if ( array_key_exists( 'posherr', $serverAnswer ) and self::getErrorText( $serverAnswer['posherr'] ) )
+                {
+                    $this->data['servermsg'] = self::getErrorText( $serverAnswer['posherr'] );
+                }
+                elseif ( array_key_exists( 'posherr', $serverAnswer ) and self::getAdditionalErrorText( $serverAnswer['posherr'] ) === false )
+                {
+                    $this->data['servermsg'] = ezi18n( 'extension/xrowcomdirect/errors', 'Not able to process at present. Select a different method of payment.' );
+                }
                 # Umlaut character are converted. They shouldn`t since coposweb says they are latin one.
                 #$errors[] = $codepage->convertString( $serverAnswer['rmsg'] );
                 $errors[] = $this->data['servermsg'];
+                
+                if ( array_key_exists( 'posherr', $serverAnswer ) and self::getAdditionalErrorText( $serverAnswer['posherr'] ) )
+                {
+                    $errors[] = self::getAdditionalErrorText( $serverAnswer['posherr'] );
+                }
                 $process->Template = array();
                 $process->Template['templateName'] = constant( get_class( $this ) . '::TEMPLATE' );
                 $process->Template['templateVars'] = array( 
