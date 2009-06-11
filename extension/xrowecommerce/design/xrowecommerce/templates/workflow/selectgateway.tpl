@@ -9,7 +9,7 @@
     <p>{'Please select your desired payment method below.'|i18n('extension/xrowecommerce')}</p>
 <form method="post" action={"shop/checkout"|ezurl}>
 <input class="hide" style="display: hide;" type="submit" name="SelectButton"  value="{'Select'|i18n('extension/xrowecommerce')}" />
-    <ul>
+    <ul id="gateways">
     {foreach $gateways as $gateway}
         <li><input class="commerce_radiobutton" type="radio" name="SelectedGateway" value="{$gateway.value}" {run-once} checked="checked"  {/run-once}/><span>{$gateway.Name|wash}</span></li>
     {/foreach}
