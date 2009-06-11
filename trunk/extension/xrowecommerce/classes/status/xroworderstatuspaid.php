@@ -17,13 +17,26 @@ class xrowOrderStatusPaid extends xrowOrderStatusDefault
             {
                 throw new Exception( "Gateway $classname does no longer exist." );
             }
-            if ( $gateway->capture( $order ) )
+            try
             {
-                
-                $payment = xrowPaymentObject::fetchByOrderID( $order->ID );
-                $payment->modifyStatus( xrowPaymentObject::STATUS_APPROVED );
-                return true;
+                if ( $gateway->capture( $order ) )
+                {
+                    
+                    $payment = xrowPaymentObject::fetchByOrderID( $order->ID );
+                    $payment->modifyStatus( xrowPaymentObject::STATUS_APPROVED );
+                    return true;
+                }
             }
+            catch ( xrowPaymentErrorException $e )
+            {
+                $po = xrowPaymentObject::fetchByOrderID( $order->ID );
+                $array = $po->dataArray();
+                $array['errors'][] = $e->getMessage();
+                $po->setDataArray( $array );
+                $po->store();
+                return false;
+            }
+        
         }
         return false;
     }

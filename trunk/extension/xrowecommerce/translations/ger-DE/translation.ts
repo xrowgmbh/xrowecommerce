@@ -119,6 +119,14 @@
         <source>Price export</source>
         <translation>Preis Export</translation>
     </message>
+    <message>
+        <source>Tax identification numbers</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Tax identification</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>design/admin/shop/orderlist</name>
@@ -175,10 +183,6 @@
         <translation>Summe (inkl. USt.)</translation>
     </message>
     <message>
-        <source>Status</source>
-        <translation>Status</translation>
-    </message>
-    <message>
         <source>Actions</source>
         <translation>Aktionen</translation>
     </message>
@@ -213,6 +217,30 @@
     <message>
         <source>Order statistic</source>
         <translation>Bestellstatistik</translation>
+    </message>
+    <message>
+        <source>Order status</source>
+        <translation type="unfinished">Bestellstatus</translation>
+    </message>
+    <message>
+        <source>Payment status</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>unpaid</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>paid</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Remove selected</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Remove selected orders.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1756,16 +1784,16 @@
         <translation>Speichern</translation>
     </message>
     <message>
-        <source>Website</source>
-        <translation>Internetseite</translation>
+        <source>A tax identification number in the Federal Republic of Germany consists of 10 or 11 digits, depending on the &quot;Bundesland&quot; (State). These are divided into groups of 2 - 5 by forward slashes or blanks (e.g. &quot;181/815/08155&quot;). A unified German tax identification number consists of 13 digits like &quot;2893081508152&quot;.</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Order date</source>
-        <translation>Bestelldatum</translation>
+        <source>Tax identification numbers</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Shipping method</source>
-        <translation>Versandart</translation>
+        <source>Status</source>
+        <translation type="unfinished">Status</translation>
     </message>
 </context>
 <context>
@@ -2354,6 +2382,41 @@ Es ist nicht möglich, den Datentyp danach zu ändern.</translation>
     </message>
 </context>
 <context>
+    <name>extension/xrowtin</name>
+    <message>
+        <source>The class identifier name of the country field is incorrect in xrowecommerce.ini</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The class identifier name of the company field is incorrect in xrowecommerce.ini</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please provide a company name with your companies tax ID.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Country doesn`t match tax ID number.</source>
+        <translation type="unfinished">Das Land entspricht nicht der Steuernummer.</translation>
+    </message>
+    <message>
+        <source>Your companies tax ID number is not valid.</source>
+        <translation type="unfinished">Ungültige Steuernummer.</translation>
+    </message>
+    <message>
+        <source>not validated</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>validated</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>validated by administration</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>kernel/classes/datatypes</name>
     <message>
         <source>Pay on delivery</source>
@@ -2379,6 +2442,15 @@ Es ist nicht möglich, den Datentyp danach zu ändern.</translation>
     <message>
         <source>Please correct the input of product variations. The wrong or missing input is marked with a red border.</source>
         <translation>Bitte korrigieren Sie die Eingabe bei den Produkt Variationen. Falsche Eingaben sind mit einem roten Rand markiert.</translation>
+    </message>
+    <message>
+        <source>Tax Identification Number</source>
+        <comment>Datatype name</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Input required.</source>
+        <translation type="unfinished">Eingabe erforderlich.</translation>
     </message>
 </context>
 <context>
@@ -2426,6 +2498,10 @@ Es ist nicht möglich, den Datentyp danach zu ändern.</translation>
     <message>
         <source>Order history</source>
         <translation>Bestellverlauf</translation>
+    </message>
+    <message>
+        <source>Remove order</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

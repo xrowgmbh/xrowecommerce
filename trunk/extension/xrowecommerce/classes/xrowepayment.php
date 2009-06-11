@@ -28,7 +28,22 @@ class xrowEPayment
             throw new Exception( "Gateway $classname does no longer exist." );
         }
     }
-
+    /**
+     * Wheater the gateways should store or not store payment information 
+     *
+     * @return bloolean
+     */
+    static function storePaymentInformation()
+    {
+        if ( eZINI::instance( 'xrowecommerce.ini' )->hasVariable( 'EPaymentSettings', 'StorePaymentInformation' ) and eZINI::instance( 'xrowecommerce.ini' )->variable( 'EPaymentSettings', 'StorePaymentInformation' ) == 'enabled' )
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
     static function paymentRequestType()
     {
         $type = eZINI::instance( 'xrowecommerce.ini' )->variable( 'EPaymentSettings', 'PaymentRequestType' );

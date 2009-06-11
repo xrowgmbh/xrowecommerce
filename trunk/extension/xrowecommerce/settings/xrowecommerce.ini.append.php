@@ -67,6 +67,8 @@ CompanyPhone=+1 555 123456
 # Payments should be capture right away or later
 # values are AUTH_ONLY or AUTH_AND_CAPTURE
 PaymentRequestType=AUTH_AND_CAPTURE
+# Wheater the gateways should store or not store payment information in the order
+StorePaymentInformation=disabled
 
 [StatusSettings]
 # Relate a Status to a type of xrowOrderStatusDefault
