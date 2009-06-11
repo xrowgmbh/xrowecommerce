@@ -1,10 +1,13 @@
-<div class="shop shop-basket">
+<div class="shop shop-payment shop-payment-gateway">
 {include uri="design:shop/basket_navigator.tpl" step='4'}
 
 <h1>{"Payment information"|i18n("extension/xrowcomdirect")}</h1>
-<ul>
-<li>{"Please enter your debit card information"|i18n("extension/xrowcomdirect")}</li>
-</ul>
+
+<form name="form" action={"/shop/checkout"|ezurl} method="post">
+<input type="submit" class="hide" style="display: hide;" name="validate" value="{'Continue'|i18n('extension/xrowcomdirect')}" />
+
+<div class="form">
+<h4>{"Please enter your debit card information"|i18n("extension/xrowcomdirect")}</h4>
 
 {if $errors|count|gt(0)}
 <div class="warning">
@@ -17,8 +20,6 @@
 </div>
 {/if}
 
-<form name="form" action={"/shop/checkout"|ezurl} method="post">
-<input type="submit" class="hide" style="display: hide;" name="validate" value="{'Continue'|i18n('extension/xrowcomdirect')}" />
 <input type="hidden" name="cardtype" value="5" />
 
 <table summary="{"Please enter your credit card information"|i18n("extension/xrowcomdirect")}">
@@ -34,16 +35,13 @@
 <td>{"Bank code"|i18n("extension/xrowcomdirect")}: </td>
 <td><input id="bankcode" type="text" maxlength="8" size="10" name="bankcode" value="{$bankcode|wash()}" /></td>
 </tr>
-<tr>
-<td colspan="2">
+</table>
+</div>
 <div id="buttonblock-bottom" class="buttonblock">
  <input id="cancel-button" class="button" type="submit" name="CancelButton" value="{'Cancel'|i18n('extension/xrowcomdirect')}" />    
-    <input id="continue-button" class="defaultbutton" type="submit" name="validate" value="{'Continue'|i18n('extension/xrowcomdirect')}" />
-   
+ <input id="continue-button" class="defaultbutton" type="submit" name="validate" value="{'Continue'|i18n('extension/xrowcomdirect')}" />  
+ <div class="break"></div>
 </div>
-</td>
-</tr>
-</table>
 
 </form> 
 

@@ -1,10 +1,18 @@
-<div class="shop shop-basket">
+<link rel="stylesheet" type="text/css" href="{'javascript/yui/build/container/assets/skins/sam/container.css'|ezdesign(no)}" />
+<script type="text/javascript" src="{'javascript/yui/build/yahoo-dom-event/yahoo-dom-event.js'|ezdesign(no)}"></script>
+<script type="text/javascript" src="{'javascript/yui/build/container/container-min.js'|ezdesign(no)}"></script>
+
+<div class="shop shop-payment shop-payment-gateway">
+
 {include uri="design:shop/basket_navigator.tpl" step='4'}
 
 <h1>{"Payment information"|i18n("extension/xrowcomdirect")}</h1>
-<ul>
-<li>{"Please enter your credit card information"|i18n("extension/xrowcomdirect")}</li>
-</ul>
+
+<form name="form" action={"/shop/checkout"|ezurl} method="post">
+<input type="submit" class="hide" style="display: hide;" name="validate" value="{'Continue'|i18n('extension/xrowcomdirect')}" />
+
+<div class="form">
+<h4>{"Please enter your credit card information"|i18n("extension/xrowcomdirect")}</h4>
 
 {if $errors|count|gt(0)}
 <div class="warning">
@@ -16,9 +24,6 @@
 </ul>
 </div>
 {/if}
-
-<form name="form" action={"/shop/checkout"|ezurl} method="post">
-<input type="submit" class="hide" style="display: hide;" name="validate" value="{'Continue'|i18n('extension/xrowcomdirect')}" />
 
 <table summary="{"Please enter your credit card information"|i18n("extension/xrowcomdirect")}">
 <tr>
@@ -41,7 +46,24 @@
 </tr>
 <tr>
 <td>{"Credit card security code"|i18n("extension/xrowcomdirect")}: </td>
-<td><input id="securitycode" type="text" maxlength="4" size="5" name="securitycode" value="{$securitycode|wash()}" /></td>
+<td>
+    <input id="securitycode" type="text" maxlength="4" size="5" name="securitycode" value="{$securitycode|wash()}" />
+    <button id="help-securitycode" class="help" type="button">?</button>
+    <script>
+        YAHOO.namespace("example.container");
+
+        function initHelp() {ldelim}
+            YAHOO.example.container.helpsecuritycode = new YAHOO.widget.Overlay("security-code-info", {ldelim} context:["help-securitycode","tl","br"], visible:false, width:"400px" {rdelim} );
+            YAHOO.example.container.helpsecuritycode.render();
+
+            YAHOO.util.Event.addListener("help-securitycode", "mouseover", YAHOO.example.container.helpsecuritycode.show, YAHOO.example.container.helpsecuritycode, true);
+            YAHOO.util.Event.addListener("help-securitycode", "mouseout", YAHOO.example.container.helpsecuritycode.hide, YAHOO.example.container.helpsecuritycode, true);
+
+        {rdelim}
+
+        YAHOO.util.Event.addListener(window, "load", initHelp);
+</script>
+</td>
 </tr>
 <tr>
 <td>{"Expiration date"|i18n("extension/xrowcomdirect")}: </td>
@@ -65,18 +87,9 @@
   </select>
 </td>
 </tr>
-<tr>
-<td colspan="2">
-<div id="buttonblock-bottom" class="buttonblock">
- <input id="cancel-button" class="button" type="submit" name="CancelButton" value="{'Cancel'|i18n('extension/xrowcomdirect')}" />    
-    <input id="continue-button" class="defaultbutton" type="submit" name="validate" value="{'Continue'|i18n('extension/xrowcomdirect')}" />
-   
-</div>
-</td>
-</tr>
 </table>
-
-
+</div>
+<div id="security-code-info" style="visibility:hidden">
 <p>{"What are the advantages of security code verification?"|i18n("extension/xrowcomdirect")}</p>
 
 <p><img src={"three_digit_code_example.png"|ezimage} class="" alt="" title="" /></p>
@@ -87,6 +100,13 @@
             <li>{"Faster order fullfilment"|i18n("extension/xrowcomdirect")}</li>
             <li>{"Deters fraud"|i18n("extension/xrowcomdirect")}</li>
         </ul>
+</div>
+
+<div id="buttonblock-bottom" class="buttonblock">
+ <input id="cancel-button" class="button" type="submit" name="CancelButton" value="{'Cancel'|i18n('extension/xrowcomdirect')}" />    
+    <input id="continue-button" class="defaultbutton" type="submit" name="validate" value="{'Continue'|i18n('extension/xrowcomdirect')}" />
+   <div class="break"></div>
+</div>
 
 </form> 
 
