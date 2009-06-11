@@ -1,6 +1,6 @@
 <?php /* #?ini charset="utf8"?
 
-#[RegionalSettings]
-#TranslationExtensions[]=xrowcomdirect
+[RegionalSettings]
+TranslationExtensions[]=xrowcomdirect
 
 */ ?>
