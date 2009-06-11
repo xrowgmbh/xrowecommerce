@@ -1,14 +1,11 @@
+<link rel="stylesheet" type="text/css" href="{'javascript/yui/build/container/assets/skins/sam/container.css'|ezdesign(no)}" />
+<script type="text/javascript" src="{'javascript/yui/build/yahoo-dom-event/yahoo-dom-event.js'|ezdesign(no)}"></script>
+<script type="text/javascript" src="{'javascript/yui/build/container/container-min.js'|ezdesign(no)}"></script>
+
 {literal}
-<link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/2.7.0/build/fonts/fonts-min.css" />
-<link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/2.7.0/build/container/assets/skins/sam/container.css" />
-<script type="text/javascript" src="http://yui.yahooapis.com/2.7.0/build/yahoo-dom-event/yahoo-dom-event.js"></script>
-<script type="text/javascript" src="http://yui.yahooapis.com/2.7.0/build/container/container-min.js"></script>
 
 <style>
     .yui-overlay { position:absolute;background:#fff;border:1px dotted black;padding:5px;margin:10px; }
-    .yui-overlay .hd { border:1px solid red;padding:5px; }
-    .yui-overlay .bd { border:1px solid green;padding:5px; }
-    .yui-overlay .ft { border:1px solid blue;padding:5px; }
 </style>
 {/literal}
 <div class="context-block">
