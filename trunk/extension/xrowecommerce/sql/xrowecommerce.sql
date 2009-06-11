@@ -3,6 +3,7 @@ CREATE TABLE xrowpaymentobject (
   order_id int(11) NOT NULL default '0',
   payment_string varchar(255) NOT NULL default '',
   status int(11) NOT NULL default '0',
+  data text NOT NULL,
   PRIMARY KEY  (id)
 ) ENGINE=InnoDB;
 
