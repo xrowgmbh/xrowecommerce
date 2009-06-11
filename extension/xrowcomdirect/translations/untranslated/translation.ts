@@ -101,39 +101,75 @@
 <context>
     <name>extension/xrowcomdirect/errors</name>
     <message>
-        <source>Account number mismatches bank code</source>
+        <source>Approval has been rejected</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Credit card number is invalid</source>
+        <source>Expiration date invalid</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Expiration date is invalid</source>
+        <source>Authorizing authority not available at present</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Credit card security code is invalid</source>
+        <source>Not able to process at present</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Bank code is invalid</source>
+        <source>Transaction not completed successfully</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Account number is invalid</source>
+        <source>Card number incorrect</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Account name is invalid</source>
+        <source>Date of validity incorrect</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Bank code is unknown</source>
+        <source>Verification code failed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>The begining or length of credit card number is invalid</source>
+        <source>First part or length of the card number incorrect</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Check sum of the card number incorrect</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Card expired</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Bank code incorrect</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Account number incorrect</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Account name incorrect</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Bank code unknown</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Account number does not correspond to the bank code</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Not able to process at present. Try again later or select a different method of payment.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Not able to process at present. Select a different method of payment.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
