@@ -1,4 +1,16 @@
+{literal}
+<link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/2.7.0/build/fonts/fonts-min.css" />
+<link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/2.7.0/build/container/assets/skins/sam/container.css" />
+<script type="text/javascript" src="http://yui.yahooapis.com/2.7.0/build/yahoo-dom-event/yahoo-dom-event.js"></script>
+<script type="text/javascript" src="http://yui.yahooapis.com/2.7.0/build/container/container-min.js"></script>
 
+<style>
+    .yui-overlay { position:absolute;background:#fff;border:1px dotted black;padding:5px;margin:10px; }
+    .yui-overlay .hd { border:1px solid red;padding:5px; }
+    .yui-overlay .bd { border:1px solid green;padding:5px; }
+    .yui-overlay .ft { border:1px solid blue;padding:5px; }
+</style>
+{/literal}
 <div class="context-block">
 
 {* DESIGN: Header START *}<div class="box-header"><div class="box-tc"><div class="box-ml"><div class="box-mr"><div class="box-tl"><div class="box-tr">
@@ -191,6 +203,40 @@
                 {$status|wash}</option>
         {/foreach}
         </select>
+        {if $payment.data_array.errors|count|gt(0)}
+
+<script>
+        YAHOO.namespace("example.container");
+
+        function init() {ldelim}
+            // Build overlay1 based on markup, initially hidden, fixed to the center of the viewport, and 300px wide
+            YAHOO.example.container.orderoverlay{$order.id} = new YAHOO.widget.Overlay("orderoverlay{$order.id}", {ldelim} fixedcenter:true,
+                                                                                      visible:false,
+                                                                                      width:"300px" {rdelim} );
+            YAHOO.example.container.orderoverlay{$order.id}.render();
+
+            YAHOO.util.Event.addListener("order-show-{$order.id}", "click", YAHOO.example.container.orderoverlay{$order.id}.show, YAHOO.example.container.orderoverlay{$order.id}, true);
+            YAHOO.util.Event.addListener("order-hide-{$order.id}", "click", YAHOO.example.container.orderoverlay{$order.id}.hide, YAHOO.example.container.orderoverlay{$order.id}, true);
+
+        {rdelim}
+
+        YAHOO.util.Event.addListener(window, "load", init);
+</script>
+
+    <button id="order-show-{$order.id}" type="button">!</button>
+
+    
+
+<div id="orderoverlay{$order.id}" style="visibility:hidden">
+
+        <ul>
+        {foreach $payment.data_array.errors as $error}
+        <li>{$error|wash}</li>
+        {/foreach}
+        </ul>
+        <button id="order-hide-{$order.id}" type="button">{'Close'|i18n( 'design/admin/shop/orderlist' )}</button>
+        </div>
+        {/if}
         {undef $payment $stati}
     </td>
 	<td>

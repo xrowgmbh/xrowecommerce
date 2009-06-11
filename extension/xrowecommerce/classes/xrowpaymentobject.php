@@ -71,6 +71,12 @@ class xrowPaymentObject extends eZPersistentObject
                     'datatype' => 'integer' , 
                     'default' => 0 , 
                     'required' => true 
+                ) , 
+                'data' => array( 
+                    'name' => 'Data' , 
+                    'datatype' => 'string' , 
+                    'default' => '' , 
+                    'required' => false 
                 ) 
             ) , 
             'keys' => array( 
@@ -80,9 +86,28 @@ class xrowPaymentObject extends eZPersistentObject
             'class_name' => 'xrowPaymentObject' , 
             'name' => 'xrowpaymentobject' , 
             'function_attributes' => array( 
-                'automatic_status' => 'automaticPaymentStatus' 
+                'automatic_status' => 'automaticPaymentStatus' , 
+                'data_array' => 'dataArray' 
             ) 
         );
+    }
+
+    public function setDataArray( $array )
+    {
+        $this->Data = serialize( $array );
+    }
+
+    public function dataArray()
+    {
+        $return = unserialize( $this->Data );
+        if ( ! is_array( $return ) )
+        {
+            return array();
+        }
+        else
+        {
+            return $return;
+        }
     }
 
     public function automaticPaymentStatus()
@@ -102,10 +127,12 @@ class xrowPaymentObject extends eZPersistentObject
         ) );
     }
 
-    /*!
-     \static
-    Returns xrowPaymentObject by 'id' of eZOrder.
-    */
+    /**
+     * xrowPaymentObject by 'id' of eZOrder.
+     * 
+     * @static
+     * @return xrowPaymentObject by 'id' of eZOrder.
+     */
     static function fetchByOrderID( $orderID )
     {
         return eZPersistentObject::fetchObject( xrowPaymentObject::definition(), null, array( 
