@@ -68,7 +68,13 @@ CompanyPhone=+1 555 123456
 # values are AUTH_ONLY or AUTH_AND_CAPTURE
 PaymentRequestType=AUTH_AND_CAPTURE
 # Wheater the gateways should store or not store payment information in the order
-StorePaymentInformation=disabled
+StorePaymentInformation=enabled
+#List of active creditcards
+#ActiveCreditcards[]
+#ActiveCreditcards[2]=Visa
+#ActiveCreditcards[1]=MasterCard
+#ActiveCreditcards[4]=American Express
+#ActiveCreditcards[3]=Discover
 
 [StatusSettings]
 # Relate a Status to a type of xrowOrderStatusDefault

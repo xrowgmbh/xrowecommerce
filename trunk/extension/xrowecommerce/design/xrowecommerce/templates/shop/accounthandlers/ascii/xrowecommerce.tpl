@@ -74,7 +74,16 @@
 {if $order.account_information.paymentmethod}
 {'Payment method'|i18n('extension/xrowecommerce')}: {if $gateways|gt(0)}{foreach $gateways as $gateway}{if $order.account_information.paymentmethod|eq($gateway.value)}{$gateway.Name|wash}{/if}{/foreach}{/if}
 {$order.account_information.paymentmethod}
- 
+        {if $order.account_information.type}
+        {switch match=$order.account_information.type}
+        {case in=array(1,2,3,4)}
+        {$order.account_information.number} {$order.account_information.month} / {$order.account_information.year}
+        {/case}
+        {case match='5'}
+        {$order.account_information.accountnumber} {$order.account_information.bankcode}
+        {/case}
+        {/switch}
+        {/if}
 {else}
 {'Payment method'|i18n('extension/xrowecommerce')}: {'Unkown'|i18n('extension/xrowecommerce')}
  

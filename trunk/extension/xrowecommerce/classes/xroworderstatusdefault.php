@@ -31,6 +31,7 @@ class xrowOrderStatusDefault
 
     final public function canChangeStatus( xrowOrderStatusDefault $status )
     {
+    	$allow = false;
         if ( ! in_array( $status->statusID, self::disallowedStatusList() ) )
         {
             $allow = true;

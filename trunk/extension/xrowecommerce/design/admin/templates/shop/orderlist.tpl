@@ -156,7 +156,7 @@
 {/if}
 
 <tr class="{$Orders.sequence}">
-    <td><input type="checkbox" name="OrderIDArray[]" value="{$Orders.item.id}" title="{'Select order for removal.'|i18n( 'design/admin/shop/orderlist' )}" /></td>
+    <td><input type="checkbox" name="OrderIDArray[]" value="{$order.id}" title="{'Select order for removal.'|i18n( 'design/admin/shop/orderlist' )}" /></td>
 	<td><a href={concat( '/shop/orderview/', $order.id, '/' )|ezurl}>{$order.order_nr}</a></td>
 	<td>
 	{if is_null($order.account_name)}
@@ -178,6 +178,7 @@
     {if $order.status_modification_list|count|gt( 0 )}
         {set can_apply=true()}
         <select name="StatusList[{$order.id}]">
+        
         {foreach $order.status_modification_list as $Status}
             <option value="{$Status.status_id}"
                 {if ezini( 'StatusSettings', concat( 'StatusDisallowList-', $order.status_id) ,'xrowecommerce.ini' ) )|contains($Status.status_id)} disabled="disabled"{/if}{if eq( $Status.status_id, $order.status_id )} selected="selected"{/if}>
