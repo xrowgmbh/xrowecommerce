@@ -44,6 +44,17 @@ class xrowEPayment
             return false;
         }
     }
+    static function obscureString( $string, $length = 4, $char = '*' )
+    {
+    	$amount = strlen( $string ) - $length;
+    	$result = '';
+    	for ( $i = $amount; $i > 0; $i-- )
+    	{
+    		$result .= $char;
+    	}
+    	$offset = $length * -1;
+    	return $result . substr( $string, $offset, $length);
+    }
     static function paymentRequestType()
     {
         $type = eZINI::instance( 'xrowecommerce.ini' )->variable( 'EPaymentSettings', 'PaymentRequestType' );

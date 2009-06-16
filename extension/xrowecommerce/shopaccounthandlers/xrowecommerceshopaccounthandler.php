@@ -2,6 +2,7 @@
 
 class xrowECommerceShopAccountHandler
 {
+
     /**
      * Will verify that the user has supplied the correct user information.
      * Returns true if we have all the information needed about the user.
@@ -203,11 +204,14 @@ class xrowECommerceShopAccountHandler
             'message' , 
             'no_partial_delivery' , 
             'coupon_code' , 
-            'ezauthorize-transaction-id' , 
-            'ezauthorize-card-name' , 
-            'ezauthorize-card-number' , 
-            'ezauthorize-card-date' , 
-            'ezauthorize-card-type' 
+            xrowECommerce::ACCOUNT_KEY_TRANSACTIONID , 
+            xrowECommerce::ACCOUNT_KEY_NUMBER , 
+            xrowECommerce::ACCOUNT_KEY_BANKCODE , 
+            xrowECommerce::ACCOUNT_KEY_ACCOUNTNUMBER , 
+            xrowECommerce::ACCOUNT_KEY_MONTH , 
+            xrowECommerce::ACCOUNT_KEY_NAME , 
+            xrowECommerce::ACCOUNT_KEY_YEAR , 
+            xrowECommerce::ACCOUNT_KEY_TYPE 
         );
         foreach ( $fields as $field )
         {

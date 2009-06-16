@@ -236,7 +236,18 @@
                     <th>{'Payment method'|i18n('extension/xrowecommerce')}:</th>
                     <td>{if $gateways|gt(0)} {foreach $gateways as $gateway}
                     {if $order.account_information.paymentmethod|eq($gateway.value)}{$gateway.Name|wash}{/if}
-                    {/foreach} {/if}</td>
+                    {/foreach} {/if}
+        {if $order.account_information.type}
+        {switch match=$order.account_information.type}
+        {case in=array(1,2,3,4)}
+        {$order.account_information.number|wash} {$order.account_information.month|wash} / {$order.account_information.year|wash}
+        {/case}
+        {case match='5'}
+        {$order.account_information.accountnumber|wash} {$order.account_information.bankcode|wash}
+        {/case}
+        {/switch}
+        {/if}
+                    </td>
                 </tr>
                 {else}
                 <tr>

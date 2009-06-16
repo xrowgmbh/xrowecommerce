@@ -92,29 +92,6 @@ if ( $http->hasPostVariable( 'ArchiveButton' ) )
 
 if ( $http->hasPostVariable( 'SaveOrderStatusButton' ) )
 {
-   /*
-    class StatusService
-    {
-        private $order;
-
-        function __construct()
-        {
-        
-        }
-
-        public function hello()
-        {
-            echo "Hello world\n";
-        }
-    }
- 
-    $signals = new ezcSignalCollection( );
-    $signals->connect( "statusChange", array( 
-        new StatusService( ) , 
-        "hello" 
-    ) );
-    $signals->emit( "statusChange", $order, $statusID );
-    */
     if ( $http->hasPostVariable( 'PaymentStatusList' ) )
     {
         foreach ( $http->postVariable( 'PaymentStatusList' ) as $orderID => $statusID )
@@ -145,7 +122,6 @@ if ( $http->hasPostVariable( 'SaveOrderStatusButton' ) )
             	if ( $old->canChangeStatus( $new ) )
             	{ 
             		$old->changeStatus( $order, $new );
-                    
             	}
             }
         }
