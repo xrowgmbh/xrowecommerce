@@ -103,7 +103,7 @@ class xrowComdirectBaseGateway extends xrowEPaymentGateway
     public function capture( eZOrder $order )
     {
         // client data
-        // get order information out of eZXML
+        // get order information out of XML
         $xmlDoc = $order->attribute( 'data_text_1' );
         $clientInfo = simplexml_load_string( $xmlDoc );
         
@@ -150,12 +150,14 @@ class xrowComdirectBaseGateway extends xrowEPaymentGateway
             throw new Exception( "Certificate file cacert.pem not found." );
         }
         eZDebug::writeDebug( $fields, 'Payment server request' );
+        
         try
         {
             $result = $request->send()->getBody();
         }
         catch ( Exception $e )
         {
+        	eZDebug::writeError( $e->getMessage(), 'Payment server request error' );
             throw new xrowPaymentErrorException( "Payment gateway not available" );
         }
         eZDebug::writeDebug( $result, 'Payment server answer' );
@@ -178,7 +180,7 @@ class xrowComdirectBaseGateway extends xrowEPaymentGateway
         $http = eZHTTPTool::instance();
         $shopINI = eZINI::instance( 'shop.ini' );
         $xrowcomdirectINI = eZINI::instance( 'xrowcomdirect.ini' );
-        
+
         // make the order object
         $processParams = $process->attribute( 'parameter_list' );
         
@@ -299,7 +301,8 @@ class xrowComdirectBaseGateway extends xrowEPaymentGateway
                 'orderid' => $bookingstr , 
                 'command' => $command , 
                 'currency' => $currencyCode , 
-                'amount' => $amount 
+                'amount' => $amount ,
+                'cvcode' => $this->data[xrowECommerce::ACCOUNT_KEY_SECURITYCODE]
             );
         }
         
@@ -307,6 +310,7 @@ class xrowComdirectBaseGateway extends xrowEPaymentGateway
         {
             
             $serverAnswer = self::transaction( $fields );
+
             if ( array_key_exists( 'rc', $serverAnswer ) and $serverAnswer['rc'] === '000' )
             {
                 $this->data['transactionid'] = $serverAnswer['trefnum'];
@@ -327,6 +331,16 @@ class xrowComdirectBaseGateway extends xrowEPaymentGateway
                     $root->appendChild( $invoice );
                     foreach ( $this->data as $key => $value )
                     {
+                    	if ( $key == xrowECommerce::ACCOUNT_KEY_SECURITYCODE )
+                    	{
+                    		continue;
+                    	}
+                    	$obscure = array( xrowECommerce::ACCOUNT_KEY_ACCOUNTNUMBER, xrowECommerce::ACCOUNT_KEY_NUMBER );
+                    	if ( in_array( $key, $obscure ) )
+                    	{
+                    		$value = xrowEPayment::obscureString( $value );
+                    	}
+
                         if ( xrowEPayment::storePaymentInformation() )
                         {
                             $node = $doc->createElement( $key, $value );
