@@ -34,10 +34,9 @@
 <td>{"Credit card type"|i18n("extension/xrowcomdirect")}:</td>
 <td>
 <select name="cardtype">
-  <option value="2">Visa</option>
-  <option value="1" {if eq($cardtype, '1')}selected{/if}>MasterCard</option>
-  <option value="4" {if eq($cardtype, '4')}selected{/if}>American Express</option>
-  <option value="3" {if eq($cardtype, '3')}selected{/if}>Discover</option>
+{foreach ezini( 'EPaymentSettings', 'ActiveCreditcards', 'xrowecommerce.ini' ) as $key => $name}
+  <option value="{$key}" {if $cardtype|eq($key)}selected{/if}>{$name|wash}</option>
+{/foreach}
 </select>
 </tr>
 <tr>
@@ -48,7 +47,7 @@
 <td>{"Credit card security code"|i18n("extension/xrowcomdirect")}: </td>
 <td>
     <input id="securitycode" type="text" maxlength="4" size="5" name="securitycode" value="{$securitycode|wash()}" />
-    <button id="help-securitycode" class="help" type="button">?</button>
+    <button id="help-securitycode" class="help" type="button" title="{"Information"|i18n("extension/xrowcomdirect")}">{"i"|i18n("extension/xrowcomdirect", 'i for information')}</button>
     <script>
         YAHOO.namespace("example.container");
 
