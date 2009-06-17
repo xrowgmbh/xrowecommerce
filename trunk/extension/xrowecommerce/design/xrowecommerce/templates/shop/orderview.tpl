@@ -77,7 +77,7 @@
         <td class="basketspace price">
             {if $product_item.discount_percent}
             {def $discount = $product_item.price_ex_vat|div(100)|mul($product_item.discount_percent)
-                 $price = $product_item.price_ex_vat|sub($discount)} 
+                 $price = $product_item.price_ex_vat|sub($discount)}
             {else}
                 {def $price = $product_item.price_ex_vat}
             {/if}
@@ -146,6 +146,7 @@ document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.
 </script>
 
 <script type="text/javascript">
+  try {ldelim}
   var pageTracker = _gat._getTracker("{ezini( 'GoogleAnalyticsWorkflow', 'Urchin', 'googleanalytics.ini'  )}");
   pageTracker._initData();
   pageTracker._trackPageview();
@@ -168,7 +169,7 @@ document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.
         pageTracker._addItem(
                     "{$order.order_nr}",                                                     // Order ID
                     "{$option_item.value} - {$prod.name|wash()}",                           // SKU
-                    "{$vary.comment}    ",                                                 // Product Name
+                    "{$vary.comment}",                                                 // Product Name
                     "{$product_item.item_object.contentobject.main_node.parent.name}",    // Category
                     "{$product_item.price_ex_vat|l10n( 'currency', $locale, $symbol )}", // Price
                     "{$product_item.item_count}"                                        // Quantity
@@ -178,7 +179,7 @@ document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.
                   pageTracker._addItem(
                     "{$order.order_nr}",                                                     // Order ID
                     "{$product_item.object_name|wash()}",     // SKU
-                    "{$product_item.object_name|wash()}",                                                 // Product Name 
+                    "{$product_item.object_name|wash()}",                                                 // Product Name
                     "{$product_item.item_object.contentobject.main_node.parent.name}",    // Category
                     "{$product_item.price_ex_vat|l10n( 'currency', $locale, $symbol )}", // Price
                     "{$product_item.item_count}"                                        // Quantity
@@ -186,5 +187,6 @@ document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.
     {/if}
 {/foreach}
   pageTracker._trackTrans();
+   catch(err) {ldelim}{rdelim}
 </script>
 </div>
