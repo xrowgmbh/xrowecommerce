@@ -31,7 +31,7 @@
     <p>{'No match'|i18n( 'extension/xrowecommerce')}</p>
 {else}
     <p>{'Search for customer in the system via e-mail address'|i18n( 'extension/xrowecommerce')}</p>
-{/if}  
+{/if}
 </div>
 </div>
 
@@ -42,7 +42,7 @@
         <form name="orderedit" method="post" action={'orderedit/edit'|ezurl}>
             <input name="order_id" type="text" value="" size="50" />
             <input class="button" name="Edit" type="submit" value="Edit" />
-        </form>  
+        </form>
     </td>
   </tr>
 <form name="contentserver" method="post" action={'customersearch/search'|ezurl}>
@@ -144,7 +144,7 @@
 	<th class="wide">{'Payment status'|i18n( 'design/admin/shop/orderlist' )}</th>
 	<th class="wide">{'Actions'|i18n( 'design/admin/shop/orderlist' )}</th>
 </tr>
-{foreach $order_list as $order sequence=array( bglight, bgdark )}
+{foreach $order_list as $order sequence array( bglight, bgdark ) as $seq}
 
 {set $currency = fetch( 'shop', 'currency', hash( 'code', $order.productcollection.currency_code ) )}
 {if $currency}
@@ -155,7 +155,7 @@
          symbol = false()}
 {/if}
 
-<tr class="{$Orders.sequence}">
+<tr class="{$seq}">
     <td><input type="checkbox" name="OrderIDArray[]" value="{$order.id}" title="{'Select order for removal.'|i18n( 'design/admin/shop/orderlist' )}" /></td>
 	<td><a href={concat( '/shop/orderview/', $order.id, '/' )|ezurl}>{$order.order_nr}</a></td>
 	<td>
@@ -165,7 +165,7 @@
 	    <a href={concat( '/shop/customerorderview/', $order.user_id, '/', $order.account_email )|ezurl}>{$order.account_name}</a>
 	{/if}
 	</td>
-	
+
 
     {* NOTE: These two attribute calls are slow, they cause the system to generate lots of SQLs.
              The reason is that their values are not cached in the order tables *}
@@ -178,7 +178,7 @@
     {if $order.status_modification_list|count|gt( 0 )}
         {set can_apply=true()}
         <select name="StatusList[{$order.id}]">
-        
+
         {foreach $order.status_modification_list as $Status}
             <option value="{$Status.status_id}"
                 {if ezini( 'StatusSettings', concat( 'StatusDisallowList-', $order.status_id) ,'xrowecommerce.ini' ) )|contains($Status.status_id)} disabled="disabled"{/if}{if eq( $Status.status_id, $order.status_id )} selected="selected"{/if}>
@@ -223,7 +223,7 @@
 
     <button id="order-show-{$order.id}" type="button">!</button>
 
-    
+
 
 <div id="orderoverlay{$order.id}" style="visibility:hidden">
 
