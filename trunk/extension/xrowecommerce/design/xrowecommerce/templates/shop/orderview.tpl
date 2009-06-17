@@ -147,6 +147,7 @@ document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.
 
 <script type="text/javascript">
   try {ldelim}
+
   var pageTracker = _gat._getTracker("{ezini( 'GoogleAnalyticsWorkflow', 'Urchin', 'googleanalytics.ini'  )}");
   pageTracker._initData();
   pageTracker._trackPageview();
@@ -187,6 +188,6 @@ document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.
     {/if}
 {/foreach}
   pageTracker._trackTrans();
-   catch(err) {ldelim}{rdelim}
+  {ldelim} catch(err) {ldelim}{rdelim}
 </script>
 </div>
