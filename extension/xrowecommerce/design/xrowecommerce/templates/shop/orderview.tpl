@@ -188,6 +188,6 @@ document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.
     {/if}
 {/foreach}
   pageTracker._trackTrans();
-  {ldelim} catch(err) {ldelim}{rdelim}
+  {rdelim} catch(err) {ldelim}{rdelim}
 </script>
 </div>
