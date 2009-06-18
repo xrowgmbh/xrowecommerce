@@ -1,3 +1,4 @@
+{def $show_payment_status=cond( and( ezini_hasvariable( 'StatusSettings', 'ShowPaymentStatus', 'xrowecommerce.ini' ), ezini( 'StatusSettings', 'ShowPaymentStatus', 'xrowecommerce.ini' )|eq( 'disabled' ) ), false(), true() )}
 <link rel="stylesheet" type="text/css" href="{'javascript/yui/build/container/assets/skins/sam/container.css'|ezdesign(no)}" />
 <script type="text/javascript" src="{'javascript/yui/build/yahoo-dom-event/yahoo-dom-event.js'|ezdesign(no)}"></script>
 <script type="text/javascript" src="{'javascript/yui/build/container/container-min.js'|ezdesign(no)}"></script>
@@ -141,7 +142,9 @@
 	<th class="tight">{'Total (inc. VAT)'|i18n( 'design/admin/shop/orderlist' )}</th>
 	<th class="wide">{'Time'|i18n( 'design/admin/shop/orderlist' )}</th>
 	<th class="wide">{'Order status'|i18n( 'design/admin/shop/orderlist' )}</th>
+{if $show_payment_status}
 	<th class="wide">{'Payment status'|i18n( 'design/admin/shop/orderlist' )}</th>
+{/if}
 	<th class="wide">{'Actions'|i18n( 'design/admin/shop/orderlist' )}</th>
 </tr>
 {foreach $order_list as $order sequence array( bglight, bgdark ) as $seq}
@@ -191,6 +194,7 @@
     {/if}
 
 	</td>
+	   {if $show_payment_status}
 	   <td>
         {def $stati = hash( '0', 'unpaid'|i18n( 'design/admin/shop/orderlist' ),  '1', 'paid'|i18n( 'design/admin/shop/orderlist' ) )}
         {def $payment = fetch( 'xrowecommerce', 'payment_status', hash( 'id', $order.id ) )}
@@ -237,6 +241,7 @@
         {/if}
         {undef $payment $stati}
     </td>
+    {/if}
 	<td>
     <a href={concat( 'xrowecommerce/invoiceprint/', $order.id )|ezurl} target="_blank"><img src={'print_printer.32x32.png'|ezimage} height="28" width="28" alt="" title=""></a>
 	<a href={concat( 'orderedit/edit/', $order.order_nr)|ezurl}><img src={'images/txt2.png'|ezdesign}  alt="Edit shippingcosts" title="Edit shippingcosts"></a>
