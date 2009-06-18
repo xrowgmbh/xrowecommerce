@@ -1,5 +1,5 @@
 <?php
-require_once './boxcalculator.php';
+require_once 'autoload.php';
 
 $boxes = array( 
     array( 
@@ -51,7 +51,6 @@ $boxes = array(
         'h' => 250 
     ) 
 );
-
 $products = array( 
     array( 
         "id" => 1640 , 
@@ -132,12 +131,38 @@ $products = array(
     ) 
 );
 
-$country = 'Germany';
 
-$calculator = new mxboxCalculator( );
-$packlist = $calculator->calculate( $boxes, $products, $country );
 
-print_r( $packlist );
+
+foreach ( $boxes as $item )
+{
+	$tmp = new xrowParcel( $item['l'],$item['w'] ,$item['h'] );
+    $tmp->name = $item['name'];
+    $tmp->typ = $item['typ'];
+    $parcels[] = $tmp;
+}
+foreach ( $products as $item )
+{
+    $tmp = new xrowShippedProduct( $item['l'],$item['w'] ,$item['h'] );
+    $tmp->name = $item['name'];
+    $tmp->id = $item['id'];
+    $items[] = $tmp;
+}
+    foreach( $items as $product )
+    {
+        echo " " . $product->name . " \n";
+    }
+$packlist = xrowShipmentCalculator::compute( $parcels, $items );
+
+foreach( $packlist as $parcel )
+{
+	echo $parcel->name . " includes : \n";
+	foreach( $parcel->contains as $product )
+	{
+		echo "   " . $product->name . " \n";
+	}
+}
+
 
 ?>
   
