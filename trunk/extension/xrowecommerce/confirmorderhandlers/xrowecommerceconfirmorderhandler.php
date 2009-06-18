@@ -18,8 +18,8 @@ class xrowECommerceConfirmOrderHandler
         if ( isset( $params['order'] ) and isset( $params['email'] ) )
         {
             $order = $params['order'];
-            $email = $params['email'];
-            
+            $clientEmail = $params['email'];
+
             require_once ( "kernel/common/template.php" );
             $tpl = templateInit();
             $tpl->setVariable( 'order', $order );
@@ -36,8 +36,14 @@ class xrowECommerceConfirmOrderHandler
             $subject = $tpl->variable( 'subject' );
 
             $mail = new eZMail( );
-            $emailSender = eZINI::instance( 'xrowecommerce.ini' )->variable( 'MailSettings', 'Email' );
-            
+            $xrowINI = eZINI::instance( 'xrowecommerce.ini' );
+            $emailSender = $xrowINI->variable( 'MailSettings', 'Email' );
+            $emailBCCArray = array();
+            if ( $xrowINI->hasVariable( 'MailSettings', 'EmailBCCReceiver' ) )
+            {
+                $emailBCCArray = $xrowINI->variable( 'MailSettings', 'EmailBCCReceiver' );
+            }
+
             if ( ! $emailSender )
             {
                 $emailSender = $ini->variable( 'MailSettings', 'EmailSender' );
@@ -46,8 +52,8 @@ class xrowECommerceConfirmOrderHandler
             {
                 $emailSender = $ini->variable( "MailSettings", "AdminEmail" );
             }
-            
-            $mail->setReceiver( $email );
+
+            $mail->setReceiver( $clientEmail );
             $mail->setSender( $emailSender );
             $mail->setSubject( $subject );
             $mail->setBody( $templateResult );
@@ -56,23 +62,38 @@ class xrowECommerceConfirmOrderHandler
                 $mail->setContentType( 'text/html' );
             }
             $mailResult = eZMailTransport::send( $mail );
-            
-            $email = eZINI::instance( 'xrowecommerce.ini' )->variable( 'MailSettings', 'Email' );
-            if ( ! $email )
+            if ( $mailResult )
             {
-                $email = $ini->variable( "MailSettings", "AdminEmail" );
+            	eZDebug::writeDebug( 'Order emails were sent to ' . $clientEmail, 'xrowECommerceConfirmOrderHandler' );
             }
-            $mail = new eZMail( );
-            
-            $mail->setReceiver( $email );
-            $mail->setSender( $emailSender );
+            else
+            {
+            	eZDebug::writeError( 'Order emails were not sent to ' . $clientEmail, 'xrowECommerceConfirmOrderHandler' );
+            }
+
+            $mail = new eZMail();
+            $mail->setReceiver( $emailSender );
+            $mail->setSender( $clientEmail );
             $mail->setSubject( $subject );
             $mail->setBody( $templateResult );
-            if ( $htmlMode == 'enabled' )
+
+            if ( count( $emailBCCArray ) > 0 )
             {
-                $mail->setContentType( 'text/html' );
+                foreach( $emailBCCArray as $item )
+                {
+                    $mail->addBcc( $item );
+                }
             }
             $mailResult = eZMailTransport::send( $mail );
+
+            if ( $mailResult )
+            {
+                eZDebug::writeDebug( 'Order emails were sent to ' . $emailSender . ', ' . implode( ', ', $emailBCCArray ), 'xrowECommerceConfirmOrderHandler' );
+            }
+            else
+            {
+                eZDebug::writeError( 'Order emails were not sent to ' . $emailSender . ', ' . implode( ', ', $emailBCCArray ), 'xrowECommerceConfirmOrderHandler' );
+            }
         }
     }
 }

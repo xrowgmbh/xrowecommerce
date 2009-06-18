@@ -49,6 +49,9 @@ Email=
 SendOrderEmail=enabled
 HTMLEmail=disabled
 
+# one ore more bcc receiver of the order confirmation
+EmailBCCReceiver[]
+
 [BasketInformation]
 DisplayTax=disabled
 DisplayLogin=enabled
