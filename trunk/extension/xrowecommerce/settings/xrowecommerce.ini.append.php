@@ -28,7 +28,7 @@ ShopUserClassList[]=client
 # Please use an override instead
 
 [ShippingSettings]
-#fields can be disabled / enabled in the shipping information 
+#fields can be disabled / enabled in the shipping information
 DisplayFax=enabled
 
 #[MerchantLocations]
@@ -45,7 +45,7 @@ CompanyNameIndentifier=company_name
 [MailSettings]
 #define the receiver of the order confirmation mail
 Email=
-#Define if mail should be send out on checkout 
+#Define if mail should be send out on checkout
 SendOrderEmail=enabled
 HTMLEmail=disabled
 
@@ -77,16 +77,19 @@ StorePaymentInformation=enabled
 #ActiveCreditcards[3]=Discover
 
 [StatusSettings]
+# Show payment status
+ShowPaymentStatus=enabled
+
 # Relate a Status to a type of xrowOrderStatusDefault
 # StatusTypeList[3]=xrowOrderStatusPaid
 # StatusTypeList[1000]=xrowOrderStatusCancel
 StatusTypeList[]
 # Define which status can`t we switched to
-# 
+#
 # StatusDisallowList-1000[]
 # StatusDisallowList-1000[]=1
 # StatusDisallowList-1000[]=2
-# 
+#
 
 
 * */ ?>
