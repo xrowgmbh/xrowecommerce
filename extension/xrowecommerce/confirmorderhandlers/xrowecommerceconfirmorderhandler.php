@@ -38,10 +38,10 @@ class xrowECommerceConfirmOrderHandler
             $mail = new eZMail( );
             $xrowINI = eZINI::instance( 'xrowecommerce.ini' );
             $emailSender = $xrowINI->variable( 'MailSettings', 'Email' );
-            $emailBCCArray = array();
-            if ( $xrowINI->hasVariable( 'MailSettings', 'EmailBCCReceiver' ) )
+            $receiverList = array();
+            if ( $xrowINI->hasVariable( 'MailSettings', 'EmailReceiverList' ) )
             {
-                $emailBCCArray = $xrowINI->variable( 'MailSettings', 'EmailBCCReceiver' );
+                $receiverList = $xrowINI->variable( 'MailSettings', 'EmailReceiverList' );
             }
 
             if ( ! $emailSender )
@@ -51,6 +51,16 @@ class xrowECommerceConfirmOrderHandler
             if ( ! $emailSender )
             {
                 $emailSender = $ini->variable( "MailSettings", "AdminEmail" );
+            }
+
+            if ( $xrowINI->hasVariable( 'MailSettings', 'ReplyToMail' ) and
+                 $xrowINI->variable( 'MailSettings', 'ReplyToMail' ) != '' )
+            {
+                $replyToMail = $xrowINI->variable( 'MailSettings', 'ReplyToMail' );
+                if ( eZMail::validate( $replyToMail ) )
+                {
+                    $mail->setReplyTo( $replyToMail );
+                }
             }
 
             $mail->setReceiver( $clientEmail );
@@ -64,35 +74,43 @@ class xrowECommerceConfirmOrderHandler
             $mailResult = eZMailTransport::send( $mail );
             if ( $mailResult )
             {
-            	eZDebug::writeDebug( 'Order emails were sent to ' . $clientEmail, 'xrowECommerceConfirmOrderHandler' );
+            	eZDebug::writeDebug( 'Order email were sent to ' . $clientEmail, 'xrowECommerceConfirmOrderHandler' );
             }
             else
             {
-            	eZDebug::writeError( 'Order emails were not sent to ' . $clientEmail, 'xrowECommerceConfirmOrderHandler' );
+            	eZDebug::writeError( 'Order email were not sent to ' . $clientEmail, 'xrowECommerceConfirmOrderHandler' );
             }
 
-            $mail = new eZMail();
-            $mail->setReceiver( $emailSender );
-            $mail->setSender( $clientEmail );
-            $mail->setSubject( $subject );
-            $mail->setBody( $templateResult );
-
-            if ( count( $emailBCCArray ) > 0 )
+            if ( count( $receiverList ) == 0 )
             {
-                foreach( $emailBCCArray as $item )
+                $receiverList[] = $emailSender;
+            }
+
+            foreach ( $receiverList as $receiver )
+            {
+                if ( eZMail::validate( $receiver ) )
                 {
-                    $mail->addBcc( $item );
-                }
-            }
-            $mailResult = eZMailTransport::send( $mail );
+                    $mail = new eZMail();
+                    $mail->setReceiver( $receiver );
+                    $mail->setSender( $clientEmail );
+                    $mail->setSubject( $subject );
+                    $mail->setBody( $templateResult );
 
-            if ( $mailResult )
-            {
-                eZDebug::writeDebug( 'Order emails were sent to ' . $emailSender . ', ' . implode( ', ', $emailBCCArray ), 'xrowECommerceConfirmOrderHandler' );
-            }
-            else
-            {
-                eZDebug::writeError( 'Order emails were not sent to ' . $emailSender . ', ' . implode( ', ', $emailBCCArray ), 'xrowECommerceConfirmOrderHandler' );
+                    $mailResult = eZMailTransport::send( $mail );
+
+                    if ( $mailResult )
+                    {
+                        eZDebug::writeDebug( 'Order email were sent to ' . $receiver, 'xrowECommerceConfirmOrderHandler' );
+                    }
+                    else
+                    {
+                        eZDebug::writeError( 'Order email were not sent to ' . $receiver, 'xrowECommerceConfirmOrderHandler' );
+                    }
+                }
+                else
+                {
+                    eZDebug::writeError( 'Invalid email address: ' . $receiver, 'xrowECommerceConfirmOrderHandler' );
+                }
             }
         }
     }
