@@ -97,7 +97,7 @@ class xrowECommerceShopAccountHandler
         {
             $dom = new DOMDocument( '1.0', 'utf-8' );
             $success = $dom->loadXML( $xmlString );
-            $id = $dom->getElementsByTagName( "ezauthorize-transaction-id" )->item( 0 );
+            $id = $dom->getElementsByTagName( xrowECommerce::ACCOUNT_KEY_TRANSACTIONID )->item( 0 );
             return $id->textContent;
         }
         else

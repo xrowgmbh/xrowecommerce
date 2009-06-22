@@ -1,14 +1,11 @@
 <?php
 
-class xrowParcel extends xrowCube
+class xrowPackage extends xrowCube
 {
 
     function __construct( $length, $width, $height )
     {
         parent::__construct( $length, $width, $height );
-        $this->id = $row['id'];
-        $this->name = $row['name'];
-        $this->typ = $row['typ'];
 
     }
     public function fill( &$products )
