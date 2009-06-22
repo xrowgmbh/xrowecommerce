@@ -18,6 +18,7 @@ class xrowECommerce
     const ACCOUNT_KEY_NAME = 'name';
     const ACCOUNT_KEY_CREDITCARD = 'creditcard';
     const ACCOUNT_KEY_TRANSACTIONID = 'transactionid';
+    const ACCOUNT_KEY_PACKAGES = 'packages';
 
     /**
      * [MerchantLocations]
@@ -50,6 +51,40 @@ class xrowECommerce
             }
         }
         return $LocationArray;
+    }
+
+    static function getPackageListArray( eZOrder $order )
+    {
+        $return = array();
+        $xmlstring = $order->attribute( 'data_text_1' );
+          
+              
+        $xml = new SimpleXMLElement( $xmlstring );
+        if ( $xml )
+        {
+        	
+            foreach ( $xml->xpath('//'.xrowECommerce::ACCOUNT_KEY_PACKAGES.'/package') as $key => $package )
+            {
+            	
+
+                $p = array();
+                $p['name'] = (string)$package['name'];
+                $p['id'] = (string)$package['id'];
+                $p['content'] = array();
+                
+                foreach ( $package->product as $product )
+                {
+
+                    $pro = array();
+                    $pro['id'] = (string)$product['id'];
+                    $pro['name'] = (string)$product['name'];
+                    $pro['amount'] = (string)$product['amount'];
+                    $p['content'][] = $pro;
+                }
+                $return[] = $p;
+            }
+        }
+        return $return;
     }
 
     /**

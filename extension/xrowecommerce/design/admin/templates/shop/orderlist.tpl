@@ -243,7 +243,8 @@
     </td>
     {/if}
 	<td>
-    <a href={concat( 'xrowecommerce/invoiceprint/', $order.id )|ezurl} target="_blank"><img src={'print_printer.32x32.png'|ezimage} height="28" width="28" alt="" title=""></a>
+    <a href={concat( 'xrowecommerce/invoiceprint/', $order.id )|ezurl} target="_blank"><img src={'printer.png'|ezimage} height="28" width="28" alt="" title="{'Print invoice and packaging slip'|i18n( 'design/admin/shop/orderlist' )}"></a>
+	<a href={concat( 'xrowecommerce/shippingplanprint/', $order.id )|ezurl} target="_blank"><img src={'shipping_plan.png'|ezimage} height="28" width="28" alt="" title="{'Print shipping plan'|i18n( 'design/admin/shop/orderlist' )}"></a>
 	<a href={concat( 'orderedit/edit/', $order.order_nr)|ezurl}><img src={'images/txt2.png'|ezdesign}  alt="Edit shippingcosts" title="Edit shippingcosts"></a>
 	</td>
 </tr>

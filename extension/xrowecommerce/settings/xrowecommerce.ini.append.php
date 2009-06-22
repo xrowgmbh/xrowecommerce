@@ -30,6 +30,7 @@ ShopUserClassList[]=client
 [ShippingSettings]
 #fields can be disabled / enabled in the shipping information
 DisplayFax=enabled
+#ShipmentInterface=xrowDefaultShipping
 
 #[MerchantLocations]
 # Use ISO 3 letter country locales
