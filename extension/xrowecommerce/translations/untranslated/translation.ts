@@ -242,6 +242,18 @@
         <source>Remove selected orders.</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Close</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Print invoice and packaging slip</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Print shipping plan</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>design/admin/shop/orderstatistics</name>
@@ -514,6 +526,10 @@
     </message>
     <message>
         <source>Ship to</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Shipping plan</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1795,6 +1811,18 @@
         <source>Status</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Package</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Name of package</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Products</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>extension/xrowecommerce/directorder</name>
@@ -1850,18 +1878,6 @@
 <context>
     <name>extension/xrowecommerce/epayment</name>
     <message>
-        <source>Please enter the name of the bank account.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Please enter your correct account number (max. 10 numbers)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Please enter your correct bank code (8 numbers)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Please enter a name</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1874,7 +1890,19 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Your credit card is expired.</source>
+        <source>Please enter the name of the card holder.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please enter the correct account number</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please enter the correct bank code</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The validity of your credit card has expired.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2500,6 +2528,10 @@
     </message>
     <message>
         <source>Remove order</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Shipping plan</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

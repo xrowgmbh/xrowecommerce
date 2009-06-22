@@ -242,6 +242,18 @@
         <source>Remove selected orders.</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Close</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Print invoice and packaging slip</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Print shipping plan</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>design/admin/shop/orderstatistics</name>
@@ -515,6 +527,10 @@
     <message>
         <source>Ship to</source>
         <translation>Lieferung an</translation>
+    </message>
+    <message>
+        <source>Shipping plan</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1795,6 +1811,18 @@
         <source>Status</source>
         <translation type="unfinished">Status</translation>
     </message>
+    <message>
+        <source>Package</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Name of package</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Products</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>extension/xrowecommerce/directorder</name>
@@ -1850,18 +1878,6 @@
 <context>
     <name>extension/xrowecommerce/epayment</name>
     <message>
-        <source>Please enter the name of the bank account.</source>
-        <translation>Bitte geben Sie den Namen Ihres Bankkontos ein.</translation>
-    </message>
-    <message>
-        <source>Please enter your correct account number (max. 10 numbers)</source>
-        <translation>Bitte geben Sie Ihre korrekte Kontonummer ein (max. 10 Stellen)</translation>
-    </message>
-    <message>
-        <source>Please enter your correct bank code (8 numbers)</source>
-        <translation>Bitte geben Sie Ihre korrekte Bankleitzahl ein (max. 8 Stellen)</translation>
-    </message>
-    <message>
         <source>Please enter a name</source>
         <translation>Bitte geben Sie einen Namen ein</translation>
     </message>
@@ -1874,8 +1890,20 @@
         <translation>Bitte geben Sie den gültigen Sicherheitsschlüssel an.</translation>
     </message>
     <message>
-        <source>Your credit card is expired.</source>
-        <translation>Ihre Kreditkarte ist abgelaufen.</translation>
+        <source>Please enter the name of the card holder.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please enter the correct account number</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please enter the correct bank code</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The validity of your credit card has expired.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2501,6 +2529,10 @@ Es ist nicht möglich, den Datentyp danach zu ändern.</translation>
     </message>
     <message>
         <source>Remove order</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Shipping plan</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
