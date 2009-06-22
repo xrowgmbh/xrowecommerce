@@ -215,17 +215,17 @@ class xrowEPayment
         // validate eurocard
         if ( strlen( $data[xrowECommerce::ACCOUNT_KEY_ECNAME] ) == 0 )
         {
-            $errors[] = ezi18n( 'extension/xrowecommerce/epayment', 'Please enter the name of the bank account.' );
+            $errors[] = ezi18n( 'extension/xrowecommerce/epayment', 'Please enter the name of the card holder.' );
             $valid = false;
         }
         if ( ! preg_match( "/^[0-9]{1,10}$/", $data[xrowECommerce::ACCOUNT_KEY_ACCOUNTNUMBER] ) )
         {
-            $errors[] = ezi18n( 'extension/xrowecommerce/epayment', 'Please enter your correct account number (max. 10 numbers)' );
+            $errors[] = ezi18n( 'extension/xrowecommerce/epayment', 'Please enter the correct account number' );
             $valid = false;
         }
         if ( ! preg_match( "/^[0-9]{8}$/", $data[xrowECommerce::ACCOUNT_KEY_BANKCODE] ) )
         {
-            $errors[] = ezi18n( 'extension/xrowecommerce/epayment', 'Please enter your correct bank code (8 numbers)' );
+            $errors[] = ezi18n( 'extension/xrowecommerce/epayment', 'Please enter the correct bank code' );
             $valid = false;
         }
         if ( $valid )
@@ -275,7 +275,7 @@ class xrowEPayment
         
         if ( $now->format( 'U' ) > $time->format( 'U' ) )
         {
-            $errors[] = ezi18n( 'extension/xrowecommerce/epayment', 'Your credit card is expired.' );
+            $errors[] = ezi18n( 'extension/xrowecommerce/epayment', 'The validity of your credit card has expired.' );
             $valid = false;
         }
         if ( $valid )
