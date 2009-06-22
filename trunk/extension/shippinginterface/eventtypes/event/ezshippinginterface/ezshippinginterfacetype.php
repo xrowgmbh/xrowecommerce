@@ -517,6 +517,66 @@ class eZShippingInterfaceType extends eZWorkflowEventType
             'type' => 'shippingcost' 
         ) );
         $orderItem->store();
+        $ini = eZINI::instance( "xrowecommerce.ini" );
+        
+        if ( $ini->hasVariable( 'ShippingInterfaceSettings', 'ShippingInterface' ) )
+        {
+            
+            $interfaceName = $ini->variable( 'ShippingInterfaceSettings', 'ShippingInterface' );
+            
+            if ( class_exists( $interfaceName ) )
+            {
+                
+                $impl = new $interfaceName( );
+                $boxes = $impl->getBoxes( $order );
+                $products = $impl->getProducts( $order );
+                $packlist = $impl->compute( $boxes, $products );
+                $xmlstring = $order->attribute( 'data_text_1' );
+                if ( $xmlstring != null )
+                {
+                    $doc = new DOMDocument( );
+                    $doc->loadXML( $xmlstring );
+                    $root = $doc->documentElement;
+                    $packagelist = $root->getElementsByTagName( xrowECommerce::ACCOUNT_KEY_PACKAGES );
+                    if ( $packagelist->length == 1 )
+                    {
+                        $root->removeChild( $packagelist->item( 0 ) );
+                    }
+                    $packagelist = $doc->createElement( xrowECommerce::ACCOUNT_KEY_PACKAGES );
+                    foreach ( $packlist as $parcel )
+                    {
+                        $domPackage = $doc->createElement( 'package' );
+                        $domPackage->setAttribute( 'name', $parcel->name );
+                        $domPackage->setAttribute( 'id', $parcel->id );
+                        $list = $parcel->contains;
+                        while ( count( $list ) > 0 )
+                        {
+                        	$product = array_shift( $list );
+                            $i = 1;
+                            foreach ( $list as $key2 => $product2 )
+                            {
+                                if ( $product->id == $product2->id )
+                                {
+                                    $i ++;
+                                    unset( $list[$key2] );
+                                }
+                            }
+                            $domProduct = $doc->createElement( 'product' );
+                            $domProduct->setAttribute( 'name', $product->name );
+                            $domProduct->setAttribute( 'id', $product->id );
+                            $domProduct->setAttribute( 'amount', $i );
+                            $domPackage->appendChild( $domProduct );
+                        }
+                        $packagelist->appendChild( $domPackage );
+                    }
+                    $root->appendChild( $packagelist );
+                }
+
+                $order->setAttribute( 'data_text_1', $doc->saveXML() );
+                $order->store();
+            }
+        }
+        
         return eZWorkflowType::STATUS_ACCEPTED;
     }
 }
