@@ -12,7 +12,7 @@
 <input type="submit" class="hide" style="display: hide;" name="validate" value="{'Continue'|i18n('extension/xrowcomdirect')}" />
 
 <div class="form">
-<h4>{"Please enter your credit card information"|i18n("extension/xrowcomdirect")}</h4>
+<h4>{"Please enter your credit card details"|i18n("extension/xrowcomdirect")}</h4>
 
 {if $errors|count|gt(0)}
 <div class="warning">
@@ -25,13 +25,13 @@
 </div>
 {/if}
 
-<table summary="{"Please enter your credit card information"|i18n("extension/xrowcomdirect")}">
+<table summary="{"Please enter your credit card details"|i18n("extension/xrowcomdirect")}">
 <tr>
-<td>{"Name on credit card"|i18n("extension/xrowcomdirect")}:</td>
+<td>{"Card holder's name"|i18n("extension/xrowcomdirect")}:</td>
 <td><input type="text" maxlength="32" size="32" name="name" value="{$name|wash()}" /></td>
 </tr>
 <tr>
-<td>{"Credit card type"|i18n("extension/xrowcomdirect")}:</td>
+<td>{"Card type"|i18n("extension/xrowcomdirect")}:</td>
 <td>
 <select name="cardtype">
 {foreach ezini( 'EPaymentSettings', 'ActiveCreditcards', 'xrowecommerce.ini' ) as $key => $name}
@@ -40,11 +40,11 @@
 </select>
 </tr>
 <tr>
-<td>{"Credit card number"|i18n("extension/xrowcomdirect")}:</td>
+<td>{"Card number"|i18n("extension/xrowcomdirect")}:</td>
 <td><input id="number" type="text" maxlength="19" size="32" name="number" value="{$number|wash()}" /></td>
 </tr>
 <tr>
-<td>{"Credit card security code"|i18n("extension/xrowcomdirect")}: </td>
+<td>{"Security code"|i18n("extension/xrowcomdirect")}: </td>
 <td>
     <input id="securitycode" type="text" maxlength="4" size="5" name="securitycode" value="{$securitycode|wash()}" />
     <button id="help-securitycode" class="help" type="button" title="{"Information"|i18n("extension/xrowcomdirect")}">{"i"|i18n("extension/xrowcomdirect", 'i for information')}</button>
@@ -65,7 +65,7 @@
 </td>
 </tr>
 <tr>
-<td>{"Expiration date"|i18n("extension/xrowcomdirect")}: </td>
+<td>{"Expiry date"|i18n("extension/xrowcomdirect")}: </td>
 <td>
   <select id="expirationmonth" name="expirationmonth">
     <option value="">{"Month"|i18n("extension/xrowcomdirect")}</option>

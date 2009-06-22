@@ -7,7 +7,7 @@
 <input type="submit" class="hide" style="display: hide;" name="validate" value="{'Continue'|i18n('extension/xrowcomdirect')}" />
 
 <div class="form">
-<h4>{"Please enter your debit card information"|i18n("extension/xrowcomdirect")}</h4>
+<h4>{"Please enter your cash card details"|i18n("extension/xrowcomdirect")}</h4>
 
 {if $errors|count|gt(0)}
 <div class="warning">
@@ -22,9 +22,9 @@
 
 <input type="hidden" name="cardtype" value="5" />
 
-<table summary="{"Please enter your credit card information"|i18n("extension/xrowcomdirect")}">
+<table summary="{"Please enter your cash card details"|i18n("extension/xrowcomdirect")}">
 <tr>
-<td>{"Name of account"|i18n("extension/xrowcomdirect")}:</td>
+<td>{"Card holder's name"|i18n("extension/xrowcomdirect")}:</td>
 <td><input type="text" size="27" name="name" value="{$ecname|wash()}" /></td>
 </tr>
 <tr>

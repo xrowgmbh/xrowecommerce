@@ -2,32 +2,8 @@
 <context>
     <name>extension/xrowcomdirect</name>
     <message>
-        <source>Please enter your credit card information</source>
-        <translation>Bitte geben sie ihre Kreditkarteninformationen ein</translation>
-    </message>
-    <message>
         <source>Validation error</source>
         <translation>Validierungsfehler</translation>
-    </message>
-    <message>
-        <source>Name on credit card</source>
-        <translation>Name auf der Kreditkarte</translation>
-    </message>
-    <message>
-        <source>Credit card type</source>
-        <translation>Kreditkartentyp</translation>
-    </message>
-    <message>
-        <source>Credit card number</source>
-        <translation>Kreditkartennummmer</translation>
-    </message>
-    <message>
-        <source>Credit card security code</source>
-        <translation>Sicherheitscode der Kreditkarte</translation>
-    </message>
-    <message>
-        <source>Expiration date</source>
-        <translation>Ablaufdatum</translation>
     </message>
     <message>
         <source>Month</source>
@@ -70,14 +46,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Please enter your debit card information</source>
-        <translation>Bitte geben sie ihre Bankdaten ein</translation>
-    </message>
-    <message>
-        <source>Name of account</source>
-        <translation>Name des Inhabers</translation>
-    </message>
-    <message>
         <source>Account number</source>
         <translation>Kontonummer</translation>
     </message>
@@ -96,6 +64,43 @@
     <message>
         <source>Payment information</source>
         <translation>Zahlungsinformationen</translation>
+    </message>
+    <message>
+        <source>Please enter your credit card details</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Card holder&apos;s name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Card type</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Card number</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Security code</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Information</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>i</source>
+        <comment>i for information</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Expiry date</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please enter your cash card details</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
