@@ -6,9 +6,8 @@ class xrowComdirectBaseGateway extends xrowEPaymentGateway
 
     static function getErrorText( $id )
     {
-        $id = (int) $id;
         $list = self::getErrorList();
-        if ( array_key_exists( $id, $list ) and $id > 0 )
+        if ( array_key_exists( $id, $list ) and (int)$id > 0 )
         {
             return $list[$id];
         }
@@ -43,9 +42,8 @@ class xrowComdirectBaseGateway extends xrowEPaymentGateway
 
     static function getAdditionalErrorText( $id )
     {
-        $id = (int) $id;
         $list = self::getAdditionalErrorList();
-        if ( array_key_exists( $id, $list ) and $id > 0 )
+        if ( array_key_exists( $id, $list ) and (int)$id > 0 )
         {
             return $list[$id];
         }
@@ -391,8 +389,9 @@ class xrowComdirectBaseGateway extends xrowEPaymentGateway
                 
                 if ( isset( $errornumber ) and self::getAdditionalErrorText( $errornumber ) )
                 {
-                    $errors[] = self::getAdditionalErrorText( $$errornumber );
+                    $errors[] = self::getAdditionalErrorText( $errornumber );
                 }
+
                 $process->Template = array();
                 $process->Template['templateName'] = constant( get_class( $this ) . '::TEMPLATE' );
                 $process->Template['templateVars'] = array( 
