@@ -369,11 +369,19 @@ class xrowComdirectBaseGateway extends xrowEPaymentGateway
             }
             else
             {
-                if ( array_key_exists( 'posherr', $serverAnswer ) and self::getErrorText( $serverAnswer['posherr'] ) )
+            	if( (int)$serverAnswer['rc'] < 100 )
+            	{
+            		$errornumber = $serverAnswer['rc']; 
+            	}
+            	else
+            	{
+            		$errornumber = $serverAnswer['posherr'];
+            	}
+                if ( isset( $errornumber ) and self::getErrorText( $errornumber ) )
                 {
-                    $this->data['servermsg'] = self::getErrorText( $serverAnswer['posherr'] );
+                    $this->data['servermsg'] = self::getErrorText( $errornumber );
                 }
-                elseif ( array_key_exists( 'posherr', $serverAnswer ) and self::getAdditionalErrorText( $serverAnswer['posherr'] ) === false )
+                elseif ( isset( $errornumber ) and self::getAdditionalErrorText( $errornumber ) === false )
                 {
                     $this->data['servermsg'] = ezi18n( 'extension/xrowcomdirect/errors', 'Not able to process at present. Select a different method of payment.' );
                 }
@@ -381,9 +389,9 @@ class xrowComdirectBaseGateway extends xrowEPaymentGateway
                 #$errors[] = $codepage->convertString( $serverAnswer['rmsg'] );
                 $errors[] = $this->data['servermsg'];
                 
-                if ( array_key_exists( 'posherr', $serverAnswer ) and self::getAdditionalErrorText( $serverAnswer['posherr'] ) )
+                if ( isset( $errornumber ) and self::getAdditionalErrorText( $errornumber ) )
                 {
-                    $errors[] = self::getAdditionalErrorText( $serverAnswer['posherr'] );
+                    $errors[] = self::getAdditionalErrorText( $$errornumber );
                 }
                 $process->Template = array();
                 $process->Template['templateName'] = constant( get_class( $this ) . '::TEMPLATE' );
