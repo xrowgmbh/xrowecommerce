@@ -66,8 +66,7 @@ class xrowPaymentGatewayType extends eZWorkflowEventType
         $http = eZHTTPTool::instance();
         if ( $http->hasPostVariable( 'CancelButton' ) and $process->attribute( 'event_state' ) == xrowPaymentGatewayType::GATEWAY_NOT_SELECTED )
         {
-            $order->purge( false );
-            $process->RedirectUrl = 'shop/basket';
+            $process->RedirectUrl = 'shop/confirmorder';
             return eZWorkflowType::STATUS_REDIRECT_REPEAT;
         }
         if ( $http->hasPostVariable( 'CancelButton' ) and $process->attribute( 'event_state' ) == xrowPaymentGatewayType::GATEWAY_SELECTED )

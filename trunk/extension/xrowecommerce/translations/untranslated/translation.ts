@@ -1823,6 +1823,14 @@
         <source>Products</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>One step backwards</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Send Order</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>extension/xrowecommerce/directorder</name>
