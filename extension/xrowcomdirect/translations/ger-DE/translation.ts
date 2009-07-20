@@ -14,10 +14,6 @@
         <translation>Jahr</translation>
     </message>
     <message>
-        <source>Cancel</source>
-        <translation>Abbrechen</translation>
-    </message>
-    <message>
         <source>Continue</source>
         <translation>Weiter</translation>
     </message>
@@ -88,6 +84,14 @@
     </message>
     <message>
         <source>This code constitutes an important security feature which should prevent the use of faked or stolen credit cards. It is not stored on our servers, and its request is for increased safety of our customers only. </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>One step backwards</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Send Order</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
