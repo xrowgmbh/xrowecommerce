@@ -38,8 +38,8 @@
 </table>
 </div>
 <div id="buttonblock-bottom" class="buttonblock">
- <input id="cancel-button" class="button" type="submit" name="CancelButton" value="{'Cancel'|i18n('extension/xrowcomdirect')}" />    
- <input id="continue-button" class="defaultbutton" type="submit" name="validate" value="{'Continue'|i18n('extension/xrowcomdirect')}" />  
+ <input id="cancel-button" class="button" type="submit" name="CancelButton" value="{'One step backwards'|i18n('extension/xrowcomdirect')}" />    
+ <input id="continue-button" class="defaultbutton" type="submit" name="validate" value="{'Send Order'|i18n('extension/xrowcomdirect')}" />  
  <div class="break"></div>
 </div>
 
