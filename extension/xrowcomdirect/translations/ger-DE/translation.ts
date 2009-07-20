@@ -22,30 +22,6 @@
         <translation>Weiter</translation>
     </message>
     <message>
-        <source>What are the advantages of security code verification?</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Please enter the last 3 digits of your credit card&apos;s security code, which is printed on the back of your card.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>There are several advantages of security code verification</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Increased customer security</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Faster order fullfilment</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Deters fraud</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Account number</source>
         <translation>Kontonummer</translation>
     </message>
@@ -70,18 +46,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Card holder&apos;s name</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Card type</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Card number</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Security code</source>
         <translation type="unfinished"></translation>
     </message>
@@ -95,11 +59,35 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Expiry date</source>
+        <source>Please enter your cash card details</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Please enter your cash card details</source>
+        <source>Card Holder&apos;s Name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Card Type</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Card Number</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Expiry Date</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The card with 3 digits security code.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The card security code consists of a series of 3 digits on the back of your credit card.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>This code constitutes an important security feature which should prevent the use of faked or stolen credit cards. It is not stored on our servers, and its request is for increased safety of our customers only. </source>
         <translation type="unfinished"></translation>
     </message>
 </context>
