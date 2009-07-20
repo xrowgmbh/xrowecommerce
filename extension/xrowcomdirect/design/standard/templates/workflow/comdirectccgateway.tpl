@@ -27,11 +27,11 @@
 
 <table summary="{"Please enter your credit card details"|i18n("extension/xrowcomdirect")}">
 <tr>
-<td>{"Card holder's name"|i18n("extension/xrowcomdirect")}:</td>
+<td>{"Card Holder's Name"|i18n("extension/xrowcomdirect")}:</td>
 <td><input type="text" maxlength="32" size="32" name="name" value="{$name|wash()}" /></td>
 </tr>
 <tr>
-<td>{"Card type"|i18n("extension/xrowcomdirect")}:</td>
+<td>{"Card Type"|i18n("extension/xrowcomdirect")}:</td>
 <td>
 <select name="cardtype">
 {foreach ezini( 'EPaymentSettings', 'ActiveCreditcards', 'xrowecommerce.ini' ) as $key => $name}
@@ -40,7 +40,7 @@
 </select>
 </tr>
 <tr>
-<td>{"Card number"|i18n("extension/xrowcomdirect")}:</td>
+<td>{"Card Number"|i18n("extension/xrowcomdirect")}:</td>
 <td><input id="number" type="text" maxlength="19" size="32" name="number" value="{$number|wash()}" /></td>
 </tr>
 <tr>
@@ -65,7 +65,7 @@
 </td>
 </tr>
 <tr>
-<td>{"Expiry date"|i18n("extension/xrowcomdirect")}: </td>
+<td>{"Expiry Date"|i18n("extension/xrowcomdirect")}: </td>
 <td>
   <select id="expirationmonth" name="expirationmonth">
     <option value="">{"Month"|i18n("extension/xrowcomdirect")}</option>
@@ -89,16 +89,9 @@
 </table>
 </div>
 <div id="security-code-info" style="visibility:hidden">
-<p>{"What are the advantages of security code verification?"|i18n("extension/xrowcomdirect")}</p>
-
-<p><img src={"three_digit_code_example.png"|ezimage} class="" alt="" title="" /></p>
-<p>{"Please enter the last 3 digits of your credit card's security code, which is printed on the back of your card."|i18n("extension/xrowcomdirect")}</p>
-        <h4>{"There are several advantages of security code verification"|i18n("extension/xrowcomdirect")}</h4>
-        <ul>
-            <li>{"Increased customer security"|i18n("extension/xrowcomdirect")}</li>
-            <li>{"Faster order fullfilment"|i18n("extension/xrowcomdirect")}</li>
-            <li>{"Deters fraud"|i18n("extension/xrowcomdirect")}</li>
-        </ul>
+<p><img src={"three_digit_code_example.png"|ezimage} alt="{"The card with 3 digits security code."|i18n("extension/xrowcomdirect")}" title="{"The card with 3 digits security code."|i18n("extension/xrowcomdirect")}" /></p>
+<p>{"The card security code consists of a series of 3 digits on the back of your credit card."|i18n("extension/xrowcomdirect")}</p>
+<p>{"This code constitutes an important security feature which should prevent the use of faked or stolen credit cards. It is not stored on our servers, and its request is for increased safety of our customers only. "|i18n("extension/xrowcomdirect")}</p>
 </div>
 
 <div id="buttonblock-bottom" class="buttonblock">
