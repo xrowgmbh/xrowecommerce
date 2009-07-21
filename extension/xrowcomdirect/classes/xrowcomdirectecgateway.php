@@ -12,6 +12,6 @@ class xrowComdirectECGateway extends xrowComdirectBaseGateway
 
 }
 
-xrowEPayment::registerGateway( xrowComdirectECGateway::GATEWAY_STRING, "xrowcomdirectecgateway", ezi18n( 'extension/xrowcomdirect', 'Direct debit' ) );
+xrowEPayment::registerGateway( xrowComdirectECGateway::GATEWAY_STRING, "xrowcomdirectecgateway", ezi18n( 'extension/xrowcomdirect', 'Direct Debit' ) );
 
 ?>
