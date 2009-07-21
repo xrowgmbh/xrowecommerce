@@ -89,8 +89,8 @@
 </table>
 </div>
 <div id="security-code-info" style="visibility:hidden">
-<p><img src={"three_digit_code_example.png"|ezimage} alt="{"The card with 3 digits security code."|i18n("extension/xrowcomdirect")}" title="{"The card with 3 digits security code."|i18n("extension/xrowcomdirect")}" /></p>
 <p>{"The card security code consists of a series of 3 digits on the back of your credit card."|i18n("extension/xrowcomdirect")}</p>
+<p><img src={"three_digit_code_example.png"|ezimage} alt="{"The card with 3 digits security code."|i18n("extension/xrowcomdirect")}" title="{"The card with 3 digits security code."|i18n("extension/xrowcomdirect")}" /></p>
 <p>{"This code constitutes an important security feature which should prevent the use of faked or stolen credit cards. It is not stored on our servers, and its request is for increased safety of our customers only."|i18n("extension/xrowcomdirect")}</p>
 </div>
 
