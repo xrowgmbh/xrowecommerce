@@ -15,7 +15,7 @@
     {/foreach}
     </ul>
     <div class="buttonblock">
-        <input id="cancel-button" class="button" type="submit" name="CancelButton"  value="{'One step backwards'|i18n('extension/xrowecommerce')}" />
+        <input id="cancel-button" class="button" type="submit" name="CancelButton"  value="{'One step back'|i18n('extension/xrowecommerce')}" />
         <input id="continue-button" class="defaultbutton" type="submit" name="SelectButton"  value="{'Send Order'|i18n('extension/xrowecommerce')}" />
         <div class="break"></div>
     </div>
