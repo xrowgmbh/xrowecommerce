@@ -11,7 +11,11 @@
 <input class="hide" style="display: hide;" type="submit" name="SelectButton"  value="{'Select'|i18n('extension/xrowecommerce')}" />
     <ul id="gateways">
     {foreach $gateways as $gateway}
-        <li><input class="commerce_radiobutton" type="radio" name="SelectedGateway" value="{$gateway.value}" {run-once} checked="checked"  {/run-once}/><span>{$gateway.Name|wash}</span></li>
+        <li><input class="commerce_radiobutton" type="radio" name="SelectedGateway" value="{$gateway.value}" {run-once} checked="checked"  {/run-once}/><span>{$gateway.Name|wash}</span>
+        {if concat('gateway/', $gateway.value, '.png')|ezimage(no)|begins_with( '/extension' )}
+        <img src={concat('gateway/', $gateway.value, '.png')|ezimage} />
+        {/if}
+        </li>
     {/foreach}
     </ul>
     <div class="buttonblock">
