@@ -1821,15 +1821,15 @@
     </message>
     <message>
         <source>Products</source>
-        <translation type="unfinished"></translation>
+        <translation>Produkte</translation>
     </message>
     <message>
-        <source>One step backwards</source>
-        <translation type="unfinished"></translation>
+        <source>One step back</source>
+        <translation>Schritt zurück</translation>
     </message>
     <message>
         <source>Send Order</source>
-        <translation type="unfinished"></translation>
+        <translation>Bestellung absenden</translation>
     </message>
 </context>
 <context>
