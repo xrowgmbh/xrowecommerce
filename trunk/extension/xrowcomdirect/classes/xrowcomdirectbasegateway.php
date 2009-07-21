@@ -20,23 +20,23 @@ class xrowComdirectBaseGateway extends xrowEPaymentGateway
     static function getErrorList()
     {
         return array( 
-            '005' => ezi18n( 'extension/xrowcomdirect/errors', 'Approval has been rejected' ) , 
-            '033' => ezi18n( 'extension/xrowcomdirect/errors', 'Expiration date invalid' ) , 
-            '090' => ezi18n( 'extension/xrowcomdirect/errors', 'Authorizing authority not available at present' ) , 
-            '091' => ezi18n( 'extension/xrowcomdirect/errors', 'Authorizing authority not available at present' ) , 
-            '096' => ezi18n( 'extension/xrowcomdirect/errors', 'Not able to process at present' ) , 
-            '100' => ezi18n( 'extension/xrowcomdirect/errors', 'Transaction not completed successfully' ) , 
-            '2014' => ezi18n( 'extension/xrowcomdirect/errors', 'Card number incorrect' ) , 
-            '2016' => ezi18n( 'extension/xrowcomdirect/errors', 'Date of validity incorrect' ) , 
-            '2018' => ezi18n( 'extension/xrowcomdirect/errors', 'Verification code failed' ) , 
-            '2040' => ezi18n( 'extension/xrowcomdirect/errors', 'First part or length of the card number incorrect' ) , 
-            '2042' => ezi18n( 'extension/xrowcomdirect/errors', 'Check sum of the card number incorrect' ) , 
-            '2048' => ezi18n( 'extension/xrowcomdirect/errors', 'Card expired' ) , 
-            '2090' => ezi18n( 'extension/xrowcomdirect/errors', 'Bank code incorrect' ) , 
-            '2092' => ezi18n( 'extension/xrowcomdirect/errors', 'Account number incorrect' ) , 
-            '2094' => ezi18n( 'extension/xrowcomdirect/errors', 'Account name incorrect' ) , 
-            '2202' => ezi18n( 'extension/xrowcomdirect/errors', 'Bank code unknown' ) , 
-            '2204' => ezi18n( 'extension/xrowcomdirect/errors', 'Account number does not correspond to the bank code' ) 
+            '005' => ezi18n( 'extension/xrowcomdirect/errors', 'The Credit card was not approved.' ) , 
+            '033' => ezi18n( 'extension/xrowcomdirect/errors', 'The expiry date is invalid.' ) , 
+            '090' => ezi18n( 'extension/xrowcomdirect/errors', 'The card issuer is temporarily not reachable.' ) , 
+            '091' => ezi18n( 'extension/xrowcomdirect/errors', 'The card issuer is temporarily not reachable.' ) , 
+            '096' => ezi18n( 'extension/xrowcomdirect/errors', 'Not able to process at present.' ) , 
+            '100' => ezi18n( 'extension/xrowcomdirect/errors', 'The transaction is not completed successfully.' ) , 
+            '2014' => ezi18n( 'extension/xrowcomdirect/errors', 'The card number is incorrect.' ) , 
+            '2016' => ezi18n( 'extension/xrowcomdirect/errors', 'The expiry date is incorrect.' ) , 
+            '2018' => ezi18n( 'extension/xrowcomdirect/errors', 'The security code is incorrect.' ) , 
+            '2040' => ezi18n( 'extension/xrowcomdirect/errors', 'The first part or length of the card number is incorrect.' ) , 
+            '2042' => ezi18n( 'extension/xrowcomdirect/errors', 'The check sum of the card number is incorrect.' ) , 
+            '2048' => ezi18n( 'extension/xrowcomdirect/errors', 'The card has expired.' ) , 
+            '2090' => ezi18n( 'extension/xrowcomdirect/errors', 'The bank code is incorrect.' ) , 
+            '2092' => ezi18n( 'extension/xrowcomdirect/errors', 'The account number is incorrect.' ) , 
+            '2094' => ezi18n( 'extension/xrowcomdirect/errors', 'The name of account holder is incorrect.' ) , 
+            '2202' => ezi18n( 'extension/xrowcomdirect/errors', 'The bank code is unknown.' ) , 
+            '2204' => ezi18n( 'extension/xrowcomdirect/errors', 'The account number does not correspond to the bank code.' ) 
         );
     }
 
