@@ -6,7 +6,7 @@
 
 {include uri="design:shop/basket_navigator.tpl" step='4'}
 
-<h1>{"Payment information"|i18n("extension/xrowcomdirect")}</h1>
+<h1>{"Payment Information"|i18n("extension/xrowcomdirect")}</h1>
 
 <form name="form" action={"/shop/checkout"|ezurl} method="post">
 <input type="submit" class="hide" style="display: hide;" name="validate" value="{'Continue'|i18n('extension/xrowcomdirect')}" />
@@ -27,11 +27,11 @@
 
 <table summary="{"Please enter your credit card details"|i18n("extension/xrowcomdirect")}">
 <tr>
-<td>{"Card Holder's Name"|i18n("extension/xrowcomdirect")}:</td>
+<td>{"Card Holder"|i18n("extension/xrowcomdirect")}:</td>
 <td><input type="text" maxlength="32" size="32" name="name" value="{$name|wash()}" /></td>
 </tr>
 <tr>
-<td>{"Card Type"|i18n("extension/xrowcomdirect")}:</td>
+<td>{"Credit Card Type"|i18n("extension/xrowcomdirect")}:</td>
 <td>
 <select name="cardtype">
 {foreach ezini( 'EPaymentSettings', 'ActiveCreditcards', 'xrowecommerce.ini' ) as $key => $name}
@@ -44,7 +44,7 @@
 <td><input id="number" type="text" maxlength="19" size="32" name="number" value="{$number|wash()}" /></td>
 </tr>
 <tr>
-<td>{"Security code"|i18n("extension/xrowcomdirect")}: </td>
+<td>{"Security Code"|i18n("extension/xrowcomdirect")}: </td>
 <td>
     <input id="securitycode" type="text" maxlength="4" size="5" name="securitycode" value="{$securitycode|wash()}" />
     <button id="help-securitycode" class="help" type="button" title="{"Information"|i18n("extension/xrowcomdirect")}">{"i"|i18n("extension/xrowcomdirect", 'i for information')}</button>
@@ -95,7 +95,7 @@
 </div>
 
 <div id="buttonblock-bottom" class="buttonblock">
- <input id="cancel-button" class="button" type="submit" name="CancelButton" value="{'One step backwards'|i18n('extension/xrowcomdirect')}" />    
+ <input id="cancel-button" class="button" type="submit" name="CancelButton" value="{'One step back'|i18n('extension/xrowcomdirect')}" />    
     <input id="continue-button" class="defaultbutton" type="submit" name="validate" value="{'Send Order'|i18n('extension/xrowcomdirect')}" />
    <div class="break"></div>
 </div>
