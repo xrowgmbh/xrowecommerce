@@ -28,17 +28,17 @@
 <td><input type="text" size="27" name="name" value="{$ecname|wash()}" /></td>
 </tr>
 <tr>
-<td>{"Account number"|i18n("extension/xrowcomdirect")}:</td>
+<td>{"Account Number"|i18n("extension/xrowcomdirect")}:</td>
 <td><input id="number" type="text" maxlength="10" size="12" name="number" value="{$accountnumber|wash()}" /></td>
 </tr>
 <tr>
-<td>{"Bank code"|i18n("extension/xrowcomdirect")}: </td>
+<td>{"Bank Code"|i18n("extension/xrowcomdirect")}: </td>
 <td><input id="bankcode" type="text" maxlength="8" size="10" name="bankcode" value="{$bankcode|wash()}" /></td>
 </tr>
 </table>
 </div>
 <div id="buttonblock-bottom" class="buttonblock">
- <input id="cancel-button" class="button" type="submit" name="CancelButton" value="{'One step backwards'|i18n('extension/xrowcomdirect')}" />    
+ <input id="cancel-button" class="button" type="submit" name="CancelButton" value="{'One step back'|i18n('extension/xrowcomdirect')}" />    
  <input id="continue-button" class="defaultbutton" type="submit" name="validate" value="{'Send Order'|i18n('extension/xrowcomdirect')}" />  
  <div class="break"></div>
 </div>
