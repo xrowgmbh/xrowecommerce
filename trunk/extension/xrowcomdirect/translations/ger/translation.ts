@@ -54,7 +54,7 @@
     </message>
     <message>
       <source>The card with 3 digits security code.</source>
-      <translation>Die Kreditkarte mit dreistelligen Sicherheitscode.</translation>
+      <translation>Die Kreditkarte mit dreistelligen Kartenprüfnummer.</translation>
       
     </message>
     <message>
@@ -94,7 +94,7 @@
     </message>
     <message>
       <source>Security Code</source>
-      <translation>Sicherheitscode</translation>
+      <translation>Kartenprüfnummer</translation>
       
     </message>
     <message>
