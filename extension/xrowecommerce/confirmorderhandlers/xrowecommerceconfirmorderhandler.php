@@ -95,7 +95,10 @@ class xrowECommerceConfirmOrderHandler
                     $mail->setSender( $clientEmail );
                     $mail->setSubject( $subject );
                     $mail->setBody( $templateResult );
-
+            if ( $htmlMode == 'enabled' )
+            {
+                $mail->setContentType( 'text/html' );
+            }
                     $mailResult = eZMailTransport::send( $mail );
 
                     if ( $mailResult )
