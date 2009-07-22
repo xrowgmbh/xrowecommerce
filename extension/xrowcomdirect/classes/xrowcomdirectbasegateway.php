@@ -217,6 +217,7 @@ class xrowComdirectBaseGateway extends xrowEPaymentGateway
         {
             $process->Template = array();
             $process->Template['templateName'] = constant( get_class( $this ) . '::TEMPLATE' );
+            $process->Template['path'] = array( array( 'url' => false, 'text' => ezi18n( 'extension/xrowcomdirect', 'Payment Information' ) ) );
             $process->Template['templateVars'] = array( 
                 'event' => $event , 
                 'errors' => $errors 
