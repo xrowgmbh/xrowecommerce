@@ -90,6 +90,7 @@ class xrowPaymentGatewayType extends eZWorkflowEventType
             {
                 $process->Template = array();
                 $process->Template['templateName'] = 'design:workflow/selectgateway.tpl';
+                $process->Template['path'] = array( array( 'url' => false, 'text' => ezi18n( 'extension/xrowecommerce', 'Payment Information' ) ) );
                 $process->Template['templateVars'] = array( 
                     'event' => $event 
                 );
@@ -117,6 +118,7 @@ class xrowPaymentGatewayType extends eZWorkflowEventType
             {
                 $process->Template = array();
                 $process->Template['templateName'] = 'design:workflow/fraud.tpl';
+                $process->Template['path'] = array( array( 'url' => false, 'text' => ezi18n( 'extension/xrowecommerce', 'Payment Information' ) ) );
                 $process->Template['templateVars'] = array( 
                     'event' => $event 
                 );
