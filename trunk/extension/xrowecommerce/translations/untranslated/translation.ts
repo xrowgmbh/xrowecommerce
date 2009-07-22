@@ -1824,11 +1824,11 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>One step backwards</source>
+        <source>Send Order</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Send Order</source>
+        <source>One step back</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
