@@ -259,7 +259,7 @@
     <div class="block">
         <label>{'Shipping'|i18n('extension/xrowecommerce')}<span class="required">*</span></label>
         <div class="labelbreak"></div>
-        <select name="shippingtype">
+        <select name="shippingtype" id="shippingtype">
             {foreach $shipping_methods as $shipping_method}
             <option value="{$shipping_method.identifier}" {if $shippingtype|eq($shipping_method.identifier)} selected="selected" {/if}>{$shipping_method.name}</option>
             {/foreach}
@@ -618,55 +618,7 @@ lang: RecaptchaLang,
 
 <script type="text/javascript">
 {literal}
-function change()
-{
-    if (document.getElementById( 'shipping-checkbox' ).checked)
-    {
-        document.getElementById("shippinginfo").style.display = 'none';
-    }
-    else
-    {
-        document.getElementById("shippinginfo").style.display = 'block';
-        if( document.register.company_name )
-        {
-            document.register.s_company_name.value = document.register.company_name.value;
-        }
-        if( document.register.company_additional )
-        {
-            document.register.s_company_additional.value = document.register.company_additional.value;
-        }
-        if( document.register.mi )
-        {
-        	document.register.s_mi.value = document.register.mi.value;
-        }
-        if( document.register.state )
-        {
-            document.register.s_state.value = document.register.state.value;
-        }
-        document.register.s_first_name.value = document.register.first_name.value;
-        document.register.s_last_name.value = document.register.last_name.value;
 
-        document.register.s_zip.value = document.register.zip.value;
-        document.register.s_phone.value = document.register.phone.value;
-        {/literal}
-        {if eq(ezini( 'Settings', 'Fax', 'xrowecommerce.ini' ), 'enabled' )}
-            {if eq(ezini( 'ShippingSettings', 'DisplayFax', 'xrowecommerce.ini' ), 'enabled' )}
-            {literal}document.register.s_fax.value = document.register.fax.value;{/literal}
-            {/if}
-        {/if}
-        {literal}
-        document.register.s_email.value = document.register.email.value;
-        document.register.s_address1.value = document.register.address1.value;
-        {/literal}
-        {if eq(ezini( 'Settings', 'Address2', 'xrowecommerce.ini' ), 'enabled' )}
-        document.register.s_address2.value = document.register.address2.value;
-        {/if}
-        {literal}
-        document.register.s_city.value = document.register.city.value;
-        document.register.s_country.selectedIndex = document.register.country.selectedIndex;
-
-    }
-}
 
 function changeshipping(status)
 {

@@ -101,6 +101,8 @@ $ViewList["archiveorder"] = array(
     "default_navigation_part" => 'ezshopnavigationpart',
     "params" => array() );
 
+$ViewList["json"] = array( "script" => "json.php", "params" => array ( 'object', 'method' ) ); 
+
 
 $FunctionList['buy'] = array( );
 $FunctionList['administrate'] = array( );
