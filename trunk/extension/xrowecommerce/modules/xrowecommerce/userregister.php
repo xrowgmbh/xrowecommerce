@@ -483,7 +483,11 @@ if ( $module->isCurrentAction( 'Store' ) )
         $gateway = xrowShippingInterface::instanceByMethod( $shippingtype );
         if ( $gateway instanceof ShippingInterface )
         {
-            $gateway->method = $shippingtype;
+            if ( ! $gateway->methodCheck( $shippingdestination ) )
+            {
+                $errors[] = ezi18n( 'extension/xrowecommerce', 'Shipping mathod is not allowed for destionation.' );
+                $inputIsValid = false;
+            }
             if ( ! $gateway->destinationCheck( $shippingdestination ) )
             {
                 $errors[] = ezi18n( 'extension/xrowecommerce', 'Shipping destionation is not allowed.' );
