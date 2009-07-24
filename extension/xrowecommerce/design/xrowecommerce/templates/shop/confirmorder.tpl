@@ -164,7 +164,7 @@ function showAlert()
                    <td class="product-name basketspace">
                         <b>{$product_item.item_count}</b>
                     </td>
-                   <td class="product-name basketspace cart_item">
+                    <td class="product-name basketspace cart_item">
                     {include uri="design:shop/product_cell_view.tpl" view="confirmorder"}
                     </td>
             {if ezini( 'Settings', 'ShowColumnTax', 'xrowecommerce.ini' )|eq('enabled')}
