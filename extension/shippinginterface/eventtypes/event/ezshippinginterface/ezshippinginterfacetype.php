@@ -252,41 +252,78 @@ class eZShippingInterfaceType extends eZWorkflowEventType
                     continue;
                 }
             }
+//START ABSTRACTION LAYER NEEDED FOR WEIGHT
 
-            if ( ! empty( $option ) )
+            $found = false;
+            foreach ( $dm as $attribute_name => $attribute )
+            {
+                if ( $attribute->DataTypeString == eZOption2Type::OPTION2 )
+                {
+                    $found = true;
+                    break;
+                }
+            }
+            /*Variation with option 2*/
+            if ( ! empty( $option ) and $found )
             {
                 $optionID = $option->OptionItemID;
                 
-                /*
-                     Variation
-                    */
-                if ( array_key_exists( 'variation', $dm ) )
+                if ( array_key_exists( $attribute_name, $dm ) )
                 {
-                    $content = $dm['variation']->content();
-                    $contentopt = $content->Options;
-                    $contentoptselect = $contentopt[$optionID];
-                    
-                    $weight = $contentoptselect["weight"] * $item->ItemCount;
-                    $totalweight = $totalweight + $weight;
-                    
-                    if ( ! is_object( $content ) )
-                        continue;
+                    $content = $dm[$attribute_name]->content();
+                    if ( ! empty( $content->Options[$option->OptionItemID]["weight"] ) )
+                    {
+                        $totalweight += (float) $content->Options[$option->OptionItemID]["weight"] * $item->ItemCount;
+                    }
+                    else
+                    {
+                        eZDebug::writeDebug( $co->name() . " #" . $co->ID, "Zero Weight Product" );
+                    }
                 }
             }
-            else
+            
+            //MX specific datatype remove later when we have abstraction
+            $found = false;
+            foreach ( $dm as $attribute_name => $attribute )
             {
-                // Conditional, if weight is defined in datamap array
-                if ( array_key_exists( 'weight', $dm ) )
+                if ( $attribute->DataTypeString == 'mxmeasuredata' )
                 {
-                    // Fetch weight
-                    $count = $item->ItemCount;
-                    $weight = $dm['weight']->content();
-                    $subtotalweight = $weight * $count;
-                    $totalweight = $totalweight + $subtotalweight;
+                    $found = true;
+                    break;
                 }
             }
-        } // End: Order product total weight calculation
-        
+            if ( $found )
+            {
+                $content = $dm[$attribute_name]->content();
+                
+                if ( ! empty( $content->Weight ) )
+                {
+                    $totalweight += (float) $content->Weight * $item->ItemCount;
+                }
+                else
+                {
+                    eZDebug::writeDebug( $co->name() . " #" . $co->ID, "Zero Weight Product" );
+                }
+            }
+            // Conditional, if weight is defined in datamap array
+            if ( array_key_exists( 'weight', $dm ) )
+            {
+                // Fetch weight
+                $weight = $dm['weight']->content();
+                if ( ! empty( $contentoptselect["weight"] ) )
+                {
+                    $totalweight += $weight * $item->ItemCount;
+                }
+                else
+                {
+                    eZDebug::writeDebug( $co->name() . " #" . $co->ID, "Zero Weight Product" );
+                }
+            
+            }
+            
+        //END ABSTRACTION LAYER NEEDED FOR WEIGHT
+        }
+        // Order product total weight calculation
 
         // @TODO show template that hazardous items got removed
         /*
@@ -303,18 +340,18 @@ class eZShippingInterfaceType extends eZWorkflowEventType
         {
             try
             {
-                $gateway->method = $shippingtype;
                 $gateway->order = $order;
                 if ( $totalweight > 0 && $totalweight < 1 )
                 {
                     $totalweight = 1;
                 }
+                eZDebug::writeDebug( $totalweight, "Order Weight" );
                 $gateway->setOrder( $order );
                 $gateway->setWeight( $totalweight );
                 $gateway->setAddressTo( $shipping_country, $shipping_state, $shipping_zip, $shipping_city );
                 $cost = $gateway->getPrice();
                 $description = $gateway->description();
-
+                
                 if ( $freeshippingproduct )
                 {
                     if ( $cost >= $free_shippingitem_reduce )
@@ -551,7 +588,7 @@ class eZShippingInterfaceType extends eZWorkflowEventType
                         $list = $parcel->contains;
                         while ( count( $list ) > 0 )
                         {
-                        	$product = array_shift( $list );
+                            $product = array_shift( $list );
                             $i = 1;
                             foreach ( $list as $key2 => $product2 )
                             {
@@ -571,7 +608,7 @@ class eZShippingInterfaceType extends eZWorkflowEventType
                     }
                     $root->appendChild( $packagelist );
                 }
-
+                
                 $order->setAttribute( 'data_text_1', $doc->saveXML() );
                 $order->store();
             }

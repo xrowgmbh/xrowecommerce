@@ -12,8 +12,6 @@
   \brief The class ShippingInterface calculates shipping costs
 */
 
-include_once ( 'xmlparser_shipping.php' );
-
 class ShippingInterface
 {
     public $server = "";
@@ -53,6 +51,32 @@ class ShippingInterface
         }
         return $name . ' ( ' . $this->weight . ' lbs )';
     }
+    /* Checks if a method is valid for a destination
+     * 
+     */
+    function methodCheck( $country )
+    {
+        $list = self::getCountryList();
+        if ( array_search( $country, $list ) )
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    final public function getCountryList()
+    {
+        $return = array();
+        $list = eZCountryType::fetchCountryList();
+        foreach ( $list as $country )
+        {
+            $return[] = $country['Alpha3'];
+        }
+        return $return;
+    }
 
     /**
      * Lists available shipping medthods delivery by the plug-in
@@ -67,7 +91,9 @@ class ShippingInterface
     {
         return false;
     }
-
+    /* Checks if a destination is valid
+     * 
+     */
     function destinationCheck()
     {
         return true;
@@ -124,10 +150,12 @@ class ShippingInterface
             "city" => $from_city 
         );
     }
+
     function setOrder( eZOrder $order )
     {
         $this->order = $order;
     }
+
     function setWeight( $lbs )
     {
         $this->weight = $lbs;
@@ -160,7 +188,6 @@ class ShippingInterface
 
     function convert_country( $country, $input_type = "Alpha2", $output_type = "Alpha3" )
     {
-        include_once ( "kernel/classes/datatypes/ezcountry/ezcountrytype.php" );
         $countrylist = eZCountryType::fetchCountryList();
         foreach ( $countrylist as $item )
         {
