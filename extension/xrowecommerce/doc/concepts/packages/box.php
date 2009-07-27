@@ -52,22 +52,106 @@ $boxes = array(
     ) 
 );
 
-/*  $products=array(
-        array("id" => 1640, 'name'=>"MX-M22M-Sec", 'l'=>305, 'w'=>235, 'h'=>160),
-        array("id" => 1640, 'name'=>"MX-M22M-Sec", 'l'=>305, 'w'=>235, 'h'=>160),
-        array("id" => 1640, 'name'=>"MX-M22M-Sec", 'l'=>305, 'w'=>235, 'h'=>160),
-        array("id" => 1640, 'name'=>"MX-M22M-Sec", 'l'=>305, 'w'=>235, 'h'=>160),
-        array("id" => 5912, 'name'=>"MX-M12M-Web", 'l'=>345, 'w'=>340, 'h'=>160),
-        array("id" => 1640, 'name'=>"MX-M22M-Sec", 'l'=>305, 'w'=>235, 'h'=>160),
-        array("id" => 1640, 'name'=>"MX-M22M-Sec", 'l'=>305, 'w'=>235, 'h'=>160),
-        array("id" => 1640, 'name'=>"MX-M22M-Sec", 'l'=>305, 'w'=>235, 'h'=>160),
-        array("id" => 1782, 'name'=>"Power-Adapter-Set", 'l'=>160, 'w'=>100, 'h'=>55),
-        array("id" => 1782, 'name'=>"Power-Adapter-Set", 'l'=>160, 'w'=>100, 'h'=>55),
-        array("id" => 1782, 'name'=>"Power-Adapter-Set", 'l'=>160, 'w'=>100, 'h'=>55),
-        array("id" => 9999, 'name'=>"NetPower", 'l'=>520, 'w'=>145, 'h'=>330),
-        array("id" => 9999, 'name'=>"NetPower", 'l'=>520, 'w'=>145, 'h'=>330),
-        array("id" => 9999, 'name'=>"NetPower", 'l'=>520, 'w'=>145, 'h'=>330)
-    ); */
+$products = array( 
+    array( 
+        "id" => 1640 , 
+        'name' => "MX-M22M-Sec" , 
+        'l' => 305 , 
+        'w' => 235 , 
+        'h' => 160 
+    ) , 
+    array( 
+        "id" => 1640 , 
+        'name' => "MX-M22M-Sec" , 
+        'l' => 305 , 
+        'w' => 235 , 
+        'h' => 160 
+    ) , 
+    array( 
+        "id" => 1640 , 
+        'name' => "MX-M22M-Sec" , 
+        'l' => 305 , 
+        'w' => 235 , 
+        'h' => 160 
+    ) , 
+    array( 
+        "id" => 1640 , 
+        'name' => "MX-M22M-Sec" , 
+        'l' => 305 , 
+        'w' => 235 , 
+        'h' => 160 
+    ) , 
+    array( 
+        "id" => 5912 , 
+        'name' => "MX-M12M-Web" , 
+        'l' => 345 , 
+        'w' => 340 , 
+        'h' => 160 
+    ) , 
+    array( 
+        "id" => 1640 , 
+        'name' => "MX-M22M-Sec" , 
+        'l' => 305 , 
+        'w' => 235 , 
+        'h' => 160 
+    ) , 
+    array( 
+        "id" => 1640 , 
+        'name' => "MX-M22M-Sec" , 
+        'l' => 305 , 
+        'w' => 235 , 
+        'h' => 160 
+    ) , 
+    array( 
+        "id" => 1640 , 
+        'name' => "MX-M22M-Sec" , 
+        'l' => 305 , 
+        'w' => 235 , 
+        'h' => 160 
+    ) , 
+    array( 
+        "id" => 1782 , 
+        'name' => "Power-Adapter-Set" , 
+        'l' => 160 , 
+        'w' => 100 , 
+        'h' => 55 
+    ) , 
+    array( 
+        "id" => 1782 , 
+        'name' => "Power-Adapter-Set" , 
+        'l' => 160 , 
+        'w' => 100 , 
+        'h' => 55 
+    ) , 
+    array( 
+        "id" => 1782 , 
+        'name' => "Power-Adapter-Set" , 
+        'l' => 160 , 
+        'w' => 100 , 
+        'h' => 55 
+    ) , 
+    array( 
+        "id" => 9999 , 
+        'name' => "NetPower" , 
+        'l' => 520 , 
+        'w' => 145 , 
+        'h' => 330 
+    ) , 
+    array( 
+        "id" => 9999 , 
+        'name' => "NetPower" , 
+        'l' => 520 , 
+        'w' => 145 , 
+        'h' => 330 
+    ) , 
+    array( 
+        "id" => 9999 , 
+        'name' => "NetPower" , 
+        'l' => 520 , 
+        'w' => 145 , 
+        'h' => 330 
+    ) 
+);
 
 /*  $products=array(
         array("id" => 1, 'name'=>"MX-M12D-Sec", 'l'=>345, 'w'=>340, 'h'=>160),
@@ -172,7 +256,7 @@ $boxes = array(
         array("id" => 5, 'name'=>"MX-OPT14-L22", 'l'=>90, 'w'=>40, 'h'=>60),
         array("id" => 5, 'name'=>"MX-OPT14-L22", 'l'=>90, 'w'=>40, 'h'=>60),
         array("id" => 5, 'name'=>"MX-OPT14-L22", 'l'=>90, 'w'=>40, 'h'=>60)
-    );  */
+    );  
 
 $products = array( 
     array( 
@@ -734,7 +818,7 @@ $products = array(
         'h' => 40 
     ) 
 );
-
+*/
 foreach ( $boxes as $item )
 {
     $tmp = new xrowPackage( $item['l'], $item['w'], $item['h'] );
@@ -749,11 +833,8 @@ foreach ( $products as $item )
     $tmp->id = $item['id'];
     $items[] = $tmp;
 }
-foreach ( $items as $product )
-{
-    echo " " . $product->name . " \n";
-}
-$packlist = xrowShipmentCalculator::compute( $parcels, $items );
+
+$packlist = mxShipping::compute( $parcels, $items );
 
 foreach ( $packlist as $parcel )
 {
@@ -763,10 +844,38 @@ foreach ( $packlist as $parcel )
         echo "   " . $product->name . " \n";
     }
 }
-
-$country='Germany';
-$calculator=new mxboxCalculator();
-$packlist=$calculator->calculate($boxes, $products, $country);
+echo " ALTE BERECHUNG  ";
+$country = 'Germany';
+$calculator = new MXBoxCalculator( );
+$packlist = $calculator->calculate( $boxes, $products, $country );
+foreach ( $packlist as $key => $parcel )
+{
+    foreach ( $boxes as $box )
+    {
+        if ( $box['id'] == $key )
+        {
+            
+            break;
+        }
+    }
+    foreach ( $parcel as $pa )
+    {
+    echo $box['name'] . " includes : \n";
+            foreach ( $pa as $product )
+            {
+            
+                foreach ( $products as $product2 )
+                {
+                    if ( $product2['id'] == $product )
+                    {
+                        echo "   " . $product2['name'] . "\n";
+                        break;
+                    }
+                }
+            }
+     
+    }
+}
 
 ?>
   
