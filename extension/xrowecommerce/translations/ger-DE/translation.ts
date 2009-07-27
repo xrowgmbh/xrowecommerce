@@ -1,4 +1,6 @@
-<!DOCTYPE TS><TS>
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.0" language="de_DE">
 <context>
     <name>design/admin/class/edit_language</name>
     <message>
@@ -1831,6 +1833,10 @@
         <source>Send Order</source>
         <translation>Bestellung absenden</translation>
     </message>
+    <message>
+        <source>Shipping mathod is not allowed for destionation.</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>extension/xrowecommerce/directorder</name>
@@ -1971,7 +1977,7 @@
     <message>
         <source>You need to select a datatype for the attribute.
       It&apos;s not possible to change this afterwards.</source>
-        <translation>Sie müssen einen Datentyp für das Attribut auswählen.
+        <translation type="obsolete">Sie müssen einen Datentyp für das Attribut auswählen.
 Es ist nicht möglich, den Datentyp danach zu ändern.</translation>
     </message>
     <message>
@@ -2416,6 +2422,20 @@ Es ist nicht möglich, den Datentyp danach zu ändern.</translation>
         <source>Show in select box:</source>
         <translation>Feld in Select Box anzeigen:</translation>
     </message>
+    <message>
+        <source>Please enter a valid date.</source>
+        <translation>Bitten geben Sie ein korrektes Datum ein.</translation>
+    </message>
+    <message>
+        <source>Date</source>
+        <comment>Datatype name</comment>
+        <translation>Datum</translation>
+    </message>
+    <message>
+        <source>Stores a date value.</source>
+        <comment>Datatype description</comment>
+        <translation>Speichert ein Datum.</translation>
+    </message>
 </context>
 <context>
     <name>extension/xrowtin</name>
@@ -2486,7 +2506,7 @@ Es ist nicht möglich, den Datentyp danach zu ändern.</translation>
     </message>
     <message>
         <source>Input required.</source>
-        <translation type="unfinished">Eingabe erforderlich.</translation>
+        <translation>Eingabe erforderlich.</translation>
     </message>
 </context>
 <context>

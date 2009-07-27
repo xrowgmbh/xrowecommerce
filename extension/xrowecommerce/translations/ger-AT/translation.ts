@@ -1,4 +1,6 @@
-<!DOCTYPE TS><TS>
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.0">
 <context>
     <name>design/admin/class/edit_language</name>
     <message>
@@ -119,6 +121,14 @@
         <source>Price export</source>
         <translation>Preis Export</translation>
     </message>
+    <message>
+        <source>Tax identification numbers</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Tax identification</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>design/admin/shop/orderlist</name>
@@ -176,7 +186,7 @@
     </message>
     <message>
         <source>Status</source>
-        <translation>Status</translation>
+        <translation type="obsolete">Status</translation>
     </message>
     <message>
         <source>Actions</source>
@@ -213,6 +223,42 @@
     <message>
         <source>Order statistic</source>
         <translation>Bestellstatistik</translation>
+    </message>
+    <message>
+        <source>Order status</source>
+        <translation type="unfinished">Bestellstatus</translation>
+    </message>
+    <message>
+        <source>Payment status</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>unpaid</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>paid</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Close</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Print invoice and packaging slip</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Print shipping plan</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Remove selected</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Remove selected orders.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -487,6 +533,10 @@
     <message>
         <source>Ship to</source>
         <translation>Lieferung an</translation>
+    </message>
+    <message>
+        <source>Shipping plan</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1757,15 +1807,51 @@
     </message>
     <message>
         <source>Website</source>
-        <translation>Internetseite</translation>
+        <translation type="obsolete">Internetseite</translation>
     </message>
     <message>
         <source>Order date</source>
-        <translation>Bestelldatum</translation>
+        <translation type="obsolete">Bestelldatum</translation>
     </message>
     <message>
         <source>Shipping method</source>
-        <translation>Versandart</translation>
+        <translation type="obsolete">Versandart</translation>
+    </message>
+    <message>
+        <source>A tax identification number in the Federal Republic of Germany consists of 10 or 11 digits, depending on the &quot;Bundesland&quot; (State). These are divided into groups of 2 - 5 by forward slashes or blanks (e.g. &quot;181/815/08155&quot;). A unified German tax identification number consists of 13 digits like &quot;2893081508152&quot;.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Package</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Name of package</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Products</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Tax identification numbers</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Status</source>
+        <translation type="unfinished">Status</translation>
+    </message>
+    <message>
+        <source>One step back</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Send Order</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Shipping mathod is not allowed for destionation.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1823,15 +1909,15 @@
     <name>extension/xrowecommerce/epayment</name>
     <message>
         <source>Please enter the name of the bank account.</source>
-        <translation>Bitte geben Sie den Kontonamen an.</translation>
+        <translation type="obsolete">Bitte geben Sie den Kontonamen an.</translation>
     </message>
     <message>
         <source>Please enter your correct account number (max. 10 numbers)</source>
-        <translation>Bitte geben Sie Ihre Kontonummer an (max. 10 Zeichen)</translation>
+        <translation type="obsolete">Bitte geben Sie Ihre Kontonummer an (max. 10 Zeichen)</translation>
     </message>
     <message>
         <source>Please enter your correct bank code (8 numbers)</source>
-        <translation>Bitte geben Sie Ihre korrekte Bankleitzahl an (8 Zeichen)</translation>
+        <translation type="obsolete">Bitte geben Sie Ihre korrekte Bankleitzahl an (8 Zeichen)</translation>
     </message>
     <message>
         <source>Please enter a name</source>
@@ -1847,7 +1933,23 @@
     </message>
     <message>
         <source>Your credit card is expired.</source>
-        <translation>Ihre Kreditkarte ist abgelaufen.</translation>
+        <translation type="obsolete">Ihre Kreditkarte ist abgelaufen.</translation>
+    </message>
+    <message>
+        <source>Please enter the name of the card holder.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please enter the correct account number</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please enter the correct bank code</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The validity of your credit card has expired.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1907,7 +2009,7 @@
     <message>
         <source>You need to select a datatype for the attribute.
       It&apos;s not possible to change this afterwards.</source>
-        <translation>Sie müssen einen Datentyp für das Attribut auswählen.
+        <translation type="obsolete">Sie müssen einen Datentyp für das Attribut auswählen.
 Es ist nicht möglich, den Datentyp danach zu ändern.</translation>
     </message>
     <message>
@@ -2352,6 +2454,60 @@ Es ist nicht möglich, den Datentyp danach zu ändern.</translation>
         <source>Show in select box:</source>
         <translation>Feld in Select Box anzeigen:</translation>
     </message>
+    <message>
+        <source>You need to select a datatype for the attribute.
+      It&apos;s not possible to change this afterwards.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please enter a valid date.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Date</source>
+        <comment>Datatype name</comment>
+        <translation type="unfinished">Datum</translation>
+    </message>
+    <message>
+        <source>Stores a date value.</source>
+        <comment>Datatype description</comment>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>extension/xrowtin</name>
+    <message>
+        <source>The class identifier name of the country field is incorrect in xrowecommerce.ini</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The class identifier name of the company field is incorrect in xrowecommerce.ini</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please provide a company name with your companies tax ID.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Country doesn`t match tax ID number.</source>
+        <translation type="unfinished">Das Land entspricht nicht der Steuernummer.</translation>
+    </message>
+    <message>
+        <source>Your companies tax ID number is not valid.</source>
+        <translation type="unfinished">Ungültige Steuernummer.</translation>
+    </message>
+    <message>
+        <source>not validated</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>validated</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>validated by administration</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>kernel/classes/datatypes</name>
@@ -2379,6 +2535,15 @@ Es ist nicht möglich, den Datentyp danach zu ändern.</translation>
     <message>
         <source>Please correct the input of product variations. The wrong or missing input is marked with a red border.</source>
         <translation>Bitte korrigieren Sie die Eingabe bei den Produkt Variationen. Falsche Eingaben sind mit einem roten Rand markiert.</translation>
+    </message>
+    <message>
+        <source>Tax Identification Number</source>
+        <comment>Datatype name</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Input required.</source>
+        <translation type="unfinished">Eingabe erforderlich.</translation>
     </message>
 </context>
 <context>
@@ -2426,6 +2591,14 @@ Es ist nicht möglich, den Datentyp danach zu ändern.</translation>
     <message>
         <source>Order history</source>
         <translation>Bestellverlauf</translation>
+    </message>
+    <message>
+        <source>Remove order</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Shipping plan</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
