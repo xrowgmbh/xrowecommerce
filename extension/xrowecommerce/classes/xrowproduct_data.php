@@ -29,23 +29,40 @@ class xrowProductData extends eZPersistentObject
                 $column = array();
                 $column['name'] = $key;
                 
-                if ( strtolower( substr( $item['Type'], 0, 7 ) ) == 'varchar' )
+                if ( strtolower( substr( $item['Type'], 0, 7 ) ) == 'varchar' 
+                     or preg_match( "/date/", $item['Type'], $matches ) )
                 {
                     $column['datatype'] = 'string';
                     if ( preg_match( "/varchar\((\d{0,3})\)/i", $item['Type'], $matches ) )
+                    {
                         $column['max_length'] = $matches[1];
+                    }
                 }
                 else 
+                {
                     if ( preg_match( "/int/i", $item['Type'], $matches ) )
+                    {
                         $column['datatype'] = 'integer';
-                    else 
+                    }
+                    else
+                    { 
                         if ( preg_match( "/float/i", $item['Type'], $matches ) )
+                        {
                             $column['datatype'] = 'float';
-                        else 
+                        }
+                        else
+                        { 
                             if ( preg_match( "/text/", $item['Type'], $matches ) )
+                            {
                                 $column['datatype'] = 'text';
+                            }
                             else
+                            {
                                 eZDebug::writeError( 'Unknown column type: ' . $item['Type'], 'xrowProductData::definition()' );
+                            }
+                        }
+                    }
+                }
                 
                 $column['required'] = false;
                 $column['default'] = null;

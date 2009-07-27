@@ -35,6 +35,11 @@
     width: 30px;
 }
 
+.xrowproductdate
+{
+   width: 6em;
+}
+
 td.error
 {
     padding-top: 1px;

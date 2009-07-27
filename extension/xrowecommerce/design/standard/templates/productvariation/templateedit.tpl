@@ -17,8 +17,8 @@
 
              <input type="hidden" name="AttributeIDArray[]" value="{$attribute.id}" />
         </td>
-        <td valign="top" class="tight"><img src={"button-move_up.gif"|ezimage} alt="Move up"  width="16" height="16" onclick="return xrow_move(  {ldelim} direction: 'up', tr: this.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode {rdelim} );" /></td>
-        <td valign="top" class="tight"><img src={"button-move_down.gif"|ezimage} alt="Move down" width="16" height="16" title="Move down" onclick="return xrow_move( {ldelim} direction: 'down', tr: this.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode {rdelim});" /></td>
+        <td valign="top" class="tight"><img src={"button-move_up.gif"|ezimage} alt="Move up"  width="16" height="16" onclick="return xrow_move(  {ldelim} direction: 'up', tr: this.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode {rdelim} );" /></td>
+        <td valign="top" class="tight"><img src={"button-move_down.gif"|ezimage} alt="Move down" width="16" height="16" title="Move down" onclick="return xrow_move( {ldelim} direction: 'down', tr: this.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode {rdelim});" /></td>
     </tr>
 </tbody>
 </table>

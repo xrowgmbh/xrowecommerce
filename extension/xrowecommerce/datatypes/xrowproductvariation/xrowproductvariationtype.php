@@ -270,7 +270,7 @@ class xrowProductVariationType extends eZDataType
                                                                     $column,
                                                                     $currentData,
                                                                     $contentObjectAttribute,
-                                                                    $attribute,
+                                                                    $attribute['attribute'],
                                                                     $http );
 
                                 }
