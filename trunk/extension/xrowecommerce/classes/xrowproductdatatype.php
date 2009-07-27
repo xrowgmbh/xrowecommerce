@@ -247,7 +247,9 @@ class xrowProductDataType
     function fetchVariationInput( array &$data, $line, $column, xrowProductData &$variation, eZContentObjectAttribute &$contentObjectAttribute, xrowProductAttribute &$productAttribute, eZHTTPTool $http )
     {
         if ( isset( $data[$line][$column] ) )
+        {
             $variation->setAttribute( $column, $data[$line][$column] );
+        }
     }
 
     /**

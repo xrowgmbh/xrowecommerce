@@ -10,6 +10,7 @@ ProductDataTypeArray[float]=xrowProductFloatType
 #ProductDataTypeArray[relation]=xrowProductRelationType
 ProductDataTypeArray[price]=xrowProductPriceType
 ProductDataTypeArray[sku]=xrowProductSkuType
+ProductDataTypeArray[date]=xrowProductDateType
 # coming soon
 #ProductDataTypeArray[]=selection
 
