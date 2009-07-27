@@ -1,4 +1,6 @@
-<!DOCTYPE TS><TS>
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.0">
 <context>
     <name>design/admin/class/edit_language</name>
     <message>
@@ -1831,6 +1833,10 @@
         <source>One step back</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Shipping mathod is not allowed for destionation.</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>extension/xrowecommerce/directorder</name>
@@ -1986,11 +1992,6 @@
     </message>
     <message>
         <source>No datatype was selected.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>You need to select a datatype for the attribute.
-      It&apos;s not possible to change this afterwards.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2413,6 +2414,25 @@
     </message>
     <message>
         <source>Show in select box:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>You need to select a datatype for the attribute.
+      It&apos;s not possible to change this afterwards.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please enter a valid date.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Date</source>
+        <comment>Datatype name</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Stores a date value.</source>
+        <comment>Datatype description</comment>
         <translation type="unfinished"></translation>
     </message>
 </context>
