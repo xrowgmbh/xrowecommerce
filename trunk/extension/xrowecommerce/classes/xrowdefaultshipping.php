@@ -88,7 +88,6 @@ class xrowDefaultShipping implements xrowShipment
             }
             
             // Find the smallest Package for the biggest product
-            
 
             $found = false;
             foreach ( $boxes as $key => $box )
@@ -100,7 +99,7 @@ class xrowDefaultShipping implements xrowShipment
                     $boxType = $boxes[$key]->typ;
                 }
             }
-            
+
             if ( $found === false )
             {
                 throw new Exception( "No parcel suitable for at least one product." );

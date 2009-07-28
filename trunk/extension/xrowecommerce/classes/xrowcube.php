@@ -40,10 +40,21 @@ class xrowCube
         return $first;
     }
 
-    // Überprüft, ob ein Produkt in eine Box passt.
-    // Rückgabewert: array mit l,w,h des gedrehten Produkts oder NULL wenn es nicht passt.
-    
+    /* Helper comparison function
+     * 
+     */
+    final private static function _cmp( $a, $b )
+    {
+        if ( $a['a'] == $b['a'] )
+        {
+            return 0;
+        }
+        return ( $a['a'] < $b['a'] ) ? - 1 : 1;
+    }
 
+    /* Checks if a Cube fits in another Cube
+ * @return returns a flipped version of the object or false
+ */
     final public function can_contain( xrowCube $content )
     {
         // $this is the container
@@ -54,7 +65,7 @@ class xrowCube
         $wProd = $content->width;
         $hProd = $content->height;
         
-        // Produktgrundflächen ermitteln und absteigend sortieren
+        // compose all areas of the cube
         $areas = array( 
             array( 
                 'a' => $lProd * $wProd , 
@@ -93,8 +104,7 @@ class xrowCube
                 'h' => $wProd 
             ) 
         );
-        
-        // Produktgrundflächen nach Fläche sortieren - größte Fläche zuerst (einfach Bubblesort, da nicht viele Elemente)
+        // sort the resulting array by biggest area 
         for ( $i = 5; $i > 0; $i -- )
         {
             for ( $j = 0; $j < $i; $j ++ )
@@ -107,18 +117,36 @@ class xrowCube
                 }
             }
         }
-        
-        // Sucht die Produktposition mit der größten Grundfläche in der Box.
+        // looks for largest area in the array and flips the product.
         for ( $loop = 0; $loop < 6; $loop ++ )
         {
             if ( $areas[$loop]['l'] <= $lBox && $areas[$loop]['w'] <= $wBox && $areas[$loop]['h'] <= $hBox )
             {
-                $content->height = $areas[$loop]['h'];
-                $content->width = $areas[$loop]['w'];
-                $content->length = $areas[$loop]['l'];
-                return $content;
+                $obj = clone $content;
+                $obj->height = $areas[$loop]['h'];
+                $obj->width = $areas[$loop]['w'];
+                $obj->length = $areas[$loop]['l'];
+                return $obj;
             }
         }
+        /* Alternate sort might sort a bit different
+        // sort the resulting array by biggest area 
+        uasort( $areas, 'xrowCube::_cmp' );
+do
+{
+	$part = array_pop( $areas );
+            if ( $part['l'] <= $lBox && $part['w'] <= $wBox && $part['h'] <= $hBox )
+            {
+                $obj = clone $content;
+                $obj->height = $part['h'];
+                $obj->width = $part['w'];
+                $obj->length = $part['l'];
+                return $obj;
+            }
+}
+while ( count( $areas ) > 0 );
+
+*/
         // Produkt passt nicht in die Box
         return false;
     }
@@ -214,7 +242,6 @@ class xrowCube
             }
         }
     }
-
 
 }
 ?>
