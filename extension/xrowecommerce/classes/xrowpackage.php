@@ -6,8 +6,13 @@ class xrowPackage extends xrowCube
     function __construct( $length, $width, $height )
     {
         parent::__construct( $length, $width, $height );
-
+    
     }
+
+    /*
+     * @param array Array of remaining items to place in the container. Treats array as a stack and removes elements from the array.
+     * @return void
+     */
     public function fill( &$products )
     {
         // versuchen so viel wie möglich, der anderen Produkte in die Kiste zu packen
@@ -37,8 +42,9 @@ class xrowPackage extends xrowCube
     }
 
     /*
-     * @param xrowCube
-     * @param xrowCube
+     * @param xrowCube Cube added to the package
+     * @param xrowCube choosen segment of the filled container ( $this )
+     * @return void
      */
     public function add( xrowCube $product, $segment = false )
     {
@@ -55,6 +61,7 @@ class xrowPackage extends xrowCube
         {
             $container = & $segment;
         }
+        $product = $container->can_contain( $product );
         /*
          *    / --------------
          *   /              /|
@@ -65,24 +72,24 @@ class xrowPackage extends xrowCube
          *  |/             |/
          *  /--------------/
          */
+        $cubes = array();
+        $cubes[] = new xrowCube( $container->length - $product->length, $product->width, $product->height );
+        $cubes[] = new xrowCube( $container->length, $container->width, $container->height - $product->height );
+        $cubes[] = new xrowCube( $container->length, $container->width - $product->width, $product->height );
+        /** Alternate calculation for the remaining space 
         $cubes[] = new xrowCube( $container->length - $product->length, $container->width, $container->height );
-        $cubes[] = new xrowCube( $product->length, $container->width, $container->height - $product->height );
-        $cubes[] = new xrowCube( $product->length, $container->width - $product->width, $product->height );
+        $cubes[] = new xrowCube( $container->length, $container->width, $container->height - $product->height );
+        $cubes[] = new xrowCube( $container->length, $container->width - $product->width, $container->height );
+         */
+        
         foreach ( $cubes as $key => $cube )
         {
             if ( $cube->volume() > 0 )
             {
-                $this->free_segments[] = & $cubes[$key];
+                array_push( $this->free_segments, $cubes[$key] );
             }
         }
-        self::sortByVolume( $this->free_segments, xrowCube::SORT_ASC );
-        /*
-        echo $this->volume() . " Total Space " . "\n";
-        echo $this->usedSpace() . " Used Space " . "\n";
-        echo $product->volume() . " Product Space " . "\n";
-        echo $this->freeSpace() . " Remaining Space " . "\n";
-*/
-    
+        #self::sortByVolume( $this->free_segments, xrowCube::SORT_ASC );
     }
     public $id;
     public $name;
