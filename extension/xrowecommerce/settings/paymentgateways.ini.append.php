@@ -2,3 +2,4 @@
 AvailableGateways[]=xrowInvoice
 AvailableGateways[]=xrowCashOnDelivery
 AvailableGateways[]=xrowAdvancepayment
+AvailableGateways[]=directebanking
