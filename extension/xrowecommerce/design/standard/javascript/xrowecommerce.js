@@ -6,7 +6,6 @@ YUI().use("node", function(Y) {
 			updateShipping();
 		}, "#country");
 		Y.on("change", function(e) {
-			alert('hi');
 			updateShipping();
 		}, "#s_country");
 		}
