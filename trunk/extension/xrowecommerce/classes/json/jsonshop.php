@@ -26,10 +26,6 @@ class xrowECommerceJSON implements eZJSON
                 );
             }
         }
-                        $return[] = array( 
-                    a , 
-                    b , 
-                    false) ;
         return $return;
     }
 }

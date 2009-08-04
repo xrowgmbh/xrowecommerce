@@ -23,7 +23,7 @@ thead {
 </tr>
 </thead>
 <tbody>
-{foreach $package_list as $key => $package sequence sequence array(bglight,bgdark) as $sequence}
+{foreach $package_list as $key => $package sequence array(bglight,bgdark) as $sequence}
 
 <tr>
     <td class="number" align="right">{$key|sum(1)}</td>
