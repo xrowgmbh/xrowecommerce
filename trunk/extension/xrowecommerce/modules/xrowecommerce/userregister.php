@@ -388,12 +388,13 @@ if ( $module->isCurrentAction( 'Store' ) )
     }
     if ( $http->hasPostVariable( "no_partial_delivery" ) )
     {
-        $no_partial_delivery = '1';
-    }
-    elseif ( ! $http->hasPostVariable( "no_partial_delivery" ) and eZINI::instance( 'xrowecommerce.ini' )->variable( 'Settings', 'NoPartialDelivery' ) == 'enabled' )
-    {
         $no_partial_delivery = '0';
     }
+    elseif ( !$http->hasPostVariable( "no_partial_delivery" ) and eZINI::instance( 'xrowecommerce.ini' )->variable( 'Settings', 'NoPartialDelivery' ) == 'enabled' )
+    {
+        $no_partial_delivery = '1';
+    }
+
     if ( $http->hasPostVariable( "shipping" ) )
     {
         $shipping = true;
@@ -616,7 +617,11 @@ if ( $module->isCurrentAction( 'Store' ) )
             $coupon_codeNode = $doc->createElement( "coupon_code", '' );
             $root->appendChild( $coupon_codeNode );
         }
-        
+        if ( isset( $no_partial_delivery ) )
+        {
+            $partial_deliveryNode = $doc->createElement( "no_partial_delivery", $no_partial_delivery );
+            $root->appendChild( $partial_deliveryNode );
+        }
         $referenceNode = $doc->createElement( "reference", $reference );
         $root->appendChild( $referenceNode );
         
