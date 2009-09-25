@@ -162,3 +162,55 @@ function change() {
 						}
 					});
 }
+function checkCOS( element )
+{
+	{/literal}
+	{if ezini( 'Settings', 'ConditionsOfService', 'xrowecommerce.ini')|ne('enabled')}
+    	{literal}
+        	element.form.submit();
+        	var fakebutton = document.createElement('input');
+            fakebutton.name = element.name;
+            fakebutton.type = 'hidden'
+            fakebutton.value = element.value;
+            element.parentNode.appendChild( fakebutton );
+            return true;
+        {/literal}
+    {/if}
+    {literal}
+	var container = document.getElementById( 'cos_cb' );
+	if ( container )
+	{
+		if( container.checked )
+		{
+			var fakebutton = document.createElement('input');
+			fakebutton.name = element.name;
+			fakebutton.type = 'hidden'
+		    fakebutton.value = element.value;
+			element.parentNode.appendChild( fakebutton );
+			element.form.submit();
+			return true;
+		}
+		else
+		{
+			alert( '{/literal}{'Accept the terms and conditions to continue.'|i18n('extension/xrowecommerce')}{literal}' );
+			window.location.hash="cos";
+			YAHOO.util.Dom.setStyle( 'cos-content', 'display', 'block');
+			return false;
+		}
+	}
+}
+function toggleCOS()
+{        
+    var container = document.getElementById( 'cos-content' );
+    if ( container )
+    {
+        if ( YAHOO.util.Dom.getStyle( container, 'display') == 'block' )
+        {
+        	YAHOO.util.Dom.setStyle( container, 'display', 'none');
+        }
+        else
+        {
+        	YAHOO.util.Dom.setStyle( container, 'display', 'block');
+        }
+    }
+}
