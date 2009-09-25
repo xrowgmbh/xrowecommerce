@@ -119,7 +119,7 @@ class ezCouponType extends eZDataType
                                                                  'Invalid discount.' ) );
             }
             if ( preg_match( "#^[0-9]+(.){0,1}[0-9]{0,2}$#", $data ) and
-                 (int)$http->postVariable( $base . "_coupon_discount_type_" . $id ) == self::COUPON_DISCOUNT_TYPE_PERCENT )
+                 (int)$http->postVariable( $base . "_coupon_discount_type_" . $id ) == self::DISCOUNT_TYPE_PERCENT )
             {
                 if( !( $data > 0 and $data < 100 ) )
                 {
@@ -276,7 +276,7 @@ class ezCouponType extends eZDataType
     */
     function metaData( $contentObjectAttribute )
     {
-        $array = $contentObjectAttribute->objectAttributeContent( );
+        $array = $contentObjectAttribute->content( );
         $retVal = $array['code'];
         return $retVal;
     }
@@ -286,7 +286,7 @@ class ezCouponType extends eZDataType
     */
     function title( $objectAttribute, $name = null )
     {
-        $array = $objectAttribute->objectAttributeContent();
+        $array = $objectAttribute->content();
         $retVal = $array['code'];
         return $retVal;
     }
