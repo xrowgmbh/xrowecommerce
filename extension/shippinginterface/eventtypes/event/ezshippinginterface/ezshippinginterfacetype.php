@@ -336,6 +336,7 @@ class eZShippingInterfaceType extends eZWorkflowEventType
             // ABSTRACTION LAYER FOR WEIGHT
             // Also builds Packagelist
             $totalweight = 0;
+            $boxweight = 0;
             if ( $ini->hasVariable( 'ShippingInterfaceSettings', 'ShippingInterface' ) )
             {
                 
@@ -346,12 +347,11 @@ class eZShippingInterfaceType extends eZWorkflowEventType
                     
                     $impl = new $interfaceName( );
                     $boxes = $impl->getBoxes( $order );
-                    $boxweight = 0;
                     foreach ( $boxes as $box )
                     {
                         $boxweight += $box->totalWeight();
                     }
-                    eZDebug::writeDebug( $totalweight, "Weight of Packages" );
+                    eZDebug::writeDebug( $boxweight, "Weight of Packages" );
                     $products = $impl->getProducts( $order );
                     $packlist = $impl->compute( $boxes, $products );
                     $totalweight = 0;
