@@ -488,26 +488,26 @@ if ( $module->isCurrentAction( 'Store' ) )
             {
                 if ( ! $gateway->methodCheck( $shippingdestination ) )
                 {
-                    $errors[] = ezi18n( 'extension/xrowecommerce', 'Shipping mathod is not allowed for destionation.' );
+                    $errors[] = ezi18n( 'extension/xrowecommerce', 'Shipping method is not allowed for destination.' );
                     $inputIsValid = false;
                 }
             }
             catch ( xrowShippingException $e )
             {
-                $errors[] = ezi18n( 'extension/xrowecommerce', 'Shipping mathod is not allowed for destionation.' );
+                $errors[] = ezi18n( 'extension/xrowecommerce', 'Shipping method is not allowed for destination.' );
                 $inputIsValid = false;
             }
             try
             {
                 if ( ! $gateway->destinationCheck( $shippingdestination ) )
                 {
-                    $errors[] = ezi18n( 'extension/xrowecommerce', 'Shipping destionation is not allowed.' );
+                    $errors[] = ezi18n( 'extension/xrowecommerce', 'Shipping destination is not allowed.' );
                     $inputIsValid = false;
                 }
             }
             catch ( xrowShippingException $e )
             {
-                $errors[] = ezi18n( 'extension/xrowecommerce', 'Shipping destionation is not allowed.' );
+                $errors[] = ezi18n( 'extension/xrowecommerce', 'Shipping destination is not allowed.' );
                 $inputIsValid = false;
             }
         }
