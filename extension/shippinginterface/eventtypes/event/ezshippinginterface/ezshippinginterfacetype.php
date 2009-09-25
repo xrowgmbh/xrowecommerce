@@ -92,7 +92,6 @@ class eZShippingInterfaceType extends eZWorkflowEventType
 
     function execute( $process, $event )
     {
-
         
         // Fetch Workflow Settings
         $ini = eZINI::instance( 'shipping.ini' );
@@ -112,8 +111,6 @@ class eZShippingInterfaceType extends eZWorkflowEventType
         
         // Fetch order
         $order = eZOrder::fetch( $orderID );
-        
-
         
         // If order class was fetched
         if ( get_class( $order ) == 'eZOrder' )
@@ -255,84 +252,9 @@ class eZShippingInterfaceType extends eZWorkflowEventType
                     continue;
                 }
             }
-                
-        $ini = eZINI::instance( "xrowecommerce.ini" );
-        
-        // ABSTRACTION LAYER FOR WEIGHT
-        // Also builds Packagelist
-        $totalweight = 0;
-        if ( $ini->hasVariable( 'ShippingInterfaceSettings', 'ShippingInterface' ) )
-        {
             
-            $interfaceName = $ini->variable( 'ShippingInterfaceSettings', 'ShippingInterface' );
-            
-            if ( class_exists( $interfaceName ) )
-            {
-                
-                $impl = new $interfaceName( );
-                $boxes = $impl->getBoxes( $order );
-                $boxweight =0;
-                foreach ( $boxes as $box )
-                {
-                    $boxweight += $box->totalWeight();
-                }
-                eZDebug::writeDebug( $totalweight, "Weight of Packages" );
-                $products = $impl->getProducts( $order );
-                $packlist = $impl->compute( $boxes, $products );
-                $totalweight = 0;
-                foreach ( $packlist as $package )
-                {
-                    $totalweight += $package->totalWeight();
-                }
-                $totalboxweight = $totalweight-$boxweight;
-                eZDebug::writeDebug( $totalboxweight, "Weight of Products" );
-                eZDebug::writeDebug( $totalweight, "Weight of Packages with Products" );
-                $xmlstring = $order->attribute( 'data_text_1' );
-                if ( $xmlstring != null )
-                {
-                    $doc = new DOMDocument( );
-                    $doc->loadXML( $xmlstring );
-                    $root = $doc->documentElement;
-                    $packagelist = $root->getElementsByTagName( xrowECommerce::ACCOUNT_KEY_PACKAGES );
-                    if ( $packagelist->length == 1 )
-                    {
-                        $root->removeChild( $packagelist->item( 0 ) );
-                    }
-                    $packagelist = $doc->createElement( xrowECommerce::ACCOUNT_KEY_PACKAGES );
-                    foreach ( $packlist as $parcel )
-                    {
-                        $domPackage = $doc->createElement( 'package' );
-                        $domPackage->setAttribute( 'name', $parcel->name );
-                        $domPackage->setAttribute( 'id', $parcel->id );
-                        $list = $parcel->contains;
-                        while ( count( $list ) > 0 )
-                        {
-                            $product = array_shift( $list );
-                            $i = 1;
-                            foreach ( $list as $key2 => $product2 )
-                            {
-                                if ( $product->id == $product2->id )
-                                {
-                                    $i ++;
-                                    unset( $list[$key2] );
-                                }
-                            }
-                            $domProduct = $doc->createElement( 'product' );
-                            $domProduct->setAttribute( 'name', $product->name );
-                            $domProduct->setAttribute( 'id', $product->id );
-                            $domProduct->setAttribute( 'amount', $i );
-                            $domPackage->appendChild( $domProduct );
-                        }
-                        $packagelist->appendChild( $domPackage );
-                    }
-                    $root->appendChild( $packagelist );
-                }
-                
-                $order->setAttribute( 'data_text_1', $doc->saveXML() );
-                $order->store();
-            }
-        }
-/*START ABSTRACTION LAYER NEEDED FOR WEIGHT
+
+            /*START ABSTRACTION LAYER NEEDED FOR WEIGHT
 
             //MX specific datatype remove later when we have abstraction
             $found = false;
@@ -409,6 +331,82 @@ class eZShippingInterfaceType extends eZWorkflowEventType
         END ABSTRACTION LAYER NEEDED FOR WEIGHT */
         }
         // Order product total weight calculation
+                $ini = eZINI::instance( "xrowecommerce.ini" );
+            
+            // ABSTRACTION LAYER FOR WEIGHT
+            // Also builds Packagelist
+            $totalweight = 0;
+            if ( $ini->hasVariable( 'ShippingInterfaceSettings', 'ShippingInterface' ) )
+            {
+                
+                $interfaceName = $ini->variable( 'ShippingInterfaceSettings', 'ShippingInterface' );
+                
+                if ( class_exists( $interfaceName ) )
+                {
+                    
+                    $impl = new $interfaceName( );
+                    $boxes = $impl->getBoxes( $order );
+                    $boxweight = 0;
+                    foreach ( $boxes as $box )
+                    {
+                        $boxweight += $box->totalWeight();
+                    }
+                    eZDebug::writeDebug( $totalweight, "Weight of Packages" );
+                    $products = $impl->getProducts( $order );
+                    $packlist = $impl->compute( $boxes, $products );
+                    $totalweight = 0;
+                    foreach ( $packlist as $package )
+                    {
+                        $totalweight += $package->totalWeight();
+                    }
+                    $totalboxweight = $totalweight - $boxweight;
+                    eZDebug::writeDebug( $totalboxweight, "Weight of Products" );
+                    eZDebug::writeDebug( $totalweight, "Weight of Packages with Products" );
+                    $xmlstring = $order->attribute( 'data_text_1' );
+                    if ( $xmlstring != null )
+                    {
+                        $doc = new DOMDocument( );
+                        $doc->loadXML( $xmlstring );
+                        $root = $doc->documentElement;
+                        $packagelist = $root->getElementsByTagName( xrowECommerce::ACCOUNT_KEY_PACKAGES );
+                        if ( $packagelist->length == 1 )
+                        {
+                            $root->removeChild( $packagelist->item( 0 ) );
+                        }
+                        $packagelist = $doc->createElement( xrowECommerce::ACCOUNT_KEY_PACKAGES );
+                        foreach ( $packlist as $parcel )
+                        {
+                            $domPackage = $doc->createElement( 'package' );
+                            $domPackage->setAttribute( 'name', $parcel->name );
+                            $domPackage->setAttribute( 'id', $parcel->id );
+                            $list = $parcel->contains;
+                            while ( count( $list ) > 0 )
+                            {
+                                $product = array_shift( $list );
+                                $i = 1;
+                                foreach ( $list as $key2 => $product2 )
+                                {
+                                    if ( $product->id == $product2->id )
+                                    {
+                                        $i ++;
+                                        unset( $list[$key2] );
+                                    }
+                                }
+                                $domProduct = $doc->createElement( 'product' );
+                                $domProduct->setAttribute( 'name', $product->name );
+                                $domProduct->setAttribute( 'id', $product->id );
+                                $domProduct->setAttribute( 'amount', $i );
+                                $domPackage->appendChild( $domProduct );
+                            }
+                            $packagelist->appendChild( $domPackage );
+                        }
+                        $root->appendChild( $packagelist );
+                    }
+                    
+                    $order->setAttribute( 'data_text_1', $doc->saveXML() );
+                    $order->store();
+                }
+            }
 
         // @TODO show template that hazardous items got removed
         /*
@@ -419,7 +417,7 @@ class eZShippingInterfaceType extends eZWorkflowEventType
         
         #### SHIPPING COST CALCULATION
         $shippingerror = false;
-
+        
         $gateway = xrowShippingInterface::instanceByMethod( $shippingtype );
         if ( $gateway )
         {
@@ -449,22 +447,40 @@ class eZShippingInterfaceType extends eZWorkflowEventType
             }
             catch ( xrowShippingException $e )
             {
-            	$process->Template = array();
+                $process->Template = array();
                 $process->Template['templateName'] = 'design:workflow/shipping/error_shipping.tpl';
-                $process->Template['path'] = array( array( 'url' => false, 'text' => ezi18n( 'extension/xrowecommerce', 'Shipping Information' ) ) );
-                $process->Template['templateVars'] = array(  'event' => $event , 'message' => $e->getMessage(), 'type' => $shippingtype );
+                $process->Template['path'] = array( 
+                    array( 
+                        'url' => false , 
+                        'text' => ezi18n( 'extension/xrowecommerce', 'Shipping Information' ) 
+                    ) 
+                );
+                $process->Template['templateVars'] = array( 
+                    'event' => $event , 
+                    'message' => $e->getMessage() , 
+                    'type' => $shippingtype 
+                );
                 
                 return eZWorkflowType::STATUS_FETCH_TEMPLATE_REPEAT;
             }
             catch ( xrowShippingGatewayException $e )
             {
-            	$process->Template = array();
+                $process->Template = array();
                 $process->Template['templateName'] = 'design:workflow/shipping/error_shippinggateway.tpl';
-                $process->Template['path'] = array( array( 'url' => false, 'text' => ezi18n( 'extension/xrowecommerce', 'Shipping Information' ) ) );
-                $process->Template['templateVars'] = array(  'event' => $event , 'message' => $e->getMessage(), 'type' => $shippingtype );
+                $process->Template['path'] = array( 
+                    array( 
+                        'url' => false , 
+                        'text' => ezi18n( 'extension/xrowecommerce', 'Shipping Information' ) 
+                    ) 
+                );
+                $process->Template['templateVars'] = array( 
+                    'event' => $event , 
+                    'message' => $e->getMessage() , 
+                    'type' => $shippingtype 
+                );
                 
                 return eZWorkflowType::STATUS_FETCH_TEMPLATE_REPEAT;
-            	/* Before
+                /* Before
                 eZDebug::writeError( 'Gateway error(' . $shippingtype . '): ' . $e->getMessage(), 'eZShippingInterfaceType::execute()' );
                 $description = "An error occurred. Vendor will contact you to calculate the shipping price.";
                 $cost = 0.00;
@@ -656,7 +672,6 @@ class eZShippingInterfaceType extends eZWorkflowEventType
             'type' => 'shippingcost' 
         ) );
         $orderItem->store();
-
         
         return eZWorkflowType::STATUS_ACCEPTED;
     }
