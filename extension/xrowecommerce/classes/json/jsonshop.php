@@ -9,7 +9,15 @@ class xrowECommerceJSON implements eZJSON
         $return = array();
         foreach ( $list as $item )
         {
-            if ( $item->methodCheck( $country ) )
+        	try
+        	{
+        		$result = $item->methodCheck( $country );
+        	}
+        	catch( xrowShippingException $e )
+        	{
+        		$result = false;
+        	}
+            if ( $result )
             {
                 $return[] = array( 
                     $item->description() , 
@@ -25,6 +33,7 @@ class xrowECommerceJSON implements eZJSON
                     false 
                 );
             }
+
         }
         return $return;
     }

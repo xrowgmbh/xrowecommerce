@@ -1,18 +1,17 @@
 YUI().use("node", function(Y) {
 	Y.on("domready", function() {
-		if( Y.Node.get("#shipping-checkbox") )
-		{
-		Y.on("change", function(e) {
-			updateShipping();
-		}, "#country");
-		Y.on("change", function(e) {
-			updateShipping();
-		}, "#s_country");
+		if (Y.Node.get("#shipping-checkbox")) {
+			Y.on("change", function(e) {
+				updateShipping();
+			}, "#country");
+			Y.on("change", function(e) {
+				updateShipping();
+			}, "#s_country");
 		}
 	});
 });
 function ezjson(uri, callback) {
-	//Create business logic in a YUI sandbox using the 'io' and 'json' modules
+	// Create business logic in a YUI sandbox using the 'io' and 'json' modules
 	YUI( {
 		combine : true,
 		timeout : 10000
@@ -50,65 +49,67 @@ function ezjson(uri, callback) {
 	});
 }
 function updateShipping() {
-	YUI().use(
-			"node",
-			"dump",
-			function(Y) {
-				if (Y.Node.get("#shipping-checkbox").get("checked")) {
-					var country = Y.Node.get('#country').get('options').item(
-							Y.Node.get('#country').get('selectedIndex')).get(
-							'value');
-				} else {
-					var country = Y.Node.get('#s_country').get('options').item(
-							Y.Node.get('#s_country').get('selectedIndex')).get(
-							'value');
-				}
-				if (country) {
-					var shipping = Y.Node.get('#s_country')
-				}
-				var doit = function(data) {
-
-					var old = Y.Node.get('#shippingtype').get('options').item(
-							Y.Node.get('#shippingtype').get('selectedIndex'))
-							.get('value');
-					var nodes = Y.all('#shippingtype option');
-					var deleteNodes = function(n, a, b) {
-						n.get('parentNode').removeChild(n)
-					};
-					nodes.each(deleteNodes);
-					for (i = 0; i < data.length; i++) {
-						if( old == data[i][1])
-						{
-							var selected = i;
-						}
-						if (data[i][2] == false) {
-							var node = Y.Node.create('<option value="'
-									+ data[i][1] + '" disabled>' + data[i][0]
-									+ '</option>');
+	YUI()
+			.use(
+					"node",
+					"dump",
+					function(Y) {
+						if (Y.Node.get("#shipping-checkbox").get("checked")) {
+							var country = Y.Node.get('#country').get('options')
+									.item(
+											Y.Node.get('#country').get(
+													'selectedIndex')).get(
+											'value');
 						} else {
-							var node = Y.Node.create('<option value="'
-									+ data[i][1] + '">' + data[i][0]
-									+ '</option>');
+							var country = Y.Node.get('#s_country').get(
+									'options').item(
+									Y.Node.get('#s_country').get(
+											'selectedIndex')).get('value');
 						}
 
-						Y.Node.get('#shippingtype').appendChild(node);
-					}
-					if ( typeof(selected) != "undefined" )
-					{
-						Y.Node.get('#shippingtype').set('selectedIndex', selected)
-					}
-					else
-					{
-						alert( "Your previously selected shipping method is not avialable for your current shipping destination." );
-					}
-					Y.log("INFO2: "
-							+ Y.Lang.dump(Y.Node.get('#shippingtype').get(
-									'options')));
+						var doit = function(data) {
 
-				}
-				ezjson('getshipping?country=' + country, doit);
+							var old = Y.Node.get('#shippingtype')
+									.get('options').item(
+											Y.Node.get('#shippingtype').get(
+													'selectedIndex')).get(
+											'value');
+							var nodes = Y.all('#shippingtype option');
+							var deleteNodes = function(n, a, b) {
+								n.get('parentNode').removeChild(n)
+							};
+							nodes.each(deleteNodes);
+							for (i = 0; i < data.length; i++) {
+								if (data[i][2] == false) {
+									var node = Y.Node.create('<option value="'
+											+ data[i][1] + '" disabled>hhhhh'
+											+ data[i][0] + '</option>');
+								} else {
+									if (old == data[i][1]) {
+										var selected = i;
+									}
+									var node = Y.Node.create('<option value="'
+											+ data[i][1] + '">' + data[i][0]
+											+ '</option>');
+								}
 
-			});
+								Y.Node.get('#shippingtype').appendChild(node);
+							}
+							if (typeof (selected) != "undefined") {
+								Y.Node.get('#shippingtype').set(
+										'selectedIndex', selected)
+							} else {
+								alert("Your previously selected shipping method is not avialable for your current shipping destination.");
+							}
+							Y.log("INFO2: "
+									+ Y.Lang.dump(Y.Node.get('#shippingtype')
+											.get('options')));
+
+						}
+
+						ezjson('getshipping?country=' + country, doit);
+
+					});
 }
 function change() {
 	YUI()
