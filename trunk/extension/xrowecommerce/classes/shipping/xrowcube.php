@@ -27,7 +27,7 @@ class xrowCube
         }
         if ( $withcontents )
         {
-            foreach ( $contains as $container )
+            foreach ( $this->contains as $container )
             {
                 $weight += $container->totalWeight( $withcontents );
             }
