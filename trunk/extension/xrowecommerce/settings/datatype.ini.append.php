@@ -5,5 +5,6 @@ GroupedInput[]=xrowproductvariation
 
 [EditSettings]
 GroupedInput[]=xrowproductvariation
+GroupedInput[]=ezcoupon
 
 */ ?>
