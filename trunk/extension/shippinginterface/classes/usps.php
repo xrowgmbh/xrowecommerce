@@ -354,7 +354,7 @@ function setWeight( $totalweight ) {
         if ( $curl_error or $info['http_code'] != '200' )
         {
         	eZDebug::writeError( $curl_error, 'USPS Curl Error Message'  );
-        	throw new xrowShippingException( "Connection error with shipping gateway.", "N/A" );
+        	throw new xrowShippingGatewayException( "Connection error with shipping gateway.", "N/A" );
 
         }
         // close curl resource, and free up system resources
@@ -364,7 +364,7 @@ function setWeight( $totalweight ) {
         //$xmlParser->printa($array);
         ezDebug::writeDebug( $array, 'USPS Response'  );
         if(count($array['ERROR'])) { // If it is error
-        	throw new xrowShippingException( $array['ERROR'][0]['DESCRIPTION'][0]['VALUE'], $array['ERROR'][0]['NUMBER'][0]['VALUE'] );
+        	throw new xrowShippingGatewayException( $array['ERROR'][0]['DESCRIPTION'][0]['VALUE'], $array['ERROR'][0]['NUMBER'][0]['VALUE'] );
             /*
             $error = new error();
             $error->number = $array['ERROR'][0]['NUMBER'][0]['VALUE'];
@@ -375,7 +375,7 @@ function setWeight( $totalweight ) {
             $this->error = $error;
             */
         } else if(count($array['RATEV2RESPONSE'][0]['PACKAGE'][0]['ERROR'])) {
-        	throw new xrowShippingException( $array['RATEV2RESPONSE'][0]['PACKAGE'][0]['ERROR'][0]['DESCRIPTION'][0]['VALUE'], $array['RATEV2RESPONSE'][0]['PACKAGE'][0]['ERROR'][0]['NUMBER'][0]['VALUE'] );
+        	throw new xrowShippingGatewayException( $array['RATEV2RESPONSE'][0]['PACKAGE'][0]['ERROR'][0]['DESCRIPTION'][0]['VALUE'], $array['RATEV2RESPONSE'][0]['PACKAGE'][0]['ERROR'][0]['NUMBER'][0]['VALUE'] );
         	/*
             $error = new error();
             $error->number = $array['RATEV2RESPONSE'][0]['PACKAGE'][0]['ERROR'][0]['NUMBER'][0]['VALUE'];
@@ -386,7 +386,7 @@ function setWeight( $totalweight ) {
             $this->error = $error;
 			*/        
         } else if(count($array['INTLRATERESPONSE'][0]['PACKAGE'][0]['ERROR'])){ //if it is international shipping error
-        	throw new xrowShippingException( $array['INTLRATERESPONSE'][0]['PACKAGE'][0]['ERROR'][0]['DESCRIPTION'][0]['VALUE'], $array['INTLRATERESPONSE'][0]['PACKAGE'][0]['ERROR'][0]['NUMBER'][0]['VALUE'] );
+        	throw new xrowShippingGatewayException( $array['INTLRATERESPONSE'][0]['PACKAGE'][0]['ERROR'][0]['DESCRIPTION'][0]['VALUE'], $array['INTLRATERESPONSE'][0]['PACKAGE'][0]['ERROR'][0]['NUMBER'][0]['VALUE'] );
         	/*
             $error = new error($array['INTLRATERESPONSE'][0]['PACKAGE'][0]['ERROR']);
             $error->number = $array['INTLRATERESPONSE'][0]['PACKAGE'][0]['ERROR'][0]['NUMBER'][0]['VALUE'];

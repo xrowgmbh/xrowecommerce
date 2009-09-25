@@ -254,6 +254,31 @@ class eZShippingInterfaceType extends eZWorkflowEventType
             }
 //START ABSTRACTION LAYER NEEDED FOR WEIGHT
 
+            //MX specific datatype remove later when we have abstraction
+            $found = false;
+            foreach ( $dm as $attribute_name => $attribute )
+            {
+                if ( $attribute->DataTypeString == 'mxmeasuredata' )
+                {
+                    $found = true;
+                    break;
+                }
+            }
+            if ( $found )
+            {
+                $content = $dm[$attribute_name]->content();
+                
+                if ( ! empty( $content->Weight ) )
+                {
+                    $totalweight += (float) $content->Weight * $item->ItemCount;
+                    continue;
+                }
+                else
+                {
+                    eZDebug::writeDebug( $co->name() . " #" . $co->ID, "Zero Weight Product  in attribute mxmeasuredata" );
+                }
+            }
+
             $found = false;
             foreach ( $dm as $attribute_name => $attribute )
             {
@@ -274,37 +299,16 @@ class eZShippingInterfaceType extends eZWorkflowEventType
                     if ( ! empty( $content->Options[$option->OptionItemID]["weight"] ) )
                     {
                         $totalweight += (float) $content->Options[$option->OptionItemID]["weight"] * $item->ItemCount;
+                        continue;
                     }
                     else
                     {
-                        eZDebug::writeDebug( $co->name() . " #" . $co->ID, "Zero Weight Product" );
+                        eZDebug::writeDebug( $co->name() . " #" . $co->ID, "Zero Weight Product in attribute option" );
                     }
                 }
             }
             
-            //MX specific datatype remove later when we have abstraction
-            $found = false;
-            foreach ( $dm as $attribute_name => $attribute )
-            {
-                if ( $attribute->DataTypeString == 'mxmeasuredata' )
-                {
-                    $found = true;
-                    break;
-                }
-            }
-            if ( $found )
-            {
-                $content = $dm[$attribute_name]->content();
-                
-                if ( ! empty( $content->Weight ) )
-                {
-                    $totalweight += (float) $content->Weight * $item->ItemCount;
-                }
-                else
-                {
-                    eZDebug::writeDebug( $co->name() . " #" . $co->ID, "Zero Weight Product" );
-                }
-            }
+
             // Conditional, if weight is defined in datamap array
             if ( array_key_exists( 'weight', $dm ) )
             {
@@ -313,10 +317,11 @@ class eZShippingInterfaceType extends eZWorkflowEventType
                 if ( ! empty( $contentoptselect["weight"] ) )
                 {
                     $totalweight += $weight * $item->ItemCount;
+                    continue;
                 }
                 else
                 {
-                    eZDebug::writeDebug( $co->name() . " #" . $co->ID, "Zero Weight Product" );
+                    eZDebug::writeDebug( $co->name() . " #" . $co->ID, "Zero Weight Product in attribute weight" );
                 }
             
             }
@@ -364,9 +369,26 @@ class eZShippingInterfaceType extends eZWorkflowEventType
             }
             catch ( xrowShippingException $e )
             {
+            	$process->Template = array();
+                $process->Template['templateName'] = 'design:workflow/shipping/error_shipping.tpl';
+                $process->Template['path'] = array( array( 'url' => false, 'text' => ezi18n( 'extension/xrowecommerce', 'Shipping Information' ) ) );
+                $process->Template['templateVars'] = array(  'event' => $event , 'message' => $e->getMessage(), 'type' => $shippingtype );
+                
+                return eZWorkflowType::STATUS_FETCH_TEMPLATE_REPEAT;
+            }
+            catch ( xrowShippingGatewayException $e )
+            {
+            	$process->Template = array();
+                $process->Template['templateName'] = 'design:workflow/shipping/error_shippinggateway.tpl';
+                $process->Template['path'] = array( array( 'url' => false, 'text' => ezi18n( 'extension/xrowecommerce', 'Shipping Information' ) ) );
+                $process->Template['templateVars'] = array(  'event' => $event , 'message' => $e->getMessage(), 'type' => $shippingtype );
+                
+                return eZWorkflowType::STATUS_FETCH_TEMPLATE_REPEAT;
+            	/* Before
                 eZDebug::writeError( 'Gateway error(' . $shippingtype . '): ' . $e->getMessage(), 'eZShippingInterfaceType::execute()' );
                 $description = "An error occurred. Vendor will contact you to calculate the shipping price.";
                 $cost = 0.00;
+                */
             }
         }
         else

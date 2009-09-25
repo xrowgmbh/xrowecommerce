@@ -211,7 +211,7 @@ $strXML.= "</Address>
 	    if ( $curl_error ) 
         {
         	eZDebug::writeError( $curl_error, 'UPS Curl Error Message'  );
-        	throw new xrowShippingException( "Connection error with shipping gateway.", "N/A" );
+        	throw new xrowShippingGatewayException( "Connection error with shipping gateway.", "N/A" );
         }
 	}
 	curl_close ($ch);        
@@ -236,11 +236,11 @@ $strXML.= "</Address>
         }
         elseif ($ups_response["ResponseStatusCode"] == "0")
         {
-        	throw new xrowShippingException( $ups_response["Error"]["ErrorDescription"], $ups_response["Error"]["ErrorCode"] );
+        	throw new xrowShippingGatewayException( $ups_response["Error"]["ErrorDescription"], $ups_response["Error"]["ErrorCode"] );
         }
         elseif( $curl_error == '' )
         {
-        	throw new xrowShippingException( "Unknown error.", $ups_error->error_code );
+        	throw new xrowShippingGatewayException( "Unknown error.", $ups_error->error_code );
         }
          
         return $this;
