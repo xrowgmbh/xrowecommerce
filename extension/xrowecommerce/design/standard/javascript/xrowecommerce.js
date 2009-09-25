@@ -82,7 +82,7 @@ function updateShipping() {
 							for (i = 0; i < data.length; i++) {
 								if (data[i][2] == false) {
 									var node = Y.Node.create('<option value="'
-											+ data[i][1] + '" disabled>hhhhh'
+											+ data[i][1] + '" disabled>'
 											+ data[i][0] + '</option>');
 								} else {
 									if (old == data[i][1]) {
@@ -99,7 +99,7 @@ function updateShipping() {
 								Y.Node.get('#shippingtype').set(
 										'selectedIndex', selected)
 							} else {
-								alert("Your previously selected shipping method is not avialable for your current shipping destination.");
+								ez18nAlert( "Your previously selected shipping method is not avialable for your current shipping destination." );
 							}
 							Y.log("INFO2: "
 									+ Y.Lang.dump(Y.Node.get('#shippingtype')
@@ -110,6 +110,14 @@ function updateShipping() {
 						ezjson('getshipping?country=' + country, doit);
 
 					});
+}
+
+function ez18nAlert( text )
+{
+	var doit = function(data) {
+		alert(data);
+	}
+	ezjson('translate?text=' + text, doit);
 }
 function change() {
 	YUI()
