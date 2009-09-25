@@ -278,7 +278,7 @@ if ( $module->isCurrentAction( 'Store' ) )
     if ( $http->hasPostVariable( "tax_id" ) and $tax_id_valid != xrowTINType::STATUS_VALIDATED_BY_ADMIN )
     {
         $merchantcountries = xrowECommerce::merchantsCountries();
-
+        
         $ezcountry = eZCountryType::fetchCountry( $country, 'Alpha3' );
         $Alpha2 = $ezcountry['Alpha2'];
         /* EU doesn`t use ISO all the time */
@@ -316,7 +316,7 @@ if ( $module->isCurrentAction( 'Store' ) )
             "SK" 
         );
         $tax_id = strtoupper( trim( $http->postVariable( "tax_id" ) ) );
-        if ( empty( $tax_id ) and $company_name and in_array( $Alpha2, $ids ) and !in_array( $Alpha2, $merchantcountries ) )
+        if ( empty( $tax_id ) and $company_name and in_array( $Alpha2, $ids ) and ! in_array( $Alpha2, $merchantcountries ) )
         {
             $errors[] = ezi18n( 'extension/xrowecommerce', 'Please enter a your companies tax ID number.' );
             $inputIsValid = false;
@@ -355,11 +355,11 @@ if ( $module->isCurrentAction( 'Store' ) )
                 {
                 
                 }
-            	elseif( !xrowECommerce::validateTIN( $Alpha2, $tax_id, $errors2 ) )
-            	{
-            	   $errors = array_merge( $errors, $errors2 );
-            	   $inputIsValid = false;
-            	}
+                elseif ( ! xrowECommerce::validateTIN( $Alpha2, $tax_id, $errors2 ) )
+                {
+                    $errors = array_merge( $errors, $errors2 );
+                    $inputIsValid = false;
+                }
             }
             else
             {
@@ -390,11 +390,11 @@ if ( $module->isCurrentAction( 'Store' ) )
     {
         $no_partial_delivery = '0';
     }
-    elseif ( !$http->hasPostVariable( "no_partial_delivery" ) and eZINI::instance( 'xrowecommerce.ini' )->variable( 'Settings', 'NoPartialDelivery' ) == 'enabled' )
+    elseif ( ! $http->hasPostVariable( "no_partial_delivery" ) and eZINI::instance( 'xrowecommerce.ini' )->variable( 'Settings', 'NoPartialDelivery' ) == 'enabled' )
     {
         $no_partial_delivery = '1';
     }
-
+    
     if ( $http->hasPostVariable( "shipping" ) )
     {
         $shipping = true;
@@ -484,12 +484,28 @@ if ( $module->isCurrentAction( 'Store' ) )
         $gateway = xrowShippingInterface::instanceByMethod( $shippingtype );
         if ( $gateway instanceof ShippingInterface )
         {
-            if ( ! $gateway->methodCheck( $shippingdestination ) )
+            try
+            {
+                if ( ! $gateway->methodCheck( $shippingdestination ) )
+                {
+                    $errors[] = ezi18n( 'extension/xrowecommerce', 'Shipping mathod is not allowed for destionation.' );
+                    $inputIsValid = false;
+                }
+            }
+            catch ( xrowShippingException $e )
             {
                 $errors[] = ezi18n( 'extension/xrowecommerce', 'Shipping mathod is not allowed for destionation.' );
                 $inputIsValid = false;
             }
-            if ( ! $gateway->destinationCheck( $shippingdestination ) )
+            try
+            {
+                if ( ! $gateway->destinationCheck( $shippingdestination ) )
+                {
+                    $errors[] = ezi18n( 'extension/xrowecommerce', 'Shipping destionation is not allowed.' );
+                    $inputIsValid = false;
+                }
+            }
+            catch ( xrowShippingException $e )
             {
                 $errors[] = ezi18n( 'extension/xrowecommerce', 'Shipping destionation is not allowed.' );
                 $inputIsValid = false;
