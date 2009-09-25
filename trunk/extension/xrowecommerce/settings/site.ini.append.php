@@ -3,6 +3,7 @@
 [RoleSettings]
 PolicyOmitList[]=xrowecommerce/register
 PolicyOmitList[]=xrowecommerce/directorder
+PolicyOmitList[]=xrowecommerce/json
 
 [TemplateSettings]
 ExtensionAutoloadPath[]=xrowecommerce
