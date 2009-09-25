@@ -8,14 +8,7 @@ RepositoryDirectories[]=extension/xrowecommerce/workflowtypes
 ExtensionDirectories[]=xrowecommerce
 AvailableEventTypes[]=event_xrowpaymentgateway
 AvailableEventTypes[]=event_ezproductcount
-
-#[EventSettings]
-
-#AvailableEventTypes[]=event_ezadvancedshipping
-
-
-#ExtensionDirectories[]=coupon
-#AvailableEventTypes[]=event_ezcouponworkflow
+AvailableEventTypes[]=event_ezcouponworkflow
 
 [CouponWorkflow]
 Description=Coupon
