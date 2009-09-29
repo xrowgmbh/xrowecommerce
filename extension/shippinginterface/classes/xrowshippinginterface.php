@@ -45,6 +45,7 @@ class xrowShippingInterface
                 $return = new $name( );
                 $return->loadConfiguration();
                 $return->method = $methodname;
+                $return->name = $method['name'];
                 return $return;
             }
         }

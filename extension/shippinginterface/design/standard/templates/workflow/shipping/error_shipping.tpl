@@ -12,7 +12,7 @@
 <p>{"The shipping gateway can`t process your data. Please contact support."|i18n("extension/xrowecommerce")}</p>
 <form method="post" action={"xrowecommerce/userregister"|ezurl}>
  <div class="buttonblock">
-    <input id="cancel-button" class="button" type="submit" name="CancelButton"  value="{'Cancel'|i18n('extension/xrowecommerce')}" />
+    <input id="cancel-button" class="button" type="submit" name="Back"  value="{'Back'|i18n('extension/xrowecommerce')}" />
     <div class="break"></div>
  </div>
 </form>
