@@ -10,17 +10,17 @@ YUI().use("node", function(Y) {
 		}
 	});
 });
-function ezjson(uri, callback) {
+function ezjson(uri, callback, args) {
 	// Create business logic in a YUI sandbox using the 'io' and 'json' modules
 	YUI( {
 		combine : true,
 		timeout : 10000
 	}).use("node", "io", "dump", "json-parse", function(Y) {
 
-		function onFailure(transactionid, response, arguments) {
+		function onFailure(transactionid, response) {
 			Y.log("Async call failed!");
 		}
-		function onComplete(transactionid, response, arguments) {
+		function onComplete(transactionid, response, callback, args) {
 			// transactionid : The transaction's ID.
 			// response: The response object.
 			// arguments: Object containing an array { complete: ['foo', 'bar']
@@ -37,11 +37,11 @@ function ezjson(uri, callback) {
 				Y.log("JSON Parse failed!");
 				return;
 			}
-			arguments(data);
+			callback(data, args);
 		}
 
 		Y.on('io:failure', onFailure, this);
-		Y.on('io:complete', onComplete, this, callback);
+		Y.on('io:complete', onComplete, this, callback, args);
 
 		// Make the call to the server for JSON data
 		transaction = Y.io("/xrowecommerce/json/" + uri, callback);
@@ -68,7 +68,10 @@ function updateShipping() {
 						}
 
 						var doit = function(data) {
-
+							var oldname = Y.Node.get('#shippingtype').get(
+									'options').item(
+									Y.Node.get('#shippingtype').get(
+											'selectedIndex')).get('text');
 							var old = Y.Node.get('#shippingtype')
 									.get('options').item(
 											Y.Node.get('#shippingtype').get(
@@ -99,7 +102,16 @@ function updateShipping() {
 								Y.Node.get('#shippingtype').set(
 										'selectedIndex', selected)
 							} else {
-								ez18nAlert( "Your previously selected shipping method is not avialable for your current shipping destination." );
+								var replace = new Array();
+								replace["%old%"] = oldname;
+								replace["%new%"] = Y.Node.get('#shippingtype')
+										.get('options').item(
+												Y.Node.get('#shippingtype')
+														.get('selectedIndex'))
+										.get('text');
+								ez18nAlert(
+										"The shipping method '%old%' is not available for your country of destination and was changed to '%new%'.",
+										replace);
 							}
 							Y.log("INFO2: "
 									+ Y.Lang.dump(Y.Node.get('#shippingtype')
@@ -112,12 +124,15 @@ function updateShipping() {
 					});
 }
 
-function ez18nAlert( text )
-{
-	var doit = function(data) {
+function ez18nAlert(text, args) {
+	var doit = function(data, args) {
+		for ( var x in args) {
+			data = data.replace(x, args[x]);
+		}
+
 		alert(data);
 	}
-	ezjson('translate?text=' + text, doit);
+	ezjson('translate?text=' + text, doit, args);
 }
 function change() {
 	YUI()
