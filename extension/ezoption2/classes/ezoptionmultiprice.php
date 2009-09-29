@@ -1,4 +1,4 @@
-<?
+<?php
 
 class eZOptionMultiPrice extends eZMultiPrice
 {
