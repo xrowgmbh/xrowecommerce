@@ -6,9 +6,9 @@ class xrowECommerceJSON implements eZJSON
     {
         switch ( $text )
         {
-        	case "Your previously selected shipping method is not avialable for your current shipping destination.":
+        	case "The shipping method '%old%' is not available for your country of destination and was changed to '%new%'.":
         	{
-        		return ezi18n( 'extension/xrowecommerce', "Your previously selected shipping method is not avialable for your current shipping destination." ) ;
+        		return ezi18n( 'extension/xrowecommerce', "The shipping method '%old%' is not available for your country of destination and was changed to '%new%'." ) ;
         	} break;
         }
         throw new Exception( 'Tranlation not found.' );
