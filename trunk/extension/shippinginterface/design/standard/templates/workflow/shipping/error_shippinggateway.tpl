@@ -9,7 +9,7 @@
 </div>
 {/if}
 <p>
-{"The shipping gateway provider has a temporary problem. Please try again later or contact support."|i18n("extension/xrowecommerce")}
+{"The shipping gateway provider has a problem. Please try again or contact support."|i18n("extension/xrowecommerce")}
 </p>
 <form method="post" action={"xrowecommerce/userregister"|ezurl}>
  <div class="buttonblock">
