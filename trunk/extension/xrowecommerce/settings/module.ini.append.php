@@ -7,6 +7,6 @@ ModuleList[]=customersearch
 ModuleList[]=orderedit
 ModuleList[]=productvariation
 ModuleList[]=order
-
+ModuleList[]=shipping
 
 */ ?>
