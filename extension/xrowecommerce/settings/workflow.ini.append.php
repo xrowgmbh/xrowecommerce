@@ -9,10 +9,12 @@ ExtensionDirectories[]=xrowecommerce
 AvailableEventTypes[]=event_xrowpaymentgateway
 AvailableEventTypes[]=event_ezproductcount
 AvailableEventTypes[]=event_ezcouponworkflow
+AvailableEventTypes[]=event_ezshippinginterface
 
 [CouponWorkflow]
 Description=Coupon
 
+# Do we use this?
 [SimpleShippingWorkflow]
 FreeShipping=Disabled
 FreeShippingPrice=50.00
