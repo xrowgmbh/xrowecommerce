@@ -324,7 +324,7 @@ if ( $module->isCurrentAction( 'Store' ) )
         if ( in_array( $Alpha2, $ids ) and $company_name )
         {
             $matches = array();
-            if ( preg_match( "/^(" . join( '|', $ids ) . ")([0-9]+)/i", $tax_id, $matches ) )
+            if ( preg_match( "/^(" . join( '|', $ids ) . ")([a-z0-9]+)/i", $tax_id, $matches ) )
             {
                 if ( $Alpha2 != $matches[1] )
                 {
