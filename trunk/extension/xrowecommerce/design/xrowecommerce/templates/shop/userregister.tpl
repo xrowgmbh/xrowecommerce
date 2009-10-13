@@ -575,94 +575,26 @@ lang: RecaptchaLang,
     <input id="continue-button" class="button" type="submit" name="StoreButton" value="{'Continue'|i18n('extension/xrowecommerce')}" title="{'Continue order'|i18n('extension/xrowecommerce')}" />
 </div>
 {literal}
+    <script type="text/javascript">
+        updateShipping();
+    </script>
+{/literal}
 <script type="text/javascript">
-    if (document.register.shipping.checked == false)
+    {literal}
+        function change(status)
         {
-            country = document.register.s_country.value;
-        }
-    if (document.register.shipping.checked == true)
-        {
-            country = document.register.country.value;
-        }
-    if (country == "USA")
-    {
-        for (i = 0; i < document.register.shippingtype.length; ++i)
-        {
-            if ( document.register.shippingtype[i].value >= 6  &&  document.register.shippingtype[i].value <= 7 )
-                document.register.shippingtype.options[i].disabled = true;
-            else document.register.shippingtype.options[i].disabled = false;
-        }
-        if (document.register.shippingtype.selectedIndex+3 >=6 && document.register.shippingtype.selectedIndex+3 <=7)
-            document.register.shippingtype.options[0].selected = true;
-    }
-    else
-    {
-        for (i = 0; i < document.register.shippingtype.length; ++i)
-        {
-            if ( document.register.shippingtype[i].value >= 3  &&  document.register.shippingtype[i].value <= 5 )
-                document.register.shippingtype.options[i].disabled = true;
-            else document.register.shippingtype.options[i].disabled = false;
-        }
-            if (document.register.shippingtype.selectedIndex+3 >=3 && document.register.shippingtype.selectedIndex+3 <=5)
-        {
-        	if ( document.register.shippingtype.options[3] )
-        	{
-            	document.register.shippingtype.options[3].selected = true;
+            updateShipping();
+            if (status)
+            {
+                document.getElementById("shippinginfo").style.display = 'none';
+            }
+            else
+            {
+                document.getElementById("shippinginfo").style.display = 'block';
             }
         }
-    }
+    {/literal}
 </script>
-{/literal}
-
-
-
-<script type="text/javascript">
-{literal}
-
-
-function changeshipping(status)
-{
-	if ( document.register.shippingtype == null )
-	{
-		return false;
-	}
-    if ( document.register.shipping.checked == false)
-    {
-        status = document.register.s_country.value;
-        document.getElementById("shippinginfo").style.display = 'block';
-    }
-
-    if (status == "USA")
-    {
-        for (i = 0; i < document.register.shippingtype.length; ++i)
-        {
-            if ( document.register.shippingtype[i].value >= 6  &&  document.register.shippingtype[i].value <= 7 )
-                document.register.shippingtype.options[i].disabled = true;
-            else document.register.shippingtype.options[i].disabled = false;
-        }
-        if (document.register.shippingtype.selectedIndex+3 >=6 && document.register.shippingtype.selectedIndex+3 <=7)
-            document.register.shippingtype.options[0].selected = true;
-    }
-    else
-    {
-        for (i = 0; i < document.register.shippingtype.length; ++i)
-        {
-            if ( document.register.shippingtype[i].value >= 3  &&  document.register.shippingtype[i].value <= 5 )
-                document.register.shippingtype.options[i].disabled = true;
-            else document.register.shippingtype.options[i].disabled = false;
-        }
-        if (document.register.shippingtype.selectedIndex+3 >=3 && document.register.shippingtype.selectedIndex+3 <=5)
-        {
-        	if ( document.register.shippingtype.options[3] )
-        	{
-            	document.register.shippingtype.options[3].selected = true;
-            }
-        }
-    }
-}
-{/literal}
-</script>
-
 
 </form>
 </div>
