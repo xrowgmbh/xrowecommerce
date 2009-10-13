@@ -224,7 +224,7 @@
 
     {def $countries=fetch( 'content', 'country_list', array(false, false))}
             <select name="country" id="country" onchange="changeshipping(this.value);">
-                <option value="">&nbsp;</option>
+                {*<option value="">&nbsp;</option>*}
                 {foreach $countries as $country_list_item}
                  <option value="{$country_list_item.Alpha3}" {if and( $country|ne(''), eq( $country, $country_list_item.Alpha3 ))} selected="selected"{/if}>
                     {$country_list_item.Name|wash}
@@ -475,7 +475,7 @@
     <div class="labelbreak"></div>
 
             <select name="s_country" id="s_country" onchange="changeshipping(document.register.country.value);">
-                <option value="">&nbsp;</option>
+                {*<option value="">&nbsp;</option>*}
                 {foreach $countries as $country_list_item}
                  <option value="{$country_list_item.Alpha3}" {if and( $s_country|ne(''), eq( $s_country, $country_list_item.Alpha3 ))} selected="selected"{/if}>
                     {$country_list_item.Name}
@@ -577,6 +577,7 @@ lang: RecaptchaLang,
 {literal}
     <script type="text/javascript">
         updateShipping();
+        change();
     </script>
 {/literal}
 <script type="text/javascript">
