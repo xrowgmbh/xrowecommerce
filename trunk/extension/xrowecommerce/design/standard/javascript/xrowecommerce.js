@@ -58,33 +58,7 @@ function updateShipping() {
 		status = document.register.s_country.value;
 	}
 	
-	if (status == "USA")
-	{
-		for (i = 0; i < document.register.shippingtype.length; ++i)
-		{
-			if ( document.register.shippingtype[i].value >= 6  &&  document.register.shippingtype[i].value <= 7 )
-				document.register.shippingtype.options[i].disabled = true;
-			else document.register.shippingtype.options[i].disabled = false;
-		}
-		if (document.register.shippingtype.selectedIndex+3 >=6 && document.register.shippingtype.selectedIndex+3 <=7)
-			document.register.shippingtype.options[0].selected = true;
-	}
-	else
-	{
-		for (i = 0; i < document.register.shippingtype.length; ++i)
-		{
-			if ( document.register.shippingtype[i].value >= 3  &&  document.register.shippingtype[i].value <= 5 )
-				document.register.shippingtype.options[i].disabled = true;
-			else document.register.shippingtype.options[i].disabled = false;
-		}
-		if (document.register.shippingtype.selectedIndex+3 >=3 && document.register.shippingtype.selectedIndex+3 <=5)
-		{
-			if ( document.register.shippingtype.options[3] )
-			{
-				document.register.shippingtype.options[3].selected = true;
-			}
-		}
-	}
+	
 	YUI()
 			.use(
 					"node",
