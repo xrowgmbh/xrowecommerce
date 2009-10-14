@@ -223,7 +223,7 @@
     <div class="labelbreak"></div>
 
     {def $countries=fetch( 'content', 'country_list', array(false, false))}
-            <select name="country" id="country" onchange="changeshipping(this.value);">
+            <select name="country" id="country">
                 {*<option value="">&nbsp;</option>*}
                 {foreach $countries as $country_list_item}
                  <option value="{$country_list_item.Alpha3}" {if and( $country|ne(''), eq( $country, $country_list_item.Alpha3 ))} selected="selected"{/if}>
@@ -288,7 +288,7 @@
 {* right column *}
 <div class="shipping">
 <h3>{'Shipping Information'|i18n( 'extension/xrowecommerce' )}</h3>
-<label onclick="change();" class="shipping-checkbox" for="shipping-checkbox"><input class="shipping-checkbox" id="shipping-checkbox" name="shipping" value="1" type="checkbox" {if $shipping} checked="checked" {/if} onclick="change(); changeshipping(document.register.country.value);" />{'My billing and shipping addresses are identical.'|i18n('extension/xrowecommerce')}</label>
+<label class="shipping-checkbox" for="shipping-checkbox"><input class="shipping-checkbox" id="shipping-checkbox" name="shipping" value="1" type="checkbox" {if $shipping} checked="checked" {/if}  />{'My billing and shipping addresses are identical.'|i18n('extension/xrowecommerce')}</label>
 
 <div class="block" id="shippinginfo"{if $shipping} style="display: none;"{else} style="display: block;"{/if}>
 <p><span class="required">* {'Required field'|i18n('extension/xrowecommerce')}</span></p>
@@ -474,7 +474,7 @@
     <label>{'Country'|i18n('extension/xrowecommerce')}<span class="required">*</span></label>
     <div class="labelbreak"></div>
 
-            <select name="s_country" id="s_country" onchange="changeshipping(document.register.country.value);">
+            <select name="s_country" id="s_country">
                 {*<option value="">&nbsp;</option>*}
                 {foreach $countries as $country_list_item}
                  <option value="{$country_list_item.Alpha3}" {if and( $s_country|ne(''), eq( $s_country, $country_list_item.Alpha3 ))} selected="selected"{/if}>
@@ -576,26 +576,9 @@ lang: RecaptchaLang,
 </div>
 {literal}
     <script type="text/javascript">
+        changeShipping();
         updateShipping();
-        change();
     </script>
 {/literal}
-<script type="text/javascript">
-    {literal}
-        function change(status)
-        {
-            updateShipping();
-            if (status)
-            {
-                document.getElementById("shippinginfo").style.display = 'none';
-            }
-            else
-            {
-                document.getElementById("shippinginfo").style.display = 'block';
-            }
-        }
-    {/literal}
-</script>
-
 </form>
 </div>

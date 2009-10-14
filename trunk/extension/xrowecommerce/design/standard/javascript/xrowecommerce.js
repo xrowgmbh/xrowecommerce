@@ -1,4 +1,4 @@
-YUI().use("node", function(Y) {
+YUI( YUI3_config ).use("node", function(Y) {
 	Y.on("domready", function() {
 		if (Y.Node.get("#shipping-checkbox")) {
 			Y.on("change", function(e) {
@@ -7,15 +7,16 @@ YUI().use("node", function(Y) {
 			Y.on("change", function(e) {
 				updateShipping();
 			}, "#s_country");
+			Y.on("click", function(e) {
+				changeShipping();
+	            updateShipping();
+			}, "#shipping-checkbox");
 		}
 	});
 });
 function ezjson(uri, callback, args) {
 	// Create business logic in a YUI sandbox using the 'io' and 'json' modules
-	YUI( {
-		combine : true,
-		timeout : 10000
-	}).use("node", "io", "dump", "json-parse", function(Y) {
+	YUI( YUI3_config ).use("node", "io", "dump", "json-parse", function(Y) {
 
 		function onFailure(transactionid, response) {
 			Y.log("Async call failed!");
@@ -59,7 +60,7 @@ function updateShipping() {
 	}
 	
 	
-	YUI()
+	YUI( YUI3_config )
 			.use(
 					"node",
 					"dump",
@@ -144,14 +145,13 @@ function ez18nAlert(text, args) {
 	}
 	ezjson('translate?text=' + text, doit, args);
 }
-function change() {
-	YUI()
+function changeShipping() {
+	YUI( YUI3_config )
 			.use(
 					'node',
 					function(Y) {
 						if (Y.Node.get("#shipping-checkbox").get("checked")) {
-							Y.Node.get("#shippinginfo").setStyle('display',
-									'none');
+							Y.Node.get("#shippinginfo").setStyle('display', 'none');
 						} else {
 							Y.Node.get("#shippinginfo").setStyle('display',
 									'block');
