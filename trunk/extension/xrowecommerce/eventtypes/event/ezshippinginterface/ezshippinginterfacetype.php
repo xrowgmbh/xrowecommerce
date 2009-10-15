@@ -117,58 +117,49 @@ class eZShippingInterfaceType extends eZWorkflowEventType
         {
             // Fetch order ezxml document
             // @ TODO this should use DOMDocument not eZXML
-            $xml = new eZXML( );
-            $xmlDoc = $order->attribute( 'data_text_1' );
             
+     	    $doc = new DOMDocument( '1.0', 'utf-8' );
+
+            $root = $doc->createElement( "data_text_1" );
+            $doc->appendChild( $root );
+        	
             // If document is not empty
-            if ( $xmlDoc != null )
+            if ( $root != null )
             {
-                // get the dom tree of elements
-                $dom = $xml->domTree( $xmlDoc );
+            	$state = $shipping = $shippingtype = $shipping_country = $shipping_s_country = $shipping_city = $shipping_s_city = $shipping_zip = $shipping_s_zip = $shipping_state = $shipping_s_state = NULL;
+            	
+		        $stateNode = $doc->createElement( "state", $state );
+		        $root->appendChild( $stateNode );
+
+                $shippingNode = $doc->createElement( "shipping", $shipping );
+                $root->appendChild( $shippingNode );
+
+                $shippingtypeNode = $doc->createElement( "shippingtype", $shippingtype );
+                $root->appendChild( $shippingtypeNode );
                 
-                // Fetch order state
-                if ( $statedom = $dom->elementsByName( "state" ) )
-                    $state = $statedom[0]->textContent();
-                    
-                // Fetch order shipping address checkbox
-                if ( $shippingdom = $dom->elementsByName( "shipping" ) )
-                    $shipping = $shippingdom[0]->textContent();
-                    
-                // Fetch order shipping type
-                if ( $shippingtypedom = $dom->elementsByName( "shippingtype" ) )
-                    $shippingtype = $shippingtypedom[0]->textContent();
-                    
-                // Fetch order country
-                if ( $shippingcountrydom = $dom->elementsByName( "country" ) )
-                    $shipping_country = $shippingcountrydom[0]->textContent();
-                    
-                // Fetch order shipping address country
-                if ( $shippingcountrydom = $dom->elementsByName( "s_country" ) )
-                    $shipping_s_country = $shippingcountrydom[0]->textContent();
-                    
-                // Fetch order city
-                if ( $shippingcitydom = $dom->elementsByName( "city" ) )
-                    $shipping_city = $shippingcitydom[0]->textContent();
-                    
-                // Fetch order shipping address country
-                if ( $shippingcitydom = $dom->elementsByName( "s_city" ) )
-                    $shipping_s_city = $shippingcitydom[0]->textContent();
-                    
-                // Fetch order zip
-                if ( $shippingzipdom = $dom->elementsByName( "zip" ) )
-                    $shipping_zip = $shippingzipdom[0]->textContent();
-                    
-                // Fetch order shipping address country
-                if ( $shippingzipdom = $dom->elementsByName( "s_zip" ) )
-                    $shipping_s_zip = $shippingzipdom[0]->textContent();
-                    
-                // Fetch order state
-                if ( $shippingstatedom = $dom->elementsByName( "state" ) )
-                    $shipping_state = $shippingstatedom[0]->textContent();
-                    
-                // Fetch order shipping address country
-                if ( $shippingstatedom = $dom->elementsByName( "s_state" ) )
-                    $shipping_s_state = $shippingstatedom[0]->textContent();
+                $countryNode = $doc->createElement( "country", $shipping_country );
+                $root->appendChild( $countryNode );
+
+                $s_countryNode = $doc->createElement( "s_country", $shipping_s_country );
+                $root->appendChild( $s_countryNode );
+
+                $cityNode = $doc->createElement( "city", $shipping_city );
+                $root->appendChild( $cityNode );
+
+                $s_cityNode = $doc->createElement( "s_city", $shipping_s_city );
+                $root->appendChild( $s_cityNode );
+
+                $zipNode = $doc->createElement( "zip", $shipping_zip );
+                $root->appendChild( $zipNode );
+
+                $s_zipNode = $doc->createElement( "s_zip", $shipping_s_zip );
+                $root->appendChild( $s_zipNode );
+                
+                $state = $doc->createElement( "state", $shipping_state );
+                $root->appendChild( $state );
+                
+                $s_state = $doc->createElement( "state", $shipping_s_state );
+                $root->appendChild( $s_state );
                     
                 // If order has a shipping country use it instead.
                 if ( isset( $shipping_s_country ) and $shipping_s_country != '' )
