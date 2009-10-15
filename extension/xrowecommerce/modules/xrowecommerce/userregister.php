@@ -67,9 +67,9 @@ if ( $user->isLoggedIn() and in_array( $userobject->attribute( 'class_identifier
     {
         $state = $userMap['state']->content();
     }
-    if ( isset( $userMap['zip'] ) )
+    if ( isset( $userMap['zip_code'] ) )
     {
-        $zip = $userMap['zip']->content();
+        $zip = $userMap['zip_code']->content();
     }
     if ( isset( $userMap['city'] ) )
     {
@@ -149,9 +149,9 @@ if ( $user->isLoggedIn() and in_array( $userobject->attribute( 'class_identifier
         {
             $s_city = $userMap['s_city']->content();
         }
-        if ( isset( $userMap['s_zip'] ) )
+        if ( isset( $userMap['s_zip_code'] ) )
         {
-            $s_zip = $userMap['s_zip']->content();
+            $s_zip = $userMap['s_zip_code']->content();
         }
         if ( isset( $userMap['s_country'] ) )
         {

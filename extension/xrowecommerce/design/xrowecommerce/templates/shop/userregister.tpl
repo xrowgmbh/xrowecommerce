@@ -1,6 +1,4 @@
-{def $current_user=fetch( 'user', 'current_user' )}
 <div class="shop shop-userregister">
-
 <form method="post" action={"xrowecommerce/userregister/"|ezurl} name='register' >
 <input type="submit" class="hide" style="display: hide;" name="StoreButton" value="{'Continue'|i18n('extension/xrowecommerce')}" />
 <h1>{'My Account'|i18n('extension/xrowecommerce')}</h1>
@@ -76,23 +74,22 @@
 	<div class="block">
 		<label>{'Address 1'|i18n('extension/xrowecommerce')}<span class="required">*</span></label>
 		<div class="labelbreak"></div>
-		<input class="box" type="text" name="address1" id="address1" size="20" value="{$address1|wash}" title="{'Street address, P.O. box, company name, c/o'|i18n('extension/xrowecommerce')}" />
+		<input type="text" name="address1" id="address1" size="20" value="{$address1|wash}" title="{'Street address, P.O. box, company name, c/o'|i18n('extension/xrowecommerce')}" />
 	</div>
 {if eq(ezini( 'Settings', 'Address2', 'xrowecommerce.ini' ), 'enabled' )}
 	<div class="block">
 		<label>{'Address 2'|i18n('extension/xrowecommerce')}</label>
 		<div class="labelbreak"></div>
-		<input class="box" type="text" name="address2" id="address2" size="20" value="{$address2|wash}" title="{'Apartment, suite, unit, building, floor, etc.'|i18n('extension/xrowecommerce')}" />
+		<input type="text" name="address2" id="address2" size="20" value="{$address2|wash}" title="{'Apartment, suite, unit, building, floor, etc.'|i18n('extension/xrowecommerce')}" />
 	</div>
 {/if}
 
     <div class="zip block">
         <label>{'ZIP'|i18n('extension/xrowecommerce')}<span class="required">*</span></label>
         <div class="labelbreak"></div>
-        <input type="text" class="zip" name="zip" id="zip" value="{$current_user.contentobject.data_map.zip_code.data_text|wash}" />
+        <input type="text" class="zip" name="zip" id="zip" value="{$zip|wash()}" />
     </div>
     <div class="break"></div>
-    
 	<div class="city block">
     	<label>{'City'|i18n('extension/xrowecommerce')}<span class="required">*</span></label>
     	<div class="labelbreak"></div>
@@ -272,19 +269,6 @@
 
 </div> {*LEFT COL END*}
 
-{if ezini('Settings','Coupon','xrowecommerce.ini')|eq('enabled')}
-<div class="coupon">
-
-<span class="headingur">{'Coupon'|i18n('extension/xrowecommerce')}</span>
-<p>{'Please enter your coupon code exactly as it appears on your promotion.'|i18n('extension/xrowecommerce')}</p>
-<div class="block">
-	<label>{'Coupon'|i18n('extension/xrowecommerce')}</label>
-	<div class="labelbreak"></div>
-	<input class="box" type="text" name="coupon_code" id="coupon_code" value="{$coupon_code|wash}" size="20" />
-</div>
-</div>
-{/if}
-
 {* right column *}
 <div class="shipping">
 <h3>{'Shipping Information'|i18n( 'extension/xrowecommerce' )}</h3>
@@ -328,20 +312,20 @@
 	<div class="block">
 		<label>{'Address 1'|i18n('extension/xrowecommerce')}<span class="required">*</span></label>
 		<div class="labelbreak"></div>
-		<input class="box" type="text" name="s_address1" id="s_address1" size="20" value="{$s_address1|wash}" />
+		<input type="text" name="s_address1" id="s_address1" size="20" value="{$s_address1|wash}" />
 	</div>
     {if eq(ezini( 'Settings', 'Address2', 'xrowecommerce.ini' ), 'enabled' )}
 	<div class="block">
 		<label>{'Address 2'|i18n('extension/xrowecommerce')}</label>
 		<div class="labelbreak"></div>
-		<input class="box" type="text" name="s_address2" size="20" id="saddress2" value="{$s_address2|wash}" />
+		<input type="text" name="s_address2" size="20" id="saddress2" value="{$s_address2|wash}" />
 	</div>
     {/if}
     
     <div class="zip block">
         <label>{'Zip'|i18n('extension/xrowecommerce')}<span class="required">*</span></label>
         <div class="labelbreak"></div>
-        <input type="text" name="s_zip" id="s_zip" value="{$current_user.contentobject.data_map.s_zip_code.data_text|wash}"/>
+        <input type="text" name="s_zip" id="s_zip" value="{$s_zip|wash()}"/>
     </div>
     <div class="break"></div>
 
@@ -512,6 +496,19 @@
 
 {* / left column *}
 </div>
+
+{if ezini('Settings','Coupon','xrowecommerce.ini')|eq('enabled')}
+<div class="coupon">
+
+<span class="headingur">{'Coupon'|i18n('extension/xrowecommerce')}</span>
+<p>{'Please enter your coupon code exactly as it appears on your promotion.'|i18n('extension/xrowecommerce')}</p>
+<div class="block">
+    <label>{'Coupon'|i18n('extension/xrowecommerce')}</label>
+    <div class="labelbreak"></div>
+    <input type="text" name="coupon_code" id="coupon_code" value="{$coupon_code|wash}" size="20" />
+</div>
+</div>
+{/if}
 
 
 <div class="additional-information">

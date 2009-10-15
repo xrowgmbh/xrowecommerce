@@ -262,7 +262,9 @@ ul#gateways li *
 div.form,
 div.billing,
 div.shipping,
-div.additional-information
+div.additional-information,
+div.coupon,
+div.accountinfo
 {
 	margin-top: 15px;
 	border: 1px solid #d3d5d6;
@@ -522,7 +524,7 @@ div.shopping_cart_path_select
 div.buttonblock, div.linkbuttonblock
 {
 	clear:both;
-	margin-top: 1em;
+	padding-top: 1em;
 }
 
 div.product-cell div.product-image
@@ -532,16 +534,18 @@ div.product-cell div.product-image
 }
 p.product-id,
 p.product-link,
-p.product-description
+p.product-description,
+p.product-weight
 {
 	margin-left: 80px;
-
 }
+
 div.shop div.block
 {
 	margin-right: 1em;
 	margin-bottom:0;
 }
+
 table.order tr td.price,
 table.order tr td.totalprice
 {
@@ -549,6 +553,7 @@ table.order tr td.totalprice
 	text-align: right;
 	padding-right:5px;
 }
+
 table.order tr td.position
 {
 	text-align: center;
@@ -558,10 +563,12 @@ table.order tr td.quantity
 {
 	text-align: right;
 }
+
 table.order tr.grandtotal-line td.totalprice
 {
 	font-weight: bold;
 }
+
 table.order tr td.delete
 {
 	white-space:nowrap;
@@ -571,7 +578,7 @@ table.order tr td.delete input
 {
 	margin: 0;
 }
-
+/*
 input.orangebutton,
 input#checkout-button,
 input#continue-button,
@@ -608,7 +615,7 @@ input#store-button
 	font-size:0.9em !important;
 	width:190px;
 }
-
+*/
 input#delete-button-icon
 {
 	text-decoration:none;
@@ -696,4 +703,124 @@ div.configurator table.list tr td
 div.configurator table.list
 {
 	border-collapse:collapse;
+}
+
+div.productline-text
+{
+	width: 80%;
+	float: left;
+}
+
+div.productcategory-img
+{
+	width: 20%;
+	float: left;
+}
+
+.read_more
+{
+	float: right;
+}
+
+div.product_title
+{
+	border-top: solid 1px #DFDFDF;
+}
+
+div.content-view-children
+{
+	clear: both;
+}
+
+div.productwrapper
+{
+	width: 100%;
+}
+
+div.productwrapper div.block div.right
+{
+	width: 100%;
+}
+
+div.productwrapper input.right-arrow
+{
+	float: right;
+}
+
+div.shop #checkout-button
+{
+	float: right;
+}
+
+div.billing,
+div.shipping,
+div.additional-information,
+div.accountinfo,
+div.coupon
+{
+	width: 360px;
+}
+
+div.shop-userregister input,
+div.user_register input,
+div.shop-userregister select,
+div.user_register select
+{
+	width: 345px;
+	padding: 2px;
+	margin: 1px;
+	border: 1px solid #D4D4D4;
+}
+
+div.shop-userregister input.shipping-checkbox,
+div.shop-userregister input.no_partial_delivery,
+div.shop-userregister input.button,
+div.user_register input.shipping-checkbox,
+div.user_register input.button
+{
+	width: auto;
+}
+
+div.billing
+{
+	float: left;
+	clear: left;
+}
+
+div.accountinfo
+{
+	float: left;
+}
+
+div.coupon
+{
+    float: left;
+    clear: left;
+}
+
+div.shipping
+{
+    float: right;
+    clear: right;
+}
+
+div.additional-information
+{
+    float: left;
+}
+
+div.warning ul li
+{
+    float: none;
+}
+
+div.loginbox div.login-button
+{
+    padding-top: 1em;
+    padding-bottom: 0.5em;
+}
+
+div.productline
+{
+    clear: both;
 }

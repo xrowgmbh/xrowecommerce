@@ -22,7 +22,7 @@ function checkCOS( element )
         {/literal}
     {/if}
     {literal}
-	var container = document.getElementById( 'cos_cb' );
+	var container = document.getElementById( 'cos' );
 	if ( container )
 	{
 		if( container.checked )
@@ -183,8 +183,8 @@ function checkCOS( element )
         {include uri="design:shop/terms_and_conditions.tpl" view="confirmorder"}
     {/if}
         <div id="buttonblock-bottom" class="buttonblock">
-            <input id="cancel-button" class="left-arrow2" type="submit" name="CancelButton" value="{'Cancel'|i18n('extension/xrowecommerce')}" title="{'Cancel order'|i18n('extension/xrowecommerce')}"/>
-            <input id="continue-button" class="right-arrow2" type="button" onclick="checkCOS(this);" name="ConfirmOrderButton" value="{'Confirm'|i18n('extension/xrowecommerce')}" title="{'Confirm order'|i18n('extension/xrowecommerce')}"/>
+            <input id="cancel-button" class="button left-arrow2" type="submit" name="CancelButton" value="{'Cancel'|i18n('extension/xrowecommerce')}" title="{'Cancel order'|i18n('extension/xrowecommerce')}"/>
+            <input id="continue-button" class="button right-arrow2" type="button" onclick="checkCOS(this);" name="ConfirmOrderButton" value="{'Confirm'|i18n('extension/xrowecommerce')}" title="{'Confirm order'|i18n('extension/xrowecommerce')}"/>
         </div>
     {else}
     {* If the shopping cart is empty after removing hazardous items... *}
