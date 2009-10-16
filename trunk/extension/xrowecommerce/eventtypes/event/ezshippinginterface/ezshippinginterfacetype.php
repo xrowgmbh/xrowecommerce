@@ -115,9 +115,7 @@ class eZShippingInterfaceType extends eZWorkflowEventType
         // If order class was fetched
         if ( get_class( $order ) == 'eZOrder' )
         {
-            // Fetch order ezxml document
      	    $doc = new DOMDocument( '1.0', 'utf-8' );
-
             $root = $doc->createElement( "data_text_1" );
             $doc->appendChild( $root );
         	
