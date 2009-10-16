@@ -8,7 +8,7 @@ class xrowCoupon
 		$this->code = strtoupper( $code );
 	}
 
-    public static function fetchAttribute()
+    public function fetchAttribute()
     {
         $db = eZDB::instance();
         $result = $db->arrayQuery( "SELECT * FROM ezcontentobject_attribute e, ezcontentobject e1
@@ -27,7 +27,7 @@ class xrowCoupon
         }
     }
 
-    public static function isValid()
+    public function isValid()
     {
         $attribute = $this->fetchAttribute();
         if ( is_object( $attribute ) )

@@ -20,13 +20,9 @@
         <label>Coupon code: <input type="input" name="{$base}_code_{$event.id}" value="{$event.data_text1}" /></label>
     </div>
 </div>
-<div class="block">
-    <div class="element">
+<div class="buttonblock">
         <input class="button" type="submit" name="{$base}_SelectButton_{$event.id}"  value="{'Have coupon'|i18n('design/standard/workflow')}" />
-    </div>
-    <div class="element">
         <input class="button" type="submit" name="{$base}_CancelButton_{$event.id}"  value="{'No coupon'|i18n('design/standard/workflow')}" />
-    </div>
 </div>
 
 </form>

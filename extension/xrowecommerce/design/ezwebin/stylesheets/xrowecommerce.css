@@ -781,6 +781,12 @@ div.user_register input.button
 	width: auto;
 }
 
+div.shop-userregister input.no_partial_delivery,
+div.shop-userregister input.shipping-checkbox
+{
+    margin-right: 0.5em;
+}
+
 div.billing
 {
 	float: left;
@@ -806,7 +812,7 @@ div.shipping
 
 div.additional-information
 {
-    float: left;
+    float: right;
 }
 
 div.warning ul li
@@ -823,4 +829,9 @@ div.loginbox div.login-button
 div.productline
 {
     clear: both;
+}
+
+label.cos a
+{
+    cursor: pointer;
 }

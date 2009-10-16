@@ -109,8 +109,8 @@
 	                            <input type="text" name="AddToBasketList[0][quantity]" value="1" />
 	                        </td>
 	                        <td align="right">
-	                           #{$node.object.data_map.price.data_float|l10n(currency)}#
-	                           -{$node.data_map.price.content.price|l10n(currency)}-
+	                           {*$node.object.data_map.price.data_float|l10n(currency)*}
+	                           {$node.data_map.price.content.price|l10n(currency)}
 	                        </td>
 	                    </tr>
                     {/if}
