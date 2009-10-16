@@ -128,12 +128,22 @@ class eZCouponWorkflowType extends eZWorkflowEventType
         $order = eZOrder::fetch( $orderID );
         if ( is_object( $order ) )
         {
-            $xml = new eZXML();
-            $xmlDoc = $order->attribute( 'data_text_1' );
+        	$doc = new DOMDocument( '1.0', 'utf-8' );
+            $root = $doc->createElement( "data_text_1" );
+            $doc->appendChild( $root );
+        	
+           // $xml = new eZXML();
+           //$xmlDoc = $order->attribute( 'data_text_1' );
+            
+
             if( $xmlDoc != null )
             {
-                $dom = $xml->domTree( $xmlDoc );
-                $id = $dom->elementsByName( "coupon_code" );
+                //$dom = $xml->domTree( $xmlDoc );
+                //$id = $dom->elementsByName( "coupon_code" );
+                
+                $coupon_codeNode = $doc->createElement( "coupon_code", $id );
+                $root->appendChild( $coupon_codeNode );
+                
                 if ( is_object( $id[0] ) )
                 {
                     $code = $id[0]->textContent();

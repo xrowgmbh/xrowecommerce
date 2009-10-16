@@ -116,14 +116,11 @@ class eZShippingInterfaceType extends eZWorkflowEventType
         if ( get_class( $order ) == 'eZOrder' )
         {
             // Fetch order ezxml document
-            // @ TODO this should use DOMDocument not eZXML
-            
      	    $doc = new DOMDocument( '1.0', 'utf-8' );
 
             $root = $doc->createElement( "data_text_1" );
             $doc->appendChild( $root );
         	
-            // If document is not empty
             if ( $root != null )
             {
             	$state = $shipping = $shippingtype = $shipping_country = $shipping_s_country = $shipping_city = $shipping_s_city = $shipping_zip = $shipping_s_zip = $shipping_state = $shipping_s_state = NULL;
