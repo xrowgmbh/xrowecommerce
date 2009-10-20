@@ -835,3 +835,37 @@ label.cos a
 {
     cursor: pointer;
 }
+
+div.xrow-product-review
+{
+    margin-top: 2em;
+}
+
+div.review-child
+{
+    padding-bottom: 2em;
+}
+
+div.review-rating span.rate-me, div.review-rating ul
+{
+    float: left;
+}
+
+div.review-rating
+{
+    padding-bottom: 1em;
+}
+
+div.xrow-product-features > div
+{
+    margin-top: 2em;
+    padding-top: 1em;
+    border-top: solid #efefef 1px;
+}
+
+div.xrow-product, div.xrow-product-features
+{
+	float: left;
+	clear: both;
+	width: 100%;
+}
