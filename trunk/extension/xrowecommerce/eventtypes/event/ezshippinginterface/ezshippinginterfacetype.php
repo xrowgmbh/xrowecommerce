@@ -113,49 +113,24 @@ class eZShippingInterfaceType extends eZWorkflowEventType
         $order = eZOrder::fetch( $orderID );
         
         // If order class was fetched
-        if ( get_class( $order ) == 'eZOrder' )
+        if ( $order instanceof eZOrder )
         {
-     	    $doc = new DOMDocument( '1.0', 'utf-8' );
-            $root = $doc->createElement( "data_text_1" );
-            $doc->appendChild( $root );
-        	
-            if ( $root != null )
+        	$xml = new SimpleXMLElement( $order->attribute( 'data_text_1' ) );
+
+            if ( $xml != null )
             {
-            	$state = $shipping = $shippingtype = $shipping_country = $shipping_s_country = $shipping_city = $shipping_s_city = $shipping_zip = $shipping_s_zip = $shipping_state = $shipping_s_state = NULL;
-            	
-		        $stateNode = $doc->createElement( "state", $state );
-		        $root->appendChild( $stateNode );
+            	$state = (string) $xml->state;
+            	$shipping = (string) $xml->shipping;
+                $shippingtype = (string) $xml->shippingtype;
+                $shipping_country = (string) $xml->country;
+                $shipping_s_country = (string) $xml->s_country;
+                $shipping_city = (string) $xml->city;
+                $shipping_s_city = (string) $xml->s_city;
+                $shipping_zip = (string) $xml->zip;
+                $shipping_s_zip = (string) $xml->s_zip;
+                $shipping_state = (string) $xml->state;
+                $shipping_s_state = (string) $xml->s_state;
 
-                $shippingNode = $doc->createElement( "shipping", $shipping );
-                $root->appendChild( $shippingNode );
-
-                $shippingtypeNode = $doc->createElement( "shippingtype", $shippingtype );
-                $root->appendChild( $shippingtypeNode );
-                
-                $countryNode = $doc->createElement( "country", $shipping_country );
-                $root->appendChild( $countryNode );
-
-                $s_countryNode = $doc->createElement( "s_country", $shipping_s_country );
-                $root->appendChild( $s_countryNode );
-
-                $cityNode = $doc->createElement( "city", $shipping_city );
-                $root->appendChild( $cityNode );
-
-                $s_cityNode = $doc->createElement( "s_city", $shipping_s_city );
-                $root->appendChild( $s_cityNode );
-
-                $zipNode = $doc->createElement( "zip", $shipping_zip );
-                $root->appendChild( $zipNode );
-
-                $s_zipNode = $doc->createElement( "s_zip", $shipping_s_zip );
-                $root->appendChild( $s_zipNode );
-                
-                $state = $doc->createElement( "state", $shipping_state );
-                $root->appendChild( $state );
-                
-                $s_state = $doc->createElement( "state", $shipping_s_state );
-                $root->appendChild( $s_state );
-                    
                 // If order has a shipping country use it instead.
                 if ( isset( $shipping_s_country ) and $shipping_s_country != '' )
                     $shipping_country = $shipping_s_country;
@@ -403,8 +378,9 @@ class eZShippingInterfaceType extends eZWorkflowEventType
         
         #### SHIPPING COST CALCULATION
         $shippingerror = false;
-        
+
         $gateway = xrowShippingInterface::instanceByMethod( $shippingtype );
+
         if ( $gateway )
         {
             try
@@ -466,16 +442,11 @@ class eZShippingInterfaceType extends eZWorkflowEventType
                 );
                 
                 return eZWorkflowType::STATUS_FETCH_TEMPLATE_REPEAT;
-                /* Before
-                eZDebug::writeError( 'Gateway error(' . $shippingtype . '): ' . $e->getMessage(), 'eZShippingInterfaceType::execute()' );
-                $description = "An error occurred. Vendor will contact you to calculate the shipping price.";
-                $cost = 0.00;
-                */
             }
         }
         else
         {
-            $description = "Sorry, the shipping type you have selected is no longer supported. Vendor will call you to calculate the shipping price!";
+            $description = ezi18n( 'extension/xrowecommerce', "Sorry, the shipping method you have selected is no longer supported. Vendor will call you to calculate the shipping price." );
             $cost = 0.00;
         }
         /*
