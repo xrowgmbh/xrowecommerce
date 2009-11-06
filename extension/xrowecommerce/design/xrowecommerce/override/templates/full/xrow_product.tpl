@@ -4,22 +4,14 @@
 <div class="content-view-full">
         <div class="class-xrow-commerce">
             <div class="xrow-product">
-                <form name="buy" id="buy" method="post" action={"xrowecommerce/multiadd"|ezurl}>
                     <div class="attribute-header">
-                        <input type="hidden" name="ContentNodeID" value="{$node.node_id}" />
-                        <input type="hidden" name="ContentObjectID" value="{$node.object.id}" />
-                        <input type="hidden" name="ViewMode" value="full" />
                         <h1>{$node.name|wash()}</h1>
                     </div>
                     <div class="image-description-wrap">
                     {if $node.data_map.image.has_content}
                         <div class="attribute-image">
                             <a href="javascript:;" onclick="return enlargeImage('/{$node.data_map.image.content.original.full_path}',{$node.data_map.image.content.original.width},{$node.data_map.image.content.original.height},'{$node.data_map.image.content.original.text|wash(javascript)}');" title="{$node.data_map.image.content.original.text|wash} | {"A click on the image enlarges the image in a popup"|i18n( 'extension/xrowecommerce')}">
-                                {attribute_view_gui
-                                        attribute=$node.data_map.image
-                                        image_class=medium
-                                        show_alt=false()
-                                }
+                                {attribute_view_gui attribute=$node.data_map.image image_class=medium show_alt=false()}
                             </a>
                             {if $node.data_map.caption.has_content}
                                 <div class="caption">
@@ -28,19 +20,41 @@
                             {/if}
                         </div>
                     {else}
-                        <div class="nopic attribute-image"><img src={'nopic_130.gif'|ezimage()} alt="{'No image available'|i18n('extension/xrowecommerce')}" /></div>
+                        <div class="nopic attribute-image"><img src={'shop/nopic_130.gif'|ezimage()} alt="{'No image available'|i18n('extension/xrowecommerce')}" /></div>
                     {/if}
                     <div class="description-wrap">
-                            <div class="attribute-short">
-                               {attribute_view_gui attribute=$node.object.data_map.short_description}
-                            </div>
-                            <div class="attribute-long">
-                               {attribute_view_gui attribute=$node.object.data_map.description}
-                            </div>
-                    	<p>{attribute_view_gui attribute=$node.data_map.rating}</p>
+                        <div class="attribute-short">
+                           {attribute_view_gui attribute=$node.object.data_map.short_description}
+                        </div>
+                        <div class="attribute-long">
+                           {attribute_view_gui attribute=$node.object.data_map.description}
+                        </div>
+                    </div>
+                    <div class="xrow-feature-list">
+                        <div class="xrow-product-wishlist">
+                            <form method="post" action={"content/action"|ezurl}>
+                                <input type="hidden" name="ContentNodeID" value="{$node.node_id}" />
+                                <input type="hidden" name="ContentObjectID" value="{$node.object.id}" />
+                                <input type="hidden" name="ViewMode" value="full" />
+                                <input class="button" type="submit" name="ActionAddToWishList" value="{"Add to wish list"|i18n("design/ezwebin/full/product")}" />
+                            </form>
+                        </div>
+                        <p>
+                            {def $tipafriend_access=fetch( 'user', 'has_access_to', hash( 'module', 'content',
+                                                           'function', 'tipafriend' ) )}
+                            {if and( ezmodule( 'content/tipafriend' ), $tipafriend_access )}
+                            <a href={concat( "/content/tipafriend/", $node.node_id )|ezurl} title="{'Tip a friend'|i18n( 'design/ezwebin/full/article' )}">{'Tip a friend'|i18n( 'design/ezwebin/full/article' )}</a> | {/if}<a href="#related-products" >{'Related products'|i18n( 'design/ezwebin/full/article' )}</a> | <a href="#product-reviews">{'Product reviews'|i18n( 'design/ezwebin/full/article' )}</a>
+                        </p>
+                        <div class="star-rating">
+                        {attribute_view_gui attribute=$node.data_map.rating}
+                        </div>
                     </div>
                 </div>
                 <div class="productwrapper float-break">
+                    <form name="buy" id="buy" method="post" action={"xrowecommerce/multiadd"|ezurl}>
+                        <input type="hidden" name="ContentNodeID" value="{$node.node_id}" />
+                        <input type="hidden" name="ContentObjectID" value="{$node.object.id}" />
+                        <input type="hidden" name="ViewMode" value="full" />
         			<div>
                         <table class="list" summary="This table contains information about the product, like image, product number, description and the form to orderthe product.">
                             <tr>
@@ -50,19 +64,19 @@
                                 <th>{'Number'|i18n('extension/xrowecommerce')}</th>
                                 {if $node.data_map.options.content.option_list|count|gt(0)}
                                     <th>{'Item'|i18n('extension/xrowecommerce')}</th>
-                                    <th>{'Description'|i18n('extension/xrowecommerce')}</th>
                                 {/if}
-                                <th>{'Quantity'|i18n('extension/xrowecommerce')}</th>
-                                <th>{'Price'|i18n('extension/xrowecommerce')}</th>
+                                <th>{'Description'|i18n('extension/xrowecommerce')}</th>
+                                <th class="quantity">{'Quantity'|i18n('extension/xrowecommerce')}</th>
+                                <th class="price">{'Price'|i18n('extension/xrowecommerce')}</th>
                             </tr>
                             {if $node.data_map.options.content.option_list|count|gt(0)}
         	                    {section var=Options loop=$node.data_map.options.content.option_list}
         	                    <tr>
         							<td>
-        								{if $Options.item.image|is_object(true)}
+        								{if $Options.item.image.current.data_map.image.content.is_valid}
         									{attribute_view_gui image_class=galleryline attribute=$Options.item.image.current.data_map.image}
         								{else}
-        									<div class="s_nopic"><img src={'nopic_70.gif'|ezimage()} alt="{'No image available'|i18n('extension/xrowecommerce')}" /></div>
+        									<div class="s_nopic"><img src={'shop/nopic_tiny.jpg'|ezimage()} alt="{'No image available'|i18n('extension/xrowecommerce')}" /></div>
         								{/if}
         							</td>
         							<td>
@@ -74,17 +88,17 @@
         							<td>
         								{$Options.item.description|wash|nl2br}
         							</td>
-        	                        <td align="right">
+        	                        <td align="right" class="quantity">
         	                           <input type="hidden" name="AddToBasketList[{$Options.index}][object_id]" value="{$node.object.id}" />
         	                           <input type="hidden" name="AddToBasketList[{$Options.index}][variations][{$node.data_map.options.id}]" value="{$Options.item.id}" />
-        	                           <input type="text" name="AddToBasketList[{$Options.index}][quantity]" value="{if eq($Options.index,0)}1{else}0{/if}" style="width: 50px; border: 1px solid #565969;"/>
+        	                           <input type="text" name="AddToBasketList[{$Options.index}][quantity]" value="{if eq($Options.index,0)}1{else}0{/if}" />
         	                        </td>
-        	                        <td align="right">
+        	                        <td class="price" align="right">
         		                        {if $Options.multi_price}
-                                            {if $Options.multi_price|gt('1')}
+                                            {if $Options.multi_price.price|ne('0.00')}
                                                 {$Options.multi_price.price|l10n(currency)}
             			                    {else}
-                                                {foreach $Options.multi_price.price_list as $price}
+                                                {foreach $Options.multi_price.currency_list as $price}
                                                     {$price.value|l10n( currency )}
                                                 {/foreach}
         			                        {/if}
@@ -101,13 +115,15 @@
         	                        <td>
         	                           {$node.object.data_map.product_id.data_text}
         	                        </td>
-        	                        <td align="right">
+                                    <td>
+                                       {attribute_view_gui attribute=$node.object.data_map.short_description}
+                                    </td>
+        	                        <td align="right" class="quantity">
         	                            <input type="hidden" name="AddToBasketList[{$Options.index}][object_id]" value="{$node.object.id}" />
         	                            <input type="hidden" name="AddToBasketList[{$Options.index}][variations][{$node.data_map.options.id}]" value="{$Options.item.id}" />
         	                            <input type="text" name="AddToBasketList[0][quantity]" value="1" />
         	                        </td>
         	                        <td align="right">
-        	                           {*$node.object.data_map.price.data_float|l10n(currency)*}
         	                           {$node.data_map.price.content.price|l10n(currency)}
         	                        </td>
         	                    </tr>
@@ -137,11 +153,13 @@
         	                <p>{'Since the accuracy of your credit card, shipping and billing information is vital to Automatic Delivery, please promptly submit changes through the my account section.'|i18n( 'extension/xrowecommerce')}</p>
         	            </div>
         			{/if}
+    			</form>
             </div>
-            </form>
         </div>
         <div class="xrow-product-features">
+            <a name="related-products"></a>
             {include node=$node uri="design:shop/related_products.tpl"}
+            <a name="product-reviews"></a>
             {include node=$node uri="design:shop/review_children.tpl"}
         </div>
 

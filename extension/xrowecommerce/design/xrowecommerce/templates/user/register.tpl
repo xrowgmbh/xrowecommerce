@@ -71,7 +71,7 @@
                 <h3>{'Billing Information'|i18n('extension/xrowecommerce')}</h3>
                 <p>{'Please enter your billing address exactly as it appears on your credit card statement.'|i18n('extension/xrowecommerce')}</p>
                 <p><span class="required">* {'Required field'|i18n('extension/xrowecommerce')}</span></p>
-       
+
                 <div class="block">
                     {if eq(ezini( 'Settings', 'CompanyName', 'xrowecommerce.ini' ), 'enabled' )}
                     <div class="block">
@@ -202,8 +202,8 @@
             <div class="shipping">
                 <h3>{'Shipping Information'|i18n('extension/xrowecommerce')}</h3>
                 <input type="hidden" name="ContentObjectAttribute_id[]" value="{$ca.shippingaddress.id}" />
-                <label onclick="change();" class="shipping-checkbox" for="ContentObjectAttribute_data_boolean_{$ca.shippingaddress.id}">
-                    <input onlick="change();" class="shipping-checkbox" id="ContentObjectAttribute_data_boolean_{$ca.shippingaddress.id}"  name="ContentObjectAttribute_data_boolean_{$ca.shippingaddress.id}" value="" type="checkbox" {$ca.shippingaddress.data_int|choose( '', 'checked="checked"' )} />
+                <label onclick="change();" class="shipping-checkbox" for="shipping-checkbox">
+                    <input onlick="change();" class="shipping-checkbox" id="shipping-checkbox"  name="ContentObjectAttribute_data_boolean_{$ca.shippingaddress.id}" value="" type="checkbox" {$ca.shippingaddress.data_int|choose( '', 'checked="checked"' )} />
                     {'My billing and shipping addresses are identical.'|i18n('extension/xrowecommerce')}
                 </label>
 
@@ -340,17 +340,3 @@
             </div>
     </form>
 </div>
-
-<script type="text/javascript">
-    function change()
-    {ldelim}
-    if (document.getElementById( 'ContentObjectAttribute_data_boolean_{$ca.shippingaddress.id}' ).checked)
-        {ldelim}
-        document.getElementById( 'shippinginfo' ).style.display = 'none';
-        {rdelim}
-        else
-        {ldelim}
-                document.getElementById( 'shippinginfo' ).style.display = 'block';
-        {rdelim}
-    {rdelim}
-</script>

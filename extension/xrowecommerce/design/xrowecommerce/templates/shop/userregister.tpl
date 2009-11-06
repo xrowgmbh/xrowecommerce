@@ -272,7 +272,7 @@
 {* right column *}
 <div class="shipping">
 <h3>{'Shipping Information'|i18n( 'extension/xrowecommerce' )}</h3>
-<label class="shipping-checkbox" for="shipping-checkbox"><input class="shipping-checkbox" id="shipping-checkbox" name="shipping" value="1" type="checkbox" {if $shipping} checked="checked" {/if}  />{'My billing and shipping addresses are identical.'|i18n('extension/xrowecommerce')}</label>
+<label onclick="change();" class="shipping-checkbox" for="shipping-checkbox"><input onclick="change();" class="shipping-checkbox" id="shipping-checkbox" name="shipping" value="1" type="checkbox" {if $shipping} checked="checked" {/if}  />{'My billing and shipping addresses are identical.'|i18n('extension/xrowecommerce')}</label>
 
 <div class="block" id="shippinginfo"{if $shipping} style="display: none;"{else} style="display: block;"{/if}>
 <p><span class="required">* {'Required field'|i18n('extension/xrowecommerce')}</span></p>
