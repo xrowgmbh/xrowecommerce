@@ -216,3 +216,14 @@ function enlargeImage( imsrc, ww, wh, alttext )
     w1.focus();
 };
 
+function change()
+{
+if (document.getElementById( 'shipping-checkbox' ).checked)
+    {
+    document.getElementById( 'shippinginfo' ).style.display = 'none';
+    }
+    else
+    {
+            document.getElementById( 'shippinginfo' ).style.display = 'block';
+    }
+}

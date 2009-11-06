@@ -1,5 +1,6 @@
+<div class="content-view-full">
 <div>
-   <h1>{'Cart'|i18n("extension/xrowecommerce")}</h1>
+   <h2>{'Cart'|i18n("extension/xrowecommerce")}</h2>
 </div>
 
 <form class="qbasketform" method="post" action={"/shop/basket"|ezurl}>
@@ -58,3 +59,4 @@
 <p>{'Please'|i18n("extension/xrowecommerce")} <b>{'select the product-categories'|i18n("extension/xrowecommerce")}</b> {'on the left to view and order products.'|i18n("extension/xrowecommerce")}</p>
 {/if}
 {/def}
+</div>

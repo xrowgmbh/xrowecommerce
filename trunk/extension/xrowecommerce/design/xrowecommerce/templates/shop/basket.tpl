@@ -266,10 +266,10 @@
                 </table>
             
                 <div id="buttonblock-bottom" class="buttonblock">
-                    <input id="continue-shopping-button" class="button right-arrow" type="submit" name="ContinueShoppingButton" value="{'Continue shopping'|i18n("extension/xrowecommerce")}" title="{'Continue Shopping'|i18n("extension/xrowecommerce")}"/>
-                    <input id="empty-cart-button" type="button" onclick="empty_basket.submit();" class="button small-action" name="EmptyShoppingCartButton" value="{'Empty Cart'|i18n( 'extension/xrowecommerce' )}" title="{'Use this button to empty your shopping cart.'|i18n( 'extension/xrowecommerce' )|wash}" />
-                    <input id="store-button" type="submit" class="button right-arrow " name="StoreChangesButton" value="{'Update'|i18n( 'extension/xrowecommerce' )}" title="{'Use this button to update your shopping cart.'|i18n( 'extension/xrowecommerce' )|wash}" />
-                    <input id="checkout-button" type="submit" class="button right-arrow2 continue-button" name="CheckoutButton" value="{'Checkout'|i18n( 'extension/xrowecommerce' )}" title="{'Use this button to place your order.'|i18n( 'extension/xrowecommerce' )|wash}" />
+                    <input id="continue-shopping-button-2" class="button right-arrow" type="submit" name="ContinueShoppingButton" value="{'Continue shopping'|i18n("extension/xrowecommerce")}" title="{'Continue Shopping'|i18n("extension/xrowecommerce")}"/>
+                    <input id="empty-cart-button-2" type="button" onclick="empty_basket.submit();" class="button small-action" name="EmptyShoppingCartButton" value="{'Empty Cart'|i18n( 'extension/xrowecommerce' )}" title="{'Use this button to empty your shopping cart.'|i18n( 'extension/xrowecommerce' )|wash}" />
+                    <input id="store-button-2" type="submit" class="button right-arrow " name="StoreChangesButton" value="{'Update'|i18n( 'extension/xrowecommerce' )}" title="{'Use this button to update your shopping cart.'|i18n( 'extension/xrowecommerce' )|wash}" />
+                    <input id="checkout-button-2" type="submit" class="button right-arrow2 continue-button" name="CheckoutButton" value="{'Checkout'|i18n( 'extension/xrowecommerce' )}" title="{'Use this button to place your order.'|i18n( 'extension/xrowecommerce' )|wash}" />
                 </div>
             </div>
         </form>
