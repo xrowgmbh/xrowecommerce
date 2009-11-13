@@ -7,6 +7,7 @@
 var YUI3_config = {ldelim} 'standard' : '{"lib/yui/3.0/build/"|ezdesign( 'no' )}', loadOptional: true, combine: false {rdelim};
 -->
 </script>
+
 {def $basket_is_empty   = cond( $current_user.is_logged_in, fetch( shop, basket ).is_empty, 1 )
      $user_hash         = concat( $current_user.role_id_list|implode( ',' ), ',', $current_user.limited_assignment_value_list|implode( ',' ) )}
 
@@ -64,6 +65,7 @@ var YUI3_config = {ldelim} 'standard' : '{"lib/yui/3.0/build/"|ezdesign( 'no' )}
   <!-- Toolbar area: END -->
 
   <!-- Columns area: START -->
+<div class="xrowecommerce-page-mainarea">
   <div id="columns-position">
   <div id="columns" class="float-break">
 
@@ -76,13 +78,9 @@ var YUI3_config = {ldelim} 'standard' : '{"lib/yui/3.0/build/"|ezdesign( 'no' )}
   {/cache-block}
 {/cache-block}
     <!-- Main area: START -->
-    <div class="xrowecommerce-page-mainarea">
         {include uri='design:page_mainarea.tpl'}
-    </div>
     <!-- Main area: END -->
-    <div class="xrowecommerce-toolbar">
-        {tool_bar name='right' view='full'}
-    </div>
+
 {cache-block keys=array( $module_result.uri, $user_hash, $access_type.name, $extra_cache_key )}
 
     {if is_unset($pagedesign)}
@@ -98,6 +96,10 @@ var YUI3_config = {ldelim} 'standard' : '{"lib/yui/3.0/build/"|ezdesign( 'no' )}
 
   </div>
   </div>
+    </div>
+<div class="xrowecommerce-toolbar">
+{tool_bar name='right' view='full'}
+</div>
   <!-- Columns area: END -->
 
   <!-- Footer area: START -->

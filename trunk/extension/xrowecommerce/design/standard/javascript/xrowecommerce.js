@@ -14,6 +14,55 @@ YUI( YUI3_config ).use("node", function(Y) {
 		}
 	});
 });
+
+YAHOO.namespace("example.calendar");
+function ShowHide(id)
+{
+    	    var ComponentName = id + '-container';
+	        if ( YAHOO.util.Dom.hasClass( ComponentName, 'hide') )
+	        {
+	            YAHOO.util.Dom.removeClass(ComponentName, 'hide');
+	            YAHOO.util.Dom.addClass(ComponentName, 'show');
+	        }
+	        else
+	        {
+	            YAHOO.util.Dom.removeClass(ComponentName, 'show');
+	            YAHOO.util.Dom.addClass(ComponentName, 'hide');
+	        }
+}
+function handleSelect(type,args,obj) {
+			var dates = args[0]; 
+			var date = dates[0];
+			var year = date[0], month = date[1], day = date[2];
+
+			var txtDate1 = document.getElementById( obj.id + "-date");
+			txtDate1.value = month + "/" + day + "/" + year;
+			ShowHide( obj.id );
+}
+
+YUI( YUI3_config ).use( 'node', "overlay", function(Y) { 
+if( Y.Node.get("#show_auto_tip") )
+{
+    function AutomaticDeliverTooltip() {
+    	var WidgetPositionExt = Y.WidgetPositionExt;
+
+    	var overlay = new Y.Overlay({ 
+    		      contentBox:"#AutomaticDeliveryTooltip", 
+    		      centered: true,
+    		      width: "400px" 
+    		  }); 
+    	overlay.set("align", {node:"#show_auto_tip", 
+            points:[WidgetPositionExt.TC, WidgetPositionExt.BC]});
+    	overlay.hide(); 
+    		  overlay.render("#overlay-text"); 
+        Y.on("mouseover", Y.bind(overlay.show, overlay), "#show_auto_tip"); 
+        Y.on("mouseout", Y.bind(overlay.hide, overlay), "#show_auto_tip"); 
+
+    }
+    Y.on("domready", AutomaticDeliverTooltip ); 
+    }
+});
+
 function ezjson(uri, callback, args) {
 	// Create business logic in a YUI sandbox using the 'io' and 'json' modules
 	YUI( YUI3_config ).use("node", "io", "dump", "json-parse", function(Y) {

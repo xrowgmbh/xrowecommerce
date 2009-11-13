@@ -136,22 +136,16 @@
                         </div>
                     </div>
         			{if eq(ezini( 'AutomaticDeliverySettings', 'AutomaticDelivery', 'automaticdelivery.ini' ), 'enabled' )}
-        	            <div class="attribute-short-wide">
+        	            <div id="overlay-text">
         		            {def $user=fetch( 'user', 'current_user' )}
-        		            {if and($node.data_map.recurring.content|not(), $user.is_logged_in)}
+        		            {if and($node.data_map.no_auto_delivery.content|not(), $user.is_logged_in)}
         		                <p>{'Add your selections to'|i18n( 'extension/xrowecommerce')} <a id="show_auto_tip">{'Automatic Delivery'|i18n( 'extension/xrowecommerce')}</a>?</p>
-        		                <input class="flat-right2 block" type="submit" onclick="document.buy.action='{"recurringorders/add"|ezurl(no)}'; document.buy.submit(); return true;" name="ActionAddToRecurring" value="{"Add to Automatic Delivery"|i18n("extension/xrowecommerce")}" />
-        		            {elseif $node.data_map.recurring.content|not()}
-        		                <div id="headingp2">**{'Note'|i18n( 'extension/xrowecommerce')}**</div>
+        		                <input class="flat-right2 button" type="submit" onclick="document.buy.action='{"recurringorders/add"|ezurl(no)}'; document.buy.submit(); return true;" name="ActionAddToRecurring" value="{"Add to Automatic Delivery"|i18n("extension/xrowecommerce")}" />
+        		            {elseif $node.data_map.no_auto_delivery.content|not()}
         		                <p>{'This product is available for'|i18n( 'extension/xrowecommerce')} <a id="show_auto_tip">{'Automatic Delivery'|i18n( 'extension/xrowecommerce')}</a>. {'To add this product to your Automatic Delivery you have to'|i18n( 'extension/xrowecommerce')} <a href={'user/login'|ezurl}>{'login'|i18n( 'extension/xrowecommerce')}</a>.</p>
         		            {/if}
         	            </div>
-        	            <div id="overlay1" style="visibility:hidden;">
-        	                <h3>{'What is Automatic Delivery?'|i18n( 'extension/xrowecommerce')}</h3>
-        	                <p>{"Use our Automatic Delivery service to have this item sent to you as often as you like. You'll get priority on our inventory and save time."|i18n( 'extension/xrowecommerce')}</p>
-        	                <p>{'By placing your initial Automatic Delivery order and setting up an Automatic Delivery schedule, you authorize us to charge the same credit card for future Automatic Delivery orders until you cancel.'|i18n( 'extension/xrowecommerce')}</p>
-        	                <p>{'Since the accuracy of your credit card, shipping and billing information is vital to Automatic Delivery, please promptly submit changes through the my account section.'|i18n( 'extension/xrowecommerce')}</p>
-        	            </div>
+
         			{/if}
     			</form>
             </div>
@@ -163,35 +157,18 @@
             {include node=$node uri="design:shop/review_children.tpl"}
         </div>
 
-{if eq(ezini( 'AutomaticDeliverySettings', 'AutomaticDelivery', 'automaticdelivery.ini' ), 'enabled' )}
-    {literal}
-        <style type="text/css">
-        #overlay1 {
-            background-color: white;
-            border: 1px solid grey; 
-        }
-        </style>
-                <script language="javascript" type="text/javascript">
-                YAHOO.namespace("example.container");
-        
-                function init() {
-                    // Build overlay1 based on markup, initially hidden, fixed to the center of the viewport, and 300px wide
-                    YAHOO.example.container.overlay1 = new YAHOO.widget.Overlay("overlay1", { fixedcenter:false,
-                                                                                              visible:false,
-                                                                                              width:"400px" } );
-                    YAHOO.example.container.overlay1.render();
-        
-                    YAHOO.util.Event.addListener("show_auto_tip", "mouseover", YAHOO.example.container.overlay1.show, YAHOO.example.container.overlay1, true);
-                    YAHOO.util.Event.addListener("show_auto_tip", "mouseout", YAHOO.example.container.overlay1.hide, YAHOO.example.container.overlay1, true);
-                }
-        
-                YAHOO.util.Event.addListener(window, "load", init);
-        </script>
-    {/literal}
-{/if}
 </div>
 </div>
 </div></div></div>
 <div class="border-bl"><div class="border-br"><div class="border-bc"></div></div></div>
 </div>
+
+{if eq(ezini( 'AutomaticDeliverySettings', 'AutomaticDelivery', 'automaticdelivery.ini' ), 'enabled' )}
+                        <div id="AutomaticDeliveryTooltip">
+                            <h3>{'What is Automatic Delivery?'|i18n( 'extension/xrowecommerce')}</h3>
+                            <p>{"Use our Automatic Delivery service to have this item sent to you as often as you like. You'll get priority on our inventory and save time."|i18n( 'extension/xrowecommerce')}</p>
+                            <p>{'By placing your initial Automatic Delivery order and setting up an Automatic Delivery schedule, you authorize us to charge the same credit card for future Automatic Delivery orders until you cancel.'|i18n( 'extension/xrowecommerce')}</p>
+                            <p>{'Since the accuracy of your credit card, shipping and billing information is vital to Automatic Delivery, please promptly submit changes through the my account section.'|i18n( 'extension/xrowecommerce')}</p>
+                        </div>
+{/if}
                 

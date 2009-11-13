@@ -5,5 +5,7 @@ ExtensionDirectories[]=xrowecommerce
 AvailableDataTypes[]=xrowtin
 AvailableDataTypes[]=xrowproductvariation
 AvailableDataTypes[]=ezcoupon
+AvailableDataTypes[]=ezcreditcard
+AvailableDataTypes[]=xrowbillingcycle
 
 */ ?>
