@@ -228,7 +228,7 @@ class xrowECommerce
                 $currentContentObjectID = $contentObjectID;
             }
             
-            if ( $currentContentObjectID != $contentObjectID && $itemCount != 1 )
+            if ( $currentContentObjectID != $contentObjectID and $itemCount != 1 )
             {
                 $productItemArray[] = array( 
                     'name' => $name , 

@@ -130,13 +130,13 @@ table.list td.na-rate, table.special td.na-rate
 {
     text-align: right;
     font-style: italic;
-    color: #C0C0C0;
+    color: #DAEAED;
 }
 
 table.list th, table.special th
 {
     color: #254b71;
-    background-color: #c0c0c0;
+    background-color: #DAEAED;
     border: 1px solid #ececec;
     border-top-width: 2px;
     font-weight: normal;

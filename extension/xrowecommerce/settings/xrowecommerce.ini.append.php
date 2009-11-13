@@ -79,11 +79,11 @@ PaymentRequestType=AUTH_AND_CAPTURE
 # Wheater the gateways should store or not store payment information in the order
 StorePaymentInformation=enabled
 #List of active creditcards
-#ActiveCreditcards[]
-#ActiveCreditcards[2]=Visa
-#ActiveCreditcards[1]=MasterCard
-#ActiveCreditcards[4]=American Express
-#ActiveCreditcards[3]=Discover
+ActiveCreditcards[]
+ActiveCreditcards[2]=Visa
+ActiveCreditcards[1]=MasterCard
+ActiveCreditcards[4]=American Express
+ActiveCreditcards[3]=Discover
 
 [StatusSettings]
 # Show payment status

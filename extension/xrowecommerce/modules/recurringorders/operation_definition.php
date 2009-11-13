@@ -1,0 +1,35 @@
+<?php
+
+$OperationList = array();
+$OperationList['checkout'] = array( 'name' => 'checkout',
+                                    'default_call_method' => array( 'include_file' => 'extension/recurringorders/modules/recurringorders/ezrecurringordersoperationcollection.php',
+                                                                    'class' => 'eZRecurringOrdersOperationCollection' ),
+                                    'parameter_type' => 'standard',
+                                    'parameters' => array( array( 'name' => 'order_id',
+                                                                  'type' => 'integer',
+                                                                  'required' => true ) ),
+                                    'keys' => array( 'order_id' ),
+                                    'body' => array( array( 'type' => 'method',
+                                                                'name' => 'handle-user-country',
+                                                                'frequency' => 'once',
+                                                                'method' => 'handleUserCountry' ),
+                                                     array( 'type' => 'method',
+                                                                'name' => 'handle-shipping',
+                                                                'frequency' => 'once',
+                                                                'method' => 'handleShipping' ),
+                                                     array( 'type' => 'trigger',
+                                                            'name' => 'pre_checkout',
+                                                            'keys' => array( 'order_id' ) ),
+                                                     array( 'type' => 'method',
+                                                            'name' => 'activate-order',
+                                                            'frequency' => 'once',
+                                                            'method' => 'activateOrder' ),
+                                                         
+                                                     array( 'type' => 'method',
+                                                            'name' => 'send-order-email',
+                                                            'frequency' => 'once',
+                                                            'method' => 'sendOrderEmails' ),
+                                                     array( 'type' => 'trigger',
+                                                            'name' => 'post_checkout',
+                                                            'keys' => array( 'order_id' ) ) ) );
+?>

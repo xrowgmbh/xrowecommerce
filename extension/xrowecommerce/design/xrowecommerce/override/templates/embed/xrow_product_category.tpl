@@ -3,8 +3,7 @@
                                'sort_by', array( 'priority', false() ),
                                'limit', $object_parameters.limit,
                                'class_filter_type', 'include',
-                               'class_filter_array', array('xrow_product') ) )}
-
+                               'class_filter_array', array('xrow_product') ) ) }
 <div class="horizontally_listed_xrow_products">
 		<h2>{'Take a look at our'|i18n( 'extension/xrowecommerce')} {$object.name|wash()}:</h2>
 		<div class="border-box box-3">
@@ -18,12 +17,12 @@
 	                    </div>
 						<div class="class-image">
 							<div class="content-image">
-							{attribute_view_gui image_class='listitem' attribute=$object.data_map.image href=$object.main_node.url_alias|ezurl()}
+                                {attribute_view_gui image_class='listitem' attribute=$object.data_map.image href=$object.main_node.url_alias|ezurl()}
 							</div>
 						</div>
 					</div>
 				{else}
-				         <h2>{content_view_gui view=text_linked content_object=$object}</h2>
+                    <h2>{content_view_gui view=text_linked content_object=$object}</h2>
 	            {/if}
 				{foreach $embedded_category as $item}
 					<div class="xrow-product-line">
@@ -40,7 +39,30 @@
 						</div>
 						<div class="caption">
 							<p>{content_view_gui view=text_linked content_object=$item}</p>
-							<p class="price">{$item.data_map.price.content.price|l10n(currency)}</p>
+							<div class="attribute-price">
+								     {if count($item.data_map.options.content.option_list)|eq(1)}
+								             {def $allprice=$item.data_map.options.content.option_list.0.additional_price}
+								     {elseif count($item.data_map.options.content.option_list)|gt(1)}
+								             {foreach $item.data_map.options.content.option_list as $var_price}
+								                 {if or( $var_price.multi_price|lt($partprice), is_set($partprice)|not ) }
+								                     {def $partprice=$var_price.multi_price}
+								                 {/if}
+								             {/foreach}
+								     {/if}
+								{if or( $partprice|gt(0), $allprice|gt(0) ) }
+								     {if $partprice|gt(0)}
+								         <span class="currentprice"><small>{'starting at'|i18n('extension/xrowecommerce')}</small> {$partprice|l10n( 'currency' )}</span>
+								     {/if}
+								     {if $allprice|gt(0)}
+								         <span class="currentprice">{$allprice|l10n( 'currency' )}</span>
+								     {/if}
+								{else}
+								     {$item.data_map.price.content.price|l10n(currency)}
+								{/if}
+								{undef $partprice}
+								{undef $allprice}
+								{undef $var_price}
+							</div>
 						</div>
 					</div>
 				{/foreach}

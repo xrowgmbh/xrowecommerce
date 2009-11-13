@@ -2,12 +2,12 @@
     {def $packingslip=false()}
 {/if}
 
-<p style="margin-top:2em"></p>
+<p></p>
     {include uri="design:order/invoiceheader.tpl"}
 <div class="break" style="clear:both;"></div>
     {shop_account_view_gui view=invoice order=$order packingslip=$packingslip}
 <div class="break" style="clear:both;"></div>
-<p style="margin-top:2em;">
+<p>
 <b>{'Product items'|i18n( 'extension/xrowecommerce' )}</b>
 </p>
 <table class="list" width="70%" cellspacing="0" cellpadding="0" border="0" align="right">
