@@ -1,4 +1,5 @@
 <?php
+
 //
 // Definition of ShippingInterface class
 //
@@ -35,6 +36,7 @@ class ShippingInterface
     public $address_from = array();
     public $address_to = array();
     public $method;
+
     function ShippingInterface()
     {
         return false;
@@ -51,6 +53,7 @@ class ShippingInterface
         }
         return $name . ' ( ' . $this->weight . ' lbs )';
     }
+
     /* Checks if a method is valid for a destination
      * 
      */
@@ -79,6 +82,24 @@ class ShippingInterface
     }
 
     /**
+     * Check if the customer has discount
+     */
+    final public function hasDiscount()
+    {
+        $list = eZProductCollection::fetch( $this->order->ProductCollectionID );
+        $discount = false;
+        foreach ( $list->itemList() as $item )
+        {
+            if ( $item->DiscountValue > 0 )
+            {
+                $discount = true;
+                break;
+            }
+        }
+        return $discount;
+    }
+
+    /**
      * Lists available shipping medthods delivery by the plug-in
      *
      */
@@ -91,6 +112,7 @@ class ShippingInterface
     {
         return false;
     }
+
     /* Checks if a destination is valid
      * 
      */
