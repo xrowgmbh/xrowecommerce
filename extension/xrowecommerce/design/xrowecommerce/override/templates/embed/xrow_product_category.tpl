@@ -46,6 +46,7 @@
 								             {foreach $item.data_map.options.content.option_list as $var_price}
 								                 {if or( $var_price.multi_price|lt($partprice), is_set($partprice)|not ) }
 								                     {def $partprice=$var_price.multi_price}
+								                     {def $allprice=''}
 								                 {/if}
 								             {/foreach}
 								     {/if}

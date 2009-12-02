@@ -19,13 +19,13 @@
                 {undef $allprice}
                 {undef $partprice}
                 {if count($object.data_map.options.content.option_list)|eq(1)}
-                        {def $allprice=$object.data_map.options.content.option_list.0.additional_price}
+                    {def $allprice=$object.data_map.options.content.option_list.0.additional_price}
                 {elseif count($object.data_map.options.content.option_list)|gt(1)}
-                        {foreach $object.data_map.options.content.option_list as $var_price}
-                            {if or( $var_price.multi_price|lt($partprice), is_set($partprice)|not ) }
-                                {def $partprice=$var_price.multi_price}
-                            {/if}
-                        {/foreach}
+	                {foreach $object.data_map.options.content.option_list as $var_price}
+	                    {if or( $var_price.multi_price|lt($partprice), is_set($partprice)|not ) }
+	                        {def $partprice=$var_price.multi_price}
+	                    {/if}
+	                {/foreach}
                 {/if}
            {if or( $partprice|gt(0), $allprice|gt(0) ) }
                 {if $partprice|gt(0)}

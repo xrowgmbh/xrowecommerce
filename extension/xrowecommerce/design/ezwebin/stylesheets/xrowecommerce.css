@@ -997,3 +997,40 @@ input.halfbox, textarea.halfbox
 {
     width: auto;
 }
+
+.content-view-toolbar div.poll-result div.chart-bar-resultbar
+{
+    height:5px;
+}
+
+.content-view-toolbar div.poll-result td.poll-resultname p
+{
+    margin: 0;
+    font-weight: normal;
+}
+
+.content-view-toolbar div.poll-result div.chart-bar-resultbox
+{
+    margin: 0;
+}
+
+.content-view-toolbar div.toollist div.child
+{
+    width: 100%;
+}
+
+.xrowecommerce-toolbar div.toollist a.attribute-name,
+.xrowecommerce-toolbar div.toollist div.attribute-price
+{
+    width: 100%;
+}
+
+.xrowecommerce-toolbar div.toollist .attribute-image
+{
+    width: 60px;
+}
+
+table.poll-resultlist
+{
+    margin-top: 0.1em;
+}
