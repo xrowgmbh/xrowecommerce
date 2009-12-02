@@ -150,7 +150,7 @@ class xrowBillingCycleType extends eZDataType
     /*!
      Returns the content.
     */
-    function &objectAttributeContent( $contentObjectAttribute )
+    function objectAttributeContent( $contentObjectAttribute )
     {
         if ( isset( $GLOBALS['xrowBillingCycleCache'][$contentObjectAttribute->ContentObjectID][$contentObjectAttribute->Version] ) )
         {
@@ -180,7 +180,7 @@ class xrowBillingCycleType extends eZDataType
     /*!
      Returns the integer value.
     */
-    function title( $contentObjectAttribute )
+    function title( $contentObjectAttribute, $name = null )
     {
         $period = $contentObjectAttribute->attribute( "data_int" );
         $quantity = $contentObjectAttribute->attribute( "data_text" );
