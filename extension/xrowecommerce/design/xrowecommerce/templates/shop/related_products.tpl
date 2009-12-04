@@ -1,4 +1,5 @@
 {def $related_purchase=fetch( 'shop', 'related_purchase', hash( 'contentobject_id', $node.object.id, 'limit', 4 ) )}
+{if $node.children_count|gt('0')}
 <div class="related-xrow-products">
     <div class="horizontally_listed_sub_items">
         <h2>{'People who bought this also bought'|i18n( 'extension/xrowecommerce' )}</h2>
@@ -30,4 +31,5 @@
         </div>
     </div>
 </div>
+{/if}
 {undef $related_purchase}
