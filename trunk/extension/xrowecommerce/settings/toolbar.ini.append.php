@@ -12,8 +12,10 @@ parent_node=Item source
 
 [Tool_popular_tags]
 parent_node=2
+limit=10
 
 [Tool_popular_tags_description]
 parent_node=Item source
+limit=Limit
 
 */ ?>

@@ -10,11 +10,11 @@
 			</div>
 			<div class="attribute-tagcloud">
 				{if $current_node.object.class_identifier|eq('xrow_product_category')}
-				    {eztagcloud( hash( 'parent_node_id', $current_node.node_id ))}
+				    {eztagcloud( hash( 'parent_node_id', $current_node.node_id, limit, $limit, sort_by, "count" ))}
 				{elseif $current_node.object.class_identifier|eq('xrow_product')}
-				    {eztagcloud( hash( 'parent_node_id', $current_node.parent.node_id ))}
+				    {eztagcloud( hash( 'parent_node_id', $current_node.parent.node_id, limit, $limit, sort_by, "count" ))}
 				{else}
-				    {eztagcloud( hash( 'parent_node_id', $node.node_id ))}
+				    {eztagcloud( hash( 'parent_node_id', $node.node_id, limit, $limit, sort_by, 'count'))}
 				{/if}
 			</div>
 		</div>
