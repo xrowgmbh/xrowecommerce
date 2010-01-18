@@ -100,5 +100,13 @@ StatusTypeList[]
 # StatusDisallowList-1000[]=2
 #
 
+[ExportSettings]
+# Activate all Marketplaces you wnt todo exports to
+# ActivePlugins[]=xrowGoogleExport
+ActivePlugins[]
+
+GoogleFileName=google_ger_DE.xml
+GoogleFTPUsername=
+GoogleFTPPassword=
 
 * */ ?>
