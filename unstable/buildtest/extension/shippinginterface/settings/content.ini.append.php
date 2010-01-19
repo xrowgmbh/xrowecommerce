@@ -1,0 +1,2 @@
+[DataTypeSettings]
+ExtensionDirectories[]=shippinginterface

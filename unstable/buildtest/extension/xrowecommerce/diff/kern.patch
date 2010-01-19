@@ -1,0 +1,402 @@
+Index: classes/ezorder.php
+===================================================================
+--- classes/ezorder.php	(revision 21982)
++++ classes/ezorder.php	(working copy)
+@@ -308,33 +308,41 @@
+      \static
+      \return the number of active orders
+     */
+-    static function orderStatistics( $year = false, $month = false )
++    static function orderStatistics( $year = false, $startMonth = false, $stopMonth = false, $startDay = false, $stopDay = false )
+     {
+         if ( $year == false )
+         {
+             $startDate = 0;
+             $stopDate = mktime( 0, 0, 0, 12, 31, 2037 );
+         }
+-        else if ( $year != false and $month == false )
++        else if ( $year != false and $startMonth == false and $startDay == false and $stopDay == false )
+         {
+             $nextYear = $year + 1;
+             $startDate = mktime( 0, 0, 0, 1, 1, $year );
+             $stopDate = mktime( 0, 0, 0, 1, 1, $nextYear );
+         }
+-        else if ( $year != false and $month != false )
++        else if ( $year != false and $startMonth != false and $startDay == false and $stopDay == false )
+         {
+-            $nextMonth = $month + 1;
+-            $startDate = mktime( 0, 0, 0, $month, 1, $year );
++            $nextMonth = $startMonth + 1;
++            $startDate = mktime( 0, 0, 0, $startMonth, 1, $year );
+             $stopDate = mktime( 23, 59, 59, $nextMonth, 0, $year );
+         }
++        else if ( $year != false and $startMonth != false and $startDay != false and $stopDay != false )
++        {
++            $startDate = mktime( 0, 0, 0, $startMonth, $startDay, $year );
++            $stopDate = mktime( 23, 59, 59, $stopMonth, $stopDay, $year );
++        }
+ 
+         $db = eZDB::instance();
+-        $productArray = $db->arrayQuery(  "SELECT ezproductcollection_item.*,  ignore_vat, ezorder.created, currency_code FROM ezorder, ezproductcollection_item, ezproductcollection
++        $productArray = $db->arrayQuery(  "SELECT ezproductcollection_item.*, ignore_vat, ezorder.created, ezorder_item.price as order_shipping_price, currency_code FROM ezorder, ezorder_item, ezproductcollection_item, ezproductcollection
+                                                 WHERE ezproductcollection.id=ezproductcollection_item.productcollection_id
++                                                  AND ezorder_item.order_id = ezorder.id
+                                                   AND ezproductcollection_item.productcollection_id=ezorder.productcollection_id
+                                                   AND is_temporary='0'
+                                                   AND ezorder.created >= '$startDate' AND ezorder.created < '$stopDate'
+                                              ORDER BY contentobject_id, currency_code" );
++        $shippingSumSQL = "SELECT sum(ezorder_item.price) as order_shipping_price FROM ezorder, ezorder_item WHERE ezorder_item.order_id = ezorder.id AND ezorder.is_temporary = 0 AND ezorder.created >= '$startDate' AND ezorder.created < '$stopDate'";
++        $shippingSum = $db->arrayQuery( $shippingSumSQL );
+         $currentContentObjectID = 0;
+         $productItemArray = array();
+         $statisticArray = array();
+@@ -379,12 +387,14 @@
+             {
+                 $productInfo[$currencyCode] = array( 'sum_count' => 0,
+                                                      'sum_ex_vat' => 0,
+-                                                     'sum_inc_vat' => 0 );
++                                                     'sum_inc_vat' => 0,
++                                                     'sum_shipping' => 0 );
+             }
+             if ( !isset( $totalSumInfo[$currencyCode] ) )
+             {
+                 $totalSumInfo[$currencyCode] = array( 'sum_ex_vat' => 0,
+-                                                      'sum_inc_vat' => 0 );
++                                                      'sum_inc_vat' => 0,
++                                                      'sum_shipping' => 0 );
+             }
+ 
+             if ( !isset( $totalSumIncVAT[$currencyCode] ) )
+@@ -393,6 +403,9 @@
+             if ( !isset( $totalSumExVAT[$currencyCode] ) )
+                 $totalSumExVAT[$currencyCode] = 0;
+ 
++            if ( !isset( $totalSumShipping[$currencyCode] ) )
++                $totalSumShipping[$currencyCode] = 0;
++
+             if ( $productItem['ignore_vat']== true )
+             {
+                 $vatValue = 0;
+@@ -435,6 +448,9 @@
+             $productInfo[$currencyCode]['sum_ex_vat'] += $totalPriceExVAT;
+             $productInfo[$currencyCode]['sum_inc_vat'] += $totalPriceIncVAT;
+         }
++        $shippingSumNumeric = $shippingSum;
++        $shippingSumNumeric = $shippingSumNumeric[0]['order_shipping_price'];
++        $totalSumInfo[$currencyCode]['sum_shipping'] = $shippingSumNumeric;
+ 
+         // add last product info
+         if ( $productCount != 0 )
+@@ -562,7 +578,8 @@
+             {
+                 $productInfo[$currencyCode] = array( 'sum_count' => 0,
+                                                      'sum_ex_vat' => 0,
+-                                                     'sum_inc_vat' => 0 );
++                                                     'sum_inc_vat' => 0,
++                                                     'sum_shipping' => 0  );
+             }
+ 
+             if ( $productItem['ignore_vat'] == true )
+@@ -602,6 +619,11 @@
+             $productInfo[$currencyCode]['sum_count'] += $count;
+             $productInfo[$currencyCode]['sum_ex_vat'] += $totalPriceExVAT;
+             $productInfo[$currencyCode]['sum_inc_vat'] += $totalPriceIncVAT;
++            $totalShippingPrice = $productItem['order_shipping_price'];
++            $totalShippingPriceNumeric = $count * $totalShippingPrice * ( 100 - $discountPercent ) / 100;
++            $totalShippingPriceRound = round( $totalShippingPriceNumeric, 2 );
++            $totalSumInfo[$currencyCode]['sum_shipping'] += $totalShippingPriceRound;
++            $productInfo[$currencyCode]['sum_shipping'] += 1; //$totalShippingPriceRound;
+         }
+         if ( count( $productArray ) != 0 )
+         {
+@@ -732,7 +754,8 @@
+             {
+                 $ordersInfo[$currencyCode] = array( 'order_count' => 0,
+                                                     'sum_ex_vat' => 0,
+-                                                    'sum_inc_vat' => 0 );
++                                                    'sum_inc_vat' => 0,
++                                                    'sum_shipping' => 0 );
+             }
+ 
+             if (  $currentOrderID != $orderID )
+Index: classes/ezorderitem.php
+===================================================================
+--- classes/ezorderitem.php	(revision 21609)
++++ classes/ezorderitem.php	(working copy)
+@@ -73,7 +73,7 @@
+                                                            'default' => 0,
+                                                            'required' => true ),
+                                          'vat_value' => array( 'name' => 'VATValue',
+-                                                               'datatype' => 'integer',
++                                                               'datatype' => 'float',
+                                                                'default' => 0,
+                                                                'required' => true ),
+                                          'is_vat_inc' => array( 'name' => 'IsVATIncluded',
+@@ -101,7 +101,7 @@
+                                                     null,
+                                                     $asObject );
+     }
+-
++    
+     static function fetchListByType( $orderID, $itemType, $asObject = true )
+     {
+         return eZPersistentObject::fetchObjectList( eZOrderItem::definition(),
+@@ -112,6 +112,11 @@
+                                                     $asObject );
+ 
+     }
++    
++    function removeItem( $id )
++    {
++        return eZPersistentObject::removeObject( eZOrderItem::definition(), array( "id" => $id ) );
++    }
+ 
+     function vatValue()
+     {
+Index: classes/ezvattype.php
+===================================================================
+--- classes/ezvattype.php	(revision 21609)
++++ classes/ezvattype.php	(working copy)
+@@ -246,7 +246,7 @@
+             foreach ( $rows as $row )
+             {
+                 list( $oldVatType, $vatExInc ) = explode( ',', $row['data_text'], 2 );
+-                $updateQuery = "UPDATE ezcontentobject_attribute " .
++                $epdateQuery = "UPDATE ezcontentobject_attribute " .
+                                "SET data_text = '" . $row['default_vat'] . ",$vatExInc' " .
+                                "WHERE id=" . $row['id'];
+                 $db->query( $updateQuery );
+Index: shop/basket.php
+===================================================================
+--- shop/basket.php	(revision 21609)
++++ shop/basket.php	(working copy)
+@@ -49,6 +49,21 @@
+ {
+     $objectID = $http->postVariable( "ContentObjectID" );
+ 
++    # ADDED by patch, xrow GmbH
++    if ( $http->hasPostVariable( "ProductItemCountList" ) )
++    {
++    	$quantity = $http->postVariable( "ProductItemCountList" );
++    	if ($quantity <= "0")
++    		{
++    			$quantity ="1";
++    		}
++    }
++    else
++    {
++    	$quantity = "1";
++    }
++    # ADDED by patch, xrow GmbH
++    
+     if ( $http->hasPostVariable( 'eZOption' ) )
+         $optionList = $http->postVariable( 'eZOption' );
+     else
+@@ -57,7 +72,9 @@
+     $http->setSessionVariable( "FromPage", $_SERVER['HTTP_REFERER'] );
+     $http->setSessionVariable( "AddToBasket_OptionList_" . $objectID, $optionList );
+ 
+-    $module->redirectTo( "/shop/add/" . $objectID );
++    # ADDED by patch, xrow GmbH
++    $module->redirectTo( "/shop/add/" . $objectID . "/" . $quantity );
++    # ADDED by patch, xrow GmbH
+     return;
+ }
+ 
+@@ -211,6 +228,19 @@
+     if ( $http->hasPostVariable( "ProductItemIDList" ) )
+     {
+         $itemCountList = $http->postVariable( "ProductItemCountList" );
++        # ADDED by patch, xrow GmbH
++        $counteditems=0;
++        foreach ($itemCountList as $itemCount)
++        {
++            $counteditems = $counteditems + $itemCount;
++        }
++        $zeroproduct = false;
++        if ( $counteditems == 0 )
++        {
++            $zeroproduct = true;
++            return $module->redirectTo( $module->functionURI( "basket" ) . "/" );
++        }
++        # ADDED by patch, xrow GmbH        
+         $itemIDList = $http->postVariable( "ProductItemIDList" );
+ 
+         if ( is_array( $itemCountList ) && is_array( $itemIDList ) && count( $itemCountList ) == count( $itemIDList ) && is_object( $basket ) )
+Index: shop/ezshopoperationcollection.php
+===================================================================
+--- shop/ezshopoperationcollection.php	(revision 21609)
++++ shop/ezshopoperationcollection.php	(working copy)
+@@ -325,10 +325,14 @@
+     /*!
+      Operation entry: Adds the object \a $objectID with options \a $optionList to the current basket.
+     */
+-    function addToBasket( $objectID, $optionList )
+-    {
+-        //include_once( 'kernel/shop/classes/ezshopfunctions.php' );
+-
++    
++# ADDED by patch, xrow GmbH
++    function addToBasket( $objectID, $optionList, $quantity )
++     {
++         //include_once( 'kernel/shop/classes/ezshopfunctions.php' );
++		$http =& eZHTTPTool::instance();
++		$countitem=$quantity;
++# ADDED by patch, xrow GmbH		
+         $object = eZContentObject::fetch( $objectID );
+         $nodeID = $object->attribute( 'main_node_id' );
+         $price = 0.0;
+@@ -460,7 +464,10 @@
+             {
+                 /* If found in the basket, just increment number of that items: */
+                 $item = eZProductCollectionItem::fetch( $itemID );
+-                $item->setAttribute( 'item_count', 1 + $item->attribute( 'item_count' ) );
++                # ADDED by patch, xrow GmbH
++                #$item->setAttribute( 'item_count', 1 + $item->attribute( 'item_count' ) );
++                $item->setAttribute( 'item_count', $countitem + $item->attribute( 'item_count' ) );
++                # ADDED by patch, xrow GmbH
+                 $item->store();
+             }
+             else
+@@ -469,7 +476,9 @@
+ 
+                 $item->setAttribute( 'name', $object->attribute( 'name' ) );
+                 $item->setAttribute( "contentobject_id", $objectID );
+-                $item->setAttribute( "item_count", 1 );
++                # ADDED by patch, xrow GmbH
++                #$item->setAttribute( "item_count", 1 );
++                $item->setAttribute( "item_count", $countitem );
+                 $item->setAttribute( "price", $price );
+                 if ( $priceObj->attribute( 'is_vat_included' ) )
+                 {
+Index: shop/module.php
+===================================================================
+--- shop/module.php	(revision 21609)
++++ shop/module.php	(working copy)
+@@ -34,7 +34,7 @@
+     "functions" => array( 'buy' ),
+     "script" => "add.php",
+     "default_navigation_part" => 'ezshopnavigationpart',
+-    "params" => array( "ObjectID" ) );
++    "params" => array( "ObjectID", "Quantity" ) );
+ 
+ $ViewList["orderview"] = array(
+     "functions" => array( 'buy' ),
+@@ -135,7 +135,7 @@
+     "functions" => array( 'administrate' ),
+     "script" => "orderstatistics.php",
+     "default_navigation_part" => 'ezshopnavigationpart',
+-    "params" => array( 'Year', 'Month' ) );
++    "params" => array( 'StartYear', 'StartMonth', 'StopMonth', 'StartDay', 'StopDay' ) );
+ 
+ $ViewList["confirmorder"] = array(
+     "functions" => array( 'buy' ),
+Index: shop/operation_definition.php
+===================================================================
+--- shop/operation_definition.php	(revision 21609)
++++ shop/operation_definition.php	(working copy)
+@@ -42,6 +42,9 @@
+                                                               array( 'name' => 'option_list',
+                                                                      'type' => 'array',
+                                                                      'required' => true ),
++                                                              array( 'name' => 'quantity',
++                                                                     'type' => 'integer',
++                                                                     'required' => false ),
+                                                               array( 'name' => 'basket_id',
+                                                                      'type' => 'integer',
+                                                                      'required' => true ) ),
+Index: shop/orderstatistics.php
+===================================================================
+--- shop/orderstatistics.php	(revision 21609)
++++ shop/orderstatistics.php	(working copy)
+@@ -36,26 +36,57 @@
+ //include_once( 'lib/ezlocale/classes/ezdate.php' );
+ 
+ $module = $Params['Module'];
+-$year = $Params['Year'];
+-$month = $Params['Month'];
+-
++# ADDED by patch, xrow GmbH
++#$year = $Params['Year'];
++#$month = $Params['Month'];
++$year = $Params['StartYear'];
++$startMonth = $Params['StartMonth'];
++$stopMonth = $Params['StopMonth'];
++$startDay = $Params['StartDay'];
++$stopDay = $Params['StopDay'];
++# ADDED by patch, xrow GmbH
+ $http = eZHTTPTool::instance();
+-if ( $http->hasPostVariable( "Year" ) )
++#if ( $http->hasPostVariable( "Year" ) )
++if ( $http->hasPostVariable( "StartYear" ) )
+ {
+-    $year = $http->postVariable( "Year" );
++    #$year = $http->postVariable( "Year" );
++    $year = $http->postVariable( "StartYear" );
++    if ( $year == '0' )
++    {   $currentDate = new eZDate();
++        $year = $currentDate->attribute( 'year' );
++    }
+ }
+ 
+-if ( $http->hasPostVariable( "Month" ) )
++#if ( $http->hasPostVariable( "Month" ) )
++if ( $http->hasPostVariable( "StartMonth" ) )
+ {
+-    $month = $http->postVariable( "Month" );
++    #$month = $http->postVariable( "Month" );
++    $startMonth = $http->postVariable( "StartMonth" );
+ }
+ 
++if ( $http->hasPostVariable( "StopMonth" ) )
++{
++    $stopMonth = $http->postVariable( "StopMonth" );
++}
++
++if ( $http->hasPostVariable( "StartDay" ) )
++{
++    $startDay = $http->postVariable( "StartDay" );
++}
++
++if ( $http->hasPostVariable( "StopDay" ) )
++{
++    $stopDay = $http->postVariable( "StopDay" );
++}
++
+ if ( $http->hasPostVariable( "View" ) )
+ {
+-    $module->redirectTo( "/shop/statistics/" . $year . '/' . $month );
++    #$module->redirectTo( "/shop/statistics/" . $year . '/' . $month );
++    $module->redirectTo( "/shop/statistics/" . $year . '/' . $startMonth . '/' . $stopMonth . '/' . $startDay . '/' . $stopDay );
+ }
+ 
+-$statisticArray = eZOrder::orderStatistics( $year, $month );
++#$statisticArray = eZOrder::orderStatistics( $year, $month );
++$statisticArray =& eZOrder::orderStatistics( $year, $startMonth, $stopMonth, $startDay, $stopDay );
+ $yearList = array();
+ $currentDate = new eZDate();
+ $currentYear = $currentDate->attribute( 'year' );
+@@ -70,12 +101,22 @@
+ {
+     $monthList[] = array( 'value' => $monthIndex, 'name' => $locale->longMonthName( $monthIndex ) );
+ }
++$dayList = array();
++for ( $dayIndex = 1; $dayIndex <= 31; $dayIndex++ )
++{
++    $dayList[] = array( 'value' => $dayIndex, 'name' => $dayIndex );
++}
+ 
+ $tpl = templateInit();
+ $tpl->setVariable( "year", $year );
+-$tpl->setVariable( "month", $month );
++#$tpl->setVariable( "month", $month );
++$tpl->setVariable( "startMonth", $startMonth );
++$tpl->setVariable( "stopMonth", $stopMonth );
+ $tpl->setVariable( "year_list", $yearList );
+ $tpl->setVariable( "month_list", $monthList );
++$tpl->setVariable( "day_list", $dayList );
++$tpl->setVariable( "startDay", $startDay );
++$tpl->setVariable( "stopDay", $stopDay );
+ $tpl->setVariable( "statistic_result", $statisticArray );
+ 
+ $path = array();
