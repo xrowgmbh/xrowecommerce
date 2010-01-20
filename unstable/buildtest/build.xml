@@ -111,7 +111,7 @@
     </target>
 	
 	<!-- creates all the tarballs for packages -->
-    <target name="deploy" depends="init">
+    <target name="deploy">
         <scp trust="yes" todir="${scp}/${xrowecommerce.version.alias}/${xrowecommerce.version.alias}.${xrowecommerce.version.release}">
             <fileset dir="${xrowecommerce.build.dir}">
                 <include name="*.ezpkg"/>
