@@ -99,18 +99,6 @@
                    value="${external.dependancy.ezwebin.properties.file.name}"/>
         </antcall>
 
-        <!-- eZJSCore -->
-        <antcall target="-build-external">
-            <param name="external.dependancy.build.file.url"
-                   value="${external.dependancy.ezjscore.svn.trunk.build.file.url}"/>
-
-            <param name="external.dependancy.properties.file.url"
-                   value="${external.dependancy.ezjscore.properties.file.url}"/>
-
-            <param name="external.dependancy.properties.file.name"
-                   value="${external.dependancy.ezjscore.properties.file.name}"/>
-        </antcall>
-
     </target>
 
     <!-- Meta target, calls build and dist -->
@@ -119,7 +107,6 @@
     <!-- creates all the tarballs for packages -->
     <target name="dist">
         <antcall target="create-package-tarball"><param name="package.name" value="xrowecommerce_extension"/></antcall>
-		<antcall target="create-package-tarball"><param name="package.name" value="ezjscore_extension"/></antcall>
 		<antcall target="create-package-tarball"><param name="package.name" value="xrowecommerce_site"/></antcall>
     </target>
 
