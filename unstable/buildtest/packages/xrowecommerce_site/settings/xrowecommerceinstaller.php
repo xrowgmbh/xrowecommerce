@@ -26,27 +26,27 @@
 // ## END COPYRIGHT, LICENSE AND WARRANTY NOTICE ##
 //
 
-class eZWebinInstaller extends eZSiteInstaller
+class xrowecommerceInstaller extends eZSiteInstaller
 {
     const MAJOR_VERSION = 1.5;
     const MINOR_VERSION = 0;
 
-    function eZWebinInstaller( $parameters = false )
+    function xrowecommerceInstaller( $parameters = false )
     {
         eZSiteInstaller::eZSiteInstaller( $parameters );
     }
 
     function &instance( $params )
     {
-        $impl = & $GLOBALS["eZWebinInstallerGlobalInstance"];
-        if ( get_class( $impl ) != "ezwebininstaller" )
-            $impl = new eZWebinInstaller( $params );
+        $impl = & $GLOBALS["xrowecommerceInstallerGlobalInstance"];
+        if ( get_class( $impl ) != "xrowecommerceInstaller" )
+            $impl = new xrowecommerceInstaller( $params );
         return $impl;
     }
 
     function resetGlobals()
     {
-        unset( $GLOBALS["eZWebinInstallerGlobalInstance"] );
+        unset( $GLOBALS["xrowecommerceInstallerGlobalInstance"] );
     }
 
     function initSettings( $parameters )
