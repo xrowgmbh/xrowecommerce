@@ -87,7 +87,18 @@
 
     <!-- building eZWebsiteToolbar as a dependency -->
     <target name="build-externals">
- 
+         <!-- eZWebin-->
+        <antcall target="-build-external">
+            <param name="external.dependancy.build.file.url"
+                   value="${external.dependancy.ezwebin.svn.trunk.build.file.url}"/>
+
+            <param name="external.dependancy.properties.file.url"
+                   value="${external.dependancy.ezwebin.properties.file.url}"/>
+
+            <param name="external.dependancy.properties.file.name"
+                   value="${external.dependancy.ezwebin.properties.file.name}"/>
+        </antcall>
+
         <!-- eZJSCore -->
         <antcall target="-build-external">
             <param name="external.dependancy.build.file.url"
