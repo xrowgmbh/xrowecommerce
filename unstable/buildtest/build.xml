@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
-<project name="eZWebin" default="all">
+<project name="xrowecommerce" default="all">
 
-    <description>eZWebin packages build file</description>
+    <description>xrowecommerce packages build file</description>
 
     <mkdir dir="build"/>
 
@@ -22,8 +22,8 @@
     <!-- static properties -->
     <!-- ================= -->
 
-    <property name="ezwebin.build.dir" location="build"/>
-    <property file="./ant/ezwebin.properties"/>
+    <property name="xrowecommerce.build.dir" location="build"/>
+    <property file="./ant/xrowecommerce.properties"/>
 
     <!-- ======================== -->
     <!-- end of static properties -->
@@ -34,16 +34,16 @@
     <!-- ============================= -->
 
     <!-- Shows the list of properties used for building this extension -->
-    <!-- Anytime the ezwebin.properties file is update, this target must  -->
+    <!-- Anytime the xrowecommerce.properties file is update, this target must  -->
     <!-- me update as well                                             -->
     <target name="infos">
-        <echo message="EZWEBIN BUILD INFORMATIONS"/>
+        <echo message="xrowecommerce BUILD INFORMATIONS"/>
         <echo message="--------------------------"/>
-        <echo message="ezwebin.version.major          : ${ezwebin.version.major}"/>
-        <echo message="ezwebin.version.minor          : ${ezwebin.version.minor}"/>
-        <echo message="ezwebin.version.release        : ${ezwebin.version.release}"/>
-        <echo message="ezwebin.version.alias          : ${ezwebin.version.alias}"/>
-        <echo message="ezwebin.svn.trunk.packages.url : ${ezwebin.svn.trunk.packages.url}"/>
+        <echo message="xrowecommerce.version.major          : ${xrowecommerce.version.major}"/>
+        <echo message="xrowecommerce.version.minor          : ${xrowecommerce.version.minor}"/>
+        <echo message="xrowecommerce.version.release        : ${xrowecommerce.version.release}"/>
+        <echo message="xrowecommerce.version.alias          : ${xrowecommerce.version.alias}"/>
+        <echo message="xrowecommerce.svn.trunk.packages.url : ${xrowecommerce.svn.trunk.packages.url}"/>
         <echo message="php.cli.executable.path        : ${php.cli.executable.path}"/>
         <echo message="ezp.version.major              : ${ezp.version.major}"/>
         <echo message="ezp.version.minor              : ${ezp.version.minor}"/>
@@ -57,7 +57,7 @@
     <!-- any real task is done                                   -->
     <target name="warning" depends="infos">
         <echo message="Please check informations defined above are correct"/>
-        <echo message="If not feel free to update the ant/ezwebin.properties file"/>
+        <echo message="If not feel free to update the ant/xrowecommerce.properties file"/>
         <echo message="This script will wait for 5 seconds before it starts"/>
 
         <sleep seconds="5"/>
@@ -68,16 +68,16 @@
     <target name="init" depends="warning">
         <exec executable="svn" failonerror="true">
             <arg value="export"/>
-            <arg value="${ezwebin.svn.trunk.packages.url}"/>
-            <arg value="${ezwebin.build.dir}/packages"/>
+            <arg value="${xrowecommerce.svn.trunk.packages.url}"/>
+            <arg value="${xrowecommerce.build.dir}/packages"/>
         </exec>
     </target>
 
     <!-- builds the extension -->
     <target name="build" depends="init">
         <antcall target="run-ezpxmlfilelist-php">
-            <param name="extension.name"       value="ezwebin_extension"/>
-            <param name="extension.short.name" value="ezwebin"/>
+            <param name="extension.name"       value="xrowecommerce_extension"/>
+            <param name="extension.short.name" value="xrowecommerce"/>
         </antcall>
 
         <antcall target="update-package-xml"/>
@@ -87,18 +87,7 @@
 
     <!-- building eZWebsiteToolbar as a dependency -->
     <target name="build-externals">
-        <!-- eZWebsiteToolbar -->
-        <antcall target="-build-external">
-            <param name="external.dependancy.build.file.url"
-                   value="${external.dependancy.ezwt.svn.trunk.build.file.url}"/>
-
-            <param name="external.dependancy.properties.file.url"
-                   value="${external.dependancy.ezwt.properties.file.url}"/>
-
-            <param name="external.dependancy.properties.file.name"
-                   value="${external.dependancy.ezwt.properties.file.name}"/>
-        </antcall>
-
+ 
         <!-- eZJSCore -->
         <antcall target="-build-external">
             <param name="external.dependancy.build.file.url"
@@ -111,30 +100,6 @@
                    value="${external.dependancy.ezjscore.properties.file.name}"/>
         </antcall>
 
-        <!-- eZGmapLocation -->
-        <antcall target="-build-external">
-            <param name="external.dependancy.build.file.url"
-                   value="${external.dependancy.ezgmaplocation.svn.trunk.build.file.url}"/>
-
-            <param name="external.dependancy.properties.file.url"
-                   value="${external.dependancy.ezgmaplocation.properties.file.url}"/>
-
-            <param name="external.dependancy.properties.file.name"
-                   value="${external.dependancy.ezgmaplocation.properties.file.name}"/>
-        </antcall>
-
-        <!-- eZStarrating -->
-        <antcall target="-build-external">
-            <param name="external.dependancy.build.file.url"
-                   value="${external.dependancy.ezstarrating.svn.trunk.build.file.url}"/>
-
-            <param name="external.dependancy.properties.file.url"
-                   value="${external.dependancy.ezstarrating.properties.file.url}"/>
-
-            <param name="external.dependancy.properties.file.name"
-                   value="${external.dependancy.ezstarrating.properties.file.name}"/>
-        </antcall>
-
     </target>
 
     <!-- Meta target, calls build and dist -->
@@ -142,29 +107,20 @@
 
     <!-- creates all the tarballs for packages -->
     <target name="dist">
-        <antcall target="create-package-tarball"><param name="package.name" value="ezwebin_banners"/></antcall>
-        <antcall target="create-package-tarball"><param name="package.name" value="ezwebin_classes"/></antcall>
-        <antcall target="create-package-tarball"><param name="package.name" value="ezwebin_democontent"/></antcall>
-        <antcall target="create-package-tarball"><param name="package.name" value="ezwebin_democontent_clean"/></antcall>
-        <antcall target="create-package-tarball"><param name="package.name" value="ezwebin_design_blue"/></antcall>
-        <antcall target="create-package-tarball"><param name="package.name" value="ezwebin_design_gray"/></antcall>
-        <antcall target="create-package-tarball"><param name="package.name" value="ezwebin_design_cleangray"/></antcall>
-        <antcall target="create-package-tarball"><param name="package.name" value="ezwebin_extension"/></antcall>
-        <antcall target="create-package-tarball"><param name="package.name" value="ezwebin_site"/></antcall>
-        <antcall target="create-package-tarball"><param name="package.name" value="ezwebin_site_clean"/></antcall>
+        <antcall target="create-package-tarball"><param name="package.name" value="xrowecommerce_extension"/></antcall>
     </target>
 
     <!-- Cleans the generated tarball by dist-->
     <target name="distclean">
         <delete includeemptydirs="true">
-            <fileset dir="${ezwebin.build.dir}" includes="**/*.ezpkg"/>
+            <fileset dir="${xrowecommerce.build.dir}" includes="**/*.ezpkg"/>
         </delete>
     </target>
 
     <!-- Purge everything in the build directory -->
     <!-- Also remove the build directory         -->
     <target name="cleanall" depends="distclean">
-        <delete dir="${ezwebin.build.dir}"/>
+        <delete dir="${xrowecommerce.build.dir}"/>
     </target>
 
     <!-- ==================================== -->
@@ -182,35 +138,35 @@
         <replaceregexp byline="true" flags="m">
             <regexp pattern='^(    \074version\076)(.*)(\074/version\076)$'/>
             <substitution expression='\1${ezp.version.alias}.${ezp.version.release}\3'/>
-            <fileset dir="${ezwebin.build.dir}" includes="**/*package.xml"/>
+            <fileset dir="${xrowecommerce.build.dir}" includes="**/*package.xml"/>
         </replaceregexp>
 
         <!-- <named-version>xxx</named-version> -->
         <replaceregexp byline="true" flags="m">
             <regexp pattern='^(    \074named-version\076)(.*)(\074/named-version\076)$'/>
             <substitution expression='\1${ezp.version.alias}\3'/>
-            <fileset dir="${ezwebin.build.dir}" includes="**/*package.xml"/>
+            <fileset dir="${xrowecommerce.build.dir}" includes="**/*package.xml"/>
         </replaceregexp>
 
         <!-- <package version="zzzz" -->
         <replaceregexp byline="true">
             <regexp pattern='^(\074package version=")(.*)(")$'/>
-            <substitution expression='\1${ezwebin.version.major}.${ezwebin.version.minor}-${ezwebin.version.release}\3'/>
-            <fileset dir="${ezwebin.build.dir}" includes="**/*package.xml"/>
+            <substitution expression='\1${xrowecommerce.version.major}.${xrowecommerce.version.minor}-${xrowecommerce.version.release}\3'/>
+            <fileset dir="${xrowecommerce.build.dir}" includes="**/*package.xml"/>
         </replaceregexp>
 
         <!-- <number>xxxx</number> -->
         <replaceregexp byline="true">
             <regexp pattern='^(    \074number\076)(.*)(\074/number\076)$'/>
-            <substitution expression='\1${ezwebin.version.alias}\3'/>
-            <fileset dir="${ezwebin.build.dir}" includes="**/*package.xml"/>
+            <substitution expression='\1${xrowecommerce.version.alias}\3'/>
+            <fileset dir="${xrowecommerce.build.dir}" includes="**/*package.xml"/>
         </replaceregexp>
 
         <!-- <release>yyy</release> -->
         <replaceregexp byline="true">
             <regexp pattern='^(    \074release\076)(.*)(\074/release\076)$'/>
-            <substitution expression='\1${ezwebin.version.release}\3'/>
-            <fileset dir="${ezwebin.build.dir}" includes="**/*package.xml"/>
+            <substitution expression='\1${xrowecommerce.version.release}\3'/>
+            <fileset dir="${xrowecommerce.build.dir}" includes="**/*package.xml"/>
         </replaceregexp>
 
     </target>
@@ -221,8 +177,8 @@
 
         <replaceregexp byline="true" flags="i">
             <regexp pattern="^([\s]+\047version\047[\s]+=>[\s]+\047)(.*)(\047,)$"/>
-            <substitution expression='\1${ezwebin.version.alias}-${ezwebin.version.release}\3'/>
-            <fileset dir="${ezwebin.build.dir}" includes="**/*ezinfo.php"/>
+            <substitution expression='\1${xrowecommerce.version.alias}-${xrowecommerce.version.release}\3'/>
+            <fileset dir="${xrowecommerce.build.dir}" includes="**/*ezinfo.php"/>
         </replaceregexp>
     </target>
 
@@ -235,8 +191,8 @@
         <!-- SOFTWARE RELEASE -->
         <replaceregexp byline="true">
             <regexp pattern="// SOFTWARE RELEASE: (.*)"/>
-            <substitution expression="// SOFTWARE RELEASE: ${ezwebin.version.alias}-${ezwebin.version.release}"/>
-            <fileset dir="${ezwebin.build.dir}">
+            <substitution expression="// SOFTWARE RELEASE: ${xrowecommerce.version.alias}-${xrowecommerce.version.release}"/>
+            <fileset dir="${xrowecommerce.build.dir}">
                 <include name="**/*.php"/>
             </fileset>
         </replaceregexp>
@@ -245,7 +201,7 @@
         <replaceregexp byline="true">
             <regexp pattern="// COPYRIGHT NOTICE: Copyright \(C\) 1999-[\d]{4} eZ Systems AS"/>
             <substitution expression="// COPYRIGHT NOTICE: Copyright (C) 1999-${date.current.year} eZ Systems AS"/>
-            <fileset dir="${ezwebin.build.dir}">
+            <fileset dir="${xrowecommerce.build.dir}">
                 <include name="**/*.php"/>
             </fileset>
         </replaceregexp>
@@ -257,10 +213,10 @@
         <exec executable="${php.cli.executable.path}" failonerror="true">
             <arg value="./bin/ezpxmlextfilelist.php"/>
             <arg value="-e"/>
-            <arg value="${ezwebin.build.dir}/packages/${extension.name}/ezextension/${extension.short.name}"/>
+            <arg value="${xrowecommerce.build.dir}/packages/${extension.name}/ezextension/${extension.short.name}"/>
             <arg value="-n"/>
             <arg value="${extension.short.name}"/>
-            <redirector output="${ezwebin.build.dir}/packages/${extension.name}/ezextension/extension-${extension.short.name}.xml" append="false"/>
+            <redirector output="${xrowecommerce.build.dir}/packages/${extension.name}/ezextension/extension-${extension.short.name}.xml" append="false"/>
         </exec>
     </target>
 
@@ -270,13 +226,13 @@
         <!-- Switched to the system tar command                             -->
         <!-- Ref : https://issues.apache.org/bugzilla/show_bug.cgi?id=47653 -->
         <exec executable="./ant/createzpkg.sh">
-            <arg value="${ezwebin.build.dir}/packages/${package.name}"/>
-            <arg value="${ezwebin.build.dir}/${package.name}"/>
+            <arg value="${xrowecommerce.build.dir}/packages/${package.name}"/>
+            <arg value="${xrowecommerce.build.dir}/${package.name}"/>
         </exec>
     </target>
 
     <target name="-build-external">
-        <delete dir="${ezwebin.build.dir}/packages"/>
+        <delete dir="${xrowecommerce.build.dir}/packages"/>
 
         <get src="${external.dependancy.build.file.url}"
              dest="externalbuild.xml"/>
