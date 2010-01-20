@@ -110,11 +110,12 @@
 		<antcall target="create-package-tarball"><param name="package.name" value="xrowecommerce_site"/></antcall>
     </target>
 	
-	    <!-- creates all the tarballs for packages -->
+	<!-- creates all the tarballs for packages -->
     <target name="deploy">
-        <scp todir="${scp}">
+        <scp todir="${scp}/${xrowecommerce.version.alias}/${xrowecommerce.version.alias}.${xrowecommerce.version.release}">
             <fileset dir="${xrowecommerce.build.dir}">
                 <include name="*.ezpkg"/>
+				<include name="index.xml"/>
            </fileset>
         </scp>
     </target>
