@@ -248,19 +248,19 @@
         <delete dir="${xrowecommerce.build.dir}/packages"/>
 
         <get src="${external.dependancy.build.file.url}"
-             dest="externalbuild.xml"/>
+             dest="xrowecommerce-externalbuild.xml"/>
 
         <get src="${external.dependancy.properties.file.url}"
              dest="ant/${external.dependancy.properties.file.name}"/>
 
-        <ant antfile="externalbuild.xml"
+        <ant antfile="xrowecommerce-externalbuild.xml"
              dir="."
              target="all"
              inheritAll="true"/>
 
         <delete file="ant/${external.dependancy.properties.file.name}"/>
 
-        <delete file="externalbuild.xml"/>
+        <delete file="xrowecommerce-externalbuild.xml"/>
     </target>
     <!-- ============================================================= -->
     <!-- end of low level ( private ) targets, for internal usage ONLY -->
