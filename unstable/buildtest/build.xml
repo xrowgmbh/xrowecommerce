@@ -109,6 +109,16 @@
         <antcall target="create-package-tarball"><param name="package.name" value="xrowecommerce_extension"/></antcall>
 		<antcall target="create-package-tarball"><param name="package.name" value="xrowecommerce_site"/></antcall>
     </target>
+	
+	    <!-- creates all the tarballs for packages -->
+    <target name="deploy">
+        <scp todir="${scp}">
+            <fileset dir="${xrowecommerce.build.dir}">
+                <include name="*.ezpkg"/>
+           </fileset>
+        </scp>
+    </target>
+
 
     <!-- Cleans the generated tarball by dist-->
     <target name="distclean">
