@@ -27,6 +27,14 @@ CountryWithStatesList[]
 ShopUserClassList[]=client
 # Please use an override instead
 
+# If an order has this IDs it will be shown in the order statistic
+# If empty, this setting will be ignored
+StatusIncludeArray[]
+
+# If an order has this IDs it will not be shown in the order statistic
+# If empty, this setting will be ignored
+StatusExcludeArray[]
+
 [ShippingSettings]
 #fields can be disabled / enabled in the shipping information
 DisplayFax=enabled
