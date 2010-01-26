@@ -62,13 +62,34 @@ $order_result["time"]["start"] = $start;
 $order_result["time"]["stop_stamp"] = $stopDate;
 $order_result["time"]["stop"] = $stop;
 
+/**
+  * Exclude status from calculation
+  */
+$xINI = eZINI::instance( 'xrowecommerce.ini' );
+$includeArray = $sini->variable( 'Settings', 'StatusIncludeArray' );
+$incSql = "";
+if ( count( $includeArray ) > 0 )
+{
+	$incSql = " AND ezorder.status_id IN ( " . implode( ",", $includeArray ) . " ) ";
+}
+
+$excludeArray = $sini->variable( 'Settings', 'StatusExcludeArray' );
+$exSql = "";
+if ( count( $excludeArray ) > 0 )
+{
+    $exSql = " AND ezorder.status_id NOT IN ( " . implode( ",", $excludeArray ) . " ) ";
+}
+
+
 $db = eZDB::instance();
 $orderArray = $db->arrayQuery(
 "SELECT created, id, order_nr, productcollection_id, data_text_1
 FROM ezorder
 WHERE ezorder.created >= '".$startDate."' AND ezorder.created < '".$stopDate."'
 AND is_temporary = 0
-AND ignore_vat = 0;" );
+AND ignore_vat = 0
+$incSql
+$exSql" );
 // AND status_id = 2
 
     $order_result["price"]["NY"] = 0;
