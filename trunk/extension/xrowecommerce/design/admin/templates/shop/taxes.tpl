@@ -20,11 +20,11 @@
 <br />
 {literal}
 <style type="text/css">
-@media print 
+@media print
 {
   #hidebyprint
-  { 
-    display: none; 
+  {
+    display: none;
   }
 }
 </style>
@@ -102,7 +102,7 @@
     <tr>
         <th style="text-align: right;"><b>{'Order'|i18n( 'extension/xrowecommerce')}</b></th>
         <th style="text-align: right;"><b>{'Date'|i18n( 'extension/xrowecommerce')}</b></th>
-        <th style="text-align: right;"><b>{'State</b></th>
+        <th style="text-align: right;"><b>{'State'|i18n( 'extension/xrowecommerce')}</b></th>
         <th style="text-align: right;"><b>{'Total (inc Tax)'|i18n( 'extension/xrowecommerce')}</b></th>
         <th style="text-align: right;"><b>{'Total (ex Tax)'|i18n( 'extension/xrowecommerce')}</b></th>
         <th style="text-align: right;"><b>{'Total Tax'|i18n( 'extension/xrowecommerce')}</b></th>
@@ -126,7 +126,7 @@
     <tr>
         <td colspan="11"><hr /></td>
     </tr>
-    
+
     {if count($order_array)|gt(0)}
     {def $i=0}
     {def $page_count=1}
@@ -169,7 +169,7 @@
             <tr>
                 <td colspan="11"><hr /></td>
             </tr>
-                    
+
             {/if}
         {/foreach}
     {else}
