@@ -39,8 +39,8 @@
     <li><div><a href={'/shop/currencylist/'|ezurl}>{'Currencies'|i18n( 'design/admin/parts/shop/menu' )}</a></div></li>
     <li><div><a href={'/shop/preferredcurrency/'|ezurl}>{'Preferred currency'|i18n( 'design/admin/parts/shop/menu' )}</a></div></li>
     <li><div><a href={'/shop/productsoverview/'|ezurl}>{'Products overview'|i18n( 'design/admin/parts/shop/menu' )}</a></div></li>
+    <li><div><a href={'/orderedit/taxes/'|ezurl}>{'Order statistics'|i18n( 'design/admin/parts/shop/menu' )}</a></div></li>
 {*
-    <li><div><a href={'/layout/set/print/orderedit/taxes/'|ezurl} target="_blank">{'Order statistics'|i18n( 'design/admin/parts/shop/menu' )}</a></div></li>
     <li><div><a href={'/infocollector/overview'|ezurl}>{'Customer Feedback'|i18n( 'design/admin/parts/shop/menu' )}</a></div></li>
 
     <li><div><a target="_blank" href="https://www.google.com/analytics/home/report?rid=1494281&scid=169400">{'Google Analytics'|i18n( 'design/admin/parts/shop/menu' )}</a></div></li>
