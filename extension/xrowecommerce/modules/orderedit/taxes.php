@@ -66,14 +66,14 @@ $order_result["time"]["stop"] = $stop;
   * Exclude status from calculation
   */
 $xINI = eZINI::instance( 'xrowecommerce.ini' );
-$includeArray = $sini->variable( 'Settings', 'StatusIncludeArray' );
+$includeArray = $xINI->variable( 'Settings', 'StatusIncludeArray' );
 $incSql = "";
 if ( count( $includeArray ) > 0 )
 {
 	$incSql = " AND ezorder.status_id IN ( " . implode( ",", $includeArray ) . " ) ";
 }
 
-$excludeArray = $sini->variable( 'Settings', 'StatusExcludeArray' );
+$excludeArray = $xINI->variable( 'Settings', 'StatusExcludeArray' );
 $exSql = "";
 if ( count( $excludeArray ) > 0 )
 {
