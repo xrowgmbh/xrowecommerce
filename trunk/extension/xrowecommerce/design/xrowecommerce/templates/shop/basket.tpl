@@ -284,7 +284,7 @@
                     <form method="post" action={"user/login"|ezurl}">
                         <div class="wrap">
                             <label for="id1">{"Username"|i18n("extension/xrowecommerce",'Username')}</label><div class="labelbreak"></div>
-                            <input type="text" name="Login" id="id1" value="{$User:login|wash}" tabindex="1" />
+                            <input type="text" name="Login" id="id1" value="" tabindex="1" />
                         </div>
                         <div class="wrap">
                             <label for="id2">{"Password"|i18n("extension/xrowecommerce")}</label><div class="labelbreak"></div>
