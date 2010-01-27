@@ -174,6 +174,8 @@ class xrowecommerceInstaller extends eZSiteInstaller
                 '_function' => 'updateTemplateLookObjectAttributes', 
                 '_params' => array() 
             ), 
+            // @TODO Swap the root node
+            /* 
             array( 
                 '_function' => 'swapNodes', 
                 '_params' => array( 
@@ -184,13 +186,14 @@ class xrowecommerceInstaller extends eZSiteInstaller
                         'name' => "Home" 
                     ) 
                 ) 
-            ), 
+            ),
             array( 
                 '_function' => 'removeContentObject', 
                 '_params' => array( 
                     'name' => 'eZ Publish' 
                 ) 
-            ), 
+            ),
+            */ 
             array( 
                 '_function' => 'removeClassAttribute', 
                 '_params' => array( 
