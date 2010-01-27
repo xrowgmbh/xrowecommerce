@@ -1035,3 +1035,8 @@ table.poll-resultlist
     margin-top: 0.1em;
 	display: none;
 }
+
+.class-poll .total-votes
+{
+    display: none;
+}
