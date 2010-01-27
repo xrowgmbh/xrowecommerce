@@ -28,7 +28,7 @@
 
 class xrowecommerceInstaller extends eZSiteInstaller
 {
-    const MAJOR_VERSION = 1.5;
+    const MAJOR_VERSION = 1.1;
     const MINOR_VERSION = 0;
 
     function xrowecommerceInstaller( $parameters = false )

@@ -35,7 +35,7 @@
 
 function eZSiteINISettings( $parameters )
 {
-    $installer = new eZWebinInstaller( $parameters );
+    $installer = new xrowecommerceInstaller( $parameters );
 
     return $installer->siteINISettings();
 }

@@ -35,7 +35,7 @@
 
 function eZSiteRoles( $parameters )
 {
-    $installer = new eZWebinInstaller( $parameters );
+    $installer = new xrowecommerceInstaller( $parameters );
 
     return $installer->siteRoles();
 }
