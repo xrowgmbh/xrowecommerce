@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package version="3.5.2" development="false" install_type="install">
+  <name>xrowecommerce_content</name>
+  <summary>xrowecommerce content</summary>
+  <type value="contentobject"/>
+  <ezpublish>
+    <version>4.2.1</version>
+    <named-version>4.2</named-version>
+  </ezpublish>
+  <maintainers>
+    <maintainer>
+      <name>Anonymous User</name>
+      <email>nospam@ez.no</email>
+      <role>lead</role>
+    </maintainer>
+  </maintainers>
+  <packaging>
+    <timestamp>1264625714</timestamp>
+    <host>localhost</host>
+  </packaging>
+  <documents>
+    <document mime-type="text/plain" name="LICENCE"/>
+  </documents>
+  <changelog>
+    <entry timestamp="1264625714" person="Anonymous User" email="nospam@ez.no" release="1">
+      <change>Creation of package</change>
+    </entry>
+  </changelog>
+  <simple-files>
+    <simple-file key="e182f07f9bd2a91f4e42e9223182245f" original-path="var/ezwebin_site/storage/images/manufacturer/bakery/635-1-eng-GB/Bakery.jpg" package-path="simplefiles/496089e8.jpg"/>
+    <simple-file key="8a534cba36a723d66c076fb6e945ce78" original-path="var/ezwebin_site/storage/images/manufacturer/drinks/523-8-eng-GB/Drinks.jpg" package-path="simplefiles/0f41fcaa.jpg"/>
+    <simple-file key="b353625df86c02f09c505c83ab40cfc1" original-path="var/ezwebin_site/storage/images/manufacturer/cheese-dairy/526-2-eng-GB/Cheese-Dairy.jpg" package-path="simplefiles/adda382f.jpg"/>
+    <simple-file key="c02393376e42c4615b79231fea4fac15" original-path="var/ezwebin_site/storage/images/manufacturer/fruit-farmers/529-3-eng-GB/Fruit-Farmers.jpg" package-path="simplefiles/2bca4eb9.jpg"/>
+    <simple-file key="8389d387ddcdd29f06ab70f5217c9a7b" original-path="var/ezwebin_site/storage/images/products/food/261-4-eng-GB/Food.jpg" package-path="simplefiles/a9bfa8d3.jpg"/>
+    <simple-file key="91611e245bb91ab2b13cb4b39de1d160" original-path="var/ezwebin_site/storage/images/shop2/food/peach-666-peach-food-fruits/690-2-eng-GB/Peach.jpg" package-path="simplefiles/0d7c3b29.jpg"/>
+    <simple-file key="a46c97e3d44ef22dd1655587d805370f" original-path="var/ezwebin_site/storage/images/shop2/food/apple-12345-food-apple-fruits/274-17-eng-GB/Apple.jpg" package-path="simplefiles/fb99bb79.jpg"/>
+    <simple-file key="8884322e1c9a202c77860bfd044bf9f8" original-path="var/ezwebin_site/storage/images/shop2/food/pear-123456-pear-fruits-food/347-4-eng-GB/Pear.jpg" package-path="simplefiles/6d69c6e1.jpg"/>
+    <simple-file key="e70cdee742636245c0495f12168a50b2" original-path="var/ezwebin_site/storage/images/shop2/food/cheese-456456-cheese-food/536-2-eng-GB/Cheese.jpg" package-path="simplefiles/f24c9502.jpg"/>
+    <simple-file key="2032056ccacfb971cf52f443ab8932cd" original-path="var/ezwebin_site/storage/images/shop2/food/beer-123123-beer-ale-dark-beer-pilsner-drinks-food/553-4-eng-GB/Beer.jpg" package-path="simplefiles/bdef92ce.jpg"/>
+    <simple-file key="1857daf41df6d0b01a84e55a88357471" original-path="var/ezwebin_site/storage/images/shop2/food/bread-89707-bread-food/570-4-eng-GB/Bread.jpg" package-path="simplefiles/4b8de525.jpg"/>
+    <simple-file key="50f1ac688034cbbe211ad832fc021e35" original-path="var/ezwebin_site/storage/images/manufacturer/bakery/635-1-eng-GB/Bakery.jpg" package-path="simplefiles/c059541d.jpg"/>
+    <simple-file key="f3d56d2708a392a256e66c10d323e5f8" original-path="var/ezwebin_site/storage/images/manufacturer/drinks/523-8-eng-GB/Drinks.jpg" package-path="simplefiles/0c6b5e22.jpg"/>
+    <simple-file key="6a794a8df51515504710376639fad39b" original-path="var/ezwebin_site/storage/images/manufacturer/cheese-dairy/526-2-eng-GB/Cheese-Dairy.jpg" package-path="simplefiles/1f8a75f2.jpg"/>
+    <simple-file key="8ab724066bf36b48c6bd190c203153f1" original-path="var/ezwebin_site/storage/images/manufacturer/fruit-farmers/529-3-eng-GB/Fruit-Farmers.jpg" package-path="simplefiles/73c8e118.jpg"/>
+    <simple-file key="1ee0dd68a69fb07366c8c1e65106d9ce" original-path="var/ezwebin_site/storage/images/products/food/261-4-eng-GB/Food.jpg" package-path="simplefiles/49b28f43.jpg"/>
+    <simple-file key="058dcd3d9998c9b8e7f3cfed990e49b2" original-path="var/ezwebin_site/storage/images/shop2/food/peach-666-peach-food-fruits/690-2-eng-GB/Peach.jpg" package-path="simplefiles/66e5a3d2.jpg"/>
+    <simple-file key="169878bba3b62010ade74a93df29d5b2" original-path="var/ezwebin_site/storage/images/shop2/food/apple-12345-food-apple-fruits/274-17-eng-GB/Apple.jpg" package-path="simplefiles/ee99c592.jpg"/>
+    <simple-file key="b7a9e6b2445345f80941c6dca77e927b" original-path="var/ezwebin_site/storage/images/shop2/food/pear-123456-pear-fruits-food/347-4-eng-GB/Pear.jpg" package-path="simplefiles/2d1e33a8.jpg"/>
+    <simple-file key="c9214f05de426af8072a24c93ad6056d" original-path="var/ezwebin_site/storage/images/shop2/food/cheese-456456-cheese-food/536-2-eng-GB/Cheese.jpg" package-path="simplefiles/f2f23b39.jpg"/>
+    <simple-file key="f5fb37d0741466f2543397b5a22e6818" original-path="var/ezwebin_site/storage/images/shop2/food/beer-123123-beer-ale-dark-beer-pilsner-drinks-food/553-4-eng-GB/Beer.jpg" package-path="simplefiles/ff54ced8.jpg"/>
+    <simple-file key="d3b0a5fa8da0304d8069f6c4c3f2c3a9" original-path="var/ezwebin_site/storage/images/shop2/food/bread-89707-bread-food/570-4-eng-GB/Bread.jpg" package-path="simplefiles/e7b45b6f.jpg"/>
+  </simple-files>
+  <version>
+    <number>1.1-0</number>
+    <release>1</release>
+  </version>
+  <licence>GPL</licence>
+  <state>alpha</state>
+  <dependencies>
+    <provides/>
+    <requires/>
+    <obsoletes/>
+    <conflicts/>
+  </dependencies>
+  <install>
+    <item type="ezcontentobject" filename="contentobjects" sub-directory="ezcontentobject"/>
+    <item type="ezcontentobject" filename="contentobjects" sub-directory="ezcontentobject"/>
+  </install>
+  <uninstall>
+    <item type="ezcontentobject" filename="contentobjects" sub-directory="ezcontentobject"/>
+    <item type="ezcontentobject" filename="contentobjects" sub-directory="ezcontentobject"/>
+  </uninstall>
+</package>
