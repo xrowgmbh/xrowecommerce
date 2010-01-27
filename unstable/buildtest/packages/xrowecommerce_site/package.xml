@@ -63,7 +63,7 @@
                min-version="1.0" />
       <require type="ezpackage"
                name="xrowecommerce_extension"
-               min-version="1.5" />
+               min-version="1.1" />
       <require type="ezpackage"
                name="ezwebin_extension"
                min-version="1.5" />
