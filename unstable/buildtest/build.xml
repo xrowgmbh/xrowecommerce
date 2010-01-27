@@ -103,7 +103,10 @@
 
     <!-- Meta target, calls build and dist -->
     <target name="all" depends="build,dist,build-externals"/>
-
+	
+    <!-- Meta target, calls build and dist -->
+    <target name="release" depends="build,dist,build-externals,deploy"/>
+	
     <!-- creates all the tarballs for packages -->
     <target name="dist">
         <antcall target="create-package-tarball"><param name="package.name" value="xrowecommerce_extension"/></antcall>
