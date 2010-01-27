@@ -112,10 +112,24 @@
 	
 	<!-- creates all the tarballs for packages -->
     <target name="deploy">
-        <scp trust="yes" todir="${scp}/${xrowecommerce.version.alias}/${xrowecommerce.version.alias}.${xrowecommerce.version.release}">
+        <sshexec host="${host}" username="${user}" password="${password}" trust="yes" command="mkdir -p ${path}/xrowecommerce/${xrowecommerce.version.alias}/${xrowecommerce.version.alias}.${xrowecommerce.version.release}"/>
+        <scp trust="yes" todir="${user}:${password}@${host}:${path}/xrowecommerce/${xrowecommerce.version.alias}/${xrowecommerce.version.alias}.${xrowecommerce.version.release}">
             <fileset dir="${xrowecommerce.build.dir}">
                 <include name="*.ezpkg"/>
 				<include name="index.xml"/>
+           </fileset>
+           <fileset dir="packages">
+                                <include name="index.xml"/>
+           </fileset>
+        </scp>
+        <sshexec host="${host}" username="${user}" password="${password}" trust="yes" command="mkdir -p ${path}/xrowecommerce/latest"/>
+        <scp trust="yes" todir="${user}:${password}@${host}:${path}/xrowecommerce/latest">
+            <fileset dir="${xrowecommerce.build.dir}">
+                <include name="*.ezpkg"/>
+                                <include name="index.xml"/>
+           </fileset>
+           <fileset dir="packages">
+                                <include name="index.xml"/>
            </fileset>
         </scp>
     </target>
