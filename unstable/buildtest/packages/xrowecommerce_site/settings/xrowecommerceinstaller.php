@@ -4,7 +4,7 @@
 //
 // ## BEGIN COPYRIGHT, LICENSE AND WARRANTY NOTICE ##
 // SOFTWARE NAME: eZ publish
-// SOFTWARE RELEASE: 3.9.x
+// SOFTWARE RELEASE: 1.1-0
 // COPYRIGHT NOTICE: Copyright (C) 1999-2006 eZ systems AS
 // SOFTWARE LICENSE: GNU General Public License v2.0
 // NOTICE: >
@@ -88,7 +88,7 @@ class xrowecommerceInstaller extends eZSiteInstaller
             'ezjscore', 
             'ezstarrating', 
             'ezgmaplocation', 
-            strtolower( $this->solutionName() ) 
+            'xrowecommerce'
         ) );
         $this->addSetting( 'version', $this->solutionVersion() );
         $this->addSetting( 'locales', eZSiteInstaller::getParam( $parameters, 'all_language_codes', array() ) );
@@ -173,9 +173,7 @@ class xrowecommerceInstaller extends eZSiteInstaller
             array( 
                 '_function' => 'updateTemplateLookObjectAttributes', 
                 '_params' => array() 
-            ), 
-            // @TODO Swap the root node
-            /* 
+            ),
             array( 
                 '_function' => 'swapNodes', 
                 '_params' => array( 
@@ -183,7 +181,7 @@ class xrowecommerceInstaller extends eZSiteInstaller
                         'name' => "eZ Publish" 
                     ), 
                     'dst_node' => array( 
-                        'name' => "Home" 
+                        'name' => "Shop" 
                     ) 
                 ) 
             ),
@@ -191,9 +189,8 @@ class xrowecommerceInstaller extends eZSiteInstaller
                 '_function' => 'removeContentObject', 
                 '_params' => array( 
                     'name' => 'eZ Publish' 
-                ) 
+                )
             ),
-            */ 
             array( 
                 '_function' => 'removeClassAttribute', 
                 '_params' => array( 
@@ -1313,6 +1310,7 @@ class xrowecommerceInstaller extends eZSiteInstaller
         $datatypeRepositories = $contentINI->variable( 'DataTypeSettings', 'ExtensionDirectories' );
         $datatypeRepositories[] = 'ezstarrating';
         $datatypeRepositories[] = 'ezgmaplocation';
+        $datatypeRepositories[] = 'xrowecommerce';
         $contentINI->setVariables( array( 
             'DataTypeSettings' => array( 
                 'ExtensionDirectories' => $datatypeRepositories 
@@ -1321,6 +1319,13 @@ class xrowecommerceInstaller extends eZSiteInstaller
         $availableDatatype = $contentINI->variable( 'DataTypeSettings', 'AvailableDataTypes' );
         $availableDatatype[] = 'ezsrrating';
         $availableDatatype[] = 'ezgmaplocation';
+        $availableDatatype[] = 'xrowtin';
+        $availableDatatype[] = 'xrowproductvariation';
+        $availableDatatype[] = 'ezcoupon';
+        $availableDatatype[] = 'ezcreditcard';
+        $availableDatatype[] = 'xrowbillingcycle';
+        $availableDatatype[] = 'ezcoupon';
+
         $contentINI->setVariables( array( 
             'DataTypeSettings' => array( 
                 'AvailableDataTypes' => $availableDatatype 
@@ -1526,7 +1531,7 @@ class xrowecommerceInstaller extends eZSiteInstaller
 
     function solutionName()
     {
-        return 'eZWebin';
+        return 'xrow E-Commerce';
     }
 
     function createTranslationSiteAccesses()
