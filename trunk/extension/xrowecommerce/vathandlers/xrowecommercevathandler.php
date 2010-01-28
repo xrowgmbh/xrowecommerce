@@ -22,18 +22,29 @@ class xrowECommerceVATHandler
         $percentage = 0;
         $http = eZHTTPTool::instance();
         $orderID = $http->sessionVariable( 'MyTemporaryOrderID' );
-        
+        $user = eZUser::currentUser();
         if ( $orderID > 0 )
+        {
             $order = eZOrder::fetch( $orderID );
+            if ( $order instanceof eZOrder and $order->attribute( 'data_text_1' ) === '' )
+            {
+            	$order = false;
+            }
+        }
         else
+        {
             $order = false;
-            
+        }
         if ( $order instanceof eZOrder )
         {
             $xmlDoc = $order->attribute( 'data_text_1' );
             eZDebug::writeDebug( $xmlDoc );
             $xml = simplexml_load_string( $xmlDoc );
-            if ( $xml instanceof SimpleXMLElement )
+            if ( $xmlDoc === '' )
+            {
+            	
+            }
+            elseif ( $xml instanceof SimpleXMLElement )
             {
                 if ( (int)$xml->{'shipping'} )
                     $use_shipping_address = (int)$xml->{'shipping'};
@@ -69,8 +80,7 @@ class xrowECommerceVATHandler
             	eZDebug::writeError( 'XML is broken', 'xrowECommerceVATHandler' );
             }
         }
-        $user = eZUser::currentUser();
-        if ( $order === false and ! $user->isAnonymous() )
+        elseif ( $order === false and ! $user->isAnonymous() )
         {
             $object = $user->attribute( 'contentobject' );
             $country = eZVATManager::getUserCountry( $user, false );
@@ -84,7 +94,7 @@ class xrowECommerceVATHandler
                 }
             }
         }
-        if ( $order === false and $user->isAnonymous() )
+        elseif ( $order === false and $user->isAnonymous() )
         {
             $country = eZShopFunctions::getPreferredUserCountry();
             $percentage = xrowECommerceVATHandler::getTAX( $country, false, false );
