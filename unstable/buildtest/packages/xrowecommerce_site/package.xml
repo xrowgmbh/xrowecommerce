@@ -4,8 +4,8 @@
          is_active="true"
          install_type="import">
   <name>xrowecommerce_site</name>
-  <summary>Website Interface</summary>
-  <description>Website Interface is a web based CMS solution based on eZ Publish. It contains templates and settings that meets the most common requirements for content management systems.</description>
+  <summary>xrow E-Commerce</summary>
+  <description>xrow E-Commerce is a web based e-commerce solution based on eZ Publish. It contains templates and settings that meets the most common requirements for an enterprise e-commerce website.</description>
   <vendor>eZ systems</vendor>
   <type value="site" />
   <ezpublish>
@@ -58,6 +58,21 @@
   <dependencies>
     <provides />
     <requires>
+	  <require type="ezpackage"
+               name="ezwebin_classes"
+               min-version="1.5" />
+	  <require type="ezpackage"
+               name="xrowecommerce_classes"
+               min-version="1.1" />
+	  <require type="ezpackage"
+               name="xrowecommerce_content"
+               min-version="1.1" />
+	  <require type="ezpackage"
+               name="ezwt_extension"
+               min-version="1.0" />
+			         <require type="ezpackage"
+               name="ezstarrating_extension"
+               min-version="1.0" />
       <require type="ezpackage"
                name="ezjscore_extension"
                min-version="1.0" />
