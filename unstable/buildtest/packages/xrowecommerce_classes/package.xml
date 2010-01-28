@@ -15,14 +15,14 @@
     </maintainer>
   </maintainers>
   <packaging>
-    <timestamp>1264625705</timestamp>
+    <timestamp>1264684975</timestamp>
     <host>localhost</host>
   </packaging>
   <documents>
     <document mime-type="text/plain" name="LICENCE"/>
   </documents>
   <changelog>
-    <entry timestamp="1264625705" person="Anonymous User" email="nospam@ez.no" release="1">
+    <entry timestamp="1264684975" person="Anonymous User" email="nospam@ez.no" release="1">
       <change>Creation of package</change>
     </entry>
   </changelog>
@@ -40,6 +40,7 @@
       <provide type="ezcontentclass" name="contentclass" value="xrow_product"/>
       <provide type="ezcontentclass" name="contentclass" value="manufacturer"/>
       <provide type="ezcontentclass" name="contentclass" value="coupon"/>
+      <provide type="ezcontentclass" name="contentclass" value="client"/>
     </provides>
     <requires/>
     <obsoletes/>
@@ -51,6 +52,7 @@
     <item type="ezcontentclass" filename="class-xrow_product" sub-directory="ezcontentclass"/>
     <item type="ezcontentclass" filename="class-manufacturer" sub-directory="ezcontentclass"/>
     <item type="ezcontentclass" filename="class-coupon" sub-directory="ezcontentclass"/>
+    <item type="ezcontentclass" filename="class-client" sub-directory="ezcontentclass"/>
   </install>
   <uninstall>
     <item type="ezcontentclass" filename="class-xrow_product_category" sub-directory="ezcontentclass"/>
@@ -58,5 +60,6 @@
     <item type="ezcontentclass" filename="class-xrow_product" sub-directory="ezcontentclass"/>
     <item type="ezcontentclass" filename="class-manufacturer" sub-directory="ezcontentclass"/>
     <item type="ezcontentclass" filename="class-coupon" sub-directory="ezcontentclass"/>
+    <item type="ezcontentclass" filename="class-client" sub-directory="ezcontentclass"/>
   </uninstall>
 </package>

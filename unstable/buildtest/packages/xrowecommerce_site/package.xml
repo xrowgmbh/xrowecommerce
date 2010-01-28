@@ -85,6 +85,10 @@
 	  <require type="ezpackage"
                name="xrowecommerce_content"
                min-version="1.1" />
+	  <require type="ezpackage"
+               name="ezwebin_design_blue"
+               min-version="1.5" />
+
     </requires>
     <obsoletes />
     <conflicts />

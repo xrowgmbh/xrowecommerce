@@ -72,6 +72,9 @@ class xrowecommerceInstaller extends eZSiteInstaller
             eZDebug::writeError( "Object of class $classIdentifier does not exist." );
             return;
         }
+        $this->addSetting( 'client_class_id', eZContentClass::fetchByIdentifier( 'client' )->ID );
+        $this->addSetting( 'poll_node_id', eZSiteInstaller::getParam( $parameters, 'node_remote_map/8efd19acb6c4c39aab775cd25d286df7', '' ) );
+        
         $templateLookObject = $objects[0];
         $this->Settings['template_look_object'] = $templateLookObject;
         $this->Settings['template_look_object_id'] = $templateLookObject->attribute( 'id' );
@@ -81,8 +84,8 @@ class xrowecommerceInstaller extends eZSiteInstaller
         $this->addSetting( 'guest_accounts_id', eZSiteInstaller::getParam( $parameters, 'object_remote_map/5f7f0bdb3381d6a461d8c29ff53d908f', '' ) );
         $this->addSetting( 'anonymous_accounts_id', eZSiteInstaller::getParam( $parameters, 'object_remote_map/15b256dbea2ae72418ff5facc999e8f9', '' ) );
         $this->addSetting( 'package_object', eZSiteInstaller::getParam( $parameters, 'package_object', false ) );
-        $this->addSetting( 'design_list', eZSiteInstaller::getParam( $parameters, 'design_list', array() ) );
-        $this->addSetting( 'main_site_design', strtolower( $this->solutionName() ) );
+        $this->addSetting( 'design_list', array( 'ezwebin', 'base' ) );
+        $this->addSetting( 'main_site_design', strtolower( 'xrowecommerce' ) );
         $this->addSetting( 'extension_list', array( 
             'ezwt', 
             'ezjscore', 
@@ -2183,7 +2186,8 @@ class xrowecommerceInstaller extends eZSiteInstaller
             'ActiveExtensions' => $this->setting( 'extension_list' ) 
         );
         $settings['UserSettings'] = array( 
-            'LogoutRedirect' => '/' 
+            'LogoutRedirect' => '/',
+            'UserClassID' => $this->setting( 'client_class_id' )
         );
         $settings['EmbedViewModeSettings'] = array( 
             'AvailableViewModes' => array( 
@@ -2695,14 +2699,26 @@ class xrowecommerceInstaller extends eZSiteInstaller
                 'JavaScriptSettings' => array( 
                     'JavaScriptList' => array( 
                         'insertmedia.js', 
-                        'yui/build/yahoo-dom-event/yahoo-dom-event.js', 
-                        'yui/build/calendar/calendar-min.js', 
-                        'ezdatepicker.js' 
+                        '../lib/yui/2.7.0/build/yahoo-dom-event/yahoo-dom-event.js',
+                        '../lib/yui/2.7.0/build/calendar/calendar-min.js',
+                        '../lib/yui/2.7.0/build/yahoo/yahoo-min.js',
+                        '../lib/yui/3.0/build/yui/yui-min.js', 
+                        '../lib/yui/2.7.0/build/event/event-min.js',
+                        '../lib/yui/2.7.0/build/dom/dom-min.js', 
+                        '../lib/yui/2.7.0/build/container/container-min.js', 
+                        '../lib/yui/2.7.0/build/calendar/calendar-min.js', 
+                        '../lib/yui/2.7.0/build/dragdrop/dragdrop-min.js', 
+                        '../lib/yui/2.7.0/build/logger/logger-min.js', 
+                        'ezdatepicker.js',
+                        'xrowecommerce.js', 
+                        'xrowproductvariation.js'
                     ) 
                 ), 
                 'StylesheetSettings' => array( 
                     'CSSFileList' => array( 
-                        'yui/build/calendar/assets/calendar.css' 
+                        'xrowecommerce.css',
+                        '../lib/yui/2.7.0/build/calendar/assets/calendar.css',
+                        '../lib/yui/2.7.0/build/calendar/assets/skins/sam/calendar-skin.css' 
                     ) 
                 ) 
             ) 
@@ -2792,7 +2808,97 @@ class xrowecommerceInstaller extends eZSiteInstaller
         return array( 
             'name' => 'override.ini', 
             'discard_old_values' => true, 
-            'settings' => array( 
+            'settings' => array(
+               'xrow_client_edit' => array( 
+                    'Source' => 'content/edit.tpl', 
+                    'MatchFile' => 'edit/user.tpl', 
+                    'Subdir' => 'templates', 
+                    'Match' => array( 
+                    'class_identifier' => 'client' 
+                    ) 
+                ),
+               'xrow_manufacturer_full' => array( 
+                    'Source' => 'node/view/full.tpl', 
+                    'MatchFile' => 'full/xrow_manufacturer.tpl', 
+                    'Subdir' => 'templates', 
+                    'Match' => array( 
+                        'class_identifier' => 'manufacturer' 
+                    ) 
+                ),
+               'xrow_manufacturer_line' => array( 
+                    'Source' => 'node/view/line.tpl', 
+                    'MatchFile' => 'line/xrow_manufacturer.tpl', 
+                    'Subdir' => 'templates', 
+                    'Match' => array( 
+                        'class_identifier' => 'manufacturer' 
+                    ) 
+                ),
+               'edit_xrow_product_review' => array( 
+                    'Source' => 'content/edit.tpl', 
+                    'MatchFile' => 'edit/xrow_product_review.tpl', 
+                    'Subdir' => 'templates', 
+                    'Match' => array( 
+                        'class_identifier' => 'xrow_product_review' 
+                    ) 
+                ),
+
+               'line_xrow_product_category' => array( 
+                    'Source' => 'node/view/line.tpl', 
+                    'MatchFile' => 'line/xrow_product_category.tpl', 
+                    'Subdir' => 'templates', 
+                    'Match' => array( 
+                        'class_identifier' => 'xrow_product_category' 
+                    ) 
+                ), 
+        
+               'embed_xrow_product_category' => array( 
+                    'Source' => 'content/view/embed.tpl', 
+                    'MatchFile' => 'full/xrow_product_category.tpl', 
+                    'Subdir' => 'templates', 
+                    'Match' => array( 
+                        'class_identifier' => 'xrow_product_category' 
+                    ) 
+                ), 
+        
+
+               'full_xrow_product_category' => array( 
+                    'Source' => 'node/view/full.tpl', 
+                    'MatchFile' => 'full/xrow_product_category.tpl', 
+                    'Subdir' => 'templates', 
+                    'Match' => array( 
+                        'class_identifier' => 'xrow_product_category' 
+                    ) 
+                ), 
+
+               'full_xrow_product' => array( 
+                    'Source' => 'node/view/full.tpl', 
+                    'MatchFile' => 'full/xrow_product.tpl', 
+                    'Subdir' => 'templates', 
+                    'Match' => array( 
+                        'class_identifier' => 'xrow_product' 
+                    ) 
+                ), 
+        
+               'embed_xrow_product' => array( 
+                    'Source' => 'content/view/embed.tpl', 
+                    'MatchFile' => 'embed/xrow_product.tpl', 
+                    'Subdir' => 'templates', 
+                    'Match' => array( 
+                        'class_identifier' => 'xrow_product' 
+                    ) 
+                ), 
+        
+               'line_xrow_product' => array( 
+                    'Source' => 'node/view/line.tpl', 
+                    'MatchFile' => 'line/xrow_product.tpl', 
+                    'Subdir' => 'templates', 
+                    'Match' => array( 
+                        'class_identifier' => 'xrow_product' 
+                    ) 
+                ), 
+                
+        //START WEBIN
+        
                 'full_article' => array( 
                     'Source' => 'node/view/full.tpl', 
                     'MatchFile' => 'full/article.tpl', 
@@ -3644,7 +3750,10 @@ class xrowecommerceInstaller extends eZSiteInstaller
             'settings' => array( 
                 'Toolbar_right' => array( 
                     'Tool' => array( 
-                        'node_list' 
+                        'basket', 
+                        'popular_tags', 
+                        'node_list', 
+                        'poll'
                     ) 
                 ), 
                 'Toolbar_top' => array( 
@@ -3655,12 +3764,15 @@ class xrowecommerceInstaller extends eZSiteInstaller
                 ), 
                 'Toolbar_bottom' => array( 
                     'Tool' => array() 
-                ), 
-                'Tool_right_node_list_1' => array( 
+                ),
+                'Tool_right_poll_4' => array( 
+                    'parent_node' => $this->setting( 'poll_node_id' )
+                ),
+                'Tool_right_node_list_3' => array( 
                     'parent_node' => '2', 
-                    'title' => 'Latest', 
-                    'show_subtree' => '', 
-                    'limit' => 5 
+                    'title' => 'Newest Products', 
+                    'treelist_check' => 'no', 
+                    'limit' => 3 
                 ) 
             ) 
         );
