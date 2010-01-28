@@ -180,7 +180,8 @@
                                     {def $price = $product_item.price_ex_vat}
                                 {/if}
                                 {$price|l10n( 'currency', $locale, $symbol )}
-                                {undef $discount $price}
+                                {if is_set($discount)}{undef $discount}{/if}
+                                {if is_set($price)}{undef $price}{/if}
                             </td>
                 
                             <td class="basketspace totalprice">
