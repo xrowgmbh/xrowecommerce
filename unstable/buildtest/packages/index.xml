@@ -8,7 +8,8 @@
   <package name="xrowecommerce_extension" version="1.1-0" type="extension" summary="ezjscore extension" description="xrowecommerce extension" url="http://packages.xrow.com/xrowecommerce/latest/xrowecommerce_extension.ezpkg" thumbnail_url="http://packages.xrow.com/xrowecommerce/latest/thumbnails/xrowecommerce_extension.png"/>
   <package name="ezwebin_classes" version="1.5-0" type="contentclass" summary="ezwebin content classes" description="" url="http://packages.xrow.com/xrowecommerce/latest/ezwebin_classes.ezpkg" thumbnail_url="http://packages.xrow.com/xrowecommerce/latest/thumbnails/ezwebin_classes.png"/>
   <package name="xrowecommerce_classes" version="1.1-0" type="contentclass" summary="xrowecommerce content classes" description="" url="http://packages.xrow.com/xrowecommerce/latest/xrowecommerce_classes.ezpkg" thumbnail_url="http://packages.xrow.com/xrowecommerce/latest/thumbnails/ezwebin_classes.png"/>
-  <package name="xrowecommerce_content" version="1.1-0" type="contentobject" summary="xrowecommerce content" description="" url="http://packages.xrow.com/xrowecommerce/latest/xrowecommerce_content.ezpkg" thumbnail_url="http://packages.xrow.com/xrowecommerce/latestthumbnails/ezwebin_democontent.png"/>
+  <package name="xrowecommerce_content" version="1.1-0" type="contentobject" summary="xrowecommerce content" description="" url="http://packages.xrow.com/xrowecommerce/latest/xrowecommerce_content.ezpkg" thumbnail_url="http://packages.xrow.com/xrowecommerce/latest/thumbnails/ezwebin_democontent.png"/>
+  <package name="ezwebin_design_blue" version="1.5-0" type="sitestyle" summary="eZ Publish Website Interface design (blue)" description="This site style package contains the design for the Website Interface" url="http://packages.xrow.com/xrowecommerce/latest/ezwebin_design_blue.ezpkg" thumbnail_url="http://packages.xrow.com/xrowecommerce/latest/thumbnails/ezwebin_design.png"/>
   <package name="xrowecommerce_site" version="1.1-0" type="site" summary="xrow ecommerce" description="xrow E-Commerce is a web based e-commerce solution based on eZ Publish. It contains templates and settings that meets the most common requirements for an enterprise e-commerce website." url="http://packages.xrow.com/xrowecommerce/latest/xrowecommerce_site.ezpkg" thumbnail_url="http://packages.xrow.com/xrowecommerce/latest/thumbnails/xrowecommerce_site.png">
     <requires>
 	  <require name="ezgmaplocation_extension" min-version="1.0" url="http://packages.xrow.com/xrowecommerce/latest/ezgmaplocation_extension.ezpkg"/>
@@ -20,6 +21,7 @@
 	  <require name="ezwebin_classes" min-version="1.5" url="http://packages.xrow.com/xrowecommerce/latest/ezwebin_classes.ezpkg"/>
 	  <require name="xrowecommerce_classes" min-version="1.1" url="http://packages.xrow.com/xrowecommerce/latest/xrowecommerce_classes.ezpkg"/>
 	  <require name="xrowecommerce_content" min-version="1.1" url="http://packages.xrow.com/xrowecommerce/latest/xrowecommerce_content.ezpkg"/>
+	  <require name="ezwebin_design_blue" min-version="1.5" url="http://packages.xrow.com/xrowecommerce/latest/ezwebin_design_blue.ezpkg"/>
     </requires>
   </package>
 </packages>
