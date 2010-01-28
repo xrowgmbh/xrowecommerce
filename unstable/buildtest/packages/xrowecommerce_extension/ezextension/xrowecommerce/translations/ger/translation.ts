@@ -27,12 +27,12 @@
     </message>
     <message>
       <source>Discounts</source>
-      <translation>Rabatte</translation>
+      <translation>Skonti</translation>
       
     </message>
     <message>
       <source>Orders</source>
-      <translation>Bestellungen</translation>
+      <translation>Aufträge</translation>
       
     </message>
     <message>
@@ -42,7 +42,7 @@
     </message>
     <message>
       <source>Order status</source>
-      <translation>Bestellstatus</translation>
+      <translation>Auftragsstatus</translation>
       
     </message>
     <message>
@@ -52,12 +52,12 @@
     </message>
     <message>
       <source>VAT types</source>
-      <translation>Mehrwertsteuerarten</translation>
+      <translation>Mehrwertsteuer</translation>
       
     </message>
     <message>
       <source>VAT rules</source>
-      <translation>Mehrwertsteuerregeln</translation>
+      <translation>Mehrwertsteueregeln</translation>
       
     </message>
     <message>
@@ -77,12 +77,12 @@
     </message>
     <message>
       <source>Products overview</source>
-      <translation>Produktübersicht</translation>
+      <translation>Produktüberblick</translation>
       
     </message>
     <message>
       <source>Order statistics</source>
-      <translation>Bestellstatistiken</translation>
+      <translation>Auftragsstatistiken</translation>
       
     </message>
     <message>
@@ -112,17 +112,17 @@
     </message>
     <message>
       <source>Recurring order forecast</source>
-      <translation>Forecast: Wiederkehrende Bestellungen</translation>
+      <translation>Voraussichtlich wiederkehrende Aufträge</translation>
       
     </message>
     <message>
       <source>Recurring order history</source>
-      <translation>Chronik: Wiederkehrende Bestellungen</translation>
+      <translation>Chronik wiederkehrender Aufträge</translation>
       
     </message>
     <message>
       <source>Product variation setup</source>
-      <translation>Einrichtung der Produktvarianten</translation>
+      <translation>Produktvarianten-Setup</translation>
       
     </message>
     <message>
@@ -137,12 +137,22 @@
     </message>
     <message>
       <source>Price import</source>
-      <translation>Preisimport</translation>
+      <translation>Preis-Import</translation>
       
     </message>
     <message>
       <source>Price export</source>
-      <translation>Preisexport</translation>
+      <translation>Preis-Export</translation>
+      
+    </message>
+    <message>
+      <source>Tax identification numbers</source>
+      <translation>Steueridentifikationsnummern</translation>
+      
+    </message>
+    <message>
+      <source>Tax identification</source>
+      <translation>Steuernummer</translation>
       
     </message>
   </context><context>
@@ -169,7 +179,7 @@
     </message>
     <message>
       <source>Orders [%count]</source>
-      <translation>Bestellungen [%count]</translation>
+      <translation>Aufträge [%count]</translation>
       
     </message>
     <message>
@@ -204,17 +214,12 @@
     </message>
     <message>
       <source>Total (ex. VAT)</source>
-      <translation>Summe (ohne MwSt.)</translation>
+      <translation>Summe (exkl. MwSt.)</translation>
       
     </message>
     <message>
       <source>Total (inc. VAT)</source>
       <translation>Summe (inkl. MwSt.)</translation>
-      
-    </message>
-    <message>
-      <source>Status</source>
-      <translation>Status</translation>
       
     </message>
     <message>
@@ -224,27 +229,27 @@
     </message>
     <message>
       <source>Select order for removal.</source>
-      <translation>Bestellung zum Entfernen auswählen.</translation>
+      <translation>Auftrag zum Entfernen auswählen.</translation>
       
     </message>
     <message>
       <source>( removed )</source>
-      <translation>(entfernt)</translation>
+      <translation>( entfernt )</translation>
       
     </message>
     <message>
       <source>The order list is empty.</source>
-      <translation>Die Bestellliste ist leer.</translation>
+      <translation>Die Auftragsliste ist leer.</translation>
       
     </message>
     <message>
       <source>Archive selected</source>
-      <translation>Ausgewählte archivieren</translation>
+      <translation>Archiv ausgewählt</translation>
       
     </message>
     <message>
       <source>Archive selected orders.</source>
-      <translation>Ausgewählte Bestellungen archivieren.</translation>
+      <translation>Ausgewählte Aufträge archivieren.</translation>
       
     </message>
     <message>
@@ -254,19 +259,64 @@
     </message>
     <message>
       <source>Click this button to store changes if you have modified any of the fields above.</source>
-      <translation>Klicken Sie diesen Button zum Speichern der Änderungen, wenn Sie eines der obigen Felder verändert haben.</translation>
+      <translation>Klicken Sie diesen Button um Ihre Veränderungen zu speichern, wenn Sie eines der oberen Felder verändert haben.</translation>
       
     </message>
     <message>
       <source>Order statistic</source>
-      <translation>Bestellstatistik</translation>
+      <translation>Auftragsstatistik</translation>
+      
+    </message>
+    <message>
+      <source>Order status</source>
+      <translation>Auftragsstatus</translation>
+      
+    </message>
+    <message>
+      <source>Payment status</source>
+      <translation>Zahlungsstatus</translation>
+      
+    </message>
+    <message>
+      <source>unpaid</source>
+      <translation>unbezahlt</translation>
+      
+    </message>
+    <message>
+      <source>paid</source>
+      <translation>bezahlt</translation>
+      
+    </message>
+    <message>
+      <source>Remove selected</source>
+      <translation>Ausgewählte entfernen</translation>
+      
+    </message>
+    <message>
+      <source>Remove selected orders.</source>
+      <translation>Ausgewählte Aufträge entfernen.</translation>
+      
+    </message>
+    <message>
+      <source>Close</source>
+      <translation>Schließen</translation>
+      
+    </message>
+    <message>
+      <source>Print invoice and packaging slip</source>
+      <translation>Rechnung und Packzettel drucken</translation>
+      
+    </message>
+    <message>
+      <source>Print shipping plan</source>
+      <translation>Versandplan drucken</translation>
       
     </message>
   </context><context>
     <name>design/admin/shop/orderstatistics</name>
     <message>
       <source>Select the year for which you wish to view statistics.</source>
-      <translation>Wählen Sie das Jahr für die anzuzeigende Statistik aus.</translation>
+      <translation>Wählen Sie das erste Jahr für die Statistik aus.</translation>
       
     </message>
     <message>
@@ -276,7 +326,7 @@
     </message>
     <message>
       <source>Select the start month for which you wish to view statistics.</source>
-      <translation>Wählen Sie den Startmonat für die anzuzeigende Statistik aus.</translation>
+      <translation>Wählen Sie den ersten Monat für die Statistik aus.</translation>
       
     </message>
     <message>
@@ -286,7 +336,7 @@
     </message>
     <message>
       <source>Select the start day for which you wish to view statistics.</source>
-      <translation>Wählen Sie den Starttag für die anzuzeigende Statistik aus.</translation>
+      <translation>Wählen Sie den ersten Tag für die Statistik aus.</translation>
       
     </message>
     <message>
@@ -296,7 +346,7 @@
     </message>
     <message>
       <source>Select the year till which you wish to view statistics.</source>
-      <translation>Wählen Sie das letzte Jahr für die anzuzeigende Statistik aus.</translation>
+      <translation>Wählen Sie das letzte Jahr für die Statistik aus.</translation>
       
     </message>
     <message>
@@ -306,17 +356,17 @@
     </message>
     <message>
       <source>Select the stop month for which you wish to view statistics.</source>
-      <translation>Wählen Sie den letzten Monat für die anzuzeigende Statistik aus.</translation>
+      <translation>Wählen Sie den letzten Monat für die Statistik aus.</translation>
       
     </message>
     <message>
       <source>Show</source>
-      <translation>Anzeigen</translation>
+      <translation>Zeigen</translation>
       
     </message>
     <message>
       <source>Update the list using the values specified by the menus on the left.</source>
-      <translation>Aktualisiert die Liste anhand der links eingegebenen Werte.</translation>
+      <translation>Aktualisieren Sie die Liste, die die Werte des linken Menüs enthält.</translation>
       
     </message>
     <message>
@@ -326,7 +376,7 @@
     </message>
     <message>
       <source>Totals</source>
-      <translation>Summen</translation>
+      <translation>Gesamtbeträge</translation>
       
     </message>
     <message>
@@ -336,7 +386,7 @@
     </message>
     <message>
       <source>Products (ex. VAT)</source>
-      <translation>Produkte (ohne MwSt.)</translation>
+      <translation>Produkte (exkl. MwSt.)</translation>
       
     </message>
     <message>
@@ -371,7 +421,7 @@
     </message>
     <message>
       <source>Total (ex. VAT)</source>
-      <translation>Summe (ohne MwSt.)</translation>
+      <translation>Summe (exkl. MwSt.)</translation>
       
     </message>
     <message>
@@ -403,12 +453,12 @@
     </message>
     <message>
       <source>Product items</source>
-      <translation>Artikel</translation>
+      <translation>Produkte</translation>
       
     </message>
     <message>
       <source>Order #%order_id [%order_status]</source>
-      <translation>Auftrag %order_id [%order_status]</translation>
+      <translation>Auftragsnummer #%order_id [%order_status]</translation>
       
     </message>
     <message>
@@ -423,12 +473,12 @@
     </message>
     <message>
       <source>VAT</source>
-      <translation>MwSt</translation>
+      <translation>Mehrwertsteuer</translation>
       
     </message>
     <message>
       <source>Price ex. VAT</source>
-      <translation>Preis ohne MwSt.</translation>
+      <translation>Preis exkl. MwSt.</translation>
       
     </message>
     <message>
@@ -443,7 +493,7 @@
     </message>
     <message>
       <source>Total Price ex. VAT</source>
-      <translation>Gesamtbetrag ohne MwSt.</translation>
+      <translation>Gesamtbetrag exkl. MwSt.</translation>
       
     </message>
     <message>
@@ -463,32 +513,32 @@
     </message>
     <message>
       <source>Order summary</source>
-      <translation>Auftragszusammenfassung</translation>
+      <translation>Auftragsübersicht</translation>
       
     </message>
     <message>
       <source>Subtotal of items</source>
-      <translation>Zwischensumme der Artikel</translation>
+      <translation>Zwischenbetrag der Artikel</translation>
       
     </message>
     <message>
       <source>Order total</source>
-      <translation>Summe Auftragswert</translation>
+      <translation>Auftragswert</translation>
       
     </message>
     <message>
       <source>Remove</source>
-      <translation>Entfernen</translation>
+      <translation>Löschen</translation>
       
     </message>
     <message>
       <source>Remove this order.</source>
-      <translation>Diese Bestellung entfernen.</translation>
+      <translation>Diesen Auftrag entfernen.</translation>
       
     </message>
     <message>
       <source>Status history [%status_count]</source>
-      <translation>Status-Chronik [%status_count]</translation>
+      <translation>Statuschronik [%status_count]</translation>
       
     </message>
     <message>
@@ -508,7 +558,7 @@
     </message>
     <message>
       <source>This is the person which modified the status of the order. Click to view the user information.</source>
-      <translation>Diese Person hat den Status der Bestellung zuletzt geändert. Klicken um die Benutzerinformationen zu sehen.</translation>
+      <translation>Dies ist die Person, die den Status des Auftrags bearbeitet hatte. Klicken Sie hier, um die Benutzerinformationen zu sehen.</translation>
       
     </message>
     <message>
@@ -558,27 +608,27 @@
     </message>
     <message>
       <source>Next Day Service</source>
-      <translation>Lieferung nächster Tag</translation>
+      <translation>Lieferung am nächsten Tag</translation>
       
     </message>
     <message>
       <source>2nd Day Service</source>
-      <translation>Lieferung übernächster Tag</translation>
+      <translation>Lieferung am 2. Tag</translation>
       
     </message>
     <message>
       <source>UPS Ground (USA only)</source>
-      <translation>UPS Boden (nur USA)</translation>
+      <translation>UPS-Einzugsbereich (nur USA)</translation>
       
     </message>
     <message>
       <source>UPS Next Business Day Air (USA only)</source>
-      <translation>UPS nächster Werktag Luftpost (nur USA)</translation>
+      <translation>UPS Lieferung am nächsten Tag per Luftpost (nur USA)</translation>
       
     </message>
     <message>
       <source>UPS 2nd Business Day Air (USA only)</source>
-      <translation>UPS übernächster Werktag Luftpost (nur USA)</translation>
+      <translation>UPS Lieferung in 2 Werktagen per Luftpost (nur USA)</translation>
       
     </message>
     <message>
@@ -588,12 +638,12 @@
     </message>
     <message>
       <source>USPS Global Express Guaranteed</source>
-      <translation>USPS weltweit versicherter Expressversand</translation>
+      <translation>USPS weltweit versicherte Expresslieferung</translation>
       
     </message>
     <message>
       <source>Unknown Shipping</source>
-      <translation>Versandart unbekannt</translation>
+      <translation>Lieferkosten unbekannt</translation>
       
     </message>
     <message>
@@ -601,18 +651,23 @@
       <translation>Lieferung an</translation>
       
     </message>
+    <message>
+      <source>Shipping plan</source>
+      <translation>Versandplan</translation>
+      
+    </message>
   </context><context>
     <name>design/ezwebin/collectedinfo/form</name>
     <message>
       <source>Homepage</source>
-      <translation>Homepage</translation>
+      <translation>Startseite</translation>
       
     </message>
   </context><context>
     <name>design/standard/class/datatype</name>
     <message>
       <source>Select which nodes from which classes can be selected</source>
-      <translation>Legen Sie fest, welche Knoten von welchen Klassen ausgewählt werden können</translation>
+      <translation>Knoten auswählen, von denen Klassen ausgewählt werden können</translation>
       
     </message>
   </context><context>
@@ -624,26 +679,78 @@
     </message>
     <message>
       <source>CSV File for import</source>
-      <translation>CSV-Dateiimport</translation>
+      <translation>CSV-Datei für Import</translation>
+      
+    </message>
+  </context><context>
+    <name>design/standard/shop</name>
+    <message>
+      <source>Order history</source>
+      <translation>Bestellverlauf</translation>
+      
+    </message>
+    <message>
+      <source>Note</source>
+      <translation>Hinweis</translation>
+      
+    </message>
+    <message>
+      <source>The above is information from your last order.</source>
+      <translation>Oben sehen Sie die Informationen Ihres letzten Auftrags.</translation>
+      
+    </message>
+    <message>
+      <source>Order History</source>
+      <translation>Bestellverlauf</translation>
+      
+    </message>
+    <message>
+      <source>Order No</source>
+      <translation>Auftragsnummer</translation>
+      
+    </message>
+    <message>
+      <source>Date</source>
+      <translation>Datum</translation>
+      
+    </message>
+    <message>
+      <source>Status</source>
+      <translation>Status</translation>
+      
+    </message>
+    <message>
+      <source>Total inc. TAX</source>
+      <translation>Summe (inkl. MwSt.)</translation>
+      
+    </message>
+    <message>
+      <source>View</source>
+      <translation>Ansehen</translation>
+      
+    </message>
+    <message>
+      <source>Print</source>
+      <translation>Drucken</translation>
       
     </message>
   </context><context>
     <name>extension/xrowcommerce/productvariation</name>
     <message>
       <source>yes</source>
-      <translation>Ja</translation>
+      <translation>ja</translation>
       
     </message>
     <message>
       <source>no</source>
-      <translation>Nein</translation>
+      <translation>nein</translation>
       
     </message>
   </context><context>
     <name>extension/xrowe"extension/xrowecommerce/design/xrowecommerce/templates/shop/orderemail.tpl"commerce</name>
     <message>
       <source>The details of the order are below.  If you have a question, please do not reply to this email.</source>
-      <translation>Die Auftragsdetails werden unten angezeigt.  Wenn Sie eine Frage haben, senden Sie keine Antwort auf diese E-Mail.</translation>
+      <translation>Anbei die Details Ihres Auftrags.  Wenn Sie eine Frage haben, antworten Sie bitte nicht an diese E-Mail-Adresse.</translation>
       
     </message>
   </context><context>
@@ -655,12 +762,12 @@
     </message>
     <message>
       <source>Please contact customer support. We are blocking your ordering attempts for the next 24 hours.</source>
-      <translation>Bitte benachrichtigen Sie die Kundenbetreuung. Ihre Bestellungen werden für die nächsten 24 Stunden gesperrt.</translation>
+      <translation>Bitte wenden Sie sich an die Kundenbetreuung. Bestellversuche Ihrerseits werden für die nächsten 24 Stunden blockiert.</translation>
       
     </message>
     <message>
       <source>unknown</source>
-      <translation>Unbekannt</translation>
+      <translation>unbekannt</translation>
       
     </message>
     <message>
@@ -670,12 +777,12 @@
     </message>
     <message>
       <source>Order total</source>
-      <translation>Summe Auftragswert</translation>
+      <translation>Auftragswert</translation>
       
     </message>
     <message>
       <source>Subtotal Ex. Tax</source>
-      <translation>Zwischensumme ohne MwSt.</translation>
+      <translation>Zwischensumme exkl. MwSt.</translation>
       
     </message>
     <message>
@@ -696,7 +803,7 @@
     </message>
     <message>
       <source>You have no items in your shopping cart</source>
-      <translation>Ihr Warenkorb ist leer</translation>
+      <translation>Sie haben keine Artikel im Warenkorb</translation>
       
     </message>
     <message>
@@ -706,7 +813,7 @@
     </message>
     <message>
       <source>Billing, Shipping and Coupons</source>
-      <translation>Rechnung, Versand und Coupons</translation>
+      <translation>Rechnung, Versand und Gutscheine</translation>
       
     </message>
     <message>
@@ -736,27 +843,27 @@
     </message>
     <message>
       <source>Sorry, there are no items left in your cart.</source>
-      <translation>Sie haben keine Artikel mehr im Warenkorb.</translation>
+      <translation>Sie haben keine Artikel im Warenkorb.</translation>
       
     </message>
     <message>
       <source>Input did not validate, all fields marked with %mark% must be filled in.</source>
-      <translation>Eingabe ungültig; alle Felder mit %mark% müssen ausgefüllt sein.</translation>
+      <translation>Eingabe ungültig, alle Felder mit %mark% müssen ausgefüllt werden.</translation>
       
     </message>
     <message>
       <source>Select a payment method</source>
-      <translation>Wählen Sie eine Zahlungsart</translation>
+      <translation>Wählen Sie eine Zahlungsmethode</translation>
       
     </message>
     <message>
       <source>Please select your desired payment method below.</source>
-      <translation>Bitte wählen Sie unten die gewünschte Zahlungsart.</translation>
+      <translation>Bitte wählen Sie unten die gewünschte Zahlungsmethode.</translation>
       
     </message>
     <message>
       <source>Select</source>
-      <translation>Auswahl</translation>
+      <translation>Auswählen</translation>
       
     </message>
     <message>
@@ -806,7 +913,7 @@
     </message>
     <message>
       <source>read more</source>
-      <translation>Mehr Infos</translation>
+      <translation>mehr Infos</translation>
       
     </message>
     <message>
@@ -816,7 +923,7 @@
     </message>
     <message>
       <source>Any</source>
-      <translation>Jeder</translation>
+      <translation>Irgendwelche</translation>
       
     </message>
     <message>
@@ -871,7 +978,7 @@
     </message>
     <message>
       <source>City</source>
-      <translation>Stadt</translation>
+      <translation>Ort</translation>
       
     </message>
     <message>
@@ -908,12 +1015,12 @@
     </message>
     <message>
       <source>Order</source>
-      <translation>Bestellen</translation>
+      <translation>Auftrag</translation>
       
     </message>
     <message>
       <source>Product items</source>
-      <translation>Artikel</translation>
+      <translation>Produkte</translation>
       
     </message>
     <message>
@@ -923,7 +1030,7 @@
     </message>
     <message>
       <source>Required field</source>
-      <translation>Pflichtfeld</translation>
+      <translation>Benötigtes Feld</translation>
       
     </message>
     <message>
@@ -938,7 +1045,7 @@
     </message>
     <message>
       <source>MI</source>
-      <translation>MI</translation>
+      <translation>Kürzel</translation>
       
     </message>
     <message>
@@ -998,7 +1105,7 @@
     </message>
     <message>
       <source>Verification</source>
-      <translation>Gültigkeit</translation>
+      <translation>Überprüfung</translation>
       
     </message>
     <message>
@@ -1008,7 +1115,7 @@
     </message>
     <message>
       <source>Enter your username or email address and password below to sign-in.</source>
-      <translation>Geben Sie zum Anmelden Ihren Benutzernamen oder Ihre E-Mail-Adresse zusammen mit Ihrem Kennwort ein.</translation>
+      <translation>Geben Sie Ihren Benutzernamen oder Ihre E-Mail-Adresse zusammen mit Ihrem Kennwort unten ein, um sich anzumelden.</translation>
       
     </message>
     <message>
@@ -1018,17 +1125,17 @@
     </message>
     <message>
       <source>A valid username and password is required to login.</source>
-      <translation>Zum Anmelden ist ein Benutzername und das gültige Kennwort erforderlich.</translation>
+      <translation>Für die Anmeldung wird ein gültiger Benutzername und das Kennwort benötigt.</translation>
       
     </message>
     <message>
       <source>Access not allowed</source>
-      <translation>Zugriff verweigert</translation>
+      <translation>Zugriff nicht erlaubt</translation>
       
     </message>
     <message>
       <source>You are not allowed to access %1.</source>
-      <translation>Sie haben keine Berechtigung für %1.</translation>
+      <translation>Ihnen wurde kein Zugriff auf %1 gewährt.</translation>
       
     </message>
     <message>
@@ -1038,7 +1145,7 @@
     </message>
     <message>
       <source>Forgot your password?</source>
-      <translation>Kennwort vergessen?</translation>
+      <translation>Haben Sie Ihr Kennwort vergessen?</translation>
       
     </message>
     <message>
@@ -1048,7 +1155,7 @@
     </message>
     <message>
       <source>Create an account to save your shipping and billing information.</source>
-      <translation>Erstellen Sie ein Konto um die Rechnungs- und Lieferadresse zu speichern.</translation>
+      <translation>Erstellen Sie ein Konto, um die Rechnungs- und Lieferadresse zu speichern.</translation>
       
     </message>
     <message>
@@ -1059,7 +1166,7 @@
     </message>
     <message>
       <source>Register user</source>
-      <translation>Registrierter Benutzer</translation>
+      <translation>Benutzer registrieren</translation>
       
     </message>
     <message>
@@ -1074,22 +1181,22 @@
     </message>
     <message>
       <source>Confirm Password</source>
-      <translation>Kennwort bestätigen</translation>
+      <translation>Kennwort wiederholen</translation>
       
     </message>
     <message>
       <source>Please enter your billing address exactly as it appears on your credit card statement.</source>
-      <translation>Bitte tragen Sie ihre Rechnungsadresse so ein, wie sie auf Ihrer Kreditkartenabrechung steht.</translation>
+      <translation>Bitte tragen Sie ihre Rechnungsanschrift so ein, wie sie auf Ihrer Kreditkartenabrechung steht.</translation>
       
     </message>
     <message>
       <source>Input did not validate</source>
-      <translation>Eingaben waren nicht korrekt</translation>
+      <translation>Eingabe ungültig</translation>
       
     </message>
     <message>
       <source>Input was stored successfully</source>
-      <translation>Eingaben wurden erfolgreich gespeichert</translation>
+      <translation>Eingabe erfolgreich gespeichert</translation>
       
     </message>
     <message>
@@ -1124,12 +1231,12 @@
     </message>
     <message>
       <source>Number</source>
-      <translation>Anzahl</translation>
+      <translation>Nummer</translation>
       
     </message>
     <message>
       <source>Item</source>
-      <translation>Position</translation>
+      <translation>Artikel</translation>
       
     </message>
     <message>
@@ -1144,7 +1251,7 @@
     </message>
     <message>
       <source>Add to Shopping Cart</source>
-      <translation>In den Warenkorb legen</translation>
+      <translation>Zum Warenkorb hinzufügen</translation>
       
     </message>
     <message>
@@ -1164,7 +1271,7 @@
     </message>
     <message>
       <source>Add to cart</source>
-      <translation>In den Warenkorb legen</translation>
+      <translation>Zum Warenkorb hinzufügen</translation>
       
     </message>
     <message>
@@ -1174,7 +1281,7 @@
     </message>
     <message>
       <source>The following items were removed from your cart, because the products were changed</source>
-      <translation>Die folgenden Artikel wurden aus Ihrem Warenkorb entfernt, da die Produkte geändert wurden</translation>
+      <translation>Die folgenden Artikel wurden aus Ihrem Warenkorb entfernt, da die Produkte verändert wurden</translation>
       
     </message>
     <message>
@@ -1189,12 +1296,12 @@
     </message>
     <message>
       <source>This probably means that some information about you is not yet available and will be obtained during checkout.</source>
-      <translation>Dies bedeutet möglicherweise, dass noch nicht alle Informationen über Sie vorliegen, diese beim Bezahlvorgang jedoch ermittelt werden.</translation>
+      <translation>Dies bedeutet möglicherweise, dass einige Informationen über Sie noch nicht verfügbar sind, aber später während des Bezahlvorgangs abgerufen werden.</translation>
       
     </message>
     <message>
       <source>Attempted to add object without price to basket.</source>
-      <translation>Artikel ohne Preis können nicht in den Warenkorb gelegt werden.</translation>
+      <translation>Sie haben versucht, ein Produkt ohne Preis zum Warenkorb hinzuzufügen.</translation>
       
     </message>
     <message>
@@ -1219,12 +1326,12 @@
     </message>
     <message>
       <source>Remove</source>
-      <translation>Entfernen</translation>
+      <translation>Löschen</translation>
       
     </message>
     <message>
       <source>Total</source>
-      <translation>Total</translation>
+      <translation>Summe</translation>
       
     </message>
     <message>
@@ -1239,7 +1346,7 @@
     </message>
     <message>
       <source>Hazardous item(s) found in your cart.</source>
-      <translation>Ihr Warenkorb enthält Artikel mit Handelsbeschränkungen.</translation>
+      <translation>Gefahrengüter in Ihrem Warenkorb festgestellt.</translation>
       
     </message>
     <message>
@@ -1249,12 +1356,12 @@
     </message>
     <message>
       <source>We've removed the following hazardous items from your shopping cart since we are not allowed to ship these items to your destination. For further questions please contact %companyname%.</source>
-      <translation>Wir haben die folgenden Waren aus Ihren Warenkorb entfernt, da diese Handelsbeschränkungen unterliegen und nicht in das Zielland exportiert werden dürfen. Weitere Informationen erhalten Sie von %companyname%.</translation>
+      <translation>Wir haben folgende verbotene Artikel aus Ihrem Warenkorb entfernt, da es uns nicht gestattet ist, diese Artikel an Ihre Adresse zu senden. Sollten Sie weitere Fragen haben, wenden Sie sich bitte an %companyname%.</translation>
       
     </message>
     <message>
       <source>Subtotal ex. tax</source>
-      <translation>Zwischensumme ohne MwSt.</translation>
+      <translation>Zwischensumme exkl. MwSt.</translation>
       
     </message>
     <message>
@@ -1279,17 +1386,17 @@
     </message>
     <message>
       <source>Validation error</source>
-      <translation>Fehler bei der Gültigkeitsbegriffen</translation>
+      <translation>Fehler bei der Gültigkeitsprüfung</translation>
       
     </message>
     <message>
       <source>Validation errors</source>
-      <translation>Fehler bei der Gültigkeitsüberprüfung</translation>
+      <translation>Fehler bei der Gültigkeitsprüfung</translation>
       
     </message>
     <message>
       <source>A click on the image enlarges the image in a popup</source>
-      <translation>Klicken Sie auf das Bild um es in einem neuen Fenster zu vergrößern</translation>
+      <translation>Klicken Sie auf das Bild, um es in einem neuen Fenster zu vergrößern</translation>
       
     </message>
     <message>
@@ -1299,12 +1406,12 @@
     </message>
     <message>
       <source>Checkout</source>
-      <translation>Bezahlen</translation>
+      <translation>Kasse</translation>
       
     </message>
     <message>
       <source>Use this button to remove items from your shopping cart.</source>
-      <translation>Verwenden Sie diesen Button um Artikel aus Ihrem Warenkorb zu entfernen.</translation>
+      <translation>Benutzen Sie diesen Button, um Artikel aus Ihrem Warenkorb zu entfernen.</translation>
       
     </message>
     <message>
@@ -1334,7 +1441,7 @@
     </message>
     <message>
       <source>on the left to view and order products.</source>
-      <translation>auf der linken Seite um Produkte anzusehen und zu bestellen.</translation>
+      <translation>auf der linken Seite, um Produkte anzusehen und zu bestellen.</translation>
       
     </message>
     <message>
@@ -1349,22 +1456,22 @@
     </message>
     <message>
       <source>Products that match the following properties are listed:</source>
-      <translation>Produkte mit den passenden Eigenschaften wurden aufgelistet:</translation>
+      <translation>Produkte mit den passenden Eigenschaften:</translation>
       
     </message>
     <message>
       <source>no weight attribute in the variations and no general weight</source>
-      <translation>Keine Gewichtsattribute in den Varianten und kein allgemeines Gewicht</translation>
+      <translation>keine Gewichtsattribute in den Varianten und kein allgemeines Gewicht</translation>
       
     </message>
     <message>
       <source>no general weight and zero weight in the variations</source>
-      <translation>Kein allgemeines Gewicht und Gewicht '0' in den Varianten</translation>
+      <translation>kein allgemeines Gewicht und keine Gewichtsangabe in den Varianten</translation>
       
     </message>
     <message>
       <source>Gratulation. No products left anymore.</source>
-      <translation>Herzlichen Glückwunsch. Es sind eine weiteren Produkte vorhanden.</translation>
+      <translation>Gratulation. Keine verbleibenden Produkte.</translation>
       
     </message>
     <message>
@@ -1374,27 +1481,27 @@
     </message>
     <message>
       <source>Multiple occurencies!</source>
-      <translation>Mehrfache Vorkommen!</translation>
+      <translation>Verschiedene Vorfälle!</translation>
       
     </message>
     <message>
       <source>No match</source>
-      <translation>Keine Treffer</translation>
+      <translation>Keine Übereinstimmung</translation>
       
     </message>
     <message>
       <source>Search for customer in the system via e-mail address</source>
-      <translation>Kundensuche im System über E-Mail-Adresse</translation>
+      <translation>Kundensuche im System via E-Mail-Adresse</translation>
       
     </message>
     <message>
       <source>Edit shippingcosts with this order number:</source>
-      <translation>Versandkosten mit dieser Bestellnummer bearbeiten:</translation>
+      <translation>Bearbeite Versandkosten mit dieser Auftragsnummer:</translation>
       
     </message>
     <message>
       <source>E-mail address or Order No</source>
-      <translation>E-Mail-Adresse oder Bestellnummer</translation>
+      <translation>E-Mail-Adresse oder Auftragsnummer</translation>
       
     </message>
     <message>
@@ -1414,22 +1521,22 @@
     </message>
     <message>
       <source>A log of this change will be saved.</source>
-      <translation>Eine Aufzeichnung dieser Änderung wurde gespeichert.</translation>
+      <translation>Eine Aufzeichnung dieser Veränderung wurde gespeichert.</translation>
       
     </message>
     <message>
       <source>A wise decision!</source>
-      <translation>Eine gute Entscheidung!</translation>
+      <translation>Eine weise Entscheidung!</translation>
       
     </message>
     <message>
       <source>order</source>
-      <translation>Bestellung</translation>
+      <translation>Auftrag</translation>
       
     </message>
     <message>
       <source>orders</source>
-      <translation>Bestellungen</translation>
+      <translation>Aufträge</translation>
       
     </message>
     <message>
@@ -1479,7 +1586,7 @@
     </message>
     <message>
       <source>Total (ex Tax)</source>
-      <translation>Summe (ohne MwSt.)</translation>
+      <translation>Summe (exkl. MwSt.)</translation>
       
     </message>
     <message>
@@ -1509,12 +1616,12 @@
     </message>
     <message>
       <source>Sorry, no order in the selected Month to show.</source>
-      <translation>Keine Bestellungen im ausgewählten Monat vorhanden.</translation>
+      <translation>Leider gibt es im ausgewählten Monat keinen Auftrag.</translation>
       
     </message>
     <message>
       <source>Although your Login User Name must be kept the same, you can update your Email Address and/or change your Password by entering new information in the appropriate field.  When complete, click the "Update" button at the bottom of the page.</source>
-      <translation>Obwohl Ihr Benutzername für die Anmeldung gleich bleiben muss, können Sie Ihre E-Mail-Adresse oder Ihr Kennwort ändern, indem Sie die neuen Informationen im entsprechenden Feld eingeben.  Wenn Sie fertig sind, klicken Sie auf den Button "Aktualisieren" unten auf der Seite.</translation>
+      <translation>Obwohl Ihr Benutzername für die Anmeldung gleich bleiben muss, können Sie Ihre E-Mail-Adresse und/oder Ihr Kennwort ändern, indem Sie die neuen Informationen in das entsprechende Feld schreiben.  Klicken Sie auf den Button "Aktualisieren" unten auf der Seite, um die Änderungen zu speichern.</translation>
       
     </message>
     <message>
@@ -1529,7 +1636,7 @@
     </message>
     <message>
       <source>Your credit card information is needed, if you want to make use of our recurring order option.</source>
-      <translation>Wenn Sie die Option "Wiederkehrende Bestellungen" verwenden möchten, brauchen wir Ihre Kreditkarteninformationen.</translation>
+      <translation>Ihre Kreditkarteninformation werden benötigt, wenn Sie die Option "Wiederkehrende Aufträge" nutzen möchten.</translation>
       
     </message>
     <message>
@@ -1539,12 +1646,12 @@
     </message>
     <message>
       <source>Add your selections to</source>
-      <translation>Auswahl hinzufügen zu</translation>
+      <translation>Fügen Sie Ihre Bestellungen der</translation>
       
     </message>
     <message>
       <source>Automatic Delivery</source>
-      <translation>Automatische Abwicklung</translation>
+      <translation>Automatischen Auslieferung</translation>
       
     </message>
     <message>
@@ -1554,12 +1661,12 @@
     </message>
     <message>
       <source>This product is available for</source>
-      <translation>Dieses Produkt ist verfügbar für</translation>
+      <translation>Dieses Produkt ist verfügbar zur</translation>
       
     </message>
     <message>
       <source>To add this product to your Automatic Delivery you have to</source>
-      <translation>Um dieses Produkt zur automatischen Auslieferung hinzuzufügen, müssen Sie sich</translation>
+      <translation>Um dieses Produkt zur automatischen Auslieferung hinzuzufügen, müssen Sie</translation>
       
     </message>
     <message>
@@ -1569,17 +1676,17 @@
     </message>
     <message>
       <source>What is Automatic Delivery?</source>
-      <translation>Was ist die automatische Auslieferung?</translation>
+      <translation>Was ist automatische Auslieferung?</translation>
       
     </message>
     <message>
       <source>By placing your initial Automatic Delivery order and setting up an Automatic Delivery schedule, you authorize us to charge the same credit card for future Automatic Delivery orders until you cancel.</source>
-      <translation>Indem Sie die automatische Auslieferung und einen Auslieferungsplan einrichten, erlauben Sie uns, den erforderlichen Betrag für zukünftige Bestellungen von der gleichen Kreditkarte abzubuchen (lässt sich jederzeit widerrufen).</translation>
+      <translation>Mit dem Einrichten der automatischen Auslieferung und des Auslieferungsplanes erlauben Sie uns, den erforderlichen Betrag für zukünftige Aufträge automatisch abzubuchen.</translation>
       
     </message>
     <message>
       <source>Since the accuracy of your credit card, shipping and billing information is vital to Automatic Delivery, please promptly submit changes through the my account section.</source>
-      <translation>Neben korrekten Kreditkarteninformationen müssen Rechnungs- und Lieferadresse stimmen, damit die automatische Abwicklung reibungslos funktioniert.</translation>
+      <translation>Neben korrekten Kreditkarteninformationen sind außerdem Rechnungs- und Lieferinformationen erforderlich, um die automatische Auslieferung korrekt abzuwickeln. Bitte übermitteln Sie Veränderungen schnellstmöglich über das Profil Ihres Kundenkontos.</translation>
       
     </message>
     <message>
@@ -1599,12 +1706,12 @@
     </message>
     <message>
       <source>Shipped to</source>
-      <translation>Geliefert an</translation>
+      <translation>Ausgeliefert an</translation>
       
     </message>
     <message>
       <source>Payment information</source>
-      <translation>Zahlungsinformationen</translation>
+      <translation>Zahlungsart</translation>
       
     </message>
     <message>
@@ -1624,22 +1731,22 @@
     </message>
     <message>
       <source>Thank you for ordering from</source>
-      <translation>Danke für Ihre Bestellung bei</translation>
+      <translation>Danke für Ihren Auftrag bei</translation>
       
     </message>
     <message>
       <source>Rather, email</source>
-      <translation>Senden Sie eine E-Mail an</translation>
+      <translation>Senden Sie besser eine E-Mail an</translation>
       
     </message>
     <message>
       <source>or call</source>
-      <translation>oder rufen Sie an unter</translation>
+      <translation>oder rufen Sie uns an unter</translation>
       
     </message>
     <message>
       <source>Thank you again, and have a wonderful day!</source>
-      <translation>Vielen Dank für Ihre Bestellung!</translation>
+      <translation>Nochmal vielen Dank und einen schönen Tag!</translation>
       
     </message>
     <message>
@@ -1654,7 +1761,7 @@
     </message>
     <message>
       <source>Contact Us</source>
-      <translation>Kontakt</translation>
+      <translation>Kontaktieren Sie uns</translation>
       
     </message>
     <message>
@@ -1664,7 +1771,7 @@
     </message>
     <message>
       <source>Payment Information</source>
-      <translation>Zahlungsinformationen</translation>
+      <translation>Zahlungsart</translation>
       
     </message>
     <message>
@@ -1674,7 +1781,7 @@
     </message>
     <message>
       <source>There were errors on the form</source>
-      <translation>Es gab Fehler im Formular</translation>
+      <translation>Es gab Fehler im Dokument</translation>
       
     </message>
     <message>
@@ -1694,7 +1801,7 @@
     </message>
     <message>
       <source>Security Number</source>
-      <translation>Sicherheitsschlüssel</translation>
+      <translation>Sicherheitscode</translation>
       
     </message>
     <message>
@@ -1709,7 +1816,7 @@
     </message>
     <message>
       <source>Order Number</source>
-      <translation>Bestellnummer</translation>
+      <translation>Auftragsnummer</translation>
       
     </message>
     <message>
@@ -1724,7 +1831,7 @@
     </message>
     <message>
       <source>This table contains the specific product images, product id's, product names and links to the full view of the product</source>
-      <translation>Diese Tabelle enthält die jeweiligen Produktbilder, Produktnummern, Produktnamen und die Links zur Vollansicht des Produktes</translation>
+      <translation>Diese Tabelle enthält die jeweiligen Produktbilder, Produktnummern, Produktnamen und den Link zur Vollansicht des Produktes</translation>
       
     </message>
     <message>
@@ -1734,17 +1841,17 @@
     </message>
     <message>
       <source>Q: What are the advantages of security code verification?</source>
-      <translation>Frage: Was sind die Vorteile der Prüfung des Sicherheitsschlüssels?</translation>
+      <translation>F: Was sind die Vorteile der Prüfung des Sicherheitscodes?</translation>
       
     </message>
     <message>
       <source>Please enter the last 3 digits of your credit card's security code, which is printed on the back of your card.</source>
-      <translation>Bitte geben Sie die letzten drei Ziffern des Sicherheitsschlüssels ein, der auf der Rückseite Ihrer Kreditkarte aufgedruckt ist.</translation>
+      <translation>Bitte geben Sie die letzten 3 Zeichen des Sicherheitscodes Ihrer Kreditkarte ein, den Sie auf der Rückseite der Karte finden.</translation>
       
     </message>
     <message>
       <source>There are several advantages of security code verification</source>
-      <translation>Es gibt einige Vorzüge bei der Überprüfung des Sicherheitsschlüssels</translation>
+      <translation>Die Überprüfung des Sicherheitscodes hat einige Vorteile</translation>
       
     </message>
     <message>
@@ -1754,22 +1861,22 @@
     </message>
     <message>
       <source>Faster order fullfilment</source>
-      <translation>Schnelleres Ausführen der Bestellung</translation>
+      <translation>Schnellere Erfüllung des Auftrags</translation>
       
     </message>
     <message>
       <source>Deters fraud</source>
-      <translation>Abschrecken von Betrügern</translation>
+      <translation>Betrüger abschrecken</translation>
       
     </message>
     <message>
       <source>Use eZ Publish roles and policies for payment method selection.</source>
-      <translation>Verwenden Sie die Rollen und Richtlinien von eZ Publish für die Auswahl Ihrer Zahlungsart.</translation>
+      <translation>Benutzen Sie eZ Publish-Rollen und Richtlinien für die Auswahl Ihrer Zahlungsmethode.</translation>
       
     </message>
     <message>
       <source>To</source>
-      <translation>Bis</translation>
+      <translation>An</translation>
       
     </message>
     <message>
@@ -1794,7 +1901,7 @@
     </message>
     <message>
       <source>Payment method</source>
-      <translation>Zahlungsart</translation>
+      <translation>Zahlungsmethode</translation>
       
     </message>
     <message>
@@ -1835,22 +1942,22 @@
     </message>
     <message>
       <source>Accept the terms and conditions to continue.</source>
-      <translation>Akzeptieren Sie die allgemeinen Geschäftsbedingungen um fortzufahren.</translation>
+      <translation>Nehmen Sie die allgemeinen Geschäftsbedingungen an, um fortzufahren.</translation>
       
     </message>
     <message>
       <source>Cancel order</source>
-      <translation>Bestellung abbrechen</translation>
+      <translation>Auftrag abbrechen</translation>
       
     </message>
     <message>
       <source>Additional Information</source>
-      <translation>Weitere Informationen</translation>
+      <translation>Zusatzinformationen</translation>
       
     </message>
     <message>
       <source>No partial delivery</source>
-      <translation>Keine Teillieferung</translation>
+      <translation>Keine Teilauslieferung</translation>
       
     </message>
     <message>
@@ -1860,12 +1967,12 @@
     </message>
     <message>
       <source>Continue order</source>
-      <translation>Bestellung fortführen</translation>
+      <translation>Bestellvorgang fortsetzen</translation>
       
     </message>
     <message>
       <source>You do not have permission to use any of the available payment methods.</source>
-      <translation>Sie haben keine Erlaubnis, eine der verfügbaren Zahlungsarten zu verwenden.</translation>
+      <translation>Sie dürfen keine der verfügbaren Zahlungsmethoden verwenden.</translation>
       
     </message>
     <message>
@@ -1880,12 +1987,12 @@
     </message>
     <message>
       <source>Your companies tax ID number is not valid.</source>
-      <translation>Ungültige Steuernummer der Firma.</translation>
+      <translation>Ungültige Steuernummer.</translation>
       
     </message>
     <message>
       <source>Shipping destionation is not allowed.</source>
-      <translation>Der Versand an die Lieferadresse ist nicht erlaubt.</translation>
+      <translation>Der Versand an Ihren Standort ist nicht erlaubt.</translation>
       
     </message>
     <message>
@@ -1895,12 +2002,12 @@
     </message>
     <message>
       <source>Your notes on order</source>
-      <translation>Ihre Anmerkungen zum Auftrag</translation>
+      <translation>Ihre Anmerkung(en) zum Auftrag</translation>
       
     </message>
     <message>
       <source>I have read the %linkstart%general terms and conditions%linkend% and accept them.</source>
-      <translation>Ich habe die %linkstart%Allgemeinen Geschäftsbedingungen%linkend% gelesen und stimme ihnen zu.</translation>
+      <translation>Ich habe die %linkstart%Allgemeinen Geschäftsbedingungen %linkend% gelesen und akzeptiere diese.</translation>
       
     </message>
     <message>
@@ -1915,7 +2022,7 @@
     </message>
     <message>
       <source>Continue shopping</source>
-      <translation>Einkauf fortsetzen</translation>
+      <translation>Weiter einkaufen</translation>
       
     </message>
     <message>
@@ -1925,7 +2032,7 @@
     </message>
     <message>
       <source>Price export</source>
-      <translation>Preisexport</translation>
+      <translation>Preis-Export</translation>
       
     </message>
     <message>
@@ -1935,17 +2042,17 @@
     </message>
     <message>
       <source>Start price export</source>
-      <translation>Preisexport starten</translation>
+      <translation>Preis-Export starten</translation>
       
     </message>
     <message>
       <source>Start the price export.</source>
-      <translation>Starten Sie hier den Preisexport.</translation>
+      <translation>Starten Sie hier den Preis-Export.</translation>
       
     </message>
     <message>
       <source>Price import</source>
-      <translation>Preisimport</translation>
+      <translation>Preis-Import</translation>
       
     </message>
     <message>
@@ -1995,7 +2102,7 @@
     </message>
     <message>
       <source>New sliding price (not imported)</source>
-      <translation>Neuer Staffelpreis (nicht importiert)</translation>
+      <translation>Neuer Staffelpreis (konnte nicht importiert werden)</translation>
       
     </message>
     <message>
@@ -2005,12 +2112,12 @@
     </message>
     <message>
       <source>Start price import</source>
-      <translation>Preisimport starten</translation>
+      <translation>Preis-Import starten</translation>
       
     </message>
     <message>
       <source>Start the price import.</source>
-      <translation>Starten Sie hier den Preisimport.</translation>
+      <translation>Starten Sie hier den Preis-Import.</translation>
       
     </message>
     <message>
@@ -2020,7 +2127,7 @@
     </message>
     <message>
       <source>unconfirmed</source>
-      <translation>Unbestätigt</translation>
+      <translation>unbestätigt</translation>
       
     </message>
     <message>
@@ -2035,17 +2142,17 @@
     </message>
     <message>
       <source>Use this button to empty your shopping cart.</source>
-      <translation>Verwenden Sie diesen Button um den Warenkorb zu leeren.</translation>
+      <translation>Verwenden Sie diesen Button, um den Warenkorb zu leeren.</translation>
       
     </message>
     <message>
       <source>Use this button to update your shopping cart.</source>
-      <translation>Verwenden Sie diesen Button um den Warenkorb zu aktualisieren.</translation>
+      <translation>Verwenden Sie diesen Button, um den Warenkorb zu aktualisieren.</translation>
       
     </message>
     <message>
       <source>Use this button to place your order.</source>
-      <translation>Verwenden Sie diesen Button um den Auftrag abzusenden.</translation>
+      <translation>Verwenden Sie diesen Button, um den Auftrag abzuschließen.</translation>
       
     </message>
     <message>
@@ -2060,22 +2167,22 @@
     </message>
     <message>
       <source>Order confirmation email from</source>
-      <translation>E-Mail mit der Auftragsbestätigung von</translation>
+      <translation>Auftragsbestätigungs-E-Mail von</translation>
       
     </message>
     <message>
       <source>Order receipt #%order_id </source>
-      <translation>Beleg für Auftrag %order_id </translation>
+      <translation>Auftragsbeleg Nr. %order_id </translation>
       
     </message>
     <message>
       <source>Cannot fetch uploaded file, please choose a valid CSV file.</source>
-      <translation>Die Datei konnte nicht verarbeitet werden; bitte wählen Sie eine gültige CSV-Datei aus.</translation>
+      <translation>Konnte Datei nicht verarbeiten, bitte wählen Sie eine gültige CSV-Datei aus.</translation>
       
     </message>
     <message>
       <source>File has a wrong extension. Only CSV files are supported.</source>
-      <translation>Die Datei hat die falsche Erweiterung. Es können nur CSV-Dateien verwendet werden.</translation>
+      <translation>Die Datei hat die falsche Erweiterung. Sie können nur CSV-Dateien verwenden.</translation>
       
     </message>
     <message>
@@ -2110,13 +2217,58 @@
     </message>
     <message>
       <source>Use our Automatic Delivery service to have this item sent to you as often as you like. You'll get priority on our inventory and save time.</source>
-      <translation>Benutzen Sie unsere automatische Abwicklung um diesen Artikel sofort nach Bestellung automatisch geliefert zu bekommen. Sie werden in unserem Lager bevorzugt behandelt und sparen Zeit.</translation>
+      <translation>Verwenden Sie unseren automatischen Lieferservice, um diesen Artikel so oft geliefert zu bekommen, wie Sie möchten. Sie werden in unserem Lager bevorzugt behandelt und sparen Zeit.</translation>
       
     </message>
     <message>
       <source>Save</source>
       <comment>Save Button</comment>
       <translation>Speichern</translation>
+      
+    </message>
+    <message>
+      <source>A tax identification number in the Federal Republic of Germany consists of 10 or 11 digits, depending on the "Bundesland" (State). These are divided into groups of 2 - 5 by forward slashes or blanks (e.g. "181/815/08155"). A unified German tax identification number consists of 13 digits like "2893081508152".</source>
+      <translation>Eine Steuernummer in der Bundesrepublik Deutschland besteht aus 10 oder 11 Ziffern (je nach Bundesland). Diese Ziffern stehen in Gruppen von 2 - 5 Ziffern, die durch Schrägstriche oder Leerzeichen getrennt werden (z. B. "181/815/08155"). Eine einheitliche Steueridentifikationsnummer besteht aus 13 Ziffern (z. B. "2893081508152").</translation>
+      
+    </message>
+    <message>
+      <source>Tax identification numbers</source>
+      <translation>Steueridentifikationsnummern</translation>
+      
+    </message>
+    <message>
+      <source>Status</source>
+      <translation>Status</translation>
+      
+    </message>
+    <message>
+      <source>Package</source>
+      <translation>Paket</translation>
+      
+    </message>
+    <message>
+      <source>Name of package</source>
+      <translation>Name des Pakets</translation>
+      
+    </message>
+    <message>
+      <source>Products</source>
+      <translation>Produkte</translation>
+      
+    </message>
+    <message>
+      <source>Send Order</source>
+      <translation>Auftrag abschließen</translation>
+      
+    </message>
+    <message>
+      <source>One step back</source>
+      <translation>Schritt zurück</translation>
+      
+    </message>
+    <message>
+      <source>Shipping mathod is not allowed for destionation.</source>
+      <translation>Diese Versandmethode steht für die Lieferadresse nicht zur Verfügung.</translation>
       
     </message>
   </context><context>
@@ -2138,7 +2290,7 @@
     </message>
     <message>
       <source>Add your desired products to the shopping cart.</source>
-      <translation>Legt die gewünschten Produkte in Ihren Warenkorb.</translation>
+      <translation>Fügen Sie Ihre gewünschten Produkte dem Warenkorb hinzu.</translation>
       
     </message>
     <message>
@@ -2168,12 +2320,12 @@
     </message>
     <message>
       <source>Add to shopping cart</source>
-      <translation>In den Warenkorb legen</translation>
+      <translation>Zum Warenkorb hinzufügen</translation>
       
     </message>
     <message>
       <source>Add products to shopping cart</source>
-      <translation>Legt die gewünschten Produkte in den Warenkorb</translation>
+      <translation>Fügen Sie Ihre gewünschten Produkte dem Warenkorb hinzu</translation>
       
     </message>
     <message>
@@ -2183,21 +2335,6 @@
     </message>
   </context><context>
     <name>extension/xrowecommerce/epayment</name>
-    <message>
-      <source>Please enter the name of the bank account.</source>
-      <translation>Bitte geben Sie den Namen Ihres Bankkontos ein.</translation>
-      
-    </message>
-    <message>
-      <source>Please enter your correct account number (max. 10 numbers)</source>
-      <translation>Bitte geben Sie Ihre korrekte Kontonummer ein (max. 10 Stellen)</translation>
-      
-    </message>
-    <message>
-      <source>Please enter your correct bank code (8 numbers)</source>
-      <translation>Bitte geben Sie Ihre korrekte Bankleitzahl ein (max. 8 Stellen)</translation>
-      
-    </message>
     <message>
       <source>Please enter a name</source>
       <translation>Bitte geben Sie einen Namen ein</translation>
@@ -2210,11 +2347,26 @@
     </message>
     <message>
       <source>Please enter the correct security code.</source>
-      <translation>Bitte geben Sie den gültigen Sicherheitsschlüssel an.</translation>
+      <translation>Bitte geben Sie den gültigen Sicherheitscode ein.</translation>
       
     </message>
     <message>
-      <source>Your credit card is expired.</source>
+      <source>Please enter the name of the card holder.</source>
+      <translation>Bitte geben Sie den Namen des Karteninhabers ein.</translation>
+      
+    </message>
+    <message>
+      <source>Please enter the correct account number</source>
+      <translation>Bitte geben Sie die korrekte Kontonummer ein</translation>
+      
+    </message>
+    <message>
+      <source>Please enter the correct bank code</source>
+      <translation>Bitte geben Sie die korrekte Bankleitzahl ein</translation>
+      
+    </message>
+    <message>
+      <source>The validity of your credit card has expired.</source>
       <translation>Ihre Kreditkarte ist abgelaufen.</translation>
       
     </message>
@@ -2227,32 +2379,32 @@
     </message>
     <message>
       <source>Change template</source>
-      <translation>Vorlage ändern</translation>
+      <translation>Vorlage wechseln</translation>
       
     </message>
     <message>
       <source>You try to change the template. Please confirm this action.</source>
-      <translation>Sie möchten die Vorlage ändern. Bitte bestätigen Sie diese Aktion.</translation>
+      <translation>Sie möchten die Vorlage wechseln. Bitte bestätigen Sie diese Aktion.</translation>
       
     </message>
     <message>
       <source>Choose template</source>
-      <translation>Vorlage auswählen</translation>
+      <translation>Vorlage wählen</translation>
       
     </message>
     <message>
       <source>Delete attribute</source>
-      <translation>Attribut löschen</translation>
+      <translation>Attribute löschen</translation>
       
     </message>
     <message>
       <source>Move up</source>
-      <translation>Nach oben</translation>
+      <translation>Hoch</translation>
       
     </message>
     <message>
       <source>Move down</source>
-      <translation>Nach unten</translation>
+      <translation>Runter</translation>
       
     </message>
     <message>
@@ -2262,12 +2414,12 @@
     </message>
     <message>
       <source>Show column config</source>
-      <translation>Konfig. anzeigen</translation>
+      <translation>Spaltenkonfig. anzeigen</translation>
       
     </message>
     <message>
       <source>Hide column config</source>
-      <translation>Konfig. verbergen</translation>
+      <translation>Spaltenkonfig. verbergen</translation>
       
     </message>
     <message>
@@ -2308,12 +2460,6 @@
     <message>
       <source>No datatype was selected.</source>
       <translation>Es wurde kein Datentyp ausgewählt.</translation>
-      
-    </message>
-    <message>
-      <source>You need to select a datatype for the attribute.
-      It's not possible to change this afterwards.</source>
-      <translation>Bitte geben Sie einen Datentyp für das Attribut ein. Diese Angabe kann später nicht mehr geändert werden.</translation>
       
     </message>
     <message>
@@ -2358,7 +2504,7 @@
     </message>
     <message>
       <source>This identifier is already in use. Enter another one.</source>
-      <translation>Dieser Bezeichner wird schon verwendet. Bitte geben Sie einen anderen ein.</translation>
+      <translation>Dieser Bezeichner wird schon verwendet. Bitte wählen Sie einen anderen.</translation>
       
     </message>
     <message>
@@ -2373,7 +2519,7 @@
     </message>
     <message>
       <source>Product attribute setup</source>
-      <translation>Einrichtung der Produktattribute</translation>
+      <translation>Produktattribut-Setup</translation>
       
     </message>
     <message>
@@ -2413,12 +2559,12 @@
     </message>
     <message>
       <source>There are no attributes available.</source>
-      <translation>Keine Attribute verfügbar.</translation>
+      <translation>Keine Attribute eingegeben.</translation>
       
     </message>
     <message>
       <source>Use this menu to select the language you to want use then click the "New attribute" button.</source>
-      <translation>Verwenden Sie dieses Menü, um die Sprache auszuwählen, in der Sie das Attribut anlegen möchten.</translation>
+      <translation>Verwenden Sie dieses Menü, um die Sprache auszuwählen, in der Sie das Attribut anlegen wollen.</translation>
       
     </message>
     <message>
@@ -2433,7 +2579,7 @@
     </message>
     <message>
       <source>Select language</source>
-      <translation>Sprache auswählen</translation>
+      <translation>Sprache wählen</translation>
       
     </message>
     <message>
@@ -2503,7 +2649,7 @@
     </message>
     <message>
       <source>Remove</source>
-      <translation>Entfernen</translation>
+      <translation>Löschen</translation>
       
     </message>
     <message>
@@ -2528,7 +2674,7 @@
     </message>
     <message>
       <source>You try to delete this attribute from the product template. Please confirm this action by clicking the OK button.</source>
-      <translation>Sie versuchen gerade, das Attribut aus der Produktvorlage zu entfernen. Bitte bestätigen Sie diese Aktion durch Klick auf den Button "OK".</translation>
+      <translation>Sie möchten dieses Attribut von der Produktvorlage löschen. Bitte bestätigen Sie diese Aktion mit OK.</translation>
       
     </message>
     <message>
@@ -2543,7 +2689,7 @@
     </message>
     <message>
       <source>One or more errors occured. Please correct them.</source>
-      <translation>Es sind ein oder mehrere Fehler aufgetreten. Bitte korrigieren Sie diese.</translation>
+      <translation>Ein oder mehrere Fehler sind aufgetreten. Bitte korrigieren Sie diese.</translation>
       
     </message>
     <message>
@@ -2558,12 +2704,12 @@
     </message>
     <message>
       <source>Please enter some attributes in the setup, before you create the template.</source>
-      <translation>Sie müssen mindestens ein Attribut erstellen, bevor Sie die Vorlage erstellen können.</translation>
+      <translation>Sie müssen eines oder mehrere Attribute erstellen, bevor Sie Vorlagen anlegen können.</translation>
       
     </message>
     <message>
       <source>No attributes added for this template.</source>
-      <translation>Diese Vorlage enthält noch keine Attribute.</translation>
+      <translation>Dieser Vorlage wurde kein Attribut hinzugefügt.</translation>
       
     </message>
     <message>
@@ -2573,12 +2719,12 @@
     </message>
     <message>
       <source>Use the select box and the button below to add attributes to this product template.</source>
-      <translation>Verwenden Sie das Auswahlfeld, um dieser Produktvorlage Attribute hinzuzufügen.</translation>
+      <translation>Verwenden Sie die Auswahlbox, um der Produktvorlage Attribute hinzuzufügen.</translation>
       
     </message>
     <message>
       <source>Add attribute</source>
-      <translation>Attribut hinzufügen</translation>
+      <translation>Attribute hinzufügen</translation>
       
     </message>
     <message>
@@ -2608,7 +2754,7 @@
     </message>
     <message>
       <source>Product template setup</source>
-      <translation>Einrichtung der Produktvorlagen</translation>
+      <translation>Produktvorlagen-Setup</translation>
       
     </message>
     <message>
@@ -2628,7 +2774,7 @@
     </message>
     <message>
       <source>Use this menu to select the language you to want use then click the "New product template" button.</source>
-      <translation>Verwenden Sie dieses Menü, um die Sprache zu wählen, in der Sie die Vorlage erstellen möchten. Klicken Sie dann den Button "Neue Produktvorlage".</translation>
+      <translation>Verwenden Sie dieses Menü, um die Sprache zu wählen, in der Sie die Vorlage anlegen wollen. Dann klicken Sie auf den Button "Neue Produktvorlage".</translation>
       
     </message>
     <message>
@@ -2668,22 +2814,22 @@
     </message>
     <message>
       <source>Please enter valid prices. Wrong prices are marked with a red *</source>
-      <translation>Bitte geben Sie gültige Preise ein. Bitte korrigieren Sie die Preise, die mit einem roten Stern (*) markiert sind.</translation>
+      <translation>Bitte geben Sie gültige Preise ein. Falsche Preise sind mit einem roten * (Stern) markiert.</translation>
       
     </message>
     <message>
       <source>Please enter a price for 1 item.</source>
-      <translation>Bitte geben Sie den Preis für einen Artikel ein.</translation>
+      <translation>Bitte geben Sie den Preis für 1 Produkt ein.</translation>
       
     </message>
     <message>
       <source>Please correct the amount marked with a red *</source>
-      <translation>Bitte korrigieren Sie die Menge, die mit einem roten Stern (*) markiert ist</translation>
+      <translation>Bitte korrigieren Sie die Menge, die mit einem roten * (Stern) markiert ist</translation>
       
     </message>
     <message>
       <source>SKU already in use.</source>
-      <translation>Diese Artikelnummer wird bereits verwendet.</translation>
+      <translation>Artikelnummer wird bereits verwendet.</translation>
       
     </message>
     <message>
@@ -2703,12 +2849,12 @@
     </message>
     <message>
       <source>Product variation attributes</source>
-      <translation>Attribute der Produktvarianten</translation>
+      <translation>Produktvarianten-Attribute</translation>
       
     </message>
     <message>
       <source>Product variation columns</source>
-      <translation>Spalten der Produktvarianten</translation>
+      <translation>Produktvarianten-Spalten</translation>
       
     </message>
     <message>
@@ -2723,31 +2869,31 @@
     </message>
     <message>
       <source>Product variation templates</source>
-      <translation>Vorlagen der Produktvarianten</translation>
+      <translation>Produktvarianten-Vorlagen</translation>
       
     </message>
     <message>
       <source>Boolean</source>
       <comment>Datatype name</comment>
-      <translation>Boolscher Wert</translation>
+      <translation>Boolean (wahr/falsch)</translation>
       
     </message>
     <message>
       <source>Stores true or false.</source>
       <comment>Datatype description</comment>
-      <translation>Speichert entweder "wahr" oder "falsch".</translation>
+      <translation>Speichert den Wert "wahr" oder "falsch".</translation>
       
     </message>
     <message>
       <source>Float</source>
       <comment>Datatype name</comment>
-      <translation>Fließkommazahl</translation>
+      <translation>Kommazahl</translation>
       
     </message>
     <message>
       <source>Stores a floating-point number.</source>
       <comment>Datatype description</comment>
-      <translation>Speichert eine Fließkommazahl.</translation>
+      <translation>Speichert Kommazahlen.</translation>
       
     </message>
     <message>
@@ -2759,7 +2905,7 @@
     <message>
       <source>Stores an integer.</source>
       <comment>Datatype description</comment>
-      <translation>Speichert eine Ganzzahl.</translation>
+      <translation>Speichert ganze Zahlen.</translation>
       
     </message>
     <message>
@@ -2777,13 +2923,13 @@
     <message>
       <source>Object relation</source>
       <comment>Datatype name</comment>
-      <translation>Objektbeziehung</translation>
+      <translation>Objektverknüpfung</translation>
       
     </message>
     <message>
       <source>Stores an object relation. (e.g. to an image)</source>
       <comment>Datatype description</comment>
-      <translation>Speichert eine Objektbeziehung (z. B. zu einem Bild).</translation>
+      <translation>Speichert eine Objektverknüpfung (z. B. ein Bild)</translation>
       
     </message>
     <message>
@@ -2795,7 +2941,7 @@
     <message>
       <source>Stores a selection like colours green, blue, red....</source>
       <comment>Datatype description</comment>
-      <translation>Speichert eine Auswahl vorhandener Werte wie z. B. Farben: grün, blau, rot...</translation>
+      <translation>Speichert eine Auswahl vorhandener Werte wie z. B. Farben grün, blau, rot...</translation>
       
     </message>
     <message>
@@ -2819,7 +2965,7 @@
     <message>
       <source>Stores a line of text of the variation</source>
       <comment>Datatype description</comment>
-      <translation>Speichert eine Textzeile der Variante</translation>
+      <translation>Speichert eine Zeile Text</translation>
       
     </message>
     <message>
@@ -2831,21 +2977,81 @@
     <message>
       <source>Stores text of the variation</source>
       <comment>Datatype description</comment>
-      <translation>Speichert einen mehrzeiligen Textblock der Variante</translation>
+      <translation>Speichert einen Textblock, mehrzeilig</translation>
       
     </message>
     <message>
       <source>Show in select box:</source>
-      <translation>In Auswahlfeld anzeigen:</translation>
+      <translation>Feld in Auswahlbox anzeigen:</translation>
+      
+    </message>
+    <message>
+      <source>You need to select a datatype for the attribute.
+      It's not possible to change this afterwards.</source>
+      <translation>Bitte geben Sie einen Datentyp für das Attribut ein. Dieser kann hinterher nicht mehr geändert werden.</translation>
+      
+    </message>
+    <message>
+      <source>Please enter a valid date.</source>
+      <translation>Bitte geben Sie ein korrektes Datum ein.</translation>
+      
+    </message>
+    <message>
+      <source>Date</source>
+      <comment>Datatype name</comment>
+      <translation>Datum</translation>
+      
+    </message>
+    <message>
+      <source>Stores a date value.</source>
+      <comment>Datatype description</comment>
+      <translation>Speichert ein Datum.</translation>
+      
+    </message>
+  </context><context>
+    <name>extension/xrowtin</name>
+    <message>
+      <source>The class identifier name of the country field is incorrect in xrowecommerce.ini</source>
+      <translation>Der Klassenbezeichner des Feldes "Land" in xrowecommerce.ini ist ungültig.</translation>
+      
+    </message>
+    <message>
+      <source>The class identifier name of the company field is incorrect in xrowecommerce.ini</source>
+      <translation>Der Klassenbezeichner des Feldes "Firma" in xrowecommerce.ini ist ungültig.</translation>
+      
+    </message>
+    <message>
+      <source>Please provide a company name with your companies tax ID.</source>
+      <translation>Bitte geben Sie den Namen des Unternehmens sowie die Steueridentifikationsnummer ein.</translation>
+      
+    </message>
+    <message>
+      <source>Country doesn`t match tax ID number.</source>
+      <translation>Das Land entspricht nicht der Steuernummer.</translation>
+      
+    </message>
+    <message>
+      <source>Your companies tax ID number is not valid.</source>
+      <translation>Ungültige Steuernummer.</translation>
+      
+    </message>
+    <message>
+      <source>not validated</source>
+      <translation>nicht überprüft</translation>
+      
+    </message>
+    <message>
+      <source>validated</source>
+      <translation>überprüft</translation>
+      
+    </message>
+    <message>
+      <source>validated by administration</source>
+      <translation>überprüft durch Administration</translation>
       
     </message>
   </context><context>
     <name>kernel/classes/datatypes</name>
-    <message>
-      <source>Pay on delivery</source>
-      <translation>Per Nachnahme zahlen</translation>
-      
-    </message>
     <message>
       <source>Pay by invoice</source>
       <translation>Per Rechnung zahlen</translation>
@@ -2869,7 +3075,23 @@
     </message>
     <message>
       <source>Please correct the input of product variations. The wrong or missing input is marked with a red border.</source>
-      <translation>Bitte korrigieren Sie die Eingabe der Produktvarianten. Falsche Eingaben sind mit einem roten Rahmen markiert.</translation>
+      <translation>Bitte korrigieren Sie die Eingabe bei den Produktvarianten. Falsche Eingaben sind mit einem roten Rand markiert.</translation>
+      
+    </message>
+    <message>
+      <source>Tax Identification Number</source>
+      <comment>Datatype name</comment>
+      <translation>Steueridentifikationsnummer</translation>
+      
+    </message>
+    <message>
+      <source>Input required.</source>
+      <translation>Eingabe erforderlich.</translation>
+      
+    </message>
+    <message>
+      <source>Cash on delivery</source>
+      <translation>Nachnahme</translation>
       
     </message>
   </context><context>
@@ -2881,12 +3103,12 @@
     </message>
     <message>
       <source>Order list</source>
-      <translation>Bestellliste</translation>
+      <translation>Auftragsliste</translation>
       
     </message>
     <message>
       <source>Customer order view</source>
-      <translation>Auftragsansicht des Kunden</translation>
+      <translation>Auftragsansicht</translation>
       
     </message>
     <message>
@@ -2911,17 +3133,32 @@
     </message>
     <message>
       <source>Order #%order_id</source>
-      <translation>Auftrag %order_id</translation>
+      <translation>Auftrags-Nr. %order_id</translation>
       
     </message>
     <message>
       <source>Statistics</source>
-      <translation>Statistik</translation>
+      <translation>Statistiken</translation>
       
     </message>
     <message>
       <source>Basket</source>
       <translation>Warenkorb</translation>
+      
+    </message>
+    <message>
+      <source>Order history</source>
+      <translation>Bestellverlauf</translation>
+      
+    </message>
+    <message>
+      <source>Remove order</source>
+      <translation>Auftrag entfernen</translation>
+      
+    </message>
+    <message>
+      <source>Shipping plan</source>
+      <translation>Versandplan</translation>
       
     </message>
   </context><context>

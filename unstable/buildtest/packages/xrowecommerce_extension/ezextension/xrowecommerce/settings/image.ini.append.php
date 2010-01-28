@@ -10,6 +10,8 @@
 [AliasSettings]
 AliasList[]=product_full
 AliasList[]=product_tiny
+AliasList[]=product_related
+AliasList[]=product_medium
 
 [product_full]
 Reference=
@@ -20,5 +22,15 @@ Filters[]=geometry/scaledownonly=400;300
 Reference=
 Filters[]
 Filters[]=geometry/scalewidthdownonly=60
+
+[product_related]
+Reference=
+Filters[]
+Filters[]=geometry/scaledownonly=60;60
+
+[product_medium]
+Reference=
+Filters[]
+Filters[]=geometry/scaledownonly=130;130
 
 */ ?>

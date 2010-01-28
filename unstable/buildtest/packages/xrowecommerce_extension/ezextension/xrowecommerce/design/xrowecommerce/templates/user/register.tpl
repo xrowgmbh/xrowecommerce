@@ -4,7 +4,34 @@
 
 <div class="shop-basket user_register">
     <form enctype="multipart/form-data"  action={"/user/register/"|ezurl} method="post" name="Register" id="register">
+
         <h1>{"Register user"|i18n("extension/xrowecommerce")}</h1>
+
+        {section show=and( and( is_set( $checkErrNodeId ), $checkErrNodeId ), eq( $checkErrNodeId, true ) )}
+         <div class="message-error">
+            <h3><span class="time">[{currentdate()|l10n( shortdatetime )}]</span> {$errMsg}</h3>
+         </div>
+        {/section}
+        {section show=$validation.processed}
+        {if $validation.attributes|count()|gt(0)}
+            <div class="warning">
+                <h3>{"Input did not validate"|i18n("extension/xrowecommerce")}</h3>
+        {/if}
+            {section name=UnvalidatedAttributes loop=$validation.attributes show=$validation.attributes}
+                <ul>
+                    <li><strong>{$UnvalidatedAttributes:item.name}:</strong> {$UnvalidatedAttributes:item.description}</li>
+                </ul>
+                <div class="break"></div>
+            {section-else}
+            <div class="feedback">
+                <h3>{"Input was stored successfully"|i18n("extension/xrowecommerce")}</h3>
+            </div>
+            {/section}
+        {if $validation.attributes|count()|gt(0)}
+        </div>
+        {/if}
+        {/section}
+
         <div class="accountinfo">
             <h3>{'Account Information'|i18n('extension/xrowecommerce')}</h3>
             <p>{"Enter your email address, login and password."|i18n("extension/xrowecommerce")}</p>
@@ -38,38 +65,13 @@
             </div>
             <div class="break"></div>
         </div>
-        
-                {section show=and( and( is_set( $checkErrNodeId ), $checkErrNodeId ), eq( $checkErrNodeId, true ) )}
-                 <div class="message-error">
-                    <h3><span class="time">[{currentdate()|l10n( shortdatetime )}]</span> {$errMsg}</h3>
-                 </div>
-                {/section}
-                {section show=$validation.processed}
-                {if $validation.attributes|count()|gt(0)}
-                    <div class="warning">
-                        <h3>{"Input did not validate"|i18n("extension/xrowecommerce")}</h3>
-                {/if}
-                    {section name=UnvalidatedAttributes loop=$validation.attributes show=$validation.attributes}
-                        <ul>
-                            <li><strong>{$UnvalidatedAttributes:item.name}:</strong> {$UnvalidatedAttributes:item.description}</li>
-                        </ul>
-                        <div class="break"></div>
-                    {section-else}
-                    <div class="feedback">
-                        <h3>{"Input was stored successfully"|i18n("extension/xrowecommerce")}</h3>
-                    </div>
-                    {/section}
-                {if $validation.attributes|count()|gt(0)}
-                </div>
-                {/if}
-                {/section} 
-        
+
         <div class="billing_shipping">
             <div class="billing">
                 <h3>{'Billing Information'|i18n('extension/xrowecommerce')}</h3>
                 <p>{'Please enter your billing address exactly as it appears on your credit card statement.'|i18n('extension/xrowecommerce')}</p>
                 <p><span class="required">* {'Required field'|i18n('extension/xrowecommerce')}</span></p>
-       
+
                 <div class="block">
                     {if eq(ezini( 'Settings', 'CompanyName', 'xrowecommerce.ini' ), 'enabled' )}
                     <div class="block">
@@ -80,7 +82,7 @@
                     </div>
                     {/if}
                     {if eq(ezini( 'Settings', 'CompanyAdditional', 'xrowecommerce.ini' ), 'enabled' )}
-                    <div>
+                    <div class="block">
                         <label>{'Form of company'|i18n('extension/xrowecommerce')}</label>
                         <div class="labelbreak"></div>
                         <input type="text" name="ContentObjectAttribute_ezstring_data_text_{$ca.company_name.id}" value="{$ca.company_name.content|wash()}" />
@@ -88,28 +90,28 @@
                     </div>
                     {/if}
                     {if eq(ezini( 'Settings', 'TaxID', 'xrowecommerce.ini' ), 'enabled' )}
-                    <div>
+                    <div class="block">
                         <label>{'Tax ID'|i18n('extension/xrowecommerce')}</label>
                         <div class="labelbreak"></div>
                         <input type="text" name="ContentObjectAttribute_ezstring_data_text_{$ca.tax_id.id}" value="{$ca.tax_id.content|wash()}" />
                         <input type="hidden" name="ContentObjectAttribute_id[]" value="{$ca.tax_id.id}" />
                     </div>
                     {/if}
-                    <div>
+                    <div class="block">
                         <label><span class="required">*</span>{'First name'|i18n('extension/xrowecommerce')}</label>
                         <div class="labelbreak"></div>
                         <input type="text" name="ContentObjectAttribute_ezstring_data_text_{$ca.first_name.id}" value="{$ca.first_name.content|wash()}" />
                         <input type="hidden" name="ContentObjectAttribute_id[]" value="{$ca.first_name.id}" />
                     </div>
                     {if eq(ezini( 'Settings', 'MI', 'xrowecommerce.ini' ), 'enabled' )}
-                    <div>
+                    <div class="block">
                         <label>{'MI'|i18n('extension/xrowecommerce')}</label>
                         <div class="labelbreak"></div>
                         <input type="text" name="ContentObjectAttribute_ezstring_data_text_{$ca.mi.id}" size="2" value="{$ca.mi.content|wash()}" />
                         <input type="hidden" name="ContentObjectAttribute_id[]" value="{$ca.mi.id}" />
                     </div>
                     {/if}
-                    <div>
+                    <div class="block">
                         <label><span class="required">*</span>{'Last name'|i18n('extension/xrowecommerce')}</label>
                         <div class="labelbreak"></div>
                         <input type="text" name="ContentObjectAttribute_ezstring_data_text_{$ca.last_name.id}" value="{$ca.last_name.content|wash()}" />
@@ -129,14 +131,14 @@
                         <input type="hidden" name="ContentObjectAttribute_id[]" value="{$ca.address2.id}" />
                     </div>
                     {/if}
-                    <div>
+                    <div class="block">
                         <label><span class="required">*</span>{'Zip / Postcode'|i18n('extension/xrowecommerce')}</label>
                         <div class="labelbreak"></div>
                         <input type="text" name="{$castring}{$ca.zip_code.id}" value="{$ca.zip_code.content|wash()}" />
                         <input type="hidden" name="ContentObjectAttribute_id[]" value="{$ca.zip_code.id}" />
                     </div>
                     <div class="break"></div>
-                    <div>
+                    <div class="block">
                         <label><span class="required">*</span>{'City / Town'|i18n('extension/xrowecommerce')}</label>
                         <div class="labelbreak"></div>
                         <input type="text" name="{$castring}{$ca.city.id}" value="{$ca.city.content|wash()}" />
@@ -200,8 +202,8 @@
             <div class="shipping">
                 <h3>{'Shipping Information'|i18n('extension/xrowecommerce')}</h3>
                 <input type="hidden" name="ContentObjectAttribute_id[]" value="{$ca.shippingaddress.id}" />
-                <label onclick="change();" class="shipping-checkbox" for="ContentObjectAttribute_data_boolean_{$ca.shippingaddress.id}">
-                    <input onlick="change();" id="ContentObjectAttribute_data_boolean_{$ca.shippingaddress.id}"  name="ContentObjectAttribute_data_boolean_{$ca.shippingaddress.id}" value="" type="checkbox" {$ca.shippingaddress.data_int|choose( '', 'checked="checked"' )} />
+                <label onclick="change();" class="shipping-checkbox" for="shipping-checkbox">
+                    <input onlick="change();" class="shipping-checkbox" id="shipping-checkbox"  name="ContentObjectAttribute_data_boolean_{$ca.shippingaddress.id}" value="" type="checkbox" {$ca.shippingaddress.data_int|choose( '', 'checked="checked"' )} />
                     {'My billing and shipping addresses are identical.'|i18n('extension/xrowecommerce')}
                 </label>
 
@@ -222,7 +224,7 @@
                         <input type="hidden" name="ContentObjectAttribute_id[]" value="{$ca.s_company_additional.id}" />
                     </div>
                     {/if}
-                    <div>
+                    <div class="block">
                         <label><span class="required">*</span>{'First name'|i18n('extension/xrowecommerce')}</label>
                         <div class="labelbreak"></div>
                         <input type="text" name="ContentObjectAttribute_ezstring_data_text_{$ca.s_first_name.id}" value="{$ca.s_first_name.content|wash()}" />
@@ -256,14 +258,14 @@
                         <input type="hidden" name="ContentObjectAttribute_id[]" value="{$ca.s_address2.id}" />
                     </div>
                     {/if}
-                    <div>
+                    <div class="block">
                         <label><span class="required">*</span>{'Zip / Postcode'|i18n('extension/xrowecommerce')}</label>
                         <div class="labelbreak"></div>
                         <input type="text" name="{$castring}{$ca.s_zip_code.id}" value="{$ca.s_zip_code.content|wash()}" />
                         <input type="hidden" name="ContentObjectAttribute_id[]" value="{$ca.s_zip_code.id}" />
                     </div>
                     <div class="break"></div>
-                    <div>
+                    <div class="block">
                         <label><span class="required">*</span>{'City / Town'|i18n('extension/xrowecommerce')}</label>
                         <div class="labelbreak"></div>
                         <input type="text" name="{$castring}{$ca.s_city.id}" value="{$ca.s_city.content|wash()}" />
@@ -289,22 +291,19 @@
                         <input type="hidden" name="sik_country" id="sik_country" value="USA" />
                         <select name="ContentObjectAttribute_country_{$ca.s_country.id}[]" id="scountry">
                             <option value="">&nbsp;</option>
-                            
-{foreach $s_countries as $key => $s_current_country}
-     {set $alpha_2 = $s_current_country.Alpha2}
-     {if $s_country|ne( '' )}
-        {if $s_country|is_array|not}
-            {* Backwards compatability *}
-            <option {if $s_country|eq( $s_current_country.Name )}selected="selected"{/if} value="{$alpha_2}">{$s_current_country.Name}</option>
-        {else}
-            <option {if is_set( $s_country.$alpha_2 )}selected="selected"{/if} value="{$alpha_2}">{$s_current_country.Name}</option>
-        {/if}
-     {else}
-            <option {if is_set( $class_content.default_countries.$alpha_2 )}selected="selected"{/if} value="{$alpha_2}">{$s_current_country.Name}</option>
-     {/if}
-{/foreach}                            
-
-                            
+							{foreach $s_countries as $key => $s_current_country}
+							     {set $alpha_2 = $s_current_country.Alpha2}
+							     {if $s_country|ne( '' )}
+							        {if $s_country|is_array|not}
+							            {* Backwards compatability *}
+							            <option {if $s_country|eq( $s_current_country.Name )}selected="selected"{/if} value="{$alpha_2}">{$s_current_country.Name}</option>
+							        {else}
+							            <option {if is_set( $s_country.$alpha_2 )}selected="selected"{/if} value="{$alpha_2}">{$s_current_country.Name}</option>
+							        {/if}
+							     {else}
+							            <option {if is_set( $class_content.default_countries.$alpha_2 )}selected="selected"{/if} value="{$alpha_2}">{$s_current_country.Name}</option>
+							     {/if}
+							{/foreach}                            
                         </select>
                     </div>
                     <div class="break"></div>
@@ -341,17 +340,3 @@
             </div>
     </form>
 </div>
-
-<script type="text/javascript">
-function change()
-{ldelim}
-if (document.getElementById( 'ContentObjectAttribute_data_boolean_{$ca.shippingaddress.id}' ).checked)
-    {ldelim}
-    document.getElementById( 'shippinginfo' ).style.display = 'none';
-    {rdelim}
-    else
-    {ldelim}
-            document.getElementById( 'shippinginfo' ).style.display = 'block';
-    {rdelim}
-{rdelim}
-</script>

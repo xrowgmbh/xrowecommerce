@@ -18,6 +18,23 @@ class xrowCube
         $this->height = $height;
     }
 
+    function totalWeight( $withcontents = true )
+    {
+        $weight = 0;
+        if ( is_numeric( $this->weight ) )
+        {
+            $weight += $this->weight;
+        }
+        if ( $withcontents )
+        {
+            foreach ( $this->contains as $container )
+            {
+                $weight += $container->totalWeight( $withcontents );
+            }
+        }
+        return $weight;
+    }
+
     /**
      * This function exhibits the same behaviour is array_shift(), except
      * it returns a reference to the first element of the array instead of a copy.

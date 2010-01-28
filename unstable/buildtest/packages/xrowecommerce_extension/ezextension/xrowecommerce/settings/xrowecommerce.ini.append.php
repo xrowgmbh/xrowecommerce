@@ -5,8 +5,8 @@ ShowColumnPosition=enabled
 ShowColumnTax=enabled
 ShowColumnRemove=enabled
 #States of fields can be disabled, enabled, not_required
-Captcha=disabled
-Coupon=disabled
+Captcha=enabled
+Coupon=enabled
 Catalogueorder=disabled
 CompanyName=disabled
 CompanyAdditional=disabled
@@ -27,17 +27,27 @@ CountryWithStatesList[]
 ShopUserClassList[]=client
 # Please use an override instead
 
+# If an order has this IDs it will be shown in the order statistic
+# If empty, this setting will be ignored
+StatusIncludeArray[]
+
+# If an order has this IDs it will not be shown in the order statistic
+# If empty, this setting will be ignored
+StatusExcludeArray[]
+
 [ShippingSettings]
 #fields can be disabled / enabled in the shipping information
 DisplayFax=enabled
 #ShipmentInterface=xrowDefaultShipping
 
-#[MerchantLocations]
+[MerchantLocations]
 # Use ISO 3 letter country locales
+Location[]
 #Location[]=USA
 #Location[]=DEU
 #USA[]=CT
 #USA[]=NY
+
 
 [TaxSettings]
 CountryIndentifier=country
@@ -77,11 +87,11 @@ PaymentRequestType=AUTH_AND_CAPTURE
 # Wheater the gateways should store or not store payment information in the order
 StorePaymentInformation=enabled
 #List of active creditcards
-#ActiveCreditcards[]
-#ActiveCreditcards[2]=Visa
-#ActiveCreditcards[1]=MasterCard
-#ActiveCreditcards[4]=American Express
-#ActiveCreditcards[3]=Discover
+ActiveCreditcards[]
+ActiveCreditcards[2]=Visa
+ActiveCreditcards[1]=MasterCard
+ActiveCreditcards[4]=American Express
+ActiveCreditcards[3]=Discover
 
 [StatusSettings]
 # Show payment status
@@ -98,5 +108,13 @@ StatusTypeList[]
 # StatusDisallowList-1000[]=2
 #
 
+[ExportSettings]
+# Activate all Marketplaces you wnt todo exports to
+# ActivePlugins[]=xrowGoogleExport
+ActivePlugins[]
+
+GoogleFileName=google_ger_DE.xml
+GoogleFTPUsername=
+GoogleFTPPassword=
 
 * */ ?>

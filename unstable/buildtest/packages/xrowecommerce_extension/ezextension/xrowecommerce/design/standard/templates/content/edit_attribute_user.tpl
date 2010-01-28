@@ -8,29 +8,7 @@
         <p><span class="required">* {'Required field'|i18n('extension/xrowecommerce')}</span></p>
 
         <div class="block">
-            <label><span class="required">*</span>{'Username'|i18n('extension/xrowecommerce')}</label>
-            <div class="labelbreak"></div>
-            <input type="hidden" name="ContentObjectAttribute_id[]" value="{$ca.user_account.id}" size="20" />
-            <input type="hidden" name="ContentObjectAttribute_id[]" value="{$ca.user_account.id}" />
-            <input name="ContentObjectAttribute_data_user_login_{$ca.user_account.id}" value="{$ca.user_account.content.login}" type="text" disabled="disabled" />
-        </div>
-        <div class="break"></div>
-        <div class="block">
-            <label><span class="required">*</span>{'E-mail'|i18n('extension/xrowecommerce')}</label>
-            <div class="labelbreak"></div>
-            <input class="box" type="text" name="ContentObjectAttribute_data_user_email_{$ca.user_account.id}" value="{$ca.user_account.content.email|wash()}" size="20"  />
-        </div>
-        <div class="break"></div>
-        <div class="block">
-            <label>{'Password'|i18n('extension/xrowecommerce')}</label>
-            <div class="labelbreak"></div>
-            <input class="box" type="password" name="ContentObjectAttribute_data_user_password_{$ca.user_account.id}" value="{section show=$ca.user_account.content.original_password}{$ca.user_account.content.original_password}{section-else}{section show=$ca.user_account.content.has_stored_login}_ezpassword{/section}{/section}" size="20" />
-        </div>
-        <div class="break"></div>
-        <div class="block">
-            <label>{'Confirm Password'|i18n('extension/xrowecommerce')}</label>
-            <div class="labelbreak"></div>
-            <input class="box" type="password" name="ContentObjectAttribute_data_user_password_confirm_{$ca.user_account.id}" value="{section show=$ca.user_account.content.original_password_confirm}{$ca.user_account.content.original_password_confirm}{section-else}{section show=$ca.user_account.content.has_stored_login}_ezpassword{/section}{/section}" size="20" />
+        {attribute_edit_gui attribute=$ca.user_account}
         </div>
         <div class="break"></div>
     </div>
@@ -154,8 +132,8 @@
         <div class="shipping">
             <h3>{'Shipping Information'|i18n('extension/xrowecommerce')}</h3>
             <input type="hidden" name="ContentObjectAttribute_id[]" value="{$ca.shippingaddress.id}" />
-            <label onclick="change();" class="shipping-checkbox" for="ContentObjectAttribute_data_boolean_{$ca.shippingaddress.id}">
-                <input onclick="change();" id="ContentObjectAttribute_data_boolean_{$ca.shippingaddress.id}"  name="ContentObjectAttribute_data_boolean_{$ca.shippingaddress.id}" value="" type="checkbox" {$ca.shippingaddress.data_int|choose( '', 'checked="checked"' )} />
+            <label onclick="change();" class="shipping-checkbox" for="shipping-checkbox">
+                <input class="shipping-checkbox" onclick="change();" id="shipping-checkbox"  name="ContentObjectAttribute_data_boolean_{$ca.shippingaddress.id}" value="" type="checkbox" {$ca.shippingaddress.data_int|choose( '', 'checked="checked"' )} />
                 {'My billing and shipping addresses are identical.'|i18n('extension/xrowecommerce')}
             </label>
 
@@ -164,7 +142,7 @@
                 <div class="block">
                     <label><span class="required">*</span>{'Company name'|i18n('extension/xrowecommerce')}</label>
                     <div class="labelbreak"></div>
-                    <input type="text" name="ContentObjectAttribute_ezstring_data_text_{$ca.s_company_name.id}" value="{$ca.s_company_name.content|wash()}" />
+                    <input type="text" id="s_company_name" name="ContentObjectAttribute_ezstring_data_text_{$ca.s_company_name.id}" value="{$ca.s_company_name.content|wash()}" />
                     <input type="hidden" name="ContentObjectAttribute_id[]" value="{$ca.s_company_name.id}" />
                 </div>
                 {/if}
@@ -173,14 +151,14 @@
                     <label>{'Form of company'|i18n('extension/xrowecommerce')}</label>
                     <div class="labelbreak"></div>
                     <input type="text" name="ContentObjectAttribute_ezstring_data_text_{$ca.s_company_additional.id}" value="{$ca.s_company_additional.content|wash()}" />
-                    <input type="hidden" name="ContentObjectAttribute_id[]" value="{$ca.s_company_additional.id}" />
+                    <input type="hidden" id="s_company_name" name="ContentObjectAttribute_id[]" value="{$ca.s_company_additional.id}" />
                 </div>
                 {/if}
                 <div class="block">
                     <label><span class="required">*</span>{'First name'|i18n('extension/xrowecommerce')}</label>
                     <div class="labelbreak"></div>
                     <input type="text" name="ContentObjectAttribute_ezstring_data_text_{$ca.s_first_name.id}" value="{$ca.s_first_name.content|wash()}" />
-                    <input type="hidden" name="ContentObjectAttribute_id[]" value="{$ca.s_first_name.id}" />
+                    <input type="hidden" id="s_company_name" name="ContentObjectAttribute_id[]" value="{$ca.s_first_name.id}" />
                 </div>
                 {if eq(ezini( 'Settings', 'MI', 'xrowecommerce.ini' ), 'enabled' )}
                 <div class="block">
@@ -280,27 +258,13 @@
 
 </div>
 <div class="buttonblock">
-    <input class="left-arrow2" type="submit" name="DiscardButton" value="{'Cancel'|i18n('extension/xrowecommerce')}" />
-    <input class="right-arrow" type="submit" name="PublishButton" value="{'Save'|i18n('extension/xrowecommerce', 'Save Button' )}" />
+    <input class="button left-arrow2" type="submit" name="DiscardButton" value="{'Cancel'|i18n('extension/xrowecommerce')}" />
+    <input class="button right-arrow" type="submit" name="PublishButton" value="{'Save'|i18n('extension/xrowecommerce', 'Save Button' )}" />
     <input type="hidden" name="DiscardConfirm" value="0" />
     <input type="hidden" name="RedirectURI" value="{concat('/user/edit/',$object.id)}" />
     <input type="hidden" name="RedirectIfDiscarded" value="{concat('/user/edit/',$object.id)}" />
 </div>
 
 {* right frame end *}
-
-<script type="text/javascript">
-function change()
-{ldelim}
-if (document.getElementById( 'ContentObjectAttribute_data_boolean_{$ca.shippingaddress.id}' ).checked)
-    {ldelim}
-    document.getElementById( 'shippinginfo' ).style.display = 'none';
-    {rdelim}
-    else
-    {ldelim}
-            document.getElementById( 'shippinginfo' ).style.display = 'block';
-    {rdelim}
-{rdelim}
-</script>
 
 </div>

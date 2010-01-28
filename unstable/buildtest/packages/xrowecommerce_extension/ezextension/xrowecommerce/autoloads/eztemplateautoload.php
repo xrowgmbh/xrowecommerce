@@ -32,4 +32,3 @@ $eZTemplateOperatorArray[] = array(
     'operator_names' => array ( 'get_order_history' ), 
 );
 ?>
-

@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.0">
+<!DOCTYPE TS><TS>
 <context>
     <name>design/admin/class/edit_language</name>
     <message>
@@ -2474,10 +2472,6 @@
 <context>
     <name>kernel/classes/datatypes</name>
     <message>
-        <source>Pay on delivery</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Pay by invoice</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2505,6 +2499,10 @@
     </message>
     <message>
         <source>Input required.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Cash on delivery</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

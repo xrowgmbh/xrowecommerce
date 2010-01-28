@@ -27,6 +27,7 @@ class xrowECommerceVATHandler
             $order = eZOrder::fetch( $orderID );
         else
             $order = false;
+            
         if ( $order instanceof eZOrder )
         {
             $xmlDoc = $order->attribute( 'data_text_1' );

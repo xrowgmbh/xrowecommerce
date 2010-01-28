@@ -13,14 +13,15 @@
         }
     </script>
 {/literal}
-
+<div class="border-box">
+<div class="border-tl"><div class="border-tr"><div class="border-tc"></div></div></div>
+<div class="border-ml"><div class="border-mr"><div class="border-mc float-break">
 <div class="orderhistory">
 <h1>{"Order history"|i18n("design/standard/shop")}</h1>
 {if $order_list[0]}
 {shop_account_view_gui view=html step=6 order=$order_list[0]}
-<p><i>{"Note"|i18n("design/standard/shop")}:</i> {"The above is information from your last order."|i18n("design/standard/shop")}</p>
+<p><i>{"Note"|i18n("design/standard/shop")}:</i> {"The information above is from your last order."|i18n("design/standard/shop")}</p>
 {/if}
-{*<h3>{"Order History"|i18n("design/standard/shop")}</h3>*}
 
 {def $currency = false() $locale = false() $symbol = false() $product_info_count = false() }
     {if $order_list}
@@ -73,3 +74,6 @@
     {/if}
 </div>
 {undef}
+</div></div></div>
+<div class="border-bl"><div class="border-br"><div class="border-bc"></div></div></div>
+</div>

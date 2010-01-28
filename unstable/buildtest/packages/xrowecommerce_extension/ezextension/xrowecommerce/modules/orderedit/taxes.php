@@ -1,6 +1,6 @@
 <?php
 
-include_once( 'kernel/common/template.php' );
+require_once( 'kernel/common/template.php' );
 
 $Module  =& $Params['Module'];
 $http = eZHTTPTool::instance();
@@ -26,7 +26,7 @@ for ( $dayIndex = 1; $dayIndex <= 31; $dayIndex++ )
     $dayList[] = array( 'value' => $dayIndex, 'name' => $dayIndex );
 }
 
-$http =& eZHttpTool::instance();
+$http = eZHttpTool::instance();
 if ( $http->hasPostVariable( "StartYear" ) ) { $startYear = $http->postVariable( "StartYear" ); }
 if ( $http->hasPostVariable( "StartMonth" ) ) { $startMonth = $http->postVariable( "StartMonth" ); }
 if ( $http->hasPostVariable( "StartDay" ) ) { $startDay = $http->postVariable( "StartDay" ); }
@@ -36,21 +36,21 @@ if ( $http->hasPostVariable( "StopMonth" ) ) { $stopMonth = $http->postVariable(
 if ( $http->hasPostVariable( "StopDay" ) ) { $stopDay = $http->postVariable( "StopDay" ); }
 
 $currentDate = new eZDate();
-if ( $startYear == '0' or empty($startYear)) 
-    $startYear = $currentDate->attribute( 'year' ); 
+if ( $startYear == '0' or empty($startYear))
+    $startYear = $currentDate->attribute( 'year' );
 if ( $startMonth == '0' or empty($startMonth))
-    $startMonth = $currentDate->attribute( 'month' ); 
+    $startMonth = $currentDate->attribute( 'month' );
 if ( $startDay == '0' or empty($startDay))
-    $startDay = 1; 
-    #$startDay = $currentDate->attribute( 'Day' ); 
+    $startDay = 1;
+    #$startDay = $currentDate->attribute( 'Day' );
 
-if ( $stopYear == '0' or empty($stopYear)) 
-    $stopYear = $currentDate->attribute( 'year' ); 
+if ( $stopYear == '0' or empty($stopYear))
+    $stopYear = $currentDate->attribute( 'year' );
 if ( $stopMonth == '0' or empty($stopMonth))
-    $stopMonth = $currentDate->attribute( 'month' ); 
+    $stopMonth = $currentDate->attribute( 'month' );
 if ( $stopDay == '0' or empty($stopDay))
-    $stopDay = $currentDate->attribute( 'day' ); 
-    
+    $stopDay = $currentDate->attribute( 'day' );
+
 
 $start = array( "day" => $startDay, "month" => $startMonth, "year" => $startYear, "hour" => 0, "minute" => 0, "second" => 0 );
 $stop =  array( "day" => $stopDay,  "month" => $stopMonth,  "year" => $stopYear,  "hour" => 23, "minute" => 59, "second" => 59 );
@@ -62,25 +62,46 @@ $order_result["time"]["start"] = $start;
 $order_result["time"]["stop_stamp"] = $stopDate;
 $order_result["time"]["stop"] = $stop;
 
-$db =& eZDB::instance();
-$orderArray = $db->arrayQuery(  
+/**
+  * Exclude status from calculation
+  */
+$xINI = eZINI::instance( 'xrowecommerce.ini' );
+$includeArray = $xINI->variable( 'Settings', 'StatusIncludeArray' );
+$incSql = "";
+if ( count( $includeArray ) > 0 )
+{
+	$incSql = " AND ezorder.status_id IN ( " . implode( ",", $includeArray ) . " ) ";
+}
+
+$excludeArray = $xINI->variable( 'Settings', 'StatusExcludeArray' );
+$exSql = "";
+if ( count( $excludeArray ) > 0 )
+{
+    $exSql = " AND ezorder.status_id NOT IN ( " . implode( ",", $excludeArray ) . " ) ";
+}
+
+
+$db = eZDB::instance();
+$orderArray = $db->arrayQuery(
 "SELECT created, id, order_nr, productcollection_id, data_text_1
 FROM ezorder
 WHERE ezorder.created >= '".$startDate."' AND ezorder.created < '".$stopDate."'
 AND is_temporary = 0
-AND ignore_vat = 0;" );
+AND ignore_vat = 0
+$incSql
+$exSql" );
 // AND status_id = 2
 
     $order_result["price"]["NY"] = 0;
     $order_result["price"]["CT"] = 0;
-    $order_result["price"]["other"] = 0; 
+    $order_result["price"]["other"] = 0;
     $order_result["price"]["total_inc_price"] = 0;
     $order_result["price"]["total_ex_price"] = 0;
     $order_result["price"]["total_collection_ex_price"] = 0;
     $order_result["price"]["total_collection_inc_price"] = 0;
     $order_result["price"]["total_order_ex_price"] = 0;
     $order_result["price"]["total_order_inc_price"]= 0;
-    
+
 foreach ( $orderArray as $item )
 {
         $accountName = "";
@@ -130,11 +151,11 @@ foreach ( $orderArray as $item )
         unset($country);
         unset($state);
         unset($shipping);
-        $productitemsArray = $db->arrayQuery(  
+        $productitemsArray = $db->arrayQuery(
 "SELECT e.vat_value, e.item_count, e.price
 FROM ezproductcollection_item e
 WHERE e.productcollection_id = '".$item["productcollection_id"]."';" );
-$orderitemsArray = $db->arrayQuery(  
+$orderitemsArray = $db->arrayQuery(
 "SELECT * FROM ezorder_item e
 WHERE e.order_id = '".$item["id"]."';" );
 
@@ -144,7 +165,7 @@ WHERE e.order_id = '".$item["id"]."';" );
     $order_item[$item["id"]]["collectionsum"]["price_ex_tax"]  = 0;
     foreach ( $order_item[$item["id"]]["collection"] as $collect )
     {
-        // $collect["item_count"] 
+        // $collect["item_count"]
         // $collect["price"]
         // $collect["vat_value"]
         $itemextax = (double)$collect["item_count"] * (double)$collect["price"];
@@ -159,11 +180,11 @@ WHERE e.order_id = '".$item["id"]."';" );
     }
     $order_item[$item["id"]]["ordersum"]["price_ex_tax"] = 0;
     $order_item[$item["id"]]["ordersum"]["price_inc_tax"] = 0;
-    
-    
+
+
     foreach ( $order_item[$item["id"]]["order_items"] as $orderitem )
     {
-        // $collect["type"] 
+        // $collect["type"]
         // $collect["price"]
         // $collect["vat_value"]
         if ( $orderitem["type"]  == "shippingcostvat" OR $orderitem["price"] == 0 OR substr($orderitem["description"],0,3) == "TAX" )
@@ -176,11 +197,11 @@ WHERE e.order_id = '".$item["id"]."';" );
             if ( $order_item[$item["id"]]["state"] == "NY")
                 $percentvalue = 1.0825;
                 $orderiteminctax = (double)$orderitemextax * $percentvalue;
-                
+
             if ( $order_item[$item["id"]]["state"] == "CT" )
-                $percentvalue = 1.06;    
+                $percentvalue = 1.06;
                 $orderiteminctax = (double)$orderitemextax * $percentvalue;
-                
+
         }
         if ( $orderitem["vat_value"] != 0)
         {
@@ -194,14 +215,14 @@ WHERE e.order_id = '".$item["id"]."';" );
     $order_item[$item["id"]]["total_inc_vat"] = $order_item[$item["id"]]["ordersum"]["price_inc_tax"] + $order_item[$item["id"]]["collectionsum"]["price_inc_tax"];
     $difference = $order_item[$item["id"]]["total_inc_vat"] - $order_item[$item["id"]]["total_ex_vat"];
     $order_result_state = $order_item[$item["id"]]["state"];
-    
+
     $order_result["price"][$order_result_state] = $order_result["price"][$order_result_state] + $difference;
     $order_result["price"]["total_inc_price"] = $order_result["price"]["total_inc_price"] + $order_item[$item["id"]]["total_inc_vat"];
     $order_result["price"]["total_ex_price"] = $order_result["price"]["total_ex_price"] + $order_item[$item["id"]]["total_ex_vat"];
-    
+
     $order_result["price"]["total_collection_ex_price"]  = $order_result["price"]["total_collection_ex_price"]  + $order_item[$item["id"]]["collectionsum"]["price_ex_tax"];
     $order_result["price"]["total_collection_inc_price"] = $order_result["price"]["total_collection_inc_price"] + $order_item[$item["id"]]["collectionsum"]["price_inc_tax"];
-    
+
     $order_result["price"]["total_order_ex_price"]       = $order_result["price"]["total_order_ex_price"]  + $order_item[$item["id"]]["ordersum"]["price_ex_tax"];
     $order_result["price"]["total_order_inc_price"]      = $order_result["price"]["total_order_inc_price"] + $order_item[$item["id"]]["ordersum"]["price_inc_tax"];;
 }
@@ -217,9 +238,9 @@ $tpl->setVariable( "month_list", $monthList );
 $tpl->setVariable( "day_list", $dayList );
 $tpl->setVariable( "startDay", $startDay );
 $tpl->setVariable( "stopDay", $stopDay );
-    
+
 $Result = array();
-$Result['content'] =& $tpl->fetch( "design:shop/taxes.tpl" );
+$Result['content'] = $tpl->fetch( "design:shop/taxes.tpl" );
 $path = array();
 $path[] = array( 'url' => '/orderedit/taxes',
                  'text' => ezi18n( 'kernel/shop', 'Tax listing' ) );

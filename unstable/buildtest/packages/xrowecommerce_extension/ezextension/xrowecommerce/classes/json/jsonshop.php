@@ -2,14 +2,32 @@
 
 class xrowECommerceJSON implements eZJSON
 {
-
+    function translate( $text )
+    {
+        switch ( $text )
+        {
+        	case "The shipping method '%old%' is not available for your country of destination and was changed to '%new%'.":
+        	{
+        		return ezi18n( 'extension/xrowecommerce', "The shipping method '%old%' is not available for your country of destination and was changed to '%new%'." ) ;
+        	} break;
+        }
+        throw new Exception( 'Tranlation not found.' );
+    }
     function getShipping( $country )
     {
         $list = xrowShippingInterface::fetchActive( true );
         $return = array();
         foreach ( $list as $item )
         {
-            if ( $item->methodCheck( $country ) )
+        	try
+        	{
+        		$result = $item->methodCheck( $country );
+        	}
+        	catch( xrowShippingException $e )
+        	{
+        		$result = false;
+        	}
+            if ( $result )
             {
                 $return[] = array( 
                     $item->description() , 
@@ -25,6 +43,7 @@ class xrowECommerceJSON implements eZJSON
                     false 
                 );
             }
+
         }
         return $return;
     }

@@ -1,27 +1,76 @@
-YUI().use("node", function(Y) {
+YUI( YUI3_config ).use("node", function(Y) {
 	Y.on("domready", function() {
-		if( Y.Node.get("#shipping-checkbox") )
-		{
-		Y.on("change", function(e) {
-			updateShipping();
-		}, "#country");
-		Y.on("change", function(e) {
-			updateShipping();
-		}, "#s_country");
+		if (Y.Node.get("#shipping-checkbox")) {
+			Y.on("change", function(e) {
+				updateShipping();
+			}, "#country");
+			Y.on("change", function(e) {
+				updateShipping();
+			}, "#s_country");
+			Y.on("click", function(e) {
+				changeShipping();
+	            updateShipping();
+			}, "#shipping-checkbox");
 		}
 	});
 });
-function ezjson(uri, callback) {
-	//Create business logic in a YUI sandbox using the 'io' and 'json' modules
-	YUI( {
-		combine : true,
-		timeout : 10000
-	}).use("node", "io", "dump", "json-parse", function(Y) {
 
-		function onFailure(transactionid, response, arguments) {
+YAHOO.namespace("example.calendar");
+function ShowHide(id)
+{
+    	    var ComponentName = id + '-container';
+	        if ( YAHOO.util.Dom.hasClass( ComponentName, 'hide') )
+	        {
+	            YAHOO.util.Dom.removeClass(ComponentName, 'hide');
+	            YAHOO.util.Dom.addClass(ComponentName, 'show');
+	        }
+	        else
+	        {
+	            YAHOO.util.Dom.removeClass(ComponentName, 'show');
+	            YAHOO.util.Dom.addClass(ComponentName, 'hide');
+	        }
+}
+function handleSelect(type,args,obj) {
+			var dates = args[0]; 
+			var date = dates[0];
+			var year = date[0], month = date[1], day = date[2];
+
+			var txtDate1 = document.getElementById( obj.id + "-date");
+			txtDate1.value = month + "/" + day + "/" + year;
+			ShowHide( obj.id );
+}
+
+YUI( YUI3_config ).use( 'node', "overlay", function(Y) { 
+if( Y.Node.get("#show_auto_tip") )
+{
+    function AutomaticDeliverTooltip() {
+    	var WidgetPositionExt = Y.WidgetPositionExt;
+
+    	var overlay = new Y.Overlay({ 
+    		      contentBox:"#AutomaticDeliveryTooltip", 
+    		      centered: true,
+    		      width: "400px" 
+    		  }); 
+    	overlay.set("align", {node:"#show_auto_tip", 
+            points:[WidgetPositionExt.TC, WidgetPositionExt.BC]});
+    	overlay.hide(); 
+    		  overlay.render("#overlay-text"); 
+        Y.on("mouseover", Y.bind(overlay.show, overlay), "#show_auto_tip"); 
+        Y.on("mouseout", Y.bind(overlay.hide, overlay), "#show_auto_tip"); 
+
+    }
+    Y.on("domready", AutomaticDeliverTooltip ); 
+    }
+});
+
+function ezjson(uri, callback, args) {
+	// Create business logic in a YUI sandbox using the 'io' and 'json' modules
+	YUI( YUI3_config ).use("node", "io", "dump", "json-parse", function(Y) {
+
+		function onFailure(transactionid, response) {
 			Y.log("Async call failed!");
 		}
-		function onComplete(transactionid, response, arguments) {
+		function onComplete(transactionid, response, callback, args) {
 			// transactionid : The transaction's ID.
 			// response: The response object.
 			// arguments: Object containing an array { complete: ['foo', 'bar']
@@ -38,11 +87,11 @@ function ezjson(uri, callback) {
 				Y.log("JSON Parse failed!");
 				return;
 			}
-			arguments(data);
+			callback(data, args);
 		}
 
 		Y.on('io:failure', onFailure, this);
-		Y.on('io:complete', onComplete, this, callback);
+		Y.on('io:complete', onComplete, this, callback, args);
 
 		// Make the call to the server for JSON data
 		transaction = Y.io("/xrowecommerce/json/" + uri, callback);
@@ -50,74 +99,108 @@ function ezjson(uri, callback) {
 	});
 }
 function updateShipping() {
-	YUI().use(
-			"node",
-			"dump",
-			function(Y) {
-				if (Y.Node.get("#shipping-checkbox").get("checked")) {
-					var country = Y.Node.get('#country').get('options').item(
-							Y.Node.get('#country').get('selectedIndex')).get(
-							'value');
-				} else {
-					var country = Y.Node.get('#s_country').get('options').item(
-							Y.Node.get('#s_country').get('selectedIndex')).get(
-							'value');
-				}
-				if (country) {
-					var shipping = Y.Node.get('#s_country')
-				}
-				var doit = function(data) {
-
-					var old = Y.Node.get('#shippingtype').get('options').item(
-							Y.Node.get('#shippingtype').get('selectedIndex'))
-							.get('value');
-					var nodes = Y.all('#shippingtype option');
-					var deleteNodes = function(n, a, b) {
-						n.get('parentNode').removeChild(n)
-					};
-					nodes.each(deleteNodes);
-					for (i = 0; i < data.length; i++) {
-						if( old == data[i][1])
-						{
-							var selected = i;
-						}
-						if (data[i][2] == false) {
-							var node = Y.Node.create('<option value="'
-									+ data[i][1] + '" disabled>' + data[i][0]
-									+ '</option>');
+	if ( document.register.shippingtype == null )
+	{
+		return false;
+	}
+	if ( document.register.shipping.checked == false)
+	{
+		status = document.register.s_country.value;
+	}
+	
+	
+	YUI( YUI3_config )
+			.use(
+					"node",
+					"dump",
+					function(Y) {
+						if (Y.Node.get("#shipping-checkbox").get("checked")) {
+							var country = Y.Node.get('#country').get('options')
+									.item(
+											Y.Node.get('#country').get(
+													'selectedIndex')).get(
+											'value');
 						} else {
-							var node = Y.Node.create('<option value="'
-									+ data[i][1] + '">' + data[i][0]
-									+ '</option>');
+							var country = Y.Node.get('#s_country').get(
+									'options').item(
+									Y.Node.get('#s_country').get(
+											'selectedIndex')).get('value');
 						}
 
-						Y.Node.get('#shippingtype').appendChild(node);
-					}
-					if ( typeof(selected) != "undefined" )
-					{
-						Y.Node.get('#shippingtype').set('selectedIndex', selected)
-					}
-					else
-					{
-						alert( "Your previously selected shipping method is not avialable for your current shipping destination." );
-					}
-					Y.log("INFO2: "
-							+ Y.Lang.dump(Y.Node.get('#shippingtype').get(
-									'options')));
+						var doit = function(data) {
+							var oldname = Y.Node.get('#shippingtype').get(
+									'options').item(
+									Y.Node.get('#shippingtype').get(
+											'selectedIndex')).get('text');
+							var old = Y.Node.get('#shippingtype')
+									.get('options').item(
+											Y.Node.get('#shippingtype').get(
+													'selectedIndex')).get(
+											'value');
+							var nodes = Y.all('#shippingtype option');
+							var deleteNodes = function(n, a, b) {
+								n.get('parentNode').removeChild(n)
+							};
+							nodes.each(deleteNodes);
+							for (i = 0; i < data.length; i++) {
+								if (data[i][2] == false) {
+									var node = Y.Node.create('<option value="'
+											+ data[i][1] + '" disabled>'
+											+ data[i][0] + '</option>');
+								} else {
+									if (old == data[i][1]) {
+										var selected = i;
+									}
+									var node = Y.Node.create('<option value="'
+											+ data[i][1] + '">' + data[i][0]
+											+ '</option>');
+								}
 
-				}
-				ezjson('getshipping?country=' + country, doit);
+								Y.Node.get('#shippingtype').appendChild(node);
+							}
+							if (typeof (selected) != "undefined") {
+								Y.Node.get('#shippingtype').set(
+										'selectedIndex', selected)
+							} else {
+								var replace = new Array();
+								replace["%old%"] = oldname;
+								replace["%new%"] = Y.Node.get('#shippingtype')
+										.get('options').item(
+												Y.Node.get('#shippingtype')
+														.get('selectedIndex'))
+										.get('text');
+								ez18nAlert(
+										"The shipping method '%old%' is not available for your country of destination and was changed to '%new%'.",
+										replace);
+							}
+							Y.log("INFO2: "
+									+ Y.Lang.dump(Y.Node.get('#shippingtype')
+											.get('options')));
 
-			});
+						}
+
+						ezjson('getshipping?country=' + country, doit);
+
+					});
 }
-function change() {
-	YUI()
+
+function ez18nAlert(text, args) {
+	var doit = function(data, args) {
+		for ( var x in args) {
+			data = data.replace(x, args[x]);
+		}
+
+		alert(data);
+	}
+	ezjson('translate?text=' + text, doit, args);
+}
+function changeShipping() {
+	YUI( YUI3_config )
 			.use(
 					'node',
 					function(Y) {
 						if (Y.Node.get("#shipping-checkbox").get("checked")) {
-							Y.Node.get("#shippinginfo").setStyle('display',
-									'none');
+							Y.Node.get("#shippinginfo").setStyle('display', 'none');
 						} else {
 							Y.Node.get("#shippinginfo").setStyle('display',
 									'block');
@@ -152,4 +235,44 @@ function change() {
 
 						}
 					});
+}
+function toggleCOS()
+{        
+    var container = document.getElementById( 'cos-content' );
+    if ( container )
+    {
+        if ( YAHOO.util.Dom.getStyle( container, 'display') == 'block' )
+        {
+        	YAHOO.util.Dom.setStyle( container, 'display', 'none');
+        }
+        else
+        {
+        	YAHOO.util.Dom.setStyle( container, 'display', 'block');
+        }
+    }
+}
+
+function enlargeImage( imsrc, ww, wh, alttext )
+{
+
+    alttext = alttext.replace(/\"/ig, '&quot;');
+    w1=window.open('','ImageEnlarged','width='+ww+',height='+wh+',status=no,toolbar=no,menubar=no,location=no,resizable=yes,scrollbars=no,dependent=yes,innerHeight='+wh+',innerWidth='+ww+'');
+    w1.document.open();
+    w1.document.write("<html><head><\/head>");
+    w1.document.write("<body style=\"margin: 0px 0px 0px 0px;padding: 0px 0px 0px 0px;\">");
+    w1.document.write("<a href=\"javascript:window.close()\" title=\"" + alttext + "\" style=\"margin: 0px 0px 0px 0px;border: none;padding: 0px 0px 0px 0px;\"><img name=\"theimg\" style=\"margin: 0px 0px 0px 0px;border: none;padding: 0px 0px 0px 0px;\" src=\"" + imsrc + "\" alt=\"" + alttext + "\" /></a>");
+    w1.document.write("<\/body><\/html>");
+    w1.focus();
+};
+
+function change()
+{
+if (document.getElementById( 'shipping-checkbox' ).checked)
+    {
+    document.getElementById( 'shippinginfo' ).style.display = 'none';
+    }
+    else
+    {
+            document.getElementById( 'shippinginfo' ).style.display = 'block';
+    }
 }

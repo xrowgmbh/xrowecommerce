@@ -24,7 +24,7 @@
 	                <a href="javascript:;" onclick="return enlargeImage('/{$node.data_map.image.content.reference.full_path}',{$node.data_map.image.content.reference.width},{$node.data_map.image.content.reference.height},'{$node.data_map.image.content.reference.text|wash(javascript)}');" title="{$node.data_map.image.content.reference.text|wash} | {"A click on the image enlarges the image in a popup"|i18n( 'extension/xrowecommerce')}">
 	                    {attribute_view_gui
 	                            attribute=$node.data_map.image
-	                            image_class=product_large
+	                            image_class=medium
 	                            show_alt=false()
 	                    }
 	                </a>

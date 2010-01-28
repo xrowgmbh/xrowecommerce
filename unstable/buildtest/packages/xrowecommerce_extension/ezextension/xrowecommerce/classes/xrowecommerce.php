@@ -34,20 +34,23 @@ class xrowECommerce
     {
         $ini = eZINI::instance( 'xrowecommerce.ini' );
         $LocationArray = array();
-        foreach ( $ini->variable( 'MerchantLocations', 'Location' ) as $location )
+        if ( is_array( $ini->variable( 'MerchantLocations', 'Location' ) ) )
         {
-            if ( $ini->hasVariable( 'MerchantLocations', $location ) )
+            foreach ( $ini->variable( 'MerchantLocations', 'Location' ) as $location )
             {
-                $LocationArray[] = array( 
-                    $location , 
-                    $ini->variable( 'MerchantLocations', $location ) 
-                );
-            }
-            else
-            {
-                $LocationArray[] = array( 
-                    $location 
-                );
+                if ( $ini->hasVariable( 'MerchantLocations', $location ) )
+                {
+                    $LocationArray[] = array( 
+                        $location , 
+                        $ini->variable( 'MerchantLocations', $location ) 
+                    );
+                }
+                else
+                {
+                    $LocationArray[] = array( 
+                        $location 
+                    );
+                }
             }
         }
         return $LocationArray;
@@ -57,28 +60,24 @@ class xrowECommerce
     {
         $return = array();
         $xmlstring = $order->attribute( 'data_text_1' );
-          
-              
+
         $xml = new SimpleXMLElement( $xmlstring );
         if ( $xml )
         {
-        	
-            foreach ( $xml->xpath('//'.xrowECommerce::ACCOUNT_KEY_PACKAGES.'/package') as $key => $package )
+            
+            foreach ( $xml->xpath( '//' . xrowECommerce::ACCOUNT_KEY_PACKAGES . '/package' ) as $key => $package )
             {
-            	
-
                 $p = array();
-                $p['name'] = (string)$package['name'];
-                $p['id'] = (string)$package['id'];
+                $p['name'] = (string) $package['name'];
+                $p['id'] = (string) $package['id'];
                 $p['content'] = array();
                 
                 foreach ( $package->product as $product )
                 {
-
                     $pro = array();
-                    $pro['id'] = (string)$product['id'];
-                    $pro['name'] = (string)$product['name'];
-                    $pro['amount'] = (string)$product['amount'];
+                    $pro['id'] = (string) $product['id'];
+                    $pro['name'] = (string) $product['name'];
+                    $pro['amount'] = (string) $product['amount'];
                     $p['content'][] = $pro;
                 }
                 $return[] = $p;
@@ -228,7 +227,7 @@ class xrowECommerce
                 $currentContentObjectID = $contentObjectID;
             }
             
-            if ( $currentContentObjectID != $contentObjectID && $itemCount != 1 )
+            if ( $currentContentObjectID != $contentObjectID and $itemCount != 1 )
             {
                 $productItemArray[] = array( 
                     'name' => $name , 

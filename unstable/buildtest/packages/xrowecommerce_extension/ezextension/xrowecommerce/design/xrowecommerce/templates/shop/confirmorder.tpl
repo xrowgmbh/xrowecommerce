@@ -22,7 +22,7 @@ function checkCOS( element )
         {/literal}
     {/if}
     {literal}
-	var container = document.getElementById( 'cos_cb' );
+	var container = document.getElementById( 'cos' );
 	if ( container )
 	{
 		if( container.checked )
@@ -43,51 +43,6 @@ function checkCOS( element )
 			return false;
 		}
 	}
-}
-function toggleCOS()
-{        
-    var container = document.getElementById( 'cos-content' );
-    if ( container )
-    {
-        if ( YAHOO.util.Dom.getStyle( container, 'display') == 'block' )
-        {
-        	YAHOO.util.Dom.setStyle( container, 'display', 'none');
-        }
-        else
-        {
-        	YAHOO.util.Dom.setStyle( container, 'display', 'block');
-        }
-    }
-}
-function showAlert()
-{
-    var handleOK = function() {
-        this.cancel();
-    };
-    
-    var oPanel3 = new YAHOO.widget.SimpleDialog("panel-3", {
-        
-        modal: true,
-        icon: YAHOO.widget.SimpleDialog.ICON_INFO,
-        visible: false,
-        fixedcenter: true,
-        constraintoviewport: true,
-        width: "300px",
-        role: "alertdialog",
-        buttons: [ { text:"OK", handler:handleOK, isDefault:true } ],
-        text: "Your changes have been saved."
-    
-    }); 
-
-    oPanel3.setHeader("Info");
-    oPanel3.render(document.body);
-
-    var oTooltip3 = new YAHOO.widget.Tooltip("tooltip-3", { 
-        context:"show-dialog-3", 
-        text:"Shows a Modal Dialog built using SimpleDialog using the ARIA role of alertdialog.",
-        iframe: true,
-        showDelay:500 } );
-
 }
 {/literal}
 </script>
@@ -228,8 +183,8 @@ function showAlert()
         {include uri="design:shop/terms_and_conditions.tpl" view="confirmorder"}
     {/if}
         <div id="buttonblock-bottom" class="buttonblock">
-            <input id="cancel-button" class="left-arrow2" type="submit" name="CancelButton" value="{'Cancel'|i18n('extension/xrowecommerce')}" title="{'Cancel order'|i18n('extension/xrowecommerce')}"/>
-            <input id="continue-button" class="right-arrow2" type="button" onclick="checkCOS(this);" name="ConfirmOrderButton" value="{'Confirm'|i18n('extension/xrowecommerce')}" title="{'Confirm order'|i18n('extension/xrowecommerce')}"/>
+            <input id="cancel-button" class="button left-arrow2" type="submit" name="CancelButton" value="{'Cancel'|i18n('extension/xrowecommerce')}" title="{'Cancel order'|i18n('extension/xrowecommerce')}"/>
+            <input id="continue-button" class="button right-arrow2" type="button" onclick="checkCOS(this);" name="ConfirmOrderButton" value="{'Confirm'|i18n('extension/xrowecommerce')}" title="{'Confirm order'|i18n('extension/xrowecommerce')}"/>
         </div>
     {else}
     {* If the shopping cart is empty after removing hazardous items... *}
