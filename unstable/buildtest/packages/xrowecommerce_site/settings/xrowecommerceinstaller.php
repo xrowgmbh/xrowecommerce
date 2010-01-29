@@ -84,13 +84,15 @@ class xrowecommerceInstaller extends eZSiteInstaller
         $this->addSetting( 'guest_accounts_id', eZSiteInstaller::getParam( $parameters, 'object_remote_map/5f7f0bdb3381d6a461d8c29ff53d908f', '' ) );
         $this->addSetting( 'anonymous_accounts_id', eZSiteInstaller::getParam( $parameters, 'object_remote_map/15b256dbea2ae72418ff5facc999e8f9', '' ) );
         $this->addSetting( 'package_object', eZSiteInstaller::getParam( $parameters, 'package_object', false ) );
-        $this->addSetting( 'design_list', array( 'ezwebin', 'base' ) );
+        $this->addSetting( 'design_list', array( 'xrowecommerce', 'ezwebin', 'base' ) );
         $this->addSetting( 'main_site_design', strtolower( 'xrowecommerce' ) );
         $this->addSetting( 'extension_list', array( 
-            'ezwt', 
             'ezjscore', 
             'ezstarrating', 
             'ezgmaplocation', 
+            'ezoe',
+            'ezwebin',
+            'ezwt', 
             'xrowecommerce'
         ) );
         $this->addSetting( 'version', $this->solutionVersion() );
@@ -287,6 +289,14 @@ class xrowecommerceInstaller extends eZSiteInstaller
                                     ) 
                                 ) 
                             ) 
+                        ),
+                        array( 
+                            'module' => 'shop', 
+                            'function' => 'buy' 
+                        ), 
+                        array( 
+                            'module' => 'xrowecommerce', 
+                            'function' => 'buy' 
                         ) 
                     ) 
                 ) 
@@ -1142,10 +1152,6 @@ class xrowecommerceInstaller extends eZSiteInstaller
                             'function' => 'use' 
                         ), 
                         array( 
-                            'module' => 'shop', 
-                            'function' => 'buy' 
-                        ), 
-                        array( 
                             'module' => 'user', 
                             'function' => 'password' 
                         ), 
@@ -1334,6 +1340,7 @@ class xrowecommerceInstaller extends eZSiteInstaller
                 'AvailableDataTypes' => $availableDatatype 
             ) 
         ) );
+        $this->insertDBFile( 'xrowecommerce_extension', 'xrowecommerce' );
         $this->insertDBFile( 'ezstarrating_extension', 'ezstarrating' );
         $this->insertDBFile( 'ezgmaplocation_extension', 'ezgmaplocation' );
     }
@@ -1686,6 +1693,9 @@ class xrowecommerceInstaller extends eZSiteInstaller
     {
         $siteINI = eZINI::instance( "site.ini.append.php", "settings/siteaccess/" . $this->setting( 'user_siteaccess' ), null, false, null, true );
         $siteINI->setVariable( "DesignSettings", "SiteDesign", $this->setting( 'main_site_design' ) );
+        $siteINI->setVariable( 'DesignSettings', 'AdditionalSiteDesignList', array( 
+            'ezwebin' 
+        ) );
         $siteINI->setVariable( "SiteAccessSettings", "RelatedSiteAccessList", $this->setting( 'all_siteaccess_list' ) );
         $siteINI->save( false, false, false, false, true, true );
         unset( $siteINI );
