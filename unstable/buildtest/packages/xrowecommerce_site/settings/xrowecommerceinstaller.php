@@ -74,6 +74,7 @@ class xrowecommerceInstaller extends eZSiteInstaller
         }
         $this->addSetting( 'client_class_id', eZContentClass::fetchByIdentifier( 'client' )->ID );
         $this->addSetting( 'poll_node_id', eZSiteInstaller::getParam( $parameters, 'node_remote_map/8efd19acb6c4c39aab775cd25d286df7', '' ) );
+        $this->addSetting( 'products_node_id', eZSiteInstaller::getParam( $parameters, 'node_remote_map/7811150784a102ded212e705e6fc6f6d', '' ) );
         
         $templateLookObject = $objects[0];
         $this->Settings['template_look_object'] = $templateLookObject;
@@ -3779,7 +3780,7 @@ class xrowecommerceInstaller extends eZSiteInstaller
                     'parent_node' => $this->setting( 'poll_node_id' )
                 ),
                 'Tool_right_node_list_3' => array( 
-                    'parent_node' => '2', 
+                    'parent_node' => $this->setting( 'products_node_id' ), 
                     'title' => 'Newest Products', 
                     'treelist_check' => 'no', 
                     'limit' => 3 

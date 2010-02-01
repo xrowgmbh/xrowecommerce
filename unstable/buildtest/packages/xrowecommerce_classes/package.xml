@@ -15,14 +15,14 @@
     </maintainer>
   </maintainers>
   <packaging>
-    <timestamp>1264684975</timestamp>
+    <timestamp>1265034940</timestamp>
     <host>localhost</host>
   </packaging>
   <documents>
     <document mime-type="text/plain" name="LICENCE"/>
   </documents>
   <changelog>
-    <entry timestamp="1264684975" person="Anonymous User" email="nospam@ez.no" release="1">
+    <entry timestamp="1265034940" person="Anonymous User" email="nospam@ez.no" release="1">
       <change>Creation of package</change>
     </entry>
   </changelog>
