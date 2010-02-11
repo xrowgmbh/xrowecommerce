@@ -108,13 +108,35 @@ StatusTypeList[]
 # StatusDisallowList-1000[]=2
 #
 
-[ExportSettings]
-# Activate all Marketplaces you wnt todo exports to
+[GoogleExportSettings]
+# Activate all Marketplaces you want to export
 # ActivePlugins[]=xrowGoogleExport
 ActivePlugins[]
-
-GoogleFileName=google_ger_DE.xml
+ActivePlugins[]=xrowGoogleExport
+# GoogleFileName=google_ger_DE.xml
+GoogleFileName=
 GoogleFTPUsername=
 GoogleFTPPassword=
+
+# e.g.
+# ExportPriceLanguage=USD
+# or
+# ExportPriceLanguage=GBR
+# if ExportPriceLanguage is emtpy, it will be set to EUR
+ExportPriceLanguage=
+
+# Which fields to export
+# you can only take this fields
+# name, link, id, image_link, manufacturer, description, price, options
+# you can rename it, example: ExportFieldsArray[description]=short_description
+# or add a public variable in file extension\xrowecommerce\classes\export\structs\xrowexportproduct.php
+# ExportFieldsArray[]
+# ExportFieldsArray[name]=name
+# ExportFieldsArray[link]=link
+# ExportFieldsArray[id]=product_id
+# ExportFieldsArray[description]=description
+# ExportFieldsArray[image_link]=image
+# ExportFieldsArray[manufacturer]=manufacturer
+# ExportFieldsArray[price]=price
 
 * */ ?>
