@@ -7,6 +7,7 @@ $baseUrl = $siteIni->variable( 'SiteSettings', 'SiteURL' );
 
 $xrowIni = eZINI::instance( 'xrowecommerce.ini' );
 $exportSettingsFieldsArray = $xrowIni->variable( 'GoogleExportSettings', 'ExportFieldsArray' );
+$classIdentifier = $xrowIni->variable( 'GoogleExportSettings', 'ClassIdentifier' );
 $priceLang = $xrowIni->variable( 'GoogleExportSettings', 'ExportPriceLanguage' );
 if ( trim( $priceLang ) == '' )
 {
@@ -21,7 +22,7 @@ $exportFields = array();
 $nodeList = eZContentObjectTreeNode::subTreeByNodeID( array( 
     'ClassFilterType' => 'include' , 
     'ClassFilterArray' => array( 
-        'xrow_product' 
+        $classIdentifier 
     ) , 
     'AttributeFilter' => array( 
         array( 
