@@ -15,13 +15,15 @@ class xrowExportProduct extends ezcBaseStruct
      * 
      * @var string
      */
-    public $name = false;
+	public $name = false;
     public $link = false;
-    public $description = false;
     public $id = false;
-    public $price = false;
-    public $manufacturer = false;
     public $image_link = false;
+    public $manufacturer = false;
+    public $description = false;
+    public $price = false;
+    public $color = false;
+    public $model_number = false;
 
     /**
      * Simple constructor 
@@ -29,14 +31,12 @@ class xrowExportProduct extends ezcBaseStruct
      * @return void
      * @ignore
      */
-    public function __construct( $name = null, $link = null, $description = null, $id = null, $price = null, $manufacturer = null )
+    public function __construct( $exportFieldArray )
     {
-        $this->name = $name;
-        $this->link = $link;
-        $this->description = $description;
-        $this->id = $id;
-        $this->price = $price;
-        $this->manufacturer = $manufacturer;
+    	foreach ($exportFieldArray as $exportFieldName => $exportFieldValue)
+    	{
+    		$this->$exportFieldName = $exportFieldValue;
+    	}
     }
-
 }
+?>
