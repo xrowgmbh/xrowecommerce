@@ -7,17 +7,17 @@ class eZOption2
     */
     function eZOption2( $contentObjectAttribute, $name = false, $init = true )
     {
-if($contentObjectAttribute)
-{
-        $this->contentObjectAttribute = $contentObjectAttribute;
-}
-else
-{
-        throw new Exception( "Missing Content Object Attribute");
-}
+        if ( $contentObjectAttribute )
+        {
+            $this->contentObjectAttribute = $contentObjectAttribute;
+        }
+        else
+        {
+            throw new Exception( "Missing Content Object Attribute" );
+        }
         if ( $init )
         {
-            $this->decodeXML( );
+            $this->decodeXML();
         }
         if ( $name !== false )
         {
@@ -59,6 +59,7 @@ else
         
         return (int) $s;
     }
+
     /* old random int function produces too big numbers
     static function randomINT()
     {
@@ -124,6 +125,7 @@ else
     function attributes()
     {
         return array( 
+        	'vat_type' ,
             'name' , 
             'option_list' 
         );
@@ -148,7 +150,7 @@ else
     {
         switch ( $name )
         {
-            case 'vat_type':
+            case "vat_type":
                 {
                     return $this->VATType()->VATTypeList();
                 }
@@ -183,7 +185,7 @@ else
     /*!
      Will decode an xml string and initialize the eZ option object
     */
-    function decodeXML( )
+    function decodeXML()
     {
         if ( $this->contentObjectAttribute->attribute( "data_text" ) != "" )
         {
