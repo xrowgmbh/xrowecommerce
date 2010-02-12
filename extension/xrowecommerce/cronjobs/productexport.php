@@ -36,13 +36,14 @@ $nodeList = eZContentObjectTreeNode::subTreeByNodeID( array(
 // append the products to the export list
 foreach ( $nodeList as $node )
 {
+	$exportFields = array();
+	
     $exportFields['name'] = $node->attribute( 'name' );
     unset( $exportSettingsFieldsArray['name'] );
     
     $url = $node->attribute( 'url_alias' );
     eZURI::transformURI( $url, true );
     $exportFields['link'] = 'http://' . $baseUrl . $url;
-    
     unset( $exportSettingsFieldsArray['link'] );
     
     $nodeDataMap = $node->attribute( 'data_map' );
@@ -50,80 +51,100 @@ foreach ( $nodeList as $node )
     $exportFields['id'] = $nodeDataMap['product_id']->DataText;
     unset( $exportSettingsFieldsArray['id'] );
     
-    // Check if the product have more options (more colors or more sizes)
-    $option2_handler = $nodeDataMap['options']->attribute( 'content' );
+    // get the rest of details
+    foreach ( $exportSettingsFieldsArray as $exportSettingsFieldIndex => $exportSettingsFieldName )
+    {
+        if ( array_key_exists( $exportSettingsFieldName, $nodeDataMap ) )
+        {
+            $handler = $nodeDataMap[$exportSettingsFieldName]->attribute( 'content' );
+            // get description
+            if ( $nodeDataMap[$exportSettingsFieldName]->DataTypeString == 'ezxmltext' )
+            {
+                $content = get_xml_text( $handler );
+            }
+            // get image path
+            elseif ( $nodeDataMap[$exportSettingsFieldName]->DataTypeString == 'ezimage' )
+            {
+                $content = get_image_path( $handler, $baseUrl );
+            }
+            // get price
+            elseif ( $nodeDataMap[$exportSettingsFieldName]->DataTypeString == 'ezmultiprice' )
+            {
+                $content = get_multi_price( $handler, $priceLang );
+            }
+            // get manufacturer
+            elseif ( $nodeDataMap[$exportSettingsFieldName]->DataTypeString == 'ezobjectrelation' )
+            {
+                $content = $handler->Name;
+            }
+            // get the rest
+            else
+            {
+                $content = $nodeDataMap[$exportSettingsFieldName]->DataText;
+            }
+            $exportFields[$exportSettingsFieldIndex] = $content;
+        }
+    }
+    // now check whether the product have options/variations
+    $variationFieldName = $xrowIni->variable( 'GoogleExportSettings', 'ExportVariationFieldName' );
+    $option2_handler = $nodeDataMap[$variationFieldName]->attribute( 'content' );
     $option2_list = $option2_handler->attribute( 'option_list' );
     if ( is_array( $option2_list ) && count( $option2_list ) > 0 )
     {
         $optionArray = array();
+        $exportVariationFieldsArray = $xrowIni->variable( 'GoogleExportSettings', 'ExportVariationFieldsArray' );
+        
         foreach ( $option2_list as $option )
-        {
-            // get the full name
-            $default_name = $exportFields['name'];
-            $exportFields['name'] = $exportFields['name'] . ' ' . $option['comment'];
-            // get the full profukt id
-            $default_id = $exportFields['id'];
-            $exportFields['id'] = $exportFields['id'] . '-' . $option['id'];
-            // get image path
-            $image_contentobject_attributes = $option['image']->attribute( 'contentobject_attributes' );
-            $image_handler = $image_contentobject_attributes[2]->attribute( 'content' );
-            $exportFields['image_link'] = get_image_path( $image_handler, $baseUrl );
-            // get manufacturer
-            $exportFields['manufacturer'] = $nodeDataMap['manufacturer']->attribute( 'content' )->Name;
-            // get description
-            $exportFields['description'] = $option['description'];
-            // get price
-            $exportFields['price'] = get_multi_price( $option['multi_price'], $priceLang, 'array' );
-            
-            // add to the export list
-            $list->append( new xrowExportProduct( $exportFields ) );
-            $exportFields['name'] = $default_name;
-            $exportFields['id'] = $default_id;
-            unset( $exportFields['image_link'] );
-            unset( $exportFields['manufacturer'] );
-            unset( $exportFields['description'] );
-            unset( $exportFields['price'] );
-            unset( $exportFields['color'] );
-            unset( $exportFields['model_number'] );
+	    {
+	    	foreach ( $exportVariationFieldsArray as $exportVariationFieldIndex => $exportVariationFieldName )
+        	{
+		        // get the full name
+		        if ( $option[$exportVariationFieldName] != '' )
+		        {
+		        	switch ($exportVariationFieldIndex)
+		        	{
+		        		case 'name':
+		        			$default_name = $exportFields['name'];
+		            		$exportFields['name'] = $exportFields['name'] . ' ' . $option[$exportVariationFieldName];
+		        			break;
+		        			
+		        		case 'id':
+		            		$default_id = $exportFields['id'];
+            				$exportFields['id'] = $exportFields['id'] . '-' . $option[$exportVariationFieldName];
+		        			break;
+		        			
+		        		case 'price':
+		            		$exportFields['price'] = get_multi_price( $option[$exportVariationFieldName], $priceLang, 'array' );
+		        			break;
+		        			
+		        		case 'image_link':
+		            		$image_contentobject_attributes = $option[$exportVariationFieldName]->attribute( 'contentobject_attributes' );
+            				$image_handler = $image_contentobject_attributes[2]->attribute( 'content' );
+            				$exportFields['image_link'] = get_image_path( $image_handler, $baseUrl );
+		        			break;
+		        			
+		        		default :
+		            		$exportFields[$exportVariationFieldIndex] = $option[$exportVariationFieldName];
+		        			break;
+		        	}
+		            
+		        }
+        	}
+        	$list->append( new xrowExportProduct( $exportFields ) );
+	        $exportFields['name'] = $default_name;
+	        $exportFields['id'] = $default_id;
+	        foreach ( $exportVariationFieldsArray as $exportVariationFieldIndex => $exportVariationFieldName )
+        	{
+        		if ($exportVariationFieldIndex != 'name' && $exportVariationFieldIndex != 'id')
+        		{
+	        		unset( $exportFields[$exportVariationFieldIndex] );
+        		}
+        	}
         }
     }
     else
     {
-        foreach ( $exportSettingsFieldsArray as $exportSettingsFieldIndex => $exportSettingsFieldName )
-        {
-            if ( array_key_exists( $exportSettingsFieldName, $nodeDataMap ) )
-            {
-                $handler = $nodeDataMap[$exportSettingsFieldName]->attribute( 'content' );
-                // get description
-                if ( $nodeDataMap[$exportSettingsFieldName]->DataTypeString == 'ezxmltext' )
-                {
-                    $content = get_xml_text( $handler );
-                }
-                // get image path
-                elseif ( $nodeDataMap[$exportSettingsFieldName]->DataTypeString == 'ezimage' )
-                {
-                    $content = get_image_path( $handler, $baseUrl );
-                }
-                // get price
-                elseif ( $nodeDataMap[$exportSettingsFieldName]->DataTypeString == 'ezmultiprice' )
-                {
-                    $content = get_multi_price( $handler, $priceLang );
-                }
-                // get manufacturer
-                elseif ( $nodeDataMap[$exportSettingsFieldName]->DataTypeString == 'ezobjectrelation' )
-                {
-                    $content = $handler->Name;
-                }
-                // get the rest
-                else
-                {
-                    $content = $nodeDataMap[$exportSettingsFieldName]->DataText;
-                }
-                $exportFields[$exportSettingsFieldIndex] = $content;
-            }
-        }
-        $list->append( new xrowExportProduct( $exportFields ) );
-        unset( $exportFields );
+    	$list->append( new xrowExportProduct( $exportFields ) );
     }
 }
 
