@@ -20,11 +20,10 @@ JavaScriptList[]=xrowecommerce.js
 #JavaScriptList[]=../lib/yui/2.7.0/build/dragdrop/dragdrop-min.js
 #JavaScriptList[]=../lib/yui/2.7.0/build/logger/logger-min.js
 
-
 [StylesheetSettings]
 CSSFileList[]=xrowproductvariation.css
 CSSFileList[]=backend.css
-CSSFileList[]=../lib/yui/2.7.0/build/calendar/assets/calendar.css
-CSSFileList[]=../lib/yui/2.7.0/build/calendar/assets/skins/sam/calendar-skin.css
+#CSSFileList[]=../lib/yui/2.7.0/build/calendar/assets/calendar.css
+#CSSFileList[]=../lib/yui/2.7.0/build/calendar/assets/skins/sam/calendar-skin.css
 
 */ ?>
