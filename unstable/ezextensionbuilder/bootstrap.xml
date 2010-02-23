@@ -3,7 +3,7 @@
 
     <description>eZExtensionBuilder bootstrap file</description>
 
-    <property name="build.xml.url" value="http://svn.projects.ez.no/ezextensionbuilder/trunk/build.xml"/>
+    <property name="build.xml.url" value="http://svn.projects.ez.no/xrowecommerce/unstable/ezextensionbuilder/build.xml"/>
 
     <property name="ivy.install.version" value="2.1.0" />
 
@@ -45,7 +45,7 @@
 
     <!-- Retrieves dependencies with Ivy -->
     <target name="ivy-resolve-dependencies" depends="ivy-init" unless="offline" description="Retrieves dependencies with ivy">
-        <get src="http://svn.projects.ez.no/ezextensionbuilder/trunk/ivy.xml"
+        <get src="http://svn.projects.ez.no/xrowecommerce/unstable/ezextensionbuilder/ivy.xml"
              dest="ivy.xml"
              usetimestamp="true"/>
 
