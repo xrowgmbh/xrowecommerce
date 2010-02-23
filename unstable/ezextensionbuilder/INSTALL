@@ -1,0 +1,26 @@
+Introduction
+==========
+
+1. What is the eZ Extension Builder?
+----------------------------------
+
+A set of ANT files and tools to build eZ Publish extensions and deliverables.
+
+2. License
+----------
+
+This software is licensed under the GNU General Public License v2.0 . The
+complete license agreement is included in the LICENSE file. For more information
+or questions please contact info@ez.no
+
+3. Requirements
+---------------
+   
+- Apache Ant version ? or later. Get it from http://ant.apache.org/
+- the php cli and eZ Components (only for generating an ezpackage)
+- command line tools: svn, md5sum, rst2html.py
+
+4. Installing
+-------------
+
+Read the README file to get started

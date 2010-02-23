@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ivy-module version="2.0">
+    <info organisation="eZ Systems" module="build-dependencies"/>
+    <dependencies>
+        <dependency org="ant-contrib" name="ant-contrib" rev="1.0b3" transitive="false"/>
+    </dependencies>
+</ivy-module>
