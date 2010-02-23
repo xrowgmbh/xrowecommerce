@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE packages SYSTEM "ezpackage.dtd">
+<?xml-stylesheet type="text/xsl" href="repository.xsl"?>
 <packages vendor="xrow GmbH">
   <package name="ezgmaplocation_extension" version="1.0-0" type="extension" summary="ezgmaplocation extension" description="ezgmaplocation extension" url="http://packages.xrow.com/xrowecommerce/latest/ezgmaplocation_extension.ezpkg" thumbnail_url="http://packages.xrow.com/xrowecommerce/latest/thumbnails/ezgmaplocation_extension.png"/>
   <package name="ezwt_extension" version="1.1-0" type="extension" summary="ezwt extension" description="ezwt extension" url="http://packages.xrow.com/xrowecommerce/latest/ezwt_extension.ezpkg" thumbnail_url="http://packages.xrow.com/xrowecommerce/latest/thumbnails/ezwt_extension.png"/>
