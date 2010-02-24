@@ -72,7 +72,6 @@ class xrowecommerceInstaller extends eZSiteInstaller
             eZDebug::writeError( "Object of class $classIdentifier does not exist." );
             return;
         }
-        $this->addSetting( 'client_class_id', eZContentClass::fetchByIdentifier( 'client' )->ID );
         $this->addSetting( 'poll_node_id', eZSiteInstaller::getParam( $parameters, 'node_remote_map/8efd19acb6c4c39aab775cd25d286df7', '' ) );
         $this->addSetting( 'products_node_id', eZSiteInstaller::getParam( $parameters, 'node_remote_map/7811150784a102ded212e705e6fc6f6d', '' ) );
         
@@ -865,13 +864,15 @@ class xrowecommerceInstaller extends eZSiteInstaller
                     ) 
                 ) 
             ), 
+            /* Not in demo content
             array( 
                 '_function' => 'setSection', 
                 '_params' => array( 
                     'location' => 'partners', 
                     'section_name' => 'Restricted' 
                 ) 
-            ), 
+            ),
+            */ 
             array( 
                 '_function' => 'addPoliciesForRole', 
                 '_params' => array( 
@@ -1684,7 +1685,7 @@ class xrowecommerceInstaller extends eZSiteInstaller
         $siteINI = eZINI::instance( 'site.ini.append.php', 'settings/siteaccess/' . $this->setting( 'admin_siteaccess' ), null, false, null, true );
         $siteINI->setVariable( 'DesignSettings', 'SiteDesign', $this->setting( 'admin_siteaccess' ) );
         $siteINI->setVariable( 'DesignSettings', 'AdditionalSiteDesignList', array( 
-            'admin' 
+            'admin2', 'admin' 
         ) );
         $siteINI->setVariable( 'SiteAccessSettings', 'RelatedSiteAccessList', $this->setting( 'all_siteaccess_list' ) );
         $siteINI->save();
@@ -1717,9 +1718,30 @@ class xrowecommerceInstaller extends eZSiteInstaller
         $settings[] = $this->adminViewCacheINISettings();
         $settings[] = $this->adminODFINISettings();
         $settings[] = $this->adminOEINISettings();
+        $settings[] = $this->adminMenuINISettings();
         return $settings;
     }
-
+    function adminMenuINISettings()
+    {
+        $contentStructureMenu = array( 
+            'name' => 'menu.ini', 
+            'reset_arrays' => true, 
+            'settings' => array( 
+                'TopAdminMenu' => array( 
+                    'Tabs' => array( 
+                        'dashboard', 
+                        'content', 
+                        'media', 
+                        'users', 
+                        'setup', 
+                        'shop',
+                        'recurringorders'
+                    ) 
+                ) 
+            ) 
+        );
+        return $contentStructureMenu;
+    }
     function adminContentStructureMenuINISettings()
     {
         $contentStructureMenu = array( 
@@ -2198,7 +2220,7 @@ class xrowecommerceInstaller extends eZSiteInstaller
         );
         $settings['UserSettings'] = array( 
             'LogoutRedirect' => '/',
-            'UserClassID' => $this->setting( 'client_class_id' )
+            'UserClassID' => eZContentClass::fetchByIdentifier( 'client' )->ID
         );
         $settings['EmbedViewModeSettings'] = array( 
             'AvailableViewModes' => array( 
