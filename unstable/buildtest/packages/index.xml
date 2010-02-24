@@ -17,7 +17,6 @@
 	  <require name="ezgmaplocation_extension" min-version="1.0" url="http://packages.xrow.com/xrowecommerce/latest/ezgmaplocation_extension.ezpkg"/>
       <require name="ezwt_extension" min-version="1.1" url="http://packages.xrow.com/xrowecommerce/latest/ezwt_extension.ezpkg"/>
       <require name="ezstarrating_extension" min-version="1.0" url="http://packages.xrow.com/xrowecommerce/latest/ezstarrating_extension.ezpkg"/>
-      <require name="ezjscore_extension" min-version="1.0" url="http://packages.xrow.com/xrowecommerce/latest/ezjscore_extension.ezpkg"/>
 	  <require name="ezwebin_extension" min-version="1.5" url="http://packages.xrow.com/xrowecommerce/latest/ezwebin_extension.ezpkg"/>
 	  <require name="xrowecommerce_extension" min-version="1.1" url="http://packages.xrow.com/xrowecommerce/latest/xrowecommerce_extension.ezpkg"/>
 	  <require name="ezwebin_classes" min-version="1.5" url="http://packages.xrow.com/xrowecommerce/latest/ezwebin_classes.ezpkg"/>
