@@ -1,287 +1,37 @@
-<?xml version="1.0"?>
-<project name="xrowecommerce" default="all">
+<?xml version="1.0" encoding="iso-8859-1"?>
+<project name="xrowecommerce" default="help">
 
-    <description>xrowecommerce packages build file</description>
+    <description>xrowecommerce build file</description>
 
-    <mkdir dir="build"/>
-
-    <!-- ================== -->
-    <!-- dynamic properties -->
-    <!-- ================== -->
-
-    <!-- current year -->
-    <tstamp>
-        <format property="date.current.year" pattern="yyyy"/>
-    </tstamp>
-
-    <!-- ========================= -->
-    <!-- end of dynamic properties -->
-    <!-- ========================= -->
-
-    <!-- ================= -->
-    <!-- static properties -->
-    <!-- ================= -->
-
-    <property name="xrowecommerce.build.dir" location="build"/>
-    <property file="./ant/xrowecommerce.properties"/>
-
-    <!-- ======================== -->
-    <!-- end of static properties -->
-    <!-- ======================== -->
-
-    <!-- ============================= -->
-    <!-- high level ( public ) targets -->
-    <!-- ============================= -->
-
-    <!-- Shows the list of properties used for building this extension -->
-    <!-- Anytime the xrowecommerce.properties file is update, this target must  -->
-    <!-- me update as well                                             -->
-    <target name="infos">
-        <echo message="xrowecommerce BUILD INFORMATIONS"/>
-        <echo message="--------------------------"/>
-        <echo message="xrowecommerce.version.major          : ${xrowecommerce.version.major}"/>
-        <echo message="xrowecommerce.version.minor          : ${xrowecommerce.version.minor}"/>
-        <echo message="xrowecommerce.version.release        : ${xrowecommerce.version.release}"/>
-        <echo message="xrowecommerce.version.alias          : ${xrowecommerce.version.alias}"/>
-        <echo message="xrowecommerce.svn.trunk.packages.url : ${xrowecommerce.svn.trunk.packages.url}"/>
-        <echo message="php.cli.executable.path        : ${php.cli.executable.path}"/>
-        <echo message="ezp.version.major              : ${ezp.version.major}"/>
-        <echo message="ezp.version.minor              : ${ezp.version.minor}"/>
-        <echo message="ezp.version.release            : ${ezp.version.release}"/>
-        <echo message="ezp.version.alias              : ${ezp.version.alias}"/>
-    </target>
-
-    <!-- Displays a warning before building the extension        -->
-    <!-- Also waits for 5 seconds before starting the real build -->
-    <!-- This makes it possible to interrupt the script before   -->
-    <!-- any real task is done                                   -->
-    <target name="warning" depends="infos">
-        <echo message="Please check informations defined above are correct"/>
-        <echo message="If not feel free to update the ant/xrowecommerce.properties file"/>
-        <echo message="This script will wait for 5 seconds before it starts"/>
-
-        <sleep seconds="5"/>
-    </target>
-
-    <!-- Prepares the build                               -->
-    <!-- Runs an svn export of the extension's repository -->
-    <target name="init" depends="warning">
-        <exec executable="svn" failonerror="true">
-            <arg value="export"/>
-            <arg value="${xrowecommerce.svn.trunk.packages.url}"/>
-            <arg value="${xrowecommerce.build.dir}/packages"/>
-        </exec>
-    </target>
-
-    <!-- builds the extension -->
-    <target name="build" depends="init">
-        <antcall target="run-ezpxmlfilelist-php">
-            <param name="extension.name"       value="xrowecommerce_extension"/>
-            <param name="extension.short.name" value="xrowecommerce"/>
-        </antcall>
-
-        <antcall target="update-package-xml"/>
-        <antcall target="update-ezinfo-php"/>
-        <antcall target="update-license-headers"/>
-    </target>
-
-    <!-- building eZWebsiteToolbar as a dependency -->
-    <target name="build-externals">
-         <!-- eZWebin-->
-        <antcall target="-build-external">
-            <param name="external.dependancy.build.file.url"
-                   value="${external.dependancy.ezwebin.svn.trunk.build.file.url}"/>
-
-            <param name="external.dependancy.properties.file.url"
-                   value="${external.dependancy.ezwebin.properties.file.url}"/>
-
-            <param name="external.dependancy.properties.file.name"
-                   value="${external.dependancy.ezwebin.properties.file.name}"/>
-        </antcall>
-
-    </target>
-
-    <!-- Meta target, calls build and dist -->
-    <target name="all" depends="build,dist,build-externals"/>
-	
-    <!-- Meta target, calls build and dist -->
-    <target name="release" depends="build,dist,build-externals,deploy"/>
-	
-    <!-- creates all the tarballs for packages -->
-    <target name="dist">
-	    <antcall target="create-package-tarball"><param name="package.name" value="xrowecommerce_classes"/></antcall>
-		<antcall target="create-package-tarball"><param name="package.name" value="xrowecommerce_content"/></antcall>
-        <antcall target="create-package-tarball"><param name="package.name" value="xrowecommerce_extension"/></antcall>
-		<antcall target="create-package-tarball"><param name="package.name" value="xrowecommerce_site"/></antcall>
-    </target>
-	
-	<!-- creates all the tarballs for packages -->
-    <target name="deploy">
-	    <sshexec host="${host}" username="${user}" password="${password}" trust="yes" command="mkdir -p ${path}/xrowecommerce/latest"/>
-        <scp trust="yes" todir="${user}:${password}@${host}:${path}/xrowecommerce/latest">
-            <fileset dir="${xrowecommerce.build.dir}">
-                <include name="*.ezpkg"/>
-                                <include name="index.xml"/>
-           </fileset>
-           <fileset dir="packages">
-                                <include name="index.xml"/>
-           </fileset>
-        </scp>
-        <sshexec host="${host}" username="${user}" password="${password}" trust="yes" command="mkdir -p ${path}/xrowecommerce/${xrowecommerce.version.alias}/${xrowecommerce.version.alias}.${xrowecommerce.version.release}"/>
-        <scp trust="yes" todir="${user}:${password}@${host}:${path}/xrowecommerce/${xrowecommerce.version.alias}/${xrowecommerce.version.alias}.${xrowecommerce.version.release}">
-            <fileset dir="${xrowecommerce.build.dir}">
-                <include name="*.ezpkg"/>
+    <taskdef resource="net/sf/antcontrib/antcontrib.properties">
+        <classpath>
+                <pathelement location="${user.home}/.ant/lib/ant-contrib-1.0b3-jar.jar"/>
+        </classpath>
+    </taskdef>
+    <import file="ant/ezextensionbuilder/build.xml"/>
+    <!-- deploys all tarballs for distribution -->
+	<target name="deploy">
+		<sshexec host="${host}" username="${user}" password="${password}" trust="yes" command="mkdir -p ${path}/{$extension.name}/latest"/>
+		<scp trust="yes" todir="${user}:${password}@${host}:${path}/${extension.name}/latest">
+			<fileset dir="${build.dir}">
+				<include name="*.ezpkg"/>
+			</fileset>
+			<fileset dir="packages">
 				<include name="index.xml"/>
-           </fileset>
-           <fileset dir="packages">
-                                <include name="index.xml"/>
-           </fileset>
-        </scp>
-
-    </target>
-
-
-    <!-- Cleans the generated tarball by dist-->
-    <target name="distclean">
-        <delete includeemptydirs="true">
-            <fileset dir="${xrowecommerce.build.dir}" includes="**/*.ezpkg"/>
-        </delete>
-    </target>
-
-    <!-- Purge everything in the build directory -->
-    <!-- Also remove the build directory         -->
-    <target name="cleanall" depends="distclean">
-        <delete dir="${xrowecommerce.build.dir}"/>
-    </target>
-
-    <!-- ==================================== -->
-    <!-- end of high level ( public ) targets -->
-    <!-- ==================================== -->
-
-    <!-- ====================================================== -->
-    <!-- low level ( private ) targets, for internal usage ONLY -->
-    <!-- ====================================================== -->
-
-    <target name="update-package-xml">
-        <echo message="Updating package.xml with correct version numbers"/>
-
-        <!-- <version>xxx</version> -->
-        <replaceregexp byline="true" flags="m">
-            <regexp pattern='^(    \074version\076)(.*)(\074/version\076)$'/>
-            <substitution expression='\1${ezp.version.alias}.${ezp.version.release}\3'/>
-            <fileset dir="${xrowecommerce.build.dir}" includes="**/*package.xml"/>
-        </replaceregexp>
-
-        <!-- <named-version>xxx</named-version> -->
-        <replaceregexp byline="true" flags="m">
-            <regexp pattern='^(    \074named-version\076)(.*)(\074/named-version\076)$'/>
-            <substitution expression='\1${ezp.version.alias}\3'/>
-            <fileset dir="${xrowecommerce.build.dir}" includes="**/*package.xml"/>
-        </replaceregexp>
-
-        <!-- <package version="zzzz" -->
-        <replaceregexp byline="true">
-            <regexp pattern='^(\074package version=")(.*)(")$'/>
-            <substitution expression='\1${xrowecommerce.version.major}.${xrowecommerce.version.minor}-${xrowecommerce.version.release}\3'/>
-            <fileset dir="${xrowecommerce.build.dir}" includes="**/*package.xml"/>
-        </replaceregexp>
-
-        <!-- <number>xxxx</number> -->
-        <replaceregexp byline="true">
-            <regexp pattern='^(    \074number\076)(.*)(\074/number\076)$'/>
-            <substitution expression='\1${xrowecommerce.version.alias}\3'/>
-            <fileset dir="${xrowecommerce.build.dir}" includes="**/*package.xml"/>
-        </replaceregexp>
-
-        <!-- <release>yyy</release> -->
-        <replaceregexp byline="true">
-            <regexp pattern='^(    \074release\076)(.*)(\074/release\076)$'/>
-            <substitution expression='\1${xrowecommerce.version.release}\3'/>
-            <fileset dir="${xrowecommerce.build.dir}" includes="**/*package.xml"/>
-        </replaceregexp>
-
-    </target>
-
-    <!-- Updates ezinfo.php with correct version numbers -->
-    <target name="update-ezinfo-php">
-        <echo message="Updating ezinfo.php"/>
-
-        <replaceregexp byline="true" flags="i">
-            <regexp pattern="^([\s]+\047version\047[\s]+=>[\s]+\047)(.*)(\047,)$"/>
-            <substitution expression='\1${xrowecommerce.version.alias}-${xrowecommerce.version.release}\3'/>
-            <fileset dir="${xrowecommerce.build.dir}" includes="**/*ezinfo.php"/>
-        </replaceregexp>
-    </target>
-
-    <!-- Updates the license headers with correct version numbers -->
-    <!-- Updates the // SOFTWARE RELEASE line                     -->
-    <!-- Updates the // COPYRIGHT NOTICE line                     -->
-    <target name="update-license-headers">
-        <echo message="Updating license headers"/>
-
-        <!-- SOFTWARE RELEASE -->
-        <replaceregexp byline="true">
-            <regexp pattern="// SOFTWARE RELEASE: (.*)"/>
-            <substitution expression="// SOFTWARE RELEASE: ${xrowecommerce.version.alias}-${xrowecommerce.version.release}"/>
-            <fileset dir="${xrowecommerce.build.dir}">
-                <include name="**/*.php"/>
-            </fileset>
-        </replaceregexp>
-
-        <!-- COPYRIGHT NOTICE -->
-        <replaceregexp byline="true">
-            <regexp pattern="// COPYRIGHT NOTICE: Copyright \(C\) 1999-[\d]{4} eZ Systems AS"/>
-            <substitution expression="// COPYRIGHT NOTICE: Copyright (C) 1999-${date.current.year} eZ Systems AS"/>
-            <fileset dir="${xrowecommerce.build.dir}">
-                <include name="**/*.php"/>
-            </fileset>
-        </replaceregexp>
-    </target>
-
-    <!-- called by build -->
-    <target name="run-ezpxmlfilelist-php">
-        <echo message="Building XML file list for extension ${extension.name}"/>
-        <exec executable="${php.cli.executable.path}" failonerror="true">
-            <arg value="./bin/ezpxmlextfilelist.php"/>
-            <arg value="-e"/>
-            <arg value="${xrowecommerce.build.dir}/packages/${extension.name}/ezextension/${extension.short.name}"/>
-            <arg value="-n"/>
-            <arg value="${extension.short.name}"/>
-            <redirector output="${xrowecommerce.build.dir}/packages/${extension.name}/ezextension/extension-${extension.short.name}.xml" append="false"/>
-        </exec>
-    </target>
-
-    <!-- called by target dist -->
-    <target name="create-package-tarball">
-        <echo message="Building ${package.name}.ezpkg"/>
-        <!-- Switched to the system tar command                             -->
-        <!-- Ref : https://issues.apache.org/bugzilla/show_bug.cgi?id=47653 -->
-        <exec executable="./ant/createzpkg.sh">
-            <arg value="${xrowecommerce.build.dir}/packages/${package.name}"/>
-            <arg value="${xrowecommerce.build.dir}/${package.name}"/>
-        </exec>
-    </target>
-
-    <target name="-build-external">
-        <delete dir="${xrowecommerce.build.dir}/packages"/>
-
-        <get src="${external.dependancy.build.file.url}"
-             dest="xrowecommerce-externalbuild.xml"/>
-
-        <get src="${external.dependancy.properties.file.url}"
-             dest="ant/${external.dependancy.properties.file.name}"/>
-
-        <ant antfile="xrowecommerce-externalbuild.xml"
-             dir="."
-             target="all"
-             inheritAll="true"/>
-
-        <delete file="ant/${external.dependancy.properties.file.name}"/>
-
-        <delete file="xrowecommerce-externalbuild.xml"/>
-    </target>
-    <!-- ============================================================= -->
-    <!-- end of low level ( private ) targets, for internal usage ONLY -->
-    <!-- ============================================================= -->
-
+				<include name="ezpackage.xml"/>	
+				<include name="repository.xsl"/>
+			</fileset>
+		</scp>
+		<sshexec host="${host}" username="${user}" password="${password}" trust="yes" command="mkdir -p ${path}/${extension.name}/${version.alias}/${version.alias}.${version.release}"/>        
+		<scp trust="yes" todir="${user}:${password}@${host}:${path}/${extension.name}/${version.alias}/${version.alias}.${version.release}">
+			<fileset dir="${build.dir}">
+				<include name="*.ezpkg"/>
+			</fileset>
+			<fileset dir="packages">
+				<include name="index.xml"/>
+       				<include name="ezpackage.xml"/>
+       				<include name="repository.xsl"/>            
+			</fileset>
+		</scp>
+	</target>
 </project>
