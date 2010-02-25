@@ -1254,10 +1254,7 @@ class xrowecommerceInstaller extends eZSiteInstaller
     {
 
         //init vars
-        $node1 = $this->nodeByName( $params['node'] );
-
-        $nodeID = $node1;
-        $node = eZContentObjectTreeNode::fetch( $nodeID );
+        $node = $this->nodeByName( $params['node'] );
 
         if( !is_object( $node ) )
         {
@@ -1816,8 +1813,9 @@ class xrowecommerceInstaller extends eZSiteInstaller
                 ), 
                 'Toolbar_admin_right' => array( 
                     'Tool' => array( 
-                        0 => 'admin_current_user', 
-                        1 => 'admin_bookmarks' 
+                        0 => 'admin_current_user',
+                        1 => 'admin_preferences',
+                        2 => 'admin_bookmarks'
                     ) 
                 ), 
                 'Toolbar_admin_developer' => array( 
