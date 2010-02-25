@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package version="3.5.2" development="false" install_type="install">
+  <name>xrowecommerce_classes</name>
+  <summary>xrowecommerce classes</summary>
+  <type value="contentclass"/>
+  <ezpublish>
+    <version>4.2.1</version>
+    <named-version>4.2</named-version>
+  </ezpublish>
+  <maintainers>
+    <maintainer>
+      <name>Anonymous User</name>
+      <email>nospam@ez.no</email>
+      <role>lead</role>
+    </maintainer>
+  </maintainers>
+  <packaging>
+    <timestamp>1267113052</timestamp>
+    <host>localhost</host>
+  </packaging>
+  <documents>
+    <document mime-type="text/plain" name="LICENCE"/>
+  </documents>
+  <changelog>
+    <entry timestamp="1267113052" person="Anonymous User" email="nospam@ez.no" release="1">
+      <change>Creation of package</change>
+    </entry>
+  </changelog>
+  <simple-files/>
+  <version>
+    <number>1.1-0</number>
+    <release>1</release>
+  </version>
+  <licence>GPL</licence>
+  <state>alpha</state>
+  <dependencies>
+    <provides>
+      <provide type="ezcontentclass" name="contentclass" value="xrow_product_category"/>
+      <provide type="ezcontentclass" name="contentclass" value="xrow_product_review"/>
+      <provide type="ezcontentclass" name="contentclass" value="xrow_product"/>
+      <provide type="ezcontentclass" name="contentclass" value="manufacturer"/>
+      <provide type="ezcontentclass" name="contentclass" value="coupon"/>
+      <provide type="ezcontentclass" name="contentclass" value="client"/>
+    </provides>
+    <requires/>
+    <obsoletes/>
+    <conflicts/>
+  </dependencies>
+  <install>
+    <item type="ezcontentclass" filename="class-xrow_product_category" sub-directory="ezcontentclass"/>
+    <item type="ezcontentclass" filename="class-xrow_product_review" sub-directory="ezcontentclass"/>
+    <item type="ezcontentclass" filename="class-xrow_product" sub-directory="ezcontentclass"/>
+    <item type="ezcontentclass" filename="class-manufacturer" sub-directory="ezcontentclass"/>
+    <item type="ezcontentclass" filename="class-coupon" sub-directory="ezcontentclass"/>
+    <item type="ezcontentclass" filename="class-client" sub-directory="ezcontentclass"/>
+  </install>
+  <uninstall>
+    <item type="ezcontentclass" filename="class-xrow_product_category" sub-directory="ezcontentclass"/>
+    <item type="ezcontentclass" filename="class-xrow_product_review" sub-directory="ezcontentclass"/>
+    <item type="ezcontentclass" filename="class-xrow_product" sub-directory="ezcontentclass"/>
+    <item type="ezcontentclass" filename="class-manufacturer" sub-directory="ezcontentclass"/>
+    <item type="ezcontentclass" filename="class-coupon" sub-directory="ezcontentclass"/>
+    <item type="ezcontentclass" filename="class-client" sub-directory="ezcontentclass"/>
+  </uninstall>
+</package>
