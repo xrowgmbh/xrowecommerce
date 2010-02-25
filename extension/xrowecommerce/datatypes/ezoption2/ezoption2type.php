@@ -507,7 +507,119 @@ class eZOption2Type extends eZDataType
     {
         return true;
     }
+    function postUnserializeContentObjectAttribute( $package, $objectAttribute )
+    {
+        $xmlString = $objectAttribute->attribute( 'data_text' );
+        $doc = new DOMDocument( '1.0', 'utf-8' );
+        $success = $doc->loadXML( $xmlString );
 
+        if ( !$success )
+        {
+            return false;
+        }
+
+        $objects = $doc->getElementsByTagName( 'option' );
+
+        $modified = array();
+        $modified[] = self::transformRemoteLinksToLinks( $objects, $objectAttribute );
+
+        if ( in_array( true, $modified ) )
+        {
+            $objectAttribute->setAttribute( 'data_text', eZXMLTextType::domString( $doc ) );
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+    static function transformRemoteLinksToLinks( DOMNodeList $nodeList, $objectAttribute )
+    {
+        $modified = false;
+
+        $contentObject = $objectAttribute->attribute( 'object' );
+        foreach ( $nodeList as $node )
+        {
+            $objectRemoteID = $node->getAttribute( 'object_remote_id' );
+            if ( $objectRemoteID )
+            {
+                $objectArray = eZContentObject::fetchByRemoteID( $objectRemoteID, false );
+                if ( !is_array( $objectArray ) )
+                {
+                    eZDebug::writeWarning( "Can't fetch object with remoteID = $objectRemoteID", 'eZXMLTextType::unserialize' );
+                    continue;
+                }
+
+                $objectID = $objectArray['id'];
+                
+                $node->setAttribute( 'image', $objectID );
+                $node->removeAttribute( 'object_remote_id' );
+                $modified = true;
+
+                // add as related object
+                if ( $contentObject )
+                {
+                    $relationType = $node->localName == 'link' ? eZContentObject::RELATION_LINK : eZContentObject::RELATION_EMBED;
+                    $contentObject->addContentObjectRelation( $objectID, $objectAttribute->attribute( 'version' ), 0, $relationType );
+                }
+            }
+        }
+
+        return $modified;
+    }
+    function serializeContentObjectAttribute( $package, $objectAttribute )
+    {
+
+        $DOMNode = $this->createContentObjectAttributeDOMNode( $objectAttribute );
+        $xmlString = $objectAttribute->attribute( 'data_text' );
+
+        if ( $xmlString != '' )
+        {
+            $doc = new DOMDocument( '1.0', 'utf-8' );
+            $success = $doc->loadXML( $xmlString );
+
+            /* For all links found in the XML, do the following:
+             * - add "href" attribute fetching it from ezurl table.
+             * - remove "id" attribute.
+             */
+
+            $objects = $doc->getElementsByTagName( 'option' );
+
+            self::transformLinksToRemoteLinks( $objects );
+
+            $importedRootNode = $DOMNode->ownerDocument->importNode( $doc->documentElement, true );
+            $DOMNode->appendChild( $importedRootNode );
+        }
+
+        return $DOMNode;
+    }
+    static function transformLinksToRemoteLinks( DOMNodeList $nodeList )
+    {
+        foreach ( $nodeList as $node )
+        {
+
+            $isObject = ( $node->getAttribute( 'image' ) != '' );
+            $objectID = $isObject ? $node->getAttribute( 'image' ) : false;
+
+            if ( $objectID )
+            {
+                $object = eZContentObject::fetch( $objectID, false );
+                if ( is_array( $object ) )
+                {
+                    $node->setAttribute( 'object_remote_id', $object['remote_id'] );
+                }
+
+                if ( $isObject )
+                {
+                    $node->removeAttribute( 'image' );
+                }
+                else
+                {
+                    $node->removeAttribute( 'object_id' );
+                }
+            }
+        }
+    }
     function onPublish( $contentObjectAttribute, $contentObject, $publishedNodes )
     {
         

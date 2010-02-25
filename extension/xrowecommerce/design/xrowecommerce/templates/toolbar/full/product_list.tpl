@@ -13,13 +13,13 @@
     {let node_list=cond( $treelist_check|eq( 'yes' ),
                              fetch( content, tree, hash( parent_node_id, $parent_node,
                                     limit, $limit,
-                                    class_filter_type, exclude,
-                                    class_filter_array, array( 'folder' ),
+                                    class_filter_type, include,
+                                    class_filter_array, array( 'xrow_product' ),
                                     sort_by, array( $sort_by, false() ) ) ),
                          fetch( content, list, hash( parent_node_id, $parent_node,
                                 limit, $limit,
-                                class_filter_type, exclude,
-                                class_filter_array, array( 'folder' ),
+                                class_filter_type, include,
+                                class_filter_array, array( 'xrow_product' ),
                                 sort_by, array( $sort_by, false() ) ) ) )}
     <div class="toollist">
         <div class="toollist-design">
