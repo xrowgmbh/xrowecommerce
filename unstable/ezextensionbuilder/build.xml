@@ -11,7 +11,11 @@
 
     <description>eZExtensionBuilder build file</description>
 
-    <taskdef resource="net/sf/antcontrib/antcontrib.properties"/>
+<taskdef resource="net/sf/antcontrib/antcontrib.properties">
+ <classpath>
+   <pathelement location="${user.home}/.ant/lib/ant-contrib-1.0b3-jar.jar"/>
+ </classpath>
+</taskdef>
 
     <!-- ================== -->
     <!-- Build properties   -->
