@@ -73,8 +73,8 @@ class xrowecommerceInstaller extends eZSiteInstaller
             return;
         }
         $this->addSetting( 'poll_node_id', eZSiteInstaller::getParam( $parameters, 'node_remote_map/8efd19acb6c4c39aab775cd25d286df7', '' ) );
-        $this->addSetting( 'products_node_id', eZSiteInstaller::getParam( $parameters, 'node_remote_map/7811150784a102ded212e705e6fc6f6d', '' ) );
-        
+        $this->addSetting( 'products_node_id', eZSiteInstaller::getParam( $parameters, 'node_remote_map/9b4e2eb48f5e4ef38f751a230c610c09', '' ) );
+        $this->addSetting( 'coupon_node_id', eZSiteInstaller::getParam( $parameters, 'node_remote_map/425e4b6501a6a2ce164fcf21fcf4be1e', '' ) );
         $templateLookObject = $objects[0];
         $this->Settings['template_look_object'] = $templateLookObject;
         $this->Settings['template_look_object_id'] = $templateLookObject->attribute( 'id' );
@@ -1216,7 +1216,12 @@ class xrowecommerceInstaller extends eZSiteInstaller
                         ) 
                     ) 
                 ) 
-            ), 
+            ), array( 
+                '_function' => 'hideNode', 
+                '_params' => array( 
+                    'node' => array( 'name' => 'Coupons' ) 
+                )
+            ),
             array( 
                 '_function' => 'setRSSExport', 
                 '_params' => array( 
@@ -1245,7 +1250,22 @@ class xrowecommerceInstaller extends eZSiteInstaller
         );
         $this->Steps['post_install'] = $postInstallSteps;
     }
+    function hideNode( $params )
+    {
 
+        //init vars
+        $node1 = $this->nodeByName( $params['node'] );
+
+        $nodeID = $node1;
+        $node = eZContentObjectTreeNode::fetch( $nodeID );
+
+        if( !is_object( $node ) )
+        {
+            $this->reportError( "Can't fetch node '".$params['node']['name']."'", 'eZSiteInstaller::' . __METHOD__ );
+            return false;
+        }
+        eZContentObjectTreeNode::hideSubTree( $node );
+    }
     /*!
      Re-impl.
     */
@@ -3785,7 +3805,7 @@ class xrowecommerceInstaller extends eZSiteInstaller
                     'Tool' => array( 
                         'basket', 
                         'popular_tags', 
-                        'node_list', 
+                        'product_list', 
                         'poll'
                     ) 
                 ), 
@@ -3801,7 +3821,7 @@ class xrowecommerceInstaller extends eZSiteInstaller
                 'Tool_right_poll_4' => array( 
                     'parent_node' => $this->setting( 'poll_node_id' )
                 ),
-                'Tool_right_node_list_3' => array( 
+                'Tool_right_product_list_3' => array( 
                     'parent_node' => $this->setting( 'products_node_id' ), 
                     'title' => 'Newest Products', 
                     'treelist_check' => 'no', 
