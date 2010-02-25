@@ -482,12 +482,14 @@ if ( $module->isCurrentAction( 'Store' ) )
     if ( class_exists( 'xrowShippingInterface' ) )
     {
         $gateway = xrowShippingInterface::instanceByMethod( $shippingtype );
+        
         if ( $gateway instanceof ShippingInterface )
         {
             try
             {
                 if ( ! $gateway->methodCheck( $shippingdestination ) )
                 {
+                	var_dump($shippingdestination);
                     $errors[] = ezi18n( 'extension/xrowecommerce', 'Shipping method is not allowed for destination.' );
                     $inputIsValid = false;
                 }
