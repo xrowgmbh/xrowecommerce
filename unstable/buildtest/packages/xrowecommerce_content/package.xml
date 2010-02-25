@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package version="3.5.2" development="false" install_type="install">
+  <name>xrowecommerce_content</name>
+  <summary>xrowecommerce content</summary>
+  <type value="contentobject"/>
+  <ezpublish>
+    <version>4.2.1</version>
+    <named-version>4.2</named-version>
+  </ezpublish>
+  <maintainers>
+    <maintainer>
+      <name>Anonymous User</name>
+      <email>nospam@ez.no</email>
+      <role>lead</role>
+    </maintainer>
+  </maintainers>
+  <packaging>
+    <timestamp>1267112891</timestamp>
+    <host>localhost</host>
+  </packaging>
+  <documents>
+    <document mime-type="text/plain" name="LICENCE"/>
+  </documents>
+  <changelog>
+    <entry timestamp="1267112891" person="Anonymous User" email="nospam@ez.no" release="1">
+      <change>Creation of package</change>
+    </entry>
+  </changelog>
+  <simple-files>
+    <simple-file key="386ef32a06ccfaa531370c3b83494a32" original-path="var/ezwebin_site/storage/images/media/images/pilsner/607-1-eng-GB/Pilsner.jpg" package-path="simplefiles/29c5f800.jpg"/>
+    <simple-file key="eb6957fbfab34338fff7f204daada433" original-path="var/ezwebin_site/storage/images/media/images/ale/611-2-eng-GB/Ale.jpg" package-path="simplefiles/5316e24a.jpg"/>
+    <simple-file key="fc76de10a871c40b1aadea9718dadaf4" original-path="var/ezwebin_site/storage/images/media/images/dark-beer/615-1-eng-GB/Dark-Beer.jpg" package-path="simplefiles/497b65e5.jpg"/>
+    <simple-file key="f4899981be00f4d39e893db3b138abeb" original-path="var/ezwebin_site/storage/images/media/images/green-apple/627-2-eng-GB/green-apple.jpg" package-path="simplefiles/30409803.jpg"/>
+    <simple-file key="f8d43544934b17e299f927bc9d24c001" original-path="var/ezwebin_site/storage/images/media/images/red-apple/631-1-eng-GB/red-apple.jpg" package-path="simplefiles/6e2605f2.jpg"/>
+    <simple-file key="448075cc7eb8b61766fd311b5201cc42" original-path="var/ezwebin_site/storage/images/media/democontent/homepage-banner/787-6-eng-GB/Homepage-Banner.png" package-path="simplefiles/05c0c64d.png"/>
+    <simple-file key="ae054788e6853cde909fd494c3cb7772" original-path="var/ezwebin_site/storage/images/media/democontent/xrow-gmbh/791-2-eng-GB/xrow-GmbH.jpg" package-path="simplefiles/eef43632.jpg"/>
+    <simple-file key="7a42eb910bd8ec86879ea6aba7446991" original-path="var/ezwebin_site/storage/images/manufacturer/bakery/635-1-eng-GB/Bakery.jpg" package-path="simplefiles/2513f9e4.jpg"/>
+    <simple-file key="df2384a122aeead3271240cbb1f99f72" original-path="var/ezwebin_site/storage/images/manufacturer/drinks/523-8-eng-GB/Drinks.jpg" package-path="simplefiles/737dbc70.jpg"/>
+    <simple-file key="48aca192ef5282e9a2890cc89abdc20c" original-path="var/ezwebin_site/storage/images/manufacturer/cheese-dairy/526-2-eng-GB/Cheese-Dairy.jpg" package-path="simplefiles/ac5f677a.jpg"/>
+    <simple-file key="0cf960a86e1bddff51acec86edffa6f3" original-path="var/ezwebin_site/storage/images/manufacturer/fruit-farmers/529-3-eng-GB/Fruit-Farmers.jpg" package-path="simplefiles/f09c6487.jpg"/>
+    <simple-file key="588ceed5affbeb626ed39f81e84bd6db" original-path="var/ezwebin_site/storage/images/products/food/261-4-eng-GB/Food.jpg" package-path="simplefiles/0273bafd.jpg"/>
+    <simple-file key="201810f50ddfef83b4620f4bdca031a7" original-path="var/ezwebin_site/storage/images/products/food/peach-666-peach-food-fruits/690-9-eng-GB/Peach.jpg" package-path="simplefiles/79b5e83d.jpg"/>
+    <simple-file key="8c7a5d865d84b70866346ce2224b1ddd" original-path="var/ezwebin_site/storage/images/products/food/apple-12345-food-apple-fruits/274-28-eng-GB/Apple.jpg" package-path="simplefiles/b9f63935.jpg"/>
+    <simple-file key="5ee9753368df1b2d0a2d20b711c7b281" original-path="var/ezwebin_site/storage/images/products/food/pear-123456-pear-fruits-food/347-12-eng-GB/Pear.jpg" package-path="simplefiles/7801cd7a.jpg"/>
+    <simple-file key="528ba30be08b8562ce49976ba1dbcb1c" original-path="var/ezwebin_site/storage/images/products/food/cheese-456456-cheese-food/536-12-eng-GB/Cheese.jpg" package-path="simplefiles/6b391039.jpg"/>
+    <simple-file key="2e633ea395994ba14baab3d172c04fbb" original-path="var/ezwebin_site/storage/images/products/food/beer-123123-beer-ale-dark-beer-pilsner-drinks-food/553-15-eng-GB/Beer.jpg" package-path="simplefiles/78f24e8b.jpg"/>
+    <simple-file key="5148ab3620bd14a28a739f901993dc9c" original-path="var/ezwebin_site/storage/images/products/food/bread-89707-bread-food/570-11-eng-GB/Bread.jpg" package-path="simplefiles/ce44fcfd.jpg"/>
+  </simple-files>
+  <version>
+    <number>1.1-0</number>
+    <release>1</release>
+  </version>
+  <licence>GPL</licence>
+  <state>alpha</state>
+  <dependencies>
+    <provides/>
+    <requires/>
+    <obsoletes/>
+    <conflicts/>
+  </dependencies>
+  <install>
+    <item type="ezcontentobject" filename="contentobjects" sub-directory="ezcontentobject"/>
+  </install>
+  <uninstall>
+    <item type="ezcontentobject" filename="contentobjects" sub-directory="ezcontentobject"/>
+  </uninstall>
+</package>
