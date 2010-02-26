@@ -1,2 +1,0 @@
-CSS rework
-- check if we need basketspace, product-name, price, totalprice, alignroght

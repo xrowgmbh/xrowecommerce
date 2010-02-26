@@ -1,2 +1,0 @@
-[CouponSettings]
-Description=Coupon
