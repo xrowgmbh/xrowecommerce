@@ -4,7 +4,7 @@
 
 <h1>{'Select a payment method'|i18n('extension/xrowecommerce')}</h1>
 
-{def $gateways = $event.workflow_type.allowed_gateways}
+{def $gateways = $event.allowed_gateways}
 {if $gateways|gt(0)}
     <p>{'Please select your desired payment method below.'|i18n('extension/xrowecommerce')}</p>
 <form method="post" action={"shop/checkout"|ezurl}>
