@@ -1,0 +1,1 @@
+{$content|l10n('number')}
