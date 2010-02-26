@@ -1221,7 +1221,11 @@ class xrowecommerceInstaller extends eZSiteInstaller
                 '_params' => array( 
                     'node' => array( 'name' => 'Coupons' ) 
                 )
+            ),array( 
+                '_function' => 'setupWrokflows', 
+                '_params' => array( )
             ),
+            
             array( 
                 '_function' => 'setRSSExport', 
                 '_params' => array( 
@@ -1301,7 +1305,11 @@ class xrowecommerceInstaller extends eZSiteInstaller
             'prefs' => $this->sitePreferences() 
         ) );
         $this->postInstall();
-        $db = eZDB::instance();
+      
+    }
+	function setupWrokflows( $p )
+	{
+		$db = eZDB::instance();
         
         $db->begin();
         
@@ -1320,14 +1328,15 @@ class xrowecommerceInstaller extends eZSiteInstaller
         $WorkflowID      = $workflow->attribute( "id" );
         $WorkflowVersion = $workflow->attribute( "version" );
         
-        $eventList[] = array();
+        $eventList = array();
+        eZWorkflowEventType::registerType( 'event', 'ezshippinginterface', 'eZShippingInterfaceType' );
         $event = eZWorkflowEvent::create( $WorkflowID, 'event_ezshippinginterface' );
         $eventType          = $event->eventType();
         $eventType->setAttribute( 'placement', 1 );
         $event->setAttribute( 'data_text3', 'a:1:{i:0;s:10:"fixedprice";}' );
         $event->store();
 		$eventList[] = $event;
-		
+		eZWorkflowEventType::registerType( 'event', 'ezcouponworkflow', 'eZCouponWorkflowType' );
 		$event = eZWorkflowEvent::create( $WorkflowID, 'event_ezcouponworkflow' );
         $eventType          = $event->eventType();
         $eventType->setAttribute( 'placement', 2 );
@@ -1354,9 +1363,8 @@ class xrowecommerceInstaller extends eZSiteInstaller
                 $workflow->adjustEventPlacements( $eventList );
                 $workflow->storeDefined( $eventList );
                 $workflow->cleanupWorkFlowProcess();
-		
-		#eZWorkflowGroupLink::removeWorkflowMembers( $WorkflowID, 0 );
-        $newTrigger = eZTrigger::createNew( 'shop', 'confirmorder', 'b', $workflowID );
+
+        $newTrigger = eZTrigger::createNew( 'shop', 'confirmorder', 'b', $WorkflowID );
 		
         $workflow = eZWorkflow::create( 14 );
         $workflow->setAttribute( "name",  'Before Checkout' );
@@ -1368,7 +1376,8 @@ class xrowecommerceInstaller extends eZSiteInstaller
         $WorkflowID      = $workflow->attribute( "id" );
         $WorkflowVersion = $workflow->attribute( "version" );
         
-        $eventList[] = array();
+        $eventList = array();
+        eZWorkflowEventType::registerType( 'event', 'xrowpaymentgateway', 'xrowPaymentGatewayType' );
         $event = eZWorkflowEvent::create( $WorkflowID, 'event_xrowpaymentgateway' );
         $eventType          = $event->eventType();
         $eventType->setAttribute( 'placement', 1 );
@@ -1396,15 +1405,13 @@ class xrowecommerceInstaller extends eZSiteInstaller
                 $workflow->adjustEventPlacements( $eventList );
                 $workflow->storeDefined( $eventList );
                 $workflow->cleanupWorkFlowProcess();
-		
-		#eZWorkflowGroupLink::removeWorkflowMembers( $WorkflowID, 0 );
-        $newTrigger = eZTrigger::createNew( 'shop', 'checkout', 'b', $workflowID );
+
+        $newTrigger = eZTrigger::createNew( 'shop', 'checkout', 'b', $WorkflowID );
 		
         
         $db->commit();
-        
-    }
-
+        return true;
+	}
     /*!
       pre-install stuff.
     */
@@ -1662,7 +1669,7 @@ class xrowecommerceInstaller extends eZSiteInstaller
 
     function solutionName()
     {
-        return 'xrow E-Commerce';
+        return 'xrow e-commerce';
     }
 
     function createTranslationSiteAccesses()
@@ -2321,9 +2328,22 @@ class xrowecommerceInstaller extends eZSiteInstaller
         $settings[] = $this->commonForumINISettings();
         $settings[] = $this->commonOEAttributesINISettings();
         $settings[] = $this->commonXMLINISettings();
+        $settings[] = $this->commonRECAPTCHAINISettings();
         return $settings;
     }
-
+    function commonRECAPTCHAINISettings()
+    {
+        $settings = array( 
+            'Keys' => array( 
+                'PublicKey' => '6LdpdgsAAAAAAHMquT_RN1JyNCwzR7tZOXBPDbco ',
+                'PrivateKey' => '6LdpdgsAAAAAANpIcXH9L-JTXH62azFhrMALKRpl '
+        		) 
+        );
+        return array( 
+            'name' => 'recaptcha.ini', 
+            'settings' => $settings 
+        );
+    } 
     function commonSiteINISettings()
     {
         $settings = array();
