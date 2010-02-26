@@ -1,6 +1,0 @@
-Product class needs to have
-
-an attribute 
- - product_id (ezstring)
- - variation (ezoption, ezoption2)
- - price (ezprice, ezmultiprice)
