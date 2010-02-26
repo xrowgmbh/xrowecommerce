@@ -149,6 +149,18 @@ class xrowPaymentGatewayType extends eZWorkflowEventType
     {
         switch ( $attr )
         {
+        	case 'allowed_gateways':
+            {
+            	if ( $event->attribute( 'data_text4' ) )
+            	{
+                	return xrowEPayment::getGateways( array( - 1  ) );
+            	}
+            	else
+            	{
+            		return xrowEPayment::allowedGatewaysByUser();
+            	}
+            }
+            break;
             case 'selected_gateways_types':
                 {
                     return explode( ',', $event->attribute( 'data_text3' ) );
@@ -175,6 +187,7 @@ class xrowPaymentGatewayType extends eZWorkflowEventType
     function typeFunctionalAttributes()
     {
         return array( 
+            'allowed_gateways',
             'selected_gateways_types' , 
             'selected_gateways' , 
             'current_gateway' , 
@@ -199,24 +212,11 @@ class xrowPaymentGatewayType extends eZWorkflowEventType
     {
         switch ( $attr )
         {
-            /*
-                        case 'current_gateway':
-                {
-                    $params = $process->parameterList();
-                    return $params['paymentgateway'] ? $params['paymentgateway'] : false;
-                }
-                break;
-*/
             case 'available_gateways':
                 {
                     return xrowEPayment::getGateways( array( 
                         - 1 
                     ) );
-                }
-                break;
-            case 'allowed_gateways':
-                {
-                    return xrowEPayment::allowedGatewaysByUser();
                 }
                 break;
         }
@@ -272,8 +272,6 @@ class xrowPaymentGatewayType extends eZWorkflowEventType
             $gateway = $http->postVariable( 'SelectedGateway' );
             if ( in_array( $gateway, xrowEPayment::allowedGatewayListByUser() ) )
             {
-                #$event->setAttribute( 'data_text2', $gateway );
-                #$event->store();
                 /* if stored in process */
                 $params = $process->parameterList();
                 $params['paymentgateway'] = $gateway;
@@ -289,7 +287,14 @@ class xrowPaymentGatewayType extends eZWorkflowEventType
         else
         {
             $params = $process->parameterList();
-            $gateway = $params['paymentgateway'];
+            if ( isset( $params['paymentgateway'] ) )
+            {
+            	$gateway = $params['paymentgateway'];
+            }
+            else 
+            {
+            	$gateway = false;
+            }
         }
         return $gateway;
     }
