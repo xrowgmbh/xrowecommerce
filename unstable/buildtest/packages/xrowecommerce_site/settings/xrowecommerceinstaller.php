@@ -28,8 +28,8 @@
 
 class xrowecommerceInstaller extends eZSiteInstaller
 {
-    const MAJOR_VERSION = 1.1;
-    const MINOR_VERSION = 0;
+    const MAJOR_VERSION = 1;
+    const MINOR_VERSION = 1;
 
     function xrowecommerceInstaller( $parameters = false )
     {
@@ -1222,10 +1222,13 @@ class xrowecommerceInstaller extends eZSiteInstaller
                     'node' => array( 'name' => 'Coupons' ) 
                 )
             ),array( 
-                '_function' => 'setupWrokflows', 
+                '_function' => 'setupWorkflows', 
                 '_params' => array( )
             ),
-            
+            array( 
+                '_function' => 'setupCurrencies', 
+                '_params' => array( )
+            ),
             array( 
                 '_function' => 'setRSSExport', 
                 '_params' => array( 
@@ -1307,7 +1310,18 @@ class xrowecommerceInstaller extends eZSiteInstaller
         $this->postInstall();
       
     }
-	function setupWrokflows( $p )
+	function setupCurrencies($p) {
+		foreach ( $this->setting ( 'locales' ) as $locale ) {
+			$l = eZLocale::instance ( $locale );
+			
+			$c = eZCurrencyData::create ( $l->currencyShortName (), $l->currencySymbol (), $locale );
+			if ($c instanceof eZCurrencyData) {
+				$c->store ();
+			}
+		}
+		return true;
+	}
+	function setupWorkflows( $p )
 	{
 		$db = eZDB::instance();
         
@@ -1705,7 +1719,12 @@ class xrowecommerceInstaller extends eZSiteInstaller
                             ), 
                             'SiteSettings' => array( 
                                 'SiteURL' => $siteaccessTypes['translation'][$this->languageNameFromLocale( $locale )]['url'] 
-                            ) 
+                            )
+                        ),
+                        'shop.ini' => array( 
+                            'CurrencySettings' => array( 
+                                'PreferredCurrency' => eZLocale::instance($locale)->currencyShortName()
+                            )
                         ) 
                     ) 
                 ) 
