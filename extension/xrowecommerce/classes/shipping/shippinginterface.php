@@ -60,7 +60,7 @@ class ShippingInterface
     function methodCheck( $country )
     {
         $list = self::getCountryList();
-        if ( array_search( $country, $list ) )
+        if ( in_array( $country, $list ) )
         {
             return true;
         }
