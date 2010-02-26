@@ -1,0 +1,1 @@
+<input id="XrowProductVariation_{$attribute.id}_{$line}_{$data.template_item.attribute.identifier}" type="checkbox" name="XrowProductVariation[{$attribute.id}][{$line}][{$data.template_item.attribute.identifier}]" value="1"{if $content} checked="checked"{/if} />
