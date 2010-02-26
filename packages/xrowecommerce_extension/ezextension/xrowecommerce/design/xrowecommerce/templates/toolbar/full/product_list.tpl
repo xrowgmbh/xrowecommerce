@@ -3,14 +3,16 @@
 <div class="border-ml"><div class="border-mr"><div class="border-mc">
 
 <div class="toolbar-item {$placement}">
-    {section show=or($show_subtree|count_chars()|eq(0),
+    {if or($show_subtree|count_chars()|eq(0),
                      fetch(content, node, hash( node_id, $module_result.node_id ) ).path_string|contains( concat( '/', $show_subtree, '/' ) ),
                      $requested_uri_string|begins_with( $show_subtree ))}
-    {default current_user=fetch('user','current_user')}
+    {def $current_user=fetch('user','current_user')}
     {cache-block keys=array($tool_id, $current_user.role_id_list|implode( ',' ), $current_user.limited_assignment_value_list|implode( ',' ))}
-    {default limit=5}
-    {section show=$sort_by|count|eq( 0 )}{set sort_by='published'}{/section}
-    {let node_list=cond( $treelist_check|eq( 'yes' ),
+
+    {if $limit|count|eq(0)}{def $limit='5'}{/if}
+    {if $sort_by|count|eq(0)}{def $sort_by='published'}{/if}
+
+    {def $node_list=cond( $treelist_check|eq( 'yes' ),
                              fetch( content, tree, hash( parent_node_id, $parent_node,
                                     limit, $limit,
                                     class_filter_type, include,
@@ -66,13 +68,8 @@
 	        </div>
         </div>
     </div>
-    {*$node_list.0|attribute(show)*}
-
-    {/let}
-    {/default}
     {/cache-block}
-    {/default}
-    {/section}
+    {/if}
 </div>
 
 </div></div></div>
