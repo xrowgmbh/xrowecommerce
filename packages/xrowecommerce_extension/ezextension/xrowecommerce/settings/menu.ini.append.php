@@ -1,9 +1,6 @@
 [NavigationPart]
 Part[recurringorders]=Recurring orders
 
-[TopAdminMenu]
-Tabs[]=recurringorders
-
 [Topmenu_recurringorders]
 NavigationPartIdentifier=ezrecurringorders
 Name=Recurring orders
