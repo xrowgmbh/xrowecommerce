@@ -1,1 +1,0 @@
-{if $content.is_valid}{$content.year}-{$content.month}-{$content.day}{/if}

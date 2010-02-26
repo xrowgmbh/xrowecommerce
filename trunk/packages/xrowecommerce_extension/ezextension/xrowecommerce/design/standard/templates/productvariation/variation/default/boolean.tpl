@@ -1,2 +1,0 @@
-{def $default_value=cond( is_set( $variation_attribute.default_value ), $variation_attribute.default_value, false() )}
-<input id="DefaultXrowProductVariationNew_{$attribute.id}_xxxrownumberxxx_{$variation_attribute.attribute.identifier}" type="checkbox" name="DefaultXrowProductVariation[{$attribute.id}][xxxrownumberxxx][{$variation_attribute.attribute.identifier}]" value="1"{if $default_value} checked="checked"{/if} />
