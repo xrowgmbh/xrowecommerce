@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!ELEMENT packages (package*)>
+<!ATTLIST packages
+	vendor CDATA #REQUIRED
+>
+<!ELEMENT package (
+    name,
+	summary,
+	description,
+	vendor,
+	type,
+	ezpublish,
+	maintainers,
+	packaging,
+	documents,
+	changelog,
+	simple-files,
+	files,
+	version,
+	licence,
+	state,
+	dependencies,
+	settings,
+	install,
+	uninstall)>
+<!ATTLIST package
+	version2 CDATA #REQUIRED
+	development CDATA #REQUIRED
+	is_active CDATA #REQUIRED
+	install_type CDATA #REQUIRED
+>
+<!ELEMENT name (#PCDATA) >
+<!ELEMENT summary (#PCDATA) >
+<!ELEMENT description (#PCDATA) >
+<!ELEMENT vendor (#PCDATA) >
+<!ELEMENT type (#PCDATA) >
+<!ATTLIST type
+	value CDATA #REQUIRED
+>
+<!ELEMENT ezpublish (version,named-version) >
+<!-- TWO version definitions should be fixed
+	<!ELEMENT version (#PCDATA) >
+-->
+<!ELEMENT named-version (#PCDATA) >
+
+<!ELEMENT maintainers (maintainer+) >
+<!ELEMENT maintainer (name,email,role) >
+<!ELEMENT email (#PCDATA) >
+<!ELEMENT role (#PCDATA) >
+
+<!ELEMENT packaging (timestamp,host) >
+<!ELEMENT timestamp (#PCDATA) >
+<!ELEMENT host (#PCDATA) >
+
+<!ELEMENT documents (document+) >
+<!ELEMENT document EMPTY >
+<!ATTLIST document
+	mime-type CDATA #REQUIRED
+	name CDATA #REQUIRED
+>
+<!ELEMENT changelog (entry+) >
+<!ELEMENT entry (change+)>
+<!ATTLIST entry
+	person CDATA #REQUIRED
+	email CDATA #REQUIRED
+	release CDATA #REQUIRED
+>
+<!ELEMENT change (#PCDATA)>
+
+<!ELEMENT simple-files ANY>
+<!ELEMENT files (collection+)>
+<!ELEMENT collection (file-list+)>
+<!ATTLIST collection
+	name CDATA #REQUIRED
+>
+<!ELEMENT file-list (file+)>
+<!ATTLIST file-list
+	type CDATA #REQUIRED
+	variable-name CDATA #REQUIRED
+>
+<!ELEMENT file EMPTY>
+<!ATTLIST file
+	name CDATA #REQUIRED
+	md5sum CDATA #REQUIRED
+>
+
+<!ELEMENT version ANY>
+<!ELEMENT number (#PCDATA)>
+<!ELEMENT release (#PCDATA)>
+<!ELEMENT licence (#PCDATA)>
+<!ELEMENT state (#PCDATA)>
+<!ELEMENT dependencies (provides,requires,obsoletes,conflicts)>
+<!ELEMENT provides (provide*)>
+<!ELEMENT requires (require*)>
+<!ELEMENT require EMPTY>
+<!ATTLIST require
+	type CDATA #REQUIRED
+	name CDATA #REQUIRED
+	min-version CDATA #IMPLIED
+	max-version CDATA #IMPLIED
+>
+<!ELEMENT obsoletes (obsolete*)>
+<!ELEMENT conflicts (conflict*)>
+
+<!ELEMENT settings (settings-file*)>
+<!ELEMENT settings-file EMPTY>
+<!ATTLIST settings-file
+	filename CDATA #REQUIRED
+>
+
+<!ELEMENT install EMPTY>
+<!ELEMENT uninstall EMPTY>

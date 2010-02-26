@@ -1,0 +1,2 @@
+{def $default_value=cond( is_set( $variation_attribute.default_value ), $variation_attribute.default_value, '' )}
+<input class="xrowproductdate" type="text" size="10" maxlength="10" id="DefaultXrowProductVariation_{$attribute.id}_xxxrownumberxxx_{$variation_attribute.attribute.identifier}" name="DefaultXrowProductVariation[{$attribute.id}][xxxrownumberxxx][{$variation_attribute.attribute.identifier}]" value="" />

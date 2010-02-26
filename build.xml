@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<project name="xrowecommerce" default="help">
+
+    <description>xrowecommerce build file</description>
+
+    <taskdef resource="net/sf/antcontrib/antcontrib.properties">
+        <classpath>
+                <pathelement location="${user.home}/.ant/lib/ant-contrib-1.0b3-jar.jar"/>
+        </classpath>
+    </taskdef>
+    <import file="ant/ezextensionbuilder/build.xml"/>
+    <!-- deploys all tarballs for distribution -->
+	<target name="deploy">
+		<sshexec host="${host}" username="${user}" password="${password}" trust="yes" command="mkdir -p ${path}/{$extension.name}/latest"/>
+		<scp trust="yes" todir="${user}:${password}@${host}:${path}/${extension.name}/latest">
+			<fileset dir="${build.dir}">
+				<include name="*.ezpkg"/>
+			</fileset>
+			<fileset dir="packages">
+				<include name="index.xml"/>
+				<include name="ezpackage.xml"/>	
+				<include name="repository.xsl"/>
+			</fileset>
+		</scp>
+		<sshexec host="${host}" username="${user}" password="${password}" trust="yes" command="mkdir -p ${path}/${extension.name}/${version.alias}/${version.alias}.${version.release}"/>        
+		<scp trust="yes" todir="${user}:${password}@${host}:${path}/${extension.name}/${version.alias}/${version.alias}.${version.release}">
+			<fileset dir="${build.dir}">
+				<include name="*.ezpkg"/>
+			</fileset>
+			<fileset dir="packages">
+				<include name="index.xml"/>
+       				<include name="ezpackage.xml"/>
+       				<include name="repository.xsl"/>            
+			</fileset>
+		</scp>
+	</target>
+</project>

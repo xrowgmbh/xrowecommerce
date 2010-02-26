@@ -1,0 +1,3 @@
+Core Bugs in eZ Publish
+
+http://issues.ez.no/IssueView.php?Id=16082&activeItem=1
