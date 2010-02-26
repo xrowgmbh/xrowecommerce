@@ -272,9 +272,6 @@ class xrowPaymentGatewayType extends eZWorkflowEventType
             $gateway = $http->postVariable( 'SelectedGateway' );
             if ( in_array( $gateway, xrowEPayment::allowedGatewayListByUser() ) )
             {
-                #$event->setAttribute( 'data_text2', $gateway );
-                #$event->store();
-                /* if stored in process */
                 $params = $process->parameterList();
                 $params['paymentgateway'] = $gateway;
                 $process->setParameters( $params );
@@ -289,7 +286,14 @@ class xrowPaymentGatewayType extends eZWorkflowEventType
         else
         {
             $params = $process->parameterList();
-            $gateway = $params['paymentgateway'];
+            if ( isset( $params['paymentgateway'] ) )
+            {
+            	$gateway = $params['paymentgateway'];
+            }
+            else
+            {
+            	$gateway = false;
+            }
         }
         return $gateway;
     }
