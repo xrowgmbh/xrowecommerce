@@ -34,7 +34,7 @@ if ( $Module->isCurrentAction( 'Update' ) and $Module->hasActionParameter( 'Item
     foreach ( $Module->actionParameter( 'ItemArray' ) as $item_id => $settings )
     {
         $item = XROWRecurringOrderItem::fetch( $item_id );
-        list ( $month, $day, $year ) = split( "/", $settings['next_date'] , 3 );
+        list ( $month, $day, $year ) = explode( "/", $settings['next_date'] , 3 );
         $nextdate = gmmktime( 0,0,0, $month, $day, $year );
         if ( $nextdate != $item->next_date )
         {

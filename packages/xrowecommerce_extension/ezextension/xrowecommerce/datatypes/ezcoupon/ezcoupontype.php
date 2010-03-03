@@ -206,7 +206,7 @@ class ezCouponType extends eZDataType
     function objectAttributeContent( $objectAttribute )
     {
         $tmp = $objectAttribute->attribute( 'data_text' );
-        $tmparray = split(";",$tmp,3);
+        $tmparray = explode(";",$tmp,3);
         $date = new eZDate( );
         $stamp = $tmparray[1];
         $date->setTimeStamp( $stamp );
