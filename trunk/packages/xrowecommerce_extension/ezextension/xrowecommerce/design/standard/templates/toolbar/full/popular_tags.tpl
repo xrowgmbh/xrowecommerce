@@ -16,7 +16,9 @@
 				{else}
 				    {eztagcloud( hash( 'parent_node_id', $node.node_id, limit, $limit, sort_by, 'count'))}
 				{/if}
+				
 			</div>
+			<p class="read_more"><a href="{concat('content/keyword/(classid)/', $current_node.object.contentclass_id )|ezurl('no')}" title="{$node.name|wash()}">{'View All Tags'|i18n('extension/xrowecommerce')}</a></p>
 		</div>
 	</div>
 </div></div></div>
