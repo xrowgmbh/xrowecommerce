@@ -19,8 +19,8 @@ class xrowProductIntegerType extends xrowProductDataType
                          'required' => false );
 
         $this->xrowProductDataType( self::DATA_TYPE_STRING,
-                                    ezi18n( 'extension/xrowecommerce/productvariation', "Integer", 'Datatype name' ),
-                                    ezi18n( 'extension/xrowecommerce/productvariation', "Stores an integer.", 'Datatype description' ),
+                                    ezpI18n::tr( 'extension/xrowecommerce/productvariation', "Integer", 'Datatype name' ),
+                                    ezpI18n::tr( 'extension/xrowecommerce/productvariation', "Stores an integer.", 'Datatype description' ),
                                     $params );
     }
 

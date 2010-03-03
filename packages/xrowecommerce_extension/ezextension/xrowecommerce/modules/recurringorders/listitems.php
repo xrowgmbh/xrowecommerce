@@ -2,7 +2,7 @@
 
 $Module =& $Params['Module'];
 include_once( 'kernel/common/template.php' );
-$tpl = templateInit();
+$tpl = eZTemplate::factory();
 $user = eZUser::currentUser();
 $http = eZHTTPTool::instance();
 if ( isset( $Params['UserParameters'] ) )
@@ -42,7 +42,7 @@ if ( $Module->isCurrentAction( 'Update' ) and $Module->hasActionParameter( 'Item
         	$item->store();
         }
     }
-    $messages[] = array( 'type' => 'feedback', 'text' => ezi18n( 'extension/recurringorders', 'Your input has been stored.' ) ) ;
+    $messages[] = array( 'type' => 'feedback', 'text' => ezpI18n::tr( 'extension/recurringorders', 'Your input has been stored.' ) ) ;
 
 }
 if ( $Module->isCurrentAction( 'Cancel' ) )

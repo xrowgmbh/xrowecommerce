@@ -8,7 +8,7 @@ require_once( 'kernel/common/template.php' );
 $Module = $Params['Module'];
 $Module->setTitle( 'Product variation - template list' );
 
-$tpl = templateInit();
+$tpl = eZTemplate::factory();
 $http = eZHTTPTool::instance();
 
 if ( isset( $Params['Language'] ) and strlen( $Params['Language'] ) > 1 )
@@ -57,6 +57,6 @@ $tpl->setVariable( 'number_of_items', $limit );
 
 $Result = array();
 $Result['content'] = $tpl->fetch( 'design:productvariation/templatelist.tpl' );
-$Result['path'] = array( array( 'text' => ezi18n( 'extension/xrowecommerce/productvariation', 'Product variation templates' ),
+$Result['path'] = array( array( 'text' => ezpI18n::tr( 'extension/xrowecommerce/productvariation', 'Product variation templates' ),
                                 'url' => false ) );
 ?>

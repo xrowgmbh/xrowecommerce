@@ -2,7 +2,7 @@
 
 $OrderID = $Params['OrderID'];
 $module = $Params['Module'];
-require_once( "kernel/common/template.php" );
+
 
 $ini = eZINI::instance();
 $http = eZHTTPTool::instance();
@@ -14,7 +14,7 @@ if ( !$order )
     return $module->handleError( eZError::KERNEL_NOT_AVAILABLE, 'kernel' );
 }
 
-$tpl = templateInit();
+$tpl = eZTemplate::factory();
 
 $tpl->setVariable( "order", $order );
 
@@ -24,8 +24,8 @@ $Result = array();
 $Result['content'] = $tpl->fetch( "design:shop/shippingplan.tpl" );
 $Result['pagelayout'] = 'print_pagelayout.tpl';
 $Result['path'] = array( array( 'url' => 'shop/orderlist',
-                                'text' => ezi18n( 'kernel/shop', 'Shipping plan' ) ),
+                                'text' => ezpI18n::tr( 'kernel/shop', 'Shipping plan' ) ),
                          array( 'url' => false,
-                                'text' => ezi18n( 'kernel/shop', 'Order #%order_id', null, array( '%order_id' => $order->attribute( 'order_nr' ) ) ) ) );
+                                'text' => ezpI18n::tr( 'kernel/shop', 'Order #%order_id', null, array( '%order_id' => $order->attribute( 'order_nr' ) ) ) ) );
 
 ?>

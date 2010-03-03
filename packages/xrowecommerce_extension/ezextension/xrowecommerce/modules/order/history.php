@@ -21,7 +21,7 @@ rsort($OrderList);
 $tpl->setVariable( "order_list", $OrderList );
 
 $Path[]             = array( 'url' => false,
-                             'text' => ezi18n( 'kernel/shop', 'Order history' ) );
+                             'text' => ezpI18n::tr( 'kernel/shop', 'Order history' ) );
 
 $Result['content']  = $tpl->fetch( "design:shop/orderhistory.tpl" );
 $Result['path']     = $Path;

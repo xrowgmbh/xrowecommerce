@@ -1,6 +1,6 @@
 <?php
 
-require_once( "kernel/common/template.php" );
+
 
 $http = eZHTTPTool::instance();
 $Module = $Params['Module'];
@@ -9,7 +9,7 @@ $export = true;
 $exportArray = array();
 $errorArray = array();
 
-$tpl = templateInit();
+$tpl = eZTemplate::factory();
 
 if ( $http->hasPostVariable( 'ExportButton' ) )
 {
@@ -143,7 +143,7 @@ $tpl->setVariable( "error_array", $errorArray );
 $Result = array();
 $Result['content'] = $tpl->fetch( "design:xrowecommerce/price_export.tpl" );
 $Result['path'] = array( array( 'url' => false,
-                                'text' => ezi18n( 'extension/xrowecommerce', 'Price export' ) ) );
+                                'text' => ezpI18n::tr( 'extension/xrowecommerce', 'Price export' ) ) );
 
 
 

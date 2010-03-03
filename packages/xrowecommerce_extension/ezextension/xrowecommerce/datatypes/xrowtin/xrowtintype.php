@@ -21,7 +21,7 @@ class xrowTINType extends eZDataType
     */
     function xrowTINType()
     {
-        $this->eZDataType( self::DATA_TYPE_STRING, ezi18n( 'kernel/classes/datatypes', 'Tax Identification Number', 'Datatype name' ), array( 
+        $this->eZDataType( self::DATA_TYPE_STRING, ezpI18n::tr( 'kernel/classes/datatypes', 'Tax Identification Number', 'Datatype name' ), array( 
             'serialize_supported' => true , 
             'object_serialize_map' => array( 
                 'data_int' => 'int' , 
@@ -45,7 +45,7 @@ class xrowTINType extends eZDataType
             {
                 if ( ! $classAttribute->attribute( 'is_information_collector' ) and $contentObjectAttribute->validateIsRequired() )
                 {
-                    $contentObjectAttribute->setValidationError( ezi18n( 'kernel/classes/datatypes', 'Input required.' ) );
+                    $contentObjectAttribute->setValidationError( ezpI18n::tr( 'kernel/classes/datatypes', 'Input required.' ) );
                     return eZInputValidator::STATE_INVALID;
                 }
             }
@@ -70,7 +70,7 @@ class xrowTINType extends eZDataType
         }
         else
         {
-            $contentObjectAttribute->setValidationError( ezi18n( 'extension/xrowtin', 'The class identifier name of the country field is incorrect in xrowecommerce.ini' ) );
+            $contentObjectAttribute->setValidationError( ezpI18n::tr( 'extension/xrowtin', 'The class identifier name of the country field is incorrect in xrowecommerce.ini' ) );
         }
         if ( isset( $dm[$companyField] ) )
         {
@@ -79,12 +79,12 @@ class xrowTINType extends eZDataType
         }
         else
         {
-            $contentObjectAttribute->setValidationError( ezi18n( 'extension/xrowtin', 'The class identifier name of the company field is incorrect in xrowecommerce.ini' ) );
+            $contentObjectAttribute->setValidationError( ezpI18n::tr( 'extension/xrowtin', 'The class identifier name of the company field is incorrect in xrowecommerce.ini' ) );
             return eZInputValidator::STATE_INVALID;
         }
         if ( $tax_id and empty( $companyValue ) )
         {
-            $contentObjectAttribute->setValidationError( ezi18n( 'extension/xrowtin', 'Please provide a company name with your companies tax ID.' ) );
+            $contentObjectAttribute->setValidationError( ezpI18n::tr( 'extension/xrowtin', 'Please provide a company name with your companies tax ID.' ) );
             return eZInputValidator::STATE_INVALID;
         }
         if ( $tax_id )
@@ -133,7 +133,7 @@ class xrowTINType extends eZDataType
                 {
                     if ( $Alpha2 != $matches[1] )
                     {
-                        $contentObjectAttribute->setValidationError( ezi18n( 'extension/xrowtin', 'Country doesn`t match tax ID number.' ) );
+                        $contentObjectAttribute->setValidationError( ezpI18n::tr( 'extension/xrowtin', 'Country doesn`t match tax ID number.' ) );
                         return eZInputValidator::STATE_INVALID;
                     }
                     
@@ -144,7 +144,7 @@ class xrowTINType extends eZDataType
                             $ret = xrowECommerce::checkVat( $countryPrefix, $matches[2] );
                             if ( ! $ret )
                             {
-                                $contentObjectAttribute->setValidationError( ezi18n( 'extension/xrowtin', 'Your companies tax ID number is not valid.' ) );
+                                $contentObjectAttribute->setValidationError( ezpI18n::tr( 'extension/xrowtin', 'Your companies tax ID number is not valid.' ) );
                                 return eZInputValidator::STATE_INVALID;
                             }
                             else
@@ -166,7 +166,7 @@ class xrowTINType extends eZDataType
                     {
                         foreach ( $errors2 as $error )
                         {
-                            $contentObjectAttribute->setValidationError( ezi18n( 'extension/xrowtin', $error ) );
+                            $contentObjectAttribute->setValidationError( ezpI18n::tr( 'extension/xrowtin', $error ) );
                         }
                         return eZInputValidator::STATE_INVALID;
                     }
@@ -177,7 +177,7 @@ class xrowTINType extends eZDataType
                 }
                 else
                 {
-                    $contentObjectAttribute->setValidationError( ezi18n( 'extension/xrowtin', 'Your companies tax ID number is not valid.' ) );
+                    $contentObjectAttribute->setValidationError( ezpI18n::tr( 'extension/xrowtin', 'Your companies tax ID number is not valid.' ) );
                     return eZInputValidator::STATE_INVALID;
                 }
             }
@@ -199,7 +199,7 @@ class xrowTINType extends eZDataType
             {
                 if ( $contentObjectAttribute->validateIsRequired() )
                 {
-                    $contentObjectAttribute->setValidationError( ezi18n( 'kernel/classes/datatypes', 'Input required.' ) );
+                    $contentObjectAttribute->setValidationError( ezpI18n::tr( 'kernel/classes/datatypes', 'Input required.' ) );
                     return eZInputValidator::STATE_INVALID;
                 }
                 else

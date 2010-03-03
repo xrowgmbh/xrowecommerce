@@ -5,7 +5,7 @@ include_once( 'kernel/common/template.php' );
 
 $Module  =& $Params['Module'];
 $http = eZHTTPTool::instance();
-$tpl = templateInit();
+$tpl = eZTemplate::factory();
 
 $db = eZDB::instance();
 $query = 'SELECT e.contentobject_id as contentobject_id, e1.name, count(e1.id) as counter  FROM alcone.ezcontentobject_attribute e, alcone.ezcontentobject e1
@@ -21,6 +21,6 @@ $Result = array();
 $Result['content'] =& $tpl->fetch( "design:shop/productedit.tpl" );
 $path = array();
 $path[] = array( 'url' => '/orderedit/product',
-                 'text' => ezi18n( 'kernel/shop', 'Zero weight prods' ) );
+                 'text' => ezpI18n::tr( 'kernel/shop', 'Zero weight prods' ) );
 $Result['path'] = $path;
 ?>

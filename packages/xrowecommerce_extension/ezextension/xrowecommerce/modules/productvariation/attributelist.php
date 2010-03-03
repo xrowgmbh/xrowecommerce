@@ -8,7 +8,7 @@ require_once( 'kernel/common/template.php' );
 $Module = $Params['Module'];
 $Module->setTitle( 'Product variation - column list' );
 
-$tpl = templateInit();
+$tpl = eZTemplate::factory();
 $http = eZHTTPTool::instance();
 
 if ( isset( $Params['Language'] ) and strlen( $Params['Language'] ) > 1 )
@@ -55,6 +55,6 @@ $tpl->setVariable( 'number_of_items', $limit );
 
 $Result = array();
 $Result['content'] = $tpl->fetch( 'design:productvariation/attributelist.tpl' );
-$Result['path'] = array( array( 'text' => ezi18n( 'extension/xrowecommerce/productvariation', 'Product variation attributes' ),
+$Result['path'] = array( array( 'text' => ezpI18n::tr( 'extension/xrowecommerce/productvariation', 'Product variation attributes' ),
                                 'url' => false ) );
 ?>

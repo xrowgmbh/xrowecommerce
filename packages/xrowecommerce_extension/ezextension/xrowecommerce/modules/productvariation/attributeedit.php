@@ -3,12 +3,12 @@
  * List the columns of the product variation datatype
  */
 
-require_once( "kernel/common/template.php" );
+
 
 $Module = $Params['Module'];
 $Module->setTitle( 'Product variation - attribute edit' );
 
-$tpl = templateInit();
+$tpl = eZTemplate::factory();
 $http = eZHTTPTool::instance();
 
 $id = false;
@@ -45,7 +45,7 @@ if ( !$languageCode && !$http->hasPostVariable( 'CancelButton' ) )
         $Result = array();
         $Result['content'] = $tpl->fetch( 'design:productvariation/select_language.tpl' );
         $Result['path'] = array( array( 'url' => false,
-                                        'text' => ezi18n( 'extension/xrowecommerce/productvariation', 'Attribute edit' ) ) );
+                                        'text' => ezpI18n::tr( 'extension/xrowecommerce/productvariation', 'Attribute edit' ) ) );
         return $Result;
     }
 }
@@ -59,8 +59,8 @@ if ( !$id )
     $user = eZUser::currentUser();
     $userID = $user->attribute( 'contentobject_id' );
     $attribute = new xrowProductAttribute();
-    $attribute->setData( 'name', $languageCode, ezi18n( 'extension/xrowecommerce/productvariation', 'New attribute' ) );
-    $attribute->setAttribute( 'name', ezi18n( 'extension/xrowecommerce/productvariation', 'New attribute' ) );
+    $attribute->setData( 'name', $languageCode, ezpI18n::tr( 'extension/xrowecommerce/productvariation', 'New attribute' ) );
+    $attribute->setAttribute( 'name', ezpI18n::tr( 'extension/xrowecommerce/productvariation', 'New attribute' ) );
 
     $editLanguageID = eZContentLanguage::idByLocale( $languageCode );
     $langMask = eZContentLanguage::maskByLocale( array( $languageCode ) );
@@ -225,6 +225,6 @@ $tpl->setVariable( 'attribute', $attribute );
 
 $Result = array();
 $Result['content'] = $tpl->fetch( "design:productvariation/attributeedit.tpl" );
-$Result['path'] = array( array( 'text' => ezi18n( 'extension/xrowecommerce/productvariation', 'Product variation - edit attribute' ),
+$Result['path'] = array( array( 'text' => ezpI18n::tr( 'extension/xrowecommerce/productvariation', 'Product variation - edit attribute' ),
                                 'url' => false ) );
 ?>

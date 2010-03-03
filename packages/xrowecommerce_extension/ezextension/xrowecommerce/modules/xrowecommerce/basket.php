@@ -8,7 +8,7 @@
 $http = eZHTTPTool::instance();
 $module = $Params['Module'];
 
-require_once( "kernel/common/template.php" );
+
 
 $basket = eZBasket::currentBasket();
 $basket->updatePrices(); // Update the prices. Transaction not necessary.
@@ -62,7 +62,7 @@ $removedItems = array();
 
 $basket = eZBasket::currentBasket();
 
-$tpl = templateInit();
+$tpl = eZTemplate::factory();
 if ( isset( $Params['Error'] ) )
 {
     $tpl->setVariable( 'error', $Params['Error'] );
@@ -103,5 +103,5 @@ if ( $shippingInfo !== null )
 $Result = array();
 $Result['content'] = $tpl->fetch( "design:shop/basket.tpl" );
 $Result['path'] = array( array( 'url' => false,
-                                'text' => ezi18n( 'kernel/shop', 'Basket' ) ) );
+                                'text' => ezpI18n::tr( 'kernel/shop', 'Basket' ) ) );
 ?>

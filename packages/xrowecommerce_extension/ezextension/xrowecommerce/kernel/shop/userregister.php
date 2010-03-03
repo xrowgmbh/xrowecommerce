@@ -276,5 +276,5 @@ $tpl->setVariable( "s_fax", $sfax );
 $Result = array();
 $Result['content'] =& $tpl->fetch( "design:shop/userregister.tpl" );
 $Result['path'] = array( array( 'url' => false,
-                                'text' => ezi18n( 'kernel/shop', 'Enter account information' ) ) );
+                                'text' => ezpI18n::tr( 'kernel/shop', 'Enter account information' ) ) );
 ?>

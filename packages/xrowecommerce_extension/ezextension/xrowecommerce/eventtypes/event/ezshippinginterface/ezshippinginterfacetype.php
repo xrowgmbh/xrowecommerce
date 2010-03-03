@@ -21,7 +21,7 @@ class eZShippingInterfaceType extends eZWorkflowEventType
     */
     function __construct()
     {
-        $this->eZWorkflowEventType( eZShippingInterfaceType::WORKFLOW_TYPE_STRING, ezi18n( 'kernel/workflow/event', "Shipping Interface" ) );
+        $this->eZWorkflowEventType( eZShippingInterfaceType::WORKFLOW_TYPE_STRING, ezpI18n::tr( 'kernel/workflow/event', "Shipping Interface" ) );
         $this->setTriggerTypes( array( 
             'shop' => array( 
                 'confirmorder' => array( 
@@ -372,7 +372,7 @@ class eZShippingInterfaceType extends eZWorkflowEventType
         // @TODO show template that hazardous items got removed
         /*
         include_once( 'kernel/common/template.php' );
-        $tpl = templateInit();
+        $tpl = eZTemplate::factory();
         $tpl->setVariable( "hazardous", $hazardousproducts );
 		*/
         
@@ -414,7 +414,7 @@ class eZShippingInterfaceType extends eZWorkflowEventType
                 $process->Template['path'] = array( 
                     array( 
                         'url' => false , 
-                        'text' => ezi18n( 'extension/xrowecommerce', 'Shipping Information' ) 
+                        'text' => ezpI18n::tr( 'extension/xrowecommerce', 'Shipping Information' ) 
                     ) 
                 );
                 $process->Template['templateVars'] = array( 
@@ -432,7 +432,7 @@ class eZShippingInterfaceType extends eZWorkflowEventType
                 $process->Template['path'] = array( 
                     array( 
                         'url' => false , 
-                        'text' => ezi18n( 'extension/xrowecommerce', 'Shipping Information' ) 
+                        'text' => ezpI18n::tr( 'extension/xrowecommerce', 'Shipping Information' ) 
                     ) 
                 );
                 $process->Template['templateVars'] = array( 
@@ -446,7 +446,7 @@ class eZShippingInterfaceType extends eZWorkflowEventType
         }
         else
         {
-            $description = ezi18n( 'extension/xrowecommerce', "Sorry, the shipping method you have selected is no longer supported. Vendor will call you to calculate the shipping price." );
+            $description = ezpI18n::tr( 'extension/xrowecommerce', "Sorry, the shipping method you have selected is no longer supported. Vendor will call you to calculate the shipping price." );
             $cost = 0.00;
         }
         /*

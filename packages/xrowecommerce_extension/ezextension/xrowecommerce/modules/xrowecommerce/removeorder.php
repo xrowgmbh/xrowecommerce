@@ -31,7 +31,7 @@
 /*! \file
 */
 
-require_once( "kernel/common/template.php" );
+
 $Module = $Params['Module'];
 $http = eZHTTPTool::instance();
 $deleteIDArray = $http->sessionVariable( "DeleteOrderIDArray" );
@@ -64,14 +64,14 @@ else // no action yet: just displaying the template
     }
     $orderNumbersString = implode( ', ', $orderNumbersArray );
 
-    $Module->setTitle( ezi18n( 'kernel/shop', 'Remove order' ) );
+    $Module->setTitle( ezpI18n::tr( 'kernel/shop', 'Remove order' ) );
 
-    $tpl = templateInit();
+    $tpl = eZTemplate::factory();
     $tpl->setVariable( "module", $Module );
     $tpl->setVariable( "delete_result", $orderNumbersString );
     $Result = array();
 
-    $Result['path'] = array( array( 'text' => ezi18n( 'kernel/shop', 'Remove order' ),
+    $Result['path'] = array( array( 'text' => ezpI18n::tr( 'kernel/shop', 'Remove order' ),
                                     'url' => false ) );
     $Result['content'] = $tpl->fetch( "design:shop/removeorder.tpl" );
 }

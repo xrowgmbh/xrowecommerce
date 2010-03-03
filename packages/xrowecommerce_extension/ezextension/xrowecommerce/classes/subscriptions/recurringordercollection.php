@@ -221,7 +221,7 @@ class XROWRecurringOrderCollection extends eZPersistentObject
                 $ts_args = array();
                 $ts_args['%startdate%'] = strftime( '%d.%m.%y', $recurringitem->periodStartDate() );
                 $ts_args['%enddate%'] = strftime( '%d.%m.%y', $recurringitem->attribute( 'next_date' ) );
-                $name .= ' ' . ezi18n( 'extension/recurringorders', "(period %startdate% till %enddate%)", false, $ts_args );
+                $name .= ' ' . ezpI18n::tr( 'extension/recurringorders', "(period %startdate% till %enddate%)", false, $ts_args );
             }
             $item = eZProductCollectionItem::create( $productCollectionID );
             $item->setAttribute( 'name', $name );
@@ -459,12 +459,12 @@ class XROWRecurringOrderCollection extends eZPersistentObject
         if ( !isset( $GLOBALS['xrowBillingCycleTextArray'] ) )
         {
             $GLOBALS['xrowBillingCycleTextArray'] = array (
-                XROWRecurringOrderCollection::CYCLE_ONETIME   => ezi18n( 'kernel/classes/recurringordercollection', "one time" ),
-                XROWRecurringOrderCollection::CYCLE_DAY       => ezi18n( 'kernel/classes/recurringordercollection', "day(s)" ),
-                XROWRecurringOrderCollection::CYCLE_WEEK      => ezi18n( 'kernel/classes/recurringordercollection', "weeks(s)" ),
-                XROWRecurringOrderCollection::CYCLE_MONTH     => ezi18n( 'kernel/classes/recurringordercollection', "month(s)" ),
-                XROWRecurringOrderCollection::CYCLE_QUARTER   => ezi18n( 'kernel/classes/recurringordercollection', "quarter(s)" ),
-                XROWRecurringOrderCollection::CYCLE_YEAR      => ezi18n( 'kernel/classes/recurringordercollection', "year(s)" )
+                XROWRecurringOrderCollection::CYCLE_ONETIME   => ezpI18n::tr( 'kernel/classes/recurringordercollection', "one time" ),
+                XROWRecurringOrderCollection::CYCLE_DAY       => ezpI18n::tr( 'kernel/classes/recurringordercollection', "day(s)" ),
+                XROWRecurringOrderCollection::CYCLE_WEEK      => ezpI18n::tr( 'kernel/classes/recurringordercollection', "weeks(s)" ),
+                XROWRecurringOrderCollection::CYCLE_MONTH     => ezpI18n::tr( 'kernel/classes/recurringordercollection', "month(s)" ),
+                XROWRecurringOrderCollection::CYCLE_QUARTER   => ezpI18n::tr( 'kernel/classes/recurringordercollection', "quarter(s)" ),
+                XROWRecurringOrderCollection::CYCLE_YEAR      => ezpI18n::tr( 'kernel/classes/recurringordercollection', "year(s)" )
                 );
             $ini = eZINI::instance( 'recurringorders.ini' );
             foreach ( $ini->variable( 'RecurringOrderSettings','DisabledCycles' ) as $disabled )
@@ -486,12 +486,12 @@ class XROWRecurringOrderCollection extends eZPersistentObject
         if ( !isset( $GLOBALS['xrowBillingCycleTextAdjectiveArray'] ) )
         {
             $GLOBALS['xrowBillingCycleTextAdjectiveArray'] = array (
-                    XROWRecurringOrderCollection::CYCLE_ONETIME   => ezi18n( 'kernel/classes/recurringordercollection', "one time" ),
-                    XROWRecurringOrderCollection::CYCLE_DAY       => ezi18n( 'kernel/classes/recurringordercollection', "daily" ),
-                    XROWRecurringOrderCollection::CYCLE_WEEK      => ezi18n( 'kernel/classes/recurringordercollection', "weekly" ),
-                    XROWRecurringOrderCollection::CYCLE_MONTH     => ezi18n( 'kernel/classes/recurringordercollection', "monthly" ),
-                    XROWRecurringOrderCollection::CYCLE_QUARTER   => ezi18n( 'kernel/classes/recurringordercollection', "quarterly" ),
-                    XROWRecurringOrderCollection::CYCLE_YEAR      => ezi18n( 'kernel/classes/recurringordercollection', "yearly" )
+                    XROWRecurringOrderCollection::CYCLE_ONETIME   => ezpI18n::tr( 'kernel/classes/recurringordercollection', "one time" ),
+                    XROWRecurringOrderCollection::CYCLE_DAY       => ezpI18n::tr( 'kernel/classes/recurringordercollection', "daily" ),
+                    XROWRecurringOrderCollection::CYCLE_WEEK      => ezpI18n::tr( 'kernel/classes/recurringordercollection', "weekly" ),
+                    XROWRecurringOrderCollection::CYCLE_MONTH     => ezpI18n::tr( 'kernel/classes/recurringordercollection', "monthly" ),
+                    XROWRecurringOrderCollection::CYCLE_QUARTER   => ezpI18n::tr( 'kernel/classes/recurringordercollection', "quarterly" ),
+                    XROWRecurringOrderCollection::CYCLE_YEAR      => ezpI18n::tr( 'kernel/classes/recurringordercollection', "yearly" )
                 );
             $ini = eZINI::instance( 'recurringorders.ini' );
             foreach ( $ini->variable( 'RecurringOrderSettings','DisabledCycles' ) as $disabled )
@@ -513,18 +513,18 @@ class XROWRecurringOrderCollection extends eZPersistentObject
         if ( !isset( $GLOBALS['xrowBillingCycleText'] ) )
         {
             $GLOBALS['xrowBillingCycleText'] = array (
-                XROWRecurringOrderCollection::CYCLE_ONETIME   => array ( 0 => ezi18n( 'kernel/classes/recurringordercollection', "one time" ),
-                                                               1 => ezi18n( 'kernel/classes/recurringordercollection', "one time" ) ),
-                XROWRecurringOrderCollection::CYCLE_DAY       => array ( 0 => ezi18n( 'kernel/classes/recurringordercollection', "days" ),
-                                                               1 => ezi18n( 'kernel/classes/recurringordercollection', "day" ) ),
-                XROWRecurringOrderCollection::CYCLE_WEEK      => array ( 0 => ezi18n( 'kernel/classes/recurringordercollection', "weeks" ),
-                                                               1 => ezi18n( 'kernel/classes/recurringordercollection', "week" ) ),
-                XROWRecurringOrderCollection::CYCLE_MONTH     => array ( 0 => ezi18n( 'kernel/classes/recurringordercollection', "months" ),
-                                                               1 => ezi18n( 'kernel/classes/recurringordercollection', "month" ) ),
-                XROWRecurringOrderCollection::CYCLE_QUARTER   => array ( 0 => ezi18n( 'kernel/classes/recurringordercollection', "quarters" ),
-                                                               1 => ezi18n( 'kernel/classes/recurringordercollection', "quarter" ) ),
-                XROWRecurringOrderCollection::CYCLE_YEAR      => array ( 0 => ezi18n( 'kernel/classes/recurringordercollection', "years" ),
-                                                               1 => ezi18n( 'kernel/classes/recurringordercollection', "year" ) )
+                XROWRecurringOrderCollection::CYCLE_ONETIME   => array ( 0 => ezpI18n::tr( 'kernel/classes/recurringordercollection', "one time" ),
+                                                               1 => ezpI18n::tr( 'kernel/classes/recurringordercollection', "one time" ) ),
+                XROWRecurringOrderCollection::CYCLE_DAY       => array ( 0 => ezpI18n::tr( 'kernel/classes/recurringordercollection', "days" ),
+                                                               1 => ezpI18n::tr( 'kernel/classes/recurringordercollection', "day" ) ),
+                XROWRecurringOrderCollection::CYCLE_WEEK      => array ( 0 => ezpI18n::tr( 'kernel/classes/recurringordercollection', "weeks" ),
+                                                               1 => ezpI18n::tr( 'kernel/classes/recurringordercollection', "week" ) ),
+                XROWRecurringOrderCollection::CYCLE_MONTH     => array ( 0 => ezpI18n::tr( 'kernel/classes/recurringordercollection', "months" ),
+                                                               1 => ezpI18n::tr( 'kernel/classes/recurringordercollection', "month" ) ),
+                XROWRecurringOrderCollection::CYCLE_QUARTER   => array ( 0 => ezpI18n::tr( 'kernel/classes/recurringordercollection', "quarters" ),
+                                                               1 => ezpI18n::tr( 'kernel/classes/recurringordercollection', "quarter" ) ),
+                XROWRecurringOrderCollection::CYCLE_YEAR      => array ( 0 => ezpI18n::tr( 'kernel/classes/recurringordercollection', "years" ),
+                                                               1 => ezpI18n::tr( 'kernel/classes/recurringordercollection', "year" ) )
 
             );
             $ini = eZINI::instance( 'recurringorders.ini' );

@@ -19,8 +19,8 @@ class xrowProductRelationType extends xrowProductDataType
                          'required' => false );
 
         $this->xrowProductDataType( self::DATA_TYPE_STRING,
-                                    ezi18n( 'extension/xrowecommerce/productvariation', "Object relation", 'Datatype name' ),
-                                    ezi18n( 'extension/xrowecommerce/productvariation', "Stores an object relation. (e.g. to an image)", 'Datatype description' ),
+                                    ezpI18n::tr( 'extension/xrowecommerce/productvariation', "Object relation", 'Datatype name' ),
+                                    ezpI18n::tr( 'extension/xrowecommerce/productvariation', "Stores an object relation. (e.g. to an image)", 'Datatype description' ),
                                     $params );
     }
 
