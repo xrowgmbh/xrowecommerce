@@ -2776,7 +2776,7 @@ Es ist nicht möglich, den Datentyp danach zu ändern.</translation>
     </message>
     <message>
         <source>We have encountered problems with your credit card. Please update your profile.</source>
-        <translation>Ihre Kreditkartendaten konntent nicht besttigt werden. Aktualisieren Sie Ihr Profil.</translation>
+        <translation>Ihre Kreditkartendaten konntent nicht bestätigt werden. Aktualisieren Sie Ihr Profil.</translation>
     </message>
     <message>
         <source>(period %startdate% till %enddate%)</source>

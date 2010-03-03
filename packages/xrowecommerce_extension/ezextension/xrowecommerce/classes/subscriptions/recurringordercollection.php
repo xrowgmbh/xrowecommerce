@@ -340,7 +340,7 @@ class XROWRecurringOrderCollection extends eZPersistentObject
      *
      * @return XROWRecurringOrderCollection
      */
-    function createNew( $user_id = null )
+    static function createNew( $user_id = null )
     {
         if ( $user_id === null )
             $user_id = eZUser::currentUserID();
