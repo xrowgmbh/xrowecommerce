@@ -748,9 +748,13 @@
         <source>starting at</source>
         <translation>ab</translation>
     </message>
+	<message>
+        <source>view products</source>
+        <translation>Produkte ansehen</translation>
+    </message>
     <message>
-        <source>more</source>
-        <translation>Mehr</translation>
+        <source>view product</source>
+        <translation>Produkt ansehen</translation>
     </message>
     <message>
         <source>Type</source>

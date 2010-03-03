@@ -14,5 +14,5 @@
     <div class="text">
 	    {attribute_view_gui attribute=$node.data_map.description}
     </div>
-    <p class="read_more"><a href="{$node.url_alias|ezurl('no')}" title="{$node.name|wash()}">{'read more'|i18n('extension/xrowecommerce')} »</a></p>
+    <p class="read_more"><a href="{$node.url_alias|ezurl('no')}" title="{$node.name|wash()}">{'view products'|i18n('extension/xrowecommerce')} »</a></p>
 </div>

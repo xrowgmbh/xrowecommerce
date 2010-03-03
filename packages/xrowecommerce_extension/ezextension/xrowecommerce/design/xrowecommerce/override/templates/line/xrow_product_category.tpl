@@ -13,6 +13,6 @@
 	</div>
 	<div class="productline-text">
 		<p>{attribute_view_gui attribute=$node.data_map.description}&nbsp;</p>
-		<p class="read_more"><a class="read_more" href={$node.url_alias|ezurl()} title="{$node.name|wash()}">{'read more'|i18n('extension/xrowecommerce')} »</a></p>
+		<p class="read_more"><a class="read_more" href={$node.url_alias|ezurl()} title="{$node.name|wash()}">{'view products'|i18n('extension/xrowecommerce')} »</a></p>
 	</div>
 </div>
