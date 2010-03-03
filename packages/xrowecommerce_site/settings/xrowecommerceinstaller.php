@@ -3046,7 +3046,7 @@ class xrowecommerceInstaller extends eZSiteInstaller
         
                'embed_xrow_product_category' => array( 
                     'Source' => 'content/view/embed.tpl', 
-                    'MatchFile' => 'full/xrow_product_category.tpl', 
+                    'MatchFile' => 'embed/xrow_product_category.tpl', 
                     'Subdir' => 'templates', 
                     'Match' => array( 
                         'class_identifier' => 'xrow_product_category' 
@@ -4127,6 +4127,9 @@ class xrowecommerceInstaller extends eZSiteInstaller
             'settings' => array( 
                 'CharsetSettings' => array( 
                     'DefaultTemplateCharset' => 'utf-8' 
+                ),
+                'PHP' => array( 
+                    'PHPOperatorList' => array( 'striptags' => 'strip_tags' ) 
                 ) 
             ) 
         );
