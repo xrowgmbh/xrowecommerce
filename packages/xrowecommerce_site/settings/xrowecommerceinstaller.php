@@ -1314,7 +1314,7 @@ class xrowecommerceInstaller extends eZSiteInstaller
 		foreach ( $this->setting ( 'locales' ) as $locale ) {
 			$l = eZLocale::instance ( $locale );
 			
-			$c = eZCurrencyData::create ( $l->currencyShortName (), $l->currencySymbol (), $locale );
+			$c = eZCurrencyData::create ( $l->currencyShortName (), $l->currencySymbol (), $locale, 1.00, 1.00, 1.00 );
 			if ($c instanceof eZCurrencyData) {
 				$c->store ();
 			}
