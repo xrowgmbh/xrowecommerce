@@ -74,7 +74,7 @@ class eZOption2
     /*!
      Adds an option
     */
-    function addOption( $valueArray )
+    function addOption( $valueArray = array () )
     {
         $valueArray['value'] = isset( $valueArray['value'] ) ? $valueArray['value'] : '';
         $valueArray['comment'] = isset( $valueArray['comment'] ) ? $valueArray['comment'] : '';
@@ -273,7 +273,7 @@ class eZOption2
             $optionNode->setAttribute( "image", $option['image'] );
             //$optionNode->setAttribute( 'additional_price', $option['additional_price'] );
             $multi_price = $doc->createElement( "multi_price" );
-            if ( $option['multi_price'] and count( $option['multi_price']->PriceList ) > 0 )
+            if ( isset( $option['multi_price'] ) and count( $option['multi_price']->PriceList ) > 0 )
             {
                 
                 foreach ( $option['multi_price']->PriceList as $price )

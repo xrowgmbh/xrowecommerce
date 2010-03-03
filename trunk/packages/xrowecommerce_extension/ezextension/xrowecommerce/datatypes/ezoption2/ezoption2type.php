@@ -7,7 +7,7 @@
 //
 // ## BEGIN COPYRIGHT, LICENSE AND WARRANTY NOTICE ##
 // SOFTWARE NAME: eZ publish
-// SOFTWARE RELEASE: 3.7.x
+// SOFTWARE RELEASE: 1.1-0
 // COPYRIGHT NOTICE: Copyright (C) 1999-2006 eZ systems AS
 // SOFTWARE LICENSE: GNU General Public License v2.0
 // NOTICE: >
@@ -507,30 +507,25 @@ class eZOption2Type extends eZDataType
     {
         return true;
     }
-    function postUnserializeContentObjectAttribute( $package, $objectAttribute )
+    /*!
+     \param contentobject attribute object
+     \param domnode object
+    */
+    function unserializeContentObjectAttribute( $package, $objectAttribute, $attributeNode )
     {
-        $xmlString = $objectAttribute->attribute( 'data_text' );
-        $doc = new DOMDocument( '1.0', 'utf-8' );
-        $success = $doc->loadXML( $xmlString );
-
-        if ( !$success )
+        foreach ( $attributeNode->childNodes as $childNode )
         {
-            return false;
-        }
-
-        $objects = $doc->getElementsByTagName( 'option' );
-
-        $modified = array();
-        $modified[] = self::transformRemoteLinksToLinks( $objects, $objectAttribute );
-
-        if ( in_array( true, $modified ) )
-        {
-            $objectAttribute->setAttribute( 'data_text', eZXMLTextType::domString( $doc ) );
-            return true;
-        }
-        else
-        {
-            return false;
+            if ( $childNode->nodeType == XML_ELEMENT_NODE )
+            {
+                $xmlString = $childNode->ownerDocument->saveXML( $childNode );
+                $doc = new DOMDocument( '1.0', 'utf-8' );
+        		$success = $doc->loadXML( $xmlString );
+        		$objects = $doc->getElementsByTagName( 'option' );
+        		$modified = self::transformRemoteLinksToLinks( $objects, $objectAttribute );
+       			$xmlString = $doc->saveXML();        
+        		$objectAttribute->setAttribute( 'data_text', $xmlString );
+                break;
+            }
         }
     }
     static function transformRemoteLinksToLinks( DOMNodeList $nodeList, $objectAttribute )
@@ -544,6 +539,7 @@ class eZOption2Type extends eZDataType
             if ( $objectRemoteID )
             {
                 $objectArray = eZContentObject::fetchByRemoteID( $objectRemoteID, false );
+
                 if ( !is_array( $objectArray ) )
                 {
                     eZDebug::writeWarning( "Can't fetch object with remoteID = $objectRemoteID", 'eZXMLTextType::unserialize' );
