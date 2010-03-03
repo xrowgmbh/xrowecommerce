@@ -31,7 +31,7 @@
 */
 
 
-require_once( "kernel/common/template.php" );
+
 
 $module = $Params['Module'];
 
@@ -98,7 +98,7 @@ for ( $dayIndex = 1; $dayIndex <= 31; $dayIndex++ )
     $dayList[] = array( 'value' => $dayIndex, 'name' => $dayIndex );
 }
 
-$tpl = templateInit();
+$tpl = eZTemplate::factory();
 $tpl->setVariable( "year", $year );
 $tpl->setVariable( "startMonth", $startMonth );
 $tpl->setVariable( "stopMonth", $stopMonth );
@@ -110,11 +110,11 @@ $tpl->setVariable( "stopDay", $stopDay );
 $tpl->setVariable( "statistic_result", $statisticArray );
 
 $path = array();
-$path[] = array( 'text' => ezi18n( 'kernel/shop', 'Statistics' ),
+$path[] = array( 'text' => ezpI18n::tr( 'kernel/shop', 'Statistics' ),
                  'url' => false );
 
 $Result = array();
-$Result['path'] = array( array( 'text' => ezi18n( 'kernel/shop', 'Statistics' ),
+$Result['path'] = array( array( 'text' => ezpI18n::tr( 'kernel/shop', 'Statistics' ),
                                 'url' => false ) );
 
 $Result['content'] = $tpl->fetch( "design:xrowecommerce/orderstatistics.tpl" );

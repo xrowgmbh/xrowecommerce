@@ -5,7 +5,7 @@ class xrowBillingCycleType extends eZDataType
     const DATA_TYPE_STRING = "xrowbillingcycle";
     function xrowBillingCycleType()
     {
-        $this->eZDataType( xrowBillingCycleType::DATA_TYPE_STRING, ezi18n( 'kernel/classes/datatypes', "Billing cycle", 'Datatype name' ),
+        $this->eZDataType( xrowBillingCycleType::DATA_TYPE_STRING, ezpI18n::tr( 'kernel/classes/datatypes', "Billing cycle", 'Datatype name' ),
                            array( 'serialize_supported' => true,
                                   'object_serialize_map' => array( 'data_int' => 'period', 'data_text' => 'quantity' ) ) );
     }
@@ -87,7 +87,7 @@ class xrowBillingCycleType extends eZDataType
             {
                 if ( $contentObjectAttribute->validateIsRequired() )
                 {
-                    $contentObjectAttribute->setValidationError( ezi18n( 'kernel/classes/datatypes',
+                    $contentObjectAttribute->setValidationError( ezpI18n::tr( 'kernel/classes/datatypes',
                                                                          'Input required.' ) );
                     return EZ_INPUT_VALIDATOR_STATE_INVALID;
                 }

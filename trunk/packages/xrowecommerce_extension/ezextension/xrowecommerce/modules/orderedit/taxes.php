@@ -4,7 +4,7 @@ require_once( 'kernel/common/template.php' );
 
 $Module  =& $Params['Module'];
 $http = eZHTTPTool::instance();
-$tpl = templateInit();
+$tpl = eZTemplate::factory();
 $locale = eZLocale::instance();
 $yearList = array();
 $currentDate = new eZDate();
@@ -243,6 +243,6 @@ $Result = array();
 $Result['content'] = $tpl->fetch( "design:shop/taxes.tpl" );
 $path = array();
 $path[] = array( 'url' => '/orderedit/taxes',
-                 'text' => ezi18n( 'kernel/shop', 'Tax listing' ) );
+                 'text' => ezpI18n::tr( 'kernel/shop', 'Tax listing' ) );
 $Result['path'] = $path;
 ?>

@@ -1,6 +1,6 @@
 <?php
 
-require_once( "kernel/common/template.php" );
+
 
 $http = eZHTTPTool::instance();
 $Module = $Params['Module'];
@@ -16,13 +16,13 @@ $reportArray = array( 'total_lines' => 0,
                       'new_price' => 0,
                       'new_sliding_price' => 0
                         );
-$tpl = templateInit();
+$tpl = eZTemplate::factory();
 
 if ( $http->hasPostVariable( 'ImportButton' ) )
 {
     if ( !eZHTTPFile::canFetch( 'UploadCSVFile' ) )
     {
-    	$errorArray[] = ezi18n( 'extension/xrowecommerce', 'Cannot fetch uploaded file, please choose a valid CSV file.' );
+    	$errorArray[] = ezpI18n::tr( 'extension/xrowecommerce', 'Cannot fetch uploaded file, please choose a valid CSV file.' );
     }
     else
     {
@@ -32,7 +32,7 @@ if ( $http->hasPostVariable( 'ImportButton' ) )
 
         if ( strtolower( $extension ) != 'csv' )
         {
-        	$errorArray[] = ezi18n( 'extension/xrowecommerce', 'File has a wrong extension. Only CSV files are supported.' );
+        	$errorArray[] = ezpI18n::tr( 'extension/xrowecommerce', 'File has a wrong extension. Only CSV files are supported.' );
         }
         else
         {
@@ -136,7 +136,7 @@ if ( $http->hasPostVariable( 'ImportButton' ) )
         	}
         	else
         	{
-        		$errorArray[] = ezi18n( 'extension/xrowecommerce', 'Empty file uploaded.' );
+        		$errorArray[] = ezpI18n::tr( 'extension/xrowecommerce', 'Empty file uploaded.' );
         	}
         }
 
@@ -154,7 +154,7 @@ $tpl->setVariable( "report_array", $reportArray );
 $Result = array();
 $Result['content'] = $tpl->fetch( "design:xrowecommerce/price_import.tpl" );
 $Result['path'] = array( array( 'url' => false,
-                                'text' => ezi18n( 'extension/xrowecommerce', 'Price import' ) ) );
+                                'text' => ezpI18n::tr( 'extension/xrowecommerce', 'Price import' ) ) );
 
 
 

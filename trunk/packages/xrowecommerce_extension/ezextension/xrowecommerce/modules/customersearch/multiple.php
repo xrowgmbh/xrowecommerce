@@ -68,9 +68,9 @@ $Result = array();
 $Result['content'] =& $tpl->fetch( "design:shop/orderlist.tpl" );
 $path = array();
 $path[] = array( 'url' => '/shop/orderlist',
-                 'text' => ezi18n( 'kernel/shop', 'Order list' ) );
+                 'text' => ezpI18n::tr( 'kernel/shop', 'Order list' ) );
 $path[] = array( 'url' => false,
-                 'text' => ezi18n( 'kernel/shop', 'Customer order view' ) );
+                 'text' => ezpI18n::tr( 'kernel/shop', 'Customer order view' ) );
 $Result['path'] = $path;
 
 ?>

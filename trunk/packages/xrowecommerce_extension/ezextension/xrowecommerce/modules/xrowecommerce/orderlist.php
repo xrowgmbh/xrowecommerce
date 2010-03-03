@@ -30,7 +30,7 @@
 require_once ( 'kernel/common/template.php' );
 $Module = $Params['Module'];
 
-$tpl = templateInit();
+$tpl = eZTemplate::factory();
 
 $offset = $Params['Offset'];
 $limit = 15;
@@ -145,7 +145,7 @@ $tpl->setVariable( 'sort_order', $sortOrder );
 $Result = array();
 $Result['path'] = array( 
     array( 
-        'text' => ezi18n( 'kernel/shop', 'Order list' ) , 
+        'text' => ezpI18n::tr( 'kernel/shop', 'Order list' ) , 
         'url' => false 
     ) 
 );

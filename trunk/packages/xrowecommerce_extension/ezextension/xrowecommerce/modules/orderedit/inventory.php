@@ -26,6 +26,6 @@ $Result = array();
 $Result['content'] =& $tpl->fetch( "design:shop/inventory.tpl" );
 $path = array();
 $path[] = array( 'url' => '/orderedit/product',
-                 'text' => ezi18n( 'kernel/shop', 'Zero weight prods' ) );
+                 'text' => ezpI18n::tr( 'kernel/shop', 'Zero weight prods' ) );
 $Result['path'] = $path;
 ?>

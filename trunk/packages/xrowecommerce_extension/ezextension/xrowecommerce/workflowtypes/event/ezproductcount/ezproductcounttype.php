@@ -6,7 +6,7 @@ class xrowInventoryType extends eZWorkflowEventType
 
     function xrowInventoryType()
     {
-        $this->eZWorkflowEventType( xrowInventoryType::WORKFLOW_TYPE_STRING, ezi18n( 'kernel/workflow/event', "Inventory Manager" ) );
+        $this->eZWorkflowEventType( xrowInventoryType::WORKFLOW_TYPE_STRING, ezpI18n::tr( 'kernel/workflow/event', "Inventory Manager" ) );
         $this->setTriggerTypes( array( 'shop' => array( 'addtobasket' => array ( 'after' ) ) ) );
     }
 

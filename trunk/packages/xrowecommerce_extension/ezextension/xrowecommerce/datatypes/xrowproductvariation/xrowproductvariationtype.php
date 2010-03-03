@@ -13,7 +13,7 @@ class xrowProductVariationType extends eZDataType
     */
     function xrowProductVariationType()
     {
-        $this->eZDataType( self::DATA_TYPE_STRING, ezi18n( 'kernel/classes/datatypes', "Product variations", 'Datatype name' ),
+        $this->eZDataType( self::DATA_TYPE_STRING, ezpI18n::tr( 'kernel/classes/datatypes', "Product variations", 'Datatype name' ),
                            array( 'serialize_supported' => true ) );
     }
 
@@ -47,7 +47,7 @@ class xrowProductVariationType extends eZDataType
 
             if ( !$template )
             {
-                $contentObjectAttribute->setValidationError( ezi18n( 'kernel/classes/datatypes',
+                $contentObjectAttribute->setValidationError( ezpI18n::tr( 'kernel/classes/datatypes',
                                                                  'Please choose a template for the product variation.' ) );
                 return eZInputValidator::STATE_INVALID;
             }
@@ -88,7 +88,7 @@ class xrowProductVariationType extends eZDataType
 
         if ( count( $errorArray ) > 0 )
         {
-            $contentObjectAttribute->setValidationError( ezi18n( 'kernel/classes/datatypes',
+            $contentObjectAttribute->setValidationError( ezpI18n::tr( 'kernel/classes/datatypes',
                                                                  'Please correct the input of product variations. The wrong or missing input is marked with a red border.' ) );
             return eZInputValidator::STATE_INVALID;
         }

@@ -1,5 +1,5 @@
 <?php
-require_once( "kernel/common/template.php" );
+
 
 $module = $Params['Module'];
 
@@ -29,7 +29,7 @@ if ( $http->hasPostVariable( "Save" ) )
     eZContentObject::clearCache();
 }
 
-$tpl = templateInit();
+$tpl = eZTemplate::factory();
 if ( isset( $Params['UserParameters']['offset'] ) and is_numeric( $Params['UserParameters']['offset'] ) )
 {
     $offset = (int)$Params['UserParameters']['offset'];
@@ -74,7 +74,7 @@ $tpl->setVariable( 'limit', $limit );
 
 
 $Result = array();
-$Result['path'] = array( array( 'text' => ezi18n( 'extension/xrowecommerce', 'Tax identification numbers' ),
+$Result['path'] = array( array( 'text' => ezpI18n::tr( 'extension/xrowecommerce', 'Tax identification numbers' ),
                                 'url' => false ) );
 
 $Result['content'] = $tpl->fetch( "design:shop/tin.tpl" );

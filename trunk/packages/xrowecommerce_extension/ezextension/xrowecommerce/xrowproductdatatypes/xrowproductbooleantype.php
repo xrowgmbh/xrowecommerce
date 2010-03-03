@@ -19,8 +19,8 @@ class xrowProductBooleanType extends xrowProductDataType
                          'required' => false );
 
         $this->xrowProductDataType( self::DATA_TYPE_STRING,
-                                    ezi18n( 'extension/xrowecommerce/productvariation', "Boolean", 'Datatype name' ),
-                                    ezi18n( 'extension/xrowecommerce/productvariation', "Stores true or false.", 'Datatype description' ),
+                                    ezpI18n::tr( 'extension/xrowecommerce/productvariation', "Boolean", 'Datatype name' ),
+                                    ezpI18n::tr( 'extension/xrowecommerce/productvariation', "Stores true or false.", 'Datatype description' ),
                                     $params );
     }
 
@@ -48,9 +48,9 @@ class xrowProductBooleanType extends xrowProductDataType
     {
         $content = $variation->attribute( $column );
         if ( $content == 1 )
-            return ezi18n( 'extension/xrowcommerce/productvariation', 'yes' );
+            return ezpI18n::tr( 'extension/xrowcommerce/productvariation', 'yes' );
         else
-            return ezi18n( 'extension/xrowcommerce/productvariation', 'no' );
+            return ezpI18n::tr( 'extension/xrowcommerce/productvariation', 'no' );
     }
 
     /**

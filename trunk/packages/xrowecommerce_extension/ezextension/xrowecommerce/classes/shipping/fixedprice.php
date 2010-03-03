@@ -6,7 +6,7 @@ class fixedprice extends ShippingInterface
     	return array( 
     	array(
     		'identifier' => 'fixedprice',
-    		'name' => ezi18n( 'extension/shippinginterface', 'Standard Shipping' )
+    		'name' => ezpI18n::tr( 'extension/shippinginterface', 'Standard Shipping' )
     	)
     	 );
     }

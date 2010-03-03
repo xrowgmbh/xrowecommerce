@@ -5,7 +5,7 @@ $module = $Params["Module"];
 
 include_once ( 'kernel/common/template.php' );
 
-$tpl = templateInit();
+$tpl = eZTemplate::factory();
 
 if ( $module->isCurrentAction( 'Cancel' ) )
 {
@@ -230,14 +230,14 @@ if ( $module->isCurrentAction( 'Store' ) )
     $email = $http->postVariable( "email" );
     if ( empty( $email ) )
     {
-        $errors[] = ezi18n( 'extension/xrowecommerce', "The email address isn't given." );
+        $errors[] = ezpI18n::tr( 'extension/xrowecommerce', "The email address isn't given." );
         $inputIsValid = false;
     }
     else
     {
         if ( ! eZMail::validate( $email ) )
         {
-            $errors[] = ezi18n( 'extension/xrowecommerce', "The email address isn't valid." );
+            $errors[] = ezpI18n::tr( 'extension/xrowecommerce', "The email address isn't valid." );
             $inputIsValid = false;
         }
     }
@@ -318,7 +318,7 @@ if ( $module->isCurrentAction( 'Store' ) )
         $tax_id = strtoupper( trim( $http->postVariable( "tax_id" ) ) );
         if ( empty( $tax_id ) and $company_name and in_array( $Alpha2, $ids ) and ! in_array( $Alpha2, $merchantcountries ) )
         {
-            $errors[] = ezi18n( 'extension/xrowecommerce', 'Please enter a your companies tax ID number.' );
+            $errors[] = ezpI18n::tr( 'extension/xrowecommerce', 'Please enter a your companies tax ID number.' );
             $inputIsValid = false;
         }
         if ( in_array( $Alpha2, $ids ) and $company_name )
@@ -328,7 +328,7 @@ if ( $module->isCurrentAction( 'Store' ) )
             {
                 if ( $Alpha2 != $matches[1] )
                 {
-                    $errors[] = ezi18n( 'extension/xrowecommerce', 'Country doesn`t match tax ID number.' );
+                    $errors[] = ezpI18n::tr( 'extension/xrowecommerce', 'Country doesn`t match tax ID number.' );
                     $inputIsValid = false;
                 }
                 try
@@ -336,7 +336,7 @@ if ( $module->isCurrentAction( 'Store' ) )
                     $ret = xrowECommerce::checkVat( $ezcountry['Alpha2'], $matches[2] );
                     if ( ! $ret )
                     {
-                        $errors[] = ezi18n( 'extension/xrowecommerce', 'Your companies tax ID number is not valid.' );
+                        $errors[] = ezpI18n::tr( 'extension/xrowecommerce', 'Your companies tax ID number is not valid.' );
                         $inputIsValid = false;
                     }
                     else
@@ -363,7 +363,7 @@ if ( $module->isCurrentAction( 'Store' ) )
             }
             else
             {
-                $errors[] = ezi18n( 'extension/xrowecommerce', 'Your companies tax ID number is not valid.' );
+                $errors[] = ezpI18n::tr( 'extension/xrowecommerce', 'Your companies tax ID number is not valid.' );
                 $inputIsValid = false;
             }
         }
@@ -423,14 +423,14 @@ if ( $module->isCurrentAction( 'Store' ) )
         $s_email = $http->postVariable( "s_email" );
         if ( empty( $s_email ) )
         {
-            $errors[] = ezi18n( 'extension/xrowecommerce', "The email address isn't given." );
+            $errors[] = ezpI18n::tr( 'extension/xrowecommerce', "The email address isn't given." );
             $inputIsValid = false;
         }
         else
         {
             if ( ! eZMail::validate( $s_email ) )
             {
-                $errors[] = ezi18n( 'extension/xrowecommerce', "The email address isn't valid." );
+                $errors[] = ezpI18n::tr( 'extension/xrowecommerce', "The email address isn't valid." );
                 $inputIsValid = false;
             }
         }
@@ -490,26 +490,26 @@ if ( $module->isCurrentAction( 'Store' ) )
                 if ( ! $gateway->methodCheck( $shippingdestination ) )
                 {
                 	var_dump($shippingdestination);
-                    $errors[] = ezi18n( 'extension/xrowecommerce', 'Shipping method is not allowed for destination.' );
+                    $errors[] = ezpI18n::tr( 'extension/xrowecommerce', 'Shipping method is not allowed for destination.' );
                     $inputIsValid = false;
                 }
             }
             catch ( xrowShippingException $e )
             {
-                $errors[] = ezi18n( 'extension/xrowecommerce', 'Shipping method is not allowed for destination.' );
+                $errors[] = ezpI18n::tr( 'extension/xrowecommerce', 'Shipping method is not allowed for destination.' );
                 $inputIsValid = false;
             }
             try
             {
                 if ( ! $gateway->destinationCheck( $shippingdestination ) )
                 {
-                    $errors[] = ezi18n( 'extension/xrowecommerce', 'Shipping destination is not allowed.' );
+                    $errors[] = ezpI18n::tr( 'extension/xrowecommerce', 'Shipping destination is not allowed.' );
                     $inputIsValid = false;
                 }
             }
             catch ( xrowShippingException $e )
             {
-                $errors[] = ezi18n( 'extension/xrowecommerce', 'Shipping destination is not allowed.' );
+                $errors[] = ezpI18n::tr( 'extension/xrowecommerce', 'Shipping destination is not allowed.' );
                 $inputIsValid = false;
             }
         }
@@ -768,7 +768,7 @@ $Result['content'] = $tpl->fetch( "design:shop/userregister.tpl" );
 $Result['path'] = array( 
     array( 
         'url' => false , 
-        'text' => ezi18n( 'extension/xrowecommerce', 'Enter account information' ) 
+        'text' => ezpI18n::tr( 'extension/xrowecommerce', 'Enter account information' ) 
     ) 
 );
 ?>

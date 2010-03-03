@@ -153,7 +153,7 @@ class xrowECommerce
                 }
                 else
                 {
-                    $errors[] = ezi18n( 'extension/xrowecommerce', 'A tax identification number in the Federal Republic of Germany consists of 10 or 11 digits, depending on the "Bundesland" (State). These are divided into groups of 2 - 5 by forward slashes or blanks (e.g. "181/815/08155"). A unified German tax identification number consists of 13 digits like "2893081508152".' );
+                    $errors[] = ezpI18n::tr( 'extension/xrowecommerce', 'A tax identification number in the Federal Republic of Germany consists of 10 or 11 digits, depending on the "Bundesland" (State). These are divided into groups of 2 - 5 by forward slashes or blanks (e.g. "181/815/08155"). A unified German tax identification number consists of 13 digits like "2893081508152".' );
                     return false;
                 }
                 break;

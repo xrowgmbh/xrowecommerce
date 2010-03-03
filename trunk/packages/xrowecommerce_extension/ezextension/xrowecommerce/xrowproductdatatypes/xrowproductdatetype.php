@@ -19,8 +19,8 @@ class xrowProductDateType extends xrowProductDataType
                          'required' => false );
 
         $this->xrowProductDataType( self::DATA_TYPE_STRING,
-                                    ezi18n( 'extension/xrowecommerce/productvariation', "Date", 'Datatype name' ),
-                                    ezi18n( 'extension/xrowecommerce/productvariation', "Stores a date value.", 'Datatype description' ),
+                                    ezpI18n::tr( 'extension/xrowecommerce/productvariation', "Date", 'Datatype name' ),
+                                    ezpI18n::tr( 'extension/xrowecommerce/productvariation', "Stores a date value.", 'Datatype description' ),
                                     $params );
     }
 

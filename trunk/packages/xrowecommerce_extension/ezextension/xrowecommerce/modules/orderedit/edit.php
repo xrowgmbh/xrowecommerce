@@ -5,7 +5,7 @@ include_once( 'kernel/common/template.php' );
 $Module  =& $Params['Module'];
 
 $http = eZHTTPTool::instance();
-$tpl = templateInit();
+$tpl = eZTemplate::factory();
 $orderNR = $Params['orderid'];
 if ( empty( $orderNR ) )
 {
@@ -85,9 +85,9 @@ $Result = array();
 $Result['content'] =& $tpl->fetch( "design:shop/ordereditedit.tpl" );
 $path = array();
 $path[] = array( 'url' => '/orderedit/edit',
-                 'text' => ezi18n( 'kernel/shop', 'Orderedit' ) );
+                 'text' => ezpI18n::tr( 'kernel/shop', 'Orderedit' ) );
 $path[] = array( 'url' => false,
-                 'text' => ezi18n( 'kernel/shop', 'Orderitem' ) );
+                 'text' => ezpI18n::tr( 'kernel/shop', 'Orderitem' ) );
 $Result['path'] = $path;
 }
 else

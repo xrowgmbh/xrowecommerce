@@ -2,7 +2,7 @@
 
 $Module =& $Params['Module'];
 include_once( 'kernel/common/template.php' );
-$tpl = templateInit();
+$tpl = eZTemplate::factory();
 $user = eZUser::currentUser();
 $http = eZHTTPTool::instance();
 if ( !$Params['CollectionID'] )
@@ -27,7 +27,7 @@ if ( $Module->isCurrentAction( 'Remove' ) and $Module->hasActionParameter( 'Remo
         if ( is_object( $item ) )
             $item->remove();
     }
-    $messages[] = array( 'type' => 'feedback', 'text' => ezi18n( 'extension/recurringorders', 'Your input has been stored.' ) ) ;
+    $messages[] = array( 'type' => 'feedback', 'text' => ezpI18n::tr( 'extension/recurringorders', 'Your input has been stored.' ) ) ;
 }
 if ( $Module->isCurrentAction( 'Update' ) and $Module->hasActionParameter( 'ItemArray' ) )
 {
@@ -57,7 +57,7 @@ if ( $Module->isCurrentAction( 'Update' ) and $Module->hasActionParameter( 'Item
         }
         $item->store();
     }
-    $messages[] = array( 'type' => 'feedback', 'text' => ezi18n( 'extension/recurringorders', 'Your input has been stored.' ) ) ;
+    $messages[] = array( 'type' => 'feedback', 'text' => ezpI18n::tr( 'extension/recurringorders', 'Your input has been stored.' ) ) ;
     if ( $Module->actionParameter( 'Pause' ) )
     {
         $collection->setAttribute( 'status', XROWRecurringOrderCollection::STATUS_DEACTIVATED );
@@ -74,7 +74,7 @@ if ( $Module->isCurrentAction( 'Cancel' ) )
 }
 
 if ( $collection->checkCreditCard() !== true )
-    $messages[] = array( 'type' => 'error', 'text' => ezi18n( 'extension/recurringorders', 'We have encountered problems with your credit card. Please update your profile.' ) ) ;
+    $messages[] = array( 'type' => 'error', 'text' => ezpI18n::tr( 'extension/recurringorders', 'We have encountered problems with your credit card. Please update your profile.' ) ) ;
 $tpl->setVariable( 'messages', $messages );
 $tpl->setVariable( 'collection', $collection );
 $Result = array();

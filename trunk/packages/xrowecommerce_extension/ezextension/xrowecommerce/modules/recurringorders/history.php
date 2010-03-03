@@ -2,7 +2,7 @@
 
 $Module =& $Params['Module'];
 include_once( 'kernel/common/template.php' );
-$tpl = templateInit();
+$tpl = eZTemplate::factory();
 
 
 $limit = 10;

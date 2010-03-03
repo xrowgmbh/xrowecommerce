@@ -13,7 +13,7 @@ class xrowPaymentGatewayType extends eZWorkflowEventType
     function __construct()
     {
         $this->logger = eZPaymentLogger::CreateForAdd( "var/log/eZPaymentGatewayType.log" );
-        $this->eZWorkflowEventType( xrowPaymentGatewayType::WORKFLOW_TYPE_STRING, ezi18n( 'kernel/workflow/event', "xrow Ecommerce Payment Gateway" ) );
+        $this->eZWorkflowEventType( xrowPaymentGatewayType::WORKFLOW_TYPE_STRING, ezpI18n::tr( 'kernel/workflow/event', "xrow Ecommerce Payment Gateway" ) );
         $this->setTriggerTypes( array( 
             'shop' => array( 
                 'checkout' => array( 
@@ -90,7 +90,7 @@ class xrowPaymentGatewayType extends eZWorkflowEventType
             {
                 $process->Template = array();
                 $process->Template['templateName'] = 'design:workflow/selectgateway.tpl';
-                $process->Template['path'] = array( array( 'url' => false, 'text' => ezi18n( 'extension/xrowecommerce', 'Payment Information' ) ) );
+                $process->Template['path'] = array( array( 'url' => false, 'text' => ezpI18n::tr( 'extension/xrowecommerce', 'Payment Information' ) ) );
                 $process->Template['templateVars'] = array( 
                     'event' => $event 
                 );
@@ -118,7 +118,7 @@ class xrowPaymentGatewayType extends eZWorkflowEventType
             {
                 $process->Template = array();
                 $process->Template['templateName'] = 'design:workflow/fraud.tpl';
-                $process->Template['path'] = array( array( 'url' => false, 'text' => ezi18n( 'extension/xrowecommerce', 'Payment Information' ) ) );
+                $process->Template['path'] = array( array( 'url' => false, 'text' => ezpI18n::tr( 'extension/xrowecommerce', 'Payment Information' ) ) );
                 $process->Template['templateVars'] = array( 
                     'event' => $event 
                 );

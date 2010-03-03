@@ -63,15 +63,15 @@ if ( !$access )
 {
      return $module->handleError( EZ_ERROR_KERNEL_ACCESS_DENIED, 'kernel' );
 }
-$tpl = templateInit();
+$tpl = eZTemplate::factory();
 $tpl->setVariable( "order", $order );
 $tpl->setVariable( "includepackingslip", $includePackingSlip );
 $Result = array();
 $Result['pagelayout'] = "invoice_pagelayout.tpl";
 $Result['content'] = $tpl->fetch( "design:shop/invoice.tpl" );
 $Result['path'] = array( array( 'url' => 'shop/orderlist',
-                                'text' => ezi18n( 'kernel/shop', 'Order list' ) ),
+                                'text' => ezpI18n::tr( 'kernel/shop', 'Order list' ) ),
                          array( 'url' => false,
-                                'text' => ezi18n( 'kernel/shop', 'Order #%order_id', null, array( '%order_id' => $order->attribute( 'order_nr' ) ) ) ) );
+                                'text' => ezpI18n::tr( 'kernel/shop', 'Order #%order_id', null, array( '%order_id' => $order->attribute( 'order_nr' ) ) ) ) );
 
 ?>

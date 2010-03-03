@@ -25,7 +25,7 @@ class ezcreditcardType extends eZDataType
     */
     function ezcreditcardType ()
     {
-        $this->eZDataType( self::DATA_TYPE_STRING, ezi18n( 'kernel/classes/datatypes', 'Credit card', 'Datatype name' ), array( 
+        $this->eZDataType( self::DATA_TYPE_STRING, ezpI18n::tr( 'kernel/classes/datatypes', 'Credit card', 'Datatype name' ), array( 
             'serialize_supported' => true , 
             'object_serialize_map' => array( 
                 'data_text' => 'text' 
@@ -109,7 +109,7 @@ class ezcreditcardType extends eZDataType
                     {
                         if ( $this->hasOrderCollection( $contentObjectAttribute ) )
                         {
-                            $contentObjectAttribute->setValidationError( ezi18n( 'kernel/classes/datatypes', 'Input is required, if you have active subscriptions or recurring orders.' ) );
+                            $contentObjectAttribute->setValidationError( ezpI18n::tr( 'kernel/classes/datatypes', 'Input is required, if you have active subscriptions or recurring orders.' ) );
                             return eZInputValidator::STATE_INVALID;
                         }
                         if ( ! $classAttribute->attribute( 'is_information_collector' ) and $contentObjectAttribute->validateIsRequired() )
@@ -118,7 +118,7 @@ class ezcreditcardType extends eZDataType
                             // the card check
                             if ( ! $http->hasSessionVariable( 'xrowTestAccountOrder' ) )
                             {
-                                $contentObjectAttribute->setValidationError( ezi18n( 'kernel/classes/datatypes', 'Input required.' ) );
+                                $contentObjectAttribute->setValidationError( ezpI18n::tr( 'kernel/classes/datatypes', 'Input required.' ) );
                                 return eZInputValidator::STATE_INVALID;
                             } else
                                 return eZInputValidator::STATE_ACCEPTED;
@@ -136,7 +136,7 @@ class ezcreditcardType extends eZDataType
                         // the card check
                         if ( ! $http->hasSessionVariable( 'xrowTestAccountOrder' ) )
                         {
-                            $contentObjectAttribute->setValidationError( ezi18n( 'kernel/classes/datatypes', 'Input required.' ) );
+                            $contentObjectAttribute->setValidationError( ezpI18n::tr( 'kernel/classes/datatypes', 'Input required.' ) );
                             return eZInputValidator::STATE_INVALID;
                         } else
                             return eZInputValidator::STATE_ACCEPTED;
@@ -164,7 +164,7 @@ class ezcreditcardType extends eZDataType
                     {
                         if ( $this->hasOrderCollection( $contentObjectAttribute ) )
                         {
-                            $contentObjectAttribute->setValidationError( ezi18n( 'kernel/classes/datatypes', 'Input is required, if you have active subscriptions or recurring orders.' ) );
+                            $contentObjectAttribute->setValidationError( ezpI18n::tr( 'kernel/classes/datatypes', 'Input is required, if you have active subscriptions or recurring orders.' ) );
                             return eZInputValidator::STATE_INVALID;
                         }
                         if ( ! $classAttribute->attribute( 'is_information_collector' ) and $contentObjectAttribute->validateIsRequired() )
@@ -173,7 +173,7 @@ class ezcreditcardType extends eZDataType
                             // the card check
                             if ( ! $http->hasSessionVariable( 'xrowTestAccountOrder' ) )
                             {
-                                $contentObjectAttribute->setValidationError( ezi18n( 'kernel/classes/datatypes', 'Input required.' ) );
+                                $contentObjectAttribute->setValidationError( ezpI18n::tr( 'kernel/classes/datatypes', 'Input required.' ) );
                                 return eZInputValidator::STATE_INVALID;
                             } else
                                 return eZInputValidator::STATE_ACCEPTED;
@@ -191,7 +191,7 @@ class ezcreditcardType extends eZDataType
                         // the card check
                         if ( ! $http->hasSessionVariable( 'xrowTestAccountOrder' ) )
                         {
-                            $contentObjectAttribute->setValidationError( ezi18n( 'kernel/classes/datatypes', 'Input required.' ) );
+                            $contentObjectAttribute->setValidationError( ezpI18n::tr( 'kernel/classes/datatypes', 'Input required.' ) );
                             return eZInputValidator::STATE_INVALID;
                         } else
                             return eZInputValidator::STATE_ACCEPTED;
@@ -571,11 +571,11 @@ class ezcreditcardType extends eZDataType
     {
         if ( ! isset( $GLOBALS['xrowCreditCardArray'] ) )
             $GLOBALS['xrowCreditCardArray'] = array( 
-                self::MASTERCARD => ezi18n( 'kernel/classes/datatypes', 'Mastercard' ) , 
-                self::VISA => ezi18n( 'kernel/classes/datatypes', 'Visa' ) , 
-                self::DISCOVER => ezi18n( 'kernel/classes/datatypes', 'Discover' ) , 
-                self::AMERICANEXPRESS => ezi18n( 'kernel/classes/datatypes', 'American Express' ) , 
-                self::EUROCARD => ezi18n( 'kernel/classes/datatypes', 'Debit card' ) 
+                self::MASTERCARD => ezpI18n::tr( 'kernel/classes/datatypes', 'Mastercard' ) , 
+                self::VISA => ezpI18n::tr( 'kernel/classes/datatypes', 'Visa' ) , 
+                self::DISCOVER => ezpI18n::tr( 'kernel/classes/datatypes', 'Discover' ) , 
+                self::AMERICANEXPRESS => ezpI18n::tr( 'kernel/classes/datatypes', 'American Express' ) , 
+                self::EUROCARD => ezpI18n::tr( 'kernel/classes/datatypes', 'Debit card' ) 
             );
         if ( $type == - 1 )
         {

@@ -1,11 +1,11 @@
 <?php
 
-require_once( "kernel/common/template.php" );
+
 
 $http = eZHTTPTool::instance();
 $Module = $Params['Module'];
 
-$tpl = templateInit();
+$tpl = eZTemplate::factory();
 
 $SKUArray = array();
 $amountArray = array();
@@ -88,7 +88,7 @@ $tpl->setVariable( "desc_array", $descArray );
 $Result = array();
 $Result['content'] = $tpl->fetch( "design:xrowecommerce/direct_order.tpl" );
 $Result['path'] = array( array( 'url' => false,
-                                'text' => ezi18n( 'extension/xrowecommerce/directorder', 'Direct order' ) ) );
+                                'text' => ezpI18n::tr( 'extension/xrowecommerce/directorder', 'Direct order' ) ) );
 
 
 

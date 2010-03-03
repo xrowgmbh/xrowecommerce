@@ -19,8 +19,8 @@ class xrowProductFloatType extends xrowProductDataType
                          'required' => false );
 
         $this->xrowProductDataType( self::DATA_TYPE_STRING,
-                                    ezi18n( 'extension/xrowecommerce/productvariation', "Float", 'Datatype name' ),
-                                    ezi18n( 'extension/xrowecommerce/productvariation', "Stores a floating-point number.", 'Datatype description' ),
+                                    ezpI18n::tr( 'extension/xrowecommerce/productvariation', "Float", 'Datatype name' ),
+                                    ezpI18n::tr( 'extension/xrowecommerce/productvariation', "Stores a floating-point number.", 'Datatype description' ),
                                     $params );
     }
 

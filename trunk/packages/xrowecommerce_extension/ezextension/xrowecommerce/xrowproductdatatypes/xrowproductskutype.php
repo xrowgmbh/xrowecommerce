@@ -19,8 +19,8 @@ class xrowProductSkuType extends xrowProductDataType
                          'required' => true );
 
         $this->xrowProductDataType( self::DATA_TYPE_STRING,
-                                    ezi18n( 'extension/xrowecommerce/productvariation', "stockkeeping unit", 'Datatype name' ),
-                                    ezi18n( 'extension/xrowecommerce/productvariation', "Stores the stockkeeping unit of the variation", 'Datatype description' ),
+                                    ezpI18n::tr( 'extension/xrowecommerce/productvariation', "stockkeeping unit", 'Datatype name' ),
+                                    ezpI18n::tr( 'extension/xrowecommerce/productvariation', "Stores the stockkeeping unit of the variation", 'Datatype description' ),
                                     $params );
 
     }

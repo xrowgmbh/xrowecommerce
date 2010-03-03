@@ -3,12 +3,12 @@
  * List the columns of the product variation datatype
  */
 
-require_once( "kernel/common/template.php" );
+
 
 $Module = $Params['Module'];
 $Module->setTitle( 'Product variation - template edit' );
 
-$tpl = templateInit();
+$tpl = eZTemplate::factory();
 $http = eZHTTPTool::instance();
 
 $error = array();
@@ -49,7 +49,7 @@ if ( !$languageCode && !$http->hasPostVariable( 'CancelButton' ) )
         $Result = array();
         $Result['content'] = $tpl->fetch( 'design:productvariation/select_language.tpl' );
         $Result['path'] = array( array( 'url' => false,
-                                        'text' => ezi18n( 'extension/xrowecommerce/productvariation', 'Template edit' ) ) );
+                                        'text' => ezpI18n::tr( 'extension/xrowecommerce/productvariation', 'Template edit' ) ) );
         return $Result;
     }
 }
@@ -63,7 +63,7 @@ if ( !$id )
     $user = eZUser::currentUser();
     $userID = $user->attribute( 'contentobject_id' );
     $template = new xrowProductTemplate();
-    $name = ezi18n( 'extension/xrowecommerce/productvariation', 'Product template' );
+    $name = ezpI18n::tr( 'extension/xrowecommerce/productvariation', 'Product template' );
     $template->setData( 'name', $languageCode, $name );
     $template->setAttribute( 'name', $name );
 
@@ -258,6 +258,6 @@ eZDebug::writeDebug( $template->Data, 'Data' );
 
 $Result = array();
 $Result['content'] = $tpl->fetch( "design:productvariation/templateedit.tpl" );
-$Result['path'] = array( array( 'text' => ezi18n( 'extension/xrowecommerce/productvariation', 'Product variation - edit template' ),
+$Result['path'] = array( array( 'text' => ezpI18n::tr( 'extension/xrowecommerce/productvariation', 'Product variation - edit template' ),
                                 'url' => false ) );
 ?>
