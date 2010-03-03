@@ -1561,7 +1561,7 @@
     </message>
     <message>
         <source>Position</source>
-        <translation>Porition</translation>
+        <translation>Position</translation>
     </message>
     <message>
         <source>Pos.</source>
