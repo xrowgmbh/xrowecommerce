@@ -28,8 +28,8 @@
 
 class xrowecommerceInstaller extends eZSiteInstaller
 {
-    const MAJOR_VERSION = 1.1;
-    const MINOR_VERSION = 0;
+    const MAJOR_VERSION = 1;
+    const MINOR_VERSION = 1;
 
     function xrowecommerceInstaller( $parameters = false )
     {
@@ -1222,10 +1222,13 @@ class xrowecommerceInstaller extends eZSiteInstaller
                     'node' => array( 'name' => 'Coupons' ) 
                 )
             ),array( 
-                '_function' => 'setupWrokflows', 
+                '_function' => 'setupWorkflows', 
                 '_params' => array( )
             ),
-            
+            array( 
+                '_function' => 'setupCurrencies', 
+                '_params' => array( )
+            ),
             array( 
                 '_function' => 'setRSSExport', 
                 '_params' => array( 
@@ -1307,7 +1310,18 @@ class xrowecommerceInstaller extends eZSiteInstaller
         $this->postInstall();
       
     }
-	function setupWrokflows( $p )
+	function setupCurrencies($p) {
+		foreach ( $this->setting ( 'locales' ) as $locale ) {
+			$l = eZLocale::instance ( $locale );
+			
+			$c = eZCurrencyData::create ( $l->currencyShortName (), $l->currencySymbol (), $locale );
+			if ($c instanceof eZCurrencyData) {
+				$c->store ();
+			}
+		}
+		return true;
+	}
+	function setupWorkflows( $p )
 	{
 		$db = eZDB::instance();
         
@@ -1336,13 +1350,14 @@ class xrowecommerceInstaller extends eZSiteInstaller
         $event->setAttribute( 'data_text3', 'a:1:{i:0;s:10:"fixedprice";}' );
         $event->store();
 		$eventList[] = $event;
+		/* we do not want the coupon workflow
 		eZWorkflowEventType::registerType( 'event', 'ezcouponworkflow', 'eZCouponWorkflowType' );
 		$event = eZWorkflowEvent::create( $WorkflowID, 'event_ezcouponworkflow' );
         $eventType          = $event->eventType();
         $eventType->setAttribute( 'placement', 2 );
         $event->store();
 		$eventList[] = $event;
-		
+		*/
                 $workflow->store( $eventList ); // store changes.
 
                 // Remove old version 0 first
@@ -1705,7 +1720,12 @@ class xrowecommerceInstaller extends eZSiteInstaller
                             ), 
                             'SiteSettings' => array( 
                                 'SiteURL' => $siteaccessTypes['translation'][$this->languageNameFromLocale( $locale )]['url'] 
-                            ) 
+                            )
+                        ),
+                        'shop.ini' => array( 
+                            'CurrencySettings' => array( 
+                                'PreferredCurrency' => eZLocale::instance($locale)->currencyShortName()
+                            )
                         ) 
                     ) 
                 ) 
@@ -3944,7 +3964,7 @@ class xrowecommerceInstaller extends eZSiteInstaller
                 'Tool_right_product_list_3' => array( 
                     'parent_node' => $this->setting( 'products_node_id' ), 
                     'title' => 'Newest Products', 
-                    'treelist_check' => 'no', 
+                    'treelist_check' => 'yes', 
                     'limit' => 3 
                 ) 
             ) 
