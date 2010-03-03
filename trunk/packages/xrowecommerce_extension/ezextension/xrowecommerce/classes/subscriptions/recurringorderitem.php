@@ -214,7 +214,7 @@ class XROWRecurringOrderItem extends eZPersistentObject
             $nextdate = $this->attribute( 'last_success' );
         else
             $nextdate = $this->attribute( 'created' );
-        if ( $this->cycle_unit != XROWRECURRINGORDER_CYCLE_ONETIME )
+        if ( $this->cycle_unit != XROWRecurringOrderCollection::CYCLE_ONETIME )
         {
             if ( $this->is_subscription )
             {
@@ -242,23 +242,23 @@ class XROWRecurringOrderItem extends eZPersistentObject
     }
     function daysInCycle()
     {
-    	if ( $this->cycle_unit == XROWRECURRINGORDER_CYCLE_DAY )
+    	if ( $this->cycle_unit == XROWRecurringOrderCollection::CYCLE_DAY )
         {
             $amount = $this->cycle;
         }
-        else if ( $this->cycle_unit == XROWRECURRINGORDER_CYCLE_WEEK )
+        else if ( $this->cycle_unit == XROWRecurringOrderCollection::CYCLE_WEEK )
         {
             $amount = $this->cycle * 7;
         }
-        else if ( $this->cycle_unit == XROWRECURRINGORDER_CYCLE_MONTH )
+        else if ( $this->cycle_unit == XROWRecurringOrderCollection::CYCLE_MONTH )
         {
             $amount = $this->cycle * 30;
         }
-        else if ( $this->cycle_unit == XROWRECURRINGORDER_CYCLE_QUARTER )
+        else if ( $this->cycle_unit == XROWRecurringOrderCollection::CYCLE_QUARTER )
         {
             $amount = $this->cycle * 30 * 3;
         }
-        else if ( $this->cycle_unit == XROWRECURRINGORDER_CYCLE_YEAR )
+        else if ( $this->cycle_unit == XROWRecurringOrderCollection::CYCLE_YEAR )
         {
             $amount = $this->cycle * 30 * 3 * 4;
         }
@@ -452,7 +452,7 @@ class XROWRecurringOrderItem extends eZPersistentObject
                   $variations = null,
                   $amount = 1,
                   $cycle = 1,
-                  $cycle_unit = null,
+                  $cycle_unit = XROWRecurringOrderCollection::CYCLE_ONETIME,
                   $isSubscription = false,
                   $start = 0,
                   $end = 0,
@@ -465,8 +465,7 @@ class XROWRecurringOrderItem extends eZPersistentObject
 
         if ( $cycle_unit === null )
         {
-            $ini = eZINI::instance( 'recurringorders.ini' );
-            $cycle_unit = (int)$ini->variable( 'RecurringOrderSettings', 'DefaultCycle' );
+            $cycle_unit = XROWRecurringOrderCollection::CYCLE_ONETIME;
         }
         if ( !$amount ) // else we need a subscription handler
             return false;
