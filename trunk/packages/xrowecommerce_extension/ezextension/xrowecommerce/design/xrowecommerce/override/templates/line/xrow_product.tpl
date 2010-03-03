@@ -33,5 +33,5 @@
              {$node.data_map.price.content.price|l10n(currency)}
         {/if}
     </div>
-    <p class="read_more"><a href="{$node.url_alias|ezurl('no')}" title="{$node.name|wash()}">{'read more'|i18n('extension/xrowecommerce')} »</a></p>
+    <p class="read_more"><a href="{$node.url_alias|ezurl('no')}" title="{$node.name|wash()}">{'more'|i18n('extension/xrowecommerce')} »</a></p>
 </div>

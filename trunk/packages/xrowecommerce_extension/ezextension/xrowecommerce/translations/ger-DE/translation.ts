@@ -749,8 +749,8 @@
         <translation>ab</translation>
     </message>
     <message>
-        <source>read more</source>
-        <translation>mehr Infos</translation>
+        <source>more</source>
+        <translation>Mehr</translation>
     </message>
     <message>
         <source>Type</source>
