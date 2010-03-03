@@ -7,7 +7,7 @@
 	        </div>
         {else}
 	        <div class="nopic">
-	            <a href="{$node.url_alias|ezurl('no')}"><img src={'shop/nopic_130.gif'|ezimage()} alt="{'No image available'|i18n('extension/xrowecommerce')}" /></a>
+	            <a href="{$node.url_alias|ezurl('no')}"><img src={'shop/nopic.gif'|ezimage()} alt="{'No image available'|i18n('extension/xrowecommerce')}" /></a>
 	        </div>
         {/if}
     </div>

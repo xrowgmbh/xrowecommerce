@@ -20,7 +20,7 @@
                             {/if}
                         </div>
                     {else}
-                        <div class="nopic attribute-image"><img src={'shop/nopic_130.gif'|ezimage()} alt="{'No image available'|i18n('extension/xrowecommerce')}" /></div>
+                        <div class="nopic attribute-image"><img src={'shop/nopic.gif'|ezimage()} alt="{'No image available'|i18n('extension/xrowecommerce')}" /></div>
                     {/if}
                     <div class="description-wrap">
                         <div class="attribute-short">
