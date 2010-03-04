@@ -9,16 +9,22 @@
                     </div>
                     <div class="image-description-wrap">
                     {if $node.data_map.image.has_content}
+
                         <div class="attribute-image">
-                            <a href="javascript:;" onclick="return enlargeImage('/{$node.data_map.image.content.original.full_path}',{$node.data_map.image.content.original.width},{$node.data_map.image.content.original.height},'{$node.data_map.image.content.original.text|wash(javascript)}');" title="{$node.data_map.image.content.original.text|wash} | {"A click on the image enlarges the image in a popup"|i18n( 'extension/xrowecommerce')}">
-                                {attribute_view_gui attribute=$node.data_map.image image_class=medium show_alt=false()}
-                            </a>
+                             <img id="product_image" src={$node.data_map.image.content.medium.full_path|ezroot} title="{$node.data_map.image.content.original.text|wash} | {"A click on the image enlarges the image in a popup"|i18n( 'extension/xrowecommerce')}"/>
+                        </div>
+                            <!--  <p class="note">{'Double click on above image to view full picture'|i18n('extension/xrowecommerce')}</p> -->
                             {if $node.data_map.caption.has_content}
                                 <div class="caption">
                                     {attribute_view_gui attribute=$node.data_map.caption}
                                 </div>
                             {/if}
-                        </div>
+
+<script> 
+YUI( YUI3_config ).use("node", function(Y) {ldelim}
+	Y.on("load", function(e) {ldelim} generatePopup( '#product_image', '{$node.data_map.image.content.original.full_path|ezroot(no, full)}','{$node.data_map.image.content.original.text|wash(javascript)}', false ); {rdelim}, window, Y );
+{rdelim});
+</script>  
                     {else}
                         <div class="nopic attribute-image"><img src={'shop/nopic.gif'|ezimage()} alt="{'No image available'|i18n('extension/xrowecommerce')}" /></div>
                     {/if}
@@ -171,4 +177,46 @@
                             <p>{'Since the accuracy of your credit card, shipping and billing information is vital to Automatic Delivery, please promptly submit changes through the my account section.'|i18n( 'extension/xrowecommerce')}</p>
                         </div>
 {/if}
-                
+{*
+ * Draft of the zoom feature.
+ * Images can be zoomed in via a moving the slider and dragging the image
+<div id="slider" class="yui-skin-sam yui-widget yui-slider"><!-- boundingBox --></div>
+{literal}
+<script> 
+YUI(YUI3_config).use('node', 'dd', 'slider', 'stylesheet', 'event-delegate', function(Y) {
+                  
+                  	    var dd1 = new Y.DD.Drag({
+                	        node: '#product_image'
+                	    }).plug(Y.Plugin.DDConstrained, {
+                	        constrain2node: '#dd-demo-canvas1'
+                	    });
+
+                           //Create and render the slider
+            var sl = new Y.Slider({
+            	boundingBox : '#slider',
+                railSize: '100px', value: 100, max: 1000, min: 100,
+                thumbImage: Y.config.base+'slider/assets/skins/sam/thumb-classic-x.png'
+            }).render();
+            var css = ".yui-skin-sam .yui-slider-rail-x { " +
+            	" background: url(" + Y.config.base + "slider/assets/skins/sam/rail-classic-x.png) repeat-x 0 7px;" +
+            	" min-height: 19px" +
+            	" *height: 19px" +
+                " } ";
+
+            var sheet = new Y.StyleSheet(css);
+
+            //Listen for the change
+            
+            sl.after('valueChange',function (e) {
+                //Insert a dynamic stylesheet rule:
+                var sheet = new Y.StyleSheet('image_slider');
+                sheet.set('#product_image', {
+                    width: e.newVal + '%',
+                    height: e.newVal + '%'
+                });
+            });
+                     
+                        });
+</script>   
+{/literal}
+*}
