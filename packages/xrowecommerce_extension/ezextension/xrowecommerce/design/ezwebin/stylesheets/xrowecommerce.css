@@ -310,7 +310,16 @@ div.class-xrow-commerce div.attribute-image
 	float: left;
 	margin: 0 10px 0 10px;
 }
-
+div.class-xrow-commerce div.attribute-image note
+{
+	float: none;
+	font-size: 0.5em;
+}
+div.class-xrow-commerce div.attribute-image img
+{
+	cursor: pointer
+}
+	
 div.class-xrow-commerce table.list
 {
 	width: 100%;

@@ -251,7 +251,7 @@ function toggleCOS()
         }
     }
 }
-
+// deprecated use generatePopup
 function enlargeImage( imsrc, ww, wh, alttext )
 {
 
@@ -264,7 +264,55 @@ function enlargeImage( imsrc, ww, wh, alttext )
     w1.document.write("<\/body><\/html>");
     w1.focus();
 };
+/**
+ * @param node DomNode to receive click event
+ * @param image Path to the full image
+ * @param imagetext Alternate footer text
+ * @param doubleclick Double or single click
+ */
+function generatePopup(node, image, imagetext, doubleclick) {
+	YUI(YUI3_config).use(
+			"node",
+			"overlay",
+			"imageloader",
+			function(Y) {
+				var xy = Y.one(node).getXY();
+				imageNode = Y.Node.create('<img />');
+				imageNode.set('id', Y.guid());
+				var overlay = new Y.Overlay( {
+					headerContent : "Popup: Click to close.",
+					bodyContent : imageNode,
+					width : 'auto',
+					height : 'auto',
+					centered : node,
+					visible : false,
+					xy : [ xy[0] + 10, xy[1] + 35 ]
+				});
+				if (imagetext) {
+					overlay.set('footerContent', imagetext)
+				}
+				var myFirstGroup = new Y.ImgLoadGroup( {
+					timeLimit : 2
+				});
+				myFirstGroup.registerImage( {
+					domId : imageNode.get('id'),
+					srcUrl : image
+				});
+				overlay.render();
 
+				Y.on("click", Y.bind(overlay.hide, overlay), overlay
+						.get("contentBox"));
+				if (doubleclick) {
+					Y.on("dblclick", function(e) {
+						overlay.show();
+					}, node);
+				} else {
+					Y.on("click", function(e) {
+						overlay.show();
+					}, node);
+				}
+			});
+}
 function change()
 {
 if (document.getElementById( 'shipping-checkbox' ).checked)
