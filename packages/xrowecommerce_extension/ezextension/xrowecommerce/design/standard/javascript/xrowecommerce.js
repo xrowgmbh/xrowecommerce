@@ -18,20 +18,21 @@ YUI( YUI3_config ).use("node", function(Y) {
 	});
 });
 
-YAHOO.namespace("example.calendar");
 function ShowHide(id)
 {
-    	    var ComponentName = id + '-container';
-	        if ( YAHOO.util.Dom.hasClass( ComponentName, 'hide') )
+	YUI( YUI3_config ).use( 'node', function(Y) { 
+    	    var node = Y.one( id );
+	        if ( node.hasClass( 'hide') )
 	        {
-	            YAHOO.util.Dom.removeClass(ComponentName, 'hide');
-	            YAHOO.util.Dom.addClass(ComponentName, 'show');
+	        	node.removeClass('hide');
+	        	node.addClass('show');
 	        }
 	        else
 	        {
-	            YAHOO.util.Dom.removeClass(ComponentName, 'show');
-	            YAHOO.util.Dom.addClass(ComponentName, 'hide');
+	        	node.removeClass('show');
+	        	node.addClass('hide');
 	        }
+	});
 }
 function handleSelect(type,args,obj) {
 			var dates = args[0]; 
@@ -40,7 +41,7 @@ function handleSelect(type,args,obj) {
 
 			var txtDate1 = document.getElementById( obj.id + "-date");
 			txtDate1.value = month + "/" + day + "/" + year;
-			ShowHide( obj.id );
+			ShowHide( obj.id + '-container' );
 }
 
 
@@ -235,19 +236,22 @@ function changeShipping() {
 					});
 }
 function toggleCOS()
-{        
-    var container = document.getElementById( 'cos-content' );
+{
+	YUI( YUI3_config ).use( 'node', function(Y) { 
+		
+    var container = Y.Node.get("#cos-content");
     if ( container )
     {
-        if ( YAHOO.util.Dom.getStyle( container, 'display') == 'block' )
+        if ( container.getStyle('display') == 'block' )
         {
-        	YAHOO.util.Dom.setStyle( container, 'display', 'none');
+        	container.setStyle('display', 'none');
         }
         else
         {
-        	YAHOO.util.Dom.setStyle( container, 'display', 'block');
+        	container.setStyle('display', 'block');
         }
     }
+	});
 }
 // deprecated use generatePopup
 function enlargeImage( imsrc, ww, wh, alttext )
