@@ -12,6 +12,9 @@ YUI( YUI3_config ).use("node", function(Y) {
 	            updateShipping();
 			}, "#shipping-checkbox");
 		}
+		if (Y.Node.get("#AutomaticDeliveryTooltip") && Y.Node.get("#show_auto_tip") ) {
+			AutomaticDeliverTooltip("#show_auto_tip", "#AutomaticDeliveryTooltip");
+		}
 	});
 });
 
@@ -40,28 +43,23 @@ function handleSelect(type,args,obj) {
 			ShowHide( obj.id );
 }
 
-YUI( YUI3_config ).use( 'node', "overlay", function(Y) { 
-if( Y.Node.get("#show_auto_tip") )
-{
-    function AutomaticDeliverTooltip() {
-    	var WidgetPositionExt = Y.WidgetPositionExt;
 
+function AutomaticDeliverTooltip( node, box ) {
+    	YUI( YUI3_config ).use( 'node', "overlay", function(Y) { 
+    	var WidgetPositionExt = Y.WidgetPositionExt;
     	var overlay = new Y.Overlay({ 
-    		      contentBox:"#AutomaticDeliveryTooltip", 
+    		      contentBox: box, 
     		      centered: true,
     		      width: "400px" 
     		  }); 
-    	overlay.set("align", {node:"#show_auto_tip", 
-            points:[WidgetPositionExt.TC, WidgetPositionExt.BC]});
+    	overlay.set("align", {node: node, points:[WidgetPositionExt.TC, WidgetPositionExt.BC]});
     	overlay.hide(); 
-    		  overlay.render("#overlay-text"); 
-        Y.on("mouseover", Y.bind(overlay.show, overlay), "#show_auto_tip"); 
-        Y.on("mouseout", Y.bind(overlay.hide, overlay), "#show_auto_tip"); 
+    	overlay.render(); 
+        Y.on("mouseover", Y.bind(overlay.show, overlay), node); 
+        Y.on("mouseout", Y.bind(overlay.hide, overlay), node); 
+    	});
+}
 
-    }
-    Y.on("domready", AutomaticDeliverTooltip ); 
-    }
-});
 
 function ezjson(uri, callback, args) {
 	// Create business logic in a YUI sandbox using the 'io' and 'json' modules
