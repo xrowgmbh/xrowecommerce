@@ -1,0 +1,24 @@
+Index: checkout.php
+===================================================================
+--- checkout.php	(revision 25097)
++++ checkout.php	(working copy)
+@@ -68,6 +68,7 @@
+             $operationResult = eZOperationHandler::execute( 'shop', 'checkout', array( 'order_id' => $order->attribute( 'id' ) ) );
+             switch( $operationResult['status'] )
+             {
++            	case eZModuleOperationInfo::STATUS_REPEAT:
+                 case eZModuleOperationInfo::STATUS_HALTED:
+                 {
+                     if (  isset( $operationResult['redirect_url'] ) )
+Index: confirmorder.php
+===================================================================
+--- confirmorder.php	(revision 25097)
++++ confirmorder.php	(working copy)
+@@ -86,6 +86,7 @@
+                                             'text' => ezpI18n::tr( 'kernel/shop', 'Confirm order' ) ) );
+         }
+     }break;
++    case eZModuleOperationInfo::STATUS_REPEAT:
+     case eZModuleOperationInfo::STATUS_HALTED:
+     {
+         if (  isset( $operationResult['redirect_url'] ) )
