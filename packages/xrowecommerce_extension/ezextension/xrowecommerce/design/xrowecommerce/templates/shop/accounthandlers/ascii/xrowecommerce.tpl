@@ -67,7 +67,7 @@
 
 {"Additional Orderinformation"|i18n("extension/xrowecommerce")}:
  
-{if ezini( 'Settings', 'NoPartialDelivery', 'xrowecommerce.ini' )|eq( 'enabled' )}
+{if ezini( 'Fields', 'NoPartialDelivery', 'xrowecommerce.ini' )|eq( 'enabled' )}
 {'Partial delivery'|i18n('extension/xrowecommerce')}: {if $order.account_information.no_partial_delivery}{'No'|i18n('extension/xrowecommerce')}{else}{'Yes'|i18n('extension/xrowecommerce')}{/if}
  
 {/if}

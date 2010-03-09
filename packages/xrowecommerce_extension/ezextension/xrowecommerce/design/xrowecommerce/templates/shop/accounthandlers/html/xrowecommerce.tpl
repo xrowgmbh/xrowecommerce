@@ -9,19 +9,19 @@
 <div class="shop-account">
     <table class="order_box">
         <caption>{"Customer"|i18n("extension/xrowecommerce")}</caption>
-        {if and( eq(ezini( 'Settings', 'CompanyName', 'xrowecommerce.ini' ), 'enabled' ), $order.account_information.company_name)}
+        {if and( eq(ezini( 'Fields', 'company_name', 'xrowecommerce.ini' ).enabled, 'true' ), $order.account_information.company_name)}
         <tr>
             <th>{'Company'|i18n('extension/xrowecommerce')}:</th>
             <td>{$order.account_information.company_name|wash}</td>
         </tr>
         {/if}
-        {if and( eq(ezini( 'Settings', 'CompanyAdditional', 'xrowecommerce.ini' ), 'enabled' ), $order.account_information.company_additional)}
+        {if and( eq(ezini( 'Fields', 'company_additional', 'xrowecommerce.ini' ).enabled, 'true' ), $order.account_information.company_additional)}
         <tr>
             <th>{'Company additional information'|i18n('extension/xrowecommerce')}:</th>
             <td>{$order.account_information.company_additional|wash}</td>
         </tr>
         {/if}
-        {if and( eq(ezini( 'Settings', 'TaxID', 'xrowecommerce.ini' ), 'enabled' ), $order.account_information.tax_id)}
+        {if and( eq(ezini( 'Fields', 'tax_id', 'xrowecommerce.ini' ).enabled, 'true' ), $order.account_information.tax_id)}
         <tr>
             <th>{'Tax ID'|i18n('extension/xrowecommerce')}:</th>
             <td>
@@ -84,7 +84,7 @@
             <th>{'Phone'|i18n('extension/xrowecommerce')}:</th>
             <td>{$order.account_information.phone|wash}</td>
         </tr>
-        {if eq(ezini( 'Settings', 'Fax', 'xrowecommerce.ini' ), 'enabled' )}
+        {if eq(ezini( 'Fields', 'fax', 'xrowecommerce.ini' ).enabled, 'true' )}
         <tr>
             <th>{'Fax'|i18n('extension/xrowecommerce')}:</th>
             <td>{$order.account_information.fax|wash}</td>
@@ -140,7 +140,7 @@
             <th>{'Phone'|i18n('extension/xrowecommerce')}:</th>
             <td>{$order.account_information.phone|wash}</td>
         </tr>
-        {if eq(ezini( 'Settings', 'Fax', 'xrowecommerce.ini' ), 'enabled' )}
+        {if eq(ezini( 'Fields', 'fax', 'xrowecommerce.ini' ).enabled, 'true' )}
         <tr>
             <th>{'Fax'|i18n('extension/xrowecommerce')}:</th>
             <td>{$order.account_information.fax|wash}</td>
@@ -201,7 +201,7 @@
             <th>{'Phone'|i18n('extension/xrowecommerce')}:</th>
             <td>{$order.account_information.s_phone|wash}</td>
         </tr>
-        {if eq(ezini( 'Settings', 'Fax', 'xrowecommerce.ini' ), 'enabled' )}
+        {if eq(ezini( 'Fields', 'Fax', 'xrowecommerce.ini' ).enabled, 'true' )}
             {if eq(ezini( 'ShippingSettings', 'DisplayFax', 'xrowecommerce.ini' ), 'enabled' )}
             <tr>
                 <th>{'Fax'|i18n('extension/xrowecommerce')}:</th>
@@ -218,7 +218,7 @@
     <table id="additional-orderinformation-table" class="order_box"
         border="0" cellspacing="0" cellpadding="0">
         <caption>{"Additional Orderinformation"|i18n("extension/xrowecommerce")}</caption>
-        {if ezini( 'Settings', 'NoPartialDelivery', 'xrowecommerce.ini' )|eq( 'enabled' )}
+        {if ezini( 'Fields', 'NoPartialDelivery', 'xrowecommerce.ini' ).enabled|eq('true')}
         <tr>
             <th>{'Partial delivery'|i18n('extension/xrowecommerce')}:</th>
             <td>{if $order.account_information.no_partial_delivery}
@@ -257,13 +257,13 @@
                 {/if}
             {/if}
         {/if}
-        {if and(ezini( 'Settings', 'Reference', 'xrowecommerce.ini' )|eq( 'enabled' ), $order.account_information.reference)}
+        {if and(ezini( 'Fields', 'Reference', 'xrowecommerce.ini' ).enabled|eq('true'), $order.account_information.reference)}
         <tr>
             <th>{'Reference'|i18n('extension/xrowecommerce')}:</th>
             <td>{$order.account_information.reference|wash}</td>
         </tr>
         {/if}
-        {if and(ezini( 'Settings', 'Message', 'xrowecommerce.ini' )|eq( 'enabled' ), $order.account_information.message)}
+        {if and(ezini( 'Fields', 'Message', 'xrowecommerce.ini' ).enabled|eq('true'), $order.account_information.message)}
         <tr>
             <th>{'Your notes on order'|i18n('extension/xrowecommerce')}:</th>
             <td>{$order.account_information.message|wash()|nl2br()}</td>

@@ -785,7 +785,8 @@ if ( $module->isCurrentAction( 'Store' ) )
         }
     }
     /* Coupon check */
-    if ( class_exists( 'xrowCoupon' ) and eZINI::instance( 'xrowecommerce.ini' )->variable( 'Settings', 'Coupon' ) == 'enabled' )
+    $fields_coupon = eZINI::instance( 'xrowecommerce.ini' )->variable( 'Fields', 'Coupon' );
+    if ( class_exists( 'xrowCoupon' ) and $fields_coupon["enabled"] == 'true' )
     {
         $coupon = new xrowCoupon( $http->postVariable( "coupon_code" ) );
         $coupon_code = $coupon->code;
@@ -793,7 +794,8 @@ if ( $module->isCurrentAction( 'Store' ) )
     $currentUser = eZUser::currentUser();
     $accessAllowed = $currentUser->hasAccessTo( 'xrowecommerce', 'bypass_captcha' );
     /* Captcha check */
-    if ( class_exists( 'xrowVerification' ) and eZINI::instance( 'xrowecommerce.ini' )->variable( 'Settings', 'Captcha' ) == 'enabled' and $accessAllowed["accessWord"] != 'yes' and empty( $_SESSION['xrowCaptchaSolved'] ) )
+    $fields_captcha = eZINI::instance( 'xrowecommerce.ini' )->variable( 'Fields', 'Captcha' );
+    if ( class_exists( 'xrowVerification' ) and $fields_captcha["enabled"] == 'true' and $accessAllowed["accessWord"] != 'yes' and empty( $_SESSION['xrowCaptchaSolved'] ) )
     {
         $captcha = true;
         $verification = new xrowVerification( );

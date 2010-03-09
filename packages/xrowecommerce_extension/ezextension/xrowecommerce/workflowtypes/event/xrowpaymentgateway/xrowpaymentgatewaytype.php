@@ -59,7 +59,8 @@ class xrowPaymentGatewayType extends eZWorkflowEventType
         
         $currentUser = eZUser::currentUser();
         $accessAllowed = $currentUser->hasAccessTo( 'xrowecommerce', 'bypass_captcha' );
-        if ( eZINI::instance( 'xrowecommerce.ini' )->variable( 'Settings', 'Captcha' ) == 'enabled' and $accessAllowed["accessWord"] != 'yes' and ! $recaptcha and ! eZSys::isShellExecution() )
+        $fields_captcha = eZINI::instance( 'xrowecommerce.ini' )->variable( 'Fields', 'Captcha' ) == 'enabled';
+        if ( $fields_captcha["enabled"] == "true"  and $accessAllowed["accessWord"] != 'yes' and ! $recaptcha and ! eZSys::isShellExecution() )
         {
             return eZWorkflowType::STATUS_REJECTED;
         }
