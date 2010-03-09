@@ -1,12 +1,4 @@
 <?php
-//
-// Definition of Order history class
-//
-
-/*! \file history.php
-*/
-
-include_once( "kernel/common/template.php" );
 
 $Path       = array();
 $Result     = array();
@@ -15,7 +7,7 @@ $Email      = $User->Email;
 $CustomerID = $User->ContentObjectID;
 $Email      = urldecode( $Email );
 $OrderList  = eZOrder::orderList( $CustomerID, $Email );
-$tpl        = templateInit();
+$tpl = eZTemplate::factory();
 
 rsort($OrderList);
 $tpl->setVariable( "order_list", $OrderList );
