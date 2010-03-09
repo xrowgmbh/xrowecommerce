@@ -3,7 +3,7 @@
 class xrowECommerceVATHandler
 {
 
-    function taxMapping()
+    static function taxMapping()
     {
         return array( 
             'DEU' => 19 , 

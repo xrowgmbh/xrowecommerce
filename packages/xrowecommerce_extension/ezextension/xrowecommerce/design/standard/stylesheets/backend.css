@@ -1,3 +1,10 @@
+@media print
+{
+  .no_print
+  {
+    display: none;
+  }
+}
 div.shop-account table th
 {
     text-align: left;

@@ -1,11 +1,8 @@
 <?php
 
-include_once( 'kernel/common/template.php' );
-
-
 $Module  =& $Params['Module'];
 $http =& eZHTTPTool::instance();
-$tpl =& templateInit();
+$tpl = eZTemplate::factory();
 
 $db = eZDB::instance();
 $query = '

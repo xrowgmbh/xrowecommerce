@@ -1,0 +1,1 @@
+<p>We want to thank you for shopping with us by offering some of our best products at a sweet discount!</p>

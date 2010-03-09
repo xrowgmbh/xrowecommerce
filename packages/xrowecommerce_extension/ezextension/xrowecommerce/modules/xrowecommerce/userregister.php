@@ -3,8 +3,6 @@
 $http = eZHTTPTool::instance();
 $module = $Params["Module"];
 
-include_once ( 'kernel/common/template.php' );
-
 $tpl = eZTemplate::factory();
 
 if ( $module->isCurrentAction( 'Cancel' ) )
@@ -687,8 +685,7 @@ if ( $module->isCurrentAction( 'Store' ) )
             $s_phoneNode = $doc->createElement( "s_phone", $s_phone );
             $root->appendChild( $s_phoneNode );
             
-            $s_faxNode = $doc->createElement( "s_fax" );
-            $s_faxNode->appendChild( $doc->createTextNode( $s_fax ) );
+            $s_faxNode = $doc->createElement( "s_fax", $s_fax );
             $root->appendChild( $s_faxNode );
             
             $s_emailNode = $doc->createElement( "s_email", $s_email );
@@ -696,7 +693,51 @@ if ( $module->isCurrentAction( 'Store' ) )
             
         /* Shipping address*/
         } /* Shippingaddress is equal or not */
-        
+        else
+        {
+        	$s_company_nameNode = $doc->createElement( "s_company_name", $company_name );
+            $root->appendChild( $s_company_nameNode );
+            
+            $s_company_additionalNode = $doc->createElement( "s_company_additional", $company_additional );
+            $root->appendChild( $s_company_additionalNode );
+            
+            $s_first_nameNode = $doc->createElement( "s_first_name", $first_name );
+            $root->appendChild( $s_first_nameNode );
+            
+            $s_miNode = $doc->createElement( "s_mi", $mi );
+            $root->appendChild( $s_miNode );
+            
+            $s_last_nameNode = $doc->createElement( "s_last_name", $last_name );
+            $root->appendChild( $s_last_nameNode );
+            
+            $s_address1Node = $doc->createElement( "s_address1", $address1 );
+            $root->appendChild( $s_address1Node );
+            
+            $s_address2Node = $doc->createElement( "s_address2", $address2 );
+            $root->appendChild( $s_address2Node );
+            
+            $s_cityNode = $doc->createElement( "s_city", $city );
+            $root->appendChild( $s_cityNode );
+            
+            $s_stateNode = $doc->createElement( "s_state", $state );
+            $root->appendChild( $s_stateNode );
+            
+            $s_zipNode = $doc->createElement( "s_zip", $zip );
+            $root->appendChild( $s_zipNode );
+            
+            $s_countryNode = $doc->createElement( "s_country", $country );
+            $root->appendChild( $s_countryNode );
+            
+            $s_phoneNode = $doc->createElement( "s_phone", $phone );
+            $root->appendChild( $s_phoneNode );
+            
+            $s_faxNode = $doc->createElement( "s_fax", $fax );
+            $root->appendChild( $s_faxNode );
+            
+            $s_emailNode = $doc->createElement( "s_email", $email );
+            $root->appendChild( $s_emailNode );
+        }
+
         $order->setAttribute( 'data_text_1', $doc->saveXML() );
         $shopAccountINI = eZINI::instance( 'shopaccount.ini' );
         

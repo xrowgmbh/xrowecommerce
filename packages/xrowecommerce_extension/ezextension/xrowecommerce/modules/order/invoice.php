@@ -12,7 +12,6 @@ if ( $includePackingSlip == 1 )
      $includePackingSlip = true;
 else $includePackingSlip = false;
 $module =& $Params['Module'];
-include_once( "kernel/common/template.php" );
 
 $ini = eZINI::instance();
 $http = eZHTTPTool::instance();

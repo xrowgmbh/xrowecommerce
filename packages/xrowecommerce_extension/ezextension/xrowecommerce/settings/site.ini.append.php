@@ -11,4 +11,13 @@ ExtensionAutoloadPath[]=xrowecommerce
 [RegionalSettings]
 TranslationExtensions[]=xrowecommerce
 
+
+[Cache]
+CacheItems[]=geonames
+
+[Cache_geonames]
+name=geonames cache
+id=xrowecommerce
+path=geonames
+
 */ ?>

@@ -1,26 +1,7 @@
-#[NavigationPart]
-#Part[recurringorders]=Recurring orders
-
-#[Topmenu_recurringorders]
-#NavigationPartIdentifier=ezrecurringorders
-#Name=Recurring orders
-#Tooltip=Recurring orders adn subscriptions
-#URL[]
-#URL[default]=/recurringorders/forecast
-#Enabled[]
-#Enabled[default]=true
-#Enabled[browse]=false
-#Enabled[edit]=false
-#Shown[]
-#Shown[default]=true
-#Shown[edit]=true
-#Shown[navigation]=true
-#Shown[browse]=false
-
 [Leftmenu_shop]
 LinkNames[tin]=Tax identification
 LinkNames[taxes]=Order statistics
-LinkNames[product]=Order statistics
+LinkNames[product]=Products with zero weight
 LinkNames[listitems]=List subscriptions
 LinkNames[forecast]=Recurring order forecast
 LinkNames[history]=Recurring order history
