@@ -51,10 +51,10 @@ function checkCOS( element )
         <input type="submit" class="hide" sytle="display: hide;" name="ConfirmOrderButton" value="{'Confirm'|i18n('extension/xrowecommerce')}" />
         <h1>{"Confirm order"|i18n("extension/xrowecommerce")}</h1>
         {include uri="design:shop/basket_navigator.tpl" step='3'}
-        
+
         <div id="buttonblock-top" class="buttonblock">
-			<input id="cancel-button" class="left-arrow2" type="submit" name="CancelButton" value="{'Cancel'|i18n('extension/xrowecommerce')}" title="{'Cancel order'|i18n('extension/xrowecommerce')}"/>
-			<input id="continue-button" class="right-arrow2" type="button" onclick="checkCOS(this);" name="ConfirmOrderButton" value="{'Confirm'|i18n('extension/xrowecommerce')}" title="{'Confirm order'|i18n('extension/xrowecommerce')}"/>
+			<input id="cancel-button" class="button left-arrow2" type="submit" name="CancelButton" value="{'Cancel'|i18n('extension/xrowecommerce')}" title="{'Cancel order'|i18n('extension/xrowecommerce')}"/>
+			<input id="continue-button" class="button right-arrow2" type="button" onclick="checkCOS(this);" name="ConfirmOrderButton" value="{'Confirm'|i18n('extension/xrowecommerce')}" title="{'Confirm order'|i18n('extension/xrowecommerce')}"/>
         </div>
 
         <div class="break"></div>

@@ -6,9 +6,10 @@ correct locale date
 <div class="border-box">
 <div class="border-tl"><div class="border-tr"><div class="border-tc"></div></div></div>
 <div class="border-ml"><div class="border-mr"><div class="border-mc float-break">
+<div class="recurringorders-list">
 <h1>Automatic Delivery</h1>
 
-<div class=" yui-skin-sam">
+<div class="yui-skin-sam">
 {foreach $messages as $message}
 <div class="message-{$message.type}">
     <h2>{$message.text}</h2>
@@ -129,7 +130,7 @@ Now : {$collection.now|l10n( 'shortdate' )}<br/>
 </div>
 
 </div> {* YUI SAM *}
-
+</div>
 </div></div></div>
 <div class="border-bl"><div class="border-br"><div class="border-bc"></div></div></div>
 </div>
