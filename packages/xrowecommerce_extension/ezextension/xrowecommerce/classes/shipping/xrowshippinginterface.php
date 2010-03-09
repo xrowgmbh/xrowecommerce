@@ -80,8 +80,7 @@ class xrowShippingInterface
         $result = array();
         $db = eZDB::instance();
         
-        $list = $db->arrayQuery( "SELECT `data_text3` FROM ezworkflow_event WHERE `workflow_type_string` = 'event_ezshippinginterface' AND `version` = 0 AND data_text3 !='';" );
-        // @TODO: Select ausbessern!
+        $list = $db->arrayQuery( "SELECT `data_text3` FROM ezworkflow_event ewe, ezworkflow ezw  WHERE  ewe.workflow_id = ezw.id AND ewe.workflow_type_string = 'event_ezshippinginterface' AND ewe.version = 0 AND ezw.is_enabled = 1;" );
         if ( count( $list ) == 0 )
         {
             throw new Exception( "Shipping worflow is not properly setup. It exists not at all." );
