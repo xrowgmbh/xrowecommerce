@@ -1321,35 +1321,34 @@ class xrowecommerceInstaller extends eZSiteInstaller
 		}
 		return true;
 	}
-	function setupWorkflows( $p )
-	{
-		$db = eZDB::instance();
-        
-        $db->begin();
-        
-        $workflowGroup = eZWorkflowGroup::create( 14 );
-        $workflowGroup->setAttribute( "name", 'Shop' );
-        $workflowGroup->store();
-        $WorkflowGroupID = $workflowGroup->attribute( "id" );
-        
-        $workflow = eZWorkflow::create( 14 );
-        $workflow->setAttribute( "name",  'Before Confirmorder' );
-        $workflow->setAttribute( "workflow_type_string",  'group_ezserial' );
-        $workflow->store();
-        $ingroup = eZWorkflowGroupLink::create( $workflow->attribute( "id" ), $workflow->attribute( "version" ), $WorkflowGroupID, 'Shop' );
-        $ingroup->store();
-        
-        $WorkflowID      = $workflow->attribute( "id" );
-        $WorkflowVersion = $workflow->attribute( "version" );
-        
-        $eventList = array();
-        eZWorkflowEventType::registerType( 'event', 'ezshippinginterface', 'eZShippingInterfaceType' );
-        $event = eZWorkflowEvent::create( $WorkflowID, 'event_ezshippinginterface' );
-        $eventType          = $event->eventType();
-        $eventType->setAttribute( 'placement', 1 );
-        $event->setAttribute( 'data_text3', 'a:1:{i:0;s:10:"fixedprice";}' );
-        $event->store();
-		$eventList[] = $event;
+	function setupWorkflows($p) {
+		$db = eZDB::instance ();
+		
+		$db->begin ();
+		
+		$workflowGroup = eZWorkflowGroup::create ( 14 );
+		$workflowGroup->setAttribute ( "name", 'Shop' );
+		$workflowGroup->store ();
+		$WorkflowGroupID = $workflowGroup->attribute ( "id" );
+		
+		$workflow = eZWorkflow::create ( 14 );
+		$workflow->setAttribute ( "name", 'Before Confirmorder' );
+		$workflow->setAttribute ( "workflow_type_string", 'group_ezserial' );
+		$workflow->store ();
+		$ingroup = eZWorkflowGroupLink::create ( $workflow->attribute ( "id" ), $workflow->attribute ( "version" ), $WorkflowGroupID, 'Shop' );
+		$ingroup->store ();
+		
+		$WorkflowID = $workflow->attribute ( "id" );
+		$WorkflowVersion = $workflow->attribute ( "version" );
+		
+		$eventList = array ();
+		eZWorkflowEventType::registerType ( 'event', 'ezshippinginterface', 'eZShippingInterfaceType' );
+		$event = eZWorkflowEvent::create ( $WorkflowID, 'event_ezshippinginterface' );
+		$eventType = $event->eventType ();
+		$eventType->setAttribute ( 'placement', 1 );
+		$event->setAttribute ( 'data_text3', 'a:1:{i:0;s:10:"fixedprice";}' );
+		$event->store ();
+		$eventList [] = $event;
 		/* we do not want the coupon workflow
 		eZWorkflowEventType::registerType( 'event', 'ezcouponworkflow', 'eZCouponWorkflowType' );
 		$event = eZWorkflowEvent::create( $WorkflowID, 'event_ezcouponworkflow' );
@@ -1358,74 +1357,117 @@ class xrowecommerceInstaller extends eZSiteInstaller
         $event->store();
 		$eventList[] = $event;
 		*/
-                $workflow->store( $eventList ); // store changes.
-
-                // Remove old version 0 first
-                eZWorkflowGroupLink::removeWorkflowMembers( $WorkflowID, 0 );
-
-                $workflowgroups = eZWorkflowGroupLink::fetchGroupList( $WorkflowID, 1 );
-                foreach( $workflowgroups as $workflowgroup )
-                {
-                    $workflowgroup->setAttribute("workflow_version", 0 );
-                    $workflowgroup->store();
-                }
-                // Remove version 1
-                eZWorkflowGroupLink::removeWorkflowMembers( $WorkflowID, 1 );
-
-                eZWorkflow::removeEvents( false, $WorkflowID, 0 );
-                $workflow->removeThis( true );
-                $workflow->setVersion( 0, $eventList );
-                $workflow->adjustEventPlacements( $eventList );
-                $workflow->storeDefined( $eventList );
-                $workflow->cleanupWorkFlowProcess();
-
-        $newTrigger = eZTrigger::createNew( 'shop', 'confirmorder', 'b', $WorkflowID );
+		$workflow->store ( $eventList ); // store changes.
 		
-        $workflow = eZWorkflow::create( 14 );
-        $workflow->setAttribute( "name",  'Before Checkout' );
-        $workflow->setAttribute( "workflow_type_string",  'group_ezserial' );
-        $workflow->store();
-        $ingroup = eZWorkflowGroupLink::create( $workflow->attribute( "id" ), $workflow->attribute( "version" ), $WorkflowGroupID, 'Shop' );
-        $ingroup->store();
-        
-        $WorkflowID      = $workflow->attribute( "id" );
-        $WorkflowVersion = $workflow->attribute( "version" );
-        
-        $eventList = array();
-        eZWorkflowEventType::registerType( 'event', 'xrowpaymentgateway', 'xrowPaymentGatewayType' );
-        $event = eZWorkflowEvent::create( $WorkflowID, 'event_xrowpaymentgateway' );
-        $eventType          = $event->eventType();
-        $eventType->setAttribute( 'placement', 1 );
-        $event->setAttribute( 'data_text3', '-1' );
-        $event->store();
-		$eventList[] = $event;
 
-                $workflow->store( $eventList ); // store changes.
-
-                // Remove old version 0 first
-                eZWorkflowGroupLink::removeWorkflowMembers( $WorkflowID, 0 );
-
-                $workflowgroups = eZWorkflowGroupLink::fetchGroupList( $WorkflowID, 1 );
-                foreach( $workflowgroups as $workflowgroup )
-                {
-                    $workflowgroup->setAttribute("workflow_version", 0 );
-                    $workflowgroup->store();
-                }
-                // Remove version 1
-                eZWorkflowGroupLink::removeWorkflowMembers( $WorkflowID, 1 );
-
-                eZWorkflow::removeEvents( false, $WorkflowID, 0 );
-                $workflow->removeThis( true );
-                $workflow->setVersion( 0, $eventList );
-                $workflow->adjustEventPlacements( $eventList );
-                $workflow->storeDefined( $eventList );
-                $workflow->cleanupWorkFlowProcess();
-
-        $newTrigger = eZTrigger::createNew( 'shop', 'checkout', 'b', $WorkflowID );
+		// Remove old version 0 first
+		eZWorkflowGroupLink::removeWorkflowMembers ( $WorkflowID, 0 );
 		
-        
-        $db->commit();
-        return true;
+		$workflowgroups = eZWorkflowGroupLink::fetchGroupList ( $WorkflowID, 1 );
+		foreach ( $workflowgroups as $workflowgroup ) {
+			$workflowgroup->setAttribute ( "workflow_version", 0 );
+			$workflowgroup->store ();
+		}
+		// Remove version 1
+		eZWorkflowGroupLink::removeWorkflowMembers ( $WorkflowID, 1 );
+		
+		eZWorkflow::removeEvents ( false, $WorkflowID, 0 );
+		$workflow->removeThis ( true );
+		$workflow->setVersion ( 0, $eventList );
+		$workflow->adjustEventPlacements ( $eventList );
+		$workflow->storeDefined ( $eventList );
+		$workflow->cleanupWorkFlowProcess ();
+		
+		$newTrigger = eZTrigger::createNew ( 'shop', 'confirmorder', 'b', $WorkflowID );
+		
+		$workflow = eZWorkflow::create ( 14 );
+		$workflow->setAttribute ( "name", 'Before Checkout' );
+		$workflow->setAttribute ( "workflow_type_string", 'group_ezserial' );
+		$workflow->store ();
+		$ingroup = eZWorkflowGroupLink::create ( $workflow->attribute ( "id" ), $workflow->attribute ( "version" ), $WorkflowGroupID, 'Shop' );
+		$ingroup->store ();
+		
+		$WorkflowID = $workflow->attribute ( "id" );
+		$WorkflowVersion = $workflow->attribute ( "version" );
+		
+		$eventList = array ();
+		eZWorkflowEventType::registerType ( 'event', 'xrowpaymentgateway', 'xrowPaymentGatewayType' );
+		$event = eZWorkflowEvent::create ( $WorkflowID, 'event_xrowpaymentgateway' );
+		$eventType = $event->eventType ();
+		$eventType->setAttribute ( 'placement', 1 );
+		$event->setAttribute ( 'data_text3', '-1' );
+		$event->store ();
+		$eventList [] = $event;
+		
+		$workflow->store ( $eventList ); // store changes.
+		
+
+		// Remove old version 0 first
+		eZWorkflowGroupLink::removeWorkflowMembers ( $WorkflowID, 0 );
+		
+		$workflowgroups = eZWorkflowGroupLink::fetchGroupList ( $WorkflowID, 1 );
+		foreach ( $workflowgroups as $workflowgroup ) {
+			$workflowgroup->setAttribute ( "workflow_version", 0 );
+			$workflowgroup->store ();
+		}
+		// Remove version 1
+		eZWorkflowGroupLink::removeWorkflowMembers ( $WorkflowID, 1 );
+		
+		eZWorkflow::removeEvents ( false, $WorkflowID, 0 );
+		$workflow->removeThis ( true );
+		$workflow->setVersion ( 0, $eventList );
+		$workflow->adjustEventPlacements ( $eventList );
+		$workflow->storeDefined ( $eventList );
+		$workflow->cleanupWorkFlowProcess ();
+		
+		$newTrigger = eZTrigger::createNew ( 'shop', 'checkout', 'b', $WorkflowID );
+
+		#Aftersale
+		$workflow = eZWorkflow::create ( 14 );
+		$workflow->setAttribute ( "name", 'Aftersale' );
+		$workflow->setAttribute ( "workflow_type_string", 'group_ezserial' );
+		$workflow->store ();
+		$ingroup = eZWorkflowGroupLink::create ( $workflow->attribute ( "id" ), $workflow->attribute ( "version" ), $WorkflowGroupID, 'Shop' );
+		$ingroup->store ();
+		
+		$WorkflowID = $workflow->attribute ( "id" );
+		$WorkflowVersion = $workflow->attribute ( "version" );
+		
+		$eventList = array ();
+		eZWorkflowEventType::registerType ( 'event', 'xrowaftersale', 'xrowAfterSale' );
+		$event = eZWorkflowEvent::create ( $WorkflowID, 'event_xrowaftersale' );
+		$eventType = $event->eventType ();
+		$eventType->setAttribute ( 'placement', 1 );
+		$event->setAttribute ( 'data_int1', $this->setting( 'products_node_id' ) );
+		$event->store ();
+		$eventList [] = $event;
+		
+		$workflow->store ( $eventList ); // store changes.
+		
+
+		// Remove old version 0 first
+		eZWorkflowGroupLink::removeWorkflowMembers ( $WorkflowID, 0 );
+		
+		$workflowgroups = eZWorkflowGroupLink::fetchGroupList ( $WorkflowID, 1 );
+		foreach ( $workflowgroups as $workflowgroup ) {
+			$workflowgroup->setAttribute ( "workflow_version", 0 );
+			$workflowgroup->store ();
+		}
+		// Remove version 1
+		eZWorkflowGroupLink::removeWorkflowMembers ( $WorkflowID, 1 );
+		
+		eZWorkflow::removeEvents ( false, $WorkflowID, 0 );
+		$workflow->removeThis ( true );
+		$workflow->setVersion ( 0, $eventList );
+		$workflow->adjustEventPlacements ( $eventList );
+		$workflow->storeDefined ( $eventList );
+		$workflow->cleanupWorkFlowProcess ();
+		
+		$newTrigger = eZTrigger::createNew ( 'shop', 'checkout', 'a', $WorkflowID );
+		
+		
+		$db->commit ();
+		return true;
 	}
     /*!
       pre-install stuff.
@@ -1880,8 +1922,7 @@ class xrowecommerceInstaller extends eZSiteInstaller
                         'media', 
                         'users', 
                         'setup', 
-                        'shop',
-                        'recurringorders'
+                        'shop'
                     ) 
                 ) 
             ) 
