@@ -27,7 +27,9 @@ address2[enabled]=true
 s_address2[required]=false
 s_address2[enabled]=true
 zip[required]=true
+zip[enabled]=true
 s_zip[required]=true
+city[enabled]=true
 city[required]=true
 s_city[required]=true
 country[required]=true
@@ -50,11 +52,12 @@ email[required]=true
 email[enabled]=true
 s_email[required]=true
 s_email[enabled]=true
-NoPartialDelivery=enabled
-Reference=enabled
-Message=enabled
-Captcha=enabled
-Coupon=enabled
+NoPartialDelivery[enabled]=true
+Reference[enabled]=true
+Message[enabled]=true
+Captcha[enabled]=true
+Coupon[enabled]=true
+
 [Settings]
 ShowColumnPosition=enabled
 ShowColumnTax=enabled

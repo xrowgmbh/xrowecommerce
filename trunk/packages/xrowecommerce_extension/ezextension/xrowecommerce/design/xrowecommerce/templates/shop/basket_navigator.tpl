@@ -7,7 +7,7 @@
             <div {if $step|eq('2')} class="shopping_cart_path_select"{/if}>
             {*if array( 3 )|contains( $step )}<a href={"xrowecommerce/userregister"|ezurl}>{/if*}
             2. 
-            {if ezini( 'Settings', 'Coupon', 'xrowecommerce.ini' )|eq('enabled')}
+            {if ezini( 'Fields', 'Coupon', 'xrowecommerce.ini' ).enabled|eq('true')}
             {'Billing, Shipping and Coupons'|i18n('extension/xrowecommerce')}
             {else}
             {'Billing and Shipping'|i18n('extension/xrowecommerce')}

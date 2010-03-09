@@ -527,7 +527,7 @@
             {* / left column *}
             </div>
             
-            {if ezini('Settings','Coupon','xrowecommerce.ini')|eq('enabled')}
+            {if ezini('Fields','Coupon','xrowecommerce.ini').enabled|eq('true')}
                 <div class="coupon">
                     <h3>{'Coupon'|i18n('extension/xrowecommerce')}</h3>
                     <p>{'Please enter your coupon code exactly as it appears on your promotion.'|i18n('extension/xrowecommerce')}</p>
@@ -547,7 +547,7 @@
                                         hash( 'module',   'xrowecommerce',
                                               'function', 'bypass_captcha' ) )}
     
-                    {if and( ezini('Settings','Captcha','xrowecommerce.ini')|eq('enabled'), $access|not, ezhttp( 'xrowCaptchaSolved', 'session' )|not)}
+                    {if and( ezini('Fields','Captcha','xrowecommerce.ini').enabled|eq('true'), $access|not, ezhttp( 'xrowCaptchaSolved', 'session' )|not)}
                         <div class="block">
                             <label>{'Verification'|i18n('extension/xrowecommerce')}<span class="required">*</span></label>
                             <div class="labelbreak"></div>
@@ -569,14 +569,14 @@
                 {* Captcha End *}
     
                 {* Your No Partial Delivery *}
-                {if and( ezini('Settings','NoPartialDelivery','xrowecommerce.ini')|eq('enabled'))}
+                {if ezini('Fields','NoPartialDelivery','xrowecommerce.ini').enabled|eq('true')}
                     <div class="block">
                             <label class="no_partial_delivery" for="no_partial_delivery"><input class="no_partial_delivery" type="checkbox" name="no_partial_delivery" id="no_partial_delivery" {if $no_partial_delivery} checked="checked" {/if} value="1" />{'No partial delivery'|i18n('extension/xrowecommerce')}</label>
                     </div>
                 {/if}
             
                 {* Your Reference *}
-                {if and( ezini('Settings','Reference','xrowecommerce.ini')|eq('enabled'))}
+                {if ezini('Fields','Reference','xrowecommerce.ini').enabled|eq('true')}
                     <div class="block">
                             <label for="reference">{'Your reference'|i18n('extension/xrowecommerce')}</label>
                             <div class="labelbreak"></div>
@@ -585,7 +585,7 @@
                 {/if}
             
                 {* Your Message *}
-                {if and( ezini('Settings','Message','xrowecommerce.ini')|eq('enabled'))}
+                {if ezini('Fields','Message','xrowecommerce.ini').enabled|eq('true')}
                     <div class="block">
                             <label for="message">{'Your notes on order'|i18n('extension/xrowecommerce')}</label>
                             <div class="labelbreak"></div>
