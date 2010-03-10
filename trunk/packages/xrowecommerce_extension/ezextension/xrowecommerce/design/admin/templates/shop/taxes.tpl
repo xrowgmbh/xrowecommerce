@@ -22,8 +22,8 @@
             <select name="country" id="country">
              <option value="">{'Any'|i18n( 'extension/xrowecommerce')}</option>
                 {foreach $countries as $country_list_item}
-                 <option value="{$country_list_item[1]}" {if and( $country|ne(''), eq( $country, $country_list_item[1] ))} selected="selected"{/if}>
-                    {$country_list_item[4]|wash}
+                 <option value="{$country_list_item.Alpha3}" {if and( $country|ne(''), eq( $country, $country_list_item.Alpha3 ))} selected="selected"{/if}>
+                    {$country_list_item.Name|wash}
                 </option>
                 {/foreach}
             </select>

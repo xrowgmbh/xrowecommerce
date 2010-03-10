@@ -124,6 +124,10 @@ CompanyName=Example Inc
 CompanyWebsite=http://www.example.com/
 CompanyPhone=+1 555 123456
 
+[ShopAccountHandlerDefaults]
+# set the country code to which the country select defaults to
+#CountryCode=USA
+
 [EPaymentSettings]
 # Payments should be capture right away or later
 # values are AUTH_ONLY or AUTH_AND_CAPTURE
