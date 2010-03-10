@@ -1,11 +1,13 @@
-YUI( YUI3_config ).use("node", function(Y) {
+YUI().use("node", function(Y) {
 	Y.on("domready", function() {
 		if (Y.Node.get("#shipping-checkbox")) {
 			Y.on("change", function(e) {
 				updateShipping();
+				updateSubdivisions( e.currentTarget );
 			}, "#country");
 			Y.on("change", function(e) {
 				updateShipping();
+				updateSubdivisions( e.currentTarget );
 			}, "#s_country");
 			Y.on("click", function(e) {
 				changeShipping();
@@ -17,10 +19,28 @@ YUI( YUI3_config ).use("node", function(Y) {
 		}
 	});
 });
-
+/* uncomment for debugging
+YUI({
+    filter: 'debug',
+    timeout: 10000
+}).use( 'node', 'console', 'console-filters', 'dd-plugin', function (Y) {
+	if (Y.Node.get("#debug") ) {
+		Y.Node.get("BODY").prepend('<div id="yconsole"></div>' );
+		Y.Node.get("BODY").addClass( 'yui-skin-sam');
+// Configure the Console's logSource to Y.Global to make it universal
+new Y.Console({
+    boundingBox: '#yconsole',
+    plugins: [ Y.Plugin.Drag ], //, Y.Plugin.ConsoleFilters
+    logSource: Y.Global,
+    style: 'separate',
+    newestOnTop: true
+}).render();
+	}
+});
+*/
 function ShowHide(id)
 {
-	YUI( YUI3_config ).use( 'node', function(Y) { 
+	YUI().use( 'node', function(Y) { 
     	    var node = Y.one( id );
 	        if ( node.hasClass( 'hide') )
 	        {
@@ -46,7 +66,7 @@ function handleSelect(type,args,obj) {
 
 
 function AutomaticDeliverTooltip( node, box ) {
-    	YUI( YUI3_config ).use( 'node', "overlay", function(Y) { 
+    	YUI().use( 'node', "overlay", function(Y) { 
     	var WidgetPositionExt = Y.WidgetPositionExt;
     	var overlay = new Y.Overlay({ 
     		      contentBox: box, 
@@ -64,7 +84,7 @@ function AutomaticDeliverTooltip( node, box ) {
 
 function ezjson(uri, callback, args) {
 	// Create business logic in a YUI sandbox using the 'io' and 'json' modules
-	YUI( YUI3_config ).use("node", "io", "dump", "json-parse", function(Y) {
+	YUI().use("node", "io", "dump", "json-parse", function(Y) {
 
 		function onFailure(transactionid, response) {
 			Y.log("Async call failed!");
@@ -97,6 +117,51 @@ function ezjson(uri, callback, args) {
 
 	});
 }
+function updateSubdivisions( country_node ) {
+
+	YUI().use( "node",
+			   "io-ez",
+			   function(Y) {
+						var country = country_node.get('options')
+						.item(
+								country_node.get(
+										'selectedIndex')).get(
+								'value');
+
+				        Y.io.ez( 'xrowecommerce::getSubdivisions::' + country, {
+				            arguments: country_node,
+				            on: {success: function( id, r, country_node)
+				        	{
+				        	YUI().use('node', function(Y) {
+
+				        	    var data = r.responseJSON.content;
+								if( country_node.get('id') == 'country' )
+								{
+									var subdivision_node = Y.Node.get('#state');
+								}
+								else
+								{
+									var subdivision_node = Y.Node.get('#s_state');
+								}
+								
+								var nodes = subdivision_node.all('option');
+								var deleteNodes = function(n, a, b) {
+									n.get('parentNode').removeChild(n)
+								};
+								nodes.each(deleteNodes);
+								for (i in data ) {
+									var node = Y.Node.create('<option value="'
+												+ i + '">' + data[i]
+												+ '</option>');
+									subdivision_node.appendChild(node);
+								}
+				        	});
+
+							}
+				            }
+				        });
+					});
+}
 function updateShipping() {
 	if ( document.register.shippingtype == null )
 	{
@@ -108,11 +173,9 @@ function updateShipping() {
 	}
 	
 	
-	YUI( YUI3_config )
-			.use(
-					"node",
-					"dump",
-					function(Y) {
+	YUI().use( "node",
+			   "io-ez",
+			   function(Y) {
 						if (Y.Node.get("#shipping-checkbox").get("checked")) {
 							var country = Y.Node.get('#country').get('options')
 									.item(
@@ -127,6 +190,11 @@ function updateShipping() {
 						}
 
 						var doit = function(data) {
+							
+							if ( Y.Node.get('#shippingtype').get('tagName') == 'INPUT' )
+							{
+								return true;
+							}
 							var oldname = Y.Node.get('#shippingtype').get(
 									'options').item(
 									Y.Node.get('#shippingtype').get(
@@ -184,18 +252,30 @@ function updateShipping() {
 }
 
 function ez18nAlert(text, args) {
-	var doit = function(data, args) {
-		for ( var x in args) {
-			data = data.replace(x, args[x]);
-		}
+	YUI().use( "node",
+			   "io-ez",
+			   function(Y) {
+    Y.io.ez( 'xrowecommerce::translate::', {
+        data: 'text=' + text,
+        arguments: args,
+        on: {success: function( id, r, args)
+    	{
+    	var data = r.responseJSON.content;
+    	YUI().use('node', function(Y) {
 
-		alert(data);
-	}
-	ezjson('translate?text=' + text, doit, args);
+    		for ( var x in args) {
+    			data = data.replace(x, args[x]);
+    		}
+    		alert(data);
+    	});
+
+		}
+        }
+    });
+	});
 }
 function changeShipping() {
-	YUI( YUI3_config )
-			.use(
+	YUI().use(
 					'node',
 					function(Y) {
 						if (Y.Node.get("#shipping-checkbox").get("checked")) {
@@ -237,7 +317,7 @@ function changeShipping() {
 }
 function toggleCOS()
 {
-	YUI( YUI3_config ).use( 'node', function(Y) { 
+	YUI().use( 'node', function(Y) { 
 		
     var container = Y.Node.get("#cos-content");
     if ( container )
@@ -267,13 +347,17 @@ function enlargeImage( imsrc, ww, wh, alttext )
     w1.focus();
 };
 /**
- * @param node DomNode to receive click event
- * @param image Path to the full image
- * @param imagetext Alternate footer text
- * @param doubleclick Double or single click
+ * @param node
+ *            DomNode to receive click event
+ * @param image
+ *            Path to the full image
+ * @param imagetext
+ *            Alternate footer text
+ * @param doubleclick
+ *            Double or single click
  */
 function generatePopup(node, image, imagetext, doubleclick) {
-	YUI(YUI3_config).use(
+	YUI().use(
 			"node",
 			"overlay",
 			"imageloader",

@@ -89,18 +89,23 @@ correct locale date
 		    <th>Next order</th>
 		    <td>
 				<script type="text/javascript">
-					YAHOO.util.Event.onDOMReady( function() {ldelim}
-						YAHOO.example.calendar.cal{$item.item_id} = new YAHOO.widget.Calendar("cal{$item.item_id}","cal{$item.item_id}-container", 
+				YUI().use("node", function(Y) {ldelim}
+					Y.on("domready", function() {ldelim}
+						var cal{$item.item_id} = new YAHOO.widget.Calendar("cal{$item.item_id}","cal{$item.item_id}-container", 
 						{ldelim}
 						  pagedate:"{$item.next_date|sub(currentdate()|datetime( 'custom', '%Z' ))|datetime( 'custom', '%m/%Y' )}", 
 						  selected:"{$item.next_date|sub(currentdate()|datetime( 'custom', '%Z' ))|l10n( 'shortdate' )}", 
 						  mindate:"{fetch('recurringorders','now')|sum(86400)|l10n( 'shortdate' )}",
 						  maxdate:"{fetch('recurringorders','now')|sub(currentdate()|datetime( 'custom', '%Z' ))|sum(86400)|sum(7776000)|l10n( 'shortdate' )}" {rdelim} );
-						YAHOO.example.calendar.cal{$item.item_id}.selectEvent.subscribe(handleSelect, YAHOO.example.calendar.cal{$item.item_id}, true);
-						YAHOO.example.calendar.cal{$item.item_id}.render();
+						cal{$item.item_id}.selectEvent.subscribe(handleSelect, cal{$item.item_id}, true);
+						cal{$item.item_id}.render();
 				
 					{rdelim} );
-					YAHOO.util.Event.on('cal{$item.item_id}', 'click', function() {ldelim} ShowHide( this.id ) {rdelim} ); 
+					
+					Y.on("click", function(e) {ldelim}
+					    ShowHide( '#' + 'cal{$item.item_id}-container' );
+			            {rdelim}, "#cal{$item.item_id}");
+					{rdelim} );
 				</script>
 				<input size="6" type="text" name="ItemArray[{$item.item_id}][next_date]" id="cal{$item.item_id}-date" readonly="readonly" value="{$item.next_date|sub(currentdate()|datetime( 'custom', '%Z' ))|l10n( 'shortdate' )}"/>
 				<input class="button" type="button" id="cal{$item.item_id}" name="cal{$item.item_id}" value="Change Date" />

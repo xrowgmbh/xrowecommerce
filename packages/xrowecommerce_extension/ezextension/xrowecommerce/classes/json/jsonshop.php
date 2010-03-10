@@ -1,10 +1,52 @@
 <?php
 
-class xrowECommerceJSON implements eZJSON
+class xrowECommerceJSON extends ezjscServerFunctions
 {
-    function translate( $text )
+	public static function test( $args )
     {
-        switch ( $text )
+        if ( isset( $args[0] ) )
+        {
+            return 'Hello World, you sent me 
+                    parameter : ' . $args[0];
+        }
+        else
+        {
+            $http = eZHTTPTool::instance();
+            if ( $http->hasPostVariable( 'arg1' ) )
+            {
+                return 'Hello World, you sent 
+                        me post : ' . $http->postVariable( 'arg1' );
+            }
+        }
+ 
+        return "Request to server completed, 
+                but you did not send any 
+                post / function parameters!";
+    }
+	public static function test_exception( $args )
+    {
+        if ( isset( $args[0] ) )
+        {
+            throw new Exception ( 'Hello World, you sent me 
+                    parameter : ' . $args[0] );
+        }
+        else
+        {
+            $http = eZHTTPTool::instance();
+            if ( $http->hasPostVariable( 'arg1' ) )
+            {
+                throw new Exception ( 'Hello World, you sent 
+                        me post : ' . $http->postVariable( 'arg1' ) );
+            }
+        }
+ 
+        throw new Exception ( "Request to server completed, 
+                but you did not send any 
+                post / function parameters!" );
+    }
+    static function translate( $args )
+    {
+        switch ( $_POST['text'] )
         {
         	case "The shipping method '%old%' is not available for your country of destination and was changed to '%new%'.":
         	{
@@ -13,7 +55,11 @@ class xrowECommerceJSON implements eZJSON
         }
         throw new Exception( 'Tranlation not found.' );
     }
-    function getShipping( $country )
+    static function getSubdivisions( $args )
+    {
+        return xrowGeonames::getSubdivisions( $args[0] );
+    }
+    static function getShipping( $args )
     {
         $list = xrowShippingInterface::fetchActive( true );
         $return = array();
@@ -21,7 +67,7 @@ class xrowECommerceJSON implements eZJSON
         {
         	try
         	{
-        		$result = $item->methodCheck( $country );
+        		$result = $item->methodCheck( $args[0] );
         	}
         	catch( xrowShippingException $e )
         	{

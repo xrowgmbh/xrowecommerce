@@ -6,6 +6,9 @@ switch ( $Params['Parameters'][0] )
 	case 'getshipping':
 	$return = xrowECommerceJSON::getShipping( $_GET['country'] );
 	break;
+	case 'getsubdivisions':
+	$return = xrowECommerceJSON::getSubdivisions( $_GET['country'] );
+	break;
 	case 'translate':
     $return = xrowECommerceJSON::translate( $_GET['text'] );
     break;

@@ -14,10 +14,12 @@ if ( $module->isCurrentAction( 'Cancel' ) )
 $user = eZUser::currentUser();
 
 // Initialize variables
-$email = $first_name = $last_name = $shippingtype = $shipping = $s_email = $s_last_name = $s_first_name = $s_address1 = $s_address2 = $s_zip = $s_city = $s_state = $s_country = $s_phone = $s_mi = $address1 = $address2 = $zip = $city = $state = $country = $phone = $recaptcha = $mi = '';
+$email = $first_name = $last_name = $shippingtype = $shipping = $s_email = $s_last_name = $s_first_name = $s_address1 = $s_address2 = $s_zip = $s_city = $s_state = $s_country = $s_phone = $s_mi = $address1 = $address2 = $zip = $city = $state = $country = $phone = $recaptcha = $mi = null;
 $userobject = $user->attribute( 'contentobject' );
-$country = eZINI::instance( 'site.ini' )->variable( 'ShopAccountHandlerDefaults', 'DefaultCountryCode' );
-
+if ( eZINI::instance( 'xrowecommerce.ini' )->hasVariable( 'ShopAccountHandlerDefaults', 'CountryCode' ) )
+{
+	$country = eZINI::instance( 'xrowecommerce.ini' )->variable( 'ShopAccountHandlerDefaults', 'DefaultCountryCode' );
+}
 if ( $user->isLoggedIn() and in_array( $userobject->attribute( 'class_identifier' ), eZINI::instance( 'xrowecommerce.ini' )->variable( 'Settings', 'ShopUserClassList' ) ) )
 {
     $userObject = $user->attribute( 'contentobject' );
@@ -379,11 +381,10 @@ if ( $module->isCurrentAction( 'Store' ) )
         }
     }
 
-    if ( $fields['state']['enabled'] == true )
+    if ( $fields['state']['enabled'] == true and $fields['state']['required'] == true)
     {
         $state = $http->postVariable( "state" );
-        if ( $country == "USA" or $country == "CAN" or $country == "MEX" )
-        if ( $fields['state']['required'] == true and trim( $state ) == "")
+        if ( xrowGeonames::getSubdivisionName( $country, $state )  )
         {
             $inputIsValid = false;
             $fields["state"]['errors'][0] = ezpI18n::tr( 'extension/xrowecommerce', 'Please select your billing state.' );
@@ -687,11 +688,11 @@ if ( $module->isCurrentAction( 'Store' ) )
 	        }
 	    }
         
-	    if ( $fields['s_state']['enabled'] == true )
+	    if ( $fields['s_state']['enabled'] == true and $fields['s_state']['required'] == true )
 	    {
 	        $s_state = $http->postVariable( "s_state" );
-	        if ( trim( $s_state ) == "" and $fields['s_state']['required'] == true )
-	        {
+	        if ( xrowGeonames::getSubdivisionName( $s_country, $s_state )  )
+            {
 	        	$inputIsValid = false;
 	        	$fields["s_state"]['errors']['shipping'] = ezpI18n::tr( 'extension/xrowecommerce', 'No shipping state has been selected.' );
 	        }
@@ -1079,6 +1080,22 @@ $tpl->setVariable( "reference", $reference );
 $tpl->setVariable( "message", $message );
 $tpl->setVariable( "no_partial_delivery", $no_partial_delivery );
 $tpl->setVariable( "fields", $fields );
+$tpl->setVariable( "countries", xrowGeonames::getCountries() );
+if ( !isset( $country ) )
+{
+	$tmp = xrowGeonames::getCountries();
+	$tmp = array_shift( $tmp );
+	$country  = $tmp['Alpha3'];
+}
+if ( !isset( $s_country ) )
+{
+	$tmp = xrowGeonames::getCountries();
+	$tmp = array_shift( $tmp );
+	$s_country  = $tmp['Alpha3'];
+}
+$tpl->setVariable( "states", xrowGeonames::getSubdivisions( $country ) );
+$tpl->setVariable( "s_states", xrowGeonames::getSubdivisions( $s_country ) );
+
 $Result = array();
 $Result['content'] = $tpl->fetch( "design:shop/userregister.tpl" );
 $Result['path'] = array( 

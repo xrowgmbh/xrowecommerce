@@ -21,11 +21,11 @@ class xrowGeonames
     function __construct()
     {
         
-        if ( ! is_dir( 'var/cache/geonames/country' ) )
+        if ( ! is_dir( 'var/cache/geonames.org/country' ) )
         {
-            mkdir( 'var/cache/geonames/country', 0777, true );
+            mkdir( 'var/cache/geonames.org/country', 0777, true );
         }
-        ezcCacheManager::createCache( 'countries', 'var/cache/geonames/country', 'ezcCacheStorageFileArray' );
+        ezcCacheManager::createCache( 'countries', 'var/cache/geonames.org/country', 'ezcCacheStorageFileArray' );
         $cache = ezcCacheManager::getCache( 'countries' );
         if ( ( $this->country_map = $cache->restore( 'countries' ) ) === false )
         {
@@ -80,53 +80,77 @@ array(19) {
             $csvNumColumns = 19;
             $lines = array_chunk( str_getcsv( $countries, "\t" ), $csvNumColumns );
             array_shift( $lines );
-            
+            $namedkeys = array( );
+            $namedkeys[0] = 'Alpha2';
+            $namedkeys[1] = 'Alpha3';
+            $namedkeys[4] = 'Name';
+
             foreach ( $lines as $key => $value )
             {
-                if ( is_array( $value[4] ) )
-                {
-                    var_dump( $value );
-                }
-                $value[4] = trim( $value[4] );
-                $value[5] = trim( $value[5] );
+            	if ( $value[0] )
+            	{
+            	foreach( $namedkeys as $key2 => $value2 )
+            	{
+            		$lines[$key][$value2] = trim( $value[$key2] );
+            		unset( $lines[$key][$key2] );
+            	}
+            	}
+            	else
+            	{
+            		unset( $lines[$key] );
+            	}
             }
             usort( $lines, 'xrowGeonames::compareCountryNames' );
             foreach ( $lines as $key => $value )
             {
-                if ( $value[0] )
+                if ( $value['Alpha2'] )
                 {
-                    $this->country_map[$value[0]] = $value;
+                    $this->country_map[$value['Alpha2']] = $value;
                 }
             }
             $cache->store( 'countries', $this->country_map );
         }
-        if ( ! is_dir( 'var/cache/geonames/states' ) )
+        if ( ! is_dir( 'var/cache/geonames.org/states' ) )
         {
-            mkdir( 'var/cache/geonames/states', 0777, true );
+            mkdir( 'var/cache/geonames.org/states', 0777, true );
         }
-        ezcCacheManager::createCache( 'states', 'var/cache/geonames/states', 'ezcCacheStorageFileArray' );
+        ezcCacheManager::createCache( 'states', 'var/cache/geonames.org/states', 'ezcCacheStorageFileArray' );
         $cache = ezcCacheManager::getCache( 'states' );
         if ( ( $this->map = $cache->restore( 'states' ) ) === false )
         {
             $this->map = array();
             // Original URL/Source : http://download.geonames.org/export/dump/admin1Codes.txt
             $lines = file( 'extension/xrowecommerce/share/geonames.org/admin1Codes.txt' );
-            
+
             foreach ( $lines as $line_num => $line )
             {
                 if ( preg_match_all( '/([\w][\w])\.([\w][\w])\t(.*)\n/', $line, $matches ) )
                 {
                     if ( $matches[2][0] != '00' )
                     {
-                        $this->map[$this->country_map[$matches[1][0]][1]][$matches[2][0]] = $matches[3][0];
+                        $this->map[$this->country_map[$matches[1][0]]['Alpha3']][$matches[2][0]] = $matches[3][0];
                     }
                 }
             
             }
+            foreach ( $this->map as $key => $value )
+            {
+            	uasort( $this->map[$key], 'xrowGeonames::compareSubdivisionNames' );
+            }
             $cache->store( 'states', $this->map );
         }
     }
-
+    /**
+     * Sort callback used by fetchTranslatedNames to compare two subdivision arrays
+     *
+     * @param array $a Country 1
+     * @param array $b Country 2
+     * @return bool
+     */
+    protected static function compareSubdivisionNames( $a, $b )
+    {
+        return strcoll( $a, $b );
+    }
     /**
      * Sort callback used by fetchTranslatedNames to compare two country arrays
      *
@@ -136,7 +160,7 @@ array(19) {
      */
     protected static function compareCountryNames( $a, $b )
     {
-        return strcoll( $a[4], $b[4] );
+        return strcoll( $a['Name'], $b['Name'] );
     }
 
     static function getSubdivisionName( $country, $id )
@@ -156,9 +180,10 @@ array(19) {
 
     static function getSubdivisions( $country )
     {
-        if ( isset( $country ) )
+    	$instance = self::instance();
+        if ( isset( $instance->map[$country] ) )
         {
-            return self::instance()->map[$country];
+            return $instance->map[$country];
         }
         else
         {

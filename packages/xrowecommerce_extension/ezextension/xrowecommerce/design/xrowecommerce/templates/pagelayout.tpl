@@ -1,13 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="{$site.http_equiv.Content-language|wash}" lang="{$site.http_equiv.Content-language|wash}">
 <head>
-<script type="text/javascript">
-<!--
-// use this as parameter for YUI( YUI3_config ) for now, until yui 3.0 has a better way of setting global base path
-var YUI3_config = {ldelim} 'standard' : '{"lib/yui/3.0/build/"|ezdesign( 'no' )}', loadOptional: true, combine: false {rdelim};
--->
-</script>
-
 {def $basket_is_empty   = cond( $current_user.is_logged_in, fetch( shop, basket ).is_empty, 1 )
      $user_hash         = concat( $current_user.role_id_list|implode( ',' ), ',', $current_user.limited_assignment_value_list|implode( ',' ) )}
 
@@ -27,7 +20,7 @@ var YUI3_config = {ldelim} 'standard' : '{"lib/yui/3.0/build/"|ezdesign( 'no' )}
 {include uri='design:page_head_script.tpl'}
 
 </head>
-<body>
+<body class="yui-skin-sam">
 <!-- Complete page area: START -->
 
 <!-- Change between "sidemenu"/"nosidemenu" and "extrainfo"/"noextrainfo" to switch display of side columns on or off  -->
