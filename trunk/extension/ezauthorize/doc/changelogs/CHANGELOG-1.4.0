@@ -1,0 +1,26 @@
+Changes for 1.4.0
+
+- Added payment information storage support (disabled by default)
+- Added payment information storage encryption dependancy (required)
+- Added payment information caption (optional)
+- Added extended order, customer, address information passing to authorize.net (optional)
+- Added order payment refund module
+- Added example extended shopaccount handler (disabled by default)  
+- Added extended payment information help (optional)
+- Added basket / cart example template override with javascript support for select all cart items
+
+Changes made by Bruce Morrison <bruce@designit.com.au> 23 Feb 2006
+- Removed settings/workflow.ini* as not required.  This extension doesn't
+  create a new workflow but an "plugin" to the existing core "Payment Gateway"
+  workflow.  This change stops the following errors occuring:
+
+  eZWorkflowType::loadAndRegisterType:
+    Workflow type not found: event_ezauthorize, searched in these directories: kernel/classes/workflowtypes
+- Fixed minor XHTML issues and accessability issues
+- Payment Information: Year dropdown is now dynamic, starting at current year
+- Payment Information: Month dropdown is now dynamic - less repeated code, possibly slower
+- Added path so title displayed 
+
+Changes made by Bruce Morrison <bruce@designit.com.au> 23 Feb 2006
+- Cleaned and fixed XHTML issues and accessability issues in userregister.tpl
+

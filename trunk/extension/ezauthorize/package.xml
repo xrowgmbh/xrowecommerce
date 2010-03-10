@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package version="" <!--   -->
+         development="true"  <!-- True /false -->
+         xmlns:ezpackage="http://ez.no/ezpackage"
+         install_type="install">
+  <warning>This format was made with a development version and will not work with any release versions.
+The format of this file is also subject to change until the release version.
+Upgrades to the development format will not be supported.</warning>
+  <name>ezauthorize</name> <!-- Identifier of the package -->
+  <summary>eZ Authorize</summary> <!-- Name of the package -->
+  <description>Payment gateway for Authorize.Net</description> <!-- Long description of package functionality-->
+  <ezpublish xmlns:ezpublish="http://ez.no/ezpublish"> 
+    <version>3.7</version> <!-- eZ publish version -->
+    <named-version>3.7</named-version><!-- eZ publish version -->
+  </ezpublish>
+  <maintainers xmlns:ezmaintainer="http://ez.no/ezpackage">
+    <maintainer>
+      <name>Brookins Consulting</name>
+      <email>info@brookinsconsulting.com</email>
+      <role>lead</role>
+    </maintainer>
+  </maintainers>
+  <packaging xmlns:ezpackaging="http://ez.no/ezpackage">
+    <timestamp>1101093193</timestamp> <!-- Update to currenttime -->
+    <host>brookinsconsulting.com</host>
+  </packaging>
+  <documents>
+    <document mime-type="text/plain"
+              name="README" />
+    <document mime-type="text/plain"
+              name="LICENSE" />
+    <document mime-type="text/plain"
+              name="INSTALL" />
+    <document mime-type="text/plain"
+              name="FAQ" />
+  </documents>
+  <changelog xmlns:ezchangelog="http://ez.no/ezpackage"> <!-- Add new changelog entry for each release-->
+    <entry timestamp="1101093193"
+           person="Brookins Consulting"
+           email="info@brookinsconsulting.com"
+           release="1">
+      <change>Creation of package</change>
+    </entry>
+  </changelog>
+  <simple-files />
+  <version xmlns:ezversion="http://ez.no/ezpackage"> <!-- Update for each release -->
+    <number>1.1</number>
+    <release>2</release>
+  </version>
+  <licence>GPL</licence>
+  <state>stable</state>
+  <dependencies xmlns:ezdependency="http://ez.no/ezpackage">  <!-- Update for your package -->
+    <provides> <!-- Insert what the extension provides here -->
+      <provide type="ezextension"
+               name="ezauthorize"
+               value="1.1" />
+    </provides>
+    <requires> <!-- Insert eZ publish requirements here -->
+      <require type="ezpublish"
+               name="version"
+               value="3.7]" />
+    </requires>
+    <requires />
+    <obsoletes />
+    <conflicts />
+  </dependencies>
+  <install xmlns:ezinstall="http://ez.no/ezpackage"> <!-- Update for your package -->
+    <item type="ezextension"
+          name="ezauthorize" />
+  </install>
+  <uninstall xmlns:ezinstall="http://ez.no/ezpackage"> <!-- Update for your package -->
+    <item type="ezextension"
+          name="ezauthorize" />
+  </uninstall>
+</package>

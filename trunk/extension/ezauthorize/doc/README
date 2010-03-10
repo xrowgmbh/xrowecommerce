@@ -1,0 +1,84 @@
+eZ Authorize extension v1.4.0 README
+
+What is the eZ Authorize extension?
+================================
+
+eZ Authorize is a true eZ publish payment gateway extension
+that provides transparent, secure credit card payment processing
+using the Authorize.Net service.
+
+
+eZ Authorize version
+=======================
+
+The current version of eZ Authorize is 1.3.0.
+Last Updated: October 26, 2006
+
+You can find details about changes for this
+version in doc/changelogs/CHANGELOG-1.3.0
+
+
+License
+=======
+
+This software is licensed under the GNU General Public License.
+
+The complete license agreement is included in the doc/LICENSE file.
+
+For more information or questions please contact license@brookinsconsulting.com
+
+
+Requirements
+============
+
+The following requirements exists for using eZ Authorize extension:
+
+o  eZ publish version:
+
+   Make sure you use eZ publish version 3.7 or higher.
+
+o  PHP version:
+
+   Make sure you have PHP 4.4.x or higher.
+
+o  eZ publish must be reachable from the internet:
+
+   Make sure you have installed eZ publish on a webserver
+   that is reachable by the Authorize.Net service.
+
+
+Installation
+============
+
+Details on installing eZ Authorize located in the file doc/INSTALL.
+
+
+Usage
+============
+
+Simply include the extension's class (below) in your custom gateway file.
+
+include_once('extension/ezcurlgateway/classes/ezcurlgateway.php');
+
+It's easiest to learn how to write a new curl gateway
+using this class by examining and modifying an existing class.
+
+We recommend the Authorize.Net implementation, downloadable at
+http://pubsvn.ez.no/community/trunk/extension/ezauthorize
+
+Troubleshooting
+===============
+
+1. Read the FAQ
+   ------------
+
+   Some problems are more common than others. The most common ones
+   are listed in the the FAQ.
+
+2. Support
+   -------
+
+   If you have find any problems not handled by this document or the FAQ you
+   can contact Brookins Consulting through the support system:
+   http://brookinsconsulting.com/contact
+

@@ -1,0 +1,99 @@
+eZ Authorize extension v1.4.0 FAQ
+
+1. Authorize.net API Support
+=================================================
+* Designed to support Authorize.Net (API) AIM version 3.1
+
+1.1 Authorize.Net Resources
+=================================================
+http://authorize.net/
+
+General Information:
+http://developer.authorize.net/
+http://authorize.net/resources/documentlibrary/
+
+API Guide:
+http://www.authorize.net/support/AIM_guide.pdf
+
+
+2. Required Fields
+=================================================
+* Oddly enough, 3 of the most standard fields on
+  a payment form are not actually required by the
+  authorize.net payment gateway:
+
+  Name on Card, Card Type, and Security Number (CVV2)
+
+  Reasons
+
+  - The Name just doesn't matter
+
+  - The card type is determined automatically
+    based on the card number,
+
+  - The security number is analyzed but it isn't
+    currently handled as an error if it doesn't match.
+
+
+3. Default Delimiter
+=================================================
+* The pipe "|" character is the default delimiter,
+  which is currently hardcoded in the class.
+
+
+4. Payment Type Support
+=================================================
+* eZ Authorize supports only credit card
+  transactions right now.
+
+* eZ Authorize does not impliment support for 
+  the eCHECK or WellsFargo SecurePay APIs.
+
+
+5. Select Gateway
+=================================================
+* This extension overrides the following template
+  and customized to simplify the checkout process 
+  for the customer by making the default action
+  to continue forward in the checkout process.
+
+Default Template design/standard/templates/workflow/selectgateway.tpl
+eZ Authorize Template: extension/ezauthorize/design/standard/templates/workflow/selectgateway.tpl
+
+To disable this template override all you must do is rename the file.
+
+
+6. Test Mode
+=================================================
+* To switch test mode off, open up ezauthorize.ini.append.php
+  and switch "TestMode=TRUE" to "TestMode=FALSE".
+
+Also make sure you have the proper settings in your
+Authorize.Net merchant login control panel.
+
+
+7. Referencs
+=================================================
+* This implimentation was based originally in part on the 
+  Cetrel Payment Gatway by Bertrand Dunogier from Interact S.A.
+
+* Portions of this the file classes/ezauthorizeaim.php 
+  are based on Micah Carrick's Authorize.Net php class, 
+  available at: http://www.micahcarrick.com/v2/content/view/2/3/
+
+* Christian Grey provided the eZ publish community with
+  improved php 4.4+ and eZ publish 3.7+ compatibility by
+  alerting us to the need to upgrade eZ authorize to
+  support php 4.4.4 and eZ publish 3.8 by removing
+  deprecated call-time pass-by-reference(s) in v1.1.0
+
+* Bjorn Dieding (xrow) provided the eZ publish community 
+  with improved php 4.4+ support, sslverify support + cacert bundle,
+  and optional fields to better track a transaction.
+
+
+8. Testing
+=================================================
+* This has only been completely tested using 
+  test mode, and has not yet been used for live transactions.
+

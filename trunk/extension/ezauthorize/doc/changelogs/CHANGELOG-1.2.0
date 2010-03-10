@@ -1,0 +1,5 @@
+Changes for 1.2.0
+
+- Added SSLVerify and a cacert bundle for curl version > 7.1
+- Added more optional fields to better track a transaction.
+- Removed more references 

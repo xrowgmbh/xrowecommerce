@@ -1,0 +1,248 @@
+eZ Authorize extension v1.4.0 INSTALL
+
+Introduction
+============
+
+1. What is the eZ Authorize extension?
+   ------------------------------------------------
+
+   eZ Authorize is a true eZ publish payment gateway extension
+   that provides transparent, secure credit card payment processing
+   using the Authorize.Net service.
+
+   For more information about this extension please read the README file.
+
+1. License
+   -------
+
+   eZ Authorize is licensed under the GNU General Public License.
+
+   The GNU GPL gives you the right to use, modify and redistribute
+   eZ Authorize under certain conditions. The GNU GPL licence
+   is distributed with the software, see the file doc/LICENCE.
+   It is also available at http://www.gnu.org/licenses/gpl.txt
+
+   Using eZ Authorize under the terms of the GNU GPL is free of charge.
+
+   For more information or questions please contact
+   license@brookinsconsulting.com
+
+2. Requirements
+   ------------
+
+   The following requirements exists for using eZ Authorize extension:
+
+   o  eZ publish version:
+
+      Make sure you use eZ publish version 3.7 or higher.
+
+   o  PHP version:
+
+      Make sure you have PHP 4.4.x or higher.
+
+   o  eZ publish must be reachable from the internet:
+
+      Make sure you have installed eZ publish on a webserver
+      that is reachable by the Authorize.Net service.
+
+   o  An Authorize.Net Account
+
+      You can obtain a Authorize.Net Account for testing at no cost (free)
+
+     Requirements
+        ------------------------------
+        1. You must have an Authorize.Net merchant ID and a transaction key
+        (transaction key is obtained from the merchant control panel in
+        authorize.net).
+
+        2. SSL should be installed and active if you wish to make live transactions.
+
+        3. The eZCurlGateway class must be installed to kernel/shop/classes/
+
+        4. At least eZ publish version 3.7.
+
+        5. cURL must be installed and activated in your php installation.
+
+        First thing to do is extract the ezauthorize folder into the extension
+        directory. The directory structure should look like
+        -extension/
+          -ezauthorize/
+            -classes
+            -design
+            -doc
+            -eventtypes
+            -settings
+
+
+Getting eZ publish
+==================
+
+You can download a version of eZ publish from ez.no,
+you will find the various versions at:
+
+http://ez.no/download/ez_publish/ez_publish_3_stable_releases
+
+NOTE: You will require eZ publish 3.7 or higher
+
+Information on the installation of eZ publish can be found at:
+http://ez.no/products/ez_publish_cms/documentation/installation
+and
+http://ez.no/doc
+
+
+Installing eZ Authorize extension
+==============================================
+
+1. Copy the package into the `extension' directory
+   in the root of your eZ publish installation.
+
+2. Unpack the files in the distribution. The command
+   necessary is depends on the file you downloaded.
+   [tar.gz]:
+   $ tar -zxvf ezauthorize-1_4_0.tar.gz
+   [zip]:
+   $ unzip ezauthorize-1_4_0.tar.zip
+
+3. We must now enable the extension in eZ publish.
+
+   To do this edit site.ini.append(.php) in the folder
+   root_of_ezpublish/settings. If this file does not exist;
+   create it. Locate (or add) the block
+
+   [ExtensionSettings] and add the line:
+   ActiveExtensions[]=ezauthorize
+
+   If you run several sites using only one distribution
+   and only some of the sites should use the extension,
+   make the changes in the override file of that siteaccess.
+
+   E.g root_of_ezpublish/settings/siteaccess/shop/site.ini.append(.php)
+   But instead of using ActiveExtensions you must add these lines instead:
+
+   [ExtensionSettings]
+   ActiveAccessExtensions[]=ezauthorize
+
+
+4. We must now configuration eZ Authorize
+
+   You will need to edit the ezauthorize.ini.append.php file and put
+   in your merchant id and transaction key. Alternately you may create
+   an override copy of this file.
+
+   If you run several sites using only one distribution
+   and only some of the sites should use the extension,
+   make the changes in the override file of that siteaccess.
+
+   E.g root_of_ezpublish/settings/siteaccess/shop/ezauthorize.ini.append(.php)
+   But you will need to edit these lines:
+
+   [eZAuthorizeSettings]
+   MerchantLogin=eZC_test042
+   TransactionKey=A42QrHBcRe7KrCkRXxX
+   TestMode=TRUE
+
+   Note:
+   ==============================
+   To switch eZ Authorize mode from test to live,
+   thus turning test mode off.
+
+   Open the file ezauthorize.ini.append(.php)
+   and switch "TestMode=TRUE" to "TestMode=FALSE".
+
+   Make sure you have the proper settings in your
+   Authorize.Net merchant login control panel.
+
+
+5. Workflow & Trigger Setup
+   ===========================
+   A) In the eZ publish admin, go to Setup -> Workflows
+      and click New Workflow Group.
+
+   B) Name the group something like "All Payment Gateways" and click OK.
+      The group will be added to the workflow groups.
+
+   C) Click on the group you have just created, and in the
+      Workflows box click the "New Workflow" button.
+
+      1) Name the workflow "Payment Workflow".
+
+      3) You will now see an Event select dropdown.
+         1) Select "Event / Payment Gateway"
+
+         2) Confirm you choice by clicking the "Add Event" button
+            just to the right of the select dropdown.
+
+      4) Enter a description "Authorize.Net Payment Gateway"
+
+      5) Select a type from the multi-select list.
+
+         If the extension has been properly installed,
+         you will see Authorize.Net in the new multi-select
+         box you are presented with.
+
+         You can choose, "All" or "Authorize.Net" from the multi-select
+         box to support one or many Payment Gatways.
+
+	 a) Selecting "All" will allow the customer to select a payment
+            method for themselves at checkout. This would allow the customer
+            to pay using either Paypal or Authorize.Net
+	 b) Selecting "Authorize.Net" will allow the customer to submit
+            credit card payment using Authorize.Net
+
+
+   G) Now click on the Triggers link in the left hand menu.
+
+      In the table "Workflow Triggers" you will see a list of available triggers.
+
+      On the line: shop, sheckout, before, (Workflow Drop Down)
+      "Click" the dropdown select the payment gateway event
+      you have just created.
+
+   H) After you have followed all these steps, the extension's
+      workflow settings should be activated, configured and functioning properly.
+
+
+6. Shop Checkout: Testing Workflow & Trigger Setup
+   ===========================
+   After completing the above setup you should login to eZ publish
+   add a product to your basket, proceed to checkout, enter your
+   account information and confirm your order.
+
+   Next, (depending on the Event Type selected in the worlkflow setup)
+   you should be presented with a form.
+
+   A) Either "Select gateway" (*) Paypal ( ) Authorize.Net
+   B) Or "Payment Information" (Authorize.Net) input form 
+      after selecting "Confirm" during the checkout process.
+
+   C) Alternately if you would like your customers to be able to choose their
+      method of payment, during step 5 you can select "All" instead of
+      Authorize.Net in the multi select box. This will give the customer the
+      choice of using paypal or authorize.net (or any other payment gateway you
+      choose to add) when they click "Confirm" during checkout.
+
+Usage
+==============================
+To switch test mode off, open up authorize.net.append.php
+and switch "TestMode=TRUE" to "TestMode=FALSE".
+
+Also make sure you have the proper settings in your
+Authorize.Net merchant login control panel.
+
+
+Troubleshooting
+===============
+
+1. Read the FAQ
+   ------------
+
+   Some problems are more common than others. The most common ones are listed
+   in the the FAQ.
+
+2. Support
+   -------
+
+   If you have find any problems not handled by this document or the FAQ you
+   can contact Brookins Consulting trough the support system:
+   http://brookinsconsulting.com/contact
+
