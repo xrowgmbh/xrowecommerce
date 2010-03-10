@@ -1,0 +1,5 @@
+Changes for 1.3.0
+
+- Added the setting eZ publish order status during payment authorization transaction, 
+- Renamed screenshot preview image (animated gif)
+- Updated text documentation

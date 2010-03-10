@@ -1,0 +1,33 @@
+eZ Authorize extension v1.4.0 FEATURES
+=================================================
+
+Security
+* Client IP Address and Blocking
+* True Security Number handling (CVV2/CVC2/CID).
+* Address Verification System
+* Transaction MD5 Hash Checking
+* Requires usage of SSL to transmit
+  payment information
+* AVS Support
+
+Functionality
+* Encrypted Payment Information Storage
+* Transparent Payment Transaction Processing
+* Sends eZ publish OrderID as Authorize.NET AIM API - Invoice ID
+* Sends eZ publish UserID as Authorize.NET AIM API - Customer ID
+* Sends eZ publish User Billing Address as Authorize.NET AIM API - Billing Address
+* Sends eZ publish User Shipping Address as Authorize.NET AIM API - Shipping Address
+
+
+Support
+=================================================
+
+There are still quite a lot of features we would
+like to add to eZ Authorize.
+
+A few users of eZ Authorize may require further
+extension of the default eZ publish store features.
+
+If you are interested in sponsoring the development
+of any of these features for your eZ publish web site,
+please contact info@brookinsconsulting.com

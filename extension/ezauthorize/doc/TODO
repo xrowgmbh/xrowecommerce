@@ -1,0 +1,44 @@
+eZ Authorize extension v1.4.0 TODO
+=================================================
+
+There are still quite a lot of features we would
+like to add to eZ Authorize.
+
+A few users of eZ Authorize may require further
+extension of the default eZ publish store features.
+
+If you are interested in sponsoring the development
+of any of these features for your eZ publish web site,
+please contact info@brookinsconsulting.com
+
+Additional client and server input form validation:
+* Client side form validation of required fields.
+* Client validation of card holder name.
+* Client validation of card type.
+* Client validation of card number.
+* Client validation of expiration date.
+
+* Server form validation of required fields.
+* Server validation of card holder name.
+* Server validation of card type.
+* Server validation of card number.
+* Server validation of expiration date.
+
+
+Additional features:
+* Internationalization of error message text and template language usage
+* Accounting software export / integration (Quickbooks or GNU Cash)
+* SSL ADJAX client support for true transparent payment
+  authorization without requiring a refresh of the end users page.
+* SSL+ACL+Static IP+MAC Address Checking for remote transfers of encrypted
+  payment information records to be downloaded in a standard file format
+  (xml) and stored in encrypted form within an encrypted disk requiring two
+  unique gpg/pgp keyring stored on a removable usb disk (key).
+
+
+Extend gateway api support:
+* eCheck.Net support
+* Wells Fargo SecureSource support
+
+Authorize.Net | Shopping Cart Certification (SCC)
+* http://authorize.net/solutions/partnersolutions/shoppingcartprogram/

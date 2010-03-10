@@ -1,0 +1,5 @@
+Changes for 1.1.0
+
+- Second public relase.
+- Updated support php 4.4.x and eZ publish 3.7 (or greater including 3.8+)
+- Removed deprecated call-time pass-by-reference(s)

@@ -1,0 +1,4 @@
+
+[ModuleSettings]
+ExtensionRepositories[]=ezauthorize
+
