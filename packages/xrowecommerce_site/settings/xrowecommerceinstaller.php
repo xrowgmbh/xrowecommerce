@@ -2932,17 +2932,10 @@ class xrowecommerceInstaller extends eZSiteInstaller
             'settings' => array( 
                 'JavaScriptSettings' => array( 
                     'JavaScriptList' => array( 
-                        'insertmedia.js', 
-                        '../lib/yui/2.7.0/build/yahoo-dom-event/yahoo-dom-event.js',
-                        '../lib/yui/2.7.0/build/calendar/calendar-min.js',
-                        '../lib/yui/2.7.0/build/yahoo/yahoo-min.js',
-                        '../lib/yui/3.0/build/yui/yui-min.js', 
-                        '../lib/yui/2.7.0/build/event/event-min.js',
-                        '../lib/yui/2.7.0/build/dom/dom-min.js', 
-                        '../lib/yui/2.7.0/build/container/container-min.js', 
+                        'ezjsc::yui3',
+                        'ezjsc::yui3io', 
+                        '../lib/yui/2.7.0/build/yahoo-dom-event/yahoo-dom-event.js', 
                         '../lib/yui/2.7.0/build/calendar/calendar-min.js', 
-                        '../lib/yui/2.7.0/build/dragdrop/dragdrop-min.js', 
-                        '../lib/yui/2.7.0/build/logger/logger-min.js', 
                         'ezdatepicker.js',
                         'xrowecommerce.js', 
                         'xrowproductvariation.js'
