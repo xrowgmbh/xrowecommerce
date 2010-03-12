@@ -483,8 +483,8 @@ div.shop-payment div.buttonblock
 
 div.shopping_cart_path
 {
-	background: #DAEAED url(images/th_bg.jpg) left center repeat-x;
-	color: #342E15;
+	background: #DAEAED url(../images/th_bg.jpg) left center repeat-x;
+	color: #8F8F8F;
 	font-weight: bold;
 	text-align: left;
 	white-space: nowrap;
@@ -503,7 +503,7 @@ div.shopping_cart_path div
 div.shopping_cart_path_select
 {
 	float: left;
-	color: #D03030;
+	color: #000;
 }
 div.buttonblock, div.linkbuttonblock
 {
@@ -697,7 +697,8 @@ div.productwrapper input.right-arrow
 div.shop #checkout-button, div.shop #checkout-button-2
 {
 	float: right;
-	border-color: #D03030;
+	border-color: #F5AE55;
+	background: url(../images/button_orange_bg.jpg) #F08908;
 }
 
 div.billing,
