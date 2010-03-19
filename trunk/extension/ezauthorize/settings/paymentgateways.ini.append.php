@@ -1,3 +1,2 @@
 [GatewaysSettings]
-AvailableGateways[]=ezauthorize
-GatewaysDirectories[]=extension/ezauthorize/classes
+AvailableGateways[]=eZAuthorize
