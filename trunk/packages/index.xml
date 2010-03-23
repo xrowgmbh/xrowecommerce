@@ -21,7 +21,9 @@
 	  <require name="ezwebin_classes" min-version="1.5" url="http://packages.xrow.com/xrowecommerce/latest/ezwebin_classes.ezpkg"/>
 	  <require name="xrowecommerce_classes" min-version="1.1" url="http://packages.xrow.com/xrowecommerce/latest/xrowecommerce_classes.ezpkg"/>
 	  <require name="xrowecommerce_content" min-version="1.1" url="http://packages.xrow.com/xrowecommerce/latest/xrowecommerce_content.ezpkg"/>
+	  <require name="ezwebin_design_cleangrey" min-version="1.5" url="http://packages.xrow.com/xrowecommerce/latest/ezwebin_design_cleangrey.ezpkg"/>
 	  <require name="ezwebin_design_blue" min-version="1.5" url="http://packages.xrow.com/xrowecommerce/latest/ezwebin_design_blue.ezpkg"/>
+	  <require name="ezwebin_design_grey" min-version="1.5" url="http://packages.xrow.com/xrowecommerce/latest/ezwebin_design_grey.ezpkg"/>
     </requires>
   </package>
 </packages>
