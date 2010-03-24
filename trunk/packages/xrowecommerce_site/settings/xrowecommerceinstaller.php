@@ -1,4 +1,5 @@
 <?php
+
 //
 // Created on: <13-Nov-2006 15:00:00 dl>
 //
@@ -25,6 +26,7 @@
 //
 // ## END COPYRIGHT, LICENSE AND WARRANTY NOTICE ##
 //
+
 
 class xrowecommerceInstaller extends eZSiteInstaller
 {
@@ -84,19 +86,23 @@ class xrowecommerceInstaller extends eZSiteInstaller
         $this->addSetting( 'guest_accounts_id', eZSiteInstaller::getParam( $parameters, 'object_remote_map/5f7f0bdb3381d6a461d8c29ff53d908f', '' ) );
         $this->addSetting( 'anonymous_accounts_id', eZSiteInstaller::getParam( $parameters, 'object_remote_map/15b256dbea2ae72418ff5facc999e8f9', '' ) );
         $this->addSetting( 'package_object', eZSiteInstaller::getParam( $parameters, 'package_object', false ) );
-        $this->addSetting( 'design_list', array( 'xrowecommerce', 'ezwebin', 'base' ) );
+        $this->addSetting( 'design_list', array( 
+            'xrowecommerce' , 
+            'ezwebin' , 
+            'base' 
+        ) );
         $this->addSetting( 'main_site_design', strtolower( 'xrowecommerce' ) );
         $this->addSetting( 'extension_list', array( 
-            'ezjscore', 
-            'ezstarrating', 
-            'ezgmaplocation', 
-            'ezoe',
-            'ezwebin',
-            'ezwt', 
-            'xrowecommerce'
+            'ezjscore' , 
+            'ezstarrating' , 
+            'ezgmaplocation' , 
+            'ezoe' , 
+            'ezwebin' , 
+            'ezwt' , 
+            'xrowecommerce' 
         ) );
         $this->addSetting( 'version', $this->solutionVersion() );
-        $this->addSetting( 'locales', eZSiteInstaller::getParam( $parameters, 'all_language_codes', array() ) );
+        $this->addSetting( 'locales', $_POST['P_regional_info-languages'] );
         // usual user siteaccess like 'ezwebin_site'
         $this->addSetting( 'user_siteaccess', eZSiteInstaller::getParam( $parameters, 'user_siteaccess', '' ) );
         // usual admin siteaccess like 'ezwebin_site_admin'
@@ -117,28 +123,28 @@ class xrowecommerceInstaller extends eZSiteInstaller
             'admin' => $this->createSiteaccessUrls( array( 
                 'siteaccess_list' => array( 
                     $this->setting( 'admin_siteaccess' ) 
-                ), 
-                'access_type' => $this->setting( 'access_type' ), 
-                'access_type_value' => $this->setting( 'admin_access_type_value' ), 
-                'host' => $this->setting( 'host' ), 
+                ) , 
+                'access_type' => $this->setting( 'access_type' ) , 
+                'access_type_value' => $this->setting( 'admin_access_type_value' ) , 
+                'host' => $this->setting( 'host' ) , 
                 'host_prepend_siteaccess' => false 
-            ) ), 
+            ) ) , 
             'user' => $this->createSiteaccessUrls( array( 
                 'siteaccess_list' => array( 
                     $this->setting( 'user_siteaccess' ) 
-                ), 
-                'access_type' => $this->setting( 'access_type' ), 
-                'access_type_value' => $this->setting( 'access_type_value' ), 
-                'host' => $this->setting( 'host' ), 
+                ) , 
+                'access_type' => $this->setting( 'access_type' ) , 
+                'access_type_value' => $this->setting( 'access_type_value' ) , 
+                'host' => $this->setting( 'host' ) , 
                 'host_prepend_siteaccess' => false 
-            ) ), 
+            ) ) , 
             'translation' => $this->createSiteaccessUrls( array( 
-                'siteaccess_list' => $this->setting( 'language_based_siteaccess_list' ), 
-                'access_type' => $this->setting( 'access_type' ), 
-                'access_type_value' => $this->setting( 'access_type_value' ) + 1,  // 'access_type_value' is for 'ezwein_site_user', so take next port number.
-                'host' => $this->setting( 'host' ), 
+                'siteaccess_list' => $this->setting( 'language_based_siteaccess_list' ) , 
+                'access_type' => $this->setting( 'access_type' ) , 
+                'access_type_value' => $this->setting( 'access_type_value' ) + 1 ,  // 'access_type_value' is for 'ezwein_site_user', so take next port number.
+                'host' => $this->setting( 'host' ) , 
                 'exclude_port_list' => array( 
-                    $this->setting( 'admin_access_type_value' ), 
+                    $this->setting( 'admin_access_type_value' ) , 
                     $this->setting( 'access_type_value' ) 
                 ) 
             ) ) 
@@ -152,645 +158,645 @@ class xrowecommerceInstaller extends eZSiteInstaller
     {
         $postInstallSteps = array( 
             array( 
-                '_function' => 'dbBegin', 
+                '_function' => 'dbBegin' , 
                 '_params' => array() 
-            ), 
+            ) , 
             array( 
-                '_function' => 'setVersion', 
+                '_function' => 'setVersion' , 
                 '_params' => array() 
-            ), 
+            ) , 
             array( 
-                '_function' => 'postInstallAdminSiteaccessINIUpdate', 
+                '_function' => 'postInstallAdminSiteaccessINIUpdate' , 
                 '_params' => array() 
-            ), 
+            ) , 
             array( 
-                '_function' => 'postInstallUserSiteaccessINIUpdate', 
+                '_function' => 'postInstallUserSiteaccessINIUpdate' , 
                 '_params' => array() 
-            ), 
+            ) , 
             array( 
-                '_function' => 'createTranslationSiteAccesses', 
+                '_function' => 'createTranslationSiteAccesses' , 
                 '_params' => array() 
-            ), 
+            ) , 
             array( 
-                '_function' => 'updateTemplateLookClassAttributes', 
+                '_function' => 'updateTemplateLookClassAttributes' , 
                 '_params' => array() 
-            ), 
+            ) , 
             array( 
-                '_function' => 'updateTemplateLookObjectAttributes', 
+                '_function' => 'updateTemplateLookObjectAttributes' , 
                 '_params' => array() 
-            ),
+            ) , 
             array( 
-                '_function' => 'swapNodes', 
+                '_function' => 'swapNodes' , 
                 '_params' => array( 
                     'src_node' => array( 
                         'name' => "eZ Publish" 
-                    ), 
+                    ) , 
                     'dst_node' => array( 
                         'name' => "Shop" 
                     ) 
                 ) 
-            ),
+            ) , 
             array( 
-                '_function' => 'removeContentObject', 
+                '_function' => 'removeContentObject' , 
                 '_params' => array( 
                     'name' => 'eZ Publish' 
-                )
-            ),
+                ) 
+            ) , 
             array( 
-                '_function' => 'removeClassAttribute', 
+                '_function' => 'removeClassAttribute' , 
                 '_params' => array( 
-                    'class_id' => $this->setting( 'template_look_class_id' ), 
+                    'class_id' => $this->setting( 'template_look_class_id' ) , 
                     'attribute_identifier' => 'id' 
                 ) 
-            ), 
+            ) , 
             array( 
-                '_function' => 'updateObjectAttributeFromString', 
+                '_function' => 'updateObjectAttributeFromString' , 
                 '_params' => array( 
-                    'object_id' => $this->setting( 'template_look_object_id' ), 
-                    'class_attribute_identifier' => 'image', 
+                    'object_id' => $this->setting( 'template_look_object_id' ) , 
+                    'class_attribute_identifier' => 'image' , 
                     'string' => array( 
-                        '_function' => 'packageFileItemPath', 
+                        '_function' => 'packageFileItemPath' , 
                         '_params' => array( 
-                            'collection' => 'default', 
+                            'collection' => 'default' , 
                             'file_item' => array( 
-                                'type' => 'image', 
+                                'type' => 'image' , 
                                 'name' => 'logo.png' 
                             ) 
                         ) 
                     ) 
                 ) 
-            ), 
+            ) , 
             array( 
-                '_function' => 'updateObjectAttributeFromString', 
+                '_function' => 'updateObjectAttributeFromString' , 
                 '_params' => array( 
-                    'object_id' => $this->setting( 'template_look_object_id' ), 
-                    'class_attribute_identifier' => 'sitestyle', 
+                    'object_id' => $this->setting( 'template_look_object_id' ) , 
+                    'class_attribute_identifier' => 'sitestyle' , 
                     'string' => 'ezwebin_design_blue' 
                 ) 
-            ), 
+            ) , 
             array( 
-                '_function' => 'createContentSection', 
+                '_function' => 'createContentSection' , 
                 '_params' => array( 
-                    'name' => 'Restricted', 
+                    'name' => 'Restricted' , 
                     'navigation_part_identifier' => 'ezcontentnavigationpart' 
                 ) 
-            ), 
+            ) , 
             array( 
-                '_function' => 'addPoliciesForRole', 
+                '_function' => 'addPoliciesForRole' , 
                 '_params' => array( 
-                    'role_name' => 'Anonymous', 
+                    'role_name' => 'Anonymous' , 
                     'policies' => array( 
                         array( 
-                            'module' => 'content', 
-                            'function' => 'read', 
+                            'module' => 'content' , 
+                            'function' => 'read' , 
                             'limitation' => array( 
                                 'Class' => array( 
                                     array( 
-                                        '_function' => 'classIDbyIdentifier', 
+                                        '_function' => 'classIDbyIdentifier' , 
                                         '_params' => array( 
                                             'identifier' => 'image' 
                                         ) 
-                                    ), 
+                                    ) , 
                                     array( 
-                                        '_function' => 'classIDbyIdentifier', 
+                                        '_function' => 'classIDbyIdentifier' , 
                                         '_params' => array( 
                                             'identifier' => 'banner' 
                                         ) 
-                                    ), 
+                                    ) , 
                                     array( 
-                                        '_function' => 'classIDbyIdentifier', 
+                                        '_function' => 'classIDbyIdentifier' , 
                                         '_params' => array( 
                                             'identifier' => 'flash' 
                                         ) 
-                                    ), 
+                                    ) , 
                                     array( 
-                                        '_function' => 'classIDbyIdentifier', 
+                                        '_function' => 'classIDbyIdentifier' , 
                                         '_params' => array( 
                                             'identifier' => 'real_video' 
                                         ) 
-                                    ), 
+                                    ) , 
                                     array( 
-                                        '_function' => 'classIDbyIdentifier', 
+                                        '_function' => 'classIDbyIdentifier' , 
                                         '_params' => array( 
                                             'identifier' => 'windows_media' 
                                         ) 
-                                    ), 
+                                    ) , 
                                     array( 
-                                        '_function' => 'classIDbyIdentifier', 
+                                        '_function' => 'classIDbyIdentifier' , 
                                         '_params' => array( 
                                             'identifier' => 'quicktime' 
                                         ) 
                                     ) 
-                                ), 
+                                ) , 
                                 'Section' => array( 
-                                    '_function' => 'sectionIDbyName', 
+                                    '_function' => 'sectionIDbyName' , 
                                     '_params' => array( 
                                         'section_name' => 'Media' 
                                     ) 
                                 ) 
                             ) 
-                        ),
+                        ) , 
                         array( 
-                            'module' => 'shop', 
+                            'module' => 'shop' , 
                             'function' => 'buy' 
-                        ), 
+                        ) , 
                         array( 
-                            'module' => 'xrowecommerce', 
+                            'module' => 'xrowecommerce' , 
                             'function' => 'buy' 
                         ) 
                     ) 
                 ) 
-            ), 
+            ) , 
             array( 
-                '_function' => 'removePoliciesForRole', 
+                '_function' => 'removePoliciesForRole' , 
                 '_params' => array( 
-                    'role_name' => 'Editor', 
+                    'role_name' => 'Editor' , 
                     'policies' => array( 
                         array( 
-                            'module' => 'content', 
+                            'module' => 'content' , 
                             'function' => '*' 
                         ) 
                     ) 
                 ) 
-            ), 
+            ) , 
             array( 
-                '_function' => 'addPoliciesForRole', 
+                '_function' => 'addPoliciesForRole' , 
                 '_params' => array( 
-                    'role_name' => 'Editor', 
+                    'role_name' => 'Editor' , 
                     'policies' => array( 
                         array( 
-                            'module' => 'content', 
-                            'function' => 'create', 
+                            'module' => 'content' , 
+                            'function' => 'create' , 
                             'limitation' => array( 
                                 'Class' => array( 
                                     array( 
-                                        '_function' => 'classIDbyIdentifier', 
+                                        '_function' => 'classIDbyIdentifier' , 
                                         '_params' => array( 
                                             'identifier' => 'folder' 
                                         ) 
-                                    ), 
+                                    ) , 
                                     array( 
-                                        '_function' => 'classIDbyIdentifier', 
+                                        '_function' => 'classIDbyIdentifier' , 
                                         '_params' => array( 
                                             'identifier' => 'link' 
                                         ) 
-                                    ), 
+                                    ) , 
                                     array( 
-                                        '_function' => 'classIDbyIdentifier', 
+                                        '_function' => 'classIDbyIdentifier' , 
                                         '_params' => array( 
                                             'identifier' => 'file' 
                                         ) 
-                                    ), 
+                                    ) , 
                                     array( 
-                                        '_function' => 'classIDbyIdentifier', 
+                                        '_function' => 'classIDbyIdentifier' , 
                                         '_params' => array( 
                                             'identifier' => 'product' 
                                         ) 
-                                    ), 
+                                    ) , 
                                     array( 
-                                        '_function' => 'classIDbyIdentifier', 
+                                        '_function' => 'classIDbyIdentifier' , 
                                         '_params' => array( 
                                             'identifier' => 'feedback_form' 
                                         ) 
-                                    ), 
+                                    ) , 
                                     array( 
-                                        '_function' => 'classIDbyIdentifier', 
+                                        '_function' => 'classIDbyIdentifier' , 
                                         '_params' => array( 
                                             'identifier' => 'frontpage' 
                                         ) 
-                                    ), 
+                                    ) , 
                                     array( 
-                                        '_function' => 'classIDbyIdentifier', 
+                                        '_function' => 'classIDbyIdentifier' , 
                                         '_params' => array( 
                                             'identifier' => 'article' 
                                         ) 
-                                    ), 
+                                    ) , 
                                     array( 
-                                        '_function' => 'classIDbyIdentifier', 
+                                        '_function' => 'classIDbyIdentifier' , 
                                         '_params' => array( 
                                             'identifier' => 'article_mainpage' 
                                         ) 
-                                    ), 
+                                    ) , 
                                     array( 
-                                        '_function' => 'classIDbyIdentifier', 
+                                        '_function' => 'classIDbyIdentifier' , 
                                         '_params' => array( 
                                             'identifier' => 'article_subpage' 
                                         ) 
-                                    ), 
+                                    ) , 
                                     array( 
-                                        '_function' => 'classIDbyIdentifier', 
+                                        '_function' => 'classIDbyIdentifier' , 
                                         '_params' => array( 
                                             'identifier' => 'blog' 
                                         ) 
-                                    ), 
+                                    ) , 
                                     array( 
-                                        '_function' => 'classIDbyIdentifier', 
+                                        '_function' => 'classIDbyIdentifier' , 
                                         '_params' => array( 
                                             'identifier' => 'poll' 
                                         ) 
-                                    ), 
+                                    ) , 
                                     array( 
-                                        '_function' => 'classIDbyIdentifier', 
+                                        '_function' => 'classIDbyIdentifier' , 
                                         '_params' => array( 
                                             'identifier' => 'multicalendar' 
                                         ) 
-                                    ), 
+                                    ) , 
                                     array( 
-                                        '_function' => 'classIDbyIdentifier', 
+                                        '_function' => 'classIDbyIdentifier' , 
                                         '_params' => array( 
                                             'identifier' => 'documentation_page' 
                                         ) 
-                                    ), 
+                                    ) , 
                                     array( 
-                                        '_function' => 'classIDbyIdentifier', 
+                                        '_function' => 'classIDbyIdentifier' , 
                                         '_params' => array( 
                                             'identifier' => 'infobox' 
                                         ) 
-                                    ), 
+                                    ) , 
                                     array( 
-                                        '_function' => 'classIDbyIdentifier', 
+                                        '_function' => 'classIDbyIdentifier' , 
                                         '_params' => array( 
                                             'identifier' => 'flash' 
                                         ) 
-                                    ), 
+                                    ) , 
                                     array( 
-                                        '_function' => 'classIDbyIdentifier', 
+                                        '_function' => 'classIDbyIdentifier' , 
                                         '_params' => array( 
                                             'identifier' => 'quicktime' 
                                         ) 
-                                    ), 
+                                    ) , 
                                     array( 
-                                        '_function' => 'classIDbyIdentifier', 
+                                        '_function' => 'classIDbyIdentifier' , 
                                         '_params' => array( 
                                             'identifier' => 'windows_media' 
                                         ) 
-                                    ), 
+                                    ) , 
                                     array( 
-                                        '_function' => 'classIDbyIdentifier', 
+                                        '_function' => 'classIDbyIdentifier' , 
                                         '_params' => array( 
                                             'identifier' => 'real_video' 
                                         ) 
-                                    ), 
+                                    ) , 
                                     array( 
-                                        '_function' => 'classIDbyIdentifier', 
+                                        '_function' => 'classIDbyIdentifier' , 
                                         '_params' => array( 
                                             'identifier' => 'gallery' 
                                         ) 
-                                    ), 
+                                    ) , 
                                     array( 
-                                        '_function' => 'classIDbyIdentifier', 
+                                        '_function' => 'classIDbyIdentifier' , 
                                         '_params' => array( 
                                             'identifier' => 'forum' 
                                         ) 
-                                    ), 
+                                    ) , 
                                     array( 
-                                        '_function' => 'classIDbyIdentifier', 
+                                        '_function' => 'classIDbyIdentifier' , 
                                         '_params' => array( 
                                             'identifier' => 'forums' 
                                         ) 
-                                    ), 
+                                    ) , 
                                     array( 
-                                        '_function' => 'classIDbyIdentifier', 
+                                        '_function' => 'classIDbyIdentifier' , 
                                         '_params' => array( 
                                             'identifier' => 'event_calendar' 
                                         ) 
-                                    ), 
+                                    ) , 
                                     array( 
-                                        '_function' => 'classIDbyIdentifier', 
+                                        '_function' => 'classIDbyIdentifier' , 
                                         '_params' => array( 
                                             'identifier' => 'banner' 
                                         ) 
-                                    ), 
+                                    ) , 
                                     array( 
-                                        '_function' => 'classIDbyIdentifier', 
+                                        '_function' => 'classIDbyIdentifier' , 
                                         '_params' => array( 
                                             'identifier' => 'image' 
                                         ) 
                                     ) 
-                                ), 
+                                ) , 
                                 'ParentClass' => array( 
-                                    '_function' => 'classIDbyIdentifier', 
+                                    '_function' => 'classIDbyIdentifier' , 
                                     '_params' => array( 
                                         'identifier' => 'folder' 
                                     ) 
                                 ) 
                             ) 
-                        ), 
+                        ) , 
                         array( 
-                            'module' => 'content', 
-                            'function' => 'create', 
+                            'module' => 'content' , 
+                            'function' => 'create' , 
                             'limitation' => array( 
                                 'Class' => array( 
-                                    '_function' => 'classIDbyIdentifier', 
+                                    '_function' => 'classIDbyIdentifier' , 
                                     '_params' => array( 
                                         'identifier' => 'blog_post' 
                                     ) 
-                                ), 
+                                ) , 
                                 'ParentClass' => array( 
-                                    '_function' => 'classIDbyIdentifier', 
+                                    '_function' => 'classIDbyIdentifier' , 
                                     '_params' => array( 
                                         'identifier' => 'blog' 
                                     ) 
                                 ) 
                             ) 
-                        ), 
+                        ) , 
                         array( 
-                            'module' => 'content', 
-                            'function' => 'create', 
+                            'module' => 'content' , 
+                            'function' => 'create' , 
                             'limitation' => array( 
                                 'Class' => array( 
-                                    '_function' => 'classIDbyIdentifier', 
+                                    '_function' => 'classIDbyIdentifier' , 
                                     '_params' => array( 
                                         'identifier' => 'forum_topic' 
                                     ) 
-                                ), 
+                                ) , 
                                 'ParentClass' => array( 
-                                    '_function' => 'classIDbyIdentifier', 
+                                    '_function' => 'classIDbyIdentifier' , 
                                     '_params' => array( 
                                         'identifier' => 'forum' 
                                     ) 
                                 ) 
                             ) 
-                        ), 
+                        ) , 
                         array( 
-                            'module' => 'content', 
-                            'function' => 'create', 
+                            'module' => 'content' , 
+                            'function' => 'create' , 
                             'limitation' => array( 
                                 'Class' => array( 
-                                    '_function' => 'classIDbyIdentifier', 
+                                    '_function' => 'classIDbyIdentifier' , 
                                     '_params' => array( 
                                         'identifier' => 'event' 
                                     ) 
-                                ), 
+                                ) , 
                                 'ParentClass' => array( 
-                                    '_function' => 'classIDbyIdentifier', 
+                                    '_function' => 'classIDbyIdentifier' , 
                                     '_params' => array( 
                                         'identifier' => 'event_calendar' 
                                     ) 
                                 ) 
                             ) 
-                        ), 
+                        ) , 
                         array( 
-                            'module' => 'content', 
-                            'function' => 'create', 
+                            'module' => 'content' , 
+                            'function' => 'create' , 
                             'limitation' => array( 
                                 'Class' => array( 
-                                    '_function' => 'classIDbyIdentifier', 
+                                    '_function' => 'classIDbyIdentifier' , 
                                     '_params' => array( 
                                         'identifier' => 'image' 
                                     ) 
-                                ), 
+                                ) , 
                                 'ParentClass' => array( 
-                                    '_function' => 'classIDbyIdentifier', 
+                                    '_function' => 'classIDbyIdentifier' , 
                                     '_params' => array( 
                                         'identifier' => 'gallery' 
                                     ) 
                                 ) 
                             ) 
-                        ), 
+                        ) , 
                         array( 
-                            'module' => 'content', 
-                            'function' => 'create', 
+                            'module' => 'content' , 
+                            'function' => 'create' , 
                             'limitation' => array( 
                                 'Class' => array( 
                                     array( 
-                                        '_function' => 'classIDbyIdentifier', 
+                                        '_function' => 'classIDbyIdentifier' , 
                                         '_params' => array( 
                                             'identifier' => 'folder' 
                                         ) 
-                                    ), 
+                                    ) , 
                                     array( 
-                                        '_function' => 'classIDbyIdentifier', 
+                                        '_function' => 'classIDbyIdentifier' , 
                                         '_params' => array( 
                                             'identifier' => 'link' 
                                         ) 
-                                    ), 
+                                    ) , 
                                     array( 
-                                        '_function' => 'classIDbyIdentifier', 
+                                        '_function' => 'classIDbyIdentifier' , 
                                         '_params' => array( 
                                             'identifier' => 'feedback_form' 
                                         ) 
-                                    ), 
+                                    ) , 
                                     array( 
-                                        '_function' => 'classIDbyIdentifier', 
+                                        '_function' => 'classIDbyIdentifier' , 
                                         '_params' => array( 
                                             'identifier' => 'frontpage' 
                                         ) 
-                                    ), 
+                                    ) , 
                                     array( 
-                                        '_function' => 'classIDbyIdentifier', 
+                                        '_function' => 'classIDbyIdentifier' , 
                                         '_params' => array( 
                                             'identifier' => 'documentation_page' 
                                         ) 
-                                    ), 
+                                    ) , 
                                     array( 
-                                        '_function' => 'classIDbyIdentifier', 
+                                        '_function' => 'classIDbyIdentifier' , 
                                         '_params' => array( 
                                             'identifier' => 'gallery' 
                                         ) 
-                                    ), 
+                                    ) , 
                                     array( 
-                                        '_function' => 'classIDbyIdentifier', 
+                                        '_function' => 'classIDbyIdentifier' , 
                                         '_params' => array( 
                                             'identifier' => 'event_calendar' 
                                         ) 
-                                    ), 
+                                    ) , 
                                     array( 
-                                        '_function' => 'classIDbyIdentifier', 
+                                        '_function' => 'classIDbyIdentifier' , 
                                         '_params' => array( 
                                             'identifier' => 'multicalendar' 
                                         ) 
-                                    ), 
+                                    ) , 
                                     array( 
-                                        '_function' => 'classIDbyIdentifier', 
+                                        '_function' => 'classIDbyIdentifier' , 
                                         '_params' => array( 
                                             'identifier' => 'forums' 
                                         ) 
                                     ) 
-                                ), 
+                                ) , 
                                 'ParentClass' => array( 
-                                    '_function' => 'classIDbyIdentifier', 
+                                    '_function' => 'classIDbyIdentifier' , 
                                     '_params' => array( 
                                         'identifier' => 'frontpage' 
                                     ) 
                                 ) 
                             ) 
-                        ), 
+                        ) , 
                         array( 
-                            'module' => 'websitetoolbar', 
-                            'function' => 'use', 
+                            'module' => 'websitetoolbar' , 
+                            'function' => 'use' , 
                             'limitation' => array( 
                                 'Class' => array( 
                                     array( 
-                                        '_function' => 'classIDbyIdentifier', 
+                                        '_function' => 'classIDbyIdentifier' , 
                                         '_params' => array( 
                                             'identifier' => 'folder' 
                                         ) 
-                                    ), 
+                                    ) , 
                                     array( 
-                                        '_function' => 'classIDbyIdentifier', 
+                                        '_function' => 'classIDbyIdentifier' , 
                                         '_params' => array( 
                                             'identifier' => 'link' 
                                         ) 
-                                    ), 
+                                    ) , 
                                     array( 
-                                        '_function' => 'classIDbyIdentifier', 
+                                        '_function' => 'classIDbyIdentifier' , 
                                         '_params' => array( 
                                             'identifier' => 'article' 
                                         ) 
-                                    ), 
+                                    ) , 
                                     array( 
-                                        '_function' => 'classIDbyIdentifier', 
+                                        '_function' => 'classIDbyIdentifier' , 
                                         '_params' => array( 
                                             'identifier' => 'article_mainpage' 
                                         ) 
-                                    ), 
+                                    ) , 
                                     array( 
-                                        '_function' => 'classIDbyIdentifier', 
+                                        '_function' => 'classIDbyIdentifier' , 
                                         '_params' => array( 
                                             'identifier' => 'article_subpage' 
                                         ) 
-                                    ), 
+                                    ) , 
                                     array( 
-                                        '_function' => 'classIDbyIdentifier', 
+                                        '_function' => 'classIDbyIdentifier' , 
                                         '_params' => array( 
                                             'identifier' => 'blog' 
                                         ) 
-                                    ), 
+                                    ) , 
                                     array( 
-                                        '_function' => 'classIDbyIdentifier', 
+                                        '_function' => 'classIDbyIdentifier' , 
                                         '_params' => array( 
                                             'identifier' => 'blog_post' 
                                         ) 
-                                    ), 
+                                    ) , 
                                     array( 
-                                        '_function' => 'classIDbyIdentifier', 
+                                        '_function' => 'classIDbyIdentifier' , 
                                         '_params' => array( 
                                             'identifier' => 'product' 
                                         ) 
-                                    ), 
+                                    ) , 
                                     array( 
-                                        '_function' => 'classIDbyIdentifier', 
+                                        '_function' => 'classIDbyIdentifier' , 
                                         '_params' => array( 
                                             'identifier' => 'feedback_form' 
                                         ) 
-                                    ), 
+                                    ) , 
                                     array( 
-                                        '_function' => 'classIDbyIdentifier', 
+                                        '_function' => 'classIDbyIdentifier' , 
                                         '_params' => array( 
                                             'identifier' => 'frontpage' 
                                         ) 
-                                    ), 
+                                    ) , 
                                     array( 
-                                        '_function' => 'classIDbyIdentifier', 
+                                        '_function' => 'classIDbyIdentifier' , 
                                         '_params' => array( 
                                             'identifier' => 'documentation_page' 
                                         ) 
-                                    ), 
+                                    ) , 
                                     array( 
-                                        '_function' => 'classIDbyIdentifier', 
+                                        '_function' => 'classIDbyIdentifier' , 
                                         '_params' => array( 
                                             'identifier' => 'multicalendar' 
                                         ) 
-                                    ), 
+                                    ) , 
                                     array( 
-                                        '_function' => 'classIDbyIdentifier', 
+                                        '_function' => 'classIDbyIdentifier' , 
                                         '_params' => array( 
                                             'identifier' => 'poll' 
                                         ) 
-                                    ), 
+                                    ) , 
                                     array( 
-                                        '_function' => 'classIDbyIdentifier', 
+                                        '_function' => 'classIDbyIdentifier' , 
                                         '_params' => array( 
                                             'identifier' => 'file' 
                                         ) 
-                                    ), 
+                                    ) , 
                                     array( 
-                                        '_function' => 'classIDbyIdentifier', 
+                                        '_function' => 'classIDbyIdentifier' , 
                                         '_params' => array( 
                                             'identifier' => 'flash' 
                                         ) 
-                                    ), 
+                                    ) , 
                                     array( 
-                                        '_function' => 'classIDbyIdentifier', 
+                                        '_function' => 'classIDbyIdentifier' , 
                                         '_params' => array( 
                                             'identifier' => 'image' 
                                         ) 
-                                    ), 
+                                    ) , 
                                     array( 
-                                        '_function' => 'classIDbyIdentifier', 
+                                        '_function' => 'classIDbyIdentifier' , 
                                         '_params' => array( 
                                             'identifier' => 'quicktime' 
                                         ) 
-                                    ), 
+                                    ) , 
                                     array( 
-                                        '_function' => 'classIDbyIdentifier', 
+                                        '_function' => 'classIDbyIdentifier' , 
                                         '_params' => array( 
                                             'identifier' => 'windows_media' 
                                         ) 
-                                    ), 
+                                    ) , 
                                     array( 
-                                        '_function' => 'classIDbyIdentifier', 
+                                        '_function' => 'classIDbyIdentifier' , 
                                         '_params' => array( 
                                             'identifier' => 'real_video' 
                                         ) 
-                                    ), 
+                                    ) , 
                                     array( 
-                                        '_function' => 'classIDbyIdentifier', 
+                                        '_function' => 'classIDbyIdentifier' , 
                                         '_params' => array( 
                                             'identifier' => 'gallery' 
                                         ) 
-                                    ), 
+                                    ) , 
                                     array( 
-                                        '_function' => 'classIDbyIdentifier', 
+                                        '_function' => 'classIDbyIdentifier' , 
                                         '_params' => array( 
                                             'identifier' => 'forum' 
                                         ) 
-                                    ), 
+                                    ) , 
                                     array( 
-                                        '_function' => 'classIDbyIdentifier', 
+                                        '_function' => 'classIDbyIdentifier' , 
                                         '_params' => array( 
                                             'identifier' => 'event' 
                                         ) 
-                                    ), 
+                                    ) , 
                                     array( 
-                                        '_function' => 'classIDbyIdentifier', 
+                                        '_function' => 'classIDbyIdentifier' , 
                                         '_params' => array( 
                                             'identifier' => 'event_calendar' 
                                         ) 
-                                    ), 
+                                    ) , 
                                     array( 
-                                        '_function' => 'classIDbyIdentifier', 
+                                        '_function' => 'classIDbyIdentifier' , 
                                         '_params' => array( 
                                             'identifier' => 'forums' 
                                         ) 
                                     ) 
                                 ) 
                             ) 
-                        ), 
+                        ) , 
                         array( 
-                            'module' => 'content', 
+                            'module' => 'content' , 
                             'function' => 'edit' 
-                        ), 
+                        ) , 
                         array( 
-                            'module' => 'content', 
-                            'function' => 'read', 
+                            'module' => 'content' , 
+                            'function' => 'read' , 
                             'limitation' => array( 
                                 'Section' => array( 
                                     array( 
-                                        '_function' => 'sectionIDbyName', 
+                                        '_function' => 'sectionIDbyName' , 
                                         '_params' => array( 
                                             'section_name' => 'Standard' 
                                         ) 
-                                    ), 
+                                    ) , 
                                     array( 
-                                        '_function' => 'sectionIDbyName', 
+                                        '_function' => 'sectionIDbyName' , 
                                         '_params' => array( 
                                             'section_name' => 'Restricted' 
                                         ) 
-                                    ), 
+                                    ) , 
                                     array( 
-                                        '_function' => 'sectionIDbyName', 
+                                        '_function' => 'sectionIDbyName' , 
                                         '_params' => array( 
                                             'section_name' => 'Media' 
                                         ) 
@@ -800,66 +806,66 @@ class xrowecommerceInstaller extends eZSiteInstaller
                         ) 
                     ) 
                 ) 
-            ), 
+            ) , 
             array( 
-                '_function' => 'addPoliciesForRole', 
+                '_function' => 'addPoliciesForRole' , 
                 '_params' => array( 
-                    'role_name' => 'Editor', 
+                    'role_name' => 'Editor' , 
                     'policies' => array( 
                         array( 
-                            'module' => 'notification', 
+                            'module' => 'notification' , 
                             'function' => 'use' 
-                        ), 
+                        ) , 
                         array( 
-                            'module' => 'content', 
+                            'module' => 'content' , 
                             'function' => 'manage_locations' 
-                        ), 
+                        ) , 
                         array( 
-                            'module' => 'ezodf', 
+                            'module' => 'ezodf' , 
                             'function' => '*' 
-                        ), 
+                        ) , 
                         array( 
-                            'module' => 'shop', 
+                            'module' => 'shop' , 
                             'function' => 'administrate' 
-                        ), 
+                        ) , 
                         array( 
-                            'module' => 'content', 
+                            'module' => 'content' , 
                             'function' => 'diff' 
-                        ), 
+                        ) , 
                         array( 
-                            'module' => 'content', 
+                            'module' => 'content' , 
                             'function' => 'versionread' 
-                        ), 
+                        ) , 
                         array( 
-                            'module' => 'content', 
+                            'module' => 'content' , 
                             'function' => 'versionremove' 
-                        ), 
+                        ) , 
                         array( 
-                            'module' => 'content', 
+                            'module' => 'content' , 
                             'function' => 'remove' 
-                        ), 
+                        ) , 
                         array( 
-                            'module' => 'content', 
+                            'module' => 'content' , 
                             'function' => 'translate' 
-                        ), 
+                        ) , 
                         array( 
-                            'module' => 'rss', 
+                            'module' => 'rss' , 
                             'function' => 'feed' 
-                        ), 
+                        ) , 
                         array( 
-                            'module' => 'content', 
+                            'module' => 'content' , 
                             'function' => 'pendinglist' 
                         ) 
                     ) 
                 ) 
-            ), 
+            ) , 
             array( 
-                '_function' => 'createContentObject', 
+                '_function' => 'createContentObject' , 
                 '_params' => array( 
-                    'class_identifier' => 'user_group', 
-                    'location' => 'users', 
+                    'class_identifier' => 'user_group' , 
+                    'location' => 'users' , 
                     'attributes' => array( 
-                        'name' => 'Partners', 
+                        'name' => 'Partners' , 
                         'description' => '' 
                     ) 
                 ) 
@@ -874,402 +880,408 @@ class xrowecommerceInstaller extends eZSiteInstaller
             ),
             */ 
             array( 
-                '_function' => 'addPoliciesForRole', 
+                '_function' => 'addPoliciesForRole' , 
                 '_params' => array( 
-                    'role_name' => 'Partner', 
+                    'role_name' => 'Partner' , 
                     'policies' => array( 
                         array( 
-                            'module' => 'content', 
-                            'function' => 'read', 
+                            'module' => 'content' , 
+                            'function' => 'read' , 
                             'limitation' => array( 
                                 'Section' => array( 
-                                    '_function' => 'sectionIDbyName', 
+                                    '_function' => 'sectionIDbyName' , 
                                     '_params' => array( 
                                         'section_name' => 'Restricted' 
                                     ) 
                                 ) 
                             ) 
-                        ), 
+                        ) , 
                         array( 
-                            'module' => 'content', 
-                            'function' => 'create', 
+                            'module' => 'content' , 
+                            'function' => 'create' , 
                             'limitation' => array( 
                                 'Class' => array( 
-                                    '_function' => 'classIDbyIdentifier', 
+                                    '_function' => 'classIDbyIdentifier' , 
                                     '_params' => array( 
                                         'identifier' => 'forum_topic' 
                                     ) 
-                                ), 
+                                ) , 
                                 'Section' => array( 
-                                    '_function' => 'sectionIDbyName', 
+                                    '_function' => 'sectionIDbyName' , 
                                     '_params' => array( 
                                         'section_name' => 'Restricted' 
                                     ) 
-                                ), 
+                                ) , 
                                 'ParentClass' => array( 
-                                    '_function' => 'classIDbyIdentifier', 
+                                    '_function' => 'classIDbyIdentifier' , 
                                     '_params' => array( 
                                         'identifier' => 'forum' 
                                     ) 
                                 ) 
                             ) 
-                        ), 
+                        ) , 
                         array( 
-                            'module' => 'content', 
-                            'function' => 'create', 
+                            'module' => 'content' , 
+                            'function' => 'create' , 
                             'limitation' => array( 
                                 'Class' => array( 
-                                    '_function' => 'classIDbyIdentifier', 
+                                    '_function' => 'classIDbyIdentifier' , 
                                     '_params' => array( 
                                         'identifier' => 'forum_reply' 
                                     ) 
-                                ), 
+                                ) , 
                                 'Section' => array( 
-                                    '_function' => 'sectionIDbyName', 
+                                    '_function' => 'sectionIDbyName' , 
                                     '_params' => array( 
                                         'section_name' => 'Restricted' 
                                     ) 
-                                ), 
+                                ) , 
                                 'ParentClass' => array( 
-                                    '_function' => 'classIDbyIdentifier', 
+                                    '_function' => 'classIDbyIdentifier' , 
                                     '_params' => array( 
                                         'identifier' => 'forum_topic' 
                                     ) 
                                 ) 
                             ) 
-                        ), 
+                        ) , 
                         array( 
-                            'module' => 'content', 
-                            'function' => 'create', 
+                            'module' => 'content' , 
+                            'function' => 'create' , 
                             'limitation' => array( 
                                 'Class' => array( 
-                                    '_function' => 'classIDbyIdentifier', 
+                                    '_function' => 'classIDbyIdentifier' , 
                                     '_params' => array( 
                                         'identifier' => 'comment' 
                                     ) 
-                                ), 
+                                ) , 
                                 'Section' => array( 
-                                    '_function' => 'sectionIDbyName', 
+                                    '_function' => 'sectionIDbyName' , 
                                     '_params' => array( 
                                         'section_name' => 'Restricted' 
                                     ) 
-                                ), 
+                                ) , 
                                 'ParentClass' => array( 
-                                    '_function' => 'classIDbyIdentifier', 
+                                    '_function' => 'classIDbyIdentifier' , 
                                     '_params' => array( 
                                         'identifier' => 'article' 
                                     ) 
                                 ) 
                             ) 
-                        ), 
+                        ) , 
                         array( 
-                            'module' => 'content', 
-                            'function' => 'edit', 
+                            'module' => 'content' , 
+                            'function' => 'edit' , 
                             'limitation' => array( 
                                 'Class' => array( 
                                     array( 
-                                        '_function' => 'classIDbyIdentifier', 
+                                        '_function' => 'classIDbyIdentifier' , 
                                         '_params' => array( 
                                             'identifier' => 'comment' 
                                         ) 
-                                    ), 
+                                    ) , 
                                     array( 
-                                        '_function' => 'classIDbyIdentifier', 
+                                        '_function' => 'classIDbyIdentifier' , 
                                         '_params' => array( 
                                             'identifier' => 'forum_topic' 
                                         ) 
-                                    ), 
+                                    ) , 
                                     array( 
-                                        '_function' => 'classIDbyIdentifier', 
+                                        '_function' => 'classIDbyIdentifier' , 
                                         '_params' => array( 
                                             'identifier' => 'forum_reply' 
                                         ) 
                                     ) 
-                                ), 
+                                ) , 
                                 'Section' => array( 
                                     array( 
-                                        '_function' => 'sectionIDbyName', 
+                                        '_function' => 'sectionIDbyName' , 
                                         '_params' => array( 
                                             'section_name' => 'Restricted' 
                                         ) 
                                     ) 
-                                ), 
+                                ) , 
                                 'Owner' => 1 
                             ) 
-                        ),  // self
+                        ) ,  // self
                         array( 
-                            'module' => 'user', 
+                            'module' => 'user' , 
                             'function' => 'selfedit' 
-                        ), 
+                        ) , 
                         array( 
-                            'module' => 'notification', 
+                            'module' => 'notification' , 
                             'function' => 'use' 
-                        ), 
+                        ) , 
                         array( 
-                            'module' => 'shop', 
+                            'module' => 'shop' , 
                             'function' => 'administrate' 
                         ) 
                     ) 
                 ) 
-            ), 
+            ) , 
             array( 
-                '_function' => 'renameContentObject', 
+                '_function' => 'renameContentObject' , 
                 '_params' => array( 
-                    'contentobject_id' => '11',  // 11 is id of "Guest accounts"
+                    'contentobject_id' => '11' ,  // 11 is id of "Guest accounts"
                     'name' => 'Members' 
                 ) 
-            ), 
+            ) , 
             array( 
-                '_function' => 'addPoliciesForRole', 
+                '_function' => 'addPoliciesForRole' , 
                 '_params' => array( 
-                    'role_name' => 'Member', 
+                    'role_name' => 'Member' , 
                     'policies' => array( 
                         array( 
-                            'module' => 'content', 
-                            'function' => 'create', 
+                            'module' => 'content' , 
+                            'function' => 'create' , 
                             'limitation' => array( 
                                 'Class' => array( 
-                                    '_function' => 'classIDbyIdentifier', 
+                                    '_function' => 'classIDbyIdentifier' , 
                                     '_params' => array( 
                                         'identifier' => 'forum_topic' 
                                     ) 
-                                ), 
+                                ) , 
                                 'Section' => array( 
-                                    '_function' => 'sectionIDbyName', 
+                                    '_function' => 'sectionIDbyName' , 
                                     '_params' => array( 
                                         'section_name' => 'Standard' 
                                     ) 
-                                ), 
+                                ) , 
                                 'ParentClass' => array( 
-                                    '_function' => 'classIDbyIdentifier', 
+                                    '_function' => 'classIDbyIdentifier' , 
                                     '_params' => array( 
                                         'identifier' => 'forum' 
                                     ) 
                                 ) 
                             ) 
-                        ), 
+                        ) , 
                         array( 
-                            'module' => 'content', 
-                            'function' => 'create', 
+                            'module' => 'content' , 
+                            'function' => 'create' , 
                             'limitation' => array( 
                                 'Class' => array( 
-                                    '_function' => 'classIDbyIdentifier', 
+                                    '_function' => 'classIDbyIdentifier' , 
                                     '_params' => array( 
                                         'identifier' => 'forum_reply' 
                                     ) 
-                                ), 
+                                ) , 
                                 'Section' => array( 
-                                    '_function' => 'sectionIDbyName', 
+                                    '_function' => 'sectionIDbyName' , 
                                     '_params' => array( 
                                         'section_name' => 'Standard' 
                                     ) 
-                                ), 
+                                ) , 
                                 'ParentClass' => array( 
-                                    '_function' => 'classIDbyIdentifier', 
+                                    '_function' => 'classIDbyIdentifier' , 
                                     '_params' => array( 
                                         'identifier' => 'forum_topic' 
                                     ) 
                                 ) 
                             ) 
-                        ), 
+                        ) , 
                         array( 
-                            'module' => 'content', 
-                            'function' => 'create', 
+                            'module' => 'content' , 
+                            'function' => 'create' , 
                             'limitation' => array( 
                                 'Class' => array( 
-                                    '_function' => 'classIDbyIdentifier', 
+                                    '_function' => 'classIDbyIdentifier' , 
                                     '_params' => array( 
                                         'identifier' => 'comment' 
                                     ) 
-                                ), 
+                                ) , 
                                 'Section' => array( 
-                                    '_function' => 'sectionIDbyName', 
+                                    '_function' => 'sectionIDbyName' , 
                                     '_params' => array( 
                                         'section_name' => 'Standard' 
                                     ) 
-                                ), 
+                                ) , 
                                 'ParentClass' => array( 
                                     array( 
-                                        '_function' => 'classIDbyIdentifier', 
+                                        '_function' => 'classIDbyIdentifier' , 
                                         '_params' => array( 
                                             'identifier' => 'article' 
                                         ) 
-                                    ), 
+                                    ) , 
                                     array( 
-                                        '_function' => 'classIDbyIdentifier', 
+                                        '_function' => 'classIDbyIdentifier' , 
                                         '_params' => array( 
                                             'identifier' => 'blog_post' 
                                         ) 
-                                    ), 
+                                    ) , 
                                     array( 
-                                        '_function' => 'classIDbyIdentifier', 
+                                        '_function' => 'classIDbyIdentifier' , 
                                         '_params' => array( 
                                             'identifier' => 'article_mainpage' 
                                         ) 
                                     ) 
                                 ) 
                             ) 
-                        ), 
+                        ) , 
                         array( 
-                            'module' => 'content', 
-                            'function' => 'edit', 
+                            'module' => 'content' , 
+                            'function' => 'edit' , 
                             'limitation' => array( 
                                 'Class' => array( 
                                     array( 
-                                        '_function' => 'classIDbyIdentifier', 
+                                        '_function' => 'classIDbyIdentifier' , 
                                         '_params' => array( 
                                             'identifier' => 'comment' 
                                         ) 
-                                    ), 
+                                    ) , 
                                     array( 
-                                        '_function' => 'classIDbyIdentifier', 
+                                        '_function' => 'classIDbyIdentifier' , 
                                         '_params' => array( 
                                             'identifier' => 'forum_topic' 
                                         ) 
-                                    ), 
+                                    ) , 
                                     array( 
-                                        '_function' => 'classIDbyIdentifier', 
+                                        '_function' => 'classIDbyIdentifier' , 
                                         '_params' => array( 
                                             'identifier' => 'forum_reply' 
                                         ) 
                                     ) 
-                                ), 
+                                ) , 
                                 'Section' => array( 
                                     array( 
-                                        '_function' => 'sectionIDbyName', 
+                                        '_function' => 'sectionIDbyName' , 
                                         '_params' => array( 
                                             'section_name' => 'Standard' 
                                         ) 
                                     ) 
-                                ), 
+                                ) , 
                                 'Owner' => 1 
                             ) 
-                        ),  // self
+                        ) ,  // self
                         array( 
-                            'module' => 'user', 
+                            'module' => 'user' , 
                             'function' => 'selfedit' 
-                        ), 
+                        ) , 
                         array( 
-                            'module' => 'notification', 
+                            'module' => 'notification' , 
                             'function' => 'use' 
-                        ), 
+                        ) , 
                         array( 
-                            'module' => 'user', 
+                            'module' => 'user' , 
                             'function' => 'password' 
-                        ), 
+                        ) , 
                         array( 
-                            'module' => 'ezjscore', 
+                            'module' => 'ezjscore' , 
                             'function' => 'call' 
-                        )
+                        ) 
                     ) 
                 ) 
-            ), 
+            ) , 
             array( 
-                '_function' => 'assignUserToRole', 
+                '_function' => 'assignUserToRole' , 
                 '_params' => array( 
-                    'location' => 'users/members', 
+                    'location' => 'users/members' , 
                     'role_name' => 'Member' 
                 ) 
-            ), 
+            ) , 
             array( 
-                '_function' => 'assignUserToRole', 
+                '_function' => 'assignUserToRole' , 
                 '_params' => array( 
-                    'location' => 'users/partners', 
+                    'location' => 'users/partners' , 
                     'role_name' => 'Partner' 
                 ) 
-            ), 
+            ) , 
             array( 
-                '_function' => 'assignUserToRole', 
+                '_function' => 'assignUserToRole' , 
                 '_params' => array( 
-                    'location' => 'users/partners', 
+                    'location' => 'users/partners' , 
                     'role_name' => 'Member' 
                 ) 
-            ), 
+            ) , 
             array( 
-                '_function' => 'assignUserToRole', 
+                '_function' => 'assignUserToRole' , 
                 '_params' => array( 
-                    'location' => 'users/partners', 
+                    'location' => 'users/partners' , 
                     'role_name' => 'Anonymous' 
                 ) 
-            ), 
+            ) , 
             array( 
-                '_function' => 'assignUserToRole', 
+                '_function' => 'assignUserToRole' , 
                 '_params' => array( 
-                    'location' => 'users/editors', 
+                    'location' => 'users/editors' , 
                     'role_name' => 'Member' 
                 ) 
-            ), 
+            ) , 
             array( 
-                '_function' => 'updateClassAttributes', 
+                '_function' => 'updateClassAttributes' , 
                 '_params' => array( 
                     'class' => array( 
                         'identifier' => 'folder' 
-                    ), 
+                    ) , 
                     'attributes' => array( 
                         array( 
-                            'identifier' => 'short_description', 
+                            'identifier' => 'short_description' , 
                             'new_name' => 'Summary' 
-                        ), 
+                        ) , 
                         array( 
-                            'identifier' => 'show_children', 
+                            'identifier' => 'show_children' , 
                             'new_name' => 'Display sub items' 
                         ) 
                     ) 
                 ) 
-            ), array( 
-                '_function' => 'hideNode', 
-                '_params' => array( 
-                    'node' => array( 'name' => 'Coupons' ) 
-                )
-            ),array( 
-                '_function' => 'setupWorkflows', 
-                '_params' => array( )
-            ),
+            ) , 
             array( 
-                '_function' => 'setupCurrencies', 
-                '_params' => array( )
-            ),
-            array( 
-                '_function' => 'setRSSExport', 
+                '_function' => 'hideNode' , 
                 '_params' => array( 
-                    'creator' => '14', 
-                    'access_url' => 'my_feed', 
-                    'main_node_only' => '1', 
-                    'number_of_objects' => '10', 
-                    'rss_version' => '2.0', 
-                    'status' => '1', 
-                    'title' => 'My RSS Feed', 
+                    'node' => array( 
+                        'name' => 'Coupons' 
+                    ) 
+                ) 
+            ) , 
+            array( 
+                '_function' => 'setupWorkflows' , 
+                '_params' => array() 
+            ) , 
+            array( 
+                '_function' => 'setupCurrencies' , 
+                '_params' => array() 
+            ) , 
+            array( 
+                '_function' => 'setRSSExport' , 
+                '_params' => array( 
+                    'creator' => '14' , 
+                    'access_url' => 'my_feed' , 
+                    'main_node_only' => '1' , 
+                    'number_of_objects' => '10' , 
+                    'rss_version' => '2.0' , 
+                    'status' => '1' , 
+                    'title' => 'My RSS Feed' , 
                     'rss_export_itmes' => array( 
                         0 => array( 
-                            'class_id' => '16', 
-                            'description' => 'intro', 
-                            'source_node_id' => '139', 
-                            'status' => '1', 
+                            'class_id' => '16' , 
+                            'description' => 'intro' , 
+                            'source_node_id' => '139' , 
+                            'status' => '1' , 
                             'title' => 'title' 
                         ) 
                     ) 
                 ) 
-            ), 
+            ) , 
             array( 
-                '_function' => 'dbCommit', 
+                '_function' => 'dbCommit' , 
                 '_params' => array() 
             ) 
         );
         $this->Steps['post_install'] = $postInstallSteps;
     }
+
     function hideNode( $params )
     {
-
+        
         //init vars
         $node = $this->nodeByName( $params['node'] );
-
-        if( !is_object( $node ) )
+        
+        if ( ! is_object( $node ) )
         {
-            $this->reportError( "Can't fetch node '".$params['node']['name']."'", 'eZSiteInstaller::' . __METHOD__ );
+            $this->reportError( "Can't fetch node '" . $params['node']['name'] . "'", 'eZSiteInstaller::' . __METHOD__ );
             return false;
         }
         eZContentObjectTreeNode::hideSubTree( $node );
     }
+
     /*!
      Re-impl.
     */
@@ -1288,18 +1300,18 @@ class xrowecommerceInstaller extends eZSiteInstaller
     {
         $settings = array();
         $settings[] = array( 
-            'settings_dir' => 'settings/siteaccess/' . $this->setting( 'user_siteaccess' ), 
+            'settings_dir' => 'settings/siteaccess/' . $this->setting( 'user_siteaccess' ) , 
             'groups' => $this->siteINISettings() 
         );
         $settings[] = array( 
-            'settings_dir' => 'settings/siteaccess/' . $this->setting( 'admin_siteaccess' ), 
+            'settings_dir' => 'settings/siteaccess/' . $this->setting( 'admin_siteaccess' ) , 
             'groups' => $this->adminINISettings() 
         );
         $settings[] = array( 
-            'settings_dir' => 'settings/override', 
+            'settings_dir' => 'settings/override' , 
             'groups' => $this->commonINISettings() 
         );
-        foreach ($settings as $settingsGroup)
+        foreach ( $settings as $settingsGroup )
             $this->updateINIFiles( $settingsGroup );
         $this->updateRoles( array( 
             'roles' => $this->siteRoles() 
@@ -1308,48 +1320,54 @@ class xrowecommerceInstaller extends eZSiteInstaller
             'prefs' => $this->sitePreferences() 
         ) );
         $this->postInstall();
-      
+    
     }
-	function setupCurrencies($p) {
-		foreach ( $this->setting ( 'locales' ) as $locale ) {
-			$l = eZLocale::instance ( $locale );
-			
-			$c = eZCurrencyData::create ( $l->currencyShortName (), $l->currencySymbol (), $locale, 1.00, 1.00, 1.00 );
-			if ($c instanceof eZCurrencyData) {
-				$c->store ();
-			}
-		}
-		return true;
-	}
-	function setupWorkflows($p) {
-		$db = eZDB::instance ();
-		
-		$db->begin ();
-		
-		$workflowGroup = eZWorkflowGroup::create ( 14 );
-		$workflowGroup->setAttribute ( "name", 'Shop' );
-		$workflowGroup->store ();
-		$WorkflowGroupID = $workflowGroup->attribute ( "id" );
-		
-		$workflow = eZWorkflow::create ( 14 );
-		$workflow->setAttribute ( "name", 'Before Confirmorder' );
-		$workflow->setAttribute ( "workflow_type_string", 'group_ezserial' );
-		$workflow->store ();
-		$ingroup = eZWorkflowGroupLink::create ( $workflow->attribute ( "id" ), $workflow->attribute ( "version" ), $WorkflowGroupID, 'Shop' );
-		$ingroup->store ();
-		
-		$WorkflowID = $workflow->attribute ( "id" );
-		$WorkflowVersion = $workflow->attribute ( "version" );
-		
-		$eventList = array ();
-		eZWorkflowEventType::registerType ( 'event', 'ezshippinginterface', 'eZShippingInterfaceType' );
-		$event = eZWorkflowEvent::create ( $WorkflowID, 'event_ezshippinginterface' );
-		$eventType = $event->eventType ();
-		$eventType->setAttribute ( 'placement', 1 );
-		$event->setAttribute ( 'data_text3', 'a:1:{i:0;s:10:"fixedprice";}' );
-		$event->store ();
-		$eventList [] = $event;
-		/* we do not want the coupon workflow
+
+    function setupCurrencies()
+    {
+        foreach ( $this->setting( 'locales' ) as $locale )
+        {
+            $l = eZLocale::instance( $locale );
+            
+            $c = eZCurrencyData::create( $l->currencyShortName(), $l->currencySymbol(), $locale, 1.00, 1.00, 1.00 );
+            if ( $c instanceof eZCurrencyData )
+            {
+                $c->store();
+            }
+        }
+        return true;
+    }
+
+    function setupWorkflows( $p )
+    {
+        $db = eZDB::instance();
+        
+        $db->begin();
+        
+        $workflowGroup = eZWorkflowGroup::create( 14 );
+        $workflowGroup->setAttribute( "name", 'Shop' );
+        $workflowGroup->store();
+        $WorkflowGroupID = $workflowGroup->attribute( "id" );
+        
+        $workflow = eZWorkflow::create( 14 );
+        $workflow->setAttribute( "name", 'Before Confirmorder' );
+        $workflow->setAttribute( "workflow_type_string", 'group_ezserial' );
+        $workflow->store();
+        $ingroup = eZWorkflowGroupLink::create( $workflow->attribute( "id" ), $workflow->attribute( "version" ), $WorkflowGroupID, 'Shop' );
+        $ingroup->store();
+        
+        $WorkflowID = $workflow->attribute( "id" );
+        $WorkflowVersion = $workflow->attribute( "version" );
+        
+        $eventList = array();
+        eZWorkflowEventType::registerType( 'event', 'ezshippinginterface', 'eZShippingInterfaceType' );
+        $event = eZWorkflowEvent::create( $WorkflowID, 'event_ezshippinginterface' );
+        $eventType = $event->eventType();
+        $eventType->setAttribute( 'placement', 1 );
+        $event->setAttribute( 'data_text3', 'a:1:{i:0;s:10:"fixedprice";}' );
+        $event->store();
+        $eventList[] = $event;
+        /* we do not want the coupon workflow
 		eZWorkflowEventType::registerType( 'event', 'ezcouponworkflow', 'eZCouponWorkflowType' );
 		$event = eZWorkflowEvent::create( $WorkflowID, 'event_ezcouponworkflow' );
         $eventType          = $event->eventType();
@@ -1357,118 +1375,121 @@ class xrowecommerceInstaller extends eZSiteInstaller
         $event->store();
 		$eventList[] = $event;
 		*/
-		$workflow->store ( $eventList ); // store changes.
-		
+        $workflow->store( $eventList ); // store changes.
+        
 
-		// Remove old version 0 first
-		eZWorkflowGroupLink::removeWorkflowMembers ( $WorkflowID, 0 );
-		
-		$workflowgroups = eZWorkflowGroupLink::fetchGroupList ( $WorkflowID, 1 );
-		foreach ( $workflowgroups as $workflowgroup ) {
-			$workflowgroup->setAttribute ( "workflow_version", 0 );
-			$workflowgroup->store ();
-		}
-		// Remove version 1
-		eZWorkflowGroupLink::removeWorkflowMembers ( $WorkflowID, 1 );
-		
-		eZWorkflow::removeEvents ( false, $WorkflowID, 0 );
-		$workflow->removeThis ( true );
-		$workflow->setVersion ( 0, $eventList );
-		$workflow->adjustEventPlacements ( $eventList );
-		$workflow->storeDefined ( $eventList );
-		$workflow->cleanupWorkFlowProcess ();
-		
-		$newTrigger = eZTrigger::createNew ( 'shop', 'confirmorder', 'b', $WorkflowID );
-		
-		$workflow = eZWorkflow::create ( 14 );
-		$workflow->setAttribute ( "name", 'Before Checkout' );
-		$workflow->setAttribute ( "workflow_type_string", 'group_ezserial' );
-		$workflow->store ();
-		$ingroup = eZWorkflowGroupLink::create ( $workflow->attribute ( "id" ), $workflow->attribute ( "version" ), $WorkflowGroupID, 'Shop' );
-		$ingroup->store ();
-		
-		$WorkflowID = $workflow->attribute ( "id" );
-		$WorkflowVersion = $workflow->attribute ( "version" );
-		
-		$eventList = array ();
-		eZWorkflowEventType::registerType ( 'event', 'xrowpaymentgateway', 'xrowPaymentGatewayType' );
-		$event = eZWorkflowEvent::create ( $WorkflowID, 'event_xrowpaymentgateway' );
-		$eventType = $event->eventType ();
-		$eventType->setAttribute ( 'placement', 1 );
-		$event->setAttribute ( 'data_text3', '-1' );
-		$event->store ();
-		$eventList [] = $event;
-		
-		$workflow->store ( $eventList ); // store changes.
-		
+        // Remove old version 0 first
+        eZWorkflowGroupLink::removeWorkflowMembers( $WorkflowID, 0 );
+        
+        $workflowgroups = eZWorkflowGroupLink::fetchGroupList( $WorkflowID, 1 );
+        foreach ( $workflowgroups as $workflowgroup )
+        {
+            $workflowgroup->setAttribute( "workflow_version", 0 );
+            $workflowgroup->store();
+        }
+        // Remove version 1
+        eZWorkflowGroupLink::removeWorkflowMembers( $WorkflowID, 1 );
+        
+        eZWorkflow::removeEvents( false, $WorkflowID, 0 );
+        $workflow->removeThis( true );
+        $workflow->setVersion( 0, $eventList );
+        $workflow->adjustEventPlacements( $eventList );
+        $workflow->storeDefined( $eventList );
+        $workflow->cleanupWorkFlowProcess();
+        
+        $newTrigger = eZTrigger::createNew( 'shop', 'confirmorder', 'b', $WorkflowID );
+        
+        $workflow = eZWorkflow::create( 14 );
+        $workflow->setAttribute( "name", 'Before Checkout' );
+        $workflow->setAttribute( "workflow_type_string", 'group_ezserial' );
+        $workflow->store();
+        $ingroup = eZWorkflowGroupLink::create( $workflow->attribute( "id" ), $workflow->attribute( "version" ), $WorkflowGroupID, 'Shop' );
+        $ingroup->store();
+        
+        $WorkflowID = $workflow->attribute( "id" );
+        $WorkflowVersion = $workflow->attribute( "version" );
+        
+        $eventList = array();
+        eZWorkflowEventType::registerType( 'event', 'xrowpaymentgateway', 'xrowPaymentGatewayType' );
+        $event = eZWorkflowEvent::create( $WorkflowID, 'event_xrowpaymentgateway' );
+        $eventType = $event->eventType();
+        $eventType->setAttribute( 'placement', 1 );
+        $event->setAttribute( 'data_text3', '-1' );
+        $event->store();
+        $eventList[] = $event;
+        
+        $workflow->store( $eventList ); // store changes.
+        
 
-		// Remove old version 0 first
-		eZWorkflowGroupLink::removeWorkflowMembers ( $WorkflowID, 0 );
-		
-		$workflowgroups = eZWorkflowGroupLink::fetchGroupList ( $WorkflowID, 1 );
-		foreach ( $workflowgroups as $workflowgroup ) {
-			$workflowgroup->setAttribute ( "workflow_version", 0 );
-			$workflowgroup->store ();
-		}
-		// Remove version 1
-		eZWorkflowGroupLink::removeWorkflowMembers ( $WorkflowID, 1 );
-		
-		eZWorkflow::removeEvents ( false, $WorkflowID, 0 );
-		$workflow->removeThis ( true );
-		$workflow->setVersion ( 0, $eventList );
-		$workflow->adjustEventPlacements ( $eventList );
-		$workflow->storeDefined ( $eventList );
-		$workflow->cleanupWorkFlowProcess ();
-		
-		$newTrigger = eZTrigger::createNew ( 'shop', 'checkout', 'b', $WorkflowID );
+        // Remove old version 0 first
+        eZWorkflowGroupLink::removeWorkflowMembers( $WorkflowID, 0 );
+        
+        $workflowgroups = eZWorkflowGroupLink::fetchGroupList( $WorkflowID, 1 );
+        foreach ( $workflowgroups as $workflowgroup )
+        {
+            $workflowgroup->setAttribute( "workflow_version", 0 );
+            $workflowgroup->store();
+        }
+        // Remove version 1
+        eZWorkflowGroupLink::removeWorkflowMembers( $WorkflowID, 1 );
+        
+        eZWorkflow::removeEvents( false, $WorkflowID, 0 );
+        $workflow->removeThis( true );
+        $workflow->setVersion( 0, $eventList );
+        $workflow->adjustEventPlacements( $eventList );
+        $workflow->storeDefined( $eventList );
+        $workflow->cleanupWorkFlowProcess();
+        
+        $newTrigger = eZTrigger::createNew( 'shop', 'checkout', 'b', $WorkflowID );
+        
+        #Aftersale
+        $workflow = eZWorkflow::create( 14 );
+        $workflow->setAttribute( "name", 'Aftersale' );
+        $workflow->setAttribute( "workflow_type_string", 'group_ezserial' );
+        $workflow->store();
+        $ingroup = eZWorkflowGroupLink::create( $workflow->attribute( "id" ), $workflow->attribute( "version" ), $WorkflowGroupID, 'Shop' );
+        $ingroup->store();
+        
+        $WorkflowID = $workflow->attribute( "id" );
+        $WorkflowVersion = $workflow->attribute( "version" );
+        /*
+        $eventList = array();
+        eZWorkflowEventType::registerType( 'event', 'xrowaftersale', 'xrowAfterSale' );
+        $event = eZWorkflowEvent::create( $WorkflowID, 'event_xrowaftersale' );
+        $eventType = $event->eventType();
+        $eventType->setAttribute( 'placement', 1 );
+        $event->setAttribute( 'data_int1', $this->setting( 'products_node_id' ) );
+        $event->store();
+        $eventList[] = $event;
+        */
+        $workflow->store( $eventList ); // store changes.
+        
 
-		#Aftersale
-		$workflow = eZWorkflow::create ( 14 );
-		$workflow->setAttribute ( "name", 'Aftersale' );
-		$workflow->setAttribute ( "workflow_type_string", 'group_ezserial' );
-		$workflow->store ();
-		$ingroup = eZWorkflowGroupLink::create ( $workflow->attribute ( "id" ), $workflow->attribute ( "version" ), $WorkflowGroupID, 'Shop' );
-		$ingroup->store ();
-		
-		$WorkflowID = $workflow->attribute ( "id" );
-		$WorkflowVersion = $workflow->attribute ( "version" );
-		
-		$eventList = array ();
-		eZWorkflowEventType::registerType ( 'event', 'xrowaftersale', 'xrowAfterSale' );
-		$event = eZWorkflowEvent::create ( $WorkflowID, 'event_xrowaftersale' );
-		$eventType = $event->eventType ();
-		$eventType->setAttribute ( 'placement', 1 );
-		$event->setAttribute ( 'data_int1', $this->setting( 'products_node_id' ) );
-		$event->store ();
-		$eventList [] = $event;
-		
-		$workflow->store ( $eventList ); // store changes.
-		
+        // Remove old version 0 first
+        eZWorkflowGroupLink::removeWorkflowMembers( $WorkflowID, 0 );
+        
+        $workflowgroups = eZWorkflowGroupLink::fetchGroupList( $WorkflowID, 1 );
+        foreach ( $workflowgroups as $workflowgroup )
+        {
+            $workflowgroup->setAttribute( "workflow_version", 0 );
+            $workflowgroup->store();
+        }
+        // Remove version 1
+        eZWorkflowGroupLink::removeWorkflowMembers( $WorkflowID, 1 );
+        
+        eZWorkflow::removeEvents( false, $WorkflowID, 0 );
+        $workflow->removeThis( true );
+        $workflow->setVersion( 0, $eventList );
+        $workflow->adjustEventPlacements( $eventList );
+        $workflow->storeDefined( $eventList );
+        $workflow->cleanupWorkFlowProcess();
+        
+        $newTrigger = eZTrigger::createNew( 'shop', 'checkout', 'a', $WorkflowID );
+        
+        $db->commit();
+        return true;
+    }
 
-		// Remove old version 0 first
-		eZWorkflowGroupLink::removeWorkflowMembers ( $WorkflowID, 0 );
-		
-		$workflowgroups = eZWorkflowGroupLink::fetchGroupList ( $WorkflowID, 1 );
-		foreach ( $workflowgroups as $workflowgroup ) {
-			$workflowgroup->setAttribute ( "workflow_version", 0 );
-			$workflowgroup->store ();
-		}
-		// Remove version 1
-		eZWorkflowGroupLink::removeWorkflowMembers ( $WorkflowID, 1 );
-		
-		eZWorkflow::removeEvents ( false, $WorkflowID, 0 );
-		$workflow->removeThis ( true );
-		$workflow->setVersion ( 0, $eventList );
-		$workflow->adjustEventPlacements ( $eventList );
-		$workflow->storeDefined ( $eventList );
-		$workflow->cleanupWorkFlowProcess ();
-		
-		$newTrigger = eZTrigger::createNew ( 'shop', 'checkout', 'a', $WorkflowID );
-		
-		
-		$db->commit ();
-		return true;
-	}
     /*!
       pre-install stuff.
     */
@@ -1480,17 +1501,17 @@ class xrowecommerceInstaller extends eZSiteInstaller
         $this->addClassAttributes( array( 
             'class' => array( 
                 'identifier' => 'folder' 
-            ), 
+            ) , 
             'attributes' => array( 
                 array( 
-                    'identifier' => 'tags', 
-                    'name' => 'Tags', 
+                    'identifier' => 'tags' , 
+                    'name' => 'Tags' , 
                     'data_type_string' => 'ezkeyword' 
-                ), 
+                ) , 
                 array( 
-                    'identifier' => 'publish_date', 
-                    'name' => 'Publish date', 
-                    'data_type_string' => 'ezdatetime', 
+                    'identifier' => 'publish_date' , 
+                    'name' => 'Publish date' , 
+                    'data_type_string' => 'ezdatetime' , 
                     'default_value' => 0 
                 ) 
             ) 
@@ -1519,7 +1540,7 @@ class xrowecommerceInstaller extends eZSiteInstaller
         $availableDatatype[] = 'ezcreditcard';
         $availableDatatype[] = 'xrowbillingcycle';
         $availableDatatype[] = 'ezcoupon';
-
+        
         $contentINI->setVariables( array( 
             'DataTypeSettings' => array( 
                 'AvailableDataTypes' => $availableDatatype 
@@ -1528,6 +1549,7 @@ class xrowecommerceInstaller extends eZSiteInstaller
         $this->insertDBFile( 'xrowecommerce_extension', 'xrowecommerce' );
         $this->insertDBFile( 'ezstarrating_extension', 'ezstarrating' );
         $this->insertDBFile( 'ezgmaplocation_extension', 'ezgmaplocation' );
+        $this->setupCurrencies();
     }
 
     function insertDBFile( $packageName, $extensionName, $loadContent = false )
@@ -1536,7 +1558,7 @@ class xrowecommerceInstaller extends eZSiteInstaller
         $extensionPackage = eZPackage::fetch( $packageName, false, false, false );
         if ( $extensionPackage instanceof eZPackage )
         {
-            switch ($db->databaseName())
+            switch ( $db->databaseName() )
             {
                 case 'mysql':
                     $sqlFile = 'mysql.sql';
@@ -1567,7 +1589,7 @@ class xrowecommerceInstaller extends eZSiteInstaller
 
     function languageMatrixDefinition()
     {
-        $matrixDefinition = new eZMatrixDefinition( );
+        $matrixDefinition = new eZMatrixDefinition();
         $matrixDefinition->addColumn( "Site URL", "site_url" );
         $matrixDefinition->addColumn( "Siteaccess", "siteaccess" );
         $matrixDefinition->addColumn( "Language name", "language_name" );
@@ -1580,76 +1602,76 @@ class xrowecommerceInstaller extends eZSiteInstaller
         $languageSettingsMatrixDefinition = $this->languageMatrixDefinition();
         $newAttributesInfo = array( 
             array( 
-                "data_type_string" => "ezurl", 
-                "name" => "Site map URL", 
+                "data_type_string" => "ezurl" , 
+                "name" => "Site map URL" , 
                 "identifier" => "site_map_url" 
-            ), 
+            ) , 
             array( 
-                "data_type_string" => "ezurl", 
-                "name" => "Tag Cloud URL", 
+                "data_type_string" => "ezurl" , 
+                "name" => "Tag Cloud URL" , 
                 "identifier" => "tag_cloud_url" 
-            ), 
+            ) , 
             array( 
-                "data_type_string" => "ezstring", 
-                "name" => "Login (label)", 
+                "data_type_string" => "ezstring" , 
+                "name" => "Login (label)" , 
                 "identifier" => "login_label" 
-            ), 
+            ) , 
             array( 
-                "data_type_string" => "ezstring", 
-                "name" => "Logout (label)", 
+                "data_type_string" => "ezstring" , 
+                "name" => "Logout (label)" , 
                 "identifier" => "logout_label" 
-            ), 
+            ) , 
             array( 
-                "data_type_string" => "ezstring", 
-                "name" => "My profile (label)", 
+                "data_type_string" => "ezstring" , 
+                "name" => "My profile (label)" , 
                 "identifier" => "my_profile_label" 
-            ), 
+            ) , 
             array( 
-                "data_type_string" => "ezstring", 
-                "name" => "Register new user (label)", 
+                "data_type_string" => "ezstring" , 
+                "name" => "Register new user (label)" , 
                 "identifier" => "register_user_label" 
-            ), 
+            ) , 
             array( 
-                "data_type_string" => "ezstring", 
-                "name" => "RSS feed", 
+                "data_type_string" => "ezstring" , 
+                "name" => "RSS feed" , 
                 "identifier" => "rss_feed" 
-            ), 
+            ) , 
             array( 
-                "data_type_string" => "ezstring", 
-                "name" => "Shopping basket (label)", 
+                "data_type_string" => "ezstring" , 
+                "name" => "Shopping basket (label)" , 
                 "identifier" => "shopping_basket_label" 
-            ), 
+            ) , 
             array( 
-                "data_type_string" => "ezstring", 
-                "name" => "Site settings (label)", 
+                "data_type_string" => "ezstring" , 
+                "name" => "Site settings (label)" , 
                 "identifier" => "site_settings_label" 
-            ), 
+            ) , 
             array( 
-                "data_type_string" => "ezmatrix", 
-                "name" => "Language settings", 
-                "identifier" => "language_settings", 
+                "data_type_string" => "ezmatrix" , 
+                "name" => "Language settings" , 
+                "identifier" => "language_settings" , 
                 "content" => $languageSettingsMatrixDefinition 
-            ), 
+            ) , 
             array( 
-                "data_type_string" => "eztext", 
-                "name" => "Footer text", 
+                "data_type_string" => "eztext" , 
+                "name" => "Footer text" , 
                 "identifier" => "footer_text" 
-            ), 
+            ) , 
             array( 
-                "data_type_string" => "ezboolean", 
-                "name" => "Hide \"Powered by\"", 
+                "data_type_string" => "ezboolean" , 
+                "name" => "Hide \"Powered by\"" , 
                 "identifier" => "hide_powered_by" 
-            ), 
+            ) , 
             array( 
-                "data_type_string" => "eztext", 
-                "name" => "Footer Javascript", 
+                "data_type_string" => "eztext" , 
+                "name" => "Footer Javascript" , 
                 "identifier" => "footer_script" 
             ) 
         );
         $this->addClassAttributes( array( 
             'class' => array( 
                 'id' => $this->setting( 'template_look_class_id' ) 
-            ), 
+            ) , 
             'attributes' => $newAttributesInfo 
         ) );
     }
@@ -1660,7 +1682,7 @@ class xrowecommerceInstaller extends eZSiteInstaller
         // set 'language settings' matrix data
         $siteaccessAliasTable = array();
         $siteaccessUrls = $this->setting( 'siteaccess_urls' );
-        foreach ($siteaccessUrls['translation'] as $name => $urlInfo)
+        foreach ( $siteaccessUrls['translation'] as $name => $urlInfo )
         {
             $siteaccessAliasTable[] = $urlInfo['url'];
             $siteaccessAliasTable[] = $name;
@@ -1669,51 +1691,51 @@ class xrowecommerceInstaller extends eZSiteInstaller
         //create data array
         $templateLookData = array( 
             "site_map_url" => array( 
-                "DataText" => "Site map", 
+                "DataText" => "Site map" , 
                 "Content" => "/content/view/sitemap/2" 
-            ), 
+            ) , 
             "tag_cloud_url" => array( 
-                "DataText" => "Tag cloud", 
+                "DataText" => "Tag cloud" , 
                 "Content" => "/content/view/tagcloud/2" 
-            ), 
+            ) , 
             "login_label" => array( 
                 "DataText" => "Login" 
-            ), 
+            ) , 
             "logout_label" => array( 
                 "DataText" => "Logout" 
-            ), 
+            ) , 
             "my_profile_label" => array( 
                 "DataText" => "My profile" 
-            ), 
+            ) , 
             "register_user_label" => array( 
                 "DataText" => "Register" 
-            ), 
+            ) , 
             "rss_feed" => array( 
                 "DataText" => "/rss/feed/my_feed" 
-            ), 
+            ) , 
             "shopping_basket_label" => array( 
                 "DataText" => "Shopping basket" 
-            ), 
+            ) , 
             "site_settings_label" => array( 
                 "DataText" => "Site settings" 
-            ), 
+            ) , 
             "language_settings" => array( 
-                "MatrixTitle" => "Language settings", 
-                "MatrixDefinition" => $languageSettingsMatrixDefinition, 
+                "MatrixTitle" => "Language settings" , 
+                "MatrixDefinition" => $languageSettingsMatrixDefinition , 
                 "MatrixCells" => $siteaccessAliasTable 
-            ), 
+            ) , 
             "footer_text" => array( 
                 "DataText" => "Copyright &#169; " . date( 'Y' ) . " eZ Systems AS. All rights reserved." 
-            ), 
+            ) , 
             "hide_powered_by" => array( 
                 "DataInt" => 0 
-            ), 
+            ) , 
             "footer_script" => array( 
                 "DataText" => "" 
             ) 
         );
         $this->updateContentObjectAttributes( array( 
-            'object_id' => $this->setting( 'template_look_object_id' ), 
+            'object_id' => $this->setting( 'template_look_object_id' ) , 
             'attributes_data' => $templateLookData 
         ) );
     }
@@ -1731,7 +1753,7 @@ class xrowecommerceInstaller extends eZSiteInstaller
 
     function createTranslationSiteAccesses()
     {
-        foreach ($this->setting( 'locales' ) as $locale)
+        foreach ( $this->setting( 'locales' ) as $locale )
         {
             // Prepare 'SiteLanguageList':
             // make $locale as 'top priority language'
@@ -1749,25 +1771,25 @@ class xrowecommerceInstaller extends eZSiteInstaller
             $this->createSiteAccess( array( 
                 'src' => array( 
                     'siteaccess' => $this->setting( 'user_siteaccess' ) 
-                ), 
+                ) , 
                 'dst' => array( 
-                    'siteaccess' => $this->languageNameFromLocale( $locale ), 
+                    'siteaccess' => $this->languageNameFromLocale( $locale ) , 
                     'settings' => array( 
                         'site.ini' => array( 
                             'RegionalSettings' => array( 
-                                'Locale' => $locale, 
-                                'ContentObjectLocale' => $locale, 
-                                'TextTranslation' => $locale != 'eng-GB' ? 'enabled' : 'disabled', 
+                                'Locale' => $locale , 
+                                'ContentObjectLocale' => $locale , 
+                                'TextTranslation' => $locale != 'eng-GB' ? 'enabled' : 'disabled' , 
                                 'SiteLanguageList' => $languageList 
-                            ), 
+                            ) , 
                             'SiteSettings' => array( 
                                 'SiteURL' => $siteaccessTypes['translation'][$this->languageNameFromLocale( $locale )]['url'] 
-                            )
-                        ),
+                            ) 
+                        ) , 
                         'shop.ini' => array( 
                             'CurrencySettings' => array( 
-                                'PreferredCurrency' => eZLocale::instance($locale)->currencyShortName()
-                            )
+                                'PreferredCurrency' => eZLocale::instance( $locale )->currencyShortName() 
+                            ) 
                         ) 
                     ) 
                 ) 
@@ -1785,30 +1807,30 @@ class xrowecommerceInstaller extends eZSiteInstaller
         $roles = array();
         // Add possibility to read rss by default for anonymous/guests
         $roles[] = array( 
-            'name' => 'Anonymous', 
+            'name' => 'Anonymous' , 
             'policies' => array( 
                 array( 
-                    'module' => 'rss', 
+                    'module' => 'rss' , 
                     'function' => 'feed' 
                 ) 
-            ), 
+            ) , 
             'assignments' => array( 
                 array( 
                     'user_id' => $guestAccountsID 
-                ), 
+                ) , 
                 array( 
                     'user_id' => $anonAccountsID 
                 ) 
             ) 
         );
-        include_once ('lib/ezutils/classes/ezsys.php');
+        include_once ( 'lib/ezutils/classes/ezsys.php' );
         // Make sure anonymous can only login to use side
         $roles[] = array( 
-            'name' => 'Anonymous', 
+            'name' => 'Anonymous' , 
             'policies' => array( 
                 array( 
-                    'module' => 'user', 
-                    'function' => 'login', 
+                    'module' => 'user' , 
+                    'function' => 'login' , 
                     'limitation' => array( 
                         'SiteAccess' => array( 
                             eZSys::ezcrc32( $this->setting( 'user_siteaccess' ) ) 
@@ -1834,30 +1856,30 @@ class xrowecommerceInstaller extends eZSiteInstaller
         // - The 'roles' and 'policies' windows are open by default
         // - The child list limit is 25 by default
         $preferences[] = array( 
-            'user_id' => $adminAccountID, 
+            'user_id' => $adminAccountID , 
             'preferences' => array( 
                 array( 
-                    'name' => 'admin_navigation_content', 
+                    'name' => 'admin_navigation_content' , 
                     'value' => '1' 
-                ), 
+                ) , 
                 array( 
-                    'name' => 'admin_navigation_roles', 
+                    'name' => 'admin_navigation_roles' , 
                     'value' => '1' 
-                ), 
+                ) , 
                 array( 
-                    'name' => 'admin_navigation_policies', 
+                    'name' => 'admin_navigation_policies' , 
                     'value' => '1' 
-                ), 
+                ) , 
                 array( 
-                    'name' => 'admin_list_limit', 
+                    'name' => 'admin_list_limit' , 
                     'value' => '2' 
-                ), 
+                ) , 
                 array( 
-                    'name' => 'admin_treemenu', 
+                    'name' => 'admin_treemenu' , 
                     'value' => '1' 
-                ), 
+                ) , 
                 array( 
-                    'name' => 'admin_bookmark_menu', 
+                    'name' => 'admin_bookmark_menu' , 
                     'value' => '1' 
                 ) 
             ) 
@@ -1873,7 +1895,8 @@ class xrowecommerceInstaller extends eZSiteInstaller
         $siteINI = eZINI::instance( 'site.ini.append.php', 'settings/siteaccess/' . $this->setting( 'admin_siteaccess' ), null, false, null, true );
         $siteINI->setVariable( 'DesignSettings', 'SiteDesign', $this->setting( 'admin_siteaccess' ) );
         $siteINI->setVariable( 'DesignSettings', 'AdditionalSiteDesignList', array( 
-            'admin2', 'admin' 
+            'admin2' , 
+            'admin' 
         ) );
         $siteINI->setVariable( 'SiteAccessSettings', 'RelatedSiteAccessList', $this->setting( 'all_siteaccess_list' ) );
         $siteINI->save();
@@ -1909,39 +1932,41 @@ class xrowecommerceInstaller extends eZSiteInstaller
         $settings[] = $this->adminMenuINISettings();
         return $settings;
     }
+
     function adminMenuINISettings()
     {
         $contentStructureMenu = array( 
-            'name' => 'menu.ini', 
-            'reset_arrays' => true, 
+            'name' => 'menu.ini' , 
+            'reset_arrays' => true , 
             'settings' => array( 
                 'TopAdminMenu' => array( 
                     'Tabs' => array( 
-                        'dashboard', 
-                        'content', 
-                        'media', 
-                        'users', 
-                        'setup', 
-                        'shop'
+                        'dashboard' , 
+                        'content' , 
+                        'media' , 
+                        'users' , 
+                        'setup' , 
+                        'shop' 
                     ) 
                 ) 
             ) 
         );
         return $contentStructureMenu;
     }
+
     function adminContentStructureMenuINISettings()
     {
         $contentStructureMenu = array( 
-            'name' => 'contentstructuremenu.ini', 
-            'reset_arrays' => true, 
+            'name' => 'contentstructuremenu.ini' , 
+            'reset_arrays' => true , 
             'settings' => array( 
                 'TreeMenu' => array( 
                     'ShowClasses' => array( 
-                        'folder', 
-                        'user_group', 
-                        'documentation_page', 
-                        'event_calender', 
-                        'frontpage', 
+                        'folder' , 
+                        'user_group' , 
+                        'documentation_page' , 
+                        'event_calender' , 
+                        'frontpage' , 
                         'forums' 
                     ) 
                 ) 
@@ -1953,80 +1978,80 @@ class xrowecommerceInstaller extends eZSiteInstaller
     function adminToolbarINISettings()
     {
         $toolbar = array( 
-            'name' => 'toolbar.ini', 
-            'reset_arrays' => true, 
+            'name' => 'toolbar.ini' , 
+            'reset_arrays' => true , 
             'settings' => array( 
                 'Toolbar' => array( 
                     'AvailableToolBarArray' => array( 
-                        0 => 'setup', 
-                        1 => 'admin_right', 
+                        0 => 'setup' , 
+                        1 => 'admin_right' , 
                         2 => 'admin_developer' 
                     ) 
-                ), 
+                ) , 
                 'Tool' => array( 
                     'AvailableToolArray' => array( 
-                        0 => 'setup_link', 
-                        1 => 'admin_current_user', 
-                        2 => 'admin_bookmarks', 
-                        3 => 'admin_clear_cache', 
+                        0 => 'setup_link' , 
+                        1 => 'admin_current_user' , 
+                        2 => 'admin_bookmarks' , 
+                        3 => 'admin_clear_cache' , 
                         4 => 'admin_quick_settings' 
                     ) 
-                ), 
+                ) , 
                 'Toolbar_setup' => array( 
                     'Tool' => array( 
-                        0 => 'setup_link', 
-                        1 => 'setup_link', 
-                        2 => 'setup_link', 
-                        3 => 'setup_link', 
+                        0 => 'setup_link' , 
+                        1 => 'setup_link' , 
+                        2 => 'setup_link' , 
+                        3 => 'setup_link' , 
                         4 => 'setup_link' 
                     ) 
-                ), 
+                ) , 
                 'Toolbar_admin_right' => array( 
                     'Tool' => array( 
-                        0 => 'admin_current_user',
-                        1 => 'admin_preferences',
-                        2 => 'admin_bookmarks'
+                        0 => 'admin_current_user' , 
+                        1 => 'admin_preferences' , 
+                        2 => 'admin_bookmarks' 
                     ) 
-                ), 
+                ) , 
                 'Toolbar_admin_developer' => array( 
                     'Tool' => array( 
-                        0 => 'admin_clear_cache', 
+                        0 => 'admin_clear_cache' , 
                         1 => 'admin_quick_settings' 
                     ) 
-                ), 
+                ) , 
                 'Tool_setup_link' => array( 
-                    'title' => '', 
-                    'link_icon' => '', 
+                    'title' => '' , 
+                    'link_icon' => '' , 
                     'url' => '' 
-                ), 
+                ) , 
                 'Tool_setup_link_description' => array( 
-                    'title' => 'Title', 
-                    'link_icon' => 'Icon', 
+                    'title' => 'Title' , 
+                    'link_icon' => 'Icon' , 
                     'url' => 'URL' 
-                ), 
+                ) , 
                 'Tool_setup_setup_link_1' => array( 
-                    'title' => 'Classes', 
-                    'link_icon' => 'classes.png', 
+                    'title' => 'Classes' , 
+                    'link_icon' => 'classes.png' , 
                     'url' => '/class/grouplist' 
-                ), 
+                ) , 
                 'Tool_setup_setup_link_2' => array( 
-                    'title' => 'Cache', 
-                    'link_icon' => 'cache.png', 
+                    'title' => 'Cache' , 
+                    'link_icon' => 'cache.png' , 
                     'url' => '/setup/cache' 
-                ), 
+                ) , 
                 'Tool_setup_setup_link_3' => array( 
-                    'title' => 'URL translator', 
-                    'link_icon' => 'url_translator.png', 
+                    'title' => 'URL translator' , 
+                    'link_icon' => 'url_translator.png' , 
                     'url' => '/content/urltranslator' 
-                ), 
+                ) , 
                 'Tool_setup_setup_link_4' => array( 
-                    'title' => 'Settings', 
-                    'link_icon' => 'common_ini_settings.png', 
+                    'title' => 'Settings' , 
+                    'link_icon' => 'common_ini_settings.png' , 
                     'url' => '/content/edit/52' 
-                ), 
+                ) , 
                 'Tool_setup_setup_link_5' => array( 
-                    'title' => 'Look and feel', 
-                    'link_icon' => 'look_and_feel.png', 
+                    'title' => 'Look and feel' , 
+                    'link_icon' => 'look_and_feel.png' , 
                     'url' => '/content/edit/54' 
                 ) 
             ) 
@@ -2037,253 +2062,253 @@ class xrowecommerceInstaller extends eZSiteInstaller
     function adminOverrideINISettings()
     {
         return array( 
-            'name' => 'override.ini', 
-            'discard_old_values' => true, 
+            'name' => 'override.ini' , 
+            'discard_old_values' => true , 
             'settings' => array( 
                 'article' => array( 
-                    'Source' => 'node/view/admin_preview.tpl', 
-                    'MatchFile' => 'admin_preview/article.tpl', 
-                    'Subdir' => 'templates', 
+                    'Source' => 'node/view/admin_preview.tpl' , 
+                    'MatchFile' => 'admin_preview/article.tpl' , 
+                    'Subdir' => 'templates' , 
                     'Match' => array( 
                         'class_identifier' => 'article' 
                     ) 
-                ), 
+                ) , 
                 'comment' => array( 
-                    'Source' => 'node/view/admin_preview.tpl', 
-                    'MatchFile' => 'admin_preview/comment.tpl', 
-                    'Subdir' => 'templates', 
+                    'Source' => 'node/view/admin_preview.tpl' , 
+                    'MatchFile' => 'admin_preview/comment.tpl' , 
+                    'Subdir' => 'templates' , 
                     'Match' => array( 
                         'class_identifier' => 'comment' 
                     ) 
-                ), 
+                ) , 
                 'company' => array( 
-                    'Source' => 'node/view/admin_preview.tpl', 
-                    'MatchFile' => 'admin_preview/company.tpl', 
-                    'Subdir' => 'templates', 
+                    'Source' => 'node/view/admin_preview.tpl' , 
+                    'MatchFile' => 'admin_preview/company.tpl' , 
+                    'Subdir' => 'templates' , 
                     'Match' => array( 
                         'class_identifier' => 'company' 
                     ) 
-                ), 
+                ) , 
                 'feedback_form' => array( 
-                    'Source' => 'node/view/admin_preview.tpl', 
-                    'MatchFile' => 'admin_preview/feedback_form.tpl', 
-                    'Subdir' => 'templates', 
+                    'Source' => 'node/view/admin_preview.tpl' , 
+                    'MatchFile' => 'admin_preview/feedback_form.tpl' , 
+                    'Subdir' => 'templates' , 
                     'Match' => array( 
                         'class_identifier' => 'feedback_form' 
                     ) 
-                ), 
+                ) , 
                 'file' => array( 
-                    'Source' => 'node/view/admin_preview.tpl', 
-                    'MatchFile' => 'admin_preview/file.tpl', 
-                    'Subdir' => 'templates', 
+                    'Source' => 'node/view/admin_preview.tpl' , 
+                    'MatchFile' => 'admin_preview/file.tpl' , 
+                    'Subdir' => 'templates' , 
                     'Match' => array( 
                         'class_identifier' => 'file' 
                     ) 
-                ), 
+                ) , 
                 'flash' => array( 
-                    'Source' => 'node/view/admin_preview.tpl', 
-                    'MatchFile' => 'admin_preview/flash.tpl', 
-                    'Subdir' => 'templates', 
+                    'Source' => 'node/view/admin_preview.tpl' , 
+                    'MatchFile' => 'admin_preview/flash.tpl' , 
+                    'Subdir' => 'templates' , 
                     'Match' => array( 
                         'class_identifier' => 'flash' 
                     ) 
-                ), 
+                ) , 
                 'folder' => array( 
-                    'Source' => 'node/view/admin_preview.tpl', 
-                    'MatchFile' => 'admin_preview/folder.tpl', 
-                    'Subdir' => 'templates', 
+                    'Source' => 'node/view/admin_preview.tpl' , 
+                    'MatchFile' => 'admin_preview/folder.tpl' , 
+                    'Subdir' => 'templates' , 
                     'Match' => array( 
                         'class_identifier' => 'folder' 
                     ) 
-                ), 
+                ) , 
                 'forum' => array( 
-                    'Source' => 'node/view/admin_preview.tpl', 
-                    'MatchFile' => 'admin_preview/forum.tpl', 
-                    'Subdir' => 'templates', 
+                    'Source' => 'node/view/admin_preview.tpl' , 
+                    'MatchFile' => 'admin_preview/forum.tpl' , 
+                    'Subdir' => 'templates' , 
                     'Match' => array( 
                         'class_identifier' => 'forum' 
                     ) 
-                ), 
+                ) , 
                 'forum_topic' => array( 
-                    'Source' => 'node/view/admin_preview.tpl', 
-                    'MatchFile' => 'admin_preview/forum_topic.tpl', 
-                    'Subdir' => 'templates', 
+                    'Source' => 'node/view/admin_preview.tpl' , 
+                    'MatchFile' => 'admin_preview/forum_topic.tpl' , 
+                    'Subdir' => 'templates' , 
                     'Match' => array( 
                         'class_identifier' => 'forum_topic' 
                     ) 
-                ), 
+                ) , 
                 'forum_reply' => array( 
-                    'Source' => 'node/view/admin_preview.tpl', 
-                    'MatchFile' => 'admin_preview/forum_reply.tpl', 
-                    'Subdir' => 'templates', 
+                    'Source' => 'node/view/admin_preview.tpl' , 
+                    'MatchFile' => 'admin_preview/forum_reply.tpl' , 
+                    'Subdir' => 'templates' , 
                     'Match' => array( 
                         'class_identifier' => 'forum_reply' 
                     ) 
-                ), 
+                ) , 
                 'gallery' => array( 
-                    'Source' => 'node/view/admin_preview.tpl', 
-                    'MatchFile' => 'admin_preview/gallery.tpl', 
-                    'Subdir' => 'templates', 
+                    'Source' => 'node/view/admin_preview.tpl' , 
+                    'MatchFile' => 'admin_preview/gallery.tpl' , 
+                    'Subdir' => 'templates' , 
                     'Match' => array( 
                         'class_identifier' => 'gallery' 
                     ) 
-                ), 
+                ) , 
                 'image' => array( 
-                    'Source' => 'node/view/admin_preview.tpl', 
-                    'MatchFile' => 'admin_preview/image.tpl', 
-                    'Subdir' => 'templates', 
+                    'Source' => 'node/view/admin_preview.tpl' , 
+                    'MatchFile' => 'admin_preview/image.tpl' , 
+                    'Subdir' => 'templates' , 
                     'Match' => array( 
                         'class_identifier' => 'image' 
                     ) 
-                ), 
+                ) , 
                 'link' => array( 
-                    'Source' => 'node/view/admin_preview.tpl', 
-                    'MatchFile' => 'admin_preview/link.tpl', 
-                    'Subdir' => 'templates', 
+                    'Source' => 'node/view/admin_preview.tpl' , 
+                    'MatchFile' => 'admin_preview/link.tpl' , 
+                    'Subdir' => 'templates' , 
                     'Match' => array( 
                         'class_identifier' => 'link' 
                     ) 
-                ), 
+                ) , 
                 'person' => array( 
-                    'Source' => 'node/view/admin_preview.tpl', 
-                    'MatchFile' => 'admin_preview/person.tpl', 
-                    'Subdir' => 'templates', 
+                    'Source' => 'node/view/admin_preview.tpl' , 
+                    'MatchFile' => 'admin_preview/person.tpl' , 
+                    'Subdir' => 'templates' , 
                     'Match' => array( 
                         'class_identifier' => 'person' 
                     ) 
-                ), 
+                ) , 
                 'poll' => array( 
-                    'Source' => 'node/view/admin_preview.tpl', 
-                    'MatchFile' => 'admin_preview/poll.tpl', 
-                    'Subdir' => 'templates', 
+                    'Source' => 'node/view/admin_preview.tpl' , 
+                    'MatchFile' => 'admin_preview/poll.tpl' , 
+                    'Subdir' => 'templates' , 
                     'Match' => array( 
                         'class_identifier' => 'poll' 
                     ) 
-                ), 
+                ) , 
                 'product' => array( 
-                    'Source' => 'node/view/admin_preview.tpl', 
-                    'MatchFile' => 'admin_preview/product.tpl', 
-                    'Subdir' => 'templates', 
+                    'Source' => 'node/view/admin_preview.tpl' , 
+                    'MatchFile' => 'admin_preview/product.tpl' , 
+                    'Subdir' => 'templates' , 
                     'Match' => array( 
                         'class_identifier' => 'product' 
                     ) 
-                ), 
+                ) , 
                 'review' => array( 
-                    'Source' => 'node/view/admin_preview.tpl', 
-                    'MatchFile' => 'admin_preview/review.tpl', 
-                    'Subdir' => 'templates', 
+                    'Source' => 'node/view/admin_preview.tpl' , 
+                    'MatchFile' => 'admin_preview/review.tpl' , 
+                    'Subdir' => 'templates' , 
                     'Match' => array( 
                         'class_identifier' => 'review' 
                     ) 
-                ), 
+                ) , 
                 'quicktime' => array( 
-                    'Source' => 'node/view/admin_preview.tpl', 
-                    'MatchFile' => 'admin_preview/quicktime.tpl', 
-                    'Subdir' => 'templates', 
+                    'Source' => 'node/view/admin_preview.tpl' , 
+                    'MatchFile' => 'admin_preview/quicktime.tpl' , 
+                    'Subdir' => 'templates' , 
                     'Match' => array( 
                         'class_identifier' => 'quicktime' 
                     ) 
-                ), 
+                ) , 
                 'real_video' => array( 
-                    'Source' => 'node/view/admin_preview.tpl', 
-                    'MatchFile' => 'admin_preview/real_video.tpl', 
-                    'Subdir' => 'templates', 
+                    'Source' => 'node/view/admin_preview.tpl' , 
+                    'MatchFile' => 'admin_preview/real_video.tpl' , 
+                    'Subdir' => 'templates' , 
                     'Match' => array( 
                         'class_identifier' => 'real_video' 
                     ) 
-                ), 
+                ) , 
                 'weblog' => array( 
-                    'Source' => 'node/view/admin_preview.tpl', 
-                    'MatchFile' => 'admin_preview/weblog.tpl', 
-                    'Subdir' => 'templates', 
+                    'Source' => 'node/view/admin_preview.tpl' , 
+                    'MatchFile' => 'admin_preview/weblog.tpl' , 
+                    'Subdir' => 'templates' , 
                     'Match' => array( 
                         'class_identifier' => 'weblog' 
                     ) 
-                ), 
+                ) , 
                 'windows_media' => array( 
-                    'Source' => 'node/view/admin_preview.tpl', 
-                    'MatchFile' => 'admin_preview/windows_media.tpl', 
-                    'Subdir' => 'templates', 
+                    'Source' => 'node/view/admin_preview.tpl' , 
+                    'MatchFile' => 'admin_preview/windows_media.tpl' , 
+                    'Subdir' => 'templates' , 
                     'Match' => array( 
                         'class_identifier' => 'windows_media' 
                     ) 
-                ), 
+                ) , 
                 'thumbnail_image' => array( 
-                    'Source' => 'node/view/thumbnail.tpl', 
-                    'MatchFile' => 'thumbnail/image.tpl', 
-                    'Subdir' => 'templates', 
+                    'Source' => 'node/view/thumbnail.tpl' , 
+                    'MatchFile' => 'thumbnail/image.tpl' , 
+                    'Subdir' => 'templates' , 
                     'Match' => array( 
                         'class_identifier' => 'image' 
                     ) 
-                ), 
+                ) , 
                 'window_controls' => array( 
-                    'Source' => 'window_controls.tpl', 
-                    'MatchFile' => 'window_controls_user.tpl', 
-                    'Subdir' => 'templates', 
+                    'Source' => 'window_controls.tpl' , 
+                    'MatchFile' => 'window_controls_user.tpl' , 
+                    'Subdir' => 'templates' , 
                     'Match' => array( 
                         'navigation_part_identifier' => 'ezusernavigationpart' 
                     ) 
-                ), 
+                ) , 
                 'windows' => array( 
-                    'Source' => 'windows.tpl', 
-                    'MatchFile' => 'windows_user.tpl', 
-                    'Subdir' => 'templates', 
+                    'Source' => 'windows.tpl' , 
+                    'MatchFile' => 'windows_user.tpl' , 
+                    'Subdir' => 'templates' , 
                     'Match' => array( 
                         'navigation_part_identifier' => 'ezusernavigationpart' 
                     ) 
-                ), 
+                ) , 
                 'embed_image' => array( 
-                    'Source' => 'content/view/embed.tpl', 
-                    'MatchFile' => 'embed_image.tpl', 
-                    'Subdir' => 'templates', 
+                    'Source' => 'content/view/embed.tpl' , 
+                    'MatchFile' => 'embed_image.tpl' , 
+                    'Subdir' => 'templates' , 
                     'Match' => array( 
                         'class_identifier' => 'image' 
                     ) 
-                ), 
+                ) , 
                 'embed-inline_image' => array( 
-                    'Source' => 'content/view/embed-inline.tpl', 
-                    'MatchFile' => 'embed-inline_image.tpl', 
-                    'Subdir' => 'templates', 
+                    'Source' => 'content/view/embed-inline.tpl' , 
+                    'MatchFile' => 'embed-inline_image.tpl' , 
+                    'Subdir' => 'templates' , 
                     'Match' => array( 
                         'class_identifier' => 'image' 
                     ) 
-                ), 
+                ) , 
                 'embed_node_image' => array( 
-                    'Source' => 'node/view/embed.tpl', 
-                    'MatchFile' => 'embed_image.tpl', 
-                    'Subdir' => 'templates', 
+                    'Source' => 'node/view/embed.tpl' , 
+                    'MatchFile' => 'embed_image.tpl' , 
+                    'Subdir' => 'templates' , 
                     'Match' => array( 
                         'class_identifier' => 'image' 
                     ) 
-                ), 
+                ) , 
                 'embed-inline_node_image' => array( 
-                    'Source' => 'node/view/embed-inline.tpl', 
-                    'MatchFile' => 'embed-inline_image.tpl', 
-                    'Subdir' => 'templates', 
+                    'Source' => 'node/view/embed-inline.tpl' , 
+                    'MatchFile' => 'embed-inline_image.tpl' , 
+                    'Subdir' => 'templates' , 
                     'Match' => array( 
                         'class_identifier' => 'image' 
                     ) 
-                ), 
+                ) , 
                 'thumbnail_image_browse' => array( 
-                    'Source' => 'node/view/browse_thumbnail.tpl', 
-                    'MatchFile' => 'thumbnail/image_browse.tpl', 
-                    'Subdir' => 'templates', 
+                    'Source' => 'node/view/browse_thumbnail.tpl' , 
+                    'MatchFile' => 'thumbnail/image_browse.tpl' , 
+                    'Subdir' => 'templates' , 
                     'Match' => array( 
                         'class_identifier' => 'image' 
                     ) 
-                ), 
+                ) , 
                 'thumbnail_banner' => array( 
-                    'Source' => 'node/view/thumbnail.tpl', 
-                    'MatchFile' => 'thumbnail/image.tpl', 
-                    'Subdir' => 'templates', 
+                    'Source' => 'node/view/thumbnail.tpl' , 
+                    'MatchFile' => 'thumbnail/image.tpl' , 
+                    'Subdir' => 'templates' , 
                     'Match' => array( 
                         'class_identifier' => 'banner' 
                     ) 
-                ), 
+                ) , 
                 'thumbnail_banner_browse' => array( 
-                    'Source' => 'node/view/browse_thumbnail.tpl', 
-                    'MatchFile' => 'thumbnail/image_browse.tpl', 
-                    'Subdir' => 'templates', 
+                    'Source' => 'node/view/browse_thumbnail.tpl' , 
+                    'MatchFile' => 'thumbnail/image_browse.tpl' , 
+                    'Subdir' => 'templates' , 
                     'Match' => array( 
                         'class_identifier' => 'banner' 
                     ) 
@@ -2311,7 +2336,7 @@ class xrowecommerceInstaller extends eZSiteInstaller
             'ShowHiddenNodes' => 'true' 
         ) );
         return array( 
-            'name' => 'site.ini', 
+            'name' => 'site.ini' , 
             'settings' => $settings 
         );
     }
@@ -2320,8 +2345,8 @@ class xrowecommerceInstaller extends eZSiteInstaller
     {
         $designList = $this->setting( 'design_list' );
         $image = array( 
-            'name' => 'content.ini', 
-            'reset_arrays' => true, 
+            'name' => 'content.ini' , 
+            'reset_arrays' => true , 
             'settings' => array( 
                 'VersionView' => array( 
                     'AvailableSiteDesignList' => $designList 
@@ -2334,11 +2359,11 @@ class xrowecommerceInstaller extends eZSiteInstaller
     function adminIconINISettings()
     {
         $image = array( 
-            'name' => 'icon.ini', 
-            'reset_arrays' => true, 
+            'name' => 'icon.ini' , 
+            'reset_arrays' => true , 
             'settings' => array( 
                 'IconSettings' => array( 
-                    'Theme' => 'crystal-admin', 
+                    'Theme' => 'crystal-admin' , 
                     'Size' => 'normal' 
                 ) 
             ) 
@@ -2349,7 +2374,7 @@ class xrowecommerceInstaller extends eZSiteInstaller
     function adminViewCacheINISettings()
     {
         return array( 
-            'name' => 'viewcache.ini', 
+            'name' => 'viewcache.ini' , 
             'settings' => array( 
                 'ViewCacheSettings' => array( 
                     'SmartCacheClear' => 'enabled' 
@@ -2367,7 +2392,7 @@ class xrowecommerceInstaller extends eZSiteInstaller
     function adminOEINISettings()
     {
         return array( 
-            'name' => 'ezoe.ini', 
+            'name' => 'ezoe.ini' , 
             'settings' => array( 
                 'EditorSettings' => array( 
                     'SkinVariant' => 'silver' 
@@ -2392,19 +2417,21 @@ class xrowecommerceInstaller extends eZSiteInstaller
         $settings[] = $this->commonRECAPTCHAINISettings();
         return $settings;
     }
+
     function commonRECAPTCHAINISettings()
     {
         $settings = array( 
             'Keys' => array( 
-                'PublicKey' => '6LdpdgsAAAAAAHMquT_RN1JyNCwzR7tZOXBPDbco ',
-                'PrivateKey' => '6LdpdgsAAAAAANpIcXH9L-JTXH62azFhrMALKRpl '
-        		) 
+                'PublicKey' => '6LdpdgsAAAAAAHMquT_RN1JyNCwzR7tZOXBPDbco ' , 
+                'PrivateKey' => '6LdpdgsAAAAAANpIcXH9L-JTXH62azFhrMALKRpl ' 
+            ) 
         );
         return array( 
-            'name' => 'recaptcha.ini', 
+            'name' => 'recaptcha.ini' , 
             'settings' => $settings 
         );
-    } 
+    }
+
     function commonSiteINISettings()
     {
         $settings = array();
@@ -2412,22 +2439,22 @@ class xrowecommerceInstaller extends eZSiteInstaller
             'AvailableSiteAccessList' => $this->setting( 'all_siteaccess_list' ) 
         );
         $settings['SiteSettings'] = array( 
-            'SiteList' => $this->setting( 'all_siteaccess_list' ), 
-            'DefaultAccess' => $this->languageNameFromLocale( $this->setting( 'primary_language' ) ), 
+            'SiteList' => $this->setting( 'all_siteaccess_list' ) , 
+            'DefaultAccess' => $this->languageNameFromLocale( $this->setting( 'primary_language' ) ) , 
             'RootNodeDepth' => 1 
         );
         $settings['ExtensionSettings'] = array( 
             'ActiveExtensions' => $this->setting( 'extension_list' ) 
         );
         $settings['UserSettings'] = array( 
-            'LogoutRedirect' => '/',
-            'UserClassID' => eZContentClass::fetchByIdentifier( 'client' )->ID
+            'LogoutRedirect' => '/' , 
+            'UserClassID' => eZContentClass::fetchByIdentifier( 'client' )->ID 
         );
         $settings['EmbedViewModeSettings'] = array( 
             'AvailableViewModes' => array( 
-                'embed', 
+                'embed' , 
                 'embed-inline' 
-            ), 
+            ) , 
             'InlineViewModes' => array( 
                 'embed-inline' 
             ) 
@@ -2436,7 +2463,7 @@ class xrowecommerceInstaller extends eZSiteInstaller
         $siteaccessTypes = $this->setting( 'siteaccess_urls' );
         // set 'language settings'
         $translationSA = array();
-        foreach ($siteaccessTypes['translation'] as $name => $urlInfo)
+        foreach ( $siteaccessTypes['translation'] as $name => $urlInfo )
         {
             $translationSA[$name] = ucfirst( $name );
         }
@@ -2446,11 +2473,11 @@ class xrowecommerceInstaller extends eZSiteInstaller
         $portMatch = array();
         $hostMatch = array();
         // get info about translation siteacceses.
-        foreach ($siteaccessTypes as $siteaccessList)
+        foreach ( $siteaccessTypes as $siteaccessList )
         {
-            foreach ($siteaccessList as $siteaccessName => $urlInfo)
+            foreach ( $siteaccessList as $siteaccessName => $urlInfo )
             {
-                switch ($accessType)
+                switch ( $accessType )
                 {
                     case 'port':
                         {
@@ -2466,7 +2493,7 @@ class xrowecommerceInstaller extends eZSiteInstaller
                 }
             }
         }
-        switch ($accessType)
+        switch ( $accessType )
         {
             case 'port':
                 {
@@ -2480,7 +2507,7 @@ class xrowecommerceInstaller extends eZSiteInstaller
                 break;
         }
         return array( 
-            'name' => 'site.ini', 
+            'name' => 'site.ini' , 
             'settings' => $settings 
         );
     }
@@ -2492,8 +2519,8 @@ class xrowecommerceInstaller extends eZSiteInstaller
         //comment out the line below in order to unlock all menus in ministration interface
         //$settings['TopAdminMenu'] = array( 'Tabs' => array( 'content', 'media', 'shop', 'my_account') );
         return array( 
-            'name' => 'menu.ini', 
-            'reset_arrays' => true, 
+            'name' => 'menu.ini' , 
+            'reset_arrays' => true , 
             'settings' => $settings 
         );
     }
@@ -2503,123 +2530,123 @@ class xrowecommerceInstaller extends eZSiteInstaller
         $settings = array( 
             'object' => array( 
                 'AvailableClasses' => array( 
-                    '0' => 'itemized_sub_items', 
-                    '1' => 'itemized_subtree_items', 
-                    '2' => 'highlighted_object', 
-                    '3' => 'vertically_listed_sub_items', 
+                    '0' => 'itemized_sub_items' , 
+                    '1' => 'itemized_subtree_items' , 
+                    '2' => 'highlighted_object' , 
+                    '3' => 'vertically_listed_sub_items' , 
                     '4' => 'horizontally_listed_sub_items' 
-                ), 
+                ) , 
                 'ClassDescription' => array( 
-                    'itemized_sub_items' => 'Itemized Sub Items', 
-                    'itemized_subtree_items' => 'Itemized Subtree Items', 
-                    'highlighted_object' => 'Highlighted Object', 
-                    'vertically_listed_sub_items' => 'Vertically Listed Sub Items', 
+                    'itemized_sub_items' => 'Itemized Sub Items' , 
+                    'itemized_subtree_items' => 'Itemized Subtree Items' , 
+                    'highlighted_object' => 'Highlighted Object' , 
+                    'vertically_listed_sub_items' => 'Vertically Listed Sub Items' , 
                     'horizontally_listed_sub_items' => 'Horizontally Listed Sub Items' 
-                ), 
+                ) , 
                 'CustomAttributes' => array( 
-                    '0' => 'offset', 
+                    '0' => 'offset' , 
                     '1' => 'limit' 
-                ), 
+                ) , 
                 'CustomAttributesDefaults' => array( 
-                    'offset' => '0', 
+                    'offset' => '0' , 
                     'limit' => '5' 
                 ) 
-            ), 
+            ) , 
             'embed' => array( 
                 'AvailableClasses' => array( 
-                    '0' => 'itemized_sub_items', 
-                    '1' => 'itemized_subtree_items', 
-                    '2' => 'highlighted_object', 
-                    '3' => 'vertically_listed_sub_items', 
+                    '0' => 'itemized_sub_items' , 
+                    '1' => 'itemized_subtree_items' , 
+                    '2' => 'highlighted_object' , 
+                    '3' => 'vertically_listed_sub_items' , 
                     '4' => 'horizontally_listed_sub_items' 
-                ), 
+                ) , 
                 'ClassDescription' => array( 
-                    'itemized_sub_items' => 'Itemized Sub Items', 
-                    'itemized_subtree_items' => 'Itemized Subtree Items', 
-                    'highlighted_object' => 'Highlighted Object', 
-                    'vertically_listed_sub_items' => 'Vertically Listed Sub Items', 
+                    'itemized_sub_items' => 'Itemized Sub Items' , 
+                    'itemized_subtree_items' => 'Itemized Subtree Items' , 
+                    'highlighted_object' => 'Highlighted Object' , 
+                    'vertically_listed_sub_items' => 'Vertically Listed Sub Items' , 
                     'horizontally_listed_sub_items' => 'Horizontally Listed Sub Items' 
-                ), 
+                ) , 
                 'CustomAttributes' => array( 
-                    '0' => 'offset', 
+                    '0' => 'offset' , 
                     '1' => 'limit' 
-                ), 
+                ) , 
                 'CustomAttributesDefaults' => array( 
-                    'offset' => '0', 
+                    'offset' => '0' , 
                     'limit' => '5' 
                 ) 
-            ), 
+            ) , 
             'table' => array( 
                 'AvailableClasses' => array( 
-                    '0' => 'list', 
-                    '1' => 'cols', 
-                    '2' => 'comparison', 
+                    '0' => 'list' , 
+                    '1' => 'cols' , 
+                    '2' => 'comparison' , 
                     '3' => 'default' 
-                ), 
+                ) , 
                 'ClassDescription' => array( 
-                    'list' => 'List', 
-                    'cols' => 'Timetable', 
-                    'comparison' => 'Comparison Table', 
+                    'list' => 'List' , 
+                    'cols' => 'Timetable' , 
+                    'comparison' => 'Comparison Table' , 
                     'default' => 'Default' 
-                ), 
+                ) , 
                 'CustomAttributes' => array( 
-                    '0' => 'summary', 
+                    '0' => 'summary' , 
                     '1' => 'caption' 
-                ), 
+                ) , 
                 'Defaults' => array( 
-                    'rows' => '2', 
-                    'cols' => '2', 
-                    'width' => '100%', 
-                    'border' => '0', 
+                    'rows' => '2' , 
+                    'cols' => '2' , 
+                    'width' => '100%' , 
+                    'border' => '0' , 
                     'class' => 'default' 
                 ) 
-            ), 
+            ) , 
             'td' => array( 
                 'CustomAttributes' => array( 
                     '0' => 'valign' 
                 ) 
-            ), 
+            ) , 
             'th' => array( 
                 'CustomAttributes' => array( 
-                    '0' => 'scope', 
-                    '1' => 'abbr', 
+                    '0' => 'scope' , 
+                    '1' => 'abbr' , 
                     '2' => 'valign' 
                 ) 
-            ), 
+            ) , 
             'factbox' => array( 
                 'CustomAttributes' => array( 
-                    '0' => 'align', 
+                    '0' => 'align' , 
                     '1' => 'title' 
-                ), 
+                ) , 
                 'CustomAttributesDefaults' => array( 
-                    'align' => 'right', 
+                    'align' => 'right' , 
                     'title' => 'factbox' 
                 ) 
-            ), 
+            ) , 
             'quote' => array( 
                 'CustomAttributes' => array( 
-                    '0' => 'align', 
+                    '0' => 'align' , 
                     '1' => 'author' 
-                ), 
+                ) , 
                 'CustomAttributesDefaults' => array( 
-                    'align' => 'right', 
+                    'align' => 'right' , 
                     'autor' => 'Quote author' 
                 ) 
-            ), 
+            ) , 
             'CustomTagSettings' => array( 
                 'AvailableCustomTags' => array( 
                     '0' => 'underline' 
-                ), 
+                ) , 
                 'IsInline' => array( 
                     'underline' => 'true' 
                 ) 
-            ), 
+            ) , 
             'embed-type_images' => array( 
                 'AvailableClasses' => array() 
             ) 
         );
         return array( 
-            'name' => 'content.ini', 
+            'name' => 'content.ini' , 
             'settings' => $settings 
         );
     }
@@ -2628,176 +2655,176 @@ class xrowecommerceInstaller extends eZSiteInstaller
     {
         $settings = array( 
             'ViewCacheSettings' => array( 
-                'SmartCacheClear' => 'enabled', 
+                'SmartCacheClear' => 'enabled' , 
                 'ClearRelationTypes' => array( 
-                    'common', 
-                    'reverse_common', 
-                    'reverse_embedded', 
+                    'common' , 
+                    'reverse_common' , 
+                    'reverse_embedded' , 
                     'reverse_attribute' 
                 ) 
-            ), 
+            ) , 
             'forum_reply' => array( 
                 'DependentClassIdentifier' => array( 
-                    'forum_topic', 
+                    'forum_topic' , 
                     'forum' 
-                ), 
+                ) , 
                 'ClearCacheMethod' => array( 
-                    '0' => 'object', 
-                    '1' => 'parent', 
-                    '2' => 'relating', 
+                    '0' => 'object' , 
+                    '1' => 'parent' , 
+                    '2' => 'relating' , 
                     '3' => 'siblings' 
                 ) 
-            ), 
+            ) , 
             'forum_topic' => array( 
                 'DependentClassIdentifier' => array( 
                     'forum' 
-                ), 
+                ) , 
                 'ClearCacheMethod' => array( 
-                    '0' => 'object', 
-                    '1' => 'parent', 
-                    '2' => 'relating', 
+                    '0' => 'object' , 
+                    '1' => 'parent' , 
+                    '2' => 'relating' , 
                     '3' => 'siblings' 
                 ) 
-            ), 
+            ) , 
             'folder' => array( 
                 'DependentClassIdentifier' => array( 
                     '0' => 'folder' 
-                ), 
+                ) , 
                 'ClearCacheMethod' => array( 
-                    '0' => 'object', 
-                    '1' => 'parent', 
+                    '0' => 'object' , 
+                    '1' => 'parent' , 
                     '2' => 'relating' 
                 ) 
-            ), 
+            ) , 
             'gallery' => array( 
                 'DependentClassIdentifier' => array( 
                     '0' => 'folder' 
-                ), 
+                ) , 
                 'ClearCacheMethod' => array( 
-                    '0' => 'object', 
-                    '1' => 'parent', 
+                    '0' => 'object' , 
+                    '1' => 'parent' , 
                     '2' => 'relating' 
                 ) 
-            ), 
+            ) , 
             'image' => array( 
                 'DependentClassIdentifier' => array( 
                     '0' => 'gallery' 
-                ), 
+                ) , 
                 'ClearCacheMethod' => array( 
-                    '0' => 'object', 
-                    '1' => 'parent', 
-                    '2' => 'relating', 
+                    '0' => 'object' , 
+                    '1' => 'parent' , 
+                    '2' => 'relating' , 
                     '3' => 'siblings' 
                 ) 
-            ), 
+            ) , 
             'event' => array( 
                 'DependentClassIdentifier' => array( 
                     '0' => 'event_calender' 
-                ), 
+                ) , 
                 'ClearCacheMethod' => array( 
-                    '0' => 'object', 
-                    '1' => 'parent', 
+                    '0' => 'object' , 
+                    '1' => 'parent' , 
                     '2' => 'relating' 
                 ) 
-            ), 
+            ) , 
             'article' => array( 
                 'DependentClassIdentifier' => array( 
-                    '0' => 'folder', 
+                    '0' => 'folder' , 
                     '1' => 'frontpage' 
-                ), 
+                ) , 
                 'ClearCacheMethod' => array( 
-                    '0' => 'object', 
-                    '1' => 'parent', 
+                    '0' => 'object' , 
+                    '1' => 'parent' , 
                     '2' => 'relating' 
                 ) 
-            ), 
+            ) , 
             'article_mainpage' => array( 
                 'DependentClassIdentifier' => array( 
-                    '0' => 'folder', 
+                    '0' => 'folder' , 
                     '1' => 'frontpage' 
-                ), 
+                ) , 
                 'ClearCacheMethod' => array( 
-                    '0' => 'object', 
-                    '1' => 'parent', 
+                    '0' => 'object' , 
+                    '1' => 'parent' , 
                     '2' => 'relating' 
                 ) 
-            ), 
+            ) , 
             'article_subpage' => array( 
                 'DependentClassIdentifier' => array( 
                     '0' => 'article_mainpage' 
-                ), 
+                ) , 
                 'ClearCacheMethod' => array( 
-                    '0' => 'object', 
-                    '1' => 'parent', 
-                    '2' => 'relating', 
+                    '0' => 'object' , 
+                    '1' => 'parent' , 
+                    '2' => 'relating' , 
                     '3' => 'siblings' 
                 ) 
-            ), 
+            ) , 
             'blog_post' => array( 
                 'DependentClassIdentifier' => array( 
-                    '0' => 'frontpage', 
+                    '0' => 'frontpage' , 
                     '1' => 'blog' 
-                ), 
+                ) , 
                 'ClearCacheMethod' => array( 
-                    '0' => 'object', 
-                    '1' => 'parent', 
+                    '0' => 'object' , 
+                    '1' => 'parent' , 
                     '2' => 'relating' 
                 ) 
-            ), 
+            ) , 
             'product' => array( 
                 'DependentClassIdentifier' => array( 
-                    '0' => 'folder', 
+                    '0' => 'folder' , 
                     '1' => 'frontpage' 
-                ), 
+                ) , 
                 'ClearCacheMethod' => array( 
-                    '0' => 'object', 
-                    '1' => 'parent', 
+                    '0' => 'object' , 
+                    '1' => 'parent' , 
                     '2' => 'relating' 
                 ) 
-            ), 
+            ) , 
             'infobox' => array( 
                 'DependentClassIdentifier' => array( 
                     '0' => 'folder' 
-                ), 
+                ) , 
                 'ClearCacheMethod' => array( 
-                    '0' => 'object', 
-                    '1' => 'parent', 
+                    '0' => 'object' , 
+                    '1' => 'parent' , 
                     '2' => 'relating' 
                 ) 
-            ), 
+            ) , 
             'documentation_page' => array( 
                 'DependentClassIdentifier' => array( 
                     '0' => 'documentation_page' 
-                ), 
+                ) , 
                 'ClearCacheMethod' => array( 
-                    '0' => 'object', 
-                    '1' => 'parent', 
+                    '0' => 'object' , 
+                    '1' => 'parent' , 
                     '2' => 'relating' 
                 ) 
-            ), 
+            ) , 
             'banner' => array( 
                 'DependentClassIdentifier' => array( 
                     '0' => 'frontpage' 
-                ), 
+                ) , 
                 'ClearCacheMethod' => array( 
-                    '0' => 'object', 
-                    '1' => 'parent', 
+                    '0' => 'object' , 
+                    '1' => 'parent' , 
                     '2' => 'relating' 
                 ) 
-            ), 
+            ) , 
             'geo_article' => array( 
                 'DependentClassIdentifier' => array( 
                     '0' => 'frontpage' 
-                ), 
+                ) , 
                 'ClearCacheMethod' => array( 
-                    '0' => 'object', 
-                    '1' => 'parent', 
+                    '0' => 'object' , 
+                    '1' => 'parent' , 
                     '2' => 'relating' 
                 ) 
-            )
+            ) 
         );
         return array( 
-            'name' => 'viewcache.ini', 
+            'name' => 'viewcache.ini' , 
             'settings' => $settings 
         );
     }
@@ -2811,8 +2838,8 @@ class xrowecommerceInstaller extends eZSiteInstaller
             ) 
         );
         return array( 
-            'name' => 'forum.ini', 
-            'reset_arrays' => false, 
+            'name' => 'forum.ini' , 
+            'reset_arrays' => false , 
             'settings' => $settings 
         );
     }
@@ -2821,45 +2848,45 @@ class xrowecommerceInstaller extends eZSiteInstaller
     {
         $settings = array( 
             'CustomAttribute_table_summary' => array( 
-                'Name' => 'Summary (WAI)', 
+                'Name' => 'Summary (WAI)' , 
                 'Required' => 'true' 
-            ), 
+            ) , 
             'CustomAttribute_scope' => array( 
-                'Name' => 'Scope', 
-                'Title' => 'The scope attribute defines a way to associate header cells and data cells in a table.', 
-                'Type' => 'select', 
+                'Name' => 'Scope' , 
+                'Title' => 'The scope attribute defines a way to associate header cells and data cells in a table.' , 
+                'Type' => 'select' , 
                 'Selection' => array( 
-                    '0' => '', 
-                    'col' => 'Column', 
+                    '0' => '' , 
+                    'col' => 'Column' , 
                     'row' => 'Row' 
                 ) 
-            ), 
+            ) , 
             'CustomAttribute_valign' => array( 
-                'Title' => 'Lets you define the vertical alignment of the table cell/ header.', 
-                'Type' => 'select', 
+                'Title' => 'Lets you define the vertical alignment of the table cell/ header.' , 
+                'Type' => 'select' , 
                 'Selection' => array( 
-                    '0' => '', 
-                    'top' => 'Top', 
-                    'middle' => 'Middle', 
-                    'bottom' => 'Bottom', 
+                    '0' => '' , 
+                    'top' => 'Top' , 
+                    'middle' => 'Middle' , 
+                    'bottom' => 'Bottom' , 
                     'baseline' => 'Baseline' 
                 ) 
-            ), 
+            ) , 
             'Attribute_table_border' => array( 
-                'Type' => 'htmlsize', 
+                'Type' => 'htmlsize' , 
                 'AllowEmpty' => 'true' 
-            ), 
+            ) , 
             'CustomAttribute_embed_offset' => array( 
-                'Type' => 'int', 
+                'Type' => 'int' , 
                 'AllowEmpty' => 'true' 
-            ), 
+            ) , 
             'CustomAttribute_embed_limit' => array( 
-                'Type' => 'int', 
+                'Type' => 'int' , 
                 'AllowEmpty' => 'true' 
             ) 
         );
         return array( 
-            'name' => 'ezoe_attributes.ini', 
+            'name' => 'ezoe_attributes.ini' , 
             'settings' => $settings 
         );
     }
@@ -2867,11 +2894,11 @@ class xrowecommerceInstaller extends eZSiteInstaller
     function commonXMLINISettings()
     {
         return array( 
-            'name' => 'ezxml.ini', 
+            'name' => 'ezxml.ini' , 
             'settings' => array( 
                 'TagSettings' => array( 
                     'TagPresets' => array( 
-                        '0' => '', 
+                        '0' => '' , 
                         'mini' => 'Simple formatting' 
                     ) 
                 ) 
@@ -2906,20 +2933,20 @@ class xrowecommerceInstaller extends eZSiteInstaller
             'ShowUntranslatedObjects' => 'disabled' 
         );
         $settings['SiteAccessSettings'] = array( 
-            'RequireUserLogin' => 'false', 
+            'RequireUserLogin' => 'false' , 
             'ShowHiddenNodes' => 'false' 
         );
         $siteaccessUrl = $this->setting( 'siteaccess_urls' );
         $adminSiteaccessName = $this->setting( 'admin_siteaccess' );
         $settings['SiteSettings'] = array( 
-            'LoginPage' => 'embedded', 
+            'LoginPage' => 'embedded' , 
             'AdditionalLoginFormActionURL' => 'http://' . $siteaccessUrl['admin'][$adminSiteaccessName]['url'] . '/user/login' 
         );
         $settings['Session'] = array( 
             'SessionNamePerSiteAccess' => 'disabled' 
         );
         return array( 
-            'name' => 'site.ini', 
+            'name' => 'site.ini' , 
             'settings' => $settings 
         );
     }
@@ -2927,24 +2954,24 @@ class xrowecommerceInstaller extends eZSiteInstaller
     function siteDesignINISettings()
     {
         $settings = array( 
-            'name' => 'design.ini', 
-            'reset_arrays' => false, 
+            'name' => 'design.ini' , 
+            'reset_arrays' => false , 
             'settings' => array( 
                 'JavaScriptSettings' => array( 
                     'JavaScriptList' => array( 
-                        'ezjsc::yui3',
-                        'ezjsc::yui3io', 
-                        '../lib/yui/2.7.0/build/yahoo-dom-event/yahoo-dom-event.js', 
-                        '../lib/yui/2.7.0/build/calendar/calendar-min.js', 
-                        'ezdatepicker.js',
-                        'xrowecommerce.js', 
-                        'xrowproductvariation.js'
+                        'ezjsc::yui3' , 
+                        'ezjsc::yui3io' , 
+                        '../lib/yui/2.7.0/build/yahoo-dom-event/yahoo-dom-event.js' , 
+                        '../lib/yui/2.7.0/build/calendar/calendar-min.js' , 
+                        'ezdatepicker.js' , 
+                        'xrowecommerce.js' , 
+                        'xrowproductvariation.js' 
                     ) 
-                ), 
+                ) , 
                 'StylesheetSettings' => array( 
                     'CSSFileList' => array( 
-                        'xrowecommerce.css',
-                        '../lib/yui/2.7.0/build/calendar/assets/calendar.css',
+                        'xrowecommerce.css' , 
+                        '../lib/yui/2.7.0/build/calendar/assets/calendar.css' , 
                         '../lib/yui/2.7.0/build/calendar/assets/skins/sam/calendar-skin.css' 
                     ) 
                 ) 
@@ -2956,16 +2983,16 @@ class xrowecommerceInstaller extends eZSiteInstaller
     function siteContentStructureMenuINISettings()
     {
         $contentStructureMenu = array( 
-            'name' => 'contentstructuremenu.ini', 
-            'reset_arrays' => true, 
+            'name' => 'contentstructuremenu.ini' , 
+            'reset_arrays' => true , 
             'settings' => array( 
                 'TreeMenu' => array( 
                     'ShowClasses' => array( 
-                        'folder', 
-                        'documentation_page', 
-                        'frontpage', 
+                        'folder' , 
+                        'documentation_page' , 
+                        'frontpage' , 
                         'forums' 
-                    ), 
+                    ) , 
                     'ToolTips' => 'disabled' 
                 ) 
             ) 
@@ -2976,53 +3003,53 @@ class xrowecommerceInstaller extends eZSiteInstaller
     function siteMenuINISettings()
     {
         return array( 
-            'name' => 'menu.ini', 
-            'reset_arrays' => true, 
+            'name' => 'menu.ini' , 
+            'reset_arrays' => true , 
             'settings' => array( 
                 'MenuSettings' => array( 
                     'AvailableMenuArray' => array( 
-                        'TopOnly', 
-                        'LeftOnly', 
-                        'DoubleTop', 
+                        'TopOnly' , 
+                        'LeftOnly' , 
+                        'DoubleTop' , 
                         'LeftTop' 
                     ) 
-                ), 
+                ) , 
                 'SelectedMenu' => array( 
-                    'CurrentMenu' => 'LeftTop', 
-                    'TopMenu' => 'flat_top', 
+                    'CurrentMenu' => 'LeftTop' , 
+                    'TopMenu' => 'flat_top' , 
                     'LeftMenu' => 'flat_left' 
-                ), 
+                ) , 
                 'TopOnly' => array( 
-                    'TitleText' => 'Only top menu', 
-                    'MenuThumbnail' => 'menu/top_only.jpg', 
-                    'TopMenu' => 'flat_top', 
+                    'TitleText' => 'Only top menu' , 
+                    'MenuThumbnail' => 'menu/top_only.jpg' , 
+                    'TopMenu' => 'flat_top' , 
                     'LeftMenu' => '' 
-                ), 
+                ) , 
                 'LeftOnly' => array( 
-                    'TitleText' => 'Left menu', 
-                    'MenuThumbnail' => 'menu/left_only.jpg', 
-                    'TopMenu' => '', 
+                    'TitleText' => 'Left menu' , 
+                    'MenuThumbnail' => 'menu/left_only.jpg' , 
+                    'TopMenu' => '' , 
                     'LeftMenu' => 'flat_left' 
-                ), 
+                ) , 
                 'DoubleTop' => array( 
-                    'TitleText' => 'Double top menu', 
-                    'MenuThumbnail' => 'menu/double_top.jpg', 
-                    'TopMenu' => 'double_top', 
+                    'TitleText' => 'Double top menu' , 
+                    'MenuThumbnail' => 'menu/double_top.jpg' , 
+                    'TopMenu' => 'double_top' , 
                     'LeftMenu' => '' 
-                ), 
+                ) , 
                 'LeftTop' => array( 
-                    'TitleText' => 'Left and top', 
-                    'MenuThumbnail' => 'menu/left_top.jpg', 
-                    'TopMenu' => 'flat_top', 
+                    'TitleText' => 'Left and top' , 
+                    'MenuThumbnail' => 'menu/left_top.jpg' , 
+                    'TopMenu' => 'flat_top' , 
                     'LeftMenu' => 'flat_left' 
-                ), 
+                ) , 
                 'MenuContentSettings' => array( 
                     'TopIdentifierList' => array( 
-                        'folder', 
+                        'folder' , 
                         'feedback_form' 
-                    ), 
+                    ) , 
                     'LeftIdentifierList' => array( 
-                        'folder', 
+                        'folder' , 
                         'feedback_form' 
                     ) 
                 ) 
@@ -3033,934 +3060,934 @@ class xrowecommerceInstaller extends eZSiteInstaller
     function siteOverrideINISettings()
     {
         return array( 
-            'name' => 'override.ini', 
-            'discard_old_values' => true, 
-            'settings' => array(
-               'xrow_client_edit' => array( 
-                    'Source' => 'content/edit.tpl', 
-                    'MatchFile' => 'edit/user.tpl', 
-                    'Subdir' => 'templates', 
+            'name' => 'override.ini' , 
+            'discard_old_values' => true , 
+            'settings' => array( 
+                'xrow_client_edit' => array( 
+                    'Source' => 'content/edit.tpl' , 
+                    'MatchFile' => 'edit/user.tpl' , 
+                    'Subdir' => 'templates' , 
                     'Match' => array( 
-                    'class_identifier' => 'client' 
+                        'class_identifier' => 'client' 
                     ) 
-                ),
-               'xrow_manufacturer_full' => array( 
-                    'Source' => 'node/view/full.tpl', 
-                    'MatchFile' => 'full/xrow_manufacturer.tpl', 
-                    'Subdir' => 'templates', 
-                    'Match' => array( 
-                        'class_identifier' => 'manufacturer' 
-                    ) 
-                ),
-               'xrow_manufacturer_line' => array( 
-                    'Source' => 'node/view/line.tpl', 
-                    'MatchFile' => 'line/xrow_manufacturer.tpl', 
-                    'Subdir' => 'templates', 
+                ) , 
+                'xrow_manufacturer_full' => array( 
+                    'Source' => 'node/view/full.tpl' , 
+                    'MatchFile' => 'full/xrow_manufacturer.tpl' , 
+                    'Subdir' => 'templates' , 
                     'Match' => array( 
                         'class_identifier' => 'manufacturer' 
                     ) 
-                ),
-               'edit_xrow_product_review' => array( 
-                    'Source' => 'content/edit.tpl', 
-                    'MatchFile' => 'edit/xrow_product_review.tpl', 
-                    'Subdir' => 'templates', 
+                ) , 
+                'xrow_manufacturer_line' => array( 
+                    'Source' => 'node/view/line.tpl' , 
+                    'MatchFile' => 'line/xrow_manufacturer.tpl' , 
+                    'Subdir' => 'templates' , 
+                    'Match' => array( 
+                        'class_identifier' => 'manufacturer' 
+                    ) 
+                ) , 
+                'edit_xrow_product_review' => array( 
+                    'Source' => 'content/edit.tpl' , 
+                    'MatchFile' => 'edit/xrow_product_review.tpl' , 
+                    'Subdir' => 'templates' , 
                     'Match' => array( 
                         'class_identifier' => 'xrow_product_review' 
                     ) 
-                ),
-
-               'line_xrow_product_category' => array( 
-                    'Source' => 'node/view/line.tpl', 
-                    'MatchFile' => 'line/xrow_product_category.tpl', 
-                    'Subdir' => 'templates', 
-                    'Match' => array( 
-                        'class_identifier' => 'xrow_product_category' 
-                    ) 
-                ), 
-        
-               'embed_xrow_product_category' => array( 
-                    'Source' => 'content/view/embed.tpl', 
-                    'MatchFile' => 'embed/xrow_product_category.tpl', 
-                    'Subdir' => 'templates', 
-                    'Match' => array( 
-                        'class_identifier' => 'xrow_product_category' 
-                    ) 
-                ), 
-        
-
-               'full_xrow_product_category' => array( 
-                    'Source' => 'node/view/full.tpl', 
-                    'MatchFile' => 'full/xrow_product_category.tpl', 
-                    'Subdir' => 'templates', 
-                    'Match' => array( 
-                        'class_identifier' => 'xrow_product_category' 
-                    ) 
-                ), 
-
-               'full_xrow_product' => array( 
-                    'Source' => 'node/view/full.tpl', 
-                    'MatchFile' => 'full/xrow_product.tpl', 
-                    'Subdir' => 'templates', 
-                    'Match' => array( 
-                        'class_identifier' => 'xrow_product' 
-                    ) 
-                ), 
-        
-               'embed_xrow_product' => array( 
-                    'Source' => 'content/view/embed.tpl', 
-                    'MatchFile' => 'embed/xrow_product.tpl', 
-                    'Subdir' => 'templates', 
-                    'Match' => array( 
-                        'class_identifier' => 'xrow_product' 
-                    ) 
-                ), 
-        
-               'line_xrow_product' => array( 
-                    'Source' => 'node/view/line.tpl', 
-                    'MatchFile' => 'line/xrow_product.tpl', 
-                    'Subdir' => 'templates', 
-                    'Match' => array( 
-                        'class_identifier' => 'xrow_product' 
-                    ) 
-                ), 
+                ) , 
                 
-        //START WEBIN
-        
+                'line_xrow_product_category' => array( 
+                    'Source' => 'node/view/line.tpl' , 
+                    'MatchFile' => 'line/xrow_product_category.tpl' , 
+                    'Subdir' => 'templates' , 
+                    'Match' => array( 
+                        'class_identifier' => 'xrow_product_category' 
+                    ) 
+                ) , 
+                
+                'embed_xrow_product_category' => array( 
+                    'Source' => 'content/view/embed.tpl' , 
+                    'MatchFile' => 'embed/xrow_product_category.tpl' , 
+                    'Subdir' => 'templates' , 
+                    'Match' => array( 
+                        'class_identifier' => 'xrow_product_category' 
+                    ) 
+                ) , 
+                
+                'full_xrow_product_category' => array( 
+                    'Source' => 'node/view/full.tpl' , 
+                    'MatchFile' => 'full/xrow_product_category.tpl' , 
+                    'Subdir' => 'templates' , 
+                    'Match' => array( 
+                        'class_identifier' => 'xrow_product_category' 
+                    ) 
+                ) , 
+                
+                'full_xrow_product' => array( 
+                    'Source' => 'node/view/full.tpl' , 
+                    'MatchFile' => 'full/xrow_product.tpl' , 
+                    'Subdir' => 'templates' , 
+                    'Match' => array( 
+                        'class_identifier' => 'xrow_product' 
+                    ) 
+                ) , 
+                
+                'embed_xrow_product' => array( 
+                    'Source' => 'content/view/embed.tpl' , 
+                    'MatchFile' => 'embed/xrow_product.tpl' , 
+                    'Subdir' => 'templates' , 
+                    'Match' => array( 
+                        'class_identifier' => 'xrow_product' 
+                    ) 
+                ) , 
+                
+                'line_xrow_product' => array( 
+                    'Source' => 'node/view/line.tpl' , 
+                    'MatchFile' => 'line/xrow_product.tpl' , 
+                    'Subdir' => 'templates' , 
+                    'Match' => array( 
+                        'class_identifier' => 'xrow_product' 
+                    ) 
+                ) , 
+                
+                //START WEBIN
+                
+
                 'full_article' => array( 
-                    'Source' => 'node/view/full.tpl', 
-                    'MatchFile' => 'full/article.tpl', 
-                    'Subdir' => 'templates', 
+                    'Source' => 'node/view/full.tpl' , 
+                    'MatchFile' => 'full/article.tpl' , 
+                    'Subdir' => 'templates' , 
                     'Match' => array( 
                         'class_identifier' => 'article' 
                     ) 
-                ), 
+                ) , 
                 'full_geo_article' => array( 
-                    'Source' => 'node/view/full.tpl', 
-                    'MatchFile' => 'full/geo_article.tpl', 
-                    'Subdir' => 'templates', 
+                    'Source' => 'node/view/full.tpl' , 
+                    'MatchFile' => 'full/geo_article.tpl' , 
+                    'Subdir' => 'templates' , 
                     'Match' => array( 
                         'class_identifier' => 'geo_article' 
                     ) 
-                ), 
+                ) , 
                 'full_article_mainpage' => array( 
-                    'Source' => 'node/view/full.tpl', 
-                    'MatchFile' => 'full/article_mainpage.tpl', 
-                    'Subdir' => 'templates', 
+                    'Source' => 'node/view/full.tpl' , 
+                    'MatchFile' => 'full/article_mainpage.tpl' , 
+                    'Subdir' => 'templates' , 
                     'Match' => array( 
                         'class_identifier' => 'article_mainpage' 
                     ) 
-                ), 
+                ) , 
                 'full_article_subpage' => array( 
-                    'Source' => 'node/view/full.tpl', 
-                    'MatchFile' => 'full/article_subpage.tpl', 
-                    'Subdir' => 'templates', 
+                    'Source' => 'node/view/full.tpl' , 
+                    'MatchFile' => 'full/article_subpage.tpl' , 
+                    'Subdir' => 'templates' , 
                     'Match' => array( 
                         'class_identifier' => 'article_subpage' 
                     ) 
-                ), 
+                ) , 
                 'full_banner' => array( 
-                    'Source' => 'node/view/full.tpl', 
-                    'MatchFile' => 'full/banner.tpl', 
-                    'Subdir' => 'templates', 
+                    'Source' => 'node/view/full.tpl' , 
+                    'MatchFile' => 'full/banner.tpl' , 
+                    'Subdir' => 'templates' , 
                     'Match' => array( 
                         'class_identifier' => 'banner' 
                     ) 
-                ), 
+                ) , 
                 'full_blog' => array( 
-                    'Source' => 'node/view/full.tpl', 
-                    'MatchFile' => 'full/blog.tpl', 
-                    'Subdir' => 'templates', 
+                    'Source' => 'node/view/full.tpl' , 
+                    'MatchFile' => 'full/blog.tpl' , 
+                    'Subdir' => 'templates' , 
                     'Match' => array( 
                         'class_identifier' => 'blog' 
                     ) 
-                ), 
+                ) , 
                 'full_blog_post' => array( 
-                    'Source' => 'node/view/full.tpl', 
-                    'MatchFile' => 'full/blog_post.tpl', 
-                    'Subdir' => 'templates', 
+                    'Source' => 'node/view/full.tpl' , 
+                    'MatchFile' => 'full/blog_post.tpl' , 
+                    'Subdir' => 'templates' , 
                     'Match' => array( 
                         'class_identifier' => 'blog_post' 
                     ) 
-                ), 
+                ) , 
                 'full_comment' => array( 
-                    'Source' => 'node/view/full.tpl', 
-                    'MatchFile' => 'full/comment.tpl', 
-                    'Subdir' => 'templates', 
+                    'Source' => 'node/view/full.tpl' , 
+                    'MatchFile' => 'full/comment.tpl' , 
+                    'Subdir' => 'templates' , 
                     'Match' => array( 
                         'class_identifier' => 'comment' 
                     ) 
-                ), 
+                ) , 
                 'full_documentation_page' => array( 
-                    'Source' => 'node/view/full.tpl', 
-                    'MatchFile' => 'full/documentation_page.tpl', 
-                    'Subdir' => 'templates', 
+                    'Source' => 'node/view/full.tpl' , 
+                    'MatchFile' => 'full/documentation_page.tpl' , 
+                    'Subdir' => 'templates' , 
                     'Match' => array( 
                         'class_identifier' => 'documentation_page' 
                     ) 
-                ), 
+                ) , 
                 'full_event_calendar' => array( 
-                    'Source' => 'node/view/full.tpl', 
-                    'MatchFile' => 'full/event_calendar.tpl', 
-                    'Subdir' => 'templates', 
+                    'Source' => 'node/view/full.tpl' , 
+                    'MatchFile' => 'full/event_calendar.tpl' , 
+                    'Subdir' => 'templates' , 
                     'Match' => array( 
                         'class_identifier' => 'event_calendar' 
                     ) 
-                ), 
+                ) , 
                 'full_event' => array( 
-                    'Source' => 'node/view/full.tpl', 
-                    'MatchFile' => 'full/event.tpl', 
-                    'Subdir' => 'templates', 
+                    'Source' => 'node/view/full.tpl' , 
+                    'MatchFile' => 'full/event.tpl' , 
+                    'Subdir' => 'templates' , 
                     'Match' => array( 
                         'class_identifier' => 'event' 
                     ) 
-                ), 
+                ) , 
                 'full_feedback_form' => array( 
-                    'Source' => 'node/view/full.tpl', 
-                    'MatchFile' => 'full/feedback_form.tpl', 
-                    'Subdir' => 'templates', 
+                    'Source' => 'node/view/full.tpl' , 
+                    'MatchFile' => 'full/feedback_form.tpl' , 
+                    'Subdir' => 'templates' , 
                     'Match' => array( 
                         'class_identifier' => 'feedback_form' 
                     ) 
-                ), 
+                ) , 
                 'full_file' => array( 
-                    'Source' => 'node/view/full.tpl', 
-                    'MatchFile' => 'full/file.tpl', 
-                    'Subdir' => 'templates', 
+                    'Source' => 'node/view/full.tpl' , 
+                    'MatchFile' => 'full/file.tpl' , 
+                    'Subdir' => 'templates' , 
                     'Match' => array( 
                         'class_identifier' => 'file' 
                     ) 
-                ), 
+                ) , 
                 'full_flash' => array( 
-                    'Source' => 'node/view/full.tpl', 
-                    'MatchFile' => 'full/flash.tpl', 
-                    'Subdir' => 'templates', 
+                    'Source' => 'node/view/full.tpl' , 
+                    'MatchFile' => 'full/flash.tpl' , 
+                    'Subdir' => 'templates' , 
                     'Match' => array( 
                         'class_identifier' => 'flash' 
                     ) 
-                ), 
+                ) , 
                 'full_folder' => array( 
-                    'Source' => 'node/view/full.tpl', 
-                    'MatchFile' => 'full/folder.tpl', 
-                    'Subdir' => 'templates', 
+                    'Source' => 'node/view/full.tpl' , 
+                    'MatchFile' => 'full/folder.tpl' , 
+                    'Subdir' => 'templates' , 
                     'Match' => array( 
                         'class_identifier' => 'folder' 
                     ) 
-                ), 
+                ) , 
                 'full_forum' => array( 
-                    'Source' => 'node/view/full.tpl', 
-                    'MatchFile' => 'full/forum.tpl', 
-                    'Subdir' => 'templates', 
+                    'Source' => 'node/view/full.tpl' , 
+                    'MatchFile' => 'full/forum.tpl' , 
+                    'Subdir' => 'templates' , 
                     'Match' => array( 
                         'class_identifier' => 'forum' 
                     ) 
-                ), 
+                ) , 
                 'full_forum_reply' => array( 
-                    'Source' => 'node/view/full.tpl', 
-                    'MatchFile' => 'full/forum_reply.tpl', 
-                    'Subdir' => 'templates', 
+                    'Source' => 'node/view/full.tpl' , 
+                    'MatchFile' => 'full/forum_reply.tpl' , 
+                    'Subdir' => 'templates' , 
                     'Match' => array( 
                         'class_identifier' => 'forum_reply' 
                     ) 
-                ), 
+                ) , 
                 'full_forum_topic' => array( 
-                    'Source' => 'node/view/full.tpl', 
-                    'MatchFile' => 'full/forum_topic.tpl', 
-                    'Subdir' => 'templates', 
+                    'Source' => 'node/view/full.tpl' , 
+                    'MatchFile' => 'full/forum_topic.tpl' , 
+                    'Subdir' => 'templates' , 
                     'Match' => array( 
                         'class_identifier' => 'forum_topic' 
                     ) 
-                ), 
+                ) , 
                 'full_forums' => array( 
-                    'Source' => 'node/view/full.tpl', 
-                    'MatchFile' => 'full/forums.tpl', 
-                    'Subdir' => 'templates', 
+                    'Source' => 'node/view/full.tpl' , 
+                    'MatchFile' => 'full/forums.tpl' , 
+                    'Subdir' => 'templates' , 
                     'Match' => array( 
                         'class_identifier' => 'forums' 
                     ) 
-                ), 
+                ) , 
                 'full_frontpage' => array( 
-                    'Source' => 'node/view/full.tpl', 
-                    'MatchFile' => 'full/frontpage.tpl', 
-                    'Subdir' => 'templates', 
+                    'Source' => 'node/view/full.tpl' , 
+                    'MatchFile' => 'full/frontpage.tpl' , 
+                    'Subdir' => 'templates' , 
                     'Match' => array( 
                         'class_identifier' => 'frontpage' 
                     ) 
-                ), 
+                ) , 
                 'full_gallery' => array( 
-                    'Source' => 'node/view/full.tpl', 
-                    'MatchFile' => 'full/gallery.tpl', 
-                    'Subdir' => 'templates', 
+                    'Source' => 'node/view/full.tpl' , 
+                    'MatchFile' => 'full/gallery.tpl' , 
+                    'Subdir' => 'templates' , 
                     'Match' => array( 
                         'class_identifier' => 'gallery' 
                     ) 
-                ), 
+                ) , 
                 'full_image' => array( 
-                    'Source' => 'node/view/full.tpl', 
-                    'MatchFile' => 'full/image.tpl', 
-                    'Subdir' => 'templates', 
+                    'Source' => 'node/view/full.tpl' , 
+                    'MatchFile' => 'full/image.tpl' , 
+                    'Subdir' => 'templates' , 
                     'Match' => array( 
                         'class_identifier' => 'image' 
                     ) 
-                ), 
+                ) , 
                 'full_infobox' => array( 
-                    'Source' => 'node/view/full.tpl', 
-                    'MatchFile' => 'full/infobox.tpl', 
-                    'Subdir' => 'templates', 
+                    'Source' => 'node/view/full.tpl' , 
+                    'MatchFile' => 'full/infobox.tpl' , 
+                    'Subdir' => 'templates' , 
                     'Match' => array( 
                         'class_identifier' => 'infobox' 
                     ) 
-                ), 
+                ) , 
                 'full_link' => array( 
-                    'Source' => 'node/view/full.tpl', 
-                    'MatchFile' => 'full/link.tpl', 
-                    'Subdir' => 'templates', 
+                    'Source' => 'node/view/full.tpl' , 
+                    'MatchFile' => 'full/link.tpl' , 
+                    'Subdir' => 'templates' , 
                     'Match' => array( 
                         'class_identifier' => 'link' 
                     ) 
-                ), 
+                ) , 
                 'full_multicalendar' => array( 
-                    'Source' => 'node/view/full.tpl', 
-                    'MatchFile' => 'full/multicalendar.tpl', 
-                    'Subdir' => 'templates', 
+                    'Source' => 'node/view/full.tpl' , 
+                    'MatchFile' => 'full/multicalendar.tpl' , 
+                    'Subdir' => 'templates' , 
                     'Match' => array( 
                         'class_identifier' => 'multicalendar' 
                     ) 
-                ), 
+                ) , 
                 'full_poll' => array( 
-                    'Source' => 'node/view/full.tpl', 
-                    'MatchFile' => 'full/poll.tpl', 
-                    'Subdir' => 'templates', 
+                    'Source' => 'node/view/full.tpl' , 
+                    'MatchFile' => 'full/poll.tpl' , 
+                    'Subdir' => 'templates' , 
                     'Match' => array( 
                         'class_identifier' => 'poll' 
                     ) 
-                ), 
+                ) , 
                 'full_product' => array( 
-                    'Source' => 'node/view/full.tpl', 
-                    'MatchFile' => 'full/product.tpl', 
-                    'Subdir' => 'templates', 
+                    'Source' => 'node/view/full.tpl' , 
+                    'MatchFile' => 'full/product.tpl' , 
+                    'Subdir' => 'templates' , 
                     'Match' => array( 
                         'class_identifier' => 'product' 
                     ) 
-                ), 
+                ) , 
                 'full_quicktime' => array( 
-                    'Source' => 'node/view/full.tpl', 
-                    'MatchFile' => 'full/quicktime.tpl', 
-                    'Subdir' => 'templates', 
+                    'Source' => 'node/view/full.tpl' , 
+                    'MatchFile' => 'full/quicktime.tpl' , 
+                    'Subdir' => 'templates' , 
                     'Match' => array( 
                         'class_identifier' => 'quicktime' 
                     ) 
-                ), 
+                ) , 
                 'full_real_video' => array( 
-                    'Source' => 'node/view/full.tpl', 
-                    'MatchFile' => 'full/real_video.tpl', 
-                    'Subdir' => 'templates', 
+                    'Source' => 'node/view/full.tpl' , 
+                    'MatchFile' => 'full/real_video.tpl' , 
+                    'Subdir' => 'templates' , 
                     'Match' => array( 
                         'class_identifier' => 'real_video' 
                     ) 
-                ), 
+                ) , 
                 'full_silverlight' => array( 
-                    'Source' => 'node/view/full.tpl', 
-                    'MatchFile' => 'full/silverlight.tpl', 
-                    'Subdir' => 'templates', 
+                    'Source' => 'node/view/full.tpl' , 
+                    'MatchFile' => 'full/silverlight.tpl' , 
+                    'Subdir' => 'templates' , 
                     'Match' => array( 
                         'class_identifier' => 'silverlight' 
                     ) 
-                ), 
+                ) , 
                 'full_windows_media' => array( 
-                    'Source' => 'node/view/full.tpl', 
-                    'MatchFile' => 'full/windows_media.tpl', 
-                    'Subdir' => 'templates', 
+                    'Source' => 'node/view/full.tpl' , 
+                    'MatchFile' => 'full/windows_media.tpl' , 
+                    'Subdir' => 'templates' , 
                     'Match' => array( 
                         'class_identifier' => 'windows_media' 
                     ) 
-                ), 
+                ) , 
                 'line_article' => array( 
-                    'Source' => 'node/view/line.tpl', 
-                    'MatchFile' => 'line/article.tpl', 
-                    'Subdir' => 'templates', 
+                    'Source' => 'node/view/line.tpl' , 
+                    'MatchFile' => 'line/article.tpl' , 
+                    'Subdir' => 'templates' , 
                     'Match' => array( 
                         'class_identifier' => 'article' 
                     ) 
-                ), 
+                ) , 
                 'line_geo_article' => array( 
-                    'Source' => 'node/view/line.tpl', 
-                    'MatchFile' => 'line/geo_article.tpl', 
-                    'Subdir' => 'templates', 
+                    'Source' => 'node/view/line.tpl' , 
+                    'MatchFile' => 'line/geo_article.tpl' , 
+                    'Subdir' => 'templates' , 
                     'Match' => array( 
                         'class_identifier' => 'geo_article' 
                     ) 
-                ), 
+                ) , 
                 'line_article_mainpage' => array( 
-                    'Source' => 'node/view/line.tpl', 
-                    'MatchFile' => 'line/article_mainpage.tpl', 
-                    'Subdir' => 'templates', 
+                    'Source' => 'node/view/line.tpl' , 
+                    'MatchFile' => 'line/article_mainpage.tpl' , 
+                    'Subdir' => 'templates' , 
                     'Match' => array( 
                         'class_identifier' => 'article_mainpage' 
                     ) 
-                ), 
+                ) , 
                 'line_article_subpage' => array( 
-                    'Source' => 'node/view/line.tpl', 
-                    'MatchFile' => 'line/article_subpage.tpl', 
-                    'Subdir' => 'templates', 
+                    'Source' => 'node/view/line.tpl' , 
+                    'MatchFile' => 'line/article_subpage.tpl' , 
+                    'Subdir' => 'templates' , 
                     'Match' => array( 
                         'class_identifier' => 'article_subpage' 
                     ) 
-                ), 
+                ) , 
                 'line_banner' => array( 
-                    'Source' => 'node/view/line.tpl', 
-                    'MatchFile' => 'line/banner.tpl', 
-                    'Subdir' => 'templates', 
+                    'Source' => 'node/view/line.tpl' , 
+                    'MatchFile' => 'line/banner.tpl' , 
+                    'Subdir' => 'templates' , 
                     'Match' => array( 
                         'class_identifier' => 'banner' 
                     ) 
-                ), 
+                ) , 
                 'line_blog' => array( 
-                    'Source' => 'node/view/line.tpl', 
-                    'MatchFile' => 'line/blog.tpl', 
-                    'Subdir' => 'templates', 
+                    'Source' => 'node/view/line.tpl' , 
+                    'MatchFile' => 'line/blog.tpl' , 
+                    'Subdir' => 'templates' , 
                     'Match' => array( 
                         'class_identifier' => 'blog' 
                     ) 
-                ), 
+                ) , 
                 'line_blog_post' => array( 
-                    'Source' => 'node/view/line.tpl', 
-                    'MatchFile' => 'line/blog_post.tpl', 
-                    'Subdir' => 'templates', 
+                    'Source' => 'node/view/line.tpl' , 
+                    'MatchFile' => 'line/blog_post.tpl' , 
+                    'Subdir' => 'templates' , 
                     'Match' => array( 
                         'class_identifier' => 'blog_post' 
                     ) 
-                ), 
+                ) , 
                 'line_comment' => array( 
-                    'Source' => 'node/view/line.tpl', 
-                    'MatchFile' => 'line/comment.tpl', 
-                    'Subdir' => 'templates', 
+                    'Source' => 'node/view/line.tpl' , 
+                    'MatchFile' => 'line/comment.tpl' , 
+                    'Subdir' => 'templates' , 
                     'Match' => array( 
                         'class_identifier' => 'comment' 
                     ) 
-                ), 
+                ) , 
                 'line_documentation_page' => array( 
-                    'Source' => 'node/view/line.tpl', 
-                    'MatchFile' => 'line/documentation_page.tpl', 
-                    'Subdir' => 'templates', 
+                    'Source' => 'node/view/line.tpl' , 
+                    'MatchFile' => 'line/documentation_page.tpl' , 
+                    'Subdir' => 'templates' , 
                     'Match' => array( 
                         'class_identifier' => 'documentation_page' 
                     ) 
-                ), 
+                ) , 
                 'line_event_calendar' => array( 
-                    'Source' => 'node/view/line.tpl', 
-                    'MatchFile' => 'line/event_calendar.tpl', 
-                    'Subdir' => 'templates', 
+                    'Source' => 'node/view/line.tpl' , 
+                    'MatchFile' => 'line/event_calendar.tpl' , 
+                    'Subdir' => 'templates' , 
                     'Match' => array( 
                         'class_identifier' => 'event_calendar' 
                     ) 
-                ), 
+                ) , 
                 'line_event' => array( 
-                    'Source' => 'node/view/line.tpl', 
-                    'MatchFile' => 'line/event.tpl', 
-                    'Subdir' => 'templates', 
+                    'Source' => 'node/view/line.tpl' , 
+                    'MatchFile' => 'line/event.tpl' , 
+                    'Subdir' => 'templates' , 
                     'Match' => array( 
                         'class_identifier' => 'event' 
                     ) 
-                ), 
+                ) , 
                 'line_feedback_form' => array( 
-                    'Source' => 'node/view/line.tpl', 
-                    'MatchFile' => 'line/feedback_form.tpl', 
-                    'Subdir' => 'templates', 
+                    'Source' => 'node/view/line.tpl' , 
+                    'MatchFile' => 'line/feedback_form.tpl' , 
+                    'Subdir' => 'templates' , 
                     'Match' => array( 
                         'class_identifier' => 'feedback_form' 
                     ) 
-                ), 
+                ) , 
                 'line_file' => array( 
-                    'Source' => 'node/view/line.tpl', 
-                    'MatchFile' => 'line/file.tpl', 
-                    'Subdir' => 'templates', 
+                    'Source' => 'node/view/line.tpl' , 
+                    'MatchFile' => 'line/file.tpl' , 
+                    'Subdir' => 'templates' , 
                     'Match' => array( 
                         'class_identifier' => 'file' 
                     ) 
-                ), 
+                ) , 
                 'line_flash' => array( 
-                    'Source' => 'node/view/line.tpl', 
-                    'MatchFile' => 'line/flash.tpl', 
-                    'Subdir' => 'templates', 
+                    'Source' => 'node/view/line.tpl' , 
+                    'MatchFile' => 'line/flash.tpl' , 
+                    'Subdir' => 'templates' , 
                     'Match' => array( 
                         'class_identifier' => 'flash' 
                     ) 
-                ), 
+                ) , 
                 'line_folder' => array( 
-                    'Source' => 'node/view/line.tpl', 
-                    'MatchFile' => 'line/folder.tpl', 
-                    'Subdir' => 'templates', 
+                    'Source' => 'node/view/line.tpl' , 
+                    'MatchFile' => 'line/folder.tpl' , 
+                    'Subdir' => 'templates' , 
                     'Match' => array( 
                         'class_identifier' => 'folder' 
                     ) 
-                ), 
+                ) , 
                 'line_forum' => array( 
-                    'Source' => 'node/view/line.tpl', 
-                    'MatchFile' => 'line/forum.tpl', 
-                    'Subdir' => 'templates', 
+                    'Source' => 'node/view/line.tpl' , 
+                    'MatchFile' => 'line/forum.tpl' , 
+                    'Subdir' => 'templates' , 
                     'Match' => array( 
                         'class_identifier' => 'forum' 
                     ) 
-                ), 
+                ) , 
                 'line_forum_reply' => array( 
-                    'Source' => 'node/view/line.tpl', 
-                    'MatchFile' => 'line/forum_reply.tpl', 
-                    'Subdir' => 'templates', 
+                    'Source' => 'node/view/line.tpl' , 
+                    'MatchFile' => 'line/forum_reply.tpl' , 
+                    'Subdir' => 'templates' , 
                     'Match' => array( 
                         'class_identifier' => 'forum_reply' 
                     ) 
-                ), 
+                ) , 
                 'line_forum_topic' => array( 
-                    'Source' => 'node/view/line.tpl', 
-                    'MatchFile' => 'line/forum_topic.tpl', 
-                    'Subdir' => 'templates', 
+                    'Source' => 'node/view/line.tpl' , 
+                    'MatchFile' => 'line/forum_topic.tpl' , 
+                    'Subdir' => 'templates' , 
                     'Match' => array( 
                         'class_identifier' => 'forum_topic' 
                     ) 
-                ), 
+                ) , 
                 'line_forums' => array( 
-                    'Source' => 'node/view/line.tpl', 
-                    'MatchFile' => 'line/forums.tpl', 
-                    'Subdir' => 'templates', 
+                    'Source' => 'node/view/line.tpl' , 
+                    'MatchFile' => 'line/forums.tpl' , 
+                    'Subdir' => 'templates' , 
                     'Match' => array( 
                         'class_identifier' => 'forums' 
                     ) 
-                ), 
+                ) , 
                 'line_gallery' => array( 
-                    'Source' => 'node/view/line.tpl', 
-                    'MatchFile' => 'line/gallery.tpl', 
-                    'Subdir' => 'templates', 
+                    'Source' => 'node/view/line.tpl' , 
+                    'MatchFile' => 'line/gallery.tpl' , 
+                    'Subdir' => 'templates' , 
                     'Match' => array( 
                         'class_identifier' => 'gallery' 
                     ) 
-                ), 
+                ) , 
                 'line_image' => array( 
-                    'Source' => 'node/view/line.tpl', 
-                    'MatchFile' => 'line/image.tpl', 
-                    'Subdir' => 'templates', 
+                    'Source' => 'node/view/line.tpl' , 
+                    'MatchFile' => 'line/image.tpl' , 
+                    'Subdir' => 'templates' , 
                     'Match' => array( 
                         'class_identifier' => 'image' 
                     ) 
-                ), 
+                ) , 
                 'line_infobox' => array( 
-                    'Source' => 'node/view/line.tpl', 
-                    'MatchFile' => 'line/infobox.tpl', 
-                    'Subdir' => 'templates', 
+                    'Source' => 'node/view/line.tpl' , 
+                    'MatchFile' => 'line/infobox.tpl' , 
+                    'Subdir' => 'templates' , 
                     'Match' => array( 
                         'class_identifier' => 'infobox' 
                     ) 
-                ), 
+                ) , 
                 'line_link' => array( 
-                    'Source' => 'node/view/line.tpl', 
-                    'MatchFile' => 'line/link.tpl', 
-                    'Subdir' => 'templates', 
+                    'Source' => 'node/view/line.tpl' , 
+                    'MatchFile' => 'line/link.tpl' , 
+                    'Subdir' => 'templates' , 
                     'Match' => array( 
                         'class_identifier' => 'link' 
                     ) 
-                ), 
+                ) , 
                 'line_multicalendar' => array( 
-                    'Source' => 'node/view/line.tpl', 
-                    'MatchFile' => 'line/multicalendar.tpl', 
-                    'Subdir' => 'templates', 
+                    'Source' => 'node/view/line.tpl' , 
+                    'MatchFile' => 'line/multicalendar.tpl' , 
+                    'Subdir' => 'templates' , 
                     'Match' => array( 
                         'class_identifier' => 'multicalendar' 
                     ) 
-                ), 
+                ) , 
                 'line_poll' => array( 
-                    'Source' => 'node/view/line.tpl', 
-                    'MatchFile' => 'line/poll.tpl', 
-                    'Subdir' => 'templates', 
+                    'Source' => 'node/view/line.tpl' , 
+                    'MatchFile' => 'line/poll.tpl' , 
+                    'Subdir' => 'templates' , 
                     'Match' => array( 
                         'class_identifier' => 'poll' 
                     ) 
-                ), 
+                ) , 
                 'line_product' => array( 
-                    'Source' => 'node/view/line.tpl', 
-                    'MatchFile' => 'line/product.tpl', 
-                    'Subdir' => 'templates', 
+                    'Source' => 'node/view/line.tpl' , 
+                    'MatchFile' => 'line/product.tpl' , 
+                    'Subdir' => 'templates' , 
                     'Match' => array( 
                         'class_identifier' => 'product' 
                     ) 
-                ), 
+                ) , 
                 'line_silverlight' => array( 
-                    'Source' => 'node/view/line.tpl', 
-                    'MatchFile' => 'line/silverlight.tpl', 
-                    'Subdir' => 'templates', 
+                    'Source' => 'node/view/line.tpl' , 
+                    'MatchFile' => 'line/silverlight.tpl' , 
+                    'Subdir' => 'templates' , 
                     'Match' => array( 
                         'class_identifier' => 'silverlight' 
                     ) 
-                ), 
+                ) , 
                 'line_quicktime' => array( 
-                    'Source' => 'node/view/line.tpl', 
-                    'MatchFile' => 'line/quicktime.tpl', 
-                    'Subdir' => 'templates', 
+                    'Source' => 'node/view/line.tpl' , 
+                    'MatchFile' => 'line/quicktime.tpl' , 
+                    'Subdir' => 'templates' , 
                     'Match' => array( 
                         'class_identifier' => 'quicktime' 
                     ) 
-                ), 
+                ) , 
                 'line_real_video' => array( 
-                    'Source' => 'node/view/line.tpl', 
-                    'MatchFile' => 'line/real_video.tpl', 
-                    'Subdir' => 'templates', 
+                    'Source' => 'node/view/line.tpl' , 
+                    'MatchFile' => 'line/real_video.tpl' , 
+                    'Subdir' => 'templates' , 
                     'Match' => array( 
                         'class_identifier' => 'real_video' 
                     ) 
-                ), 
+                ) , 
                 'line_windows_media' => array( 
-                    'Source' => 'node/view/line.tpl', 
-                    'MatchFile' => 'line/windows_media.tpl', 
-                    'Subdir' => 'templates', 
+                    'Source' => 'node/view/line.tpl' , 
+                    'MatchFile' => 'line/windows_media.tpl' , 
+                    'Subdir' => 'templates' , 
                     'Match' => array( 
                         'class_identifier' => 'windows_media' 
                     ) 
-                ), 
+                ) , 
                 'edit_comment' => array( 
-                    'Source' => 'content/edit.tpl', 
-                    'MatchFile' => 'edit/comment.tpl', 
-                    'Subdir' => 'templates', 
+                    'Source' => 'content/edit.tpl' , 
+                    'MatchFile' => 'edit/comment.tpl' , 
+                    'Subdir' => 'templates' , 
                     'Match' => array( 
                         'class_identifier' => 'comment' 
                     ) 
-                ), 
+                ) , 
                 'edit_file' => array( 
-                    'Source' => 'content/edit.tpl', 
-                    'MatchFile' => 'edit/file.tpl', 
-                    'Subdir' => 'templates', 
+                    'Source' => 'content/edit.tpl' , 
+                    'MatchFile' => 'edit/file.tpl' , 
+                    'Subdir' => 'templates' , 
                     'Match' => array( 
                         'class_identifier' => 'file' 
                     ) 
-                ), 
+                ) , 
                 'edit_forum_topic' => array( 
-                    'Source' => 'content/edit.tpl', 
-                    'MatchFile' => 'edit/forum_topic.tpl', 
-                    'Subdir' => 'templates', 
+                    'Source' => 'content/edit.tpl' , 
+                    'MatchFile' => 'edit/forum_topic.tpl' , 
+                    'Subdir' => 'templates' , 
                     'Match' => array( 
                         'class_identifier' => 'forum_topic' 
                     ) 
-                ), 
+                ) , 
                 'edit_ezsubtreesubscription_forum_topic' => array( 
-                    'Source' => 'content/datatype/edit/ezsubtreesubscription.tpl', 
-                    'MatchFile' => 'datatype/edit/ezsubtreesubscription/forum_topic.tpl', 
-                    'Subdir' => 'templates', 
+                    'Source' => 'content/datatype/edit/ezsubtreesubscription.tpl' , 
+                    'MatchFile' => 'datatype/edit/ezsubtreesubscription/forum_topic.tpl' , 
+                    'Subdir' => 'templates' , 
                     'Match' => array( 
                         'class_identifier' => 'forum_topic' 
                     ) 
-                ), 
+                ) , 
                 'edit_forum_reply' => array( 
-                    'Source' => 'content/edit.tpl', 
-                    'MatchFile' => 'edit/forum_reply.tpl', 
-                    'Subdir' => 'templates', 
+                    'Source' => 'content/edit.tpl' , 
+                    'MatchFile' => 'edit/forum_reply.tpl' , 
+                    'Subdir' => 'templates' , 
                     'Match' => array( 
                         'class_identifier' => 'forum_reply' 
                     ) 
-                ), 
+                ) , 
                 'highlighted_object' => array( 
-                    'Source' => 'content/view/embed.tpl', 
-                    'MatchFile' => 'embed/highlighted_object.tpl', 
-                    'Subdir' => 'templates', 
+                    'Source' => 'content/view/embed.tpl' , 
+                    'MatchFile' => 'embed/highlighted_object.tpl' , 
+                    'Subdir' => 'templates' , 
                     'Match' => array( 
                         'classification' => 'highlighted_object' 
                     ) 
-                ), 
+                ) , 
                 'embed_article' => array( 
-                    'Source' => 'content/view/embed.tpl', 
-                    'MatchFile' => 'embed/article.tpl', 
-                    'Subdir' => 'templates', 
+                    'Source' => 'content/view/embed.tpl' , 
+                    'MatchFile' => 'embed/article.tpl' , 
+                    'Subdir' => 'templates' , 
                     'Match' => array( 
                         'class_identifier' => 'article' 
                     ) 
-                ), 
+                ) , 
                 'embed_banner' => array( 
-                    'Source' => 'content/view/embed.tpl', 
-                    'MatchFile' => 'embed/banner.tpl', 
-                    'Subdir' => 'templates', 
+                    'Source' => 'content/view/embed.tpl' , 
+                    'MatchFile' => 'embed/banner.tpl' , 
+                    'Subdir' => 'templates' , 
                     'Match' => array( 
                         'class_identifier' => 'banner' 
                     ) 
-                ), 
+                ) , 
                 'embed_file' => array( 
-                    'Source' => 'content/view/embed.tpl', 
-                    'MatchFile' => 'embed/file.tpl', 
-                    'Subdir' => 'templates', 
+                    'Source' => 'content/view/embed.tpl' , 
+                    'MatchFile' => 'embed/file.tpl' , 
+                    'Subdir' => 'templates' , 
                     'Match' => array( 
                         'class_identifier' => 'file' 
                     ) 
-                ), 
+                ) , 
                 'embed_flash' => array( 
-                    'Source' => 'content/view/embed.tpl', 
-                    'MatchFile' => 'embed/flash.tpl', 
-                    'Subdir' => 'templates', 
+                    'Source' => 'content/view/embed.tpl' , 
+                    'MatchFile' => 'embed/flash.tpl' , 
+                    'Subdir' => 'templates' , 
                     'Match' => array( 
                         'class_identifier' => 'flash' 
                     ) 
-                ), 
+                ) , 
                 'itemized_sub_items' => array( 
-                    'Source' => 'content/view/embed.tpl', 
-                    'MatchFile' => 'embed/itemized_sub_items.tpl', 
-                    'Subdir' => 'templates', 
+                    'Source' => 'content/view/embed.tpl' , 
+                    'MatchFile' => 'embed/itemized_sub_items.tpl' , 
+                    'Subdir' => 'templates' , 
                     'Match' => array( 
                         'classification' => 'itemized_sub_items' 
                     ) 
-                ), 
+                ) , 
                 'vertically_listed_sub_items' => array( 
-                    'Source' => 'content/view/embed.tpl', 
-                    'MatchFile' => 'embed/vertically_listed_sub_items.tpl', 
-                    'Subdir' => 'templates', 
+                    'Source' => 'content/view/embed.tpl' , 
+                    'MatchFile' => 'embed/vertically_listed_sub_items.tpl' , 
+                    'Subdir' => 'templates' , 
                     'Match' => array( 
                         'classification' => 'vertically_listed_sub_items' 
                     ) 
-                ), 
+                ) , 
                 'horizontally_listed_sub_items' => array( 
-                    'Source' => 'content/view/embed.tpl', 
-                    'MatchFile' => 'embed/horizontally_listed_sub_items.tpl', 
-                    'Subdir' => 'templates', 
+                    'Source' => 'content/view/embed.tpl' , 
+                    'MatchFile' => 'embed/horizontally_listed_sub_items.tpl' , 
+                    'Subdir' => 'templates' , 
                     'Match' => array( 
                         'classification' => 'horizontally_listed_sub_items' 
                     ) 
-                ), 
+                ) , 
                 'itemized_subtree_items' => array( 
-                    'Source' => 'content/view/embed.tpl', 
-                    'MatchFile' => 'embed/itemized_subtree_items.tpl', 
-                    'Subdir' => 'templates', 
+                    'Source' => 'content/view/embed.tpl' , 
+                    'MatchFile' => 'embed/itemized_subtree_items.tpl' , 
+                    'Subdir' => 'templates' , 
                     'Match' => array( 
                         'classification' => 'itemized_subtree_items' 
                     ) 
-                ), 
+                ) , 
                 'embed_folder' => array( 
-                    'Source' => 'content/view/embed.tpl', 
-                    'MatchFile' => 'embed/folder.tpl', 
-                    'Subdir' => 'templates', 
+                    'Source' => 'content/view/embed.tpl' , 
+                    'MatchFile' => 'embed/folder.tpl' , 
+                    'Subdir' => 'templates' , 
                     'Match' => array( 
                         'class_identifier' => 'folder' 
                     ) 
-                ), 
+                ) , 
                 'embed_forum' => array( 
-                    'Source' => 'content/view/embed.tpl', 
-                    'MatchFile' => 'embed/forum.tpl', 
-                    'Subdir' => 'templates', 
+                    'Source' => 'content/view/embed.tpl' , 
+                    'MatchFile' => 'embed/forum.tpl' , 
+                    'Subdir' => 'templates' , 
                     'Match' => array( 
                         'class_identifier' => 'forum' 
                     ) 
-                ), 
+                ) , 
                 'embed_gallery' => array( 
-                    'Source' => 'content/view/embed.tpl', 
-                    'MatchFile' => 'embed/gallery.tpl', 
-                    'Subdir' => 'templates', 
+                    'Source' => 'content/view/embed.tpl' , 
+                    'MatchFile' => 'embed/gallery.tpl' , 
+                    'Subdir' => 'templates' , 
                     'Match' => array( 
                         'class_identifier' => 'gallery' 
                     ) 
-                ), 
+                ) , 
                 'embed_image' => array( 
-                    'Source' => 'content/view/embed.tpl', 
-                    'MatchFile' => 'embed/image.tpl', 
-                    'Subdir' => 'templates', 
+                    'Source' => 'content/view/embed.tpl' , 
+                    'MatchFile' => 'embed/image.tpl' , 
+                    'Subdir' => 'templates' , 
                     'Match' => array( 
                         'class_identifier' => 'image' 
                     ) 
-                ), 
+                ) , 
                 'embed_poll' => array( 
-                    'Source' => 'content/view/embed.tpl', 
-                    'MatchFile' => 'embed/poll.tpl', 
-                    'Subdir' => 'templates', 
+                    'Source' => 'content/view/embed.tpl' , 
+                    'MatchFile' => 'embed/poll.tpl' , 
+                    'Subdir' => 'templates' , 
                     'Match' => array( 
                         'class_identifier' => 'poll' 
                     ) 
-                ), 
+                ) , 
                 'embed_product' => array( 
-                    'Source' => 'content/view/embed.tpl', 
-                    'MatchFile' => 'embed/product.tpl', 
-                    'Subdir' => 'templates', 
+                    'Source' => 'content/view/embed.tpl' , 
+                    'MatchFile' => 'embed/product.tpl' , 
+                    'Subdir' => 'templates' , 
                     'Match' => array( 
                         'class_identifier' => 'product' 
                     ) 
-                ), 
+                ) , 
                 'embed_quicktime' => array( 
-                    'Source' => 'content/view/embed.tpl', 
-                    'MatchFile' => 'embed/quicktime.tpl', 
-                    'Subdir' => 'templates', 
+                    'Source' => 'content/view/embed.tpl' , 
+                    'MatchFile' => 'embed/quicktime.tpl' , 
+                    'Subdir' => 'templates' , 
                     'Match' => array( 
                         'class_identifier' => 'quicktime' 
                     ) 
-                ), 
+                ) , 
                 'embed_real_video' => array( 
-                    'Source' => 'content/view/embed.tpl', 
-                    'MatchFile' => 'embed/real_video.tpl', 
-                    'Subdir' => 'templates', 
+                    'Source' => 'content/view/embed.tpl' , 
+                    'MatchFile' => 'embed/real_video.tpl' , 
+                    'Subdir' => 'templates' , 
                     'Match' => array( 
                         'class_identifier' => 'real_video' 
                     ) 
-                ), 
+                ) , 
                 'embed_windows_media' => array( 
-                    'Source' => 'content/view/embed.tpl', 
-                    'MatchFile' => 'embed/windows_media.tpl', 
-                    'Subdir' => 'templates', 
+                    'Source' => 'content/view/embed.tpl' , 
+                    'MatchFile' => 'embed/windows_media.tpl' , 
+                    'Subdir' => 'templates' , 
                     'Match' => array( 
                         'class_identifier' => 'windows_media' 
                     ) 
-                ), 
+                ) , 
                 'embed_inline_image' => array( 
-                    'Source' => 'content/view/embed-inline.tpl', 
-                    'MatchFile' => 'embed-inline/image.tpl', 
-                    'Subdir' => 'templates', 
+                    'Source' => 'content/view/embed-inline.tpl' , 
+                    'MatchFile' => 'embed-inline/image.tpl' , 
+                    'Subdir' => 'templates' , 
                     'Match' => array( 
                         'class_identifier' => 'image' 
                     ) 
-                ), 
+                ) , 
                 'embed_itemizedsubitems_gallery' => array( 
-                    'Source' => 'content/view/itemizedsubitems.tpl', 
-                    'MatchFile' => 'itemizedsubitems/gallery.tpl', 
-                    'Subdir' => 'templates', 
+                    'Source' => 'content/view/itemizedsubitems.tpl' , 
+                    'MatchFile' => 'itemizedsubitems/gallery.tpl' , 
+                    'Subdir' => 'templates' , 
                     'Match' => array( 
                         'class_identifier' => 'gallery' 
                     ) 
-                ), 
+                ) , 
                 'embed_itemizedsubitems_forum' => array( 
-                    'Source' => 'content/view/itemizedsubitems.tpl', 
-                    'MatchFile' => 'itemizedsubitems/forum.tpl', 
-                    'Subdir' => 'templates', 
+                    'Source' => 'content/view/itemizedsubitems.tpl' , 
+                    'MatchFile' => 'itemizedsubitems/forum.tpl' , 
+                    'Subdir' => 'templates' , 
                     'Match' => array( 
                         'class_identifier' => 'forum' 
                     ) 
-                ), 
+                ) , 
                 'embed_itemizedsubitems_folder' => array( 
-                    'Source' => 'content/view/itemizedsubitems.tpl', 
-                    'MatchFile' => 'itemizedsubitems/folder.tpl', 
-                    'Subdir' => 'templates', 
+                    'Source' => 'content/view/itemizedsubitems.tpl' , 
+                    'MatchFile' => 'itemizedsubitems/folder.tpl' , 
+                    'Subdir' => 'templates' , 
                     'Match' => array( 
                         'class_identifier' => 'folder' 
                     ) 
-                ), 
+                ) , 
                 'embed_itemizedsubitems_event_calendar' => array( 
-                    'Source' => 'content/view/itemizedsubitems.tpl', 
-                    'MatchFile' => 'itemizedsubitems/event_calendar.tpl', 
-                    'Subdir' => 'templates', 
+                    'Source' => 'content/view/itemizedsubitems.tpl' , 
+                    'MatchFile' => 'itemizedsubitems/event_calendar.tpl' , 
+                    'Subdir' => 'templates' , 
                     'Match' => array( 
                         'class_identifier' => 'event_calendar' 
                     ) 
-                ), 
+                ) , 
                 'embed_itemizedsubitems_documentation_page' => array( 
-                    'Source' => 'content/view/itemizedsubitems.tpl', 
-                    'MatchFile' => 'itemizedsubitems/documentation_page.tpl', 
-                    'Subdir' => 'templates', 
+                    'Source' => 'content/view/itemizedsubitems.tpl' , 
+                    'MatchFile' => 'itemizedsubitems/documentation_page.tpl' , 
+                    'Subdir' => 'templates' , 
                     'Match' => array( 
                         'class_identifier' => 'documentation_page' 
                     ) 
-                ), 
+                ) , 
                 'embed_itemizedsubitems_itemized_sub_items' => array( 
-                    'Source' => 'content/view/itemizedsubitems.tpl', 
-                    'MatchFile' => 'itemizedsubitems/itemized_sub_items.tpl', 
+                    'Source' => 'content/view/itemizedsubitems.tpl' , 
+                    'MatchFile' => 'itemizedsubitems/itemized_sub_items.tpl' , 
                     'Subdir' => 'templates' 
-                ), 
+                ) , 
                 'embed_event_calendar' => array( 
-                    'Source' => 'content/view/embed.tpl', 
-                    'MatchFile' => 'embed/event_calendar.tpl', 
-                    'Subdir' => 'templates', 
+                    'Source' => 'content/view/embed.tpl' , 
+                    'MatchFile' => 'embed/event_calendar.tpl' , 
+                    'Subdir' => 'templates' , 
                     'Match' => array( 
                         'class_identifier' => 'event_calendar' 
                     ) 
-                ), 
+                ) , 
                 'embed_horizontallylistedsubitems_article' => array( 
-                    'Source' => 'node/view/horizontallylistedsubitems.tpl', 
-                    'MatchFile' => 'horizontallylistedsubitems/article.tpl', 
-                    'Subdir' => 'templates', 
+                    'Source' => 'node/view/horizontallylistedsubitems.tpl' , 
+                    'MatchFile' => 'horizontallylistedsubitems/article.tpl' , 
+                    'Subdir' => 'templates' , 
                     'Match' => array( 
                         'class_identifier' => 'article' 
                     ) 
-                ), 
+                ) , 
                 'embed_horizontallylistedsubitems_event' => array( 
-                    'Source' => 'node/view/horizontallylistedsubitems.tpl', 
-                    'MatchFile' => 'horizontallylistedsubitems/event.tpl', 
-                    'Subdir' => 'templates', 
+                    'Source' => 'node/view/horizontallylistedsubitems.tpl' , 
+                    'MatchFile' => 'horizontallylistedsubitems/event.tpl' , 
+                    'Subdir' => 'templates' , 
                     'Match' => array( 
                         'class_identifier' => 'event' 
                     ) 
-                ), 
+                ) , 
                 'embed_horizontallylistedsubitems_image' => array( 
-                    'Source' => 'node/view/horizontallylistedsubitems.tpl', 
-                    'MatchFile' => 'horizontallylistedsubitems/image.tpl', 
-                    'Subdir' => 'templates', 
+                    'Source' => 'node/view/horizontallylistedsubitems.tpl' , 
+                    'MatchFile' => 'horizontallylistedsubitems/image.tpl' , 
+                    'Subdir' => 'templates' , 
                     'Match' => array( 
                         'class_identifier' => 'image' 
                     ) 
-                ), 
+                ) , 
                 'embed_horizontallylistedsubitems_product' => array( 
-                    'Source' => 'node/view/horizontallylistedsubitems.tpl', 
-                    'MatchFile' => 'horizontallylistedsubitems/product.tpl', 
-                    'Subdir' => 'templates', 
+                    'Source' => 'node/view/horizontallylistedsubitems.tpl' , 
+                    'MatchFile' => 'horizontallylistedsubitems/product.tpl' , 
+                    'Subdir' => 'templates' , 
                     'Match' => array( 
                         'class_identifier' => 'product' 
                     ) 
-                ), 
+                ) , 
                 'factbox' => array( 
-                    'Source' => 'content/datatype/view/ezxmltags/factbox.tpl', 
-                    'MatchFile' => 'datatype/ezxmltext/factbox.tpl', 
+                    'Source' => 'content/datatype/view/ezxmltags/factbox.tpl' , 
+                    'MatchFile' => 'datatype/ezxmltext/factbox.tpl' , 
                     'Subdir' => 'templates' 
-                ), 
+                ) , 
                 'quote' => array( 
-                    'Source' => 'content/datatype/view/ezxmltags/quote.tpl', 
-                    'MatchFile' => 'datatype/ezxmltext/quote.tpl', 
+                    'Source' => 'content/datatype/view/ezxmltags/quote.tpl' , 
+                    'MatchFile' => 'datatype/ezxmltext/quote.tpl' , 
                     'Subdir' => 'templates' 
-                ), 
+                ) , 
                 'table_cols' => array( 
-                    'Source' => 'content/datatype/view/ezxmltags/table.tpl', 
-                    'MatchFile' => 'datatype/ezxmltext/table_cols.tpl', 
-                    'Subdir' => 'templates', 
+                    'Source' => 'content/datatype/view/ezxmltags/table.tpl' , 
+                    'MatchFile' => 'datatype/ezxmltext/table_cols.tpl' , 
+                    'Subdir' => 'templates' , 
                     'Match' => array( 
                         'classification' => 'cols' 
                     ) 
-                ), 
+                ) , 
                 'table_comparison' => array( 
-                    'Source' => 'content/datatype/view/ezxmltags/table.tpl', 
-                    'MatchFile' => 'datatype/ezxmltext/table_comparison.tpl', 
-                    'Subdir' => 'templates', 
+                    'Source' => 'content/datatype/view/ezxmltags/table.tpl' , 
+                    'MatchFile' => 'datatype/ezxmltext/table_comparison.tpl' , 
+                    'Subdir' => 'templates' , 
                     'Match' => array( 
                         'classification' => 'comparison' 
                     ) 
-                ), 
+                ) , 
                 'image_galleryline' => array( 
-                    'Source' => 'node/view/galleryline.tpl', 
-                    'MatchFile' => 'galleryline/image.tpl', 
-                    'Subdir' => 'templates', 
+                    'Source' => 'node/view/galleryline.tpl' , 
+                    'MatchFile' => 'galleryline/image.tpl' , 
+                    'Subdir' => 'templates' , 
                     'Match' => array( 
                         'class_identifier' => 'image' 
                     ) 
-                ), 
+                ) , 
                 'image_galleryslide' => array( 
-                    'Source' => 'node/view/galleryslide.tpl', 
-                    'MatchFile' => 'galleryslide/image.tpl', 
-                    'Subdir' => 'templates', 
+                    'Source' => 'node/view/galleryslide.tpl' , 
+                    'MatchFile' => 'galleryslide/image.tpl' , 
+                    'Subdir' => 'templates' , 
                     'Match' => array( 
                         'class_identifier' => 'image' 
                     ) 
-                ), 
+                ) , 
                 'article_listitem' => array( 
-                    'Source' => 'node/view/listitem.tpl', 
-                    'MatchFile' => 'listitem/article.tpl', 
-                    'Subdir' => 'templates', 
+                    'Source' => 'node/view/listitem.tpl' , 
+                    'MatchFile' => 'listitem/article.tpl' , 
+                    'Subdir' => 'templates' , 
                     'Match' => array( 
                         'class_identifier' => 'article' 
                     ) 
-                ), 
+                ) , 
                 'image_listitem' => array( 
-                    'Source' => 'node/view/listitem.tpl', 
-                    'MatchFile' => 'listitem/image.tpl', 
-                    'Subdir' => 'templates', 
+                    'Source' => 'node/view/listitem.tpl' , 
+                    'MatchFile' => 'listitem/image.tpl' , 
+                    'Subdir' => 'templates' , 
                     'Match' => array( 
                         'class_identifier' => 'image' 
                     ) 
-                ), 
+                ) , 
                 'billboard_banner' => array( 
-                    'Source' => 'content/view/billboard.tpl', 
-                    'MatchFile' => 'billboard/banner.tpl', 
-                    'Subdir' => 'templates', 
+                    'Source' => 'content/view/billboard.tpl' , 
+                    'MatchFile' => 'billboard/banner.tpl' , 
+                    'Subdir' => 'templates' , 
                     'Match' => array( 
                         'class_identifier' => 'banner' 
                     ) 
-                ), 
+                ) , 
                 'billboard_flash' => array( 
-                    'Source' => 'content/view/billboard.tpl', 
-                    'MatchFile' => 'billboard/flash.tpl', 
-                    'Subdir' => 'templates', 
+                    'Source' => 'content/view/billboard.tpl' , 
+                    'MatchFile' => 'billboard/flash.tpl' , 
+                    'Subdir' => 'templates' , 
                     'Match' => array( 
                         'class_identifier' => 'flash' 
                     ) 
@@ -3972,33 +3999,33 @@ class xrowecommerceInstaller extends eZSiteInstaller
     function siteToolbarINISettings()
     {
         $toolbar = array( 
-            'name' => 'toolbar.ini', 
-            'reset_arrays' => true, 
+            'name' => 'toolbar.ini' , 
+            'reset_arrays' => true , 
             'settings' => array( 
                 'Toolbar_right' => array( 
                     'Tool' => array( 
-                        'basket', 
-                        'popular_tags', 
-                        'product_list', 
-                        'poll'
+                        'basket' , 
+                        'popular_tags' , 
+                        'product_list' , 
+                        'poll' 
                     ) 
-                ), 
+                ) , 
                 'Toolbar_top' => array( 
                     'Tool' => array( 
-                        'login', 
+                        'login' , 
                         'searchbox' 
                     ) 
-                ), 
+                ) , 
                 'Toolbar_bottom' => array( 
                     'Tool' => array() 
-                ),
+                ) , 
                 'Tool_right_poll_4' => array( 
-                    'parent_node' => $this->setting( 'poll_node_id' )
-                ),
+                    'parent_node' => $this->setting( 'poll_node_id' ) 
+                ) , 
                 'Tool_right_product_list_3' => array( 
-                    'parent_node' => $this->setting( 'products_node_id' ), 
-                    'title' => 'Newest Products', 
-                    'treelist_check' => 'yes', 
+                    'parent_node' => $this->setting( 'products_node_id' ) , 
+                    'title' => 'Newest Products' , 
+                    'treelist_check' => 'yes' , 
                     'limit' => 3 
                 ) 
             ) 
@@ -4009,100 +4036,100 @@ class xrowecommerceInstaller extends eZSiteInstaller
     function siteImageINISettings()
     {
         $settings = array( 
-            'name' => 'image.ini', 
-            'reset_arrays' => true, 
+            'name' => 'image.ini' , 
+            'reset_arrays' => true , 
             'settings' => array( 
                 'AliasSettings' => array( 
                     'AliasList' => array( 
-                        '0' => 'small', 
-                        '1' => 'medium', 
-                        '2' => 'listitem', 
-                        '3' => 'articleimage', 
-                        '4' => 'articlethumbnail', 
-                        '5' => 'gallerythumbnail', 
-                        '6' => 'galleryline', 
-                        '7' => 'imagelarge', 
-                        '8' => 'large', 
-                        '9' => 'rss', 
-                        '10' => 'logo', 
-                        '11' => 'infoboximage', 
+                        '0' => 'small' , 
+                        '1' => 'medium' , 
+                        '2' => 'listitem' , 
+                        '3' => 'articleimage' , 
+                        '4' => 'articlethumbnail' , 
+                        '5' => 'gallerythumbnail' , 
+                        '6' => 'galleryline' , 
+                        '7' => 'imagelarge' , 
+                        '8' => 'large' , 
+                        '9' => 'rss' , 
+                        '10' => 'logo' , 
+                        '11' => 'infoboximage' , 
                         '12' => 'billboard' 
                     ) 
-                ), 
+                ) , 
                 'small' => array( 
-                    'Reference' => '', 
+                    'Reference' => '' , 
                     'Filters' => array( 
                         '0' => 'geometry/scaledownonly=100;160' 
                     ) 
-                ), 
+                ) , 
                 'medium' => array( 
-                    'Reference' => '', 
+                    'Reference' => '' , 
                     'Filters' => array( 
                         '0' => 'geometry/scaledownonly=200;290' 
                     ) 
-                ), 
+                ) , 
                 'large' => array( 
-                    'Reference' => '', 
+                    'Reference' => '' , 
                     'Filters' => array( 
                         '0' => 'geometry/scaledownonly=360;440' 
                     ) 
-                ), 
+                ) , 
                 'rss' => array( 
-                    'Reference' => '', 
+                    'Reference' => '' , 
                     'Filters' => array( 
                         '0' => 'geometry/scale=88;31' 
                     ) 
-                ), 
+                ) , 
                 'logo' => array( 
-                    'Reference' => '', 
+                    'Reference' => '' , 
                     'Filters' => array( 
                         '0' => 'geometry/scaleheight=36' 
                     ) 
-                ), 
+                ) , 
                 'listitem' => array( 
-                    'Reference' => '', 
+                    'Reference' => '' , 
                     'Filters' => array( 
                         '0' => 'geometry/scaledownonly=130;190' 
                     ) 
-                ), 
+                ) , 
                 'articleimage' => array( 
-                    'Reference' => '', 
+                    'Reference' => '' , 
                     'Filters' => array( 
                         '0' => 'geometry/scaledownonly=170;350' 
                     ) 
-                ), 
+                ) , 
                 'articlethumbnail' => array( 
-                    'Reference' => '', 
+                    'Reference' => '' , 
                     'Filters' => array( 
                         '0' => 'geometry/scaledownonly=70;150' 
                     ) 
-                ), 
+                ) , 
                 'gallerythumbnail' => array( 
-                    'Reference' => '', 
+                    'Reference' => '' , 
                     'Filters' => array( 
                         '0' => 'geometry/scaledownonly=105;100' 
                     ) 
-                ), 
+                ) , 
                 'galleryline' => array( 
-                    'Reference' => '', 
+                    'Reference' => '' , 
                     'Filters' => array( 
                         '0' => 'geometry/scaledownonly=70;150' 
                     ) 
-                ), 
+                ) , 
                 'imagelarge' => array( 
-                    'Reference' => '', 
+                    'Reference' => '' , 
                     'Filters' => array( 
                         '0' => 'geometry/scaledownonly=550;730' 
                     ) 
-                ), 
+                ) , 
                 'infoboximage' => array( 
-                    'Reference' => '', 
+                    'Reference' => '' , 
                     'Filters' => array( 
                         '0' => 'geometry/scalewidth=75' 
                     ) 
-                ), 
+                ) , 
                 'billboard' => array( 
-                    'Reference' => '', 
+                    'Reference' => '' , 
                     'Filters' => array( 
                         '0' => 'geometry/scalewidth=764' 
                     ) 
@@ -4115,14 +4142,14 @@ class xrowecommerceInstaller extends eZSiteInstaller
     function siteContentINISettings()
     {
         $settings = array( 
-            'name' => 'content.ini', 
-            'reset_arrays' => false, 
+            'name' => 'content.ini' , 
+            'reset_arrays' => false , 
             'settings' => array( 
                 'VersionView' => array( 
                     'AvailableSiteDesignList' => array( 
                         $this->setting( 'main_site_design' ) 
                     ) 
-                ), 
+                ) , 
                 'ObjectRelationDataTypeSettings' => array( 
                     'ClassAttributeStartNode' => array( 
                         '236;AddRelatedBannerImageToDataType' 
@@ -4136,17 +4163,17 @@ class xrowecommerceInstaller extends eZSiteInstaller
     function siteBrowseINISettings()
     {
         $settings = array( 
-            'name' => 'browse.ini', 
-            'reset_arrays' => false, 
+            'name' => 'browse.ini' , 
+            'reset_arrays' => false , 
             'settings' => array( 
                 'BrowseSettings' => array( 
                     'AliasList' => array( 
                         'banners' => '59' 
                     ) 
-                ), 
+                ) , 
                 'AddRelatedBannerImageToDataType' => array( 
-                    'StartNode' => 'banners', 
-                    'SelectionType' => 'single', 
+                    'StartNode' => 'banners' , 
+                    'SelectionType' => 'single' , 
                     'ReturnType' => 'ObjectID' 
                 ) 
             ) 
@@ -4157,13 +4184,15 @@ class xrowecommerceInstaller extends eZSiteInstaller
     function siteTemplateINISettings()
     {
         $settings = array( 
-            'name' => 'template.ini', 
+            'name' => 'template.ini' , 
             'settings' => array( 
                 'CharsetSettings' => array( 
                     'DefaultTemplateCharset' => 'utf-8' 
-                ),
+                ) , 
                 'PHP' => array( 
-                    'PHPOperatorList' => array( 'striptags' => 'strip_tags' ) 
+                    'PHPOperatorList' => array( 
+                        'striptags' => 'strip_tags' 
+                    ) 
                 ) 
             ) 
         );
@@ -4174,12 +4203,12 @@ class xrowecommerceInstaller extends eZSiteInstaller
     {
         // update 'article' class attributes info
         $articleExtraAttributes = array( 
-            'caption' => 'caption', 
-            'publish_date' => 'publish_date', 
+            'caption' => 'caption' , 
+            'publish_date' => 'publish_date' , 
             'unpublish_date' => 'unpublish_date' 
         );
         return array( 
-            'name' => 'odf.ini', 
+            'name' => 'odf.ini' , 
             'settings' => array( 
                 'article' => array( 
                     'Attribute' => $articleExtraAttributes 
