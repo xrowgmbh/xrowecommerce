@@ -27,7 +27,7 @@
     </message>
     <message>
       <source>Discounts</source>
-      <translation>Skonti</translation>
+      <translation>Rabatte</translation>
       
     </message>
     <message>
