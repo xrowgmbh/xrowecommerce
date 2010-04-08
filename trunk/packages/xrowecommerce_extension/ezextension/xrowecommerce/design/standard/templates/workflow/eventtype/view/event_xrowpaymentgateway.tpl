@@ -2,7 +2,7 @@
 
 <div class="element">
 {def $selectedGatewaysTypes=$event.selected_gateways}
-{"Type"|i18n("extension/xrowecommerce")}:
+{"Type"|i18n("extension/xrowecommerce/productvariation")}:
 
 {if $selectedGatewaysTypes|contains(-1)}
     {"Any"|i18n("extension/xrowecommerce")}
