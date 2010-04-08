@@ -89,15 +89,16 @@
 <p>{'There are no options.'|i18n( 'design/standard/content/datatype' )}</p>
 {/if}
 
+{if $attribute.content.option_list|count|gt( 0 )}
 <select name="eZOption[{$attribute.id}]">
-{section var=Options loop=$attribute.content.option_list sequence=array( bglight, bgdark )}
-    {section show=ne( $Options.item.additional_price, '' )}
+{foreach $attribute.content.option_list as $Options sequence array( 'bglight', 'bgdark' ) as $style}
+    {if $Options.item.additional_price|ne( '' )}
         <option value="{$Options.item.id}">{$Options.item.value} {$Options.item.comment}{if $Options.item.additional_price|gt(0)} - {$Options.item.additional_price|l10n( currency )}{/if} - {$Options.item.weight}</option>
-    {section-else}
+    {else}
         <option value="{$Options.item.id}">{$Options.item.value} {$Options.item.comment} - {$Options.item.weight}</option>
-    {/section}
-{/section}
+    {/if}
+{/foreach}
 </select>
-{section-else}
+{else}
 <p>{'There are no options.'|i18n( 'design/standard/content/datatype' )}</p>
-{/section}
+{/if}
