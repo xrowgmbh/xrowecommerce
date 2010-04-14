@@ -70,14 +70,14 @@
             {include uri="design:shop/product_cell_view.tpl" view="overview"}
         </td>
         {if ezini( 'Settings', 'ShowColumnTax', 'xrowecommerce.ini' )|eq('enabled')}
-        <td class="basketspace">
+        <td class="basketspace" style="width: 30px">
         {$product_item.vat_value} %
         </td>
         {/if}
         <td class="basketspace price">
             {if $product_item.discount_percent}
-            {def $discount = $product_item.price_ex_vat|div(100)|mul($product_item.discount_percent)
-                 $price = $product_item.price_ex_vat|sub($discount)}
+                {def $discount = $product_item.price_ex_vat|div(100)|mul($product_item.discount_percent)
+                     $price = $product_item.price_ex_vat|sub($discount)}
             {else}
                 {def $price = $product_item.price_ex_vat}
             {/if}
