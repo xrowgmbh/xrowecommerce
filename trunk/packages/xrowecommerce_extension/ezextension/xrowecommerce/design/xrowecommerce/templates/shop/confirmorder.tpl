@@ -123,14 +123,14 @@ function checkCOS( element )
                     {include uri="design:shop/product_cell_view.tpl" view="confirmorder"}
                     </td>
             {if ezini( 'Settings', 'ShowColumnTax', 'xrowecommerce.ini' )|eq('enabled')}
-            <td class="align_right product-name basketspace">
+            <td class="align_right product-name basketspace" style="width: 30px">
                {$product_item.vat_value} %
             </td>
             {/if}
             <td class="align_right product-name basketspace price">
             {if $product_item.discount_percent}
-            {def $discount = $product_item.price_ex_vat|div(100)|mul($product_item.discount_percent)
-                 $price = $product_item.price_ex_vat|sub($discount)} 
+                {def $discount = $product_item.price_ex_vat|div(100)|mul($product_item.discount_percent)
+                     $price = $product_item.price_ex_vat|sub($discount)}
             {else}
                 {def $price = $product_item.price_ex_vat}
             {/if}
