@@ -9,7 +9,7 @@
 		{def $basket_rm=fetch( 'shop', 'basket') }
 		{if $basket_rm.is_empty|not()}
 			<div class="toolbar-basket-total">
-			    <p>Subtotal: {$basket_rm.total_inc_vat|l10n(currency)}</p>
+			    <p>{'Subtotal'|i18n("extension/xrowecommerce")}: {$basket_rm.total_inc_vat|l10n(currency)}</p>
 				<form class="qbasketform" method="post" action={"/shop/basket"|ezurl}>
 				    <input type="submit" class="button flat-right" name="CheckoutButton" value="{"Check out"|i18n("extension/xrowecommerce")}" />
 				</form>
@@ -23,14 +23,24 @@
 					{else}
                         <div class="item-image">{attribute_view_gui image_class="product_related" attribute=$item.item_object.contentobject.current.data_map.image}</div>
 						<p>{$item.object_name}<p>
-						<p>{$item.item_count} x {$item.price_inc_vat|l10n(currency)}</p>
+						<p>
+							{if $item.discount_percent}
+                                {def $discount = $item.price_inc_vat|div(100)|mul($item.discount_percent)
+                                     $price = $item.price_inc_vat|sub($discount)}
+                            {else}
+                                {def $price = $item.price_inc_vat}
+                            {/if}
+							{$item.item_count} x {$price|l10n( 'currency' )}
+							{if is_set($discount)}{undef $discount}{/if}
+                            {if is_set($price)}{undef $price}{/if}
+						</p>
 					{/if}
 				</div>
 			{/foreach}
 		{else}
 			<p class="price">{'Your cart is empty.'|i18n("extension/xrowecommerce")}</p>
 		{/if}
-		{undef $basket_rm}
+		{undef}
 	</div>
 </div></div></div>
 <div class="border-bl"><div class="border-br"><div class="border-bc"></div></div></div>
