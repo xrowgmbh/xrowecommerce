@@ -3,7 +3,7 @@
 [VATSettings]
 ExtensionDirectories[]=xrowecommerce
 Handler=xrowecommerce
-RequireUserCountry=true
+RequireUserCountry=false
 DynamicVatTypeName=xrow E-Commerce Dynamic Tax
 UserCountryAttribute=country
 
