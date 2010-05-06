@@ -38,6 +38,10 @@ class eZAuthorizeAIM
     */
     function eZAuthorizeAIM( $aSetup = false )
     {
+    	if ( eZINI::instance( 'ezauthorize.ini' )->variable( 'eZAuthorizeSettings', 'TestMode' )  == 'true' )
+    	{
+    		$this->transact_url = 'https://test.authorize.net/gateway/transact.dll';
+    	}
         $this->addField( 'x_delim_char', $this->delim_char );
         $this->addField( 'x_version', '3.1' );
         $this->addField( 'x_delim_data', 'true' );
@@ -95,20 +99,6 @@ class eZAuthorizeAIM
         }
 
         return chop( $url, "&" );
-    }
-
-    /*!
-    * Turns test mode on or off.
-    */
-    function setTestMode( $bool )
-    {
-        $this->test_mode = $bool;
-        if ($bool) {
-            $this->addField('x_test_request', 'TRUE');
-        } else {
-            $this->addField('x_test_request', 'FALSE');
-        }
-
     }
 
     /*!
@@ -203,7 +193,7 @@ class eZAuthorizeAIM
     function sendPayment()
     {
         $ini = eZINI::instance( 'ezauthorize.ini' );
-        $ch=curl_init();
+        $ch = curl_init();
 
         if ( $this->test_mode )
         {
@@ -378,18 +368,18 @@ class eZAuthorizeAIM
         }
     }
 
-    var $transact_url = 'https://secure.authorize.net/gateway/transact.dll';
-    var $delim_char = '|';
-    var $test_mode = 0;
+    public $transact_url = 'https://secure.authorize.net/gateway/transact.dll';
+    public $delim_char = '|';
+    public $test_mode = 0;
 
-    var $debug = false;
-    var $email_header = false;
-    var $email_footer = false;
+    public $debug = false;
+    public $email_header = false;
+    public $email_footer = false;
 
-    var $hash = false;
-    var $user_id = false;
-    var $transaction_id = false;
-    var $amount = false;
+    public $hash = false;
+    public $user_id = false;
+    public $transaction_id = false;
+    public $amount = false;
 
 }
 
