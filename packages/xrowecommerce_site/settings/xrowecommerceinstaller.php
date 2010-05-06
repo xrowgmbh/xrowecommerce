@@ -2921,6 +2921,7 @@ class xrowecommerceInstaller extends eZSiteInstaller
         $settings[] = $this->siteDesignINISettings();
         $settings[] = $this->siteBrowseINISettings();
         $settings[] = $this->siteTemplateINISettings();
+        $settings[] = $this->siteShopINISettings();
         $settings[] = $this->siteContentStructureMenuINISettings();
         $settings[] = $this->siteODFINISettings();
         return $settings;
@@ -4193,6 +4194,20 @@ class xrowecommerceInstaller extends eZSiteInstaller
                     'PHPOperatorList' => array( 
                         'striptags' => 'strip_tags' 
                     ) 
+                ) 
+            ) 
+        );
+        return $settings;
+    }
+    
+	function siteShopINISettings()
+    {
+        // override the UserCountryAttribute
+        $settings = array( 
+            'name' => 'shop.ini' , 
+            'settings' => array( 
+                'VATSettings' => array( 
+                    'UserCountryAttribute' => 'country' 
                 ) 
             ) 
         );
