@@ -22,8 +22,8 @@ class xrowECommerce
 
     /**
      * [MerchantLocations]
+     * Locations[]=DEU
      * Locations[]=USA
-     * Locations[]=GER
      * USA[]=CT
      * USA[]=NY
      * 
