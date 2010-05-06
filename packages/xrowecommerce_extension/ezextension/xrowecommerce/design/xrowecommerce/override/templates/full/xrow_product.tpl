@@ -1,3 +1,4 @@
+{def $price_display=ezini( 'Settings', 'ShowPriceAs', 'xrowecommerce.ini' )}
 <div class="border-box">
 <div class="border-tl"><div class="border-tr"><div class="border-tc"></div></div></div>
 <div class="border-ml"><div class="border-mr"><div class="border-mc float-break">
@@ -32,9 +33,11 @@ YUI( YUI3_config ).use("node", function(Y) {ldelim}
                         <div class="attribute-short">
                            {attribute_view_gui attribute=$node.object.data_map.short_description}
                         </div>
+                        {if $node.object.data_map.description|is_set()}
                         <div class="attribute-long">
                            {attribute_view_gui attribute=$node.object.data_map.description}
                         </div>
+                        {/if}
                     </div>
                     <div class="xrow-feature-list">
                         <div class="xrow-product-wishlist">
@@ -51,9 +54,11 @@ YUI( YUI3_config ).use("node", function(Y) {ldelim}
                             {if and( ezmodule( 'content/tipafriend' ), $tipafriend_access )}
                             <a href={concat( "/content/tipafriend/", $node.node_id )|ezurl} title="{'Tip a friend'|i18n( 'design/ezwebin/full/article' )}">{'Tip a friend'|i18n( 'design/ezwebin/full/article' )}</a> | {/if}<a href="#related-products" >{'Related products'|i18n( 'design/ezwebin/full/article' )}</a> | <a href="#product-reviews">{'Product reviews'|i18n( 'design/ezwebin/full/article' )}</a>
                         </p>
+                        {if $node.data_map.rating|is_set()}
                         <div class="star-rating">
                         {attribute_view_gui attribute=$node.data_map.rating}
                         </div>
+                        {/if}
                     </div>
                 </div>
                 <div class="productwrapper float-break">
@@ -100,19 +105,12 @@ YUI( YUI3_config ).use("node", function(Y) {ldelim}
         	                           <input type="text" name="AddToBasketList[{$Options.index}][quantity]" value="{if eq($Options.index,0)}1{else}0{/if}" />
         	                        </td>
         	                        <td class="price" align="right">
+        	                        
         		                        {if $Options.multi_price}
-                                            {if $Options.multi_price.price|ne('0.00')}
-                                                {$Options.multi_price.price|l10n(currency)}
-            			                    {else}
-                                                {foreach $Options.multi_price.currency_list as $price}
-                                                    {$price.value|l10n( currency )}
-                                                {/foreach}
-        			                        {/if}
-        		                        {else}
-        		                            {section show=ne( $Options.item.additional_price, '' )}
-        		                                {$Options.item.additional_price|l10n( currency )}
-        		                            {/section}
+                                            {def $price=get_multiprice( $node.data_map.price, $Options.multi_price, $price_display )}
+        	                            	{$price|l10n( currency )}
         		                        {/if}
+        		                        {undef $price}
         	                        </td>
         	                    </tr>
         	                    {/section}
@@ -130,7 +128,7 @@ YUI( YUI3_config ).use("node", function(Y) {ldelim}
         	                            <input type="text" name="AddToBasketList[0][quantity]" value="1" />
         	                        </td>
         	                        <td align="right">
-        	                           {$node.data_map.price.content.price|l10n(currency)}
+        	                            {$node.data_map.price.content.$price_display|l10n( currency )}
         	                        </td>
         	                    </tr>
                             {/if}
@@ -162,8 +160,8 @@ YUI( YUI3_config ).use("node", function(Y) {ldelim}
             <a name="product-reviews"></a>
             {include node=$node uri="design:shop/review_children.tpl"}
         </div>
-
 </div>
+{undef $price_display $tipafriend_access}
 </div>
 </div></div></div>
 <div class="border-bl"><div class="border-br"><div class="border-bc"></div></div></div>
@@ -177,6 +175,8 @@ YUI( YUI3_config ).use("node", function(Y) {ldelim}
                             <p>{'Since the accuracy of your credit card, shipping and billing information is vital to Automatic Delivery, please promptly submit changes through the my account section.'|i18n( 'extension/xrowecommerce')}</p>
                         </div>
 {/if}
+
+
 {*
  * Draft of the zoom feature.
  * Images can be zoomed in via a moving the slider and dragging the image

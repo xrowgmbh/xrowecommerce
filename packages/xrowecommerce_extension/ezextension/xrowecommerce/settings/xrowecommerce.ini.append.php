@@ -79,6 +79,14 @@ StatusIncludeArray[]
 # If empty, this setting will be ignored
 StatusExcludeArray[]
 
+# Set the display of the price in the templates xrow_product_....tpl, related_products.tpl, product_list.tpl and aftersale.tpl
+# price = like in the field in backend 
+# ex_vat_price = without VAT
+# inc_vat_price = with VAT
+# discount_price_ex_vat = without VAT with discount
+# discount_price_inc_vat = with VAT and discount
+ShowPriceAs=discount_price_inc_vat
+
 [ShippingSettings]
 #fields can be disabled / enabled in the shipping information
 DisplayFax=enabled
@@ -186,5 +194,10 @@ ExportPriceLanguage=
 # ExportFieldsArray[image_link]=image
 # ExportFieldsArray[manufacturer]=manufacturer
 # ExportFieldsArray[price]=price
+
+[McryptSettings]
+McryptKey=E45tzUP4DhS23DYfhHemkS3Nf
+McryptAlgorithm=tripledes
+McryptMode=cfb
 
 * */ ?>

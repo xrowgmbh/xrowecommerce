@@ -23,7 +23,7 @@ class ezcreditcardType extends eZDataType
     /*!
      Initializes with a string id and a description.
     */
-    function ezcreditcardType ()
+    function ezcreditcardType()
     {
         $this->eZDataType( self::DATA_TYPE_STRING, ezpI18n::tr( 'kernel/classes/datatypes', 'Credit card', 'Datatype name' ), array( 
             'serialize_supported' => true , 
@@ -36,10 +36,7 @@ class ezcreditcardType extends eZDataType
     /*!
      Sets the default value.
     */
-    function initializeObjectAttribute ( 
-                                                        $contentObjectAttribute, 
-                                                        $currentVersion, 
-                                                        $originalContentObjectAttribute )
+    function initializeObjectAttribute( $contentObjectAttribute, $currentVersion, $originalContentObjectAttribute )
     {
         if ( $currentVersion != false )
         {
@@ -54,10 +51,7 @@ class ezcreditcardType extends eZDataType
     /*
      Private method, only for using inside this class.
     */
-    function validateCard ( 
-                                            $data, 
-                                            $contentObjectAttribute, 
-                                            $classAttribute )
+    function validateCard( $data, $contentObjectAttribute, $classAttribute )
     {
         $classContent = $this->classAttributeContent( $classAttribute );
         $gatewayArray = $classContent['gateway'];
@@ -68,14 +62,17 @@ class ezcreditcardType extends eZDataType
             if ( is_object( $payObj ) )
             {
                 if ( $payObj->validateCardData( $contentObjectAttribute, $classAttribute, $data ) )
-                    return eZInputValidator::STATE_ACCEPTED; else
+                    return eZInputValidator::STATE_ACCEPTED;
+                else
                     return eZInputValidator::STATE_INVALID;
-            } else
+            }
+            else
             {
                 eZDebug::writeError( 'PaymentInfo Object not found: ' . $gateway . 'Info', 'eZCreditcardType::validateCard' );
                 return eZInputValidator::STATE_INVALID;
             }
-        } else
+        }
+        else
         {
             eZDebug::writeError( 'Gateway not found: ' . $data['type'], 'eZCreditcardType::validateCard' );
             return eZInputValidator::STATE_INVALID;
@@ -85,12 +82,9 @@ class ezcreditcardType extends eZDataType
     /*!
      \reimp
     */
-    function validateObjectAttributeHTTPInput ( 
-                                                                $http, 
-                                                                $base, 
-                                                                $contentObjectAttribute )
+    function validateObjectAttributeHTTPInput( $http, $base, $contentObjectAttribute )
     {
-        include_once (eZExtension::baseDirectory() . '/xrowecommerce/classes/subscriptions/recurringordercollection.php');
+        include_once( eZExtension::baseDirectory() . '/xrowecommerce/classes/subscriptions/recurringordercollection.php' );
         $classAttribute = $contentObjectAttribute->contentClassAttribute();
         if ( $http->hasPostVariable( $base . '_ezcreditcard_type_' . $contentObjectAttribute->attribute( 'id' ) ) )
         {
@@ -99,8 +93,7 @@ class ezcreditcardType extends eZDataType
             {
                 if ( $http->hasPostVariable( $base . '_ezcreditcard_ecname_' . $contentObjectAttribute->attribute( 'id' ) ) and $http->hasPostVariable( $base . '_ezcreditcard_accountnumber_' . $contentObjectAttribute->attribute( 'id' ) ) and $http->hasPostVariable( $base . '_ezcreditcard_bankcode_' . $contentObjectAttribute->attribute( 'id' ) ) )
                 {
-                    $data = array( 
-                    );
+                    $data = array();
                     $data['type'] = $type;
                     $data['ecname'] = trim( $http->postVariable( $base . '_ezcreditcard_ecname_' . $contentObjectAttribute->attribute( 'id' ) ) );
                     $data['accountnumber'] = trim( $http->postVariable( $base . '_ezcreditcard_accountnumber_' . $contentObjectAttribute->attribute( 'id' ) ) );
@@ -120,15 +113,19 @@ class ezcreditcardType extends eZDataType
                             {
                                 $contentObjectAttribute->setValidationError( ezpI18n::tr( 'kernel/classes/datatypes', 'Input required.' ) );
                                 return eZInputValidator::STATE_INVALID;
-                            } else
+                            }
+                            else
                                 return eZInputValidator::STATE_ACCEPTED;
-                        } else
+                        }
+                        else
                             return eZInputValidator::STATE_ACCEPTED;
-                    } else
+                    }
+                    else
                     {
                         return $this->validateCard( $data, $contentObjectAttribute, $classAttribute );
                     }
-                } else
+                }
+                else
                 {
                     if ( ! $classAttribute->attribute( 'is_information_collector' ) and $contentObjectAttribute->validateIsRequired() )
                     {
@@ -138,35 +135,60 @@ class ezcreditcardType extends eZDataType
                         {
                             $contentObjectAttribute->setValidationError( ezpI18n::tr( 'kernel/classes/datatypes', 'Input required.' ) );
                             return eZInputValidator::STATE_INVALID;
-                        } else
+                        }
+                        else
                             return eZInputValidator::STATE_ACCEPTED;
-                    } else
+                    }
+                    else
                         return eZInputValidator::STATE_ACCEPTED;
                 }
-            } else if ( in_array( $type, array( 
-                self::AMERICANEXPRESS , 
-                self::DISCOVER , 
-                self::MASTERCARD , 
-                self::VISA 
-            ) ) )
-            {
-                if ( $http->hasPostVariable( $base . '_ezcreditcard_name_' . $contentObjectAttribute->attribute( 'id' ) ) and $http->hasPostVariable( $base . '_ezcreditcard_number_' . $contentObjectAttribute->attribute( 'id' ) ) and $http->hasPostVariable( $base . '_ezcreditcard_securitycode_' . $contentObjectAttribute->attribute( 'id' ) ) and $http->hasPostVariable( $base . '_ezcreditcard_month_' . $contentObjectAttribute->attribute( 'id' ) ) and $http->hasPostVariable( $base . '_ezcreditcard_year_' . $contentObjectAttribute->attribute( 'id' ) ) )
+            }
+            else 
+                if ( in_array( $type, array( 
+                    self::AMERICANEXPRESS , 
+                    self::DISCOVER , 
+                    self::MASTERCARD , 
+                    self::VISA 
+                ) ) )
                 {
-                    $data = array( 
-                    );
-                    $data['type'] = $type;
-                    $data['name'] = trim( $http->postVariable( $base . '_ezcreditcard_name_' . $contentObjectAttribute->attribute( 'id' ) ) );
-                    $data['number'] = trim( $http->postVariable( $base . '_ezcreditcard_number_' . $contentObjectAttribute->attribute( 'id' ) ) );
-                    $data['securitycode'] = trim( $http->postVariable( $base . '_ezcreditcard_securitycode_' . $contentObjectAttribute->attribute( 'id' ) ) );
-                    $data['month'] = $http->postVariable( $base . '_ezcreditcard_month_' . $contentObjectAttribute->attribute( 'id' ) );
-                    $data['year'] = $http->postVariable( $base . '_ezcreditcard_year_' . $contentObjectAttribute->attribute( 'id' ) );
-                    if ( $data['name'] == "" and $data['number'] == "" and $data['securitycode'] == "" )
+                    if ( $http->hasPostVariable( $base . '_ezcreditcard_name_' . $contentObjectAttribute->attribute( 'id' ) ) and $http->hasPostVariable( $base . '_ezcreditcard_number_' . $contentObjectAttribute->attribute( 'id' ) ) and $http->hasPostVariable( $base . '_ezcreditcard_securitycode_' . $contentObjectAttribute->attribute( 'id' ) ) and $http->hasPostVariable( $base . '_ezcreditcard_month_' . $contentObjectAttribute->attribute( 'id' ) ) and $http->hasPostVariable( $base . '_ezcreditcard_year_' . $contentObjectAttribute->attribute( 'id' ) ) )
                     {
-                        if ( $this->hasOrderCollection( $contentObjectAttribute ) )
+                        $data = array();
+                        $data['type'] = $type;
+                        $data['name'] = trim( $http->postVariable( $base . '_ezcreditcard_name_' . $contentObjectAttribute->attribute( 'id' ) ) );
+                        $data['number'] = trim( $http->postVariable( $base . '_ezcreditcard_number_' . $contentObjectAttribute->attribute( 'id' ) ) );
+                        $data['securitycode'] = trim( $http->postVariable( $base . '_ezcreditcard_securitycode_' . $contentObjectAttribute->attribute( 'id' ) ) );
+                        $data['month'] = $http->postVariable( $base . '_ezcreditcard_month_' . $contentObjectAttribute->attribute( 'id' ) );
+                        $data['year'] = $http->postVariable( $base . '_ezcreditcard_year_' . $contentObjectAttribute->attribute( 'id' ) );
+                        if ( $data['name'] == "" and $data['number'] == "" and $data['securitycode'] == "" )
                         {
-                            $contentObjectAttribute->setValidationError( ezpI18n::tr( 'kernel/classes/datatypes', 'Input is required, if you have active subscriptions or recurring orders.' ) );
-                            return eZInputValidator::STATE_INVALID;
+                            if ( $this->hasOrderCollection( $contentObjectAttribute ) )
+                            {
+                                $contentObjectAttribute->setValidationError( ezpI18n::tr( 'kernel/classes/datatypes', 'Input is required, if you have active subscriptions or recurring orders.' ) );
+                                return eZInputValidator::STATE_INVALID;
+                            }
+                            if ( ! $classAttribute->attribute( 'is_information_collector' ) and $contentObjectAttribute->validateIsRequired() )
+                            {
+                                // users with a test order are allowed to bypass
+                                // the card check
+                                if ( ! $http->hasSessionVariable( 'xrowTestAccountOrder' ) )
+                                {
+                                    $contentObjectAttribute->setValidationError( ezpI18n::tr( 'kernel/classes/datatypes', 'Input required.' ) );
+                                    return eZInputValidator::STATE_INVALID;
+                                }
+                                else
+                                    return eZInputValidator::STATE_ACCEPTED;
+                            }
+                            else
+                                return eZInputValidator::STATE_ACCEPTED;
                         }
+                        else
+                        {
+                            return $this->validateCard( $data, $contentObjectAttribute, $classAttribute );
+                        }
+                    }
+                    else
+                    {
                         if ( ! $classAttribute->attribute( 'is_information_collector' ) and $contentObjectAttribute->validateIsRequired() )
                         {
                             // users with a test order are allowed to bypass
@@ -175,38 +197,23 @@ class ezcreditcardType extends eZDataType
                             {
                                 $contentObjectAttribute->setValidationError( ezpI18n::tr( 'kernel/classes/datatypes', 'Input required.' ) );
                                 return eZInputValidator::STATE_INVALID;
-                            } else
+                            }
+                            else
                                 return eZInputValidator::STATE_ACCEPTED;
-                        } else
+                        }
+                        else
                             return eZInputValidator::STATE_ACCEPTED;
-                    } else
-                    {
-                        return $this->validateCard( $data, $contentObjectAttribute, $classAttribute );
                     }
-                } else
-                {
-                    if ( ! $classAttribute->attribute( 'is_information_collector' ) and $contentObjectAttribute->validateIsRequired() )
-                    {
-                        // users with a test order are allowed to bypass
-                        // the card check
-                        if ( ! $http->hasSessionVariable( 'xrowTestAccountOrder' ) )
-                        {
-                            $contentObjectAttribute->setValidationError( ezpI18n::tr( 'kernel/classes/datatypes', 'Input required.' ) );
-                            return eZInputValidator::STATE_INVALID;
-                        } else
-                            return eZInputValidator::STATE_ACCEPTED;
-                    } else
-                        return eZInputValidator::STATE_ACCEPTED;
                 }
-            }
         }
         return eZInputValidator::STATE_ACCEPTED;
     }
 
-    function hasOrderCollection ()
+    function hasOrderCollection()
     {
         if ( isset( $this->hasOrderCollection ) )
-            return $this->hasOrderCollection; else
+            return $this->hasOrderCollection;
+        else
             $this->hasOrderCollection = false;
         $collections = XROWRecurringOrderCollection::fetchByUser();
         foreach ( $collections as $collection )
@@ -224,10 +231,7 @@ class ezcreditcardType extends eZDataType
     /*!
      Fetches the http post var string input and stores it in the data instance.
     */
-    function fetchObjectAttributeHTTPInput ( 
-                                                            $http, 
-                                                            $base, 
-                                                            $contentObjectAttribute )
+    function fetchObjectAttributeHTTPInput( $http, $base, $contentObjectAttribute )
     {
         if ( $http->hasPostVariable( $base . '_ezcreditcard_type_' . $contentObjectAttribute->attribute( 'id' ) ) )
         {
@@ -236,58 +240,52 @@ class ezcreditcardType extends eZDataType
             {
                 if ( $http->hasPostVariable( $base . '_ezcreditcard_ecname_' . $contentObjectAttribute->attribute( 'id' ) ) and $http->hasPostVariable( $base . '_ezcreditcard_accountnumber_' . $contentObjectAttribute->attribute( 'id' ) ) and $http->hasPostVariable( $base . '_ezcreditcard_bankcode_' . $contentObjectAttribute->attribute( 'id' ) ) )
                 {
-                    $data = array( 
-                    );
+                    $data = array();
                     $data['type'] = $type;
                     $data['ecname'] = $http->postVariable( $base . '_ezcreditcard_ecname_' . $contentObjectAttribute->attribute( 'id' ) );
                     $data['accountnumber'] = $http->postVariable( $base . '_ezcreditcard_accountnumber_' . $contentObjectAttribute->attribute( 'id' ) );
                     $data['bankcode'] = $http->postVariable( $base . '_ezcreditcard_bankcode_' . $contentObjectAttribute->attribute( 'id' ) );
                     $data = ezcreditcardType::encodeData( $data );
-                    $doc = new eZDOMDocument( 
-                        'creditcard' );
+                    $doc = new eZDOMDocument( 'creditcard' );
                     $root = ezcreditcardType::createDOMTreefromArray( 'creditcard', $data );
                     $doc->setRoot( $root );
                     $text = $doc->toString();
                     $contentObjectAttribute->setAttribute( 'data_text', $text );
                     return true;
                 }
-            } else if ( in_array( $type, array( 
-                self::AMERICANEXPRESS , 
-                self::DISCOVER , 
-                self::MASTERCARD , 
-                self::VISA 
-            ) ) )
-            {
-                if ( $http->hasPostVariable( $base . '_ezcreditcard_name_' . $contentObjectAttribute->attribute( 'id' ) ) or $http->hasPostVariable( $base . '_ezcreditcard_number_' . $contentObjectAttribute->attribute( 'id' ) ) or $http->hasPostVariable( $base . '_ezcreditcard_securitycode_' . $contentObjectAttribute->attribute( 'id' ) ) or $http->hasPostVariable( $base . '_ezcreditcard_month_' . $contentObjectAttribute->attribute( 'id' ) ) or $http->hasPostVariable( $base . '_ezcreditcard_year_' . $contentObjectAttribute->attribute( 'id' ) ) )
-                {
-                    $data = array( 
-                    );
-                    $data['type'] = $type;
-                    $data['name'] = $http->postVariable( $base . '_ezcreditcard_name_' . $contentObjectAttribute->attribute( 'id' ) );
-                    $data['number'] = $http->postVariable( $base . '_ezcreditcard_number_' . $contentObjectAttribute->attribute( 'id' ) );
-                    $data['securitycode'] = $http->postVariable( $base . '_ezcreditcard_securitycode_' . $contentObjectAttribute->attribute( 'id' ) );
-                    $data['month'] = $http->postVariable( $base . '_ezcreditcard_month_' . $contentObjectAttribute->attribute( 'id' ) );
-                    $data['year'] = $http->postVariable( $base . '_ezcreditcard_year_' . $contentObjectAttribute->attribute( 'id' ) );
-                    $data = ezcreditcardType::encodeData( $data );
-                    // it's not allowed to store the cvv2 code for security reasons
-                    // $data['securitycode']   = ezcreditcardType::gpgEncode( $data['securitycode'] );
-                    $doc = new eZDOMDocument( 
-                        'creditcard' );
-                    $root = XROWRecurringordersCommonFunctions::createDOMTreefromArray( 'creditcard', $data );
-                    $doc->setRoot( $root );
-                    $contentObjectAttribute->setAttribute( 'data_text', $doc->toString() );
-                    return true;
-                }
             }
+            else 
+                if ( in_array( $type, array( 
+                    self::AMERICANEXPRESS , 
+                    self::DISCOVER , 
+                    self::MASTERCARD , 
+                    self::VISA 
+                ) ) )
+                {
+                    if ( $http->hasPostVariable( $base . '_ezcreditcard_name_' . $contentObjectAttribute->attribute( 'id' ) ) or $http->hasPostVariable( $base . '_ezcreditcard_number_' . $contentObjectAttribute->attribute( 'id' ) ) or $http->hasPostVariable( $base . '_ezcreditcard_securitycode_' . $contentObjectAttribute->attribute( 'id' ) ) or $http->hasPostVariable( $base . '_ezcreditcard_month_' . $contentObjectAttribute->attribute( 'id' ) ) or $http->hasPostVariable( $base . '_ezcreditcard_year_' . $contentObjectAttribute->attribute( 'id' ) ) )
+                    {
+                        $data = array();
+                        $data['type'] = $type;
+                        $data['name'] = $http->postVariable( $base . '_ezcreditcard_name_' . $contentObjectAttribute->attribute( 'id' ) );
+                        $data['number'] = $http->postVariable( $base . '_ezcreditcard_number_' . $contentObjectAttribute->attribute( 'id' ) );
+                        $data['securitycode'] = $http->postVariable( $base . '_ezcreditcard_securitycode_' . $contentObjectAttribute->attribute( 'id' ) );
+                        $data['month'] = $http->postVariable( $base . '_ezcreditcard_month_' . $contentObjectAttribute->attribute( 'id' ) );
+                        $data['year'] = $http->postVariable( $base . '_ezcreditcard_year_' . $contentObjectAttribute->attribute( 'id' ) );
+                        $data = ezcreditcardType::encodeData( $data );
+                        // it's not allowed to store the cvv2 code for security reasons
+                        // $data['securitycode']   = ezcreditcardType::gpgEncode( $data['securitycode'] );
+                        $doc = new DOMDocument( 'creditcard' );
+                        $root = XROWRecurringordersCommonFunctions::createDOMTreefromArray( 'creditcard', $data );
+                        $doc->setRoot( $root );
+                        $contentObjectAttribute->setAttribute( 'data_text', $doc->toString() );
+                        return true;
+                    }
+                }
         }
         return false;
     }
 
-    function customObjectAttributeHTTPAction ( 
-                                                            $http, 
-                                                            $action, 
-                                                            $objectAttribute, 
-                                                            $parameters )
+    function customObjectAttributeHTTPAction( $http, $action, $objectAttribute, $parameters )
     {
         if ( $action == "delete_creditcard" )
         {
@@ -300,34 +298,26 @@ class ezcreditcardType extends eZDataType
      * Does nothing since it uses the data_text field in the content object attribute.
      * See fetchObjectAttributeHTTPInput for the actual storing.
      */
-    function storeObjectAttribute ( 
-                                                    $attribute )
+    function storeObjectAttribute( $attribute )
     {
         if ( isset( $GLOBALS['eZCreditcardCache'] ) )
             unset( $GLOBALS['eZCreditcardCache'] );
     }
 
-    function storeClassAttribute ( 
-                                                $attribute, 
-                                                $version )
+    function storeClassAttribute( $attribute, $version )
     {
     }
 
-    function storeDefinedClassAttribute ( 
-                                                        $attribute )
+    function storeDefinedClassAttribute( $attribute )
     {
     }
 
-    function validateClassAttributeHTTPInput ( 
-                                                            $http, 
-                                                            $base, 
-                                                            $classAttribute )
+    function validateClassAttributeHTTPInput( $http, $base, $classAttribute )
     {
         return eZInputValidator::STATE_ACCEPTED;
     }
 
-    function encodeData ( 
-                                        $data )
+    function encodeData( $data )
     {
         if ( ! isset( $data['type'] ) )
             return $data;
@@ -339,7 +329,8 @@ class ezcreditcardType extends eZDataType
                 $data['ecname'] = ezcreditcardType::gpgEncode( $data['ecname'] );
             if ( isset( $data['bankcode'] ) and $data['bankcode'] > 0 )
                 $data['bankcode'] = ezcreditcardType::gpgEncode( $data['bankcode'] );
-        } else
+        }
+        else
         {
             if ( isset( $data['number'] ) and $data['number'] > 0 )
                 $data['number'] = ezcreditcardType::gpgEncode( $data['number'] );
@@ -361,7 +352,8 @@ class ezcreditcardType extends eZDataType
                 $data['ecname'] = ezcreditcardType::gpgDecode( $data['ecname'] );
             if ( isset( $data['bankcode'] ) and strlen( $data['bankcode'] ) > 0 )
                 $data['bankcode'] = ezcreditcardType::gpgDecode( $data['bankcode'] );
-        } else
+        }
+        else
         {
             if ( isset( $data['number'] ) and strlen( $data['number'] ) > 0 )
                 $data['number'] = ezcreditcardType::gpgDecode( $data['number'] );
@@ -371,10 +363,7 @@ class ezcreditcardType extends eZDataType
         return $data;
     }
 
-    function onPublish ( 
-                                        $contentObjectAttribute, 
-                                        $contentObject, 
-                                        $publishedNodes )
+    function onPublish( $contentObjectAttribute, $contentObject, $publishedNodes )
     {
         $hasContent = $contentObjectAttribute->hasContent();
         if ( $hasContent )
@@ -384,17 +373,19 @@ class ezcreditcardType extends eZDataType
             if ( $data['type'] == self::EUROCARD )
             {
                 if ( strlen( $data['ecname'] ) > 0 and $data['accountnumber'] > 0 and $data['bankcode'] > 0 )
-                    $data['has_stored_card'] = 1; else
+                    $data['has_stored_card'] = 1;
+                else
                     $data['has_stored_card'] = 0;
-            } else
+            }
+            else
             {
                 if ( $data['number'] > 0 and strlen( $data['name'] ) > 0 )
-                    $data['has_stored_card'] = 1; else
+                    $data['has_stored_card'] = 1;
+                else
                     $data['has_stored_card'] = 0;
             }
             $data = ezcreditcardType::encodeData( $data );
-            $doc = new eZDOMDocument( 
-                'creditcard' );
+            $doc = new eZDOMDocument( 'creditcard' );
             $root = XROWRecurringordersCommonFunctions::createDOMTreefromArray( 'creditcard', $data );
             $doc->setRoot( $root );
             $contentObjectAttribute->setAttribute( 'data_text', $doc->toString() );
@@ -402,10 +393,7 @@ class ezcreditcardType extends eZDataType
         }
     }
 
-    function fetchClassAttributeHTTPInput ( 
-                                                            $http, 
-                                                            $base, 
-                                                            $classAttribute )
+    function fetchClassAttributeHTTPInput( $http, $base, $classAttribute )
     {
         if ( $http->hasPostVariable( 'ContentClass_ezcreditcard_gateway_' . $classAttribute->attribute( 'id' ) ) )
         {
@@ -415,43 +403,40 @@ class ezcreditcardType extends eZDataType
         return true;
     }
 
-    function objectAttributeContent ( 
-                                                    $contentObjectAttribute )
+    function objectAttributeContent( $contentObjectAttribute )
     {
         if ( isset( $GLOBALS['eZCreditcardCache'][$contentObjectAttribute->ID][$contentObjectAttribute->Version] ) )
         {
             return $GLOBALS['eZCreditcardCache'][$contentObjectAttribute->ID][$contentObjectAttribute->Version];
-        } else
+        }
+        else
         {
             $content = XROWRecurringordersCommonFunctions::createArrayfromXML( $contentObjectAttribute->attribute( 'data_text' ) );
             $content = ezcreditcardType::decodeData( $content );
             if ( isset( $content['type'] ) )
                 $content['type_name'] = ezcreditcardType::getCardTypeName( $content['type'] );
             if ( isset( $content['has_stored_card'] ) and $content['has_stored_card'] == 1 )
-                $content['has_stored_card'] = 1; else
+                $content['has_stored_card'] = 1;
+            else
                 $content['has_stored_card'] = 0;
             $GLOBALS['eZCreditcardCache'][$contentObjectAttribute->ID][$contentObjectAttribute->Version] = $content;
             return $content;
         }
     }
 
-    function metaData ( 
-                                        $contentObjectAttribute )
+    function metaData( $contentObjectAttribute )
     {
         return false;
     }
 
-    function classAttributeContent ( 
-                                                    $classAttribute )
+    function classAttributeContent( $classAttribute )
     {
         if ( isset( $GLOBALS['xrowCCClassInfo'][$classAttribute->ID][$classAttribute->Version] ) )
             return $GLOBALS['xrowCCClassInfo'][$classAttribute->ID][$classAttribute->Version];
-        $content = array( 
-        );
+        $content = array();
         $content['gateway_array'] = xrowPaymentInfo::getGateways();
-        $content['card_array'] = ezcreditcardType::getCardTypeName( - 1 );
-        $cardGatewayArray = array( 
-        );
+        $content['card_array'] = ezcreditcardType::getCardTypeName( -1 );
+        $cardGatewayArray = array();
         foreach ( $content['card_array'] as $cardKey => $card )
         {
             if ( count( $content['gateway_array'] ) > 0 )
@@ -463,14 +448,19 @@ class ezcreditcardType extends eZDataType
                     {
                         if ( $payObj->isCardAvailable( $cardKey ) == true )
                             $cardGatewayArray[$cardKey][$gateway['value']] = $gateway;
-                    } else
+                    }
+                    else
                         eZDebug::writeError( 'PaymentInfo Object not found: ' . $gatewayArray[$data['type']] . 'Info', 'eZCreditcardType::classAttributeContent' );
                 }
-            } else
+            }
+            else
                 eZDebug::writeError( 'No gateways installed.', 'eZCreditcardType::classAttributeContent' );
         }
+        print_r($cardGatewayArray);
         //eZDebug::writeDebug ( $cardGatewayArray, 'cardGatewayArray' );
         $content['card_gateway_array'] = $cardGatewayArray;
+		print_r($classAttribute);
+		#die();
         $content['gateway'] = unserialize( $classAttribute->attribute( self::CREDITCARD_GATEWAY_FIELD ) );
         $GLOBALS['xrowCCClassInfo'][$classAttribute->ID][$classAttribute->Version] = $content;
         return $content;
@@ -479,40 +469,34 @@ class ezcreditcardType extends eZDataType
     /**
      * Returns the content of the string for use as a title
      */
-    function title ( 
-                                    $objectAttribute, 
-                                    $name = null )
+    function title( $objectAttribute, $name = null )
     {
         return false;
     }
 
-    function hasObjectAttributeContent ( 
-                                                        $contentObjectAttribute )
+    function hasObjectAttributeContent( $contentObjectAttribute )
     {
         return trim( $contentObjectAttribute->attribute( 'data_text' ) ) != '';
     }
 
-    function isIndexable ()
+    function isIndexable()
     {
         return false;
     }
 
-    function isInformationCollector ()
+    function isInformationCollector()
     {
         return false;
     }
 
-    function sortKeyType ()
+    function sortKeyType()
     {
         return 'string';
     }
 
-    function diff ( 
-                                    $old, 
-                                    $new, 
-                                    $options = false )
+    function diff( $old, $new, $options = false )
     {
-        include_once ('lib/ezdiff/classes/ezdiff.php');
+        include_once ( 'lib/ezdiff/classes/ezdiff.php' );
         $diff = new eZDiff( );
         $diff->setDiffEngineType( $diff->engineType( 'text' ) );
         $diff->initDiffEngine();
@@ -523,7 +507,7 @@ class ezcreditcardType extends eZDataType
     function gpgEncode( $value )
     {
         $old = $value;
-        if ( include_once( eZExtension::baseDirectory() . '/ezgpg/autoloads/ezgpg_operators.php' ) )
+        if ( include_once ( eZExtension::baseDirectory() . '/ezgpg/autoloads/ezgpg_operators.php' ) )
         {
             $b_ini = eZINI::instance( 'ezgpg.ini' );
             $key = trim( $b_ini->variable( 'eZGPGSettings', 'KeyID' ) );
@@ -534,7 +518,8 @@ class ezcreditcardType extends eZDataType
         if ( ! is_string( $value ) )
         {
             return $old;
-        } else
+        }
+        else
         {
             return $value;
         }
@@ -543,7 +528,7 @@ class ezcreditcardType extends eZDataType
     function gpgDecode( $value )
     {
         $old = $value;
-        if ( include_once( eZExtension::baseDirectory() . '/ezgpg/autoloads/ezgpg_operators.php' ) )
+        if ( include_once ( eZExtension::baseDirectory() . '/ezgpg/autoloads/ezgpg_operators.php' ) )
         {
             $b_ini = eZINI::instance( 'ezgpg.ini' );
             $key = trim( $b_ini->variable( 'eZGPGSettings', 'KeyID' ) );
@@ -554,7 +539,8 @@ class ezcreditcardType extends eZDataType
         if ( ! is_string( $value ) )
         {
             return $old;
-        } else
+        }
+        else
         {
             return $value;
         }
@@ -566,8 +552,7 @@ class ezcreditcardType extends eZDataType
      if type is -1 the array of available types
      This can be called like ezcreditcardType::getCardTypeName( $type )
     */
-    function getCardTypeName ( 
-                                            $type = null )
+    function getCardTypeName( $type = null )
     {
         if ( ! isset( $GLOBALS['xrowCreditCardArray'] ) )
             $GLOBALS['xrowCreditCardArray'] = array( 
@@ -580,22 +565,24 @@ class ezcreditcardType extends eZDataType
         if ( $type == - 1 )
         {
             return $GLOBALS['xrowCreditCardArray'];
-        } else if ( isset( $GLOBALS['xrowCreditCardArray'][$type] ) )
-        {
-            return $GLOBALS['xrowCreditCardArray'][$type];
-        } else
-        {
-            eZDebug::writeError( 'Card type not found.', 'ezcreditcardtype' );
-            return false;
         }
+        else 
+            if ( isset( $GLOBALS['xrowCreditCardArray'][$type] ) )
+            {
+                return $GLOBALS['xrowCreditCardArray'][$type];
+            }
+            else
+            {
+                eZDebug::writeError( 'Card type not found.', 'ezcreditcardtype' );
+                return false;
+            }
     }
 
     // returns true, if an user has a stored card
     /**
      *  @access public
      */
-    function hasStoredCard ( 
-                                            $user = false )
+    function hasStoredCard( $user = false )
     {
         if ( $user == false )
             $user = eZUser::currentUser();
@@ -611,7 +598,8 @@ class ezcreditcardType extends eZDataType
             {
                 $content = $attribute->content();
                 if ( isset( $content['has_stored_card'] ) and $content['has_stored_card'] == 1 )
-                    return true; else
+                    return true;
+                else
                     return false;
             }
         }

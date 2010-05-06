@@ -73,6 +73,19 @@ class xrowECommerceVATHandler
                 {
                 	$country = eZShopFunctions::getPreferredUserCountry();
                 }
+            	if ( strlen( $country ) == 2 )
+		    	{
+		    		$countries = eZCountryType::fetchCountryList();
+		    		foreach( $countries as $countryItem )
+		    		{
+		    			
+		    			if ($countryItem['Alpha2'] == $country )
+		    			{
+		    				$country = $countryItem['Alpha3'];
+		    			}
+		    		}
+		    		
+		    	}
                 $percentage = xrowECommerceVATHandler::getTAX( $country, $state, $taxid );
             }
             else
@@ -84,6 +97,19 @@ class xrowECommerceVATHandler
         {
             $object = $user->attribute( 'contentobject' );
             $country = eZVATManager::getUserCountry( $user, false );
+        	if ( strlen( $country ) == 2 )
+	    	{
+	    		$countries = eZCountryType::fetchCountryList();
+	    		foreach( $countries as $countryItem )
+	    		{
+	    			
+	    			if ($countryItem['Alpha2'] == $country )
+	    			{
+	    				$country = $countryItem['Alpha3'];
+	    			}
+	    		}
+	    		
+	    	}
             $percentage = xrowECommerceVATHandler::getTAX( $country, false, false );
             if ( is_object( $object ) )
             {
@@ -120,9 +146,9 @@ class xrowECommerceVATHandler
         $matched = FALSE;
         foreach ( $merchant as $merchantitem )
         {
-            if ( ! $matched )
+            if ( !$matched )
             {
-                if ( ! is_array( $merchantitem ) and $merchantitem == $country )
+                if ( !is_array( $merchantitem ) and $merchantitem == $country )
                 {
                     $percentage = $taxmap[$merchantitem];
                     $matched = TRUE;

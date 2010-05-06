@@ -3,8 +3,9 @@
 [VATSettings]
 ExtensionDirectories[]=xrowecommerce
 Handler=xrowecommerce
-RequireUserCountry=false
+RequireUserCountry=true
 DynamicVatTypeName=xrow E-Commerce Dynamic Tax
+UserCountryAttribute=country
 
 #[CurrencySettings]
 #PreferredCurrency=EUR
