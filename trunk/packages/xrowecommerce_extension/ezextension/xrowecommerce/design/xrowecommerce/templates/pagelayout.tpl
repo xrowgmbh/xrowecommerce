@@ -86,12 +86,18 @@
         {include uri='design:page_extramenu.tpl'}
     {/if}
     <!-- Extra area: END -->
+{/cache-block}
+  </div>
+  </div>
+</div>
 
-  </div>
-  </div>
-    </div>
 <div class="xrowecommerce-toolbar">
-{tool_bar name='right' view='full'}
+    <!-- Basket area: START -->
+    {include uri='design:toolbar/full/basket.tpl'}
+    <!-- Basket area: END -->
+{cache-block keys=array( $module_result.uri, $user_hash, $access_type.name, $extra_cache_key )}
+    {tool_bar name='right' view='full'}
+{/cache-block}
 </div>
   <!-- Columns area: END -->
 
@@ -105,8 +111,6 @@
 <!-- Footer script area: START -->
 {include uri='design:page_footer_script.tpl'}
 <!-- Footer script area: END -->
-
-{/cache-block}
 
 {* This comment will be replaced with actual debug report (if debug is on). *}
 <!--DEBUG_REPORT-->

@@ -1025,7 +1025,7 @@ if ( $module->isCurrentAction( 'Store' ) )
         
         $http->setSessionVariable( 'MyTemporaryOrderID', $order->attribute( 'id' ) );
         
-        $module->redirectTo( '/shop/confirmorder/' );
+        $module->redirectTo( '/xrowecommerce/confirmorder/' );
         return;
     }
     else

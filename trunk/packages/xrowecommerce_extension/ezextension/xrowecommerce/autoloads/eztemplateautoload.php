@@ -23,12 +23,18 @@ $eZTemplateOperatorArray = array();
 $eZTemplateOperatorArray[] = array(
 	'script' => 'extension/xrowecommerce/autoloads/recaptchatemplateoperator.php', 
 	'class' => 'reCAPTCHATemplateOperator', 
-	'operator_names' => array ( 'recaptcha_get_html' ), 
+	'operator_names' => array ( 'recaptcha_get_html' )
 );
 
 $eZTemplateOperatorArray[] = array(
     'script' => 'extension/xrowecommerce/autoloads/orderhistorytemplateoperator.php', 
     'class' => 'orderHistoryTemplateOperator', 
-    'operator_names' => array ( 'get_order_history' ), 
+    'operator_names' => array ( 'get_order_history' )
+);
+
+$eZTemplateOperatorArray[] = array(
+    'script' => 'extension/xrowecommerce/autoloads/getmutlipricetemplateoperator.php', 
+    'class' => 'getMutliPriceTemplateOperator', 
+    'operator_names' => array ( 'get_multiprice' )
 );
 ?>

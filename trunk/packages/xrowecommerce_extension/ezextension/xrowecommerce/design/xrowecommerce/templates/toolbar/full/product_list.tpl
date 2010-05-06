@@ -1,3 +1,4 @@
+{def $price_display=ezini( 'Settings', 'ShowPriceAs', 'xrowecommerce.ini' )}
 <div class="border-box">
 <div class="border-tl"><div class="border-tr"><div class="border-tc"></div></div></div>
 <div class="border-ml"><div class="border-mr"><div class="border-mc">
@@ -37,28 +38,19 @@
 					               {$node_object.name|wash()}
 					            </a>
 			                    <div class="attribute-price">
-			                        {undef $var_price}
-			                        {undef $allprice}
-			                        {undef $partprice}
-			                        {if count($node_object.data_map.options.content.option_list)|eq(1)}
-			                            {def $allprice=$node_object.data_map.options.content.option_list.0.additional_price}
-			                        {elseif count($node_object.data_map.options.content.option_list)|gt(1)}
-			                            {foreach $node_object.data_map.options.content.option_list as $var_price}
-			                                {if or( $var_price.multi_price|lt($partprice), is_set($partprice)|not ) }
-			                                    {def $partprice=$var_price.multi_price}
-			                                {/if}
-			                            {/foreach}
-			                        {/if}
-			                       {if or( $partprice|gt(0), $allprice|gt(0) ) }
-			                            {if $partprice|gt(0)}
-			                                <span class="currentprice"><small>{'starting at'|i18n('extension/xrowecommerce')}</small> {$partprice|l10n( 'currency' )}</span>
-			                            {/if}
-			                            {if $allprice|gt(0)}
-			                                <span class="currentprice">{$allprice|l10n( 'currency' )}</span>
-			                            {/if}
-			                       {else}
-			                            {$node_object.data_map.price.content.price|l10n(currency)}
-			                       {/if}
+                                    {if count($node_object.data_map.options.content.option_list)|gt( 0 )}
+                                        {foreach $node_object.data_map.options.content.option_list as $Options}
+                                            {if or( $Options.multi_price.$price_display|lt( $partprice ), is_set( $partprice )|not ) }
+	                                            {def $partprice=get_multiprice( $node_object.data_map.price, $Options.multi_price, $price_display )}
+	                                        {/if}
+                                        {/foreach}
+                                    {/if}
+                                    {if $partprice|gt( 0 ) }
+                                        <span class="currentprice"><small>{'starting at'|i18n('extension/xrowecommerce')}</small> {$partprice|l10n( currency )}</span>
+                                    {else}
+                                        {$node_object.data_map.price.content.$price_display|l10n( currency )}
+                                    {/if}
+                                    {undef $partprice}
 			                    </div>
 					        </td>
 				        </tr>
@@ -71,7 +63,7 @@
     {/cache-block}
     {/if}
 </div>
-
+{undef $price_display $node_list $current_user}
 </div></div></div>
 <div class="border-bl"><div class="border-br"><div class="border-bc"></div></div></div>
 </div>

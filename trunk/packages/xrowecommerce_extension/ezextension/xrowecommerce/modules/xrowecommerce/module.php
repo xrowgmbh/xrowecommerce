@@ -35,6 +35,24 @@ $ViewList["statistics"] = array(
     "default_navigation_part" => 'ezshopnavigationpart',
     "params" => array( 'StartYear', 'StartMonth', 'StopMonth', 'StartDay', 'StopDay' ) );
 
+$ViewList["confirmorder"] = array(
+    "functions" => array( 'buy' ),
+    "script" => "confirmorder.php",
+    "default_navigation_part" => 'ezshopnavigationpart',
+    "params" => array(  ) );
+
+$ViewList["checkout"] = array(
+    "functions" => array( 'buy' ),
+    "script" => "checkout.php",
+    "default_navigation_part" => 'ezshopnavigationpart',
+    "params" => array(  ) );
+
+$ViewList["orderview"] = array(
+    "functions" => array( 'buy' ),
+    "script" => "orderview.php",
+    "default_navigation_part" => 'ezshopnavigationpart',
+    "params" => array( "OrderID" ) );
+
 $ViewList["invoiceprint"] = array(
     "functions" => array( 'buy' ),
     "script" => "invoiceprint.php",

@@ -47,7 +47,7 @@ function checkCOS( element )
 {/literal}
 </script>
 <div class="shop shop-confirmorder">
-    <form method="post" action={"shop/confirmorder"|ezurl} id="confirmorder" name="confirmorder">
+    <form method="post" action={"xrowecommerce/confirmorder"|ezurl} id="confirmorder" name="confirmorder">
         <input type="submit" class="hide" sytle="display: hide;" name="ConfirmOrderButton" value="{'Confirm'|i18n('extension/xrowecommerce')}" />
         <h1>{"Confirm order"|i18n("extension/xrowecommerce")}</h1>
         {include uri="design:shop/basket_navigator.tpl" step='3'}

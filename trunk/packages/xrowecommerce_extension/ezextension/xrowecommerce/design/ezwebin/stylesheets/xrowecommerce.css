@@ -155,6 +155,7 @@ table.order_box th
 	width: 240px;
 	padding-bottom: 5px;
 	padding-left: 15px;
+	text-align: left;
 }
 table.order_box td
 {
@@ -465,19 +466,24 @@ div.buttonblock, div.linkbuttonblock
 {
 	margin-bottom: 1em;
 }
-div.shop-payment input#cancel-button
+div.shop-payment div.breakline
 {
-    float: left;
+    vertical-align: center; 
+    border-top: 1px solid #cccccc; 
+    margin-top: 1.1em; 
+    margin-bottom: 0.7em;
+	clear: both;
+	font-size: 5px;
+	height: 1px;
 }
-div.shop-payment input#continue-button
-{
-	float: right;
-}
-div.linkbuttonblock,
-div.shop-payment div.buttonblock
+div.linkbuttonblock
 {
 	border-top:1px solid #ccc;
 	border-bottom:1px solid #ccc;
+	padding:5px 0px 5px 0px;
+}
+div.shop-payment
+{
 	padding:5px 0px 5px 0px;
 }
 
@@ -528,6 +534,14 @@ div.shop div.block
 {
 	margin-right: 1em;
 	margin-bottom:0;
+}
+
+/***** Payment ******/
+div.payment_error
+{
+	border: 1px solid red;
+	width: 350px;
+	padding: 5px;
 }
 
 table.order tr td.price,
@@ -1049,4 +1063,70 @@ table.poll-resultlist
 .class-poll .total-votes
 {
     display: none;
+}
+
+
+/*** after sale ***/
+div.shop-payment h4, div.shop-payment h5
+{
+    font-family: Tahoma,Arial,Helvetica,sans-serif;
+	font-size: 1em;
+}
+div.shop-payment p.retail_price, div.shop-payment p.thanks_price
+{
+	line-height:0.7em;
+}
+div.shop-payment p.quantity
+{
+	padding-top:1.5em;
+}
+div.after_sale_image
+{
+	float: left; 
+	width: 240px;
+}
+div.after_sale_image div.attribute-image {
+	background-color:#FFFFFF;
+	border:1px solid #E3E7EB;
+	padding:3px;
+	margin:0.25em 0 0.5em;
+	width: 210px;
+}
+div.after_sale_name
+{
+	float: left; 
+	width: 200px;
+}
+div.after_sale_description
+{
+	float: right; 
+	width: 320px;
+}
+
+table.after_sale_opt_table 
+{
+	font-size: 11px;
+	width: 500px; 
+	margin: 0;
+}
+td.after_sale_opt_image 
+{
+	border: solid 1px #d9e0e6; 
+	width: 70px;
+	vertical-align: top;
+}
+td.after_sale_opt_name 
+{
+	border: solid 1px #d9e0e6;
+	padding: 3px;
+	vertical-align: top;
+	text-align: left;
+}
+td.after_sale_opt_description
+{
+	border: solid 1px #d9e0e6; 
+	width: 230px;
+	padding: 3px;
+	vertical-align: top;
+	text-align: left;
 }
