@@ -68,8 +68,7 @@ To disable this template override all you must do is rename the file.
 * To switch test mode off, open up ezauthorize.ini.append.php
   and switch "TestMode=TRUE" to "TestMode=FALSE".
 
-Also make sure you have the proper settings in your
-Authorize.Net merchant login control panel.
+If you set TestMode=true, you have to create a testaccount under http://developer.authorize.net/testaccount/
 
 
 7. Referencs
