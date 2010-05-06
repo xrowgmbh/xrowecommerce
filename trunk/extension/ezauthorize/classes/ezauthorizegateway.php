@@ -1,4 +1,5 @@
 <?php
+
 //
 // Definition of eZAuthorizeGateway class
 //
@@ -31,102 +32,208 @@
 // of this licencing isn't clear to you.
 //
 
+
 /*!
   \class eZAuthorizeGateway ezauthorizegateway.php
   \brief eZAuthorizeGateway extends eZCurlGateway to provide a transparent
   Payment system through Authorize.Net using cURL.
 */
 
-class eZAuthorizeGateway extends eZCurlGateway
+class eZAuthorizeGateway extends xrowEPaymentGateway
 {
-    const GATEWAY_TYPE = "eZAuthorize";
+    const SHOW_FORM = 1;
+    const DO_CURL = 2;
+    
+    const AUTOMATIC_STATUS = false;
+    const GATEWAY_STRING = "eZAuthorize";
+
     /*!
      Constructor
     */
     function eZAuthorizeGateway()
     {
     }
-    function _format_number( $str, $decimal_places='2', $decimal_padding="0" )
+
+    function _format_number( $str, $decimal_places = '2', $decimal_padding = "0" )
     {
         /* firstly format number and shorten any extra decimal places */
         /* Note this will round off the number pre-format $str if you dont want this fucntionality */
-        $str =  number_format( $str, $decimal_places, '.', '');    // will return 12345.67
+        $str = number_format( $str, $decimal_places, '.', '' ); // will return 12345.67
         $number = explode( '.', $str );
-        $number[1] = ( isset( $number[1] ) )?$number[1]:''; // to fix the PHP Notice error if str does not contain a decimal placing.
+        $number[1] = ( isset( $number[1] ) ) ? $number[1] : ''; // to fix the PHP Notice error if str does not contain a decimal placing.
         $decimal = str_pad( $number[1], $decimal_places, $decimal_padding );
-        return (float) $number[0].'.'.$decimal;
+        return (float) $number[0] . '.' . $decimal;
     }
-    function _loadAccountHandlerData( &$process )
+
+    function _loadAccountHandlerData( $order )
     {
         $ini = eZINI::instance( 'ezauthorize.ini' );
-        $processParams = $process->attribute( 'parameter_list' );
-        $order = eZOrder::fetch( $processParams['order_id'] );
+        $xrowini = eZINI::instance( 'xrowecommerce.ini' );
+        $key = $xrowini->variable( 'McryptSettings', 'McryptKey' );
+        $algorithm = $xrowini->variable( 'McryptSettings', 'McryptAlgorithm' );
+        $mode = $xrowini->variable( 'McryptSettings', 'McryptMode' );
+        
         $xmlDoc = $order->attribute( 'data_text_1' );
-		eZDebug::writeDebug($xmlDoc);
-        $this->data = simplexml_load_string( $order->attribute( 'data_text_1' ) );
-        if ( $ini->variable( 'eZAuthorizeSettings', 'StoreTransactionInformation', 'ezauthorize.ini') == true  )
+        eZDebug::writeDebug( $xmlDoc );
+        $this->data = simplexml_load_string( $xmlDoc );
+        if ( $ini->variable( 'eZAuthorizeSettings', 'StoreTransactionInformation' ) == true )
         {
             if ( isset( $this->data->{'ezauthorize-card-number'} ) )
-                $this->data->{'ezauthorize-card-number'} = $this->gpgDecode( $this->data->{'ezauthorize-card-number'} );
+            {
+                $this->data->{'ezauthorize-card-number'} = $this->decryptData( $this->data->{'ezauthorize-card-number'}, $key, $algorithm, $mode );
+            }
             if ( isset( $this->data->{'ezauthorize-card-name'} ) )
-                $this->data->{'ezauthorize-card-name'} = $this->gpgDecode( $this->data->{'ezauthorize-card-name'} );
+            {
+                $this->data->{'ezauthorize-card-name'} = $this->decryptData( $this->data->{'ezauthorize-card-name'}, $key, $algorithm, $mode );
+            }
             if ( isset( $this->data->{'ezauthorize-security-number'} ) )
-                $this->data->{'ezauthorize-security-number'} = $this->gpgDecode( $this->data->{'ezauthorize-security-number'} );
+            {
+                $this->data->{'ezauthorize-security-number'} = $this->decryptData( $this->data->{'ezauthorize-security-number'}, $key, $algorithm, $mode );
+            }
         }
     }
-    function _storeAccountHandlerData( &$process )
+
+    function _storeAccountHandlerData( $order )
     {
         $ini = eZINI::instance( 'ezauthorize.ini' );
-        $processParams = $process->attribute( 'parameter_list' );
-        $order = eZOrder::fetch( $processParams['order_id'] );
+        $xrowini = eZINI::instance( 'xrowecommerce.ini' );
+        $key = $xrowini->variable( 'McryptSettings', 'McryptKey' );
+        $algorithm = $xrowini->variable( 'McryptSettings', 'McryptAlgorithm' );
+        $mode = $xrowini->variable( 'McryptSettings', 'McryptMode' );
         
         $data = $this->data;
         
         // If transaction storage is enabled
-        if ( $ini->variable( 'eZAuthorizeSettings', 'StoreTransactionInformation', 'ezauthorize.ini') == true  )
+        if ( $ini->variable( 'eZAuthorizeSettings', 'StoreTransactionInformation' ) == true )
         {
             if ( isset( $this->data->{'ezauthorize-card-number'} ) )
-                $data->{'ezauthorize-card-number'} = $this->gpgEncode( $this->data->{'ezauthorize-card-number'} );
+            {
+                $data->{'ezauthorize-card-number'} = $this->encryptData( $this->data->{'ezauthorize-card-number'}, $key, $algorithm, $mode );
+            }
             if ( isset( $this->data->{'ezauthorize-card-name'} ) )
-                $data->{'ezauthorize-card-name'} = $this->gpgEncode( $this->data->{'ezauthorize-card-name'} );
+            {
+                $data->{'ezauthorize-card-name'} = $this->encryptData( $this->data->{'ezauthorize-card-name'}, $key, $algorithm, $mode );
+            }
             if ( isset( $this->data->{'ezauthorize-security-number'} ) )
-                $data->{'ezauthorize-security-number'} = $this->gpgEncode( $this->data->{'ezauthorize-security-number'} );
+            {
+                $data->{'ezauthorize-security-number'} = $this->encryptData( $this->data->{'ezauthorize-security-number'}, $key, $algorithm, $mode );
+            }
         }
 
-        eZDebug::writeDebug($data->asXML(),'asXML()');
+        eZDebug::writeDebug( $data->asXML(), 'asXML()' );
         $order->setAttribute( 'data_text_1', $data->asXML() );
-        $order->store();        
+        $order->store();
     }
 
-    function storeHTTPInput( &$process )
+    function execute( $process, $event )
     {
-        $this->_loadAccountHandlerData( $process );
-        eZDebug::writeDebug($_POST);
+        $http = eZHTTPTool::instance();
+        
+        $processParameters = $process->attribute( 'parameter_list' );
+        $processID = $process->attribute( 'id' );
+        $orderID = $processParameters['order_id'];
+        $order = eZOrder::fetch( $orderID );
+        
+        $xmlstring = $order->attribute( 'data_text_1' );
+        if ( $xmlstring != null )
+        {
+            $doc = new DOMDocument( );
+            $doc->loadXML( $xmlstring );
+            $paymentmethod = $doc->getElementsByTagName( xrowECommerce::ACCOUNT_KEY_PAYMENTMETHOD )->item( 0 )->nodeValue;
+            if ( ! isset( $paymentmethod ) )
+            {
+                $root = $doc->documentElement;
+                $invoice = $doc->createElement( xrowECommerce::ACCOUNT_KEY_PAYMENTMETHOD, eZAuthorizeGateway::GATEWAY_STRING );
+                $root->appendChild( $invoice );
+                $order->setAttribute( 'data_text_1', $doc->saveXML() );
+                $order->store();
+            }
+        }
+        
+        // if a form has been posted, we try and validate it.
+        if ( $http->hasPostVariable( 'validate' ) )
+        {
+            $errors = $this->validateForm( $process );
+            
+            if ( ! $errors )
+            {
+                $process->setAttribute( 'event_state', eZAuthorizeGateway::DO_CURL );
+                $this->storeHTTPInput( $order );
+            }
+            else
+            {
+                return $this->loadForm( $process, $errors );
+            }
+        }
+        
+        if ( $process->attribute( 'event_state' ) == eZAuthorizeGateway::SHOW_FORM )
+        {
+            // set the event state to do curl if we are not using a form
+            if ( ! $this->useForm() )
+            {
+                $process->setAttribute( 'event_state', eZAuthorizeGateway::DO_CURL );
+            }
+        }
+        
+        switch ( $process->attribute( 'event_state' ) )
+        {
+            case eZAuthorizeGateway::SHOW_FORM:
+                {
+                    return $this->loadForm( $process );
+                }
+                break;
+            case eZAuthorizeGateway::DO_CURL:
+                {
+                    return $this->doCURL( $process );
+                }
+                break;
+        }
+    }
+
+    function storeHTTPInput( $order )
+    {
+        $xmlDoc = $order->attribute( 'data_text_1' );
+        eZDebug::writeDebug( $xmlDoc );
+        $this->data = simplexml_load_string( $xmlDoc );
+        
+        eZDebug::writeDebug( $_POST );
         $http = eZHTTPTool::instance();
         // assign shop account handeler payment values
-        if( is_object( $this->data ) )
+        if ( is_object( $this->data ) )
         {
             $this->data->{'ezauthorize-card-name'} = trim( $http->postVariable( 'CardName' ) );
             $this->data->{'ezauthorize-card-number'} = trim( $http->postVariable( 'CardNumber' ) );
             $this->data->{'ezauthorize-card-date'} = trim( $http->postVariable( 'ExpirationMonth' ) ) . trim( $http->postVariable( 'ExpirationYear' ) );
             $this->data->{'ezauthorize-card-type'} = strtolower( $http->postVariable( 'CardType' ) );
             $this->data->{'ezauthorize-security-number'} = trim( $http->postVariable( 'SecurityNumber' ) );
-            $this->_storeAccountHandlerData( $process );
+            $this->_storeAccountHandlerData( $order );
         }
     }
+
+    // override useForm() as false if you do not need to gather additional
+    // user information before you send the curl information (although I can't
+    // think of many situations in which this would happen, let me know if you
+    // actually use it, otherwise I might just take it out.
+    function useForm()
+    {
+        if ( eZSys::isShellExecution() )
+            return false;
+        else
+            return true;
+    }
+
     function loadForm( &$process, $errors = 0 )
     {
         $http = eZHTTPTool::instance();
-
+        
         // get parameters
         $processParams = $process->attribute( 'parameter_list' );
-
+        
         // load ini
         $ini = eZINI::instance( 'ezauthorize.ini' );
-
+        
         // regen posted form values
-        if ( $http->hasPostVariable( 'validate' ) and
-             $ini->variable( 'eZAuthorizeSettings', 'RepostVariablesOnError' ) )
+        if ( $http->hasPostVariable( 'validate' ) and $ini->variable( 'eZAuthorizeSettings', 'RepostVariablesOnError' ) )
         {
             $tplVars['cardname'] = trim( $http->postVariable( 'CardName' ) );
             $tplVars['cardtype'] = strtolower( $http->postVariable( 'CardType' ) );
@@ -147,19 +254,22 @@ class eZAuthorizeGateway extends eZCurlGateway
             $tplVars['securitynumber'] = '';
             $tplVars['amount'] = '';
         }
-
+        
         $tplVars['s_display_help'] = $ini->variable( 'eZAuthorizeSettings', 'DisplayHelp' );
         $tplVars['errors'] = $errors;
         $tplVars['order_id'] = $processParams['order_id'];
-
-        $process->Template=array
-        (
-            'templateName' => 'design:workflow/eventtype/result/' . 'ezauthorize_form.tpl',
-            'templateVars' => $tplVars,
-            'path' => array( array( 'url' => false,
-                                    'text' =>  'Payment Information') ) 
-
-        );
+        
+        $process->Template = array( 
+            'templateName' => 'design:workflow/eventtype/result/' . 'ezauthorize_form.tpl' , 
+            'templateVars' => $tplVars , 
+            'path' => array( 
+                array( 
+                    'url' => false , 
+                    'text' => 'Payment Information' 
+                ) 
+            ) 
+        )
+        ;
         return eZWorkflowEventType::STATUS_FETCH_TEMPLATE_REPEAT;
     }
 
@@ -167,184 +277,262 @@ class eZAuthorizeGateway extends eZCurlGateway
     {
         $http = eZHTTPTool::instance();
         $errors = array();
-
+        
         if ( trim( $http->postVariable( 'CardNumber' ) ) == '' )
         {
             $errors[] = 'You must enter a card number.';
         }
-        elseif( strlen( trim( $http->postVariable( 'CardNumber' ) ) ) > 49 )
+        elseif ( strlen( trim( $http->postVariable( 'CardNumber' ) ) ) > 49 )
         {
             $errors[] = 'Your card number should be under 50 characters.';
         }
-
+        
         if ( trim( $http->postVariable( 'CardName' ) ) == '' )
         {
             $errors[] = 'You must enter a card name.';
         }
-        elseif( strlen( trim( $http->postVariable( 'CardName' ) ) ) > 79 )
+        elseif ( strlen( trim( $http->postVariable( 'CardName' ) ) ) > 79 )
         {
             $errors[] = 'Your card name should be under 80 characters.';
         }
-
+        
         if ( trim( $http->postVariable( 'ExpirationMonth' ) ) == '' )
         {
             $errors[] = 'You must select an expiration month.';
         }
-
+        
         if ( trim( $http->postVariable( 'ExpirationYear' ) ) == '' )
         {
             $errors[] = 'You must select an expiration year.';
         }
-
+        
         return $errors;
     }
 
     /*
      * Builds URI and executes the Authorize.Net curl functions.
     */
-    function doCURL( &$process )
+    function furtherCharge( eZOrder $order, $amount = 0.00 )
     {
-        $this->_loadAccountHandlerData( $process );
-        include_once( 'kernel/classes/datatypes/ezuser/ezuser.php' );
+        // get totals in number format
+        $order_total_amount = $this->_format_number( $amount );
+        
+        $response = $this->createDataForSendPayment( $order, $order_total_amount );
+        
+        if ( $response['aim']->hasError() or ! $response['md5pass'] )
+        {
+            return false;
+        }
+        else
+        {
+            $xmlstring = $order->attribute( 'data_text_1' );
+            if ( $xmlstring != null )
+            {
+                $doc = new DOMDocument( );
+                $doc->loadXML( $xmlstring );
+                $transactions = $doc->getElementsByTagName( 'ezauthorize-transactions' );
+                
+                if ( $transactions->length > 0 )
+                {
+                    foreach ( $transactions as $domElement )
+                    {
+                        $transaction_child = $doc->createElement( 'transaction' );
+                        $domElement->appendChild( $transaction_child );
+                        
+                        $transaction_attr1 = $doc->createAttribute( 'id' );
+                        $transaction_child->appendChild( $transaction_attr1 );
+                        
+                        $id_text = $doc->createTextNode( $response['Transaction ID'] );
+                        $transaction_attr1->appendChild( $id_text );
+                        
+                        $transaction_attr2 = $doc->createAttribute( 'amount' );
+                        $transaction_child->appendChild( $transaction_attr2 );
+                        
+                        $amount_text = $doc->createTextNode( $order_total_amount );
+                        $transaction_attr2->appendChild( $amount_text );
+                    }
+                    
+                    $order->setAttribute( 'data_text_1', $doc->saveXML() );
+                    $order->store();
+                }
+            }
+            return true;
+        }
+    }
 
-        // load ini
-        $ini = eZINI::instance( 'ezauthorize.ini' );
-
-        // retrieve Status Codes
-        $startStatusCode =  $ini->variable( 'eZAuthorizeSettings', 'StartStatusCode' );
-        $successStatusCode =  $ini->variable( 'eZAuthorizeSettings', 'SuccessStatusCode' );
-        $failStatusCode =  $ini->variable( 'eZAuthorizeSettings', 'FailStatusCode' );
-
+    /*
+     * Builds URI and executes the Authorize.Net curl functions.
+    */
+    function doCURL( $process )
+    {
         // make the order object
         $processParams = $process->attribute( 'parameter_list' );
-
+        
         // get order id
         $order_id = $processParams['order_id'];
-
+        
         // get order
         $order = eZOrder::fetch( $processParams['order_id'] );
-
-        // get total order amount, including tax
-        $order_total_amount = $order->attribute( 'total_inc_vat' );
-
-        $order_total_tax_amount = $order->attribute( 'total_inc_vat' ) - $order->attribute( 'total_ex_vat' );
-
+        
+        $order_total_amount_inc_vat = $order->attribute( 'total_inc_vat' );
+        
         // get totals in number format
-        $order_total_amount = $this->_format_number( $order_total_amount );
-        $order_total_tax_amount = $this->_format_number( $order_total_tax_amount );
+        $order_total_amount = $this->_format_number( $order_total_amount_inc_vat );
+        
+        $response = $this->createDataForSendPayment( $order, $order_total_amount );
+        
+        if ( $response['aim']->hasError() or ! $response['md5pass'] )
+        {
+            if ( ! $response['md5pass'] )
+            {
+                $errors[] = 'This transaction has failed to
+                verify that the use of a secure transaction (MD5 Hash Failed).
+                Please contact the site administrator and inform them of
+                this error. Please do not try to resubmit payment.';
+            }
+            $errors[] = $response['Response Reason Text'];
+            
+            return $this->loadForm( $process, $errors );
+        }
+        else
+        {
+            ////////////////////////////////////////////////////
+            // Original Authorize.net Payment Transaction Values
+            
 
+            // assign authorize.net transaction id from transaction responce array
+            $this->data->{'ezauthorize-transactions'}->{'transaction'}['id'] = $response['Transaction ID'];
+            $this->data->{'ezauthorize-transactions'}->{'transaction'}['amount'] = $order_total_amount;
+            
+            $this->_storeAccountHandlerData( $order );
+            
+            return eZWorkflowEventType::STATUS_ACCEPTED;
+        }
+    }
+
+    function createDataForSendPayment( $order, $order_total_amount )
+    {
+        $this->_loadAccountHandlerData( $order );
+        include_once ( 'kernel/classes/datatypes/ezuser/ezuser.php' );
+        
+        // load ini
+        $ini = eZINI::instance( 'ezauthorize.ini' );
+        
+        // retrieve Status Codes
+        $startStatusCode = $ini->variable( 'eZAuthorizeSettings', 'StartStatusCode' );
+        $successStatusCode = $ini->variable( 'eZAuthorizeSettings', 'SuccessStatusCode' );
+        $failStatusCode = $ini->variable( 'eZAuthorizeSettings', 'FailStatusCode' );
+        
         // get user id
-        $user_id = $processParams['user_id'];
-
+        $user_id = $order->UserID;
+        
         // assign variables to Authorize.Net class from post
-        $aim = new eZAuthorizeAIM();
-
+        $aim = new eZAuthorizeAIM( );
+        
         // assign card name
         $aim->addField( 'x_card_name', $this->data->{'ezauthorize-card-name'} );
-
+        
         // assign card expiration date
         $aim->addField( 'x_exp_date', $this->data->{'ezauthorize-card-date'} );
-
+        
         // assign card number
         $aim->addField( 'x_card_num', $this->data->{'ezauthorize-card-number'} );
-
+        
         // check cvv2 code
-        if ( $ini->variable( 'eZAuthorizeSettings', 'CustomerCVV2Check' ) == 'true' 
-             and $this->data['ezauthorize-security-number'] )
+        if ( $ini->variable( 'eZAuthorizeSettings', 'CustomerCVV2Check' ) == 'true' and $this->data['ezauthorize-security-number'] )
         {
             // assign card security number, cvv2 code
             $aim->addField( 'x_card_code', $this->data->{'ezauthorize-security-number'} );
         }
-
+        
         // get order customer information
         if ( $ini->variable( 'eZAuthorizeSettings', 'GetOrderCustomerInformation' ) == 'true' )
         {
-            if ( $this->getOrderInfo( $order ) ) {
-
+            if ( $this->getOrderInfo( $order ) )
+            {
+                
                 // Send customer billing address to authorize.net
                 if ( $ini->variable( 'eZAuthorizeSettings', 'CustomerAddressVerification' ) == 'true' )
                 {
                     $this->addAVS( $aim );
                 }
-
+                
                 // Send customer shipping address to authorize.net
                 if ( $ini->variable( 'eZAuthorizeSettings', 'SendCustomerShippingAddress' ) == 'true' )
                 {
                     $this->addShipping( $aim );
                 }
-
+                
                 // Send customer phone number (optional)
                 $aim->addField( 'x_phone', $this->order_phone );
-
+                
                 // Send customer fax phone number (optional)
                 $aim->addField( 'x_fax', $this->order_phone );
             }
         }
-
-
         // assign authorize.net invoice number
+        
 
         // Provide authorize.net transaction with eZ publish order 'number'.
         // ps real order numbers do not exist in eZ publish until after payment
         // processing has been completed successfully so this is not possible by default.
+        
 
         // or get actual order id (different number used in order view urls)
         $aim->addField( 'x_invoice_num', $order->ID );
-
+        
         // assign authorize.net transaction description
         $aim->addField( 'x_description', 'Order ID #' . $order->ID );
-
+        
         // assign customer IP
-        if ( !eZSys::isShellExecution() )
+        if ( ! eZSys::isShellExecution() )
             $aim->addField( 'x_customer_ip', $_SERVER['REMOTE_ADDR'] );
-
+            
         // assign customer id
         $aim->addField( 'x_cust_id', $user_id );
-
+        
         // Send customer email address (default to true)
         $aim->addField( 'x_email', $this->order_email );
-
+        
         // check send customer confirmation email
         if ( $ini->variable( 'eZAuthorizeSettings', 'CustomerConfirmationEmail' ) == 'true' )
         {
             // assign and send customer confirmation email
             $aim->addField( 'x_email_customer', 'TRUE' );
-
+            
             $aim->addField( 'x_merchant_email', trim( $ini->variable( 'eZAuthorizeSettings', 'ShopAdminEmailAddress' ) ) );
         }
-
+        
         // get currency code
-        $currency_code =  $ini->variable( 'eZAuthorizeSettings', 'CurrencyCode' );
-
+        $currency_code = $ini->variable( 'eZAuthorizeSettings', 'CurrencyCode' );
+        
         // assign currency code
         if ( $currency_code != '' )
         {
             $aim->addField( 'x_currency_code', $currency_code );
         }
-
+        
         // assign total variables from order
         $aim->addField( 'x_amount', $order_total_amount );
-        $aim->addField( 'x_tax', $order_total_tax_amount );
+        //$aim->addField( 'x_tax', $order_total_tax_amount );
+        
 
         // assign merchant account information
         $aim->addField( 'x_login', $ini->variable( 'eZAuthorizeSettings', 'MerchantLogin' ) );
         $aim->addField( 'x_tran_key', $ini->variable( 'eZAuthorizeSettings', 'TransactionKey' ) );
-
-        // set authorize.net mode
-        $aim->setTestMode( $ini->variable( 'eZAuthorizeSettings', 'TestMode' ) == 'true' );
-
+        
         // send payment information to authorize.net
         $aim->sendPayment();
         $response = $aim->getResponse();
-
-        ezDebug::writeDebug( $response, 'eZAuthorizeGateway response'  );
-
+        
+        ezDebug::writeDebug( $response, 'eZAuthorizeGateway response' );
+        
         // Enable MD5Hash Verification
         if ( $ini->variable( 'eZAuthorizeSettings', 'MD5HashVerification' ) == 'true' )
         {
             $md5_hash_secret = $ini->variable( 'eZAuthorizeSettings', 'MD5HashSecretWord' );
-            $aim->setMD5String ( $md5_hash_secret, $ini->variable( 'eZAuthorizeSettings', 'MerchantLogin' ), $response['Transaction ID'], $order_total_amount );
-
+            $aim->setMD5String( $md5_hash_secret, $ini->variable( 'eZAuthorizeSettings', 'MerchantLogin' ), $response['Transaction ID'], $order_total_amount );
+            
             // Enable Optional Debug Output | MD5Hash Compare
             if ( $ini->variable( 'eZAuthorizeSettings', 'Debug' ) == 'true' )
             {
@@ -356,32 +544,10 @@ class eZAuthorizeGateway extends eZCurlGateway
         {
             $md5pass = true;
         }
-
-        if ( $aim->hasError() or !$md5pass)
-        {
-            if ( !$md5pass )
-            {
-                $errors[] = 'This transaction has failed to
-                verify that the use of a secure transaction (MD5 Hash Failed).
-                Please contact the site administrator and inform them of
-                this error. Please do not try to resubmit payment.';
-            }
-                $errors[] = $response['Response Reason Text'];
-
-            return $this->loadForm( $process, $errors );
-        }
-        else
-        {
-
-            ////////////////////////////////////////////////////
-            // Original Authorize.net Payment Transaction Values
-
-            // assign authorize.net transaction id from transaction responce array
-            $this->data['ezauthorize-transaction-id'] = $response['Transaction ID'];
-            $this->_storeAccountHandlerData( $process );
-
-            return eZWorkflowEventType::STATUS_ACCEPTED;
-        }
+        $response['md5pass'] = $md5pass;
+        $response['aim'] = $aim;
+        
+        return $response;
     }
 
     /*
@@ -393,76 +559,62 @@ class eZAuthorizeGateway extends eZCurlGateway
     */
     function getOrderInfo( $order )
     {
-        include_once( 'lib/ezxml/classes/ezxml.php' );
-
         // get order information out of XML
         $xml = simplexml_load_string( $order->attribute( 'data_text_1' ) );
-        if( $xml )
+        if ( $xml )
         {
-            // get shop account handeler map settings
+            // get shop account handler map settings
             $ini = eZINI::instance( 'ezauthorize.ini' );
-
+            
             // check for custom shop handeler settings
-            if( $ini->variable( 'eZAuthorizeSettings', 'CustomShopAccountHandeler' ) )
+            if ( $ini->variable( 'eZAuthorizeSettings', 'CustomShopAccountHandeler' ) )
             {
-              // set shop account handeler values (dynamicaly)
-              // add support for custom values supported like phone and email ...
-
-              $handeler_name_first_name = $ini->variable( 'eZAuthorizeSettings', 'ShopAccountHandelerFirstName' );
-              $handeler_name_last_name = $ini->variable( 'eZAuthorizeSettings', 'ShopAccountHandelerLastName' );
-              $handeler_name_email = $ini->variable( 'eZAuthorizeSettings', 'ShopAccountHandelerEmail' );
-              $handeler_name_street1 = $ini->variable( 'eZAuthorizeSettings', 'ShopAccountHandelerStreet1' );
-              $handeler_name_street2 = $ini->variable( 'eZAuthorizeSettings', 'ShopAccountHandelerStreet2' );
-              $handeler_name_zip = $ini->variable( 'eZAuthorizeSettings', 'ShopAccountHandelerZip' );
-              $handeler_name_place = $ini->variable( 'eZAuthorizeSettings', 'ShopAccountHandelerFirstPlace' );
-              $handeler_name_state = $ini->variable( 'eZAuthorizeSettings', 'ShopAccountHandelerFirstState' );
-              $handeler_name_country = $ini->variable( 'eZAuthorizeSettings', 'ShopAccountHandelerCountry' );
-
-              $handeler_name_comment = $ini->variable( 'eZAuthorizeSettings', 'ShopAccountHandelerComment' );
-              $handeler_name_phone = $ini->variable( 'eZAuthorizeSettings', 'ShopAccountHandelerAddressPhone' );
-              $handeler_name_fax = $ini->variable( 'eZAuthorizeSettings', 'ShopAccountHandelerAddressFax' );
-
-            } else {
-              $handeler_name_first_name = 'first-name';
-              $handeler_name_last_name = 'last-name';
-              $handeler_name_email = 'email';
-              $handeler_name_street1 = 'street1';
-              $handeler_name_street2 = 'street2';
-              $handeler_name_zip = 'zip';
-              $handeler_name_place = 'place';
-              $handeler_name_state = 'state';
-              $handeler_name_country = 'country';
-              $handeler_name_comment = 'comment';
+                // set shop account handeler values (dynamicaly)
+                // add support for custom values supported like phone and email ...
+                $handler_name_first_name = $ini->variable( 'eZAuthorizeSettings', 'ShopAccountHandelerFirstName' );
+                $handler_name_last_name = $ini->variable( 'eZAuthorizeSettings', 'ShopAccountHandelerLastName' );
+                $handler_name_company = $ini->variable( 'eZAuthorizeSettings', 'ShopAccountHandelerCompany' );
+                $handler_name_email = $ini->variable( 'eZAuthorizeSettings', 'ShopAccountHandelerEmail' );
+                $handler_name_street1 = $ini->variable( 'eZAuthorizeSettings', 'ShopAccountHandelerStreet1' );
+                $handler_name_street2 = $ini->variable( 'eZAuthorizeSettings', 'ShopAccountHandelerStreet2' );
+                $handler_name_zip = $ini->variable( 'eZAuthorizeSettings', 'ShopAccountHandelerZip' );
+                $handler_name_place = $ini->variable( 'eZAuthorizeSettings', 'ShopAccountHandelerFirstPlace' );
+                $handler_name_state = $ini->variable( 'eZAuthorizeSettings', 'ShopAccountHandelerFirstState' );
+                $handler_name_country = $ini->variable( 'eZAuthorizeSettings', 'ShopAccountHandelerCountry' );
+                $handler_name_comment = $ini->variable( 'eZAuthorizeSettings', 'ShopAccountHandelerComment' );
+                $handler_name_phone = $ini->variable( 'eZAuthorizeSettings', 'ShopAccountHandelerAddressPhone' );
+                $handler_name_fax = $ini->variable( 'eZAuthorizeSettings', 'ShopAccountHandelerAddressFax' );
             }
-
-
+            else
+            {
+                $handler_name_first_name = 'first-name';
+                $handler_name_last_name = 'last-name';
+                $handler_name_company = 'company';
+                $handler_name_email = 'email';
+                $handler_name_street1 = 'street1';
+                $handler_name_street2 = 'street2';
+                $handler_name_zip = 'zip';
+                $handler_name_place = 'place';
+                $handler_name_state = 'state';
+                $handler_name_country = 'country';
+                $handler_name_comment = 'comment';
+            }
+            
             // assign shop account handeler values (now staticly)
-            $this->order_first_name = $xml->{$handeler_name_first_name};
-
-            $this->order_last_name = $xml->{ $handeler_name_last_name };
-
-            $this->order_email = $xml->{ $handeler_name_email };
-
-            $this->order_street1 = $xml->{ $handeler_name_street1 };
-
-            $this->order_company = '';
-
-            $this->order_phone = $xml->{ $handeler_name_phone };
-
-            // $order_fax = $dom->elementsByName( $handeler_name_fax );
-            // $this->order_fax = $order_fax[0]->textContent();
+            $this->order_first_name = $xml->{$handler_name_first_name};
+            $this->order_last_name = $xml->{ $handler_name_last_name };
+            $this->order_company = $xml->{ $handler_name_company };
+            $this->order_email = $xml->{ $handler_name_email };
+            $this->order_street1 = $xml->{ $handler_name_street1 };
+            $this->order_phone = $xml->{ $handler_name_phone };
+            
             $this->order_fax = '';
-
-            $this->order_street2 = $xml->{ $handeler_name_street2 };
-
-            $this->order_zip = $xml->{ $handeler_name_zip };
-
-		    $this->order_place = $xml->{ $handeler_name_place };
-
-            $this->order_state = $xml->{ $handeler_name_state };
-
-	        $this->order_country = $xml->{ $handeler_name_country };
-
+            $this->order_street2 = $xml->{ $handler_name_street2 };
+            $this->order_zip = $xml->{ $handler_name_zip };
+            $this->order_place = $xml->{ $handler_name_place };
+            $this->order_state = $xml->{ $handler_name_state };
+            $this->order_country = $xml->{ $handler_name_country };
+            
             return true;
         }
         return false;
@@ -474,17 +626,12 @@ class eZAuthorizeGateway extends eZCurlGateway
         $aim->addField( 'x_first_name', $this->order_first_name );
         $aim->addField( 'x_last_name', $this->order_last_name );
         $aim->addField( 'x_company', $this->order_company );
-
-        // does this match the default?? cause it is wrong with shop account handeler usage !
-        // $aim->addField( 'x_address', $this->order_street2 );
-        //
-        $aim->addField( 'x_address', $this->order_street1 .' '. $this->order_street2 );
-
+        $aim->addField( 'x_address', $this->order_street1 . ' ' . $this->order_street2 );
         $aim->addField( 'x_city', $this->order_place );
         $aim->addField( 'x_state', $this->order_state );
         $aim->addField( 'x_zip', $this->order_zip );
         $aim->addField( 'x_country', str_replace( " ", "%20", $this->order_country ) );
-
+    
     }
 
     function addShipping( &$aim )
@@ -495,11 +642,11 @@ class eZAuthorizeGateway extends eZCurlGateway
             $aim->addField( 'x_ship_to_first_name', $this->data['s_first-name'] );
             $aim->addField( 'x_ship_to_last_name', $this->data['s_last-name'] );
             $aim->addField( 'x_ship_to_company', $this->data['s_city'] );
-            $aim->addField( 'x_ship_to_address', $this->data['s_address1'] .' '. $this->data['s_address2'] );
+            $aim->addField( 'x_ship_to_address', $this->data['s_address1'] . ' ' . $this->data['s_address2'] );
             $aim->addField( 'x_ship_to_city', $this->data['s_city'] );
             $aim->addField( 'x_ship_to_state', $this->data['s_state'] );
             $aim->addField( 'x_ship_to_zip', $this->data['s_zip'] );
-            $aim->addField( 'x_ship_to_country', str_replace( " ", "%20", $this->data['s_country'] ) );       
+            $aim->addField( 'x_ship_to_country', str_replace( " ", "%20", $this->data['s_country'] ) );
         }
         else
         {
@@ -507,20 +654,15 @@ class eZAuthorizeGateway extends eZCurlGateway
             $aim->addField( 'x_ship_to_first_name', $this->order_first_name );
             $aim->addField( 'x_ship_to_last_name', $this->order_last_name );
             $aim->addField( 'x_ship_to_company', $this->order_company );
-
-            // does this match the default?? cause it is wrong with shop account handeler usage !
-            // $aim->addField( 'x_address', $this->order_street2 );
-            //
-            $aim->addField( 'x_ship_to_address', $this->order_street1 .' '. $this->order_street2 );
-
+            $aim->addField( 'x_ship_to_address', $this->order_street1 . ' ' . $this->order_street2 );
             $aim->addField( 'x_ship_to_city', $this->order_place );
             $aim->addField( 'x_ship_to_state', $this->order_state );
             $aim->addField( 'x_ship_to_zip', $this->order_zip );
             $aim->addField( 'x_ship_to_country', str_replace( " ", "%20", $this->order_country ) );
         }
-     }
+    }
 }
 
-xrowEPayment::registerGateway( eZAuthorizeGateway::GATEWAY_TYPE, "ezauthorizegateway", "Authorize.Net" );
+xrowEPayment::registerGateway( eZAuthorizeGateway::GATEWAY_STRING, "ezauthorizegateway", "Authorize.Net" );
 
 ?>

@@ -160,9 +160,6 @@ class eZAuthorizeInfo
         $aim->addField( 'x_login', $ini->variable( 'eZAuthorizeSettings', 'MerchantLogin' ) );
         $aim->addField( 'x_tran_key', $ini->variable( 'eZAuthorizeSettings', 'TransactionKey' ) );
 
-        // set authorize.net mode
-        $aim->setTestMode( $ini->variable( 'eZAuthorizeSettings', 'TestMode' ) == 'true' );
-
         // send payment information to authorize.net
         $aim->sendPayment();
         $response = $aim->getResponse();
