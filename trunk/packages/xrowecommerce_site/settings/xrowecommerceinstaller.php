@@ -4004,8 +4004,7 @@ class xrowecommerceInstaller extends eZSiteInstaller
             'reset_arrays' => true , 
             'settings' => array( 
                 'Toolbar_right' => array( 
-                    'Tool' => array( 
-                        'basket' , 
+                    'Tool' => array(  
                         'popular_tags' , 
                         'product_list' , 
                         'poll' 
