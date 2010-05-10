@@ -8,7 +8,7 @@ class xrowECommerceVATHandler
         'DEU' => 19,
         'AUT' => 20,
         'IRL' => 21,
-        'USA' => array( 'NY' => 8.375, 'CT' => 6.00 )
+        'USA' => array( 'NY' => 8.875, 'CT' => 6.00, 'PA' => 8.00 )
         );
     }
     function getVatPercent( $object, $country )
