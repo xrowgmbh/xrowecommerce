@@ -70,8 +70,6 @@
          $bankcode=first_set( $attribute.content.bankcode, '' )
          $securitycode=first_set( $attribute.content.securitycode, '' )
     }
-{$gateway_array|attribute(show)}
-{$card_array|attribute(show)}
 
     <label>{'Card type'|i18n( 'design/standard/content/datatype' )}</label>
     <select name="{$attribute_base}_ezcreditcard_type_{$attribute.id}" id="ezcoa-{if ne( $attribute_base, 'ContentObjectAttribute' )}{$attribute_base}-{/if}{$attribute.contentclassattribute_id}_{$attribute.contentclass_attribute_identifier}" class="{eq( $html_class, 'half' )|choose( 'box', 'halfbox' )} ezcc-{$attribute.object.content_class.identifier} ezcca-{$attribute.object.content_class.identifier}_{$attribute.contentclass_attribute_identifier}" onchange="updateCCField{$attribute.id}(this.value, {$attribute.id} );" >
