@@ -59,7 +59,7 @@
         <text-column-count>10</text-column-count>
       </datatype-parameters>
     </attribute>
-    <attribute datatype="ezsrrating" required="false" searchable="true" information-collector="false" translatable="true" unsupported="true">
+    <attribute datatype="ezsrrating" required="false" searchable="true" information-collector="false" translatable="true">
       <remote>
         <id>399</id>
       </remote>
