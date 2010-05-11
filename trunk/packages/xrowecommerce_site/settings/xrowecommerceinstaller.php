@@ -4019,10 +4019,10 @@ class xrowecommerceInstaller extends eZSiteInstaller
                 'Toolbar_bottom' => array( 
                     'Tool' => array() 
                 ) , 
-                'Tool_right_poll_4' => array( 
+                'Tool_right_poll_3' => array( 
                     'parent_node' => $this->setting( 'poll_node_id' ) 
                 ) , 
-                'Tool_right_product_list_3' => array( 
+                'Tool_right_product_list_2' => array( 
                     'parent_node' => $this->setting( 'products_node_id' ) , 
                     'title' => 'Newest Products' , 
                     'treelist_check' => 'yes' , 
