@@ -34,7 +34,7 @@ class xrowComdirectBaseGateway extends xrowEPaymentGateway
             '2048' => ezi18n( 'extension/xrowcomdirect/errors', 'The card has expired.' ) , 
             '2090' => ezi18n( 'extension/xrowcomdirect/errors', 'The bank code is incorrect.' ) , 
             '2092' => ezi18n( 'extension/xrowcomdirect/errors', 'The account number is incorrect.' ) , 
-            '2094' => ezi18n( 'extension/xrowcomdirect/errors', 'The name of account holder is incorrect.' ) , 
+            '2094' => ezi18n( 'extension/xrowcomdirect/errors', 'The name of account holder have to be maximum 27 signs.' ) , 
             '2202' => ezi18n( 'extension/xrowcomdirect/errors', 'The bank code is unknown.' ) , 
             '2204' => ezi18n( 'extension/xrowcomdirect/errors', 'The account number does not correspond to the bank code.' ) 
         );

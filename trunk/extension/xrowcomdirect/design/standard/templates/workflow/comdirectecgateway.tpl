@@ -25,7 +25,7 @@
 <table summary="{"Please enter your cash card details"|i18n("extension/xrowcomdirect")}">
 <tr>
 <td>{"Account Holder"|i18n("extension/xrowcomdirect")}:</td>
-<td><input type="text" size="27" name="name" value="{$ecname|wash()}" /></td>
+<td><input type="text" maxlength="27" name="name" value="{$ecname|wash()}" /></td>
 </tr>
 <tr>
 <td>{"Account Number"|i18n("extension/xrowcomdirect")}:</td>
