@@ -1,3 +1,5 @@
+SET FOREIGN_KEY_CHECKS = 0;
+
 DROP TABLE IF EXISTS `xrowpaymentobject`;
 CREATE TABLE xrowpaymentobject (
   id int(11) NOT NULL auto_increment,
@@ -132,3 +134,4 @@ CREATE TABLE  `xrowproduct_template` (
   `active` int(10) unsigned DEFAULT '0',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+SET FOREIGN_KEY_CHECKS = 1;
