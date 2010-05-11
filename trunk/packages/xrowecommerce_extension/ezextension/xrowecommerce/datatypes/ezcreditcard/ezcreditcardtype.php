@@ -456,10 +456,10 @@ class ezcreditcardType extends eZDataType
             else
                 eZDebug::writeError( 'No gateways installed.', 'eZCreditcardType::classAttributeContent' );
         }
-        print_r($cardGatewayArray);
+        #print_r($cardGatewayArray);
         //eZDebug::writeDebug ( $cardGatewayArray, 'cardGatewayArray' );
         $content['card_gateway_array'] = $cardGatewayArray;
-		print_r($classAttribute);
+		#print_r($classAttribute);
 		#die();
         $content['gateway'] = unserialize( $classAttribute->attribute( self::CREDITCARD_GATEWAY_FIELD ) );
         $GLOBALS['xrowCCClassInfo'][$classAttribute->ID][$classAttribute->Version] = $content;
