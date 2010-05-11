@@ -368,28 +368,7 @@ class xrowComdirectBaseGateway extends xrowEPaymentGateway
             }
             else
             {
-            	/*if( (int)$serverAnswer['rc'] < 100 )
-            	{
-            		$errornumber = $serverAnswer['rc']; 
-            	}
-            	else
-            	{
-            		$errornumber = $serverAnswer['posherr'];
-            	}
-                if ( isset( $errornumber ) and self::getErrorText( $errornumber ) )
-                {
-                    $this->data['servermsg'] = self::getErrorText( $errornumber );
-                }
-                elseif ( isset( $errornumber ) and self::getAdditionalErrorText( $errornumber ) === false )
-                {
-                    $this->data['servermsg'] = ezi18n( 'extension/xrowcomdirect/errors', 'Not able to process at present. Select a different method of payment.' );
-                }
-                # Umlaut character are converted. They shouldn`t since coposweb says they are latin one.
-                #$errors[] = $codepage->convertString( $serverAnswer['rmsg'] );
-                $errors[] = $this->data['servermsg'];
-                */
-
-		if( array_key_exists( 'rc', $serverAnswer ) && (int)$serverAnswer['rc'] < 100 )
+				if( array_key_exists( 'rc', $serverAnswer ) && (int)$serverAnswer['rc'] < 100 )
             	{
             		$errornumber = $serverAnswer['rc']; 
             	}
@@ -411,7 +390,6 @@ class xrowComdirectBaseGateway extends xrowEPaymentGateway
                 {
                 	$errors[] = $this->data['servermsg'];
                 }
-
 
                 if ( isset( $errornumber ) and self::getAdditionalErrorText( $errornumber ) )
                 {
