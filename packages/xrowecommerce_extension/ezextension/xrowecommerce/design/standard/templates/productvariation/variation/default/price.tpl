@@ -1,5 +1,5 @@
 {def $first=true()
-     $country_array=ezini( 'PriceSettings', 'CountryArray', 'xrowproduct.ini' )}
+     $country_array=fetch( 'shop', 'currency_list')}
 <div id="XrowProductVariation_{$attribute.id}_price_{$variation_attribute.attribute.identifier}_from">
 <table cellpadding="0" cellspacing="0" border="0" width="100%" class="xrowpricetable">
 <tbody>

@@ -1,5 +1,5 @@
 {def $first=true()
-     $country_array=ezini( 'PriceSettings', 'CountryArray', 'xrowproduct.ini' )
+     $country_array=fetch( 'shop', 'currency_list' )
      $i=0
      $j=0
      $price_item=array()
@@ -14,7 +14,7 @@
 <tbody>
 
 {foreach $country_array as $country => $currency}
-{if is_set( $price_array[$country] )}{set $price_item=$price_array[$country]}{else}{set $price_item=hash( 'country', $country,
+{if is_set( $price_array[$country.code] )}{set $price_item=$price_array[$country.code]}{else}{set $price_item=hash( 'country', $country.code,
                                                                                                           'price', '' )}{/if}
 <tr>
     <td>{if and($amount|ne(1),$first)}<img src={"trash-icon-16x16.gif"|ezimage} alt="{"Delete line"|i18n( 'extension/xrowecommerce/productvariation' )|wash}"  width="16" height="16" onclick="return this.parentNode.parentNode.parentNode.parentNode.removeChild( this.parentNode.parentNode.parentNode );" />{else}<img src={"1x1.gif"|ezimage} width="16" height="16" alt="" />{/if}</td>

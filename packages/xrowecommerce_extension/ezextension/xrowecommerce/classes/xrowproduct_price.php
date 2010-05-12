@@ -112,7 +112,7 @@ class xrowProductPrice extends eZPersistentObject
             'amount' => 'desc' 
         );
         
-        $countryList = self::countryArray();
+        $countryList = xrowProductPriceType::countryList();
         foreach ( $countryList as $key )
         {
             $conditions['country'] = $key;
@@ -150,22 +150,6 @@ class xrowProductPrice extends eZPersistentObject
         }
         
         return $result;
-    }
-
-    /**
-     * returns the priorized list of currencies / countries
-     *
-     */
-    public static function countryArray()
-    {
-        if ( ! isset( $GLOBALS['xrowpricecountryarray'] ) )
-        {
-            $xrowINI = eZINI::instance( 'xrowproduct.ini' );
-            $countryArray = $xrowINI->variable( 'PriceSettings', 'PrioCountryArray' );
-            ksort( $countryArray );
-            $GLOBALS['xrowpricecountryarray'] = array_values( $countryArray );
-        }
-        return $GLOBALS['xrowpricecountryarray'];
     }
 }
 

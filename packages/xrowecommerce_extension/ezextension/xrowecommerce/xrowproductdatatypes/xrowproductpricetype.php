@@ -121,11 +121,9 @@ class xrowProductPriceType extends xrowProductDataType
 
         $contentArray = $variationArray[$line][$column];
 
-        $ini = eZINI::instance( 'xrowproduct.ini' );
-        $currencyArray = $ini->variable( 'PriceSettings', 'CountryArray' );
-        $countryList = array_keys( $currencyArray );
+        $countryList = self::countryList();
 
-        $defaultCountry = $ini->variable( 'PriceSettings', 'DefaultCountry' );
+        $defaultCountry = self::defaultCountry();
 
         $locale = eZLocale::instance();
         $validator = new eZFloatValidator( false, false );
@@ -176,7 +174,25 @@ class xrowProductPriceType extends xrowProductDataType
             }
         }
     }
-
+    static function defaultCountry()
+    {
+                $list = eZCurrencyData::fetchList();
+            foreach ( $list as $item )
+            {
+            	return $item->Code;
+            }
+            throw new Exception("default country not setup");
+    }
+    static function countryList()
+    {
+                $list = eZCurrencyData::fetchList();
+            $countryList = array();
+            foreach ( $list as $item )
+            {
+            	$countryList[] = $item->Code;
+            }
+            return $countryList;
+    }
     /**
      * Fetches the content for the current datatype
      *
@@ -210,9 +226,8 @@ class xrowProductPriceType extends xrowProductDataType
 
         	$contentArray = $data[$line][$column];
 
-            $ini = eZINI::instance( 'xrowproduct.ini' );
-            $currencyArray = $ini->variable( 'PriceSettings', 'CountryArray' );
-            $countryList = array_keys( $currencyArray );
+
+            $countryList = self::countryList();
             $priceArray = array();
 
             $locale = eZLocale::instance();
