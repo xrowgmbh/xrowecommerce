@@ -29,7 +29,7 @@
                             </div>
                             <!-- Wenn das Produkt mehrere Optionen hat -->
                             {if $product.data_map.options.content.option_list|count|gt( 0 )}
-                                <h4>{$product.name|wash|i18n('extension/xrowecommerce')}</h4>
+                                <h4>{$product.name|wash}</h4>
                                 {attribute_view_gui attribute=$product.data_map.short_description}
                             {/if}
                         </div>
@@ -38,7 +38,7 @@
                         {if $product.data_map.options.content.option_list|count|eq( 0 )}
                         <div class="after_sale_name">
                             <p>
-                                <h4>{$product.name|wash|i18n('extension/xrowecommerce')}</h4>
+                                <h4>{$product.name|wash}</h4>
                                 {if $price_display|eq( 'discount_price_ex_vat' )}
                                 	{set $price_display='ex_vat_price'}
                                 {elseif $price_display|eq( 'discount_price_inc_vat' )}
