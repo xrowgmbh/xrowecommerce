@@ -134,8 +134,8 @@
         <translation>Die Transaktion ist fehlgeschlagen.</translation>
     </message>
     <message>
-        <source>The card number is incorrect.</source>
-        <translation>Die Kreditkartennummer ist falsch.</translation>
+        <source>The account holder's name can have maximum 27 characters.</source>
+        <translation>Die Kreditkartennummer darf maximal 27 Zeichen betragen.</translation>
     </message>
     <message>
         <source>The expiry date is incorrect.</source>
