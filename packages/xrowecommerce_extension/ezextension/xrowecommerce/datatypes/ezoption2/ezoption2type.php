@@ -29,18 +29,6 @@
 // ## END COPYRIGHT, LICENSE AND WARRANTY NOTICE ##
 //
 
-
-/*!
-  \class eZOptionType ezoptiontype.php
-  \ingroup eZDatatype
-  \brief Stores option values
-
-*/
-
-#include_once( "kernel/classes/ezdatatype.php" );
-#include_once( "extension/ezoption2/datatypes/ezoption2/ezoption.php" );
-
-
 class eZOption2Type extends eZDataType
 {
     const DEFAULT_NAME_VARIABLE = "_ezoption_default_name_";

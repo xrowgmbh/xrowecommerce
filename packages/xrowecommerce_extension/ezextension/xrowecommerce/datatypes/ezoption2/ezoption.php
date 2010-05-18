@@ -2,9 +2,6 @@
 
 class eZOption2
 {
-
-    /*!
-    */
     function eZOption2( $contentObjectAttribute, $name = false, $init = true )
     {
         if ( $contentObjectAttribute )
