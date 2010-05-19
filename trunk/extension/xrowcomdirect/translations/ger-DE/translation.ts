@@ -1,4 +1,4 @@
-<!DOCTYPE TS><TS>
+﻿<!DOCTYPE TS><TS>
 <context>
     <name>extension/xrowcomdirect</name>
     <message>
@@ -135,7 +135,7 @@
     </message>
     <message>
         <source>The account holder's name can have maximum 27 characters.</source>
-        <translation>Die Kreditkartennummer darf maximal 27 Zeichen betragen.</translation>
+        <translation>Der Name des Kontoinhabers darf maximal 27 Zeichen lang sein.</translation>
     </message>
     <message>
         <source>The expiry date is incorrect.</source>
