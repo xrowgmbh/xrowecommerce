@@ -10,9 +10,9 @@ class xrowECommerceVATHandler
             'AUT' => 20 , 
             'IRL' => 21 , 
             'USA' => array( 
-                'NY' => 8.375 , 
+                'NY' => 8.875 , 
                 'CT' => 6 ,
-                'PA' => 7                
+                'PA' => 8                
             ) 
         );
     }
