@@ -87,6 +87,13 @@ StatusExcludeArray[]
 # discount_price_inc_vat = with VAT and discount
 ShowPriceAs=discount_price_inc_vat
 
+# Encrypt and decrypt secure data e.g. credit card data
+# please configurate, if you like, all settings in the section EncryptionSettings
+[EncryptionSettings]
+Key=YOURSECRETKEYFORENCRYPTANDDECRYPT
+Algorithm=tripledes
+Mode=cfb
+
 [ShippingSettings]
 #fields can be disabled / enabled in the shipping information
 DisplayFax=enabled
@@ -194,10 +201,5 @@ ExportPriceLanguage=
 # ExportFieldsArray[image_link]=image
 # ExportFieldsArray[manufacturer]=manufacturer
 # ExportFieldsArray[price]=price
-
-[McryptSettings]
-McryptKey=E45tzUP4DhS23DYfhHemkS3Nf
-McryptAlgorithm=tripledes
-McryptMode=cfb
 
 * */ ?>
