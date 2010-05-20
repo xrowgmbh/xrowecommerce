@@ -17,12 +17,27 @@ class XROWRecurringordersCommonFunctions
      \static
      This can be called like XROWRecurringordersCommonFunctions::createDOMTreefromArray( $name, $array )
     */
-    static function createDOMTreefromArray( $name, $array, $root = false )
+    static function createDOMTreefromArray( $name, $array, $root = false, $root_attributes = array() )
     {
-        $doc = new eZDOMDocument( $name );
+    	$doc = new DOMDocument( '1.0', 'utf-8' );
         if ( !$root )
-            $root = $doc->createElementNode( $name );
-
+        {
+        	$root = $doc->createElement( $name );
+        }
+        $doc->appendChild( $root );
+        
+        if ( is_array( $root_attributes ) && count( $root_attributes ) > 0 )
+        {
+        	foreach ( $root_attributes as $attributeKey => $attributeValue )
+        	{
+			    $root_attr = $doc->createAttribute( $attributeKey );
+			    $root->appendChild( $root_attr );
+			    
+			    $root_text = $doc->createTextNode( $attributeValue );
+    			$root_attr->appendChild( $root_text ); 
+        	}
+        }
+        
         $keys = array_keys( $array );
         foreach ( $keys as $key )
         {
@@ -33,13 +48,12 @@ class XROWRecurringordersCommonFunctions
             }
             else
             {
-                $node = $doc->createElementNode( (string)$key );
-                $node->appendChild( $doc->createTextNode( $array[$key] ) );
-                $root->appendChild( $node );
+            	$node = $doc->createElement( (string)$key, $array[$key] );
+        		$root->appendChild( $node );
             }
             unset( $node );
         }
-        return $root;
+        return $doc;
     }
     /**
      * This can be called like XROWRecurringordersCommonFunctions::createArrayfromXML( $xmlDoc )
