@@ -164,11 +164,13 @@ class xrowDefaultSubscriptionHandler
     */
     function createDOMTreefromArray( $name, $array, $root = false )
     {
-    	// @TODO rewrite with PHP DOM
-        $doc = new eZDOMDocument( $name );
+        $doc = new DOMDocument( '1.0', 'utf-8' );
         if ( !$root )
-            $root = $doc->createElementNode( $name );
-
+        {
+        	$root = $doc->createElement( $name );
+        }
+        $doc->appendChild( $root );
+        
         $keys = array_keys( $array );
         foreach ( $keys as $key )
         {
@@ -179,13 +181,12 @@ class xrowDefaultSubscriptionHandler
             }
             else
             {
-                $node = $doc->createElementNode( (string)$key );
-                $node->appendChild( $doc->createTextNode( $array[$key] ) );
-                $root->appendChild( $node );
+            	$node = $doc->createElement( (string)$key, $array[$key] );
+        		$root->appendChild( $node );
             }
             unset( $node );
         }
-        return $root;
+        return $doc;
     }
 
     /*!
