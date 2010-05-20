@@ -177,13 +177,10 @@ class XROWRecurringOrderItem extends eZPersistentObject
                 if ( strlen( $handlerIdentifier ) > 0 and
                      $this->attribute( 'is_subscription' ) == 1 )
                 {
-                    $domnode = XROWRecurringordersCommonFunctions::createDOMTreefromArray( 'item-info', $value );
-                    if ( is_object( $domnode ) )
+                    $doc = XROWRecurringordersCommonFunctions::createDOMTreefromArray( 'item-info', $value );
+                    if ( is_object( $doc ) )
                     {
-                        $doc = new eZDOMDocument();
-                        $doc->setName( "ItemInfo" );
-                        $doc->setRoot( $domnode );
-                        $dataText = $doc->toString();
+                        $dataText = $doc->saveXML();
                     }
                 }
                 $return = parent::setAttribute( 'data_text', $dataText );
