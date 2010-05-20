@@ -1,7 +1,7 @@
 {def $show_payment_status=cond( and( ezini_hasvariable( 'StatusSettings', 'ShowPaymentStatus', 'xrowecommerce.ini' ), ezini( 'StatusSettings', 'ShowPaymentStatus', 'xrowecommerce.ini' )|eq( 'disabled' ) ), false(), true() )}
-<link rel="stylesheet" type="text/css" href="{'javascript/yui/build/container/assets/skins/sam/container.css'|ezdesign(no)}" />
-<script type="text/javascript" src="{'javascript/yui/build/yahoo-dom-event/yahoo-dom-event.js'|ezdesign(no)}"></script>
-<script type="text/javascript" src="{'javascript/yui/build/container/container-min.js'|ezdesign(no)}"></script>
+<link rel="stylesheet" type="text/css" href={'javascript/yui/build/container/assets/skins/sam/container.css'|ezdesign(no)} />
+<script type="text/javascript" src={'javascript/yui/build/yahoo-dom-event/yahoo-dom-event.js'|ezdesign(no)}></script>
+<script type="text/javascript" src={'javascript/yui/build/container/container-min.js'|ezdesign(no)}></script>
 
 {literal}
 
