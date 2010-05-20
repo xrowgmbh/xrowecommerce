@@ -20,11 +20,13 @@ $script->initialize();
 $limit = 20;
 $offset = 0;
 
+/******************************************
+ * Set here your parameters
+ ******************************************/
 // Initialize the gpg parameters
-$keyGPG = 'clay@oneando.com';
-
+$keyGPG = 'info@xxx.xx';
 // Initialize the mcrypt parameters
-$key = 'E45tzUP4DhS23DYfhHemkS3Nf';
+$key = 'YOURSECRETKEYFORENCRYPTANDDECRYPT';
 $algorithm = 'tripledes';
 $mode = 'cfb';
 
@@ -85,7 +87,6 @@ while ( $attributes = eZPersistentObject::fetchObjectList( eZContentObjectAttrib
 				$decodedUser[] = $content;
 	        	if ( isset( $content['accountnumber'] ) )
 	        	{
-	        		#echo $content['ecname'].' :: ACCOUNTNUMBER == '.$content['accountnumber'].'       ||        ';
 		        	// encode data to save the new encode value
 		        	$content['accountnumber'] = encryptData( $content['accountnumber'], $key, $algorithm, $mode );
 		        	$content['ecname'] = encryptData( $content['ecname'], $key, $algorithm, $mode );
@@ -94,18 +95,17 @@ while ( $attributes = eZPersistentObject::fetchObjectList( eZContentObjectAttrib
 	        	
 	        	if ( isset( $content['number'] ) )
 	        	{
-	        		#echo $content['name'].' :: NUMBER == '.$content['number'].' :: '.$content['securitycode'].'       ||        ';
 		        	// encode data to save the new encode value
 		        	$content['name'] = encryptData( $content['name'], $key, $algorithm, $mode );
 		        	$content['number'] = encryptData( $content['number'], $key, $algorithm, $mode );
 		        	$content['securitycode'] = encryptData( $content['securitycode'], $key, $algorithm, $mode );
 	        	}
 	        	$encodedMcryptUser[] = $content;
-	        	
+	        	// set xml node attributes for the root creditcard -> <creditcard encryption='mcrypt' mode='xxx' algorithm='xxx'>...</creditcard>
+	        	// maybe we need it later
 	        	$root_attribute = array( 'encryption' => 'mcrypt', 'mode' => $mode, 'algorithm' => $algorithm );
 	        	$doc = XROWRecurringordersCommonFunctions::createDOMTreefromArray( 'creditcard', $content, false, $root_attribute );
 	        	$xml = $doc->saveXML();
-	        	#print_r($xml);
 	        	$script->iterate( $cli, true, '' );
 	        	$attribute->setAttribute( "data_text", $xml );
 	        	eZPersistentObject::storeObject( $attribute );
@@ -140,7 +140,6 @@ while ( $attributesOrder = eZPersistentObject::fetchObjectList( eZOrder::definit
 
         	if ( array_key_exists( 'ezauthorize-card-number', $contentOrder) )
         	{
-        		#print_r($contentOrder);
         		$encodedGPGOrder[] = $contentOrder;
         		$creditCardData = array();
 	        	$Type = strtoupper($contentOrder['ezauthorize-card-type']);
@@ -189,78 +188,15 @@ while ( $attributesOrder = eZPersistentObject::fetchObjectList( eZOrder::definit
 				$encodedMcryptOrder[] = $contentOrder;
         		$docOrder = XROWRecurringordersCommonFunctions::createDOMTreefromArray( 'shop_account', $contentOrder );
         		$xmlOrder = $docOrder->saveXML();
-        		#print_r($xmlOrder);
         		$script->iterate( $cli, true, '' );
 	        	$attributeOrder->setAttribute( "data_text_1", $xmlOrder );
 	        	eZPersistentObject::storeObject( $attributeOrder );
         	}
         }
     }
-    
     $offset += $limit;
 }
 
-if ( count( $encodedGPGUser ) > 0 )
-{
-	$F = fopen( "user_encodedGPG.csv", "w" );
-	foreach( $encodedGPGUser as $object )
-	{
-    	$line = "\"".implode("\";\"", $object)."\"\n";
-        fputs($F, $line);
-    }
-    fclose($F);
-}
-if ( count( $decodedUser ) > 0 )
-{
-	$F = fopen( "user_decoded.csv", "w" );
-	foreach( $decodedUser as $object )
-	{
-    	$line = "\"".implode("\";\"", $object)."\"\n";
-        fputs($F, $line);
-    }
-    fclose($F);
-}
-if ( count( $encodedMcryptUser ) > 0 )
-{
-	$F = fopen( "user_encodedMcrypt.csv", "w" );
-	foreach( $encodedMcryptUser as $object )
-	{
-    	$line = "\"".implode("\";\"", $object)."\"\n";
-        fputs($F, $line);
-    }
-    fclose($F);
-}
-
-if ( count( $encodedGPGOrder ) > 0 )
-{
-	$F = fopen( "order_encodedGPG.csv", "w" );
-	foreach( $encodedGPGOrder as $object )
-	{
-    	$line = "\"".implode("\";\"", $object)."\"\n";
-        fputs($F, $line);
-    }
-    fclose($F);
-}
-if ( count( $decodedOrder ) > 0 )
-{
-	$F = fopen( "order_decoded.csv", "w" );
-	foreach( $decodedOrder as $object )
-	{
-    	$line = "\"".implode("\";\"", $object)."\"\n";
-        fputs($F, $line);
-    }
-    fclose($F);
-}
-if ( count( $encodedMcryptOrder ) > 0 )
-{
-	$F = fopen( "order_encodedMcrypt.csv", "w" );
-	foreach( $encodedMcryptOrder as $object )
-	{
-    	$line = "\"".implode("\";\"", $object)."\"\n";
-        fputs($F, $line);
-    }
-    fclose($F);
-}
 
 $script->shutdown();
 
@@ -273,7 +209,6 @@ function encryptData( $planeText, $key, $algorithm, $mode )
 	mcrypt_generic_init( $td, $okey, $iv );
 	$encrypted = mcrypt_generic( $td, $planeText . chr( 194 ) );
 	$encryptedString = $encrypted . $iv;
-	$encryptedString = eregi_replace( "'", "'", $encryptedString );
 	return base64_encode( $encryptedString );
 }
 
