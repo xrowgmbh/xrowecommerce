@@ -108,13 +108,11 @@ foreach ( $list as $collection )
 
     $userArray = $accountHandler->fillAccountArray( $user );
 
-    $node = XROWRecurringordersCommonFunctions::createDOMTreefromArray( 'shop_account', $userArray );
-    $doc = new eZDOMDocument( 'account_information' );
-    $doc->setRoot( $node );
-    $docstring = $doc->toString();
+    $doc = XROWRecurringordersCommonFunctions::createDOMTreefromArray( 'shop_account', $userArray );
+    $docstring = $doc->saveXML();
     $shopaccountini = eZINI::instance( 'shopaccount.ini' );
     $account_identifier = $shopaccountini->variable( 'AccountSettings', 'Handler' );
-    $order->setAttribute( 'data_text_1', $doc->toString() );
+    $order->setAttribute( 'data_text_1', $docstring );
     $order->setAttribute( 'account_identifier', $account_identifier );
     $order->setAttribute( 'email', $accountHandler->email( $order ) );
     $order->setAttribute( 'ignore_vat', 1 );
