@@ -49,14 +49,21 @@ if ( $http->hasPostVariable( "ActionAddToBasket" ) )
                 $list[] = $position;
             }
         }
-        if( $http->hasPostVariable( "RedirectURI" ) )
-            $http->setSessionVariable( "FromPage", $http->postVariable( "RedirectURI" ) );
-        else
-            $http->setSessionVariable( "FromPage", $_SERVER['HTTP_REFERER'] );
+
+        if ( $http->hasPostVariable( 'FromPage' ) )
+        {
+        	$fromPage = $http->postVariable( 'FromPage' );
+        }
+    	else
+    	{
+    		$fromPage = '';
+    	}
+    	$http->setSessionVariable( "FromPage", $fromPage );
+        
         if ( count( $list ) == 0 )
         {
         	//error no product sumbitted
-             return $module->redirectTo( $_SERVER['HTTP_REFERER'] );
+             return $module->redirectTo( $http->sessionVariable( "FromPage" ) );
         }
     }
 }
