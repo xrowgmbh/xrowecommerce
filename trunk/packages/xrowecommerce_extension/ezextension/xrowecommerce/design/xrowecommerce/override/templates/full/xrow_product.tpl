@@ -45,6 +45,7 @@ YUI( YUI3_config ).use("node", function(Y) {ldelim}
                                 <input type="hidden" name="ContentNodeID" value="{$node.node_id}" />
                                 <input type="hidden" name="ContentObjectID" value="{$node.object.id}" />
                                 <input type="hidden" name="ViewMode" value="full" />
+                                <input type="hidden" name="FromPage" value="{$node.url_alias}" />
                                 <input class="button" type="submit" name="ActionAddToWishList" value="{"Add to wish list"|i18n("design/ezwebin/full/product")}" />
                             </form>
                         </div>
