@@ -114,10 +114,10 @@
     YAHOO.namespace("example.container");
 
     function init() {
-	// Build overlay1 based on markup, initially hidden, fixed to the center of the viewport, and 300px wide
-	    YAHOO.example.container.overlay1 = new YAHOO.widget.Overlay("overlay1", { fixedcenter:false,
-																				  visible:false,
-																				  width:"400px" } );
+    // Build overlay1 based on markup, initially hidden, fixed to the center of the viewport, and 300px wide
+        YAHOO.example.container.overlay1 = new YAHOO.widget.Overlay("overlay1", { fixedcenter:false,
+                                                                                  visible:false,
+                                                                                  width:"400px" } );
         YAHOO.example.container.overlay1.render();
 
         YAHOO.util.Event.addListener("show_auto_tip", "mouseover", YAHOO.example.container.overlay1.show, YAHOO.example.container.overlay1, true);
@@ -176,6 +176,5 @@
 
     </div>
 {/if}
-</div>
 {/default}
 
