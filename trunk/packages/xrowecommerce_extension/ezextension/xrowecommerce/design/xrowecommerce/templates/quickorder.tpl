@@ -1,4 +1,5 @@
-{def $node=fetch( 'content', 'node', hash( 'node_id', $node_id ) )}
+{def $node=fetch( 'content', 'node', hash( 'node_id', $node_id ) )
+     $price_display=ezini( 'Settings', 'ShowPriceAs', 'xrowecommerce.ini' )}
 <form method="post" action={"xrowecommerce/multiadd"|ezurl}>
 <input type="submit" class="button flat-right" name="ActionAddToBasket" value="{"Add to cart"|i18n("extension/xrowecommerce")}" />
 <input type="hidden" name="ContentNodeID" value="{$node.node_id}" />
@@ -53,37 +54,42 @@ $products=fetch( content, tree,
                             <input type="hidden" name="AddToBasketList[{$i}][optionss][{$child.data_map.options.id}]" value="{$option.id}">
                             <input type="text" name="AddToBasketList[{$i}][quantity]" value="0" />
                         </td>
-                        <td class="quickprice">{$child.data_map.price.data_float|sum($option.additional_price)|l10n(currency)}
+                        <td class="quickprice">
+                        {if $option.multi_price}
+                            {def $price=get_multiprice( $child.data_map.price, $option.multi_price, $price_display )}
+                            {$price|l10n( currency )}
+                        {/if}
                         </td>
                     </tr>
-<div class="overlay" id="overlay{$i}" style="visibility:hidden;">
-    <h3>{$child.name|wash()}</h3>
-    {if $child.data_map.image.has_content}
-       {attribute_view_gui attribute=$child.data_map.image image_class=medium}
-    {else}
-       <div class="nopic attribute-image"><img src={'shop/nopic.gif'|ezimage()} alt="{'No image available'|i18n('extension/xrowecommerce')}" /></div>
-    {/if}
-    <p>{attribute_view_gui attribute=$child.data_map.short_description}</p>
-    <p>{attribute_view_gui attribute=$child.data_map.description}</p>
-    <p>{'Option:'|i18n("extension/xrowecommerce")}</p>
-    <h4>{$option.comment|wash()}</h4>
-    <p>{$option.description|wash()}</p>
-    <span class="row-hr"><span>{'Weight'|i18n("extension/xrowecommerce")}</span><span>{'Price'|i18n("extension/xrowecommerce")}</span></span>
-    <span class="row-td"><span>{$option.weight|wash} {'LBS'|i18n("extension/xrowecommerce")}</span><span>{$child.data_map.price.data_float|sum($option.additional_price)|l10n(currency)}</span></span>
-</div>
-    <script type="text/javascript">
-         YAHOO.namespace("example.container");
-         function init() {ldelim}
-             // Build overlay1 based on markup, initially hidden, fixed to the center of the viewport, and 300px wide
-             YAHOO.example.container.overlay{$i} = new YAHOO.widget.Overlay("overlay{$i}", {ldelim} fixedcenter:false,
-                                                                                       visible:false,
-                                                                                       width:"300px" {rdelim} );
-             YAHOO.example.container.overlay{$i}.render();
-             YAHOO.util.Event.addListener("show_auto_tip_{$i}", "mouseover", YAHOO.example.container.overlay{$i}.show, YAHOO.example.container.overlay{$i}, true);
-             YAHOO.util.Event.addListener("show_auto_tip_{$i}", "mouseout", YAHOO.example.container.overlay{$i}.hide, YAHOO.example.container.overlay{$i}, true);
-         {rdelim}
-         YAHOO.util.Event.addListener(window, "load", init);
-    </script>
+                    <div class="overlay" id="overlay{$i}" style="visibility:hidden;">
+                        <h3>{$child.name|wash()}</h3>
+                        {if $child.data_map.image.has_content}
+                           {attribute_view_gui attribute=$child.data_map.image image_class=medium}
+                        {else}
+                           <div class="nopic attribute-image"><img src={'shop/nopic.gif'|ezimage()} alt="{'No image available'|i18n('extension/xrowecommerce')}" /></div>
+                        {/if}
+                        <p>{attribute_view_gui attribute=$child.data_map.short_description}</p>
+                        <p>{attribute_view_gui attribute=$child.data_map.description}</p>
+                        <p>{'Option:'|i18n("extension/xrowecommerce")}</p>
+                        <h4>{$option.comment|wash()}</h4>
+                        <p>{$option.description|wash()}</p>
+                        <span class="row-hr"><span>{'Weight'|i18n("extension/xrowecommerce")}</span><span>{'Price'|i18n("extension/xrowecommerce")}</span></span>
+                        <span class="row-td"><span>{$option.weight|wash} {'LBS'|i18n("extension/xrowecommerce")}</span><span>{$price|l10n( currency )}</span></span>
+                    </div>
+                    {undef $price}
+                        <script type="text/javascript">
+                             YAHOO.namespace("example.container");
+                             function init() {ldelim}
+                                 // Build overlay1 based on markup, initially hidden, fixed to the center of the viewport, and 300px wide
+                                 YAHOO.example.container.overlay{$i} = new YAHOO.widget.Overlay("overlay{$i}", {ldelim} fixedcenter:false,
+                                                                                                           visible:false,
+                                                                                                           width:"300px" {rdelim} );
+                                 YAHOO.example.container.overlay{$i}.render();
+                                 YAHOO.util.Event.addListener("show_auto_tip_{$i}", "mouseover", YAHOO.example.container.overlay{$i}.show, YAHOO.example.container.overlay{$i}, true);
+                                 YAHOO.util.Event.addListener("show_auto_tip_{$i}", "mouseout", YAHOO.example.container.overlay{$i}.hide, YAHOO.example.container.overlay{$i}, true);
+                             {rdelim}
+                             YAHOO.util.Event.addListener(window, "load", init);
+                        </script>
                 {/foreach}
             {else}
             {set $i=$i|sum(1)}
@@ -99,7 +105,7 @@ $products=fetch( content, tree,
                         <input type="hidden" name="AddToBasketList[{$i}][object_id]" value="{$child.object.id}" />
                         <input class="qb_halfbox" type="text" name="AddToBasketList[{$i}][quantity]" value="0">
                     </td>
-                    <td>{$child.data_map.price.data_float|l10n(currency)}</td>
+                    <td>{$child.data_map.price.content.$price_display|l10n( currency )}</td>
                 </tr>
 <div class="overlay" id="overlay{$i}" style="visibility:hidden;">
 <h3>{$child.name|wash()}</h3>
@@ -111,7 +117,7 @@ $products=fetch( content, tree,
 <p>{attribute_view_gui attribute=$child.data_map.short_description}</p>
 <p>{attribute_view_gui attribute=$child.data_map.description}</p>
 <p><span>{'Weight'|i18n("extension/xrowecommerce")} </span><span>{$child.data_map.weight.data_float|wash} LBS</span></p>
-<p><span>{'Price'|i18n("extension/xrowecommerce")} </span><span>{$child.data_map.price.data_float|sum($option.additional_price)|l10n(currency)}</span></p>
+<p><span>{'Price'|i18n("extension/xrowecommerce")} </span><span>{$child.data_map.price.content.$price_display|l10n( currency )}</span></p>
 </div>
     <script type="text/javascript">
             YAHOO.namespace("example.container");

@@ -46,6 +46,7 @@ h4, h5, h6
 p
 {
     margin: 0.5em 0 0.5em 0;
+    color:#535548;
     line-height: 1.25em; /* This is aprox. default line height in most popular browsers; set explicitly to ensure consitency. */
 }
 
@@ -53,8 +54,8 @@ p
 
 a
 {
-    color: #315578;
-    text-decoration: underline;
+    color:#D03030;
+    text-decoration:none;
 }
 
 a:hover
@@ -135,11 +136,11 @@ table.list td.na-rate, table.special td.na-rate
 
 table.list th, table.special th
 {
-    color: #254b71;
+    color:#342E15;
     background-color: #DAEAED;
     border: 1px solid #ececec;
     border-top-width: 2px;
-    font-weight: normal;
+    font-weight: 900;
     white-space: nowrap;
 }
 
