@@ -46,9 +46,6 @@ class ezAuthorizeRefund
 
         $this->OrderStatusAssignment =  $this->ini->variable( 'eZAuthorizeSettings', 'OrderStatusAssignment' ) ? $this->ini->variable( 'eZAuthorizeSettings', 'OrderStatusAssignment' ) : false;
         $this->OrderStatusRefundCode = $this->ini->variable( 'eZAuthorizeSettings', 'OrderStatusRefundCode' );
-
-        $this->gpg_ini = &eZINI::instance( 'ezgpg.ini' );
-        $this->KeyID = $this->gpg_ini->variable( 'eZGPGSettings', 'KeyID' );
     }
 
     function SendRefund()
@@ -66,9 +63,7 @@ class ezAuthorizeRefund
 
         // get last 4 digits of card number
         $card_number_encrypted = $this->order_account_info['ezauthorize_card_number'];
-
-        $ez_gpg = new eZGPGOperators();
-        $card_number_limited = $ez_gpg->gpgDecodeLimited( $card_number_encrypted, $this->KeyID );
+        $card_number_limited = xrowEPaymentGateway::decryptData( $card_number_encrypted, 4 );
 
         $this->aim = new eZAuthorizeAIM();
         $this->aim->addField( 'x_type', 'CREDIT' );
