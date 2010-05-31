@@ -68,10 +68,6 @@ class eZAuthorizeGateway extends xrowEPaymentGateway
     function _loadAccountHandlerData( $order )
     {
         $ini = eZINI::instance( 'ezauthorize.ini' );
-        $xrowini = eZINI::instance( 'xrowecommerce.ini' );
-        $key = $xrowini->variable( 'McryptSettings', 'McryptKey' );
-        $algorithm = $xrowini->variable( 'McryptSettings', 'McryptAlgorithm' );
-        $mode = $xrowini->variable( 'McryptSettings', 'McryptMode' );
         
         $xmlDoc = $order->attribute( 'data_text_1' );
         eZDebug::writeDebug( $xmlDoc );
@@ -80,15 +76,15 @@ class eZAuthorizeGateway extends xrowEPaymentGateway
         {
             if ( isset( $this->data->{'ezauthorize-card-number'} ) )
             {
-                $this->data->{'ezauthorize-card-number'} = $this->decryptData( $this->data->{'ezauthorize-card-number'}, $key, $algorithm, $mode );
+                $this->data->{'ezauthorize-card-number'} = $this->decryptData( $this->data->{'ezauthorize-card-number'} );
             }
             if ( isset( $this->data->{'ezauthorize-card-name'} ) )
             {
-                $this->data->{'ezauthorize-card-name'} = $this->decryptData( $this->data->{'ezauthorize-card-name'}, $key, $algorithm, $mode );
+                $this->data->{'ezauthorize-card-name'} = $this->decryptData( $this->data->{'ezauthorize-card-name'} );
             }
             if ( isset( $this->data->{'ezauthorize-security-number'} ) )
             {
-                $this->data->{'ezauthorize-security-number'} = $this->decryptData( $this->data->{'ezauthorize-security-number'}, $key, $algorithm, $mode );
+                $this->data->{'ezauthorize-security-number'} = $this->decryptData( $this->data->{'ezauthorize-security-number'} );
             }
         }
     }
@@ -96,10 +92,6 @@ class eZAuthorizeGateway extends xrowEPaymentGateway
     function _storeAccountHandlerData( $order )
     {
         $ini = eZINI::instance( 'ezauthorize.ini' );
-        $xrowini = eZINI::instance( 'xrowecommerce.ini' );
-        $key = $xrowini->variable( 'McryptSettings', 'McryptKey' );
-        $algorithm = $xrowini->variable( 'McryptSettings', 'McryptAlgorithm' );
-        $mode = $xrowini->variable( 'McryptSettings', 'McryptMode' );
         
         $data = $this->data;
         
@@ -108,15 +100,15 @@ class eZAuthorizeGateway extends xrowEPaymentGateway
         {
             if ( isset( $this->data->{'ezauthorize-card-number'} ) )
             {
-                $data->{'ezauthorize-card-number'} = $this->encryptData( $this->data->{'ezauthorize-card-number'}, $key, $algorithm, $mode );
+                $data->{'ezauthorize-card-number'} = $this->encryptData( $this->data->{'ezauthorize-card-number'} );
             }
             if ( isset( $this->data->{'ezauthorize-card-name'} ) )
             {
-                $data->{'ezauthorize-card-name'} = $this->encryptData( $this->data->{'ezauthorize-card-name'}, $key, $algorithm, $mode );
+                $data->{'ezauthorize-card-name'} = $this->encryptData( $this->data->{'ezauthorize-card-name'} );
             }
             if ( isset( $this->data->{'ezauthorize-security-number'} ) )
             {
-                $data->{'ezauthorize-security-number'} = $this->encryptData( $this->data->{'ezauthorize-security-number'}, $key, $algorithm, $mode );
+                $data->{'ezauthorize-security-number'} = $this->encryptData( $this->data->{'ezauthorize-security-number'} );
             }
         }
 
@@ -430,19 +422,19 @@ class eZAuthorizeGateway extends xrowEPaymentGateway
         $aim = new eZAuthorizeAIM( );
         
         // assign card name
-        $aim->addField( 'x_card_name', $this->data->{'ezauthorize-card-name'} );
+        $aim->addField( 'x_card_name', (string)$this->data->{'ezauthorize-card-name'} );
         
         // assign card expiration date
-        $aim->addField( 'x_exp_date', $this->data->{'ezauthorize-card-date'} );
+        $aim->addField( 'x_exp_date', (string)$this->data->{'ezauthorize-card-date'} );
         
         // assign card number
-        $aim->addField( 'x_card_num', $this->data->{'ezauthorize-card-number'} );
+        $aim->addField( 'x_card_num', (string)$this->data->{'ezauthorize-card-number'} );
         
         // check cvv2 code
         if ( $ini->variable( 'eZAuthorizeSettings', 'CustomerCVV2Check' ) == 'true' and $this->data['ezauthorize-security-number'] )
         {
             // assign card security number, cvv2 code
-            $aim->addField( 'x_card_code', $this->data->{'ezauthorize-security-number'} );
+            $aim->addField( 'x_card_code', (string)$this->data->{'ezauthorize-security-number'} );
         }
         
         // get order customer information
@@ -450,13 +442,12 @@ class eZAuthorizeGateway extends xrowEPaymentGateway
         {
             if ( $this->getOrderInfo( $order ) )
             {
-                
                 // Send customer billing address to authorize.net
                 if ( $ini->variable( 'eZAuthorizeSettings', 'CustomerAddressVerification' ) == 'true' )
                 {
                     $this->addAVS( $aim );
                 }
-                
+
                 // Send customer shipping address to authorize.net
                 if ( $ini->variable( 'eZAuthorizeSettings', 'SendCustomerShippingAddress' ) == 'true' )
                 {
@@ -563,57 +554,21 @@ class eZAuthorizeGateway extends xrowEPaymentGateway
         $xml = simplexml_load_string( $order->attribute( 'data_text_1' ) );
         if ( $xml )
         {
-            // get shop account handler map settings
-            $ini = eZINI::instance( 'ezauthorize.ini' );
-            
-            // check for custom shop handeler settings
-            if ( $ini->variable( 'eZAuthorizeSettings', 'CustomShopAccountHandeler' ) )
-            {
-                // set shop account handeler values (dynamicaly)
-                // add support for custom values supported like phone and email ...
-                $handler_name_first_name = $ini->variable( 'eZAuthorizeSettings', 'ShopAccountHandelerFirstName' );
-                $handler_name_last_name = $ini->variable( 'eZAuthorizeSettings', 'ShopAccountHandelerLastName' );
-                $handler_name_company = $ini->variable( 'eZAuthorizeSettings', 'ShopAccountHandelerCompany' );
-                $handler_name_email = $ini->variable( 'eZAuthorizeSettings', 'ShopAccountHandelerEmail' );
-                $handler_name_street1 = $ini->variable( 'eZAuthorizeSettings', 'ShopAccountHandelerStreet1' );
-                $handler_name_street2 = $ini->variable( 'eZAuthorizeSettings', 'ShopAccountHandelerStreet2' );
-                $handler_name_zip = $ini->variable( 'eZAuthorizeSettings', 'ShopAccountHandelerZip' );
-                $handler_name_place = $ini->variable( 'eZAuthorizeSettings', 'ShopAccountHandelerFirstPlace' );
-                $handler_name_state = $ini->variable( 'eZAuthorizeSettings', 'ShopAccountHandelerFirstState' );
-                $handler_name_country = $ini->variable( 'eZAuthorizeSettings', 'ShopAccountHandelerCountry' );
-                $handler_name_comment = $ini->variable( 'eZAuthorizeSettings', 'ShopAccountHandelerComment' );
-                $handler_name_phone = $ini->variable( 'eZAuthorizeSettings', 'ShopAccountHandelerAddressPhone' );
-                $handler_name_fax = $ini->variable( 'eZAuthorizeSettings', 'ShopAccountHandelerAddressFax' );
-            }
-            else
-            {
-                $handler_name_first_name = 'first-name';
-                $handler_name_last_name = 'last-name';
-                $handler_name_company = 'company';
-                $handler_name_email = 'email';
-                $handler_name_street1 = 'street1';
-                $handler_name_street2 = 'street2';
-                $handler_name_zip = 'zip';
-                $handler_name_place = 'place';
-                $handler_name_state = 'state';
-                $handler_name_country = 'country';
-                $handler_name_comment = 'comment';
-            }
-            
             // assign shop account handeler values (now staticly)
-            $this->order_first_name = $xml->{$handler_name_first_name};
-            $this->order_last_name = $xml->{ $handler_name_last_name };
-            $this->order_company = $xml->{ $handler_name_company };
-            $this->order_email = $xml->{ $handler_name_email };
-            $this->order_street1 = $xml->{ $handler_name_street1 };
-            $this->order_phone = $xml->{ $handler_name_phone };
-            
-            $this->order_fax = '';
-            $this->order_street2 = $xml->{ $handler_name_street2 };
-            $this->order_zip = $xml->{ $handler_name_zip };
-            $this->order_place = $xml->{ $handler_name_place };
-            $this->order_state = $xml->{ $handler_name_state };
-            $this->order_country = $xml->{ $handler_name_country };
+	        $this->order_first_name = (string)$xml->{'first_name'};
+	        $this->order_last_name = (string)$xml->{'last_name'};
+	        $this->order_company = (string)$xml->{'company'};
+	       	$this->order_email = (string)$xml->{'email'};
+	        $this->order_street1 = (string)$xml->{'address1'};
+	            
+	        $this->order_fax = '';
+	        $this->order_street2 = (string)$xml->{'address2'};
+	        $this->order_zip = (string)$xml->{'zip'};
+	        $this->order_place = (string)$xml->{'city'};
+	        $this->order_state = (string)$xml->{'state'};
+	        $this->order_country = (string)$xml->{'country'};
+	        $this->order_comment = (string)$xml->{'comment'};
+	        $this->order_phone = (string)$xml->{'phone'};
             
             return true;
         }
@@ -636,17 +591,17 @@ class eZAuthorizeGateway extends xrowEPaymentGateway
 
     function addShipping( &$aim )
     {
-        if ( $this->data['s_address1'] )
+        if ( (string)$this->data{'s_address1'} )
         {
             // customer shipping address
-            $aim->addField( 'x_ship_to_first_name', $this->data['s_first-name'] );
-            $aim->addField( 'x_ship_to_last_name', $this->data['s_last-name'] );
-            $aim->addField( 'x_ship_to_company', $this->data['s_city'] );
-            $aim->addField( 'x_ship_to_address', $this->data['s_address1'] . ' ' . $this->data['s_address2'] );
-            $aim->addField( 'x_ship_to_city', $this->data['s_city'] );
-            $aim->addField( 'x_ship_to_state', $this->data['s_state'] );
-            $aim->addField( 'x_ship_to_zip', $this->data['s_zip'] );
-            $aim->addField( 'x_ship_to_country', str_replace( " ", "%20", $this->data['s_country'] ) );
+            $aim->addField( 'x_ship_to_first_name', (string)$this->data{'s_first-name'} );
+            $aim->addField( 'x_ship_to_last_name', (string)$this->data{'s_last-name'} );
+            $aim->addField( 'x_ship_to_company', (string)$this->data{'s_city'} );
+            $aim->addField( 'x_ship_to_address', (string)$this->data{'s_address1'} . ' ' . (string)$this->data{'s_address2'} );
+            $aim->addField( 'x_ship_to_city', (string)$this->data{'s_city'} );
+            $aim->addField( 'x_ship_to_state', (string)$this->data{'s_state'} );
+            $aim->addField( 'x_ship_to_zip', (string)$this->data{'s_zip'} );
+            $aim->addField( 'x_ship_to_country', str_replace( " ", "%20", (string)$this->data{'s_country'} ) );
         }
         else
         {
