@@ -111,7 +111,7 @@ $tpl->setVariable( "input_error", false );
 if ( $module->isCurrentAction( 'Store' ) )
 {
     
-        $inputIsValid = true;
+    $inputIsValid = true;
     $companyName = $http->postVariable( "CompanyName" );
     $companyAdditional = $http->postVariable( "CompanyAdditional" );
     $taxId = $http->postVariable( "TaxId" );
@@ -160,70 +160,86 @@ if ( $module->isCurrentAction( 'Store' ) )
         $db->begin();
         $order = $basket->createOrder();
 
-        $doc = new eZDOMDocument( 'account_information' );
+        $doc = new DOMDocument( '1.0', 'utf-8' );
+        #$doc = new eZDOMDocument( 'account_information' );
 
-        $root = $doc->createElementNode( "shop_account" );
-        $doc->setRoot( $root );
+        $root = $doc->createElement( "shop_account" );
+        $doc->appendChild( $root );
+        #$root = $doc->createElement( "shop_account" );
+        #$doc->setRoot( $root );
 
-        $companyNameNode = $doc->createElementNode( "company_name" );
+        $companyNameNode = $doc->createElement( "company_name" );
+        #$companyNameNode = $doc->createElementNode( "company_name" );
         $companyNameNode->appendChild( $doc->createTextNode( $companyName ) );
         $root->appendChild( $companyNameNode );
 
-        $companyAdditionalNode = $doc->createElementNode( "company_additional" );
+        $companyAdditionalNode = $doc->createElement( "company_additional" );
+        #$companyAdditionalNode = $doc->createElementNode( "company_additional" );
         $companyAdditionalNode->appendChild( $doc->createTextNode( $companyAdditional ) );
         $root->appendChild( $companyAdditionalNode );
         
-        $taxIdNode = $doc->createElementNode( "tax_id" );
+        $taxIdNode = $doc->createElement( "tax_id" );
+        #$taxIdNode = $doc->createElementNode( "tax_id" );
         $taxIdNode->appendChild( $doc->createTextNode( $taxId ) );
         $root->appendChild( $taxIdNode );
         
-        $firstNameNode = $doc->createElementNode( "first-name" );
+        $firstNameNode = $doc->createElement( "first-name" );
+        #$firstNameNode = $doc->createElementNode( "first-name" );
         $firstNameNode->appendChild( $doc->createTextNode( $firstName ) );
         $root->appendChild( $firstNameNode );
         
-        $miNode = $doc->createElementNode( "mi" );
+        $miNode = $doc->createElement( "mi" );
+        #$miNode = $doc->createElementNode( "mi" );
         $miNode->appendChild( $doc->createTextNode( $mi ) );
         $root->appendChild( $miNode );
 
-        $lastNameNode = $doc->createElementNode( "last-name" );
+        $lastNameNode = $doc->createElement( "last-name" );
+        #$lastNameNode = $doc->createElementNode( "last-name" );
         $lastNameNode->appendChild( $doc->createTextNode( $lastName ) );
         $root->appendChild( $lastNameNode );
 
-        $address1Node = $doc->createElementNode( "address1" );
+        $address1Node = $doc->createElement( "address1" );
+        #$address1Node = $doc->createElementNode( "address1" );
         $address1Node->appendChild( $doc->createTextNode( $address1 ) );
         $root->appendChild( $address1Node );
 
-        $address2Node = $doc->createElementNode( "address2" );
+        $address2Node = $doc->createElement( "address2" );
+        #$address2Node = $doc->createElementNode( "address2" );
         $address2Node->appendChild( $doc->createTextNode( $address2 ) );
         $root->appendChild( $address2Node );
 
-        $cityNode = $doc->createElementNode( "city" );
+        $cityNode = $doc->createElement( "city" );
+        #$cityNode = $doc->createElementNode( "city" );
         $cityNode->appendChild( $doc->createTextNode( $city ) );
         $root->appendChild( $cityNode );
         
-        $zipNode = $doc->createElementNode( "zip" );
+        $zipNode = $doc->createElement( "zip" );
+        #$zipNode = $doc->createElementNode( "zip" );
         $zipNode->appendChild( $doc->createTextNode( $zip ) );
         $root->appendChild( $zipNode );
 
-        $stateNode = $doc->createElementNode( "state" );
+        $stateNode = $doc->createElement( "state" );
+        #$stateNode = $doc->createElementNode( "state" );
         $stateNode->appendChild( $doc->createTextNode( $state ) );
         $root->appendChild( $stateNode );
         
-        $phoneNode = $doc->createElementNode( "phone" );
+        $phoneNode = $doc->createElement( "phone" );
+        #$phoneNode = $doc->createElementNode( "phone" );
         $phoneNode->appendChild( $doc->createTextNode( $phone ) );
         $root->appendChild( $phoneNode );
 
-        $faxNode = $doc->createElementNode( "fax" );
+        $faxNode = $doc->createElement( "fax" );
+        #$faxNode = $doc->createElementNode( "fax" );
         $faxNode->appendChild( $doc->createTextNode( $fax ) );
         $root->appendChild( $phoneNode );
         
-		$emailNode = $doc->createElementNode( "email" );
+		$emailNode = $doc->createElement( "email" );
+		#$emailNode = $doc->createElementNode( "email" );
         $emailNode->appendChild( $doc->createTextNode( $email ) );
         $root->appendChild( $emailNode );
 
-
-
-        $order->setAttribute( 'data_text_1', $doc->toString() );
+        $order->setAttribute( 'data_text_1', $doc->saveXML() );
+        #$order->setAttribute( 'data_text_1', $doc->toString() );
         $order->setAttribute( 'account_identifier', "ez" );
 
         $order->setAttribute( 'ignore_vat', 0 );
