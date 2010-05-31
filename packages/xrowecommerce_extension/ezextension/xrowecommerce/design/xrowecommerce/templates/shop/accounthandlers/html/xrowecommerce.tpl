@@ -163,11 +163,11 @@
         <caption>{"Shipping Address"|i18n("extension/xrowecommerce")}</caption>
         <tr>
             <th>{'To'|i18n('extension/xrowecommerce')}:</th>
-            <td>{if $order.account_information.company_name|wash}{$order.account_information.company_name|wash}
-            {$order.account_information.company_additional|wash},{/if}
-            {$order.account_information.first_name|wash}
+            <td>{if $order.account_information.s_company_name|wash}{$order.account_information.s_company_name|wash}
+            {$order.account_information.s_company_additional|wash},{/if}
+            {$order.account_information.s_first_name|wash}
             {$order.account_information.s_mi|wash}
-            {$order.account_information.last_name|wash}</td>
+            {$order.account_information.s_last_name|wash}</td>
         </tr>
         <tr>
             <th>{'Address'|i18n('extension/xrowecommerce')}:</th>
