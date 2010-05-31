@@ -1419,6 +1419,7 @@ class xrowecommerceInstaller extends eZSiteInstaller
         $eventType = $event->eventType();
         $eventType->setAttribute( 'placement', 1 );
         $event->setAttribute( 'data_text3', '-1' );
+		$event->setAttribute( 'data_text4', '1' );
         $event->store();
         $eventList[] = $event;
         
