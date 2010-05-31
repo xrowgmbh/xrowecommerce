@@ -303,6 +303,10 @@ class xrowecommerceInstaller extends eZSiteInstaller
                         array( 
                             'module' => 'xrowecommerce' , 
                             'function' => 'buy' 
+                        ) , 
+                        array( 
+                            'module' => 'xrowecommerce' , 
+                            'function' => 'payment' 
                         ) 
                     ) 
                 ) 
