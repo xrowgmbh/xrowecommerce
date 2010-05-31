@@ -79,7 +79,6 @@ $tpl->setVariable( "vat_is_known", $basket->isVATKnown() );
 
 
 // Add shipping cost to the total items price and store the sum to corresponding template vars.
-require_once( 'kernel/classes/ezshippingmanager.php' );
 $shippingInfo = eZShippingManager::getShippingInfo( $basket->attribute( 'productcollection_id' ) );
 if ( $shippingInfo !== null )
 {
