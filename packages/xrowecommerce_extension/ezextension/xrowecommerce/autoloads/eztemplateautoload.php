@@ -33,7 +33,7 @@ $eZTemplateOperatorArray[] = array(
 );
 
 $eZTemplateOperatorArray[] = array(
-    'script' => 'extension/xrowecommerce/autoloads/getmutlipricetemplateoperator.php', 
+    'script' => 'extension/xrowecommerce/autoloads/getmultipricetemplateoperator.php', 
     'class' => 'getMutliPriceTemplateOperator', 
     'operator_names' => array ( 'get_multiprice' )
 );
