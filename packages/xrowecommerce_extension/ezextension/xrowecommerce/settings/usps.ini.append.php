@@ -18,4 +18,7 @@ Zip=10019
 State=NY
 Country=USA
 
+[AvailableSettings]
+AvailableFor=INTERNATIONAL
+
 */ ?>
