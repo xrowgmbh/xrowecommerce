@@ -116,14 +116,12 @@
                     <div class="country block{if is_set($fields.country.errors)} error{/if}">
                         <label>{'Country'|i18n('extension/xrowecommerce')}{if $fields.country.required}<span class="required">*</span>{/if}</label>
                         <div class="labelbreak"></div>
-                                <select name="country" id="country">
-                                    {foreach $countries as $country_list_item}
-                                     <option value="{$country_list_item.Alpha3}" {if and( $country|ne(''), eq( $country, $country_list_item.Alpha3 ))} selected="selected"{/if}>
-                                        {$country_list_item.Name|wash}
-                                    </option>
-                                    {/foreach}
-                                </select>
-                    
+                        <select name="country" id="country">
+                        	<option>&nbsp;</option>
+                        	{foreach $countries as $country_list_item}
+                       	    <option value="{$country_list_item.Alpha3}" {if and( $country|ne(''), eq( $country, $country_list_item.Alpha3 ))} selected="selected"{/if}>{$country_list_item.Name|wash}</option>
+                            {/foreach}
+                        </select>
                     </div>
                 {/if}
                 
@@ -134,6 +132,7 @@
                         <label>{'State / Province'|i18n('extension/xrowecommerce')}{if $fields.state.required}<span class="required">*</span>{/if}</label>
                         <div class="labelbreak"></div>
                         <select class="state" name="state" id="state">
+                        	<option>&nbsp;</option>
                             {foreach $states as $key => $state_item}
                             <option {if eq($state,$key)} selected="selected" {/if}>{$state_item|wash}</option>
                             {/foreach}
@@ -168,17 +167,18 @@
                 
                 {def $shipping_methods=fetch( 'shipping', 'list_methods' )}
                 <div class="block">
-                    {if $shipping_methods|count|gt(1)}
-                            <label>{'Shipping'|i18n('extension/xrowecommerce')}<span class="required">*</span></label>
-                            <div class="labelbreak"></div>
-                            <select name="shippingtype" id="shippingtype">
-                                {foreach $shipping_methods as $shipping_method}
-                                <option value="{$shipping_method.identifier}" {if $shippingtype|eq($shipping_method.identifier)} selected="selected" {/if}>{$shipping_method.name}</option>
-                                {/foreach}
-                            </select>
-                    {elseif $shipping_methods|count|eq(1)}
-                        <input id="shippingtype" name="shippingtype" value="{$shipping_methods.0.identifier}" type="hidden">
-                    {/if}
+                {if $shipping_methods|count|gt(1)}
+                    <label>{'Shipping'|i18n('extension/xrowecommerce')}<span class="required">*</span></label>
+                    <div class="labelbreak"></div>
+                    <select name="shippingtype" id="shippingtype">
+                    	<option>&nbsp;</option>
+                        {foreach $shipping_methods as $shipping_method}
+                        <option value="{$shipping_method.identifier}" {if $shippingtype|eq($shipping_method.identifier)} selected="selected" {/if}>{$shipping_method.name}</option>
+                        {/foreach}
+                    </select>
+                {elseif $shipping_methods|count|eq(1)}
+                    <input id="shippingtype" name="shippingtype" value="{$shipping_methods.0.identifier}" type="hidden">
+                {/if}
                 </div>
                 <div class="break"></div>
                 
@@ -196,7 +196,6 @@
                             <label>{'Company name'|i18n('extension/xrowecommerce')}{if $fields.s_company_name.required}<span class="required">*</span>{/if}</label>
                             <div class="labelbreak"></div>
                             <input type="text" name="s_company_name" id="s_company_name" value="{$s_company_name|wash}" />
-                    
                         </div>
                     {/if}
                     
@@ -269,13 +268,12 @@
                         <div class="country block{if is_set($fields.s_country.errors)} error{/if}">
                             <label>{'Country'|i18n('extension/xrowecommerce')}{if $fields.s_country.required}<span class="required">*</span>{/if}</label>
                             <div class="labelbreak"></div>
-                                    <select name="s_country" id="s_country">
-                                        {foreach $countries as $country_list_item}
-                                         <option value="{$country_list_item.Alpha3}" {if and( $s_country|ne(''), eq( $s_country, $country_list_item.Alpha3 ))} selected="selected"{/if}>
-                                            {$country_list_item.Name|wash} 
-                                        </option>
-                                        {/foreach}
-                                    </select>
+                            <select name="s_country" id="s_country">
+                            	<option>&nbsp;</option>
+                                {foreach $countries as $country_list_item}
+                                <option value="{$country_list_item.Alpha3}" {if and( $s_country|ne(''), eq( $s_country, $country_list_item.Alpha3 ))} selected="selected"{/if}>{$country_list_item.Name|wash}</option>
+                                {/foreach}
+                            </select>
                         </div>
                         <div class="break"></div>
                     {/if}
@@ -285,10 +283,11 @@
                             <label>{'State / Province'|i18n('extension/xrowecommerce')}{if $fields.s_state.required}<span class="required">*</span>{/if}</label>
                             <div class="labelbreak"></div>
                             <select name="s_state" id="s_state">
-                            {foreach $s_states as $key => $state_item}
-                            <option {if eq($s_state,$key)} selected="selected" {/if}>{$state_item|wash}</option>
-                            {/foreach}
-                                </select>
+                                <option>&nbsp;</option>
+                                {foreach $s_states as $key => $state_item}
+                                <option {if eq($s_state,$key)} selected="selected" {/if}>{$state_item|wash}</option>
+                                {/foreach}
+                            </select>
                         </div>
                         <div class="break"></div>
                     {/if}
