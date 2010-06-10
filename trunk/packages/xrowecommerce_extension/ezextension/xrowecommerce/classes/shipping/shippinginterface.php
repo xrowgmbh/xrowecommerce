@@ -60,9 +60,14 @@ class ShippingInterface
     function methodCheck( $country )
     {
         $list = self::getCountryList();
+
         if ( in_array( $country, $list ) )
         {
-            return true;
+        	// check if country is set for shipping
+        	if ( $this->availableFor == $country || ( $country != 'USA' && $this->availableFor == 'INTERNATIONAL' ) )
+        	{
+            	return true;
+        	}
         }
         else
         {
@@ -206,6 +211,11 @@ class ShippingInterface
     function getPrice()
     {
         return false;
+    }
+    
+	function setAvailableFor( $availableFor ) 
+	{
+         $this->availableFor = $availableFor;
     }
 
     function convert_country( $country, $input_type = "Alpha2", $output_type = "Alpha3" )
