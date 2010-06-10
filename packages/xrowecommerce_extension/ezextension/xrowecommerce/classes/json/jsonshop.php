@@ -63,11 +63,12 @@ class xrowECommerceJSON extends ezjscServerFunctions
     {
         $list = xrowShippingInterface::fetchActive( true );
         $return = array();
+
         foreach ( $list as $item )
         {
         	try
         	{
-        		$result = $item->methodCheck( $args[0] );
+        		$result = $item->methodCheck( $args );
         	}
         	catch( xrowShippingException $e )
         	{
@@ -89,7 +90,6 @@ class xrowECommerceJSON extends ezjscServerFunctions
                     false 
                 );
             }
-
         }
         return $return;
     }
