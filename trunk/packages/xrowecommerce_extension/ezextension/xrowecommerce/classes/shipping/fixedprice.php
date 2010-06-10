@@ -4,11 +4,11 @@ class fixedprice extends ShippingInterface
 {
     function methods() {
     	return array( 
-    	array(
-    		'identifier' => 'fixedprice',
-    		'name' => ezpI18n::tr( 'extension/shippinginterface', 'Standard Shipping' )
-    	)
-    	 );
+	    	array(
+	    		'identifier' => 'fixedprice',
+	    		'name' => ezpI18n::tr( 'extension/shippinginterface', 'Standard Shipping' )
+	    	)
+		);
     }
     function getPrice() {
     	return (float)eZINI::instance('shipping.ini')->variable( 'FixedPrice', 'Amount' );
