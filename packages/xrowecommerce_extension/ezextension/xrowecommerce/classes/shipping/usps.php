@@ -24,27 +24,28 @@ class USPS extends ShippingInterface
     */
     function methods() {
     	return array( 
-    	array(
-    		'identifier' => '6',
-    		'name' => 'USPS Express Mail International (EMS) (Intl. only)'
-    	),
-    	    	array(
-    		'identifier' => '7',
-    		'name' => 'USPS Global Express Guaranteed (Intl. only)'
-    	),array(
-    		'identifier' => 'usps_international',
-    		'name' => 'USPS Express Mail International (EMS) (Intl. only)'
-    	),
-    	    	array(
-    		'identifier' => 'usps_international_guaranteed',
-    		'name' => 'USPS Global Express Guaranteed (Intl. only)'
-    	)
-    	 );
+	    	array(
+	    		'identifier' => '6',
+	    		'name' => 'USPS Express Mail International (EMS) (Intl. only)'
+	    	),
+    	    array(
+	    		'identifier' => '7',
+	    		'name' => 'USPS Global Express Guaranteed (Intl. only)'
+    		),array(
+	    		'identifier' => 'usps_international',
+	    		'name' => 'USPS Express Mail International (EMS) (Intl. only)'
+    		),
+    	    array(
+	    		'identifier' => 'usps_international_guaranteed',
+	    		'name' => 'USPS Global Express Guaranteed (Intl. only)'
+    		)
+		);
     }
     function loadConfiguration()
     {
     	$uspsini = eZINI::instance( 'usps.ini' );
         $this->setServer($uspsini->variable( "Connection", "URL" ));
+        $this->setAvailableFor($uspsini->variable( "AvailableSettings", "AvailableFor" ));
         $this->setUserID ($uspsini->variable( "Account", "Userid" ));
         $this->setAddressFrom( $uspsini->variable( "ShipperSettings", "Country" ),
                                $uspsini->variable( "ShipperSettings", "State" ),
@@ -285,13 +286,14 @@ class USPS extends ShippingInterface
       else
           return $value;
     }
-function setWeight( $totalweight ) {
-	            $this->setPounds( "0" );
-            $this->setContainer( "Flat Rate Box" );
-            $totalweight_ounces = round( $totalweight * 16 );
-            $this->setOunces ( $totalweight_ounces );
-}
 
+    function setWeight( $totalweight ) {
+		$this->setPounds( "0" );
+        $this->setContainer( "Flat Rate Box" );
+        $totalweight_ounces = round( $totalweight * 16 );
+        $this->setOunces ( $totalweight_ounces );
+	}
+	
     function setContainer($cont) {
         $this->container = $cont;
     }
