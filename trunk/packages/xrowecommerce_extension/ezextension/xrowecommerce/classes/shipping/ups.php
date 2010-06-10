@@ -9,31 +9,31 @@ class UPS extends ShippingInterface
     
     function methods() {
     	return array( 
-    	array(
-    		'identifier' => '3', 
-    		'name' => 'UPS Ground (USA only)'
-    	),
-    	    	array(
-    		'identifier' => '4',
-    		'name' => 'UPS Next Business Day Air (USA only)'
-    	),
-    	    	    	array(
-    		'identifier' => '5',
-    		'name' => 'UPS 2nd Business Day Air (USA only)'
-    	),
-    	array(
-    		'identifier' => 'ups_ground',
-    		'name' => 'UPS Ground (USA only)'
-    	),
-    	    	array(
-    		'identifier' => 'ups_air_nextday',
-    		'name' => 'UPS Next Business Day Air (USA only)'
-    	),
-    	array(
-    		'identifier' => 'ups_air_2ndday',
-    		'name' => 'UPS 2nd Business Day Air (USA only)'
-    	)
-    	 );
+	    	array(
+	    		'identifier' => '3', 
+	    		'name' => 'UPS Ground (USA only)'
+	    	),
+	    	array(
+	    		'identifier' => '4',
+	    		'name' => 'UPS Next Business Day Air (USA only)'
+	    	),
+	    	array(
+	    		'identifier' => '5',
+	    		'name' => 'UPS 2nd Business Day Air (USA only)'
+	    	),
+	    	array(
+	    		'identifier' => 'ups_ground',
+	    		'name' => 'UPS Ground (USA only)'
+	    	),
+	    	array(
+	    		'identifier' => 'ups_air_nextday',
+	    		'name' => 'UPS Next Business Day Air (USA only)'
+	    	),
+	    	array(
+	    		'identifier' => 'ups_air_2ndday',
+	    		'name' => 'UPS 2nd Business Day Air (USA only)'
+	    	)
+    	);
     }
 
     function loadConfiguration()
@@ -45,6 +45,7 @@ class UPS extends ShippingInterface
         $this->setPass($upsini->variable( "Account", "Password" ));
         $this->setServer($upsini->variable( "Connection", "URL" ));
         $this->setServices($upsini->variable( "Services", "Service_code" ));
+        $this->setAvailableFor($upsini->variable( "AvailableSettings", "AvailableFor" ));
         $this->setAddressFrom( $upsini->variable( "ShipperSettings", "Country" ),
                                $upsini->variable( "ShipperSettings", "State" ),
                                $upsini->variable( "ShipperSettings", "Zip" ),
@@ -53,13 +54,14 @@ class UPS extends ShippingInterface
         $this->weight_unit = "LBS";
         $this->PackagingType = "02";
         $this->PickupType = "01";
-            
     }
+    
     function setAddressTo( $shipping_country, $shipping_state, $shipping_zip, $shipping_city )
     {
-    	$shipping_country = $ups->convert_country( $shipping_country, "Alpha3", "Alpha2");
+    	$shipping_country = $this->convert_country( $shipping_country, "Alpha3", "Alpha2");
         parent::setAddressTo( $shipping_country, $shipping_state, $shipping_zip, $shipping_city );
     }
+    
     function setXpciVersion($XpciVersion) {
         $this->XpciVersion = $XpciVersion;
     }
@@ -71,8 +73,6 @@ class UPS extends ShippingInterface
     function settoResidental($to_residental) {
         $this->to_residental = $to_residental;
     }
-
-
     
     function convertservices($services)
     {
@@ -97,9 +97,11 @@ class UPS extends ShippingInterface
     function setService($service) {
         $this->service = $service;
     }
+    
     function setServices($services) {
          $this->services = $services;
     }
+        
     function getPrice()
     {
     	if ( $this->method == "3" )
