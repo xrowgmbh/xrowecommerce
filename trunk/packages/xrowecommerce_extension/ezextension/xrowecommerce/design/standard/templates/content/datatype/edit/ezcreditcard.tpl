@@ -4,10 +4,16 @@
      $card_array=$attribute.contentclass_attribute.content.card_array
      $card_gateway_array=$attribute.contentclass_attribute.content.card_gateway_array}
      
-<link rel="stylesheet" type="text/css" href={'javascript/yui/build/container/assets/skins/sam/container.css'|ezdesign(no)} />
+{*<link rel="stylesheet" type="text/css" href={'javascript/yui/build/container/assets/skins/sam/container.css'|ezdesign(no)} />
 <script type="text/javascript" src={'javascript/yui/build/yahoo-dom-event/yahoo-dom-event.js'|ezdesign(no)}></script>
 <script type="text/javascript" src={'javascript/yui/build/container/container-min.js'|ezdesign(no)}></script>
-<script type="text/javascript" src={'javascript/yui/animation-min.js'|ezdesign()}></script>
+<script type="text/javascript" src={'javascript/yui/animation-min.js'|ezdesign()}></script>*}
+
+<link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/2.8.1/build/container/assets/skins/sam/container.css" />
+<script type="text/javascript" src="http://yui.yahooapis.com/2.8.1/build/yahoo-dom-event/yahoo-dom-event.js"></script>
+<script type="text/javascript" src="http://yui.yahooapis.com/2.8.1/build/container/container-min.js"></script>
+<script type="text/javascript" src="http://yui.yahooapis.com/2.8.1/build/animation/animation-min.js"></script>
+
 
 {literal}
 <script type="text/javascript">
