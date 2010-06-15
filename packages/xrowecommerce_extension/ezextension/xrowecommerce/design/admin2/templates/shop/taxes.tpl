@@ -1,4 +1,4 @@
-<form name="orderstatistics" method="post" action={'orderedit/taxes'|ezurl}>
+<form name="orderstatistics" id="orderstatistics" method="post" action={'orderedit/taxes'|ezurl}>
 
 <div class="context-block">
 
@@ -15,7 +15,7 @@
 {def $timestamp=currentdate()}
 <p>{$timestamp|l10n( 'datetime' )}</p>
 <p>{'Selected period is from'|i18n( 'extension/xrowecommerce')} <b>{$order_result.time.start_stamp|l10n( 'date' )}</b> {'till'|i18n( 'extension/xrowecommerce')} <b>{$order_result.time.stop_stamp|l10n( 'date' )}</b> {'and includes'|i18n( 'extension/xrowecommerce')} {$order_array|count()} {if $order_array|count()|eq(1)}{'order'|i18n( 'extension/xrowecommerce')}{else}{'orders'|i18n( 'extension/xrowecommerce')}{/if}.</p>
-
+{if ezhttp( 'Print', 'post', true() )|not}
 <table width="100%" cellspacing="0" cellpadding="0" border="0" class="no_print">
         <td colspan="4">
         <label for="country">{'Country'|i18n( 'extension/xrowecommerce')}</label>
@@ -106,30 +106,63 @@
 </td>
 <td style="text-align: center;">
 <input class="button" type="submit" name="View" value="{'Show'|i18n( 'design/admin/shop/orderstatistics' )}" title="{'Update the list using the values specified by the menus on the left.'|i18n( 'design/admin/shop/orderstatistics' )}" />
+<input class="button" type="button" name="PrintButton" onclick="javascript: printForm( '{concat( 'layout/set/print/' ,'orderedit/taxes' )|ezurl(no)}' );return true;" value="{'Print'|i18n( 'design/admin/shop/orderstatistics' )}" title="{'Update the list using the values specified by the menus on the left.'|i18n( 'design/admin/shop/orderstatistics' )}" />
+<div id="hidden_form"></div>
 </td>
 </tr>
 </table>
+{literal}
+<script language="JavaScript"> 
+function printForm(url){
+	$("#hidden_form").append('<input type="hidden" name="Print" value="Print">');
+	createPopup('NewWin'); 
+	document.orderstatistics.target='NewWin'; 
+	document.orderstatistics.action = url;  
+	document.orderstatistics.submit();
+}
+
+
+function createPopup(targ){
+	var win = window.open('', targ, 'width=100,height=100,scrollbars=0');
+	}
+</script>
+{/literal}
+
+{else}
+{literal}
+<script language="JavaScript"> 
+window.onload = load; 
+function load() {
+	if (window.print) {
+
+		window.print();
+		window.close();
+	}
+}
+
+</script>
+{/literal}
+{/if}
 <div class="block">
+
 <table class="list" width="100%" cellspacing="0" cellpadding="0" border="0">
     <tr>
         <th class="wide">{'Order'|i18n( 'extension/xrowecommerce')}</th>
         <th class="wide">{'Date'|i18n( 'extension/xrowecommerce')}</th>
         <th class="wide">{'Destination'|i18n( 'extension/xrowecommerce')}</th>
-        <th class="number">{'Total (inc Tax)'|i18n( 'extension/xrowecommerce')}</th>
-        <th class="number">{'Total (ex Tax)'|i18n( 'extension/xrowecommerce')}</th>
-        <th class="number">{'Total Tax'|i18n( 'extension/xrowecommerce')}</th>
-        <th class="number">{'Total Products'|i18n( 'extension/xrowecommerce')}</th>
-        <th class="number">{'Total Shipping/handling'|i18n( 'extension/xrowecommerce')}</th>
+        <th class="number">{'Net Sale'|i18n( 'extension/xrowecommerce')}</th>
+        <th class="number">{'Tax'|i18n( 'extension/xrowecommerce')}</th>
+        <th class="number">{'Shipping/Handling'|i18n( 'extension/xrowecommerce')}</th>
+        <th class="number">{'Order Total'|i18n( 'extension/xrowecommerce')}</th>
     </tr>
     <tr>
         <td>&nbsp;</td>
         <td>&nbsp;</td>
         <td>&nbsp;</td>
+        <td class="number"><b>{$order_result.price.total_collection_ex_price|l10n( 'currency' )}</b></td>
+        <td class="number"><b>{$order_result.price.total_inc_price|sub($order_result.price.total_ex_price)|l10n( 'currency' )}</b></td>
+        <td class="number"><b>{$order_result.price.total_order_ex_price|l10n( 'currency' )}</b></td>
         <td class="number"><b>{$order_result.price.total_inc_price|l10n( 'currency' )}</b></td>
-        <td class="number"><b>{$order_result.price.total_ex_price|l10n( 'currency' )}</b></td>
-        <td class="number"><b>{$order_result.price.total_inc_price|sub($order_result.price.total_ex_price)|l10n( 'currency' )} </b></td>
-        <td class="number"><b>{$order_result.price.total_collection_inc_price|l10n( 'currency' )}</b></td>
-        <td class="number"><b>{$order_result.price.total_order_inc_price|l10n( 'currency' )}</b></td>
     </tr>
 
 
@@ -141,12 +174,11 @@
             <tr class="{$style}">
                 <td><a href={concat("/shop/orderview/", $key)|ezurl()} target="_blank">{$order.order_nr}</a></td>
                 <td>{$order.created|l10n( 'shortdate' )}</td>
-                <td>{$destination|wash}</td>
-                <td class="number">{$order.total_inc_vat|l10n( 'currency' )}</td>
-                <td class="number">{$order.total_ex_vat|l10n( 'currency' )}</td>
+                <td>{$order.destination|wash}</td>
+                <td class="number">{$order.collectionsum.price_ex_tax|l10n( 'currency' )}</td>
                 <td class="number">{$order.total_inc_vat|sub($order.total_ex_vat)|l10n( 'currency' )}</td>
-                <td class="number">{$order.collectionsum.price_inc_tax|l10n( 'currency' )}</td>
-                <td class="number">{$order.ordersum.price_inc_tax|l10n( 'currency' )}</td>
+                <td class="number">{$order.ordersum.price_ex_tax|l10n( 'currency' )}</td>
+                <td class="number">{$order.total_inc_vat|l10n( 'currency' )}</td>
             </tr>
             {if or( and($i|eq(40), $page_count|eq(1)), and($i|eq(50), $page_count|gt(1) ) ) }
             {set $i=0}
@@ -154,19 +186,26 @@
             <tr style="page-break-before:always;">
                 <th>{'Order'|i18n( 'extension/xrowecommerce')}</th>
                 <th>{'Date'|i18n( 'extension/xrowecommerce')}</th>
-                <th>{'Destination'|i18n( 'extension/xrowecommerce')}</th>
-                <th>{'Total (inc Tax)'|i18n( 'extension/xrowecommerce')}</th>
-                <th>{'Total (ex Tax)'|i18n( 'extension/xrowecommerce')}</th>
-                <th>{'Total Tax'|i18n( 'extension/xrowecommerce')}</th>
-                <th>{'Total Products'|i18n( 'extension/xrowecommerce')}</th>
-                <th>{'Total Shipping/handling'|i18n( 'extension/xrowecommerce')}</th>
+                <th class="number">{'Net Sale'|i18n( 'extension/xrowecommerce')}</th>
+                <th class="number">{'Tax'|i18n( 'extension/xrowecommerce')}</th>
+                <th class="number">{'Shipping/Handling'|i18n( 'extension/xrowecommerce')}</th>
+                <th class="number">{'Order Total'|i18n( 'extension/xrowecommerce')}</th>
             </tr>
 
             {/if}
         {/foreach}
+        <tr>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td class="number"><b>{$order_result.price.total_collection_ex_price|l10n( 'currency' )}</b></td>
+        <td class="number"><b>{$order_result.price.total_inc_price|sub($order_result.price.total_ex_price)|l10n( 'currency' )}</b></td>
+        <td class="number"><b>{$order_result.price.total_order_ex_price|l10n( 'currency' )}</b></td>
+        <td class="number"><b>{$order_result.price.total_inc_price|l10n( 'currency' )}</b></td>
+    </tr>
     {else}
         <tr class="{$style}">
-            <td colspan="11">{'Sorry, no order in the selected Month to show.'|i18n( 'extension/xrowecommerce')}</td>
+            <td colspan="11">{'There is no order in the selection for this period.'|i18n( 'extension/xrowecommerce')}</td>
         </tr>
     {/if}
 </table>
