@@ -170,7 +170,20 @@ array(19) {
 
     static function getCountry( $country )
     {
-        return self::instance()->country_map[$country];
+    	if( isset( self::instance()->country_map[$country] ) )
+    	{
+        	return self::instance()->country_map[$country];
+    	}
+    	else
+    	{
+    		foreach ( self::instance()->country_map as $country2 )
+    		{
+    			if( $country2['Alpha3'] == $country)
+    			{
+    				 return $country2;
+    			}
+    		}
+    	}
     }
 
     static function getCountries()

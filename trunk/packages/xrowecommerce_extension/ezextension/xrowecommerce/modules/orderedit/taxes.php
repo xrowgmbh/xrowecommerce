@@ -150,28 +150,40 @@ foreach ( $orderArray as $item )
 {
     $accountName = "";
     $xml = new SimpleXMLElement( $item["data_text_1"] );
-    
+
     if ( $xml != null )
     {
         $shipping = (string) $xml->shipping;
         
-        if ( $shipping )
+        if ( $shipping and (string) $xml->s_country)
         {
             $shipping = true;
+            $state = (string) $xml->s_state;
+            $country = (string) $xml->s_country;
         }
         else
         {
+        	$state = (string) $xml->state;
+        	$country = (string) $xml->country;
             $shipping = false;
         }
-        $s_country = (string) $xml->s_country;
-        $s_state = (string) $xml->s_state;
+        
     }
-    $tmpcountry = xrowGeonames::getCountry( $s_country );
-    $tmpstate = xrowGeonames::getSubdivisionName( $s_country, $s_state );
-    $destination =  $tmpcountry[4] . " / " . $tmpstate ;
-    
-    unset( $s_state );
-    unset( $s_country );
+
+    $tmpcountry = xrowGeonames::getCountry( $country );
+
+    $tmpstate = xrowGeonames::getSubdivisionName( $country, $state );
+    if ( $tmpstate )
+    {
+    	$destination =  $tmpcountry['Name'] . " / " . $tmpstate ;
+    }
+    else
+    {
+    	$destination =  $tmpcountry['Name'] ;
+    }
+
+    unset( $state );
+    unset( $country );
     unset( $shipping );
     $productitemsArray = $db->arrayQuery( "SELECT e.vat_value, e.item_count, e.price
 FROM ezproductcollection_item e
