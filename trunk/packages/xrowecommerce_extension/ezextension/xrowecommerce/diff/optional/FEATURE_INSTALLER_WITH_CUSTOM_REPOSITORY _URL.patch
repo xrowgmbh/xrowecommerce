@@ -1,0 +1,139 @@
+Index: design/standard/templates/setup/init/site_types.tpl
+===================================================================
+--- design/standard/templates/setup/init/site_types.tpl	(revision 24649)
++++ design/standard/templates/setup/init/site_types.tpl	(working copy)
+@@ -24,7 +24,7 @@
+  <blockquote class="error">
+    <h2>{"Error"|i18n("design/standard/setup/init")}</h2>
+    <p>{$error|wash}</p>
+-   <p>Remote repository URL: <a href={$index_url}>{$index_url|wash}</a></p>
++   <p>Remote repository URL: <a href="{$RepositoryURL}">{$RepositoryURL|wash}</a></p>
+  </blockquote>
+ 
+ </div>
+@@ -121,6 +121,12 @@
+   <input class="file" name="PackageBinaryFile" type="file" />
+   <input type="submit" name="UploadPackageButton" value="{'Upload'|i18n("design/standard/setup/init")}" />
+ </fieldset>
++<fieldset>
++  <legend>{'Change repository'|i18n( 'design/standard/setup/init' )}:</legend>
++  <input class="textfield" style="width:300px" name="RepositoryURL" type="input" value="{$RepositoryURL|wash()}" />
++  <input type="submit" name="ChangeRepositoryButton" value="{'Change'|i18n("design/standard/setup/init")}" />
++  <input type="submit" name="ResetRepositoryButton" value="{'Reset'|i18n("design/standard/setup/init")}" />
++</fieldset>
+ {/if}
+ 
+   {include uri="design:setup/persistence.tpl"}
+Index: kernel/setup/steps/ezstep_site_types.php
+===================================================================
+--- kernel/setup/steps/ezstep_site_types.php	(revision 24649)
++++ kernel/setup/steps/ezstep_site_types.php	(working copy)
+@@ -44,7 +44,38 @@
+     function eZStepSiteTypes( $tpl, $http, $ini, &$persistenceList )
+     {
+         $ini = eZINI::instance( 'package.ini' );
+-        $indexURL = trim( $ini->variable( 'RepositorySettings', 'RemotePackagesIndexURL' ) );
++
++
++        $this->eZStepInstaller( $tpl, $http, $ini, $persistenceList,
++                                'site_types', 'Site types' );
++
++        if ( isset( $this->PersistenceList['repository']['url'] ) )
++        {
++        	$this->IndexURL = $this->PersistenceList['repository']['url'];
++        	if ( substr( $this->IndexURL, -1, 1 ) == '/' )
++                $this->XMLIndexURL = $this->IndexURL . 'index.xml';
++            else
++                $this->XMLIndexURL = $this->IndexURL . '/index.xml';
++        }
++        else
++        {
++        	$this->IndexURL = $this->defaultRepositoryURL();
++		    $this->XMLIndexURL = $this->defaultRepositoryURL( true );
++        }
++    }
++    /**
++     * Returns default repository url
++     *
++     *
++     * \private
++     * \param $index with index.xml appended
++     * \return false on error, default repository url otherwise.
++     */
++	function defaultRepositoryURL( $index = false )
++	{
++		$indexURL = false;
++		$ini = eZINI::instance( 'package.ini' );
++		$indexURL = trim( $ini->variable( 'RepositorySettings', 'RemotePackagesIndexURL' ) );
+         if ( $indexURL === '' )
+         {
+             $indexURL = trim( $ini->variable( 'RepositorySettings', 'RemotePackagesIndexURLBase' ) );
+@@ -54,17 +85,15 @@
+             }
+             $indexURL .= eZPublishSDK::version( false, false, false ) . '/' . eZPublishSDK::version() . '/';
+         }
+-        $this->IndexURL = $indexURL;
+-
+-        if ( substr( $this->IndexURL, -1, 1 ) == '/' )
+-            $this->XMLIndexURL = $this->IndexURL . 'index.xml';
+-        else
+-            $this->XMLIndexURL = $this->IndexURL . '/index.xml';
+-
+-        $this->eZStepInstaller( $tpl, $http, $ini, $persistenceList,
+-                                'site_types', 'Site types' );
+-    }
+-
++		if ( $index )
++		{
++            if ( substr( $this->IndexURL, -1, 1 ) == '/' )
++                $indexURL = $indexURL . 'index.xml';
++            else
++                $indexURL = $indexURL . '/index.xml';
++		}
++		return $indexURL;
++	}
+     /**
+      * Downloads file.
+      *
+@@ -362,7 +391,31 @@
+             $this->uploadPackage();
+             return false; // force displaying the same step.
+         }
++        if ( $this->Http->hasPostVariable( 'ResetRepositoryButton' ) )
++        {
++        	if ( isset( $this->PersistenceList['repository']['url'] ) )
++        	{
++        		unset( $this->PersistenceList['repository']['url'] );
++        	}
++        	$this->IndexURL = $this->defaultRepositoryURL();
++		    $this->XMLIndexURL = $this->defaultRepositoryURL( true );
+ 
++            return false; // force displaying the same step.
++        }
++        if ( $this->Http->hasPostVariable( 'ChangeRepositoryButton' ) and 
++             $this->Http->hasPostVariable( 'RepositoryURL' ) and 
++             $this->Http->postVariable( 'RepositoryURL' ) != '' )
++        {
++        	
++        	$this->PersistenceList['repository']['url'] = $this->Http->postVariable( 'RepositoryURL' );
++			$this->IndexURL = $this->PersistenceList['repository']['url'];
++            if ( substr( $this->IndexURL, -1, 1 ) == '/' )
++                $this->XMLIndexURL = $this->IndexURL . 'index.xml';
++            else
++                $this->XMLIndexURL = $this->IndexURL . '/index.xml';
++
++            return false; // force displaying the same step.
++        }
+         if ( !$this->Http->hasPostVariable( 'eZSetup_site_type' ) )
+         {
+             $this->ErrorMsg = ezi18n( 'design/standard/setup/init',
+@@ -586,8 +639,8 @@
+         $this->Tpl->setVariable( 'dependencies_status', $dependenciesStatus );
+         $this->Tpl->setVariable( 'chosen_package', $chosenSitePackage );
+         $this->Tpl->setVariable( 'error', $this->ErrorMsg );
+-        $this->Tpl->setVariable( 'index_url', $this->IndexURL );
+         $this->Tpl->setVariable( 'message', $this->Message );
++        $this->Tpl->setVariable( 'RepositoryURL', $this->IndexURL );
+ 
+         // Return template and data to be shown
+         $result = array();
