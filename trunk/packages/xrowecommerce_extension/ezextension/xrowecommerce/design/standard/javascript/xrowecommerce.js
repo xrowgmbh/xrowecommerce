@@ -1,6 +1,8 @@
 YUI().use( 'node', function(Y) {
 	Y.on( 'domready', function() {
+		updateSubdivisions( Y.Node.get( '#country' ) );
 		if ( Y.Node.get( '#shipping-checkbox' ) ) {
+			updateSubdivisions( Y.Node.get( '#s_country' ) );
 			Y.on( 'change', function( e ) {
 				if ( Y.Node.get( '#shipping-checkbox' ).get( 'checked' ) )
 				{
@@ -135,7 +137,8 @@ function updateSubdivisions( country_node )
 	YUI().use( 'node', 'io', 'io-ez', function( Y )
 	{
 		var country = country_node.get( 'options' ).item( country_node.get( 'selectedIndex' ) ).get( 'value' );
-        Y.io.ez( 'xrowecommerce::getSubdivisions::' + country, 
+
+		Y.io.ez( 'xrowecommerce::getSubdivisions::' + country, 
         {
         	arguments: country_node,
         	on: 
