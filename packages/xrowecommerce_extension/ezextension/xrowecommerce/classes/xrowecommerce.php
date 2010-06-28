@@ -64,7 +64,6 @@ class xrowECommerce
         $xml = new SimpleXMLElement( $xmlstring );
         if ( $xml )
         {
-            
             foreach ( $xml->xpath( '//' . xrowECommerce::ACCOUNT_KEY_PACKAGES . '/package' ) as $key => $package )
             {
                 $p = array();
@@ -420,7 +419,7 @@ class xrowECommerce
                 
                 if ( count( $values ) > 0 )
                 {
-                    if ( is_array( $return[$element] ) )
+                    if ( isset( $return[$element] ) and is_array( $return[$element] ) )
                     {
                         //hook
                         foreach ( $return[$element] as $k => $v )

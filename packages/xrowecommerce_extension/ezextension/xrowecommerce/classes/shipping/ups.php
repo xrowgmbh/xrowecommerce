@@ -219,29 +219,30 @@ $strXML.= "</Address>
 	curl_close ($ch);        
     eZDebug::writeDebug( $response , 'UPS Response' );
     // move XML to array
-    $resp_array = XML_unserialize($response);
-    $ups_response = $resp_array["RatingServiceSelectionResponse"]["Response"];
-    $ups_shipping = $resp_array["RatingServiceSelectionResponse"]["RatedShipment"];
+    $resp_array = xrowECommerce::createArrayfromXML($response);
+
     $ups_services = $this->convertservices( $this->services );
 
         
         // Checking response status code (1=success, 0=Error)
-        if ( $ups_response["ResponseStatusCode"] == "1")
+        if ( $resp_array["Response"]["ResponseStatusCode"] == "1")
         {
             $ups_price = new ups_price();
-            $ups_price->status = $ups_response["ResponseStatusCode"];
-            $ups_price->description = $ups_response["ResponseStatusDescription"];
-            $ups_price->shipping_type = $ups_services[$ups_shipping["Service"]["Code"]];
-            $ups_price->costs = $ups_shipping["TotalCharges"]["MonetaryValue"];
-            $ups_price->currency_unit = $ups_shipping["TotalCharges"]["CurrencyCode"];
+            $ups_price->status = $resp_array["Response"]["ResponseStatusCode"];
+            $ups_price->description = $resp_array["Response"]["ResponseStatusDescription"];
+            $ups_price->shipping_type = $ups_services[$resp_array["RatedShipment"]["Service"]["Code"]];
+            $ups_price->costs = $resp_array["RatedShipment"]["TotalCharges"]["MonetaryValue"];
+            $ups_price->currency_unit = $resp_array["RatedShipment"]["TotalCharges"]["CurrencyCode"];
             $this->costs = $ups_price;
         }
-        elseif ($ups_response["ResponseStatusCode"] == "0")
+        elseif ($resp_array["Response"]["ResponseStatusCode"] == "0")
         {
-        	throw new xrowShippingGatewayException( $ups_response["Error"]["ErrorDescription"], $ups_response["Error"]["ErrorCode"] );
+        	eZDebug::writeError( $resp_array["Response"]["Error"]["ErrorDescription"] , __METHOD__ );
+        	throw new xrowShippingGatewayException( $resp_array["Response"]["Error"]["ErrorDescription"], $resp_array["Response"]["Error"]["ErrorCode"] );
         }
         elseif( $curl_error == '' )
         {
+        	eZDebug::writeError( "Unknown error." . $ups_error->error_code , __METHOD__ );
         	throw new xrowShippingGatewayException( "Unknown error.", $ups_error->error_code );
         }
          
@@ -249,13 +250,6 @@ $strXML.= "</Address>
     } // End of GetPrice
 } // CLASS UPS
 
-class ups_price
-{
-    var $status;
-    var $description;
-    var $costs;
-    var $shipping_type;
-    var $currency_unit;
-} // CLASS UPS_PRICE
+
 
 ?> 

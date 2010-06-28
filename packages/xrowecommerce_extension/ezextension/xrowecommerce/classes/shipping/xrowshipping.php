@@ -1,37 +1,4 @@
 <?php
-//
-// Definition of eZSampleShippingHandler class
-//
-// Created on: <29-Mar-2006 18:04:01 vs>
-//
-// ## BEGIN COPYRIGHT, LICENSE AND WARRANTY NOTICE ##
-// NOTICE: >
-//   This program is free software; you can redistribute it and/or
-//   modify it under the terms of version 2.0  of the GNU General
-//   Public License as published by the Free Software Foundation.
-//
-//   This program is distributed in the hope that it will be useful,
-//   but WITHOUT ANY WARRANTY; without even the implied warranty of
-//   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-//   GNU General Public License for more details.
-//
-//   You should have received a copy of version 2.0 of the GNU General
-//   Public License along with this program; if not, write to the Free
-//   Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
-//   MA 02110-1301, USA.
-//
-//
-// ## END COPYRIGHT, LICENSE AND WARRANTY NOTICE ##
-//
-
-require_once( 'kernel/classes/ezproductcollection.php' );
-require_once( 'kernel/classes/ezproductcollectionitem.php' );
-require_once( 'kernel/classes/ezcontentobject.php' );
-require_once( 'lib/ezdb/classes/ezdb.php' );
-
-/*
-shipping info = shipping options + shipping cost
-*/
 
 class XROWShipping
 {
