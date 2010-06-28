@@ -17,6 +17,8 @@ class xrowDefaultShipping implements xrowShipment
         $treeParameters['IgnoreVisibility'] = false;
         $treeParameters['ObjectNameFilter'] = false;
         $treeParameters['ClassFilterType'] = 'include';
+        $treeParameters['Limitation'] = array(  );
+
         $treeParameters['ClassFilterArray'] = array( 
             'xrow_carton' 
         );
@@ -52,11 +54,20 @@ class xrowDefaultShipping implements xrowShipment
             $object = $item['item_object']->attribute( 'contentobject' );
             $dm = $object->dataMap();
             for ( $i = 0; $i < $item['item_object']->ItemCount; $i ++ )
+            { if ( !is_object( $dm['length'] ) or  !is_object( $dm['width'] ) or !is_object( $dm['height'] ) )
             {
+                $tmp = new xrowShippedProduct( 0, 0, 0 );
+                $tmp->name = $object->name();
+                $tmp->id = $object->ID;
+                $return[] = $tmp;
+            }
+            else{
                 $tmp = new xrowShippedProduct( $dm['length']->content(), $dm['width']->content(), $dm['height']->content() );
                 $tmp->name = $object->name();
                 $tmp->id = $object->ID;
                 $return[] = $tmp;
+            }
+
             }
         
         }

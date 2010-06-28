@@ -20,4 +20,10 @@ name=geonames cache
 id=xrowecommerce
 path=geonames
 
+#This setting lets ezpublish use the user class "client" as default user
+#[UserSettings]
+#AnonymousUserID=
+#DefaultUserPlacement=
+#UserClassID=
+
 */ ?>

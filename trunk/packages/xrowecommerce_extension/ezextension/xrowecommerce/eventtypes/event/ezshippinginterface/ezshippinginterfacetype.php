@@ -115,12 +115,12 @@ class eZShippingInterfaceType extends eZWorkflowEventType
         // If order class was fetched
         if ( $order instanceof eZOrder )
         {
-        	$xml = new SimpleXMLElement( $order->attribute( 'data_text_1' ) );
+            $xml = new SimpleXMLElement( $order->attribute( 'data_text_1' ) );
 
             if ( $xml != null )
             {
-            	$state = (string) $xml->state;
-            	$shipping = (string) $xml->shipping;
+                $state = (string) $xml->state;
+                $shipping = (string) $xml->shipping;
                 $shippingtype = (string) $xml->shippingtype;
                 $shipping_country = (string) $xml->country;
                 $shipping_s_country = (string) $xml->s_country;
@@ -298,14 +298,11 @@ class eZShippingInterfaceType extends eZWorkflowEventType
             // Also builds Packagelist
             $totalweight = 0;
             $boxweight = 0;
-            if ( $ini->hasVariable( 'ShippingInterfaceSettings', 'ShippingInterface' ) )
+            if ( $ini->hasVariable( 'ShippingInterfaceSettings', 'ShippingInterface' ) and class_exists( $ini->variable( 'ShippingInterfaceSettings', 'ShippingInterface' ) ) )
             {
-                
+
                 $interfaceName = $ini->variable( 'ShippingInterfaceSettings', 'ShippingInterface' );
-                
-                if ( class_exists( $interfaceName ) )
-                {
-                    
+
                     $impl = new $interfaceName( );
                     $boxes = $impl->getBoxes( $order );
                     foreach ( $boxes as $box )
@@ -366,7 +363,10 @@ class eZShippingInterfaceType extends eZWorkflowEventType
                     
                     $order->setAttribute( 'data_text_1', $doc->saveXML() );
                     $order->store();
-                }
+            }
+            else
+            {
+                throw new Exception( "Shipping Interface not set. xrowecommerce.ini[ShippingInterfaceSettings][ShippingInterface] ");
             }
 
         // @TODO show template that hazardous items got removed
@@ -374,7 +374,7 @@ class eZShippingInterfaceType extends eZWorkflowEventType
         include_once( 'kernel/common/template.php' );
         $tpl = eZTemplate::factory();
         $tpl->setVariable( "hazardous", $hazardousproducts );
-		*/
+        */
         
         #### SHIPPING COST CALCULATION
         $shippingerror = false;

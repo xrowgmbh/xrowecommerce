@@ -17,8 +17,8 @@ if ( !$order )
 $tpl = eZTemplate::factory();
 
 $tpl->setVariable( "order", $order );
-
 $tpl->setVariable( "package_list", xrowECommerce::getPackageListArray( $order ) );
+
 
 $Result = array();
 $Result['content'] = $tpl->fetch( "design:shop/shippingplan.tpl" );
