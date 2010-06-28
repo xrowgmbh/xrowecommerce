@@ -5,7 +5,7 @@
         <h1>{'My Account'|i18n('extension/xrowecommerce')}</h1>
         
         {include uri="design:shop/basket_navigator.tpl" step='2'}
-        {include uri="design:shop/userregister_preface.tpl"}    
+        {include uri="design:shop/userregister_preface.tpl"}
         
         {def $error_count = false}
         {foreach $fields as $error}
@@ -47,7 +47,7 @@
                 {/if}
                 {if $fields.company_additional.enabled}
                     <div class="ur_company_additional block{if is_set($fields.company_additional.errors)} error{/if}">
-                        <label>{'Company additional information'|i18n('extension/xrowecommerce')}{if $fields.company_additional.required}<span class="required">*</span>{/if}</label>
+                        <label>{'Form of company'|i18n('extension/xrowecommerce')}{if $fields.company_additional.required}<span class="required">*</span>{/if}</label>
                         <div class="labelbreak"></div>
                         <input type="text" name="company_additional" id="company_additional" value="{$company_additional|wash}" />
                     </div>
@@ -117,14 +117,14 @@
                         <label>{'Country'|i18n('extension/xrowecommerce')}{if $fields.country.required}<span class="required">*</span>{/if}</label>
                         <div class="labelbreak"></div>
                         <select name="country" id="country">
-                        	<option>&nbsp;</option>
-                        	{foreach $countries as $country_list_item}
-                       	    <option value="{$country_list_item.Alpha3}" {if and( $country|ne(''), eq( $country, $country_list_item.Alpha3 ))} selected="selected"{/if}>{$country_list_item.Name|wash}</option>
+                            <option>&nbsp;</option>
+                            {foreach $countries as $country_list_item}
+                            <option value="{$country_list_item.Alpha3}" {if and( $country|ne(''), eq( $country, $country_list_item.Alpha3 ))} selected="selected"{/if}>{$country_list_item.Name|wash}</option>
                             {/foreach}
                         </select>
                     </div>
                 {/if}
-                
+
                 <div class="break"></div>
 
                 {if $fields.state.enabled}
@@ -139,7 +139,7 @@
                         </select>
                     </div>
                 {/if}
-      
+
                 {if $fields.phone.enabled}
                     <div class="block{if is_set($fields.phone.errors)} error{/if}">
                         <label>{'Phone'|i18n('extension/xrowecommerce')}{if $fields.phone.required}<span class="required">*</span>{/if}</label>
@@ -299,7 +299,7 @@
                             <input class="phone" type="text" id="s_phone" name="s_phone" value="{$s_phone|wash}" />
                         </div>
                     {/if}
-    
+
                     {if $fields.s_fax.enabled}
                         <div class="block{if is_set($fields.s_fax.errors)} error{/if}">
                             <label>{'Fax'|i18n('extension/xrowecommerce')}{if $fields.s_fax.required}<span class="required">*</span>{/if}</label>
@@ -307,7 +307,7 @@
                             <input class="phone" type="text" id="s_fax" name="s_fax" value="{$s_fax|wash}" />
                         </div>
                     {/if}
-    
+
                     {if $fields.s_email.enabled}
                         <div class="block{if is_set($fields.s_email.errors)} error{/if}">
                             <label>{'E-mail'|i18n('extension/xrowecommerce')}{if $fields.s_email.required}<span class="required">*</span>{/if}</label>
@@ -317,10 +317,10 @@
                         <div class="break"></div>
                     {/if}
                 </div>
-            
+
             {* / left column *}
             </div>
-            
+
             {if ezini('Fields','Coupon','xrowecommerce.ini').enabled|eq('true')}
                 <div class="coupon">
                     <h3>{'Coupon'|i18n('extension/xrowecommerce')}</h3>
@@ -332,15 +332,15 @@
                     </div>
                 </div>
             {/if}
-    
+
             <div class="additional-information">
                 <h3>{'Additional Information'|i18n( 'extension/xrowecommerce' )}</h3>
-    
+
                 {* Captcha Start *}
                     {def $access=fetch( 'user', 'has_access_to',
                                         hash( 'module',   'xrowecommerce',
                                               'function', 'bypass_captcha' ) )}
-    
+
                     {if and( ezini('Fields','Captcha','xrowecommerce.ini').enabled|eq('true'), $access|not, ezhttp( 'xrowCaptchaSolved', 'session' )|not)}
                         <div class="block">
                             <label>{'Verification'|i18n('extension/xrowecommerce')}<span class="required">*</span></label>
@@ -361,29 +361,29 @@
                         </div>
                     {/if}
                 {* Captcha End *}
-    
+
                 {* Your No Partial Delivery *}
                 {if ezini('Fields','NoPartialDelivery','xrowecommerce.ini').enabled|eq('true')}
                     <div class="block">
                             <label class="no_partial_delivery" for="no_partial_delivery"><input class="no_partial_delivery" type="checkbox" name="no_partial_delivery" id="no_partial_delivery" {if is_set($no_partial_delivery)} checked="checked" {/if} value="1" />{'No partial delivery'|i18n('extension/xrowecommerce')}</label>
                     </div>
                 {/if}
-            
+
                 {* Your Reference *}
                 {if ezini('Fields','Reference','xrowecommerce.ini').enabled|eq('true')}
                     <div class="block">
-                            <label for="reference">{'Your reference'|i18n('extension/xrowecommerce')}</label>
-                            <div class="labelbreak"></div>
-                            <input class="reference" type="text" name="reference" id="reference" value="{$reference|wash}" />
+                        <label for="reference">{'Your reference'|i18n('extension/xrowecommerce')}</label>
+                        <div class="labelbreak"></div>
+                        <input class="reference" type="text" name="reference" id="reference" value="{$reference|wash}" />
                     </div>
                 {/if}
-            
+
                 {* Your Message *}
                 {if ezini('Fields','Message','xrowecommerce.ini').enabled|eq('true')}
                     <div class="block">
-                            <label for="message">{'Your notes on order'|i18n('extension/xrowecommerce')}</label>
-                            <div class="labelbreak"></div>
-                            <textarea class="message" name="message" id="message" rows="10" cols="50">{$message|wash}</textarea>
+                        <label for="message">{'Your notes on order'|i18n('extension/xrowecommerce')}</label>
+                        <div class="labelbreak"></div>
+                        <textarea class="message" name="message" id="message" rows="10" cols="50">{$message|wash}</textarea>
                     </div>
                 {/if}
             </div>
