@@ -289,85 +289,91 @@ class eZShippingInterfaceType extends eZWorkflowEventType
             
             }
             
-        END ABSTRACTION LAYER NEEDED FOR WEIGHT */
+            END ABSTRACTION LAYER NEEDED FOR WEIGHT */
         }
         // Order product total weight calculation
-                $ini = eZINI::instance( "xrowecommerce.ini" );
-            
-            // ABSTRACTION LAYER FOR WEIGHT
-            // Also builds Packagelist
+        $ini = eZINI::instance( 'xrowecommerce.ini' );
+
+        // ABSTRACTION LAYER FOR WEIGHT
+        // Also builds Packagelist
+        $totalweight = 0;
+        $boxweight = 0;
+        if ( $ini->hasVariable( 'ShippingInterfaceSettings', 'ShippingInterface' ) and class_exists( $ini->variable( 'ShippingInterfaceSettings', 'ShippingInterface' ) ) )
+        {
+            $interfaceName = $ini->variable( 'ShippingInterfaceSettings', 'ShippingInterface' );
+            $impl = new $interfaceName( );
+        }
+        else
+        {
+            $impl = new xrowDefaultShipping( );
+        }
+
+        if ( $impl instanceof xrowShipment )
+        {
+            $boxes = $impl->getBoxes( $order );
+            foreach ( $boxes as $box )
+            {
+                $boxweight += $box->totalWeight();
+            }
+            eZDebug::writeDebug( $boxweight, 'Weight of Packages' );
+            $products = $impl->getProducts( $order );
+            $packlist = $impl->compute( $boxes, $products );
             $totalweight = 0;
-            $boxweight = 0;
-            if ( $ini->hasVariable( 'ShippingInterfaceSettings', 'ShippingInterface' ) and class_exists( $ini->variable( 'ShippingInterfaceSettings', 'ShippingInterface' ) ) )
+            foreach ( $packlist as $package )
             {
-
-                $interfaceName = $ini->variable( 'ShippingInterfaceSettings', 'ShippingInterface' );
-
-                    $impl = new $interfaceName( );
-                    $boxes = $impl->getBoxes( $order );
-                    foreach ( $boxes as $box )
+                $totalweight += $package->totalWeight();
+            }
+            $totalboxweight = $totalweight - $boxweight;
+            eZDebug::writeDebug( $totalboxweight, 'Weight of Products' );
+            eZDebug::writeDebug( $totalweight, 'Weight of Packages with Products' );
+            $xmlstring = $order->attribute( 'data_text_1' );
+            if ( $xmlstring != null )
+            {
+                $doc = new DOMDocument();
+                $doc->loadXML( $xmlstring );
+                $root = $doc->documentElement;
+                $packagelist = $root->getElementsByTagName( xrowECommerce::ACCOUNT_KEY_PACKAGES );
+                if ( $packagelist->length == 1 )
+                {
+                    $root->removeChild( $packagelist->item( 0 ) );
+                }
+                $packagelist = $doc->createElement( xrowECommerce::ACCOUNT_KEY_PACKAGES );
+                foreach ( $packlist as $parcel )
+                {
+                    $domPackage = $doc->createElement( 'package' );
+                    $domPackage->setAttribute( 'name', $parcel->name );
+                    $domPackage->setAttribute( 'id', $parcel->id );
+                    $list = $parcel->contains;
+                    while ( count( $list ) > 0 )
                     {
-                        $boxweight += $box->totalWeight();
-                    }
-                    eZDebug::writeDebug( $boxweight, "Weight of Packages" );
-                    $products = $impl->getProducts( $order );
-                    $packlist = $impl->compute( $boxes, $products );
-                    $totalweight = 0;
-                    foreach ( $packlist as $package )
-                    {
-                        $totalweight += $package->totalWeight();
-                    }
-                    $totalboxweight = $totalweight - $boxweight;
-                    eZDebug::writeDebug( $totalboxweight, "Weight of Products" );
-                    eZDebug::writeDebug( $totalweight, "Weight of Packages with Products" );
-                    $xmlstring = $order->attribute( 'data_text_1' );
-                    if ( $xmlstring != null )
-                    {
-                        $doc = new DOMDocument( );
-                        $doc->loadXML( $xmlstring );
-                        $root = $doc->documentElement;
-                        $packagelist = $root->getElementsByTagName( xrowECommerce::ACCOUNT_KEY_PACKAGES );
-                        if ( $packagelist->length == 1 )
+                        $product = array_shift( $list );
+                        $i = 1;
+                        foreach ( $list as $key2 => $product2 )
                         {
-                            $root->removeChild( $packagelist->item( 0 ) );
-                        }
-                        $packagelist = $doc->createElement( xrowECommerce::ACCOUNT_KEY_PACKAGES );
-                        foreach ( $packlist as $parcel )
-                        {
-                            $domPackage = $doc->createElement( 'package' );
-                            $domPackage->setAttribute( 'name', $parcel->name );
-                            $domPackage->setAttribute( 'id', $parcel->id );
-                            $list = $parcel->contains;
-                            while ( count( $list ) > 0 )
+                            if ( $product->id == $product2->id )
                             {
-                                $product = array_shift( $list );
-                                $i = 1;
-                                foreach ( $list as $key2 => $product2 )
-                                {
-                                    if ( $product->id == $product2->id )
-                                    {
-                                        $i ++;
-                                        unset( $list[$key2] );
-                                    }
-                                }
-                                $domProduct = $doc->createElement( 'product' );
-                                $domProduct->setAttribute( 'name', $product->name );
-                                $domProduct->setAttribute( 'id', $product->id );
-                                $domProduct->setAttribute( 'amount', $i );
-                                $domPackage->appendChild( $domProduct );
+                                $i++;
+                                unset( $list[$key2] );
                             }
-                            $packagelist->appendChild( $domPackage );
                         }
-                        $root->appendChild( $packagelist );
+                        $domProduct = $doc->createElement( 'product' );
+                        $domProduct->setAttribute( 'name', $product->name );
+                        $domProduct->setAttribute( 'id', $product->id );
+                        $domProduct->setAttribute( 'amount', $i );
+                        $domPackage->appendChild( $domProduct );
                     }
-                    
-                    $order->setAttribute( 'data_text_1', $doc->saveXML() );
-                    $order->store();
+                    $packagelist->appendChild( $domPackage );
+               }
+               $root->appendChild( $packagelist );
             }
-            else
-            {
-                throw new Exception( "Shipping Interface not set. xrowecommerce.ini[ShippingInterfaceSettings][ShippingInterface] ");
-            }
+
+            $order->setAttribute( 'data_text_1', $doc->saveXML() );
+            $order->store();
+        }
+        else
+        {
+            throw new Exception( "Shipping Interface not set. xrowecommerce.ini[ShippingInterfaceSettings][ShippingInterface] ");
+        }
 
         // @TODO show template that hazardous items got removed
         /*
@@ -391,19 +397,26 @@ class eZShippingInterfaceType extends eZWorkflowEventType
                     $totalweight = 1;
                 }
                 eZDebug::writeDebug( $totalweight, "Order Weight" );
+
                 $gateway->setOrder( $order );
                 $gateway->setWeight( $totalweight );
                 $gateway->setAddressTo( $shipping_country, $shipping_state, $shipping_zip, $shipping_city );
-                $cost = $gateway->getPrice();
-                $description = $gateway->description();
-                
+                $details = $gateway->getShippingDetails();
+                $shippingmethod = $gateway->getService( $details->list, $details->method );
+                $description = $gateway->getDescription( $shippingmethod );
+                $cost = $gateway->getPrice( $shippingmethod );
+
                 if ( $freeshippingproduct )
                 {
                     if ( $cost >= $free_shippingitem_reduce )
+                    {
                         $cost = $cost - $free_shippingitem_reduce;
+                    }
                     else
+                    {
                         $cost = 0.00;
-                    $description_discounted_shipping = "Discounted Shipping! $shipping_type_name";
+                    }
+                    $description_discounted_shipping = "Discounted Shipping! $description";
                     $description = $description_discounted_shipping;
                 }
             }
@@ -575,22 +588,15 @@ class eZShippingInterfaceType extends eZWorkflowEventType
             $cost = 0.00;
         }
 */
-        // adding Handling_fee to shipping_cost?
-        
 
         // get actual tax value
         $vat_value = eZVATManager::getVAT( false, false );
-        /*
-        if( $tax_country == "USA" AND $tax_state == "NY" AND $cost > 0 )
-                $vat_value =  8.375;
-        
-        if( $tax_country == "USA" AND $tax_state == "CT" AND $cost > 0 )
-            $vat_value =  6.00 ;
-          */
-        $r = eZOrderItem::fetchListByType( $orderID, 'handlingfee' );
-        if ( count( $r ) > 0 )
+
+        // adding Handling_fee to shipping_cost?
+        $orderlist = eZOrderItem::fetchListByType( $orderID, 'handlingfee' );
+        if ( count( $orderlist ) > 0 )
         {
-            foreach ( $r as $item )
+            foreach ( $orderlist as $item )
             {
                 $item->remove();
             }
@@ -599,7 +605,8 @@ class eZShippingInterfaceType extends eZWorkflowEventType
         {
             $cost = $cost + $handling_fee;
         }
-        else 
+        else
+        {
             if ( ! $freehandlingproduct and $add_handling_fee == "enabled" and $handling_fee_include != "enabled" )
             {
                 $HandlingItem = new eZOrderItem( array( 
@@ -611,11 +618,12 @@ class eZShippingInterfaceType extends eZWorkflowEventType
                 ) );
                 $HandlingItem->store();
             }
+        }
         // Remove any existing order shipping item before appendeding a new item
-        $r = eZOrderItem::fetchListByType( $orderID, 'shippingcost' );
-        if ( count( $r ) > 0 )
+        $orderlist = eZOrderItem::fetchListByType( $orderID, 'shippingcost' );
+        if ( count( $orderlist ) > 0 )
         {
-            foreach ( $r as $item )
+            foreach ( $orderlist as $item )
             {
                 $item->remove();
             }
