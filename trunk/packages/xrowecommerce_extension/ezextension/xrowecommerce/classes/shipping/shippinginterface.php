@@ -208,7 +208,7 @@ class ShippingInterface
         $this->weight_unit = $unit;
     }
 
-    function getPrice()
+    function getPrice( $shippingmethod = false )
     {
         return false;
     }
