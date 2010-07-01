@@ -38,10 +38,10 @@ class eZAuthorizeAIM
     */
     function eZAuthorizeAIM( $aSetup = false )
     {
-    	if ( eZINI::instance( 'ezauthorize.ini' )->variable( 'eZAuthorizeSettings', 'TestMode' )  == 'true' )
-    	{
-    		$this->transact_url = 'https://test.authorize.net/gateway/transact.dll';
-    	}
+        if ( eZINI::instance( 'ezauthorize.ini' )->variable( 'eZAuthorizeSettings', 'TestMode' )  == 'true' )
+        {
+            $this->transact_url = 'https://test.authorize.net/gateway/transact.dll';
+        }
         $this->addField( 'x_delim_char', $this->delim_char );
         $this->addField( 'x_version', '3.1' );
         $this->addField( 'x_delim_data', 'true' );
@@ -281,7 +281,8 @@ class eZAuthorizeAIM
     /*!
        AuthorizeNet Validate MD5 Hash
     */
-    function verifyMD5Hash() {
+    function verifyMD5Hash() 
+    {
         if ( !isset( $this->md5String ) )
             return false;
 
@@ -297,7 +298,8 @@ class eZAuthorizeAIM
     /*!
        AuthorizeNet CVS Response Text
     */
-    function getCardCodeResponseText ( $cvs_code ) {
+    function getCardCodeResponseText ( $cvs_code ) 
+    {
         // if ($this->debug) echo "CVS Code: $cvs_code\n";
 
         switch( $cvs_code ) {
@@ -322,7 +324,8 @@ class eZAuthorizeAIM
     /*!
      AuthorizeNet AVS Response Text
     */
-    function getAVSResponseText ( $avs_code ) {
+    function getAVSResponseText ( $avs_code ) 
+    {
         // if ( $this->debug ) echo "AVS Code: $avs_code\n";
 
         switch( $avs_code ) {
