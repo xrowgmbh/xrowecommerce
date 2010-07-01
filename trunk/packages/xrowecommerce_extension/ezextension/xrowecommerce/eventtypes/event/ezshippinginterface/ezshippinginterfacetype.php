@@ -392,7 +392,7 @@ class eZShippingInterfaceType extends eZWorkflowEventType
             try
             {
                 $gateway->order = $order;
-                if ( $totalweight > 0 && $totalweight < 1 )
+                if ( $totalweight >= 0 && $totalweight < 1 )
                 {
                     $totalweight = 1;
                 }

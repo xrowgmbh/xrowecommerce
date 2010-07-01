@@ -14,6 +14,7 @@ HandlingFeeName=Handling
 # Defines if the handling fee should be included or not
 HandlingFeeInclude=disabled
 FreeShippingitemReduce=9.00
+eZoption2ProductVariations=Enabled
 
 [FixedPrice]
 Amount=6
