@@ -101,28 +101,50 @@ class UPS extends ShippingInterface
     function setServices($services) {
          $this->services = $services;
     }
-        
-    function getPrice()
+
+    function getService( $service_list, $service_name )
     {
-    	if ( $this->method == "3" )
+        if ( $service_list[0]['shipping_type'] == $service_name )
+        {
+            return $service_list[0];
+        }
+        else
+        {
+            return false;
+        }
+    }
+    
+    function getPrice( $shippingmethod )
+    {
+        return (float)$shippingmethod['costs'];
+    }
+    
+    function getDescription( $shippingmethod )
+    {
+        return $shippingmethod['description'];
+    }
+
+    function getShippingDetails()
+    {
+    	if ( $this->method == "3" ||  $this->method == "ups_ground" )
     	{
     		$this->setService( "03" );
     	}
-    	elseif ( $this->method == "4" )
+    	elseif ( $this->method == "4" ||  $this->method == "ups_air_nextday" )
     	{
     		$this->setService( "01" );
     	}
-        elseif ( $this->method == "5" )
+        elseif ( $this->method == "5" || $this->method == "ups_air_2ndday" )
         {
         	$this->setService( "02" );
         }
-$strXML = "<?xml version='1.0'?>
+        $strXML = "<?xml version='1.0'?>
    <AccessRequest xml:lang='en-US'>
       <AccessLicenseNumber>".$this->license."</AccessLicenseNumber>
       <UserId>".$this->userid."</UserId>
       <Password>".$this->pass."</Password>
    </AccessRequest>";
-$strXML.=  "<?xml version=\"1.0\"?>
+        $strXML.=  "<?xml version=\"1.0\"?>
             <RatingServiceSelectionRequest>
               <Request>
                 <TransactionReference>
@@ -148,17 +170,17 @@ $strXML.=  "<?xml version=\"1.0\"?>
                 <ShipTo>
                   <Address>
                     <City>".$this->address_to["city"]."</City>";
-if ($this->address_to["state"] == "" )
-    $strXML.=  "<StateProvinceCode />";
-else
-$strXML.= "<StateProvinceCode>".$this->address_to["state"]."</StateProvinceCode>";
+        if ($this->address_to["state"] == "" )
+            $strXML.=  "<StateProvinceCode />";
+        else
+            $strXML.= "<StateProvinceCode>".$this->address_to["state"]."</StateProvinceCode>";
 
-$strXML.= "<PostalCode>".$this->address_to["zip"]."</PostalCode>
+        $strXML.= "<PostalCode>".$this->address_to["zip"]."</PostalCode>
                     <CountryCode>".$this->address_to["country"]."</CountryCode>";
-if ($this->to_residental)
-    $strXML.= "<ResidentialAddressIndicator />";
+        if ($this->to_residental)
+            $strXML.= "<ResidentialAddressIndicator />";
 
-$strXML.= "</Address>
+        $strXML.= "</Address>
                 </ShipTo>
                 <ShipFrom>
                   <Address>
@@ -196,44 +218,50 @@ $strXML.= "</Address>
               </Shipment>
             </RatingServiceSelectionRequest>";
 
-    $ch = curl_init(); /// initialize a cURL session 
-	curl_setopt ($ch, CURLOPT_URL, $this->server); 
-	curl_setopt ($ch, CURLOPT_HEADER, 0); 
-	curl_setopt ($ch, CURLOPT_POST, 1); 
-	curl_setopt ($ch, CURLOPT_POSTFIELDS, "$strXML");
-	eZDebug::writeDebug( $strXML , 'UPS Request' );
-	curl_setopt ($ch, CURLOPT_RETURNTRANSFER, 1);
-	curl_setopt( $ch, CURLOPT_SSL_VERIFYPEER, false );
-	$response = curl_exec ($ch);
-	$curl_error = curl_error($ch);
-	$info = curl_getinfo($ch);
-	if ( $curl_error or $info['http_code'] != '200' )
-	{
-        eZDebug::writeError( $curl_error, 'USPS Curl Error Message'  );
-	    if ( $curl_error ) 
+        $ch = curl_init(); /// initialize a cURL session 
+        curl_setopt ($ch, CURLOPT_URL, $this->server); 
+        curl_setopt ($ch, CURLOPT_HEADER, 0); 
+        curl_setopt ($ch, CURLOPT_POST, 1); 
+        curl_setopt ($ch, CURLOPT_POSTFIELDS, "$strXML");
+        eZDebug::writeDebug( $strXML , 'UPS Request' );
+        curl_setopt ($ch, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt( $ch, CURLOPT_SSL_VERIFYPEER, false );
+        $response = curl_exec ($ch);
+        $curl_error = curl_error($ch);
+        $info = curl_getinfo($ch);
+        if ( $curl_error or $info['http_code'] != '200' )
         {
-        	eZDebug::writeError( $curl_error, 'UPS Curl Error Message'  );
-        	throw new xrowShippingGatewayException( "Connection error with shipping gateway.", "N/A" );
+            eZDebug::writeError( $curl_error, 'USPS Curl Error Message'  );
+            if ( $curl_error ) 
+            {
+                eZDebug::writeError( $curl_error, 'UPS Curl Error Message'  );
+                throw new xrowShippingGatewayException( "Connection error with shipping gateway.", "N/A" );
+            }
         }
-	}
-	curl_close ($ch);        
-    eZDebug::writeDebug( $response , 'UPS Response' );
-    // move XML to array
-    $resp_array = xrowECommerce::createArrayfromXML($response);
+        curl_close ($ch);
+        eZDebug::writeDebug( $response , 'UPS Response' );
+        // move XML to array
+        $resp_array = xrowECommerce::createArrayfromXML($response);
 
-    $ups_services = $this->convertservices( $this->services );
+        $ups_services = $this->convertservices( $this->services );
 
-        
         // Checking response status code (1=success, 0=Error)
         if ( $resp_array["Response"]["ResponseStatusCode"] == "1")
         {
-            $ups_price = new ups_price();
+            /*$ups_price = new ups_price();
             $ups_price->status = $resp_array["Response"]["ResponseStatusCode"];
             $ups_price->description = $resp_array["Response"]["ResponseStatusDescription"];
             $ups_price->shipping_type = $ups_services[$resp_array["RatedShipment"]["Service"]["Code"]];
             $ups_price->costs = $resp_array["RatedShipment"]["TotalCharges"]["MonetaryValue"];
             $ups_price->currency_unit = $resp_array["RatedShipment"]["TotalCharges"]["CurrencyCode"];
-            $this->costs = $ups_price;
+            $this->costs = $ups_price;*/
+            $price = array();
+            $price['status'] = $resp_array["Response"]["ResponseStatusCode"];
+            $price['description'] = $ups_services[$resp_array["RatedShipment"]["Service"]["Code"]];
+            $price['shipping_type'] = $this->method;
+            $price['costs'] = $resp_array["RatedShipment"]["TotalCharges"]["MonetaryValue"];
+            $price['currency_unit'] = $resp_array["RatedShipment"]["TotalCharges"]["CurrencyCode"];
+            $this->list[] = $price;
         }
         elseif ($resp_array["Response"]["ResponseStatusCode"] == "0")
         {
@@ -245,11 +273,8 @@ $strXML.= "</Address>
         	eZDebug::writeError( "Unknown error." . $ups_error->error_code , __METHOD__ );
         	throw new xrowShippingGatewayException( "Unknown error.", $ups_error->error_code );
         }
-         
         return $this;
     } // End of GetPrice
 } // CLASS UPS
-
-
 
 ?> 
