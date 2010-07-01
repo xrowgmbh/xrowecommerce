@@ -52,14 +52,14 @@ class xrowPackage extends xrowCube
         {
             self::removeFromArray( $this->free_segments, $segment );
         }
-        $this->contains[] = & $product;
+        $this->contains[] = &$product;
         if ( $segment === false )
         {
-            $container = & $this;
+            $container = &$this;
         }
         else
         {
-            $container = & $segment;
+            $container = &$segment;
         }
         $product = $container->can_contain( $product );
         /*
