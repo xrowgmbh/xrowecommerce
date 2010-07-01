@@ -2,14 +2,14 @@
 
 class xrowShippingInterface
 {
-    static function getShippingMethods( $gateway )
+    /*static function getShippingMethods( $gateway )
     {
         $list = self::fetchAll();
         foreach ( $list as $key => $method )
         {
-            if ( $list[$key]['gateway'] == $gateway )
+            if ( $method == $gateway )
             {
-                $name = $methods[$key]['gateway'];
+                $name = $method['gateway'];
                 $return = new $name( );
                 $return->loadConfiguration();
                 return $return;
@@ -23,28 +23,28 @@ class xrowShippingInterface
         $list = self::fetchAll();
         foreach ( $list as $key => $method )
         {
-            if ( $list[$key]['gateway'] == $gateway )
+            if ( $method['gateway'] == $gateway )
             {
-                $name = $methods[$key]['gateway'];
+                $name = $method['gateway'];
                 $return = new $name( );
                 $return->loadConfiguration();
                 return $return;
             }
         }
         return false;
-    }
+    }*/
 
-    static function instanceByMethod( $methodname )
+    static function instanceByMethod( $methodtype )
     {
         $list = self::fetchAll();
         foreach ( $list as $key => $method )
         {
-            if ( $method['identifier'] == $methodname )
+            if ( $method['identifier'] == $methodtype )
             {
                 $name = $method['gateway'];
                 $return = new $name( );
                 $return->loadConfiguration();
-                $return->method = $methodname;
+                $return->method = $methodtype;
                 $return->name = $method['name'];
                 return $return;
             }
