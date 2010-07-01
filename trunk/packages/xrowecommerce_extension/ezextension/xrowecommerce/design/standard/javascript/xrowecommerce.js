@@ -1,31 +1,44 @@
-YUI().use( 'node', function(Y) {
-	Y.on( 'domready', function() {
-		updateSubdivisions( Y.Node.get( '#country' ) );
-		if ( Y.Node.get( '#shipping-checkbox' ) ) {
-			updateSubdivisions( Y.Node.get( '#s_country' ) );
-			Y.on( 'change', function( e ) {
-				if ( Y.Node.get( '#shipping-checkbox' ).get( 'checked' ) )
-				{
-					updateShipping();
-				}
-				updateSubdivisions( e.currentTarget );
-			}, '#country');
-			Y.on( 'change', function( e ) {
-				if ( !Y.Node.get( '#shipping-checkbox' ).get( 'checked' ) )
-				{
-					updateShipping();
-				}
-				updateSubdivisions( e.currentTarget );
-			}, '#s_country');
-			Y.on( 'click', function( e ) {
-				changeShipping();
-	            updateShipping();
-			}, '#shipping-checkbox');
-		}
-		if (Y.Node.get( '#AutomaticDeliveryTooltip' ) && Y.Node.get( '#show_auto_tip' ) ) {
-			AutomaticDeliverTooltip( '#show_auto_tip', '#AutomaticDeliveryTooltip' );
-		}
-	});
+YUI().use( 'node', function(Y)
+{
+    Y.on( 'domready', function() 
+    {
+        if ( Y.Node.get( '#country' ) )
+        {
+            updateSubdivisions( Y.Node.get( '#country' ) );
+        }
+        if ( Y.Node.get( '#shipping-checkbox' ) )
+        {
+            if ( Y.Node.get( '#s_country' ) )
+            {
+                updateSubdivisions( Y.Node.get( '#s_country' ) );
+            }
+            Y.on( 'change', function( e )
+            {
+                if ( Y.Node.get( '#shipping-checkbox' ).get( 'checked' ) )
+                {
+                    updateShipping();
+                }
+                updateSubdivisions( e.currentTarget );
+            }, '#country');
+            Y.on( 'change', function( e )
+            {
+                if ( !Y.Node.get( '#shipping-checkbox' ).get( 'checked' ) )
+                {
+                    updateShipping();
+                }
+                updateSubdivisions( e.currentTarget );
+            }, '#s_country');
+            Y.on( 'click', function( e )
+            {
+                changeShipping();
+                updateShipping();
+            }, '#shipping-checkbox');
+        }
+        if (Y.Node.get( '#AutomaticDeliveryTooltip' ) && Y.Node.get( '#show_auto_tip' ) )
+        {
+            AutomaticDeliverTooltip( '#show_auto_tip', '#AutomaticDeliveryTooltip' );
+        }
+    });
 });
 /* uncomment for debugging
 YUI({
@@ -49,153 +62,167 @@ new Y.Console({
 
 function ShowHide(id)
 {
-	YUI().use( 'node', function(Y) { 
-	    var node = Y.one( id );
-	    if ( node.hasClass( 'hide') )
-	    {
-	    	node.removeClass('hide');
-	    	node.addClass('show');
-	    }
-	    else
-	    {
-	    	node.removeClass('show');
-	    	node.addClass('hide');
-	    }
-	});
+    YUI().use( 'node', function(Y)
+    { 
+        var node = Y.one( id );
+        if ( node.hasClass( 'hide') )
+        {
+            node.removeClass('hide');
+            node.addClass('show');
+        }
+        else
+        {
+            node.removeClass('show');
+            node.addClass('hide');
+        }
+    });
 }
 
 function handleSelect(type,args,obj) 
 {
-	var dates = args[0]; 
-	var date = dates[0];
-	var year = date[0], month = date[1], day = date[2];
-	
-	var txtDate1 = document.getElementById( obj.id + '-date');
-	txtDate1.value = month + '/' + day + '/' + year;
-	ShowHide( obj.id + '-container' );
+    var dates = args[0]; 
+    var date = dates[0];
+    var year = date[0], month = date[1], day = date[2];
+
+    var txtDate1 = document.getElementById( obj.id + '-date');
+    txtDate1.value = month + '/' + day + '/' + year;
+    ShowHide( obj.id + '-container' );
 }
 
 function AutomaticDeliverTooltip( node, box ) 
 {
-	YUI().use( 'node', 'overlay', function(Y) 
-	{ 
-		var WidgetPositionExt = Y.WidgetPositionExt;
-		var overlay = new Y.Overlay({ 
-			      contentBox: box, 
-			      centered: true,
-			      width: '400px' 
-			  }); 
-		overlay.set('align', {node: node, points:[WidgetPositionExt.TC, WidgetPositionExt.BC]});
-		overlay.hide(); 
-		overlay.render(); 
-	    Y.on('mouseover', Y.bind(overlay.show, overlay), node); 
-	    Y.on('mouseout', Y.bind(overlay.hide, overlay), node); 
-	});
+    YUI().use( 'node', 'overlay', function(Y) 
+    {
+        var WidgetPositionExt = Y.WidgetPositionExt;
+        var overlay = new Y.Overlay({ 
+            contentBox: box, 
+            centered: true,
+            width: '400px' 
+        }); 
+        overlay.set('align', {node: node, points:[WidgetPositionExt.TC, WidgetPositionExt.BC]});
+        overlay.hide(); 
+        overlay.render(); 
+        Y.on('mouseover', Y.bind(overlay.show, overlay), node); 
+        Y.on('mouseout', Y.bind(overlay.hide, overlay), node); 
+    });
 }
 
 function ezjson(uri, callback, args) 
 {
-	// Create business logic in a YUI sandbox using the 'io' and 'json' modules
-	YUI().use('node', 'io', 'io-ez', 'dump', 'json-parse', function(Y) 
-	{
-		function onFailure(transactionid, response) {
-			Y.log('Async call failed!');
-		}
-		function onComplete(transactionid, response, callback, args) {
-			// transactionid : The transaction's ID.
-			// response: The response object.
-			// arguments: Object containing an array { complete: ['foo', 'bar']
-			// }.
-			Y.log('RAW JSON DATA: ' + response.responseText);
+    // Create business logic in a YUI sandbox using the 'io' and 'json' modules
+    YUI().use('node', 'io', 'io-ez', 'dump', 'json-parse', function(Y) 
+    {
+        function onFailure(transactionid, response)
+        {
+            Y.log('Async call failed!');
+        }
+        function onComplete(transactionid, response, callback, args)
+        {
+            // transactionid : The transaction's ID.
+            // response: The response object.
+            // arguments: Object containing an array { complete: ['foo', 'bar'] }.
+            Y.log('RAW JSON DATA: ' + response.responseText);
 
-			// Process the JSON data returned from the server
-			try 
-			{
-				var data = null;
-				data = Y.JSON.parse(response.responseText);
-				Y.log('PARSED DATA: ' + Y.Lang.dump(data));
-			} 
-			catch (e) 
-			{
-				Y.log('JSON Parse failed!');
-				return;
-			}
-			callback(data, args);
-		}
-
-		Y.on('io:failure', onFailure, this);
-		Y.on('io:complete', onComplete, this, callback, args);
-
-		// Make the call to the server for JSON data
-		transaction = Y.io('/xrowecommerce/json/' + uri, callback);
-
-	});
+            // Process the JSON data returned from the server
+            try 
+            {
+                var data = null;
+                data = Y.JSON.parse(response.responseText);
+                Y.log('PARSED DATA: ' + Y.Lang.dump(data));
+            } 
+            catch (e) 
+            {
+                Y.log('JSON Parse failed!');
+                return;
+            }
+            callback(data, args);
+        }
+        
+        Y.on('io:failure', onFailure, this);
+        Y.on('io:complete', onComplete, this, callback, args);
+        
+        // Make the call to the server for JSON data
+        transaction = Y.io('/xrowecommerce/json/' + uri, callback);
+    });
 }
 
 function updateSubdivisions( country_node ) 
 {
-	YUI().use( 'node', 'io', 'io-ez', function( Y )
-	{
-		var country = country_node.get( 'options' ).item( country_node.get( 'selectedIndex' ) ).get( 'value' );
-
-		Y.io.ez( 'xrowecommerce::getSubdivisions::' + country, 
+    YUI().use( 'node', 'io', 'io-ez', function( Y )
+    {
+        var country = country_node.get( 'options' ).item( country_node.get( 'selectedIndex' ) ).get( 'value' );
+        
+        Y.io.ez( 'xrowecommerce::getSubdivisions::' + country, 
         {
-        	arguments: country_node,
-        	on: 
-        	{
-        		success: function( id, r, country_node)
-        		{
-					YUI().use('node', function(Y) 
-					{
-						var data = r.responseJSON.content;
-						
-						if( country_node.get('id') == 'country' )
-						{
-							var subdivision_node = Y.Node.get( '#state' );
-						}
-						else
-						{
-							var subdivision_node = Y.Node.get( '#s_state' );
-						}
-						
-						// If state is selected: get the old value for checking it later
-						if ( subdivision_node.get( 'selectedIndex' ) > 0 )
-						{
-							var stateSelIndex = subdivision_node.get( 'selectedIndex' );
-							var oldStateValue = subdivision_node.get( 'options' ).item( stateSelIndex ).get( 'value' );
-						}
-						
-								
-						var nodes = subdivision_node.all( 'option' );
-						var deleteNodes = function(n, a, b) {
-							n.get( 'parentNode' ).removeChild(n);
-						};
-						nodes.each(deleteNodes);
-						var node = Y.Node.create( '<option>&nbsp;</option>' );
-						subdivision_node.appendChild(node);
-						for (i in data ) 
-						{
-							if (oldStateValue == data[i]) 
-							{
-								var stateSelected = i;
-							}
-							var node = Y.Node.create( '<option value="' + i + '">' + data[i] + '</option>' );
-							subdivision_node.appendChild(node);
-						}
-						if (typeof (stateSelected) != 'undefined') 
-						{
-							subdivision_node.set('selectedIndex', selected);
-						}
-						else
-						{
-							subdivision_node.set('selectedIndex', 0);
-						}
-						
-					});
-				}
+            arguments: country_node,
+            on: 
+            {
+                success: function( id, r, country_node)
+                {
+                    YUI().use('node', function(Y) 
+                    {
+                        var data = r.responseJSON.content;
+
+                        if( country_node.get('id') == 'country' )
+                        {
+                            var subdivision_node = Y.Node.get( '#state' );
+                        }
+                        else
+                        {
+                            var subdivision_node = Y.Node.get( '#s_state' );
+                        }
+
+                        // If state is selected: get the old value for checking it later
+                        if ( subdivision_node.get( 'selectedIndex' ) > 0 )
+                        {
+                            var stateSelIndex = subdivision_node.get( 'selectedIndex' );
+                            var oldStateValue = subdivision_node.get( 'options' ).item( stateSelIndex ).get( 'value' );
+                        }
+
+                        if ( !oldStateValue )
+                        {
+                            if( country_node.get('id') == 'country' && Y.Node.get( '#hidden_state' ) )
+                            {
+                                var oldStateValue = Y.Node.get( '#hidden_state' ).get( 'value' );
+                            }
+                            else if ( country_node.get('id') == 's_country' && Y.Node.get( '#hidden_s_state' ) )
+                            {
+                                var oldStateValue = Y.Node.get( '#hidden_s_state' ).get( 'value' );
+                            }
+                        }
+
+                        var nodes = subdivision_node.all( 'option' );
+                        var deleteNodes = function(n, a, b)
+                        {
+                            n.get( 'parentNode' ).removeChild(n);
+                        };
+                        nodes.each(deleteNodes);
+                        var node = Y.Node.create( '<option>&nbsp;</option>' );
+                        subdivision_node.appendChild(node);
+                        var index = 0;
+                        for (i in data ) 
+                        {
+                            index++;
+                            if (oldStateValue == i) 
+                            {
+                                var stateSelected = index;
+                            }
+                            var node = Y.Node.create( '<option value="' + i + '">' + data[i] + '</option>' );
+                            subdivision_node.appendChild(node);
+                        }
+                        if ( typeof( stateSelected ) != 'undefined' ) 
+                        {
+                            subdivision_node.set( 'selectedIndex', stateSelected );
+                        }
+                        else
+                        {
+                            subdivision_node.set('selectedIndex', 0);
+                        }
+                    });
+                }
             }
         });
-	});
+    });
 }
 
 function updateShipping() 
@@ -239,29 +266,29 @@ function updateShipping()
 				n.get('parentNode').removeChild(n);
 			};
 			nodes.each(deleteNodes);
+			var node = Y.Node.create('<option>&nbsp;</option>');
 			for (i = 0; i < data.length; i++) 
 			{
-				if (data[i][2] == false) 
+				if ( data[i][2] == false ) 
 				{
 					var node = Y.Node.create('<option value="' + data[i][1] + '" disabled>' + data[i][0] + '</option>');
 				} 
 				else 
 				{
-					if (old == data[i][1]) 
+					if ( old == data[i][1] ) 
 					{
 						var selected = i;
 					}
 					var node = Y.Node.create('<option value="' + data[i][1] + '">' + data[i][0] + '</option>');
 				}
 	
-				Y.Node.get('#shippingtype').appendChild(node);
+				Y.Node.get( '#shippingtype' ).appendChild( node );
 			}
-
 			if (typeof (selected) != 'undefined') 
 			{
 				Y.Node.get('#shippingtype').set('selectedIndex', selected);
 			} 
-			else if ( oldShippSelIndex != 'undefined' )
+			else if ( oldShippSelIndex )
 			{
 				if ( Y.Node.get( '#shippingtype' ).get( 'selectedIndex' ) != -1 )
 				{
@@ -270,7 +297,10 @@ function updateShipping()
 					var newShippSelIndex = Y.Node.get( '#shippingtype' ).get( 'selectedIndex' );
 					var newname = Y.Node.get( '#shippingtype' ).get( 'options' ).item( newShippSelIndex ).get( 'text' );
 					replace['%new%'] = newname;
-					ez18nAlert("The shipping method '%old%' is not available for your country of destination and was changed to '%new%'.", replace);
+					if ( oldname )
+					{
+						ez18nAlert("The shipping method '%old%' is not available for your country of destination and was changed to '%new%'.", replace);
+					}
 				}
 			}
 			Y.log('INFO2: ' + Y.Lang.dump(Y.Node.get('#shippingtype').get('options')));
@@ -308,48 +338,111 @@ function ez18nAlert(text, args)
 	
 function changeShipping() 
 {
-	YUI().use('node', function(Y) 
-	{
-		if (Y.Node.get('#shipping-checkbox').get('checked')) 
-		{
-			Y.Node.get('#shippinginfo').setStyle('display', 'none');
-		} 
-		else 
-		{
-			Y.Node.get('#shippinginfo').setStyle('display', 'block');
-			if (document.register.company_name) 
-			{
-				document.register.s_company_name.value = document.register.company_name.value;
-			}
-			if (document.register.company_additional) 
-			{
-				document.register.s_company_additional.value = document.register.company_additional.value;
-			}
-			if (document.register.mi) 
-			{
-				document.register.s_mi.value = document.register.mi.value;
-			}
-			if (document.register.state) 
-			{
-				document.register.s_state.value = document.register.state.value;
-			}
-			document.register.s_first_name.value = document.register.first_name.value;
-			document.register.s_last_name.value = document.register.last_name.value;
+    YUI().use( 'node', function(Y) 
+    {
+        if (Y.Node.get( '#shipping-checkbox' ).get( 'checked' ) ) 
+        {
+            Y.Node.get( '#shippinginfo' ).setStyle( 'display', 'none' );
+        } 
+        else 
+        {
+            Y.Node.get( '#shippinginfo' ).setStyle('display', 'block' );
+            /*if (document.register.company_name) 
+            {
+                document.register.s_company_name.value = document.register.company_name.value;
+            }*/
+            if ( Y.Node.get( '#s_company_name' ) && Y.Node.get( '#company_name' ) && Y.Node.get( '#company_name' ).get( 'value' ) != '' )
+            {
+                Y.Node.get( '#s_company_name' ).set( 'value', Y.Node.get( '#company_name' ).get( 'value' ) );
+            }
 
-			document.register.s_zip.value = document.register.zip.value;
-			document.register.s_phone.value = document.register.phone.value;
-			if (Y.Node.get('#fax') && Y.Node.get('#s_fax')) 
-			{
-				document.register.s_fax.value = document.register.fax.value;
-			}
-			document.register.s_email.value = document.register.email.value;
-			document.register.s_address1.value = document.register.address1.value;
-			if (Y.Node.get('#address2') && Y.Node.get('#s_address2')) 
-			{
-				document.register.s_address2.value = document.register.address2.value;
-			}
-			document.register.s_city.value = document.register.city.value;
-			document.register.s_country.selectedIndex = document.register.country.selectedIndex;
+            /*if (document.register.company_additional) 
+            {
+                document.register.s_company_additional.value = document.register.company_additional.value;
+            }*/
+            if ( Y.Node.get( '#s_company_additional' ) && Y.Node.get( '#company_additional' ) && Y.Node.get( '#company_additional' ).get( 'value' ) != '' )
+            {
+                Y.Node.get( '#s_company_additional' ).set( 'value', Y.Node.get( '#company_additional' ).get( 'value' ) );
+            }
+
+            //document.register.s_first_name.value = document.register.first_name.value;
+            if ( Y.Node.get( '#s_first_name' ) && Y.Node.get( '#first_name' ) && Y.Node.get( '#first_name' ).get( 'value' ) != '' )
+            {
+                Y.Node.get( '#s_first_name' ).set( 'value', Y.Node.get( '#first_name' ).get( 'value' ) );
+            }
+
+            /*if (document.register.mi) 
+            {
+                document.register.s_mi.value = document.register.mi.value;
+	        }*/
+            if ( Y.Node.get( '#s_mi' ) && Y.Node.get( '#mi' ) && Y.Node.get( '#mi' ).get( 'value' ) != '' )
+            {
+                Y.Node.get( '#s_mi' ).set( 'value', Y.Node.get( '#mi' ).get( 'value' ) );
+            }
+
+            //document.register.s_last_name.value = document.register.last_name.value;
+            if ( Y.Node.get( '#s_last_name' ) && Y.Node.get( '#last_name' ) && Y.Node.get( '#last_name' ).get( 'value' ) != '' )
+            {
+                Y.Node.get( '#s_last_name' ).set( 'value', Y.Node.get( '#last_name' ).get( 'value' ) );
+            }
+
+            //document.register.s_address1.value = document.register.address1.value;
+            if ( Y.Node.get( '#s_address1' ) && Y.Node.get( '#address1' ) && Y.Node.get( '#address1' ).get( 'value' ) != '' ) 
+            {
+                Y.Node.get( '#s_address1' ).set( 'value', Y.Node.get( '#address1' ).get( 'value' ) );
+            }
+
+            /*if (Y.Node.get('#address2') && Y.Node.get('#s_address2')) 
+            {
+                document.register.s_address2.value = document.register.address2.value;
+            }*/
+            if ( Y.Node.get( '#s_address2' ) && Y.Node.get( '#address2' ) && Y.Node.get( '#address2' ).get( 'value' ) != '' ) 
+            {
+                Y.Node.get( '#s_address2' ).set( 'value', Y.Node.get( '#address2' ).get( 'value' ) );
+            }
+
+            //document.register.s_city.value = document.register.city.value;
+            if ( Y.Node.get( '#s_city' ) && Y.Node.get( '#city' ) && Y.Node.get( '#city' ).get( 'value' ) != '' ) 
+            {
+                Y.Node.get( '#s_city' ).set( 'value', Y.Node.get( '#city' ).get( 'value' ) );
+            }
+
+            //document.register.s_zip.value = document.register.zip.value;
+            if ( Y.Node.get( '#s_zip' ) && Y.Node.get( '#zip' ) && Y.Node.get( '#zip' ).get( 'value' ) != '' )
+            {
+                Y.Node.get( '#s_zip' ).set( 'value', Y.Node.get( '#zip' ).get( 'value' ) );
+            }
+
+            //document.register.s_country.selectedIndex = document.register.country.selectedIndex;
+            if ( Y.Node.get( '#s_country' ) && Y.Node.get( '#country' ) && Y.Node.get( '#country' ).get( 'selectedIndex' ) != '' )
+            {
+                Y.Node.get( '#s_country' ).set( 'selectedIndex', Y.Node.get( '#country' ).get( 'selectedIndex' ) );
+                updateSubdivisions( Y.Node.get( '#s_country' ) );
+            }
+            
+            //document.register.s_state.selectedIndex = document.register.state.selectedIndex;
+            if ( Y.Node.get( '#s_state' ) && Y.Node.get( '#state' ) && Y.Node.get( '#state' ).get( 'selectedIndex' ) != '' )
+            {
+                Y.Node.get( '#s_state' ).set( 'selectedIndex', Y.Node.get( '#state' ).get( 'selectedIndex' ) );
+            }
+
+            //document.register.s_phone.value = document.register.phone.value;
+            if ( Y.Node.get( '#s_phone' ) && Y.Node.get( '#phone' ) && Y.Node.get( '#phone' ).get( 'value' ) != '' )
+            {
+                Y.Node.get( '#s_phone' ).set( 'value', Y.Node.get( '#phone' ).get( 'value' ) );
+            }
+
+            //document.register.s_fax.value = document.register.fax.value;
+            if ( Y.Node.get( '#s_fax' ) && Y.Node.get( '#fax' ) && Y.Node.get( '#fax' ).get( 'value' ) != '' ) 
+            {
+               Y.Node.get( '#s_fax' ).set( 'value', Y.Node.get( '#fax' ).get( 'value' ) );
+            }
+
+            //document.register.s_email.value = document.register.email.value;
+            if ( Y.Node.get( '#s_email' ) && Y.Node.get( '#email' ) && Y.Node.get( '#email' ).get( 'value' ) != '' ) 
+            {
+                Y.Node.get( '#s_email' ).set( 'value', Y.Node.get( '#email' ).get( 'value' ) );
+            }
 
 		}
 	});
