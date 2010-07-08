@@ -1,4 +1,4 @@
-<?php /* #?ini charset="utf-8"?
+﻿<?php /* #?ini charset="utf-8"?
 
 [ExtensionSettings]
 DesignExtensions[]=xrowecommerce
@@ -6,8 +6,6 @@ DesignExtensions[]=xrowecommerce
 [JavaScriptSettings]
 FrontendJavaScriptList[]=xrowecommerce.js
 BackendJavaScriptList[]=xrowproductvariation.js
-
-[JavaScriptSettings]
 JavaScriptList[]=xrowproductvariation.js
 JavaScriptList[]=xrowecommerce.js
 
