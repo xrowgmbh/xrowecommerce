@@ -1,8 +1,6 @@
 <?php
-include_once( 'lib/ezutils/classes/ezcli.php' );
-include_once( 'lib/ezutils/classes/ezextension.php' );
-include_once( 'kernel/classes/ezscript.php' );
-include_once( eZExtension::baseDirectory() . '/recurringorders/classes/xrowrecurringorderscommonfunctions.php' );
+/*
+require_once 'autoload.php';
 
 $cli = eZCLI::instance();
 $script = eZScript::instance( array( 'description' => ( 'eZ publish recurring orders\n' .
@@ -19,40 +17,44 @@ $options = $script->getOptions( '',
 $sys = eZSys::instance();
 
 $script->initialize();
+*/
 if ( !$isQuiet )
 {
-    
     $cli->output( 'Using Siteaccess '.$GLOBALS['eZCurrentAccess']['name'] );
-    
 }
 
 // login as admin
-include_once( 'kernel/classes/datatypes/ezuser/ezuser.php' );
+
 $user = eZUser::fetchByName( 'admin' );
 
 if ( is_object( $user ) )
 {
-	if ( $user->loginCurrent() )
-	{
-	   $cli->output( 'Logged in as "admin"' );
-	}
+    if ( $user->loginCurrent() )
+    {
+       $cli->output( 'Logged in as "admin"' );
+    }
 }
 else
 {
-	$cli->error( 'No admin.' );
+    $cli->error( 'No admin.' );
     $script->shutdown( 1 );
 }
 
-include_once( 'extension/recurringorders/classes/recurringordercollection.php');
 $cli->output( 'Today is ' . strftime( '%d.%m.%Y', XROWRecurringOrderCollection::now() ) );
 
 $list = XROWRecurringOrderCollection::fetchAll();
+#var_dump( $list );
+#echo "naechstes mal: ";
+#$date = $list[0]->attribute("last_run");
+#echo strftime( '%d.%m.%Y %H:%M', $date );
+
 foreach ( $list as $collection )
 {
     $cli->output( 'Processing Collection #' . $collection->id );
     $collection->markRun();
     $user = $collection->attribute( 'user' );
-    if ( $collection->attribute( 'status' ) == XROWRECURRINGORDER_STATUS_DEACTIVATED )
+    #var_dump( $collection );
+    if ( $collection->attribute( 'status' ) == XROWRecurringOrderCollection::STATUS_DEACTIVATED )
     {
         $cli->output( 'Collection #' . $collection->id . ' deactivated' );
         continue;
@@ -71,14 +73,12 @@ foreach ( $list as $collection )
     if ( $cccheck !== true )
     {
         $collection->sendMail( 'design:recurringorders/email/check_payment.tpl' );
-        $collection->addHistory( XROWRECURRINGORDER_STATUSTYPE_CREDITCARD_EXPIRES, 'Creditcard expires' );
+        $collection->addHistory( XROWRecurringOrderCollection::STATUSTYPE_CREDITCARD_EXPIRES, 'Creditcard expires' );
         
         // credit card error
         $cli->output( 'Collection #' . $collection->id . ' credit card error' );
         continue;
     }
-
-    include_once( 'kernel/classes/ezshopaccounthandler.php' );
 
     $accountHandler = eZShopAccountHandler::instance();
     // Do we have all the information we need to start the checkout
@@ -144,20 +144,20 @@ foreach ( $list as $collection )
         {
             if (  isset( $operationResult['redirect_url'] ) )
             {
-                $collection->addHistory( XROWRECURRINGORDER_STATUSTYPE_FAILURE, 'Order has been processed with a strange result.', $order->ID );
+                $collection->addHistory( XROWRecurringOrderCollection::STATUSTYPE_FAILURE, 'Order has been processed with a strange result.', $order->ID );
                 $order->remove();
                 continue 2;
             }
             else if ( isset( $operationResult['result'] ) )
             {
-                $collection->addHistory( XROWRECURRINGORDER_STATUSTYPE_FAILURE, 'Order has been processed with a strange result.', $order->ID );
+                $collection->addHistory( XROWRecurringOrderCollection::STATUSTYPE_FAILURE, 'Order has been processed with a strange result.', $order->ID );
                 $order->remove();
                 continue 2;
             }
         }break;
         case EZ_MODULE_OPERATION_CANCELED:
         {
-            $collection->addHistory( XROWRECURRINGORDER_STATUSTYPE_FAILURE, 'Order has been CANCELED.', $order->ID );
+            $collection->addHistory( XROWRecurringOrderCollection::STATUSTYPE_FAILURE, 'Order has been CANCELED.', $order->ID );
             $order->remove();
             continue 2;
         }break;
@@ -174,9 +174,10 @@ foreach ( $list as $collection )
         $item->store();
         $cli->output( '  Item #' . $item->item_id . ' next order is on ' . strftime( '%d.%m.%Y', $item->attribute( 'next_date' ) ) );
     }
-    $collection->addHistory( XROWRECURRINGORDER_STATUSTYPE_SUCCESS, 'Order has been completed.', $order->ID ); 
+    $collection->addHistory( XROWRecurringOrderCollection::STATUSTYPE_SUCCESS, 'Order has been completed.', $order->ID ); 
 }
 $cli->output( 'Recurring Orders processed' );
-
+/*
 $script->shutdown();
+*/
 ?>

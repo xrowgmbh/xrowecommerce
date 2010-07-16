@@ -24,258 +24,258 @@ div#page
 
 .yui-overlay
 {
-	position: absolute;
-	background: #fff;
-	border: 1px dotted black;
-	padding: 5px;
-	margin: 10px;
+    position: absolute;
+    background: #fff;
+    border: 1px dotted black;
+    padding: 5px;
+    margin: 10px;
 }
 
 input.right-arrow
 {
-	position: relative;
-	right: 0px;
+    position: relative;
+    right: 0px;
 
 }
 tr.quickbasket_dark
 {
-	background: #EAF2E4;
+    background: #EAF2E4;
 }
 
 div.overlay
 {
-	position: fixed;
-	top: 50px;
-	margin-left: 260px;
-	background-color: #ffffff;
-	border: 1px solid #385617;
-	padding: 1em 0 1em 0;
-	text-align: center;
+    position: fixed;
+    top: 50px;
+    margin-left: 260px;
+    background-color: #ffffff;
+    border: 1px solid #385617;
+    padding: 1em 0 1em 0;
+    text-align: center;
 }
 div.overlay span.row-hr
 {
-	background: #EAF2E4;
-	padding: 0.2em 10px;
-	border-bottom: solid 1px #375617;
+    background: #EAF2E4;
+    padding: 0.2em 10px;
+    border-bottom: solid 1px #375617;
 }
 
 div.overlay span.row-td
 {
-	padding: 0 10px 0 10px;
+    padding: 0 10px 0 10px;
 }
 
 div.overlay span.row-hr, div.overlay span.row-td
 {
-	float: left;
-	clear: left;
-	margin: auto 1em auto 1em;
+    float: left;
+    clear: left;
+    margin: auto 1em auto 1em;
 }
 
 div.overlay span.row-hr span, div.overlay span.row-td span
 {
-	width: 120px;
-	text-align: left;
-	float: left;
+    width: 120px;
+    text-align: left;
+    float: left;
 }
 
 div.overlay span.row-hr span
 {
-	font-weight: bold;
-	text-transform: uppercase;
+    font-weight: bold;
+    text-transform: uppercase;
 }
 
 div.overlay img
 {
-	padding: 0;
-	margin: 0;
+    padding: 0;
+    margin: 0;
 }
 
 div.overlay h3
 {
-	color: #ffffff;
-	line-height: 1em;
-	padding: 0.7em 1em 0.3em 1em;
-	text-align: left;
+    color: #ffffff;
+    line-height: 1em;
+    padding: 0.7em 1em 0.3em 1em;
+    text-align: left;
 }
 
 div.overlay h4
 {
-	text-align: left;
-	padding: 1em 1em 0 1em;
+    text-align: left;
+    padding: 1em 1em 0 1em;
 }
 
 div.overlay p
 {
-	text-align: left;
-	padding: 1em 1em 0 1em;
-	margin: 0;
+    text-align: left;
+    padding: 1em 1em 0 1em;
+    margin: 0;
 }
 
 table.quickorder_products tr td a
 {
-	text-decoration: underline;
-	font-size: 11px;
+    text-decoration: underline;
+    font-size: 11px;
 }
 
 div.xrow-registerbox
 {
-	border: 1px solid #ebeeef;
-	width: 320px;
-	float: left;
-	display: inline;
-	margin:5px;
-	padding: 8px;
+    border: 1px solid #ebeeef;
+    width: 320px;
+    float: left;
+    display: inline;
+    margin:5px;
+    padding: 8px;
 }
 
 div.xrow-loginbox
 {
-	clear: both;
-	border: 1px solid #ebeeef;
-	width: 320px;
-	float: left;
-	display: inline;
-	margin:5px;
-	padding: 8px;
+    clear: both;
+    border: 1px solid #ebeeef;
+    width: 320px;
+    float: left;
+    display: inline;
+    margin:5px;
+    padding: 8px;
 }
 
 .order_left
 {
-	float: left;
+    float: left;
 }
 
 table.order_box
 {
-	width: 100%;
-	margin-top: 1em;
-	margin-bottom: 1em;
-	vertical-align: top;
+    width: 100%;
+    margin-top: 1em;
+    margin-bottom: 1em;
+    vertical-align: top;
 }
 table.order_box th
 {
-	width: 240px;
-	padding-bottom: 5px;
-	padding-left: 15px;
-	text-align: left;
+    width: 240px;
+    padding-bottom: 5px;
+    padding-left: 15px;
+    text-align: left;
 }
 table.order_box td
 {
-	text-align: left;
-	padding-bottom: 5px;
+    text-align: left;
+    padding-bottom: 5px;
 }
 
 div.loginbox_wrap *
 {
-	float: left;
-	margin-left: 4px;
+    float: left;
+    margin-left: 4px;
 }
 
 div.loginbox
 {
-	clear: both;
-	border: 1px solid #ccc;
-	float: right;
-	height: auto;
-	width: 200px;
-	padding: 10px 10px 0 10px;
-	margin: 15px 0 35px 0;
-	background-color:#ffe;
+    clear: both;
+    border: 1px solid #ccc;
+    float: right;
+    height: auto;
+    width: 200px;
+    padding: 10px 10px 0 10px;
+    margin: 15px 0 35px 0;
+    background-color:#ffe;
 }
 
 div.loginbox input
 {
-	border-color: #D3D5D6;
+    border-color: #D3D5D6;
 }
 
 div.loginbox p
 {
-	color: #565969;
-	margin-left: 4px;
+    color: #565969;
+    margin-left: 4px;
 }
 
 div.warning p
 {
-	font-weight: bold;
+    font-weight: bold;
 }
 
 div.coupon
 {
-	border: 1px solid #d3d5d6;
-	padding: 12px;
-	margin: 15px 0 15px 0;
+    border: 1px solid #d3d5d6;
+    padding: 12px;
+    margin: 15px 0 15px 0;
 }
 
 input.shop_full
 {
-	width: 580px !important;
+    width: 580px !important;
 }
 input.shop_half
 {
-	width: 270px !important;
+    width: 270px !important;
 }
 input.shop_quater
 {
-	width: 120px !important;
+    width: 120px !important;
 }
 
 div.country
 {
-	width: 180px;
-	display: inline;
-	float: left;
+    width: 180px;
+    display: inline;
+    float: left;
 }
 
 div.zip
 {
-	width: 90px;
-	display: inline;
-	float: left;
+    width: 90px;
+    display: inline;
+    float: left;
 }
 
 div.state
 {
-	width: 90px;
-	display: inline;
-	float: left;
+    width: 90px;
+    display: inline;
+    float: left;
 }
 
 select.state
 {
-	width: 80px;
-	float: left;
+    width: 80px;
+    float: left;
 }
 
 div.city
 {
-	width: 200px;
-	display: inline;
-	float: left;
+    width: 200px;
+    display: inline;
+    float: left;
 }
 
 div.ur_lastname
 {
-	margin-right: 0px;
-	width: 290px;
-	float: left;
+    margin-right: 0px;
+    width: 290px;
+    float: left;
 }
 
 div.ur_firstname
 {
-	margin-right: 20px;
-	width: 290px;
-	float: left;
+    margin-right: 20px;
+    width: 290px;
+    float: left;
 }
 
 div.ur_mi
 {
-	margin-right: 30px;
-	width: 35px;
-	display: inline;
-	float: left;
+    margin-right: 30px;
+    width: 35px;
+    display: inline;
+    float: left;
 }
 ul#gateways li
 {
-	list-style: none;
-	vertical-align: middle;
+    list-style: none;
+    vertical-align: middle;
 }
 ul#gateways li *
 {
@@ -288,138 +288,138 @@ div.additional-information,
 div.coupon,
 div.accountinfo
 {
-	margin-top: 15px;
-	border: 1px solid #d3d5d6;
-	padding: 5px;
-	background-color:#ffe;
+    margin-top: 15px;
+    border: 1px solid #d3d5d6;
+    padding: 5px;
+    background-color:#ffe;
 }
 
 div.billing label,
 div.shipping label
 {
-	font-size: 0.9em;
+    font-size: 0.9em;
 }
 
 div.class-xrow-commerce div.height
 {
-	height: 100%;
+    height: 100%;
 }
 
 div.class-xrow-commerce div.attribute-image
 {
-	border: #c2d5bd solid 1px;
-	float: left;
-	margin: 0 10px 0 10px;
+    border: #c2d5bd solid 1px;
+    float: left;
+    margin: 0 10px 0 10px;
 }
 div.class-xrow-commerce div.attribute-image note
 {
-	float: none;
-	font-size: 0.5em;
+    float: none;
+    font-size: 0.5em;
 }
 div.class-xrow-commerce div.attribute-image img
 {
-	cursor: pointer
+    cursor: pointer
 }
-	
+    
 div.class-xrow-commerce table.list
 {
-	width: 100%;
-	float: left;
-	margin-right: 10px;
-	clear: both;
+    width: 100%;
+    float: left;
+    margin-right: 10px;
+    clear: both;
 }
 
 div.class-xrow-commerce div.attribute-short-wide
 {
-	float: left;
-	padding: 10px 0 10px 0;
-	clear: both;
+    float: left;
+    padding: 10px 0 10px 0;
+    clear: both;
 }
 
 div.class-xrow-commerce div.attribute-price
 {
-	float: left;
-	clear: left;
+    float: left;
+    clear: left;
 }
 
 div.class-xrow-commerce div.attribute-price *
 {
-	float: left;
-	clear: left;
+    float: left;
+    clear: left;
 }
 
 div.class-xrow-commerce h1
 {
-	padding: 10px 10px 1em 10px;
-	font-size: 12px;
+    padding: 10px 10px 1em 10px;
+    font-size: 12px;
 }
 div.class-xrow-commerce h4
 {
-	width: 300px;
-	float: right;	
+    width: 300px;
+    float: right;    
 }
 
 .align_right
 {
-	text-align: right !important;
+    text-align: right !important;
 }
 
 table.order tr td
 {
-	padding-left: 5px;
-	padding-right: 5px;
+    padding-left: 5px;
+    padding-right: 5px;
 
-	border: 0;
-	vertical-align: top;
-	text-align: left;
+    border: 0;
+    vertical-align: top;
+    text-align: left;
 }
 
 table.order tr th
 {
-	padding: 2px 5px 0px 5px;
-	color: #fff;
-	border: 0;
-	vertical-align: top;
-	text-align: center;
+    padding: 2px 5px 0px 5px;
+    color: #fff;
+    border: 0;
+    vertical-align: top;
+    text-align: center;
 }
 
 table.order tr td span
 {
-	color: #3366CC;
-	border: 0;
-	vertical-align: top;
-	text-align: left;
-	float: left;
+    color: #3366CC;
+    border: 0;
+    vertical-align: top;
+    text-align: left;
+    float: left;
 }
 
 table.order
 {
-	border-spacing: 0px;
-	border-collapse: collapse;
-	width: 100%;
+    border-spacing: 0px;
+    border-collapse: collapse;
+    width: 100%;
 }
 
 table.order caption
 {
-	margin-bottom: 1em; 
+    margin-bottom: 1em; 
 }
 
 table.order tr.lightbg th
 {
-	background:#DAEAED url(images/th_bg.jpg) repeat-x scroll left center;
-	color:#342E15;
-	font-weight:bold;
-	height:20px;
-	margin-bottom:10px;
-	padding-left:5px;
-	text-align:left;
-	white-space:nowrap
+    background:#DAEAED url(images/th_bg.jpg) repeat-x scroll left center;
+    color:#342E15;
+    font-weight:bold;
+    height:20px;
+    margin-bottom:10px;
+    padding-left:5px;
+    text-align:left;
+    white-space:nowrap
 }
 input.quantity
 {
-	border: 1px solid #d3d5d6; 
-	padding: 2px; 
-	text-align: right;
+    border: 1px solid #d3d5d6; 
+    padding: 2px; 
+    text-align: right;
 }
 
 input.shopping_cart_checkbox,
@@ -427,44 +427,44 @@ input.cos,
 input.no_partial_delivery,
 input.shipping-checkbox
 {
-	border:0px;
+    border:0px;
 }
 
 table.order tr.product-line td
 {
-	border-top: solid 1px #E0E0E0;
-	padding-top: 5px;
-	padding-bottom: 5px;
+    border-top: solid 1px #E0E0E0;
+    padding-top: 5px;
+    padding-bottom: 5px;
 }
 table.order tr.line td,
 table.order tr td.line,
 table.order tr.tax-line td,
 table.order tr.orderitem-line td
 {
-	padding-top: 5px;
-	padding-bottom: 5px;
+    padding-top: 5px;
+    padding-bottom: 5px;
 }
 
 table.order tr.subtotal-line td
 {
-	border-top: solid 1px #E0E0E0;
-	padding-top: 10px;
-	padding-bottom: 5px; 
+    border-top: solid 1px #E0E0E0;
+    padding-top: 10px;
+    padding-bottom: 5px; 
 }
 table.order tr.grandtotal-line td
 {
-	border-top: double 4px #E0E0E0;
-	padding-top: 10px;
-	padding-bottom: 10px;
+    border-top: double 4px #E0E0E0;
+    padding-top: 10px;
+    padding-bottom: 10px;
 }
 table.order tr.bgdark
 {
-	background-color:#fff;
+    background-color:#fff;
 }
 
 div.buttonblock, div.linkbuttonblock
 {
-	margin-bottom: 1em;
+    margin-bottom: 1em;
 }
 div.shop-payment div.breakline
 {
@@ -472,28 +472,28 @@ div.shop-payment div.breakline
     border-top: 1px solid #cccccc; 
     margin-top: 1.1em; 
     margin-bottom: 0.7em;
-	clear: both;
-	font-size: 5px;
-	height: 1px;
+    clear: both;
+    font-size: 5px;
+    height: 1px;
 }
 div.linkbuttonblock
 {
-	border-top:1px solid #ccc;
-	border-bottom:1px solid #ccc;
-	padding:5px 0px 5px 0px;
+    border-top:1px solid #ccc;
+    border-bottom:1px solid #ccc;
+    padding:5px 0px 5px 0px;
 }
 div.shop-payment
 {
-	padding:5px 0px 5px 0px;
+    padding:5px 0px 5px 0px;
 }
 
 div.shopping_cart_path
 {
-	background: #DAEAED url(../images/th_bg.jpg) left center repeat-x;
-	color: #8F8F8F;
-	font-weight: bold;
-	text-align: left;
-	white-space: nowrap;
+    background: #DAEAED url(../images/th_bg.jpg) left center repeat-x;
+    color: #8F8F8F;
+    font-weight: bold;
+    text-align: left;
+    white-space: nowrap;
     margin-bottom: 10px; 
     padding-left: 5px;
     height:20px;
@@ -501,218 +501,218 @@ div.shopping_cart_path
 
 div.shopping_cart_path div
 {
-	float: left;
-	padding-right: 1.5em;
-	padding-top:3px;
+    float: left;
+    padding-right: 1.5em;
+    padding-top:3px;
 }
 
 div.shopping_cart_path_select
 {
-	float: left;
-	color: #000;
+    float: left;
+    color: #000;
 }
 div.buttonblock, div.linkbuttonblock
 {
-	clear:both;
-	padding-top: 1em;
+    clear:both;
+    padding-top: 1em;
 }
 
 div.product-cell div.product-image
 {
-	float: left;
-	margin-right: 5px;
+    float: left;
+    margin-right: 5px;
 }
 p.product-id,
 p.product-link,
 p.product-description,
 p.product-weight
 {
-	margin-left: 80px;
+    margin-left: 80px;
 }
 
 div.shop div.block
 {
-	margin-right: 1em;
-	margin-bottom:0;
+    margin-right: 1em;
+    margin-bottom:0;
 }
 
 /***** Payment ******/
 div.payment_error
 {
-	border: 1px solid red;
-	width: 350px;
-	padding: 5px;
+    border: 1px solid red;
+    width: 350px;
+    padding: 5px;
 }
 
 table.order tr td.price,
 table.order tr td.totalprice
 {
-	white-space:nowrap;
-	text-align: right;
-	padding-right:5px;
+    white-space:nowrap;
+    text-align: right;
+    padding-right:5px;
 }
 
 table.order tr td.position
 {
-	text-align: center;
+    text-align: center;
 }
 
 table.order tr td.quantity
 {
-	text-align: right;
+    text-align: right;
 }
 
 table.order tr.grandtotal-line td.totalprice
 {
-	font-weight: bold;
+    font-weight: bold;
 }
 
 table.order tr td.delete
 {
-	white-space:nowrap;
-	text-align: center;
+    white-space:nowrap;
+    text-align: center;
 }
 table.order tr td.delete input
 {
-	margin: 0;
+    margin: 0;
 }
 
 input#delete-button-icon
 {
-	text-decoration:none;
-	background-color: #369;
-	border: 0px;
-	margin: 0px;
-	padding: 0px;
+    text-decoration:none;
+    background-color: #369;
+    border: 0px;
+    margin: 0px;
+    padding: 0px;
 }
 
 input.linkbutton2
 {
-	font-size: 0.7em !important;
-	font-weight: bold;
-	background-color: #ccc;
-	background-image: none;
-	border: 1px solid #369;
-	color: #369;
+    font-size: 0.7em !important;
+    font-weight: bold;
+    background-color: #ccc;
+    background-image: none;
+    border: 1px solid #369;
+    color: #369;
  }
 table#configurator *
 {
-	margin: 0;
-	padding: 0;
+    margin: 0;
+    padding: 0;
 }
 div.shop-confirmorder div#buttonblock-top
 {
-	display: none;
+    display: none;
 }
 input.hide,
 button.hide
 {
-	display: none;
+    display: none;
 }
 cos-content-label
 {
-	margin-top: 2em;
+    margin-top: 2em;
 }
 div#cos-content
 { 
-	padding:5px;
-	height: 300px;
-	overflow-y:scroll;
-	margin-top: 1em;
-	margin-bottom: 2em; 
-	border:1px solid #ddd;
-	background-color:#eee;
+    padding:5px;
+    height: 300px;
+    overflow-y:scroll;
+    margin-top: 1em;
+    margin-bottom: 2em; 
+    border:1px solid #ddd;
+    background-color:#eee;
 } 
 
 div.left-link-button
 {
-	float: left;
+    float: left;
 }
 
 div.middle-link-button
 {
-	float: left;
-	text-align: center;
-	width:100%;
+    float: left;
+    text-align: center;
+    width:100%;
 }
 
 div.right-link-button
 {
-	float:right;
+    float:right;
 }
 
 div.left-button
 {
-	float:left;
+    float:left;
 }
 
 div.right-button
 {
-	float:right;
+    float:right;
 }
 
 div.configurator select, select.product-options
 {
-	width:320px;
+    width:320px;
 }
 
 div.configurator table.list tr td
 {
-	border-bottom:1px solid #ccc;
+    border-bottom:1px solid #ccc;
 }
 
 div.configurator table.list
 {
-	border-collapse:collapse;
+    border-collapse:collapse;
 }
 
 div.productline-text
 {
-	width: 80%;
-	float: left;
+    width: 80%;
+    float: left;
 }
 
 div.productcategory-img
 {
-	width: 20%;
-	float: left;
+    width: 20%;
+    float: left;
 }
 
 .read_more
 {
-	float: right;
+    float: right;
 }
 
 div.product_title
 {
-	border-top: solid 1px #DFDFDF;
+    border-top: solid 1px #DFDFDF;
 }
 
 div.content-view-children
 {
-	clear: both;
+    clear: both;
 }
 
 div.productwrapper
 {
-	width: 100%;
+    width: 100%;
 }
 
 div.productwrapper div.block div.right
 {
-	width: 100%;
+    width: 100%;
 }
 
 div.productwrapper input.right-arrow
 {
-	float: right;
+    float: right;
 }
 
 div.shop #checkout-button, div.shop #checkout-button-2
 {
-	float: right;
-	border-color: #F5AE55;
-	background: url(../images/button_orange_bg.jpg) #F08908;
+    float: right;
+    border-color: #F5AE55;
+    background: url(../images/button_orange_bg.jpg) #F08908;
 }
 
 div.billing,
@@ -721,7 +721,7 @@ div.additional-information,
 div.accountinfo,
 div.coupon
 {
-	width: 360px;
+    width: 360px;
 }
 
 div.shop-userregister input,
@@ -729,10 +729,10 @@ div.user_register input,
 div.shop-userregister select,
 div.user_register select
 {
-	width: 345px;
-	padding: 2px;
-	margin: 1px;
-	border: 1px solid #D4D4D4;
+    width: 345px;
+    padding: 2px;
+    margin: 1px;
+    border: 1px solid #D4D4D4;
 }
 
 div.shop-userregister input.shipping-checkbox,
@@ -741,7 +741,7 @@ div.shop-userregister input.button,
 div.user_register input.shipping-checkbox,
 div.user_register input.button
 {
-	width: auto;
+    width: auto;
 }
 
 div.shop-userregister input.no_partial_delivery,
@@ -752,13 +752,13 @@ div.shop-userregister input.shipping-checkbox
 
 div.billing
 {
-	float: left;
-	clear: left;
+    float: left;
+    clear: left;
 }
 
 div.accountinfo
 {
-	float: left;
+    float: left;
 }
 
 div.coupon
@@ -828,9 +828,9 @@ div.xrow-product-features > div
 
 div.xrow-product, div.xrow-product-features
 {
-	float: left;
-	clear: both;
-	width: 100%;
+    float: left;
+    clear: both;
+    width: 100%;
 }
 
 div.xrow-product, div.xrow-product-wishlist
@@ -848,10 +848,10 @@ div.xrow-feature-list
 div.related-xrow-products div.related-product,
 div.xrow-product-category div.xrow-product-line
 {
-	float: left;
-	height: 130px;
-	margin: 1em 0 0 20px;
-	border:1px solid #EFEFEF;
+    float: left;
+    height: 130px;
+    margin: 1em 0 0 20px;
+    border:1px solid #EFEFEF;
 }
 
 div.related-xrow-products div.related-product div.class-image,
@@ -900,8 +900,8 @@ div.content-view-embed div.class-xrow-product
 
 div.manufacturer-line .content-image img
 {
-	float: left;
-	padding-right: 1em;
+    float: left;
+    padding-right: 1em;
 }
 
 div.manufacturer-line .read_more, div.productline .read_more
@@ -953,7 +953,7 @@ th.price, td.price
 
 .minibasket .item-image img
 {
-	float: left;
+    float: left;
 }
 
 div#page div.productline-text
@@ -1013,7 +1013,7 @@ input.halfbox, textarea.halfbox
 
 .productline .attribute-price
 {
-	font-size: 110%;
+    font-size: 110%;
     text-align: right;
 }
 
@@ -1057,7 +1057,7 @@ input.halfbox, textarea.halfbox
 table.poll-resultlist
 {
     margin-top: 0.1em;
-	display: none;
+    display: none;
 }
 
 .class-poll .total-votes
@@ -1070,63 +1070,63 @@ table.poll-resultlist
 div.shop-payment h4, div.shop-payment h5
 {
     font-family: Tahoma,Arial,Helvetica,sans-serif;
-	font-size: 1em;
+    font-size: 1em;
 }
 div.shop-payment p.retail_price, div.shop-payment p.thanks_price
 {
-	line-height:0.7em;
+    line-height:0.7em;
 }
 div.shop-payment p.quantity
 {
-	padding-top:1.5em;
+    padding-top:1.5em;
 }
 div.after_sale_image
 {
-	float: left; 
-	width: 240px;
+    float: left; 
+    width: 240px;
 }
 div.after_sale_image div.attribute-image {
-	background-color:#FFFFFF;
-	border:1px solid #E3E7EB;
-	padding:3px;
-	margin:0.25em 0 0.5em;
-	width: 210px;
+    background-color:#FFFFFF;
+    border:1px solid #E3E7EB;
+    padding:3px;
+    margin:0.25em 0 0.5em;
+    width: 210px;
 }
 div.after_sale_name
 {
-	float: left; 
-	width: 200px;
+    float: left; 
+    width: 200px;
 }
 div.after_sale_description
 {
-	float: right; 
-	width: 320px;
+    float: right; 
+    width: 320px;
 }
 
 table.after_sale_opt_table 
 {
-	font-size: 11px;
-	width: 500px; 
-	margin: 0;
+    font-size: 11px;
+    width: 500px; 
+    margin: 0;
 }
 td.after_sale_opt_image 
 {
-	border: solid 1px #d9e0e6; 
-	width: 70px;
-	vertical-align: top;
+    border: solid 1px #d9e0e6; 
+    width: 70px;
+    vertical-align: top;
 }
 td.after_sale_opt_name 
 {
-	border: solid 1px #d9e0e6;
-	padding: 3px;
-	vertical-align: top;
-	text-align: left;
+    border: solid 1px #d9e0e6;
+    padding: 3px;
+    vertical-align: top;
+    text-align: left;
 }
 td.after_sale_opt_description
 {
-	border: solid 1px #d9e0e6; 
-	width: 230px;
-	padding: 3px;
-	vertical-align: top;
-	text-align: left;
+    border: solid 1px #d9e0e6; 
+    width: 230px;
+    padding: 3px;
+    vertical-align: top;
+    text-align: left;
 }

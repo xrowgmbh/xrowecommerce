@@ -34,7 +34,7 @@ class XROWRecurringOrderCollection extends eZPersistentObject
                                                                       'required' => true ),
                                          "status" => array( 'name' => "status",
                                                              'datatype' => 'integer',
-                                                             'default' =>  XROWRecurringOrderCollection::STATUS_ACTIVE,
+                                                             'default' => XROWRecurringOrderCollection::STATUS_ACTIVE,
                                                              'required' => true ),
                                          "created" => array( 'name' => "created",
                                                              'datatype' => 'integer',
@@ -67,9 +67,8 @@ class XROWRecurringOrderCollection extends eZPersistentObject
      */
     static function now()
     {
-        #$time = 1189002190;
-        #$time = gmmktime( 0,0,0,9,5,2008 );
-        $time = gmmktime( 0,0,0 );
+        $time = gmmktime( 0,0,0,18,8,2010 );
+        #$time = gmmktime( 0,0,0 );
         return $time;
     }
     function markRun()
@@ -94,11 +93,11 @@ class XROWRecurringOrderCollection extends eZPersistentObject
     
         $userco = $user->attribute( 'contentobject' );
         $dm = $userco->attribute( 'data_map' );
-        if ( !array_key_exists( 'creditcard', $dm ) )
+        if ( !array_key_exists( xrowECommerce::ACCOUNT_KEY_CREDITCARD, $dm ) )
         {
-        	return false;
+            return false;
         }
-        $data = $dm['creditcard']->attribute( 'content' );
+        $data = $dm[xrowECommerce::ACCOUNT_KEY_CREDITCARD]->attribute( 'content' );
         if ( $data['month'] and $data['year'] )
         {
             $now = new eZDateTime( mktime() );
@@ -113,7 +112,7 @@ class XROWRecurringOrderCollection extends eZPersistentObject
                 return true;
             }
         }
-        elseif ( $data[XROWCREDITCARD_KEY_TYPE] == XROWCREDITCARD_TYPE_EUROCARD )
+        elseif ( $data[ezcreditcardType::KEY_TYPE] == ezcreditcardType::EUROCARD )
         {
             return true;
         }
@@ -179,12 +178,6 @@ class XROWRecurringOrderCollection extends eZPersistentObject
     {
         if ( count( $recurringitemlist ) == 0 )
             return false;
-        include_once( "kernel/classes/ezbasket.php" );
-        include_once( "kernel/classes/ezvattype.php" );
-        include_once( "kernel/classes/ezorder.php" );
-        include_once( "kernel/classes/ezproductcollection.php" );
-        include_once( "kernel/classes/ezproductcollectionitem.php" );
-        include_once( "kernel/classes/ezproductcollectionitemoption.php" );
         // Make order
         $productCollection = eZProductCollection::create();
         $productCollection->store();
@@ -315,8 +308,11 @@ class XROWRecurringOrderCollection extends eZPersistentObject
         foreach ( $list as $item )
         {
             if ( $item->isDue() )
-                $result[] = $item;
+            {
+            	$result[] = $item;
+            }
         }
+        #var_dump( $result );
         return $result;
     }
 
@@ -360,7 +356,7 @@ class XROWRecurringOrderCollection extends eZPersistentObject
                   $canceled = 0,
                   $data = array(),
                   $subscriptionIdentifier = '',
-                  $status = xrowSubscription::STATUS_UNDEFINED
+                  $status = XROWRecurringOrderCollection::STATUS_ACTIVE
                    )
     {
         return XROWRecurringOrderItem::add( $this->id,
