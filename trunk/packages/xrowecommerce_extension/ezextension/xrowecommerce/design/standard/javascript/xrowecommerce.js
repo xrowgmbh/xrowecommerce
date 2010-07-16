@@ -78,17 +78,6 @@ function ShowHide(id)
     });
 }
 
-function handleSelect(type,args,obj) 
-{
-    var dates = args[0]; 
-    var date = dates[0];
-    var year = date[0], month = date[1], day = date[2];
-
-    var txtDate1 = document.getElementById( obj.id + '-date');
-    txtDate1.value = month + '/' + day + '/' + year;
-    ShowHide( obj.id + '-container' );
-}
-
 function AutomaticDeliverTooltip( node, box ) 
 {
     YUI().use( 'node', 'overlay', function(Y) 
@@ -227,115 +216,115 @@ function updateSubdivisions( country_node )
 
 function updateShipping() 
 {
-	YUI().use( 'node', 'io', 'io-ez', 'dump', 'json-parse', function( Y ) 
-	{
-		if ( !Y.Node.get('#shippingtype') )
-		{
-			return false;
-		}
+    YUI().use( 'node', 'io', 'io-ez', 'dump', 'json-parse', function( Y ) 
+    {
+        if ( !Y.Node.get('#shippingtype') )
+        {
+            return false;
+        }
 
-		if ( Y.Node.get( '#shipping-checkbox' ).get( 'checked' ) ) 
-		{
-			var selectedIndex = Y.Node.get( '#country' ).get( 'selectedIndex' );
-			var country = Y.Node.get( '#country' ).get( 'options' ).item( selectedIndex ).get( 'value' );
-		} 
-		else 
-		{
-			var selectedIndex = Y.Node.get( '#s_country').get( 'selectedIndex' );
-			var country = Y.Node.get( '#s_country' ).get( 'options' ).item( selectedIndex ).get( 'value' );
-		}
+        if ( Y.Node.get( '#shipping-checkbox' ).get( 'checked' ) ) 
+        {
+            var selectedIndex = Y.Node.get( '#country' ).get( 'selectedIndex' );
+            var country = Y.Node.get( '#country' ).get( 'options' ).item( selectedIndex ).get( 'value' );
+        } 
+        else 
+        {
+            var selectedIndex = Y.Node.get( '#s_country').get( 'selectedIndex' );
+            var country = Y.Node.get( '#s_country' ).get( 'options' ).item( selectedIndex ).get( 'value' );
+        }
 
-		var doit = function(data) 
-		{
-			if ( Y.Node.get( '#shippingtype' ).get( 'tagName' ) == 'INPUT' )
-			{
-				return false;
-			}
+        var doit = function(data) 
+        {
+            if ( Y.Node.get( '#shippingtype' ).get( 'tagName' ) == 'INPUT' )
+            {
+                return false;
+            }
 
-			// If shippingtype is selected: get the old value for checking it later
-			if ( Y.Node.get( '#shippingtype' ).get( 'selectedIndex' ) > 0 )
-			{
-				var oldShippSelIndex = Y.Node.get( '#shippingtype' ).get( 'selectedIndex' );
-				var oldname = Y.Node.get( '#shippingtype' ).get( 'options' ).item( oldShippSelIndex ).get( 'text' );
-				var old = Y.Node.get( '#shippingtype' ).get( 'options' ).item( oldShippSelIndex ).get( 'value' );
-			}
+            // If shippingtype is selected: get the old value for checking it later
+            if ( Y.Node.get( '#shippingtype' ).get( 'selectedIndex' ) > 0 )
+            {
+                var oldShippSelIndex = Y.Node.get( '#shippingtype' ).get( 'selectedIndex' );
+                var oldname = Y.Node.get( '#shippingtype' ).get( 'options' ).item( oldShippSelIndex ).get( 'text' );
+                var old = Y.Node.get( '#shippingtype' ).get( 'options' ).item( oldShippSelIndex ).get( 'value' );
+            }
 
-			var nodes = Y.all('#shippingtype option');
-			var deleteNodes = function(n, a, b) 
-			{
-				n.get('parentNode').removeChild(n);
-			};
-			nodes.each(deleteNodes);
-			var node = Y.Node.create('<option>&nbsp;</option>');
-			for (i = 0; i < data.length; i++) 
-			{
-				if ( data[i][2] == false ) 
-				{
-					var node = Y.Node.create('<option value="' + data[i][1] + '" disabled>' + data[i][0] + '</option>');
-				} 
-				else 
-				{
-					if ( old == data[i][1] ) 
-					{
-						var selected = i;
-					}
-					var node = Y.Node.create('<option value="' + data[i][1] + '">' + data[i][0] + '</option>');
-				}
-	
-				Y.Node.get( '#shippingtype' ).appendChild( node );
-			}
-			if (typeof (selected) != 'undefined') 
-			{
-				Y.Node.get('#shippingtype').set('selectedIndex', selected);
-			} 
-			else if ( oldShippSelIndex )
-			{
-				if ( Y.Node.get( '#shippingtype' ).get( 'selectedIndex' ) != -1 )
-				{
-					var replace = new Array();
-					replace['%old%'] = oldname;
-					var newShippSelIndex = Y.Node.get( '#shippingtype' ).get( 'selectedIndex' );
-					var newname = Y.Node.get( '#shippingtype' ).get( 'options' ).item( newShippSelIndex ).get( 'text' );
-					replace['%new%'] = newname;
-					if ( oldname )
-					{
-						ez18nAlert("The shipping method '%old%' is not available for your country of destination and was changed to '%new%'.", replace);
-					}
-				}
-			}
-			Y.log('INFO2: ' + Y.Lang.dump(Y.Node.get('#shippingtype').get('options')));
-		};
-		ezjson('getshipping?country=' + country, doit);
-	});
+            var nodes = Y.all('#shippingtype option');
+            var deleteNodes = function(n, a, b) 
+            {
+                n.get('parentNode').removeChild(n);
+            };
+            nodes.each(deleteNodes);
+            var node = Y.Node.create('<option>&nbsp;</option>');
+            for (i = 0; i < data.length; i++) 
+            {
+                if ( data[i][2] == false ) 
+                {
+                    var node = Y.Node.create('<option value="' + data[i][1] + '" disabled>' + data[i][0] + '</option>');
+                } 
+                else 
+                {
+                    if ( old == data[i][1] ) 
+                    {
+                        var selected = i;
+                    }
+                    var node = Y.Node.create('<option value="' + data[i][1] + '">' + data[i][0] + '</option>');
+                }
+    
+                Y.Node.get( '#shippingtype' ).appendChild( node );
+            }
+            if (typeof (selected) != 'undefined') 
+            {
+                Y.Node.get('#shippingtype').set('selectedIndex', selected);
+            } 
+            else if ( oldShippSelIndex )
+            {
+                if ( Y.Node.get( '#shippingtype' ).get( 'selectedIndex' ) != -1 )
+                {
+                    var replace = new Array();
+                    replace['%old%'] = oldname;
+                    var newShippSelIndex = Y.Node.get( '#shippingtype' ).get( 'selectedIndex' );
+                    var newname = Y.Node.get( '#shippingtype' ).get( 'options' ).item( newShippSelIndex ).get( 'text' );
+                    replace['%new%'] = newname;
+                    if ( oldname )
+                    {
+                        ez18nAlert("The shipping method '%old%' is not available for your country of destination and was changed to '%new%'.", replace);
+                    }
+                }
+            }
+            Y.log('INFO2: ' + Y.Lang.dump(Y.Node.get('#shippingtype').get('options')));
+        };
+        ezjson('getshipping?country=' + country, doit);
+    });
 }
 
 function ez18nAlert(text, args) 
 {
-	YUI().use( 'node', 'io-ez', function(Y) 
-	{
-		Y.io.ez( 'xrowecommerce::translate::', 
-		{
-			data: 'text=' + text,
-			arguments: args,
-			on: 
-			{
-				success: function( id, r, args)
-				{
-					var data = r.responseJSON.content;
-					YUI().use('node', function(Y) 
-					{
-						for ( var x in args) 
-						{
-							data = data.replace(x, args[x]);
-						}
-						alert(data);
-					});
-				}
-			}
+    YUI().use( 'node', 'io-ez', function(Y) 
+    {
+        Y.io.ez( 'xrowecommerce::translate::', 
+        {
+            data: 'text=' + text,
+            arguments: args,
+            on: 
+            {
+                success: function( id, r, args)
+                {
+                    var data = r.responseJSON.content;
+                    YUI().use('node', function(Y) 
+                    {
+                        for ( var x in args) 
+                        {
+                            data = data.replace(x, args[x]);
+                        }
+                        alert(data);
+                    });
+                }
+            }
         });
     });
 }
-	
+    
 function changeShipping() 
 {
     YUI().use( 'node', function(Y) 
@@ -374,7 +363,7 @@ function changeShipping()
             /*if (document.register.mi) 
             {
                 document.register.s_mi.value = document.register.mi.value;
-	        }*/
+            }*/
             if ( Y.Node.get( '#s_mi' ) && Y.Node.get( '#mi' ) && Y.Node.get( '#mi' ).get( 'value' ) != '' )
             {
                 Y.Node.get( '#s_mi' ).set( 'value', Y.Node.get( '#mi' ).get( 'value' ) );
@@ -444,27 +433,27 @@ function changeShipping()
                 Y.Node.get( '#s_email' ).set( 'value', Y.Node.get( '#email' ).get( 'value' ) );
             }
 
-		}
-	});
+        }
+    });
 };
 
 function toggleCOS()
 {
-	YUI().use( 'node', function(Y) 
-	{ 
-	    var container = Y.Node.get('#cos-content');
-	    if ( container )
-	    {
-	        if ( container.getStyle('display') == 'block' )
-	        {
-	        	container.setStyle('display', 'none');
-	        }
-	        else
-	        {
-	        	container.setStyle('display', 'block');
-	        }
-	    }
-	});
+    YUI().use( 'node', function(Y) 
+    { 
+        var container = Y.Node.get('#cos-content');
+        if ( container )
+        {
+            if ( container.getStyle('display') == 'block' )
+            {
+                container.setStyle('display', 'none');
+            }
+            else
+            {
+                container.setStyle('display', 'block');
+            }
+        }
+    });
 };
 
 // deprecated use generatePopup
@@ -492,62 +481,62 @@ function enlargeImage( imsrc, ww, wh, alttext )
  */
 function generatePopup(node, image, imagetext, doubleclick) 
 {
-	YUI().use('node', 'overlay', 'imageloader', function(Y) 
-	{
-		var xy = Y.one(node).getXY();
-		imageNode = Y.Node.create('<img />');
-		imageNode.set('id', Y.guid());
-		var overlay = new Y.Overlay( 
-		{
-			headerContent : 'Popup: Click to close.',
-			bodyContent : imageNode,
-			width : 'auto',
-			height : 'auto',
-			centered : node,
-			visible : false,
-			xy : [ xy[0] + 10, xy[1] + 35 ]
-		});
-		if (imagetext) 
-		{
-			overlay.set('footerContent', imagetext);
-		}
-		var myFirstGroup = new Y.ImgLoadGroup( 
-		{
-			timeLimit : 2
-		});
-		myFirstGroup.registerImage( 
-		{
-			domId : imageNode.get('id'),
-			srcUrl : image
-		});
-				
-		overlay.render();
+    YUI().use('node', 'overlay', 'imageloader', function(Y) 
+    {
+        var xy = Y.one(node).getXY();
+        imageNode = Y.Node.create('<img />');
+        imageNode.set('id', Y.guid());
+        var overlay = new Y.Overlay( 
+        {
+            headerContent : 'Popup: Click to close.',
+            bodyContent : imageNode,
+            width : 'auto',
+            height : 'auto',
+            centered : node,
+            visible : false,
+            xy : [ xy[0] + 10, xy[1] + 35 ]
+        });
+        if (imagetext) 
+        {
+            overlay.set('footerContent', imagetext);
+        }
+        var myFirstGroup = new Y.ImgLoadGroup( 
+        {
+            timeLimit : 2
+        });
+        myFirstGroup.registerImage( 
+        {
+            domId : imageNode.get('id'),
+            srcUrl : image
+        });
 
-		Y.on('click', Y.bind(overlay.hide, overlay), overlay.get('contentBox'));
-		if (doubleclick) 
-		{
-			Y.on('dblclick', function(e) 
-			{
-				overlay.show();
-			}, node);
-		} 
-		else 
-		{
-			Y.on('click', function(e) {
-				overlay.show();
-			}, node);
-		}
-	});
+        overlay.render();
+
+        Y.on('click', Y.bind(overlay.hide, overlay), overlay.get('contentBox'));
+        if (doubleclick) 
+        {
+            Y.on('dblclick', function(e) 
+            {
+                overlay.show();
+            }, node);
+        } 
+        else 
+        {
+            Y.on('click', function(e) {
+                overlay.show();
+            }, node);
+        }
+    });
 };
 
 function change()
 {
-	if (document.getElementById( 'shipping-checkbox' ).checked)
+    if (document.getElementById( 'shipping-checkbox' ).checked)
     {
-		document.getElementById( 'shippinginfo' ).style.display = 'none';
+        document.getElementById( 'shippinginfo' ).style.display = 'none';
     }
     else
     {
-    	document.getElementById( 'shippinginfo' ).style.display = 'block';
+        document.getElementById( 'shippinginfo' ).style.display = 'block';
     }
 };

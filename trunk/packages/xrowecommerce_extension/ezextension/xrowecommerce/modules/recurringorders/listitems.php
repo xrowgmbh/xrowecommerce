@@ -27,19 +27,19 @@ if ( $Module->isCurrentAction( 'Update' ) and $Module->hasActionParameter( 'Item
         $item = XROWRecurringOrderItem::fetch( $item_id );
         if ( $attributes['status'] != $item->attribute('status') )
         {
-        	if ( $attributes['status'] )
-        	{
-        		$item->setAttribute( 'status', XROWRECURRINGORDER_STATUS_ACTIVE );
-        		if( $attributes['refund'] )
-        		{
-        			$item->setAttribute( 'last_success', $item->previousDate() );
-        		}
-        	}
-        	else
-        	{
-        		$item->setAttribute( 'status', XROWRECURRINGORDER_STATUS_DEACTIVATED );
-        	}
-        	$item->store();
+            if ( $attributes['status'] )
+            {
+                $item->setAttribute( 'status', XROWRecurringOrderCollection::STATUS_ACTIVE );
+                if( $attributes['refund'] )
+                {
+                    $item->setAttribute( 'last_success', $item->previousDate() );
+                }
+            }
+            else
+            {
+                $item->setAttribute( 'status', XROWRecurringOrderCollection::STATUS_DEACTIVATED );
+            }
+            $item->store();
         }
     }
     $messages[] = array( 'type' => 'feedback', 'text' => ezpI18n::tr( 'extension/recurringorders', 'Your input has been stored.' ) ) ;

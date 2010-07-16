@@ -46,7 +46,10 @@ class xrowECommerceShopAccountHandler
         $billing['fax'] = $userMap['fax']->content();
         $billing['shipping'] = $userMap['shippingaddress']->content();
         $billing['shippingtype'] = $userMap['shippingtype']->content();
-        $billing['paymentmethod'] = $userMap['paymentmethod']->content();
+        if( is_object( $userMap[xrowECommerce::ACCOUNT_KEY_PAYMENTMETHOD] ) )
+        {
+            $billing[xrowECommerce::ACCOUNT_KEY_PAYMENTMETHOD] = $userMap[xrowECommerce::ACCOUNT_KEY_PAYMENTMETHOD]->content();
+        }
         $billing['email'] = $user->attribute( 'email' );
         $shipping = array();
         if ( $shipping != "1" )
@@ -66,13 +69,16 @@ class xrowECommerceShopAccountHandler
             $shipping['s_fax'] = $userMap['s_fax']->content();
             $shipping['s_enail'] = $userMap['s_email']->content();
         }
-        $tmpcreditcard = $userMap['creditcard']->content();
-        if ( file_exists( eZExtension::baseDirectory() . '/ezauthorize' ) )
+        if( is_object( $userMap[xrowECommerce::ACCOUNT_KEY_CREDITCARD] ) )
         {
-            $creditcard['ezauthorize-card-name'] = $tmpcreditcard['name'];
-            $creditcard['ezauthorize-card-number'] = $tmpcreditcard['number'];
-            $creditcard['ezauthorize-card-date'] = $tmpcreditcard['month'] . $tmpcreditcard['year'];
-            $creditcard['ezauthorize-card-type'] = $tmpcreditcard['type'];
+            $tmpcreditcard = $userMap[xrowECommerce::ACCOUNT_KEY_CREDITCARD]->content();
+            if ( file_exists( eZExtension::baseDirectory() . '/ezauthorize' ) )
+            {
+                $creditcard['ezauthorize-card-name'] = $tmpcreditcard['name'];
+                $creditcard['ezauthorize-card-number'] = $tmpcreditcard['number'];
+                $creditcard['ezauthorize-card-date'] = $tmpcreditcard['month'] . $tmpcreditcard['year'];
+                $creditcard['ezauthorize-card-type'] = $tmpcreditcard['type'];
+            }
         }
         
         $returnArray = array_merge( $billing, $shipping, $creditcard );
@@ -185,7 +191,6 @@ class xrowECommerceShopAccountHandler
             'email' , 
             'shipping' , 
             'shippingtype' , 
-            'paymentmethod' , 
             's_company_name' , 
             's_company_additional' , 
             's_first_name' , 
@@ -203,7 +208,8 @@ class xrowECommerceShopAccountHandler
             'reference' , 
             'message' , 
             'no_partial_delivery' , 
-            'coupon_code' , 
+            'coupon_code' ,
+            xrowECommerce::ACCOUNT_KEY_PAYMENTMETHOD, 
             xrowECommerce::ACCOUNT_KEY_TRANSACTIONID , 
             xrowECommerce::ACCOUNT_KEY_NUMBER , 
             xrowECommerce::ACCOUNT_KEY_BANKCODE , 
