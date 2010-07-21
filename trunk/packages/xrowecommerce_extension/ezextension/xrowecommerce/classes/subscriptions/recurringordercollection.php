@@ -67,8 +67,8 @@ class XROWRecurringOrderCollection extends eZPersistentObject
      */
     static function now()
     {
-        $time = gmmktime( 0,0,0,18,8,2010 );
-        #$time = gmmktime( 0,0,0 );
+        #$time = gmmktime( 0,0,0,18,8,2010 );
+        $time = gmmktime( 0,0,0 );
         return $time;
     }
     function markRun()
@@ -252,7 +252,7 @@ class XROWRecurringOrderCollection extends eZPersistentObject
                                      'user_id' => $userID,
                                      'is_temporary' => 1,
                                      'created' => $time,
-                                     'status_id' => EZ_ORDER_STATUS_PENDING,
+                                     'status_id' => eZOrderStatus::PENDING,
                                      'status_modified' => $time,
                                      'status_modifier_id' => $userID
                                      ) );

@@ -102,7 +102,7 @@
         <input maxlength="4" id="ezcoa-{if ne( $attribute_base, 'ContentObjectAttribute' )}{$attribute_base}-{/if}{$attribute.contentclassattribute_id}_{$attribute.contentclass_attribute_identifier}" class="{eq( $html_class, 'half' )|choose( 'box', 'halfbox' )} ezcc-{$attribute.object.content_class.identifier} ezcca-{$attribute.object.content_class.identifier}_{$attribute.contentclass_attribute_identifier}" type="text" size="70" name="{$attribute_base}_ezcreditcard_securitycode_{$attribute.id}" value="{$securitycode|wash( xhtml )}" /> <a id="show_cvv_tip">{'Help'|i18n( 'design/standard/content/datatype' )}</a>
 
 {literal}
-<style>
+<style type="text/css">
     .yui-overlay { 
         position:absolute;
         background:#fff;
@@ -116,7 +116,7 @@
     }
 </style>
 
-<script>
+<script type="text/javascript">
     YAHOO.namespace("example.container");
 
     function init() {

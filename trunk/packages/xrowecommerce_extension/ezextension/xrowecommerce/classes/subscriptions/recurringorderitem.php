@@ -343,7 +343,7 @@ class XROWRecurringOrderItem extends eZPersistentObject
         {
             return false;
         }
-        if ( $this->next_date < XROWRecurringOrderCollection::now() )
+        if ( $this->next_date <= XROWRecurringOrderCollection::now() )
         {
             if ( $this->cycle_unit == XROWRecurringOrderCollection::CYCLE_ONETIME and $this->last_success )
             {
