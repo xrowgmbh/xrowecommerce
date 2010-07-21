@@ -1,8 +1,5 @@
 {def $show_payment_status=cond( and( ezini_hasvariable( 'StatusSettings', 'ShowPaymentStatus', 'xrowecommerce.ini' ), ezini( 'StatusSettings', 'ShowPaymentStatus', 'xrowecommerce.ini' )|eq( 'disabled' ) ), false(), true() )}
-{*<link rel="stylesheet" type="text/css" href={'javascript/yui/build/container/assets/skins/sam/container.css'|ezdesign(no)} />
-<script type="text/javascript" src={'javascript/yui/build/yahoo-dom-event/yahoo-dom-event.js'|ezdesign(no)}></script>
-<script type="text/javascript" src={'javascript/yui/build/container/container-min.js'|ezdesign(no)}></script>*}
-
+<!-- 
 <link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/2.8.1/build/container/assets/skins/sam/container.css" />
 <script type="text/javascript" src="http://yui.yahooapis.com/2.8.1/build/yahoo-dom-event/yahoo-dom-event.js"></script>
 <script type="text/javascript" src="http://yui.yahooapis.com/2.8.1/build/container/container-min.js"></script>
@@ -10,10 +7,20 @@
 
 {literal}
 
-<style>
-    .yui-overlay { position:absolute;background:#fff;border:1px dotted black;padding:5px;margin:10px; }
+<style type="text/css">
+.yui-overlay
+{
+    position:absolute;
+    background:#fff;
+    border:1px dotted black;
+    padding:5px;
+    margin:10px;
+}
 </style>
 {/literal}
+
+ -->
+ 
 <div class="context-block">
 
 {* DESIGN: Header START *}<div class="box-header"><div class="box-tc"><div class="box-ml"><div class="box-mr"><div class="box-tl"><div class="box-tr">
@@ -173,20 +180,18 @@
             <a href={concat( '/shop/customerorderview/', $order.user_id, '/', $order.account_email )|ezurl}>{$order.account_name}</a>
         {/if}
         </td>
-    
-    
+
         {* NOTE: These two attribute calls are slow, they cause the system to generate lots of SQLs.
                  The reason is that their values are not cached in the order tables *}
         <td class="number" align="right">{$order.total_ex_vat|l10n( 'currency', $locale, $symbol )}</td>
         <td class="number" align="right">{$order.total_inc_vat|l10n( 'currency', $locale, $symbol )}</td>
-    
+
         <td>{$order.created|l10n( shortdatetime )}</td>
         <td>
-    
+
         {if $order.status_modification_list|count|gt( 0 )}
             {set can_apply=true()}
             <select name="StatusList[{$order.id}]">
-    
             {foreach $order.status_modification_list as $Status}
                 <option value="{$Status.status_id}"
                     {if ezini( 'StatusSettings', concat( 'StatusDisallowList-', $order.status_id) ,'xrowecommerce.ini' )|contains($Status.status_id)} disabled="disabled"{/if}{if eq( $Status.status_id, $order.status_id )} selected="selected"{/if}>
@@ -197,60 +202,53 @@
             {* Lets just show the name if we don't have access to change the status *}
             {$order.status_name|wash}
         {/if}
-    
+
         </td>
            {if $show_payment_status}
            <td>
             {def $stati = hash( '0', 'unpaid'|i18n( 'design/admin/shop/orderlist' ),  '1', 'paid'|i18n( 'design/admin/shop/orderlist' ) )}
             {def $payment = fetch( 'xrowecommerce', 'payment_status', hash( 'id', $order.id ) )}
-            <select {if or( $payment.status|eq('1'), $payment.automatic_status )} disabled{/if} name="PaymentStatusList[{$order.id}]" title="Payment via {$payment.payment_string}">
+            <select {if or( $payment.status|eq('1'), $payment.automatic_status )} disabled="disabled"{/if} name="PaymentStatusList[{$order.id}]" title="Payment via {$payment.payment_string}">
             {foreach $stati as $key => $status}
                 <option value="{$key}"
-                    {if eq( $key, $payment.status )}selected="selected"{/if}>
+                    {if or($payment.automatic_status|eq(true) ,eq( $key, $payment.status ))}selected="selected"{/if}>
                     {$status|wash}</option>
             {/foreach}
             </select>
-            {if $payment.data_array.errors|count|gt(0)}
-    
-    <script>
+            {if and(is_set($payment.data_array.errors), $payment.data_array.errors|count|gt(0))}
+<!--
+    <script type="text/javascript">
             YAHOO.namespace("example.container");
-    
             function init() {ldelim}
-                // Build overlay1 based on markup, initially hidden, fixed to the center of the viewport, and 300px wide
                 YAHOO.example.container.orderoverlay{$order.id} = new YAHOO.widget.Overlay("orderoverlay{$order.id}", {ldelim} fixedcenter:true,
                                                                                           visible:false,
                                                                                           width:"300px" {rdelim} );
                 YAHOO.example.container.orderoverlay{$order.id}.render();
-    
                 YAHOO.util.Event.addListener("order-show-{$order.id}", "click", YAHOO.example.container.orderoverlay{$order.id}.show, YAHOO.example.container.orderoverlay{$order.id}, true);
                 YAHOO.util.Event.addListener("order-hide-{$order.id}", "click", YAHOO.example.container.orderoverlay{$order.id}.hide, YAHOO.example.container.orderoverlay{$order.id}, true);
-    
             {rdelim}
-    
             YAHOO.util.Event.addListener(window, "load", init);
     </script>
-    
-        <button id="order-show-{$order.id}" type="button">!</button>
-    
-    
-    
+ -->
+        <input id="order-show-{$order.id}" type="button" value="!" />
+
     <div id="orderoverlay{$order.id}" style="visibility:hidden">
-    
-            <ul>
+
+        <ul>
             {foreach $payment.data_array.errors as $error}
             <li>{$error|wash}</li>
             {/foreach}
-            </ul>
-            <button id="order-hide-{$order.id}" type="button">{'Close'|i18n( 'design/admin/shop/orderlist' )}</button>
-            </div>
+        </ul>
+        <input id="order-hide-{$order.id}" type="button" value="{'Close'|i18n( 'design/admin/shop/orderlist' )}" />
+    </div>
             {/if}
             {undef $payment $stati}
         </td>
         {/if}
         <td>
-        <a href={concat( 'xrowecommerce/invoiceprint/', $order.id )|ezurl} target="_blank"><img src={'printer.png'|ezimage} height="28" width="28" alt="" title="{'Print invoice and packaging slip'|i18n( 'design/admin/shop/orderlist' )}"></a>
-        <a href={concat( 'xrowecommerce/shippingplanprint/', $order.id )|ezurl} target="_blank"><img src={'shipping_plan.png'|ezimage} height="28" width="28" alt="" title="{'Print shipping plan'|i18n( 'design/admin/shop/orderlist' )}"></a>
-        <a href={concat( 'orderedit/edit/', $order.order_nr)|ezurl}><img src={'images/txt2.png'|ezdesign}  alt="Edit shippingcosts" title="Edit shippingcosts"></a>
+        <a href={concat( 'xrowecommerce/invoiceprint/', $order.id )|ezurl} target="_blank"><img src={'printer.png'|ezimage} height="28" width="28" alt="" title="{'Print invoice and packaging slip'|i18n( 'design/admin/shop/orderlist' )}" /></a>
+        <a href={concat( 'xrowecommerce/shippingplanprint/', $order.id )|ezurl} target="_blank"><img src={'shipping_plan.png'|ezimage} height="28" width="28" alt="" title="{'Print shipping plan'|i18n( 'design/admin/shop/orderlist' )}" /></a>
+        <a href={concat( 'orderedit/edit/', $order.order_nr)|ezurl}><img src={'images/txt2.png'|ezdesign}  alt="Edit shippingcosts" title="Edit shippingcosts" /></a>
         </td>
     </tr>
     {/foreach}
