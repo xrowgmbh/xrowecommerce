@@ -18,7 +18,7 @@
     <td>{$order.created|l10n( shortdate )}</td>
 </tr>
 <tr>
-	<th>{'Shipping method'|i18n( 'design/admin/shop/orderview' )}</th>
+    <th>{'Shipping method'|i18n( 'design/admin/shop/orderview' )}</th>
     <td>
                 {foreach $shiplist as $method}
                     {if $method.identifier|eq($order.account_information.shippingtype)}
@@ -36,7 +36,7 @@
 <div class="break" style="clear:both;"></div>
 <div style="width:40%;float: left;">
 <table  class="list" width="100%" cellspacing="0" cellpadding="0" border="0" align="right">
-<caption style="font-size: 12pt;"><b>Bill to</b></caption>
+<caption style="font-size: 12pt;"><b>{'Bill to'|i18n( 'design/admin/shop/orderview' )}</b></caption>
 <tr>
     <th class="tight">{'Name'|i18n( 'design/admin/shop/orderview' )}</th>
     <td>{$order.account_information.first_name|wash} {$order.account_information.mi|wash} {$order.account_information.last_name|wash}</td>
@@ -55,7 +55,7 @@
     <td>{$order.account_information.phone|wash}</td>
 </tr>
 <tr>
-	<th>{'E-mail'|i18n( 'design/admin/shop/orderview' )}</th>
+    <th>{'E-mail'|i18n( 'design/admin/shop/orderview' )}</th>
     <td>
         {$order.account_information.email|wash}
     </td>
@@ -87,7 +87,7 @@
     <td>{$order.account_information.s_phone|wash}</td>
 </tr>
 <tr>
-	<th>{'E-mail'|i18n( 'design/admin/shop/orderview' )}</th>
+    <th>{'E-mail'|i18n( 'design/admin/shop/orderview' )}</th>
     <td>
         {$order.account_information.s_email|wash}
     </td>
@@ -115,10 +115,8 @@
     <td>{$order.account_information.phone|wash}</td>
 </tr>
 <tr>
-	<th>{'E-mail'|i18n( 'design/admin/shop/orderview' )}</th>
-    <td>
-        {$order.account_information.email|wash}
-    </td>
+    <th>{'E-mail'|i18n( 'design/admin/shop/orderview' )}</th>
+    <td>{$order.account_information.email|wash}</td>
 </tr>
 </table>
 
