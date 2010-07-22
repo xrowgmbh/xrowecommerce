@@ -1,6 +1,7 @@
 {if is_set($packingslip)|not}
     {def $packingslip=false()}
 {/if}
+<!-- 
 {literal}
 <style type="text/css">
 table tbody td
@@ -12,6 +13,7 @@ thead {
 }
 </style>
 {/literal}
+ -->
 
 <p style="margin-top:2em"></p>
     {include uri="design:shop/invoice/header.tpl"}
@@ -42,15 +44,14 @@ thead {
         {section var=Options loop=$ProductItem:item.item_object.option_list}
         <td align="left">{$:Options.item.value|wash}</td>
         <td>{$ProductItem:item.item_object.name|wash}
-        {def $vary=$ProductItem:item.item_object.contentobject.data_map.variation.content.option_list[$ProductItem:item.item_object.option_list.0.option_item_id]}
-        {if $vary.comment}
+        {def $vary=$ProductItem:item.item_object.contentobject.data_map.options.content.option_list[$ProductItem:item.item_object.option_list.0.option_item_id]}
+        {if is_set($vary.comment)}
             <br />Variation: {$vary.comment}
         {/if}
         </td>
         {/section}
     {section-else}
-    <td align="left">{$ProductItem:item.item_object.contentobject.data_map.product_id.content}{$ProductItem:item.item_object.contentobject.data_map.variation.data_text}
-</div>
+    <td align="left">{$ProductItem:item.item_object.contentobject.data_map.product_id.content}{$ProductItem:item.item_object.contentobject.data_map.options.data_text}
     </td>
     <td>{$ProductItem:item.item_object.name|wash}</td>
     {/section}
