@@ -1130,3 +1130,13 @@ td.after_sale_opt_description
     vertical-align: top;
     text-align: left;
 }
+
+#overlay-text p
+{
+    cursor: pointer;
+}
+
+#AutomaticDeliveryTooltip
+{
+    position: absolute;
+}

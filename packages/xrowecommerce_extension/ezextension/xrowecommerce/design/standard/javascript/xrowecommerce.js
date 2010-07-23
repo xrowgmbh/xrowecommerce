@@ -34,20 +34,29 @@ YUI().use( 'node', function(Y)
                 updateShipping();
             }, '#shipping-checkbox');
         }
-        if (Y.Node.get( '#AutomaticDeliveryTooltip' ) && Y.Node.get( '#show_auto_tip' ) )
-        {
-            AutomaticDeliverTooltip( '#show_auto_tip', '#AutomaticDeliveryTooltip' );
-        }
     });
 });
+
+YUI().use("node", "event-mouseenter", function(Y) {
+    if ( Y.Node.get("#AutomaticDeliveryTooltip")) {
+        var nodeTip = Y.one("#AutomaticDeliveryTooltip")
+        Y.on("mouseenter", function (e) {
+            nodeTip.removeClass('hide');
+        }, "#overlay-text p");
+        Y.on("mouseleave", function (e) {
+            nodeTip.addClass('hide');
+        }, "#overlay-text p");
+    }
+});
+
 /* uncomment for debugging
 YUI({
     filter: 'debug',
     timeout: 10000
 }).use( 'node', 'console', 'console-filters', 'dd-plugin', function (Y) {
-	if (Y.Node.get("#debug") ) {
-		Y.Node.get("BODY").prepend('<div id="yconsole"></div>' );
-		Y.Node.get("BODY").addClass( 'yui-skin-sam');
+    if (Y.Node.get("#debug") ) {
+        Y.Node.get("BODY").prepend('<div id="yconsole"></div>' );
+        Y.Node.get("BODY").addClass( 'yui-skin-sam');
 // Configure the Console's logSource to Y.Global to make it universal
 new Y.Console({
     boundingBox: '#yconsole',
@@ -56,7 +65,7 @@ new Y.Console({
     style: 'separate',
     newestOnTop: true
 }).render();
-	}
+    }
 });
 */
 
@@ -75,24 +84,6 @@ function ShowHide(id)
             node.removeClass('show');
             node.addClass('hide');
         }
-    });
-}
-
-function AutomaticDeliverTooltip( node, box ) 
-{
-    YUI().use( 'node', 'overlay', function(Y) 
-    {
-        var WidgetPositionExt = Y.WidgetPositionExt;
-        var overlay = new Y.Overlay({ 
-            contentBox: box, 
-            centered: true,
-            width: '400px' 
-        }); 
-        overlay.set('align', {node: node, points:[WidgetPositionExt.TC, WidgetPositionExt.BC]});
-        overlay.hide(); 
-        overlay.render(); 
-        Y.on('mouseover', Y.bind(overlay.show, overlay), node); 
-        Y.on('mouseout', Y.bind(overlay.hide, overlay), node); 
     });
 }
 
