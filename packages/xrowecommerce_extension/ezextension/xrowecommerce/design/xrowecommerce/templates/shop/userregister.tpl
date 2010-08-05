@@ -6,7 +6,7 @@
         
         {include uri="design:shop/basket_navigator.tpl" step='2'}
         {include uri="design:shop/userregister_preface.tpl"}
-        
+        {def $country_default_ini=ezini( 'ShopAccountHandlerDefaults', 'DefaultCountryCode' )}
         {def $error_count = false}
         {foreach $fields as $error}
         {if is_set($error.errors)}
@@ -34,7 +34,7 @@
         {undef $error_count}
         <div>
             <div class="billing">
-                <h3>{'Billing Information'|i18n('extension/xrowecommerce')}</h3>
+                <h2>{'Billing Information'|i18n('extension/xrowecommerce')}</h2>
                 <p><span class="required">* <i>{'Required field'|i18n('extension/xrowecommerce')}</i></span></p>
                 <div class="labelbreak"></div>
                 
@@ -94,13 +94,6 @@
                         <input type="text" name="address2" id="address2" size="20" value="{$address2|wash}" title="{'Apartment, suite, unit, building, floor, etc.'|i18n('extension/xrowecommerce')}" />
                     </div>
                 {/if}
-                {if $fields.zip.enabled}
-                    <div class="zip block{if is_set($fields.zip.errors)} error{/if}">
-                        <label>{'Zip'|i18n('extension/xrowecommerce')}{if $fields.zip.required}<span class="required">*</span>{/if}</label>
-                        <div class="labelbreak"></div>
-                        <input type="text" class="zip" name="zip" id="zip" value="{$zip|wash()}" />
-                    </div>
-                {/if}
                 {if $fields.city.enabled}
                     <div class="break"></div>
                     <div class="city block{if is_set($fields.city.errors)} error{/if}">
@@ -109,69 +102,76 @@
                         <input type="text" name="city" id="city" value="{$city|wash}" />
                     </div>
                 {/if}
-
+                {if $fields.zip.enabled}
+                    <div class="zip block{if is_set($fields.zip.errors)} error{/if}">
+                        <label>{'Zip'|i18n('extension/xrowecommerce')}{if $fields.zip.required}<span class="required">*</span>{/if}</label>
+                        <div class="labelbreak"></div>
+                        <input type="text" class="zip" name="zip" id="zip" value="{$zip|wash()}" />
+                    </div>
                     <div class="break"></div>
-                
+                {/if}
                 {if $fields.country.enabled}
-                    <div class="country block{if is_set($fields.country.errors)} error{/if}">
+                    <div class="country block{if $fields.country.errors|count()|gt(0)} error{/if}">
                         <label>{'Country'|i18n('extension/xrowecommerce')}{if $fields.country.required}<span class="required">*</span>{/if}</label>
                         <div class="labelbreak"></div>
                         <select name="country" id="country">
-                            <option>&nbsp;</option>
-                            {foreach $countries as $country_list_item}
-                            <option value="{$country_list_item.Alpha3}" {if and( $country|ne(''), eq( $country, $country_list_item.Alpha3 ))} selected="selected"{/if}>{$country_list_item.Name|wash}</option>
-                            {/foreach}
+                        {foreach $countries as $country_list_item}
+                            {if $country|ne( '' )}
+                            {* Backwards compatability *}
+                                <option value="{$country_list_item.Alpha3}" {if and( $country|ne(''), eq( $country, $country_list_item.Alpha3 ))} selected="selected"{/if}>{$country_list_item.Name|wash}</option>
+                            {else}
+                                <option {if $country_default_ini|eq( $country_list_item.Alpha3 )}selected="selected"{/if} value="{$country_list_item.Alpha3}">{$country_list_item.Name|wash}</option>
+                            {/if}
+                        {/foreach}
                         </select>
                     </div>
+                    <div class="break"></div>
                 {/if}
-
-                <div class="break"></div>
-
                 {if $fields.state.enabled}
                     <div class="state block{if is_set($fields.state.errors)} error{/if}">
                         <label>{'State / Province'|i18n('extension/xrowecommerce')}{if $fields.state.required}<span class="required">*</span>{/if}</label>
                         <div class="labelbreak"></div>
-                        <select class="state" name="state" id="state">
-                        	<option>&nbsp;</option>
+                        <select name="state" id="state">
+                            <option>&nbsp;</option>
                             {foreach $states as $key => $state_item}
-                            <option {if eq($state,$key)} selected="selected" {/if}>{$state_item|wash}</option>
+                            <option {if eq( $state, $key )} selected="selected" {/if} value="{$key}">{$state_item|wash}</option>
                             {/foreach}
                         </select>
                     </div>
+                    <div class="break"></div>
                 {/if}
-
                 {if $fields.phone.enabled}
                     <div class="block{if is_set($fields.phone.errors)} error{/if}">
                         <label>{'Phone'|i18n('extension/xrowecommerce')}{if $fields.phone.required}<span class="required">*</span>{/if}</label>
                         <div class="labelbreak"></div>
                         <input type="text" name="phone" class="phone" id="phone" value="{$phone|wash}" />
                     </div>
+                    <div class="break"></div>
                 {/if}
-                
                 {if $fields.fax.enabled}
                     <div class="block{if is_set($fields.fax.errors)} error{/if}">
                         <label>{'Fax'|i18n('extension/xrowecommerce')}{if $fields.fax.required}<span class="required">*</span>{/if}</label>
                         <div class="labelbreak"></div>
                         <input type="text" name="fax" id="fax" class="fax" value="{$fax|wash}" />
                     </div>
+                    <div class="break"></div>
                 {/if}
-                
                 {if $fields.email.enabled}
                     <div class="block{/if}{if is_set($fields.email.errors)} error{/if}">
                         <label>{'E-mail'|i18n('extension/xrowecommerce')}{if $fields.email.required}<span class="required">*</span>{/if}</label>
                         <div class="labelbreak"></div>
                         <input class="phone" type="text" name="email" id="email" value="{$email|wash}" />
                     </div>
+                    <div class="break"></div>
                 {/if}
-                <div class="break"></div>
-                
+
                 {def $shipping_methods=fetch( 'shipping', 'list_methods' )}
                 <div class="block">
                 {if $shipping_methods|count|gt(1)}
                     <label>{'Shipping'|i18n('extension/xrowecommerce')}<span class="required">*</span></label>
                     <div class="labelbreak"></div>
                     <select name="shippingtype" id="shippingtype">
-                    	<option>&nbsp;</option>
+                        <option>&nbsp;</option>
                         {foreach $shipping_methods as $shipping_method}
                         <option value="{$shipping_method.identifier}" {if $shippingtype|eq($shipping_method.identifier)} selected="selected" {/if}>{$shipping_method.name}</option>
                         {/foreach}
@@ -181,12 +181,12 @@
                 {/if}
                 </div>
                 <div class="break"></div>
-                
+
             </div> {*LEFT COL END*}
-            
+
             {* right column *}
             <div class="shipping">
-                <h3>{'Shipping Information'|i18n( 'extension/xrowecommerce' )}</h3>
+                <h2>{'Shipping Information'|i18n( 'extension/xrowecommerce' )}</h2>
                 <label class="shipping-checkbox" for="shipping-checkbox"><input class="shipping-checkbox" id="shipping-checkbox" name="shipping" value="1" type="checkbox" {if $shipping} checked="checked" {/if}  />{'My billing and shipping addresses are identical.'|i18n('extension/xrowecommerce')}</label>
                 <div class="block" id="shippinginfo"{if $shipping} style="display: none;"{else} style="display: block;"{/if}>
                     <p><span class="required">* {'Required field'|i18n('extension/xrowecommerce')}</span></p>
@@ -201,7 +201,7 @@
                     
                     {if $fields.s_company_additional.enabled}
                         <div class="ur_company_additional block{if is_set($fields.s_company_additional.errors)} error{/if}">
-                            <label>{'Company additional information'|i18n('extension/xrowecommerce')}{if $fields.s_company_additional.required}<span class="required">*</span>{/if}</label>
+                            <label>{'Form of company'|i18n('extension/xrowecommerce')}{if $fields.s_company_additional.required}<span class="required">*</span>{/if}</label>
                             <div class="labelbreak"></div>
                             <input type="text" name="s_company_additional" id="s_company_additional" value="{$s_company_additional|wash}" />
                         </div>
@@ -247,15 +247,6 @@
                         </div>
                     {/if}
                     
-                    {if $fields.s_zip.enabled}
-                        <div class="zip block{if is_set($fields.s_zip.errors)} error{/if}">
-                            <label>{'Zip'|i18n('extension/xrowecommerce')}{if $fields.s_zip.required}<span class="required">*</span>{/if}</label>
-                            <div class="labelbreak"></div>
-                            <input type="text" name="s_zip" id="s_zip" value="{$s_zip|wash()}"/>
-                        </div>
-                    {/if}
-                    <div class="break"></div>
-                    
                     {if $fields.s_city.enabled}
                         <div class="city block{if is_set($fields.s_city.errors)} error{/if}">
                             <label>{'City'|i18n('extension/xrowecommerce')}{if $fields.s_city.required}<span class="required">*</span>{/if}</label>
@@ -263,16 +254,29 @@
                             <input type="text" name="s_city" value="{$s_city|wash}" id="s_city" />
                         </div>
                     {/if}
-
+                    
+                    {if $fields.s_zip.enabled}
+                        <div class="zip block{if is_set($fields.s_zip.errors)} error{/if}">
+                            <label>{'Zip'|i18n('extension/xrowecommerce')}{if $fields.s_zip.required}<span class="required">*</span>{/if}</label>
+                            <div class="labelbreak"></div>
+                            <input type="text" name="s_zip" id="s_zip" value="{$s_zip|wash()}"/>
+                        </div>
+                        <div class="break"></div>
+                    {/if}
+                    
                     {if $fields.s_country.enabled}
-                        <div class="country block{if is_set($fields.s_country.errors)} error{/if}">
+                        <div class="country block{if $fields.s_country.errors|count()|gt(0)} error{/if}">
                             <label>{'Country'|i18n('extension/xrowecommerce')}{if $fields.s_country.required}<span class="required">*</span>{/if}</label>
                             <div class="labelbreak"></div>
                             <select name="s_country" id="s_country">
-                            	<option>&nbsp;</option>
-                                {foreach $countries as $country_list_item}
-                                <option value="{$country_list_item.Alpha3}" {if and( $s_country|ne(''), eq( $s_country, $country_list_item.Alpha3 ))} selected="selected"{/if}>{$country_list_item.Name|wash}</option>
-                                {/foreach}
+                            {foreach $countries as $country_list_item}
+                                {if $country|ne( '' )}
+                                {* Backwards compatability *}
+                                    <option value="{$country_list_item.Alpha3}" {if and( $s_country|ne(''), eq( $s_country, $country_list_item.Alpha3 ))} selected="selected"{/if}>{$country_list_item.Name|wash}</option>
+                                {else}
+                                    <option {if $country_default_ini|eq( $country_list_item.Alpha3 )}selected="selected"{/if} value="{$country_list_item.Alpha3}">{$country_list_item.Name|wash}</option>
+                                {/if}
+                            {/foreach}
                             </select>
                         </div>
                         <div class="break"></div>
@@ -285,7 +289,7 @@
                             <select name="s_state" id="s_state">
                                 <option>&nbsp;</option>
                                 {foreach $s_states as $key => $state_item}
-                                <option {if eq($s_state,$key)} selected="selected" {/if}>{$state_item|wash}</option>
+                                <option {if eq($s_state,$key)} selected="selected" {/if} value="{$key}">{$state_item|wash}</option>
                                 {/foreach}
                             </select>
                         </div>
@@ -312,7 +316,7 @@
                         <div class="block{if is_set($fields.s_email.errors)} error{/if}">
                             <label>{'E-mail'|i18n('extension/xrowecommerce')}{if $fields.s_email.required}<span class="required">*</span>{/if}</label>
                             <div class="labelbreak"></div>
-                            <input class="phone" type="text" name="s_email" id="semail" value="{$s_email|wash}" />
+                            <input class="phone" type="text" name="s_email" id="s_email" value="{$s_email|wash}" />
                         </div>
                         <div class="break"></div>
                     {/if}
@@ -323,7 +327,7 @@
 
             {if ezini('Fields','Coupon','xrowecommerce.ini').enabled|eq('true')}
                 <div class="coupon">
-                    <h3>{'Coupon'|i18n('extension/xrowecommerce')}</h3>
+                    <h2>{'Coupon'|i18n('extension/xrowecommerce')}</h2>
                     <p>{'Please enter your coupon code exactly as it appears on your promotion.'|i18n('extension/xrowecommerce')}</p>
                     <div class="block">
                         <label>{'Coupon'|i18n('extension/xrowecommerce')}</label>
@@ -334,7 +338,7 @@
             {/if}
 
             <div class="additional-information">
-                <h3>{'Additional Information'|i18n( 'extension/xrowecommerce' )}</h3>
+                <h2>{'Additional Information'|i18n( 'extension/xrowecommerce' )}</h2>
 
                 {* Captcha Start *}
                     {def $access=fetch( 'user', 'has_access_to',
