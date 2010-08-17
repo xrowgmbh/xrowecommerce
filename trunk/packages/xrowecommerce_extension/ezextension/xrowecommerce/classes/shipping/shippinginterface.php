@@ -63,11 +63,7 @@ class ShippingInterface
 
         if ( in_array( $country, $list ) )
         {
-        	// check if country is set for shipping
-        	if ( $this->availableFor == $country || ( $country != 'USA' && $this->availableFor == 'INTERNATIONAL' ) )
-        	{
-            	return true;
-        	}
+            return true;
         }
         else
         {
