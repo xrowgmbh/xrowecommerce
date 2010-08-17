@@ -6,14 +6,14 @@
   <object-name-pattern>&lt;name&gt;</object-name-pattern>
   <url-alias-pattern>&lt;name&gt;</url-alias-pattern>
   <remote>
-    <site-url>http://shop.example.com/index.php/eng/</site-url>
-    <url>http://shop.example.com/index.php/eng/class/view/50</url>
+    <site-url>http://shop.web4.xrow.net/ger/</site-url>
+    <url>http://shop.web4.xrow.net/ger/class/view/46</url>
     <groups>
       <group id="1" name="Content"/>
     </groups>
-    <id>50</id>
-    <created>1254139293</created>
-    <modified>1264607701</modified>
+    <id>46</id>
+    <created>1282057356</created>
+    <modified>1282057356</modified>
     <creator>
       <user-id>14</user-id>
       <user-login>admin</user-login>
@@ -26,7 +26,7 @@
   <ezcontentclass-attri:attributes xmlns:ezcontentclass-attribute="http://ezpublish/contentclassattribute">
     <attribute datatype="ezstring" required="true" searchable="true" information-collector="false" translatable="true">
       <remote>
-        <id>401</id>
+        <id>332</id>
       </remote>
       <serialized-name-list>a:2:{s:6:"eng-GB";s:4:"Name";s:16:"always-available";s:6:"eng-GB";}</serialized-name-list>
       <identifier>author</identifier>
@@ -38,7 +38,7 @@
     </attribute>
     <attribute datatype="ezstring" required="true" searchable="true" information-collector="false" translatable="true">
       <remote>
-        <id>397</id>
+        <id>333</id>
       </remote>
       <serialized-name-list>a:2:{s:6:"eng-GB";s:5:"Title";s:16:"always-available";s:6:"eng-GB";}</serialized-name-list>
       <identifier>name</identifier>
@@ -50,7 +50,7 @@
     </attribute>
     <attribute datatype="eztext" required="true" searchable="true" information-collector="false" translatable="true">
       <remote>
-        <id>400</id>
+        <id>334</id>
       </remote>
       <serialized-name-list>a:2:{s:6:"eng-GB";s:6:"Review";s:16:"always-available";s:6:"eng-GB";}</serialized-name-list>
       <identifier>review</identifier>
@@ -59,9 +59,9 @@
         <text-column-count>10</text-column-count>
       </datatype-parameters>
     </attribute>
-    <attribute datatype="ezsrrating" required="false" searchable="true" information-collector="false" translatable="true">
+    <attribute datatype="ezsrrating" required="false" searchable="true" information-collector="false" translatable="true" unsupported="true">
       <remote>
-        <id>399</id>
+        <id>335</id>
       </remote>
       <serialized-name-list>a:2:{s:6:"eng-GB";s:6:"rating";s:16:"always-available";s:6:"eng-GB";}</serialized-name-list>
       <identifier>rating</identifier>
