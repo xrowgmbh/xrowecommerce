@@ -1243,6 +1243,14 @@ class xrowecommerceInstaller extends eZSiteInstaller
                     ) 
                 ) 
             ) , 
+			array( 
+                '_function' => 'hideNode' , 
+                '_params' => array( 
+                    'node' => array( 
+                        'name' => 'Packages' 
+                    ) 
+                ) 
+            ) , 
             array( 
                 '_function' => 'setupWorkflows' , 
                 '_params' => array() 
