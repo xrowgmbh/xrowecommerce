@@ -34,8 +34,8 @@
       </ezobject:version-list>
     </ezremote:object>
     <ezremote:object xmlns:ezremote="http://ez.no/ezobject" xmlns:ezobject="http://ez.no/object/" ezremote:id="58" name="Pilsner" ezremote:section_id="3" ezremote:owner_id="14" ezremote:class_id="30" ezremote:published="Tue, 27 Oct 2009 14:05:32 GMT" ezremote:modified="Tue, 17 Aug 2010 16:53:08 GMT" remote_id="2f93cf6e64e161059af698e45c4f6b16" class_remote_id="f6df12aa74e36230eb675f364fccd25a" ezremote:class_identifier="image" ezremote:always_available="0" initial_language="ger-DE">
-      <ezobject:version-list xmlns:ezobject="http://ez.no/object/" active_version="2">
-        <ezobject:version xmlns:ezremote="http://ez.no/ezobject" ezremote:version="2" ezremote:status="1" ezremote:created="Tue, 17 Aug 2010 16:52:47 GMT" ezremote:modified="Tue, 17 Aug 2010 16:53:07 GMT" initial_language="ger-DE">
+      <ezobject:version-list xmlns:ezobject="http://ez.no/object/" active_version="1">
+        <ezobject:version xmlns:ezremote="http://ez.no/ezobject" ezremote:version="1" ezremote:status="1" ezremote:created="Tue, 17 Aug 2010 16:52:47 GMT" ezremote:modified="Tue, 17 Aug 2010 16:53:07 GMT" initial_language="ger-DE">
           <ezobject:object-translation language="ger-DE" object_name="Pilsner">
             <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="207" ezremote:identifier="name" name="Name" type="ezstring">
               <text>Pilsner</text>
@@ -43,7 +43,7 @@
             <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="208" ezremote:identifier="caption" name="Caption" type="ezxmltext">
               <section xmlns:image="http://ez.no/namespaces/ezpublish3/image/" xmlns:xhtml="http://ez.no/namespaces/ezpublish3/xhtml/" xmlns:custom="http://ez.no/namespaces/ezpublish3/custom/"/>
             </ezobject:attribute>
-            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="209" ezremote:identifier="image" name="Image" type="ezimage" image-file-key="3c3b0e02de08f21b1d50d2c9964f48e3" alternative-text=""/>
+            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="209" ezremote:identifier="image" name="Image" type="ezimage" image-file-key="b89db608581b04e7c5a42fe73cb73e5a" alternative-text=""/>
             <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="210" ezremote:identifier="tags" name="Tags" type="ezkeyword">
               <keyword-string></keyword-string>
             </ezobject:attribute>
@@ -55,8 +55,8 @@
       </ezobject:version-list>
     </ezremote:object>
     <ezremote:object xmlns:ezremote="http://ez.no/ezobject" xmlns:ezobject="http://ez.no/object/" ezremote:id="59" name="Ale" ezremote:section_id="3" ezremote:owner_id="14" ezremote:class_id="30" ezremote:published="Tue, 27 Oct 2009 14:07:26 GMT" ezremote:modified="Tue, 17 Aug 2010 16:53:22 GMT" remote_id="b7346f78f623b980bc870f20d48c3d9b" class_remote_id="f6df12aa74e36230eb675f364fccd25a" ezremote:class_identifier="image" ezremote:always_available="0" initial_language="ger-DE">
-      <ezobject:version-list xmlns:ezobject="http://ez.no/object/" active_version="2">
-        <ezobject:version xmlns:ezremote="http://ez.no/ezobject" ezremote:version="2" ezremote:status="1" ezremote:created="Tue, 17 Aug 2010 16:53:14 GMT" ezremote:modified="Tue, 17 Aug 2010 16:53:22 GMT" initial_language="ger-DE">
+      <ezobject:version-list xmlns:ezobject="http://ez.no/object/" active_version="1">
+        <ezobject:version xmlns:ezremote="http://ez.no/ezobject" ezremote:version="1" ezremote:status="1" ezremote:created="Tue, 17 Aug 2010 16:53:14 GMT" ezremote:modified="Tue, 17 Aug 2010 16:53:22 GMT" initial_language="ger-DE">
           <ezobject:object-translation language="ger-DE" object_name="Ale">
             <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="211" ezremote:identifier="name" name="Name" type="ezstring">
               <text>Ale</text>
@@ -64,7 +64,7 @@
             <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="212" ezremote:identifier="caption" name="Caption" type="ezxmltext">
               <section xmlns:image="http://ez.no/namespaces/ezpublish3/image/" xmlns:xhtml="http://ez.no/namespaces/ezpublish3/xhtml/" xmlns:custom="http://ez.no/namespaces/ezpublish3/custom/"/>
             </ezobject:attribute>
-            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="213" ezremote:identifier="image" name="Image" type="ezimage" image-file-key="0f2536276916ea374d6d59d5b21edc2b" alternative-text=""/>
+            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="213" ezremote:identifier="image" name="Image" type="ezimage" image-file-key="42edb00931b3bac5538bafebc01ba91a" alternative-text=""/>
             <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="214" ezremote:identifier="tags" name="Tags" type="ezkeyword">
               <keyword-string></keyword-string>
             </ezobject:attribute>
@@ -76,8 +76,8 @@
       </ezobject:version-list>
     </ezremote:object>
     <ezremote:object xmlns:ezremote="http://ez.no/ezobject" xmlns:ezobject="http://ez.no/object/" ezremote:id="60" name="Dark Beer" ezremote:section_id="3" ezremote:owner_id="14" ezremote:class_id="30" ezremote:published="Tue, 27 Oct 2009 14:07:54 GMT" ezremote:modified="Tue, 17 Aug 2010 16:53:39 GMT" remote_id="f0cbcf68f4484ab757fad91152228af5" class_remote_id="f6df12aa74e36230eb675f364fccd25a" ezremote:class_identifier="image" ezremote:always_available="0" initial_language="ger-DE">
-      <ezobject:version-list xmlns:ezobject="http://ez.no/object/" active_version="2">
-        <ezobject:version xmlns:ezremote="http://ez.no/ezobject" ezremote:version="2" ezremote:status="1" ezremote:created="Tue, 17 Aug 2010 16:53:29 GMT" ezremote:modified="Tue, 17 Aug 2010 16:53:39 GMT" initial_language="ger-DE">
+      <ezobject:version-list xmlns:ezobject="http://ez.no/object/" active_version="1">
+        <ezobject:version xmlns:ezremote="http://ez.no/ezobject" ezremote:version="1" ezremote:status="1" ezremote:created="Tue, 17 Aug 2010 16:53:29 GMT" ezremote:modified="Tue, 17 Aug 2010 16:53:39 GMT" initial_language="ger-DE">
           <ezobject:object-translation language="ger-DE" object_name="Dark Beer">
             <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="215" ezremote:identifier="name" name="Name" type="ezstring">
               <text>Dark Beer</text>
@@ -85,7 +85,7 @@
             <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="216" ezremote:identifier="caption" name="Caption" type="ezxmltext">
               <section xmlns:image="http://ez.no/namespaces/ezpublish3/image/" xmlns:xhtml="http://ez.no/namespaces/ezpublish3/xhtml/" xmlns:custom="http://ez.no/namespaces/ezpublish3/custom/"/>
             </ezobject:attribute>
-            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="217" ezremote:identifier="image" name="Image" type="ezimage" image-file-key="f311480b69489793f0a33fbacb51a1a0" alternative-text=""/>
+            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="217" ezremote:identifier="image" name="Image" type="ezimage" image-file-key="66915af8715bddba66946aa69e124d49" alternative-text=""/>
             <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="218" ezremote:identifier="tags" name="Tags" type="ezkeyword">
               <keyword-string></keyword-string>
             </ezobject:attribute>
@@ -97,8 +97,8 @@
       </ezobject:version-list>
     </ezremote:object>
     <ezremote:object xmlns:ezremote="http://ez.no/ezobject" xmlns:ezobject="http://ez.no/object/" ezremote:id="61" name="green apple" ezremote:section_id="3" ezremote:owner_id="14" ezremote:class_id="30" ezremote:published="Tue, 27 Oct 2009 14:48:25 GMT" ezremote:modified="Tue, 17 Aug 2010 16:54:04 GMT" remote_id="eeb2fede38387e6763b32c9225916eab" class_remote_id="f6df12aa74e36230eb675f364fccd25a" ezremote:class_identifier="image" ezremote:always_available="0" initial_language="ger-DE">
-      <ezobject:version-list xmlns:ezobject="http://ez.no/object/" active_version="2">
-        <ezobject:version xmlns:ezremote="http://ez.no/ezobject" ezremote:version="2" ezremote:status="1" ezremote:created="Tue, 17 Aug 2010 16:53:46 GMT" ezremote:modified="Tue, 17 Aug 2010 16:54:04 GMT" initial_language="ger-DE">
+      <ezobject:version-list xmlns:ezobject="http://ez.no/object/" active_version="1">
+        <ezobject:version xmlns:ezremote="http://ez.no/ezobject" ezremote:version="1" ezremote:status="1" ezremote:created="Tue, 17 Aug 2010 16:53:46 GMT" ezremote:modified="Tue, 17 Aug 2010 16:54:04 GMT" initial_language="ger-DE">
           <ezobject:object-translation language="ger-DE" object_name="green apple">
             <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="219" ezremote:identifier="name" name="Name" type="ezstring">
               <text>green apple</text>
@@ -106,7 +106,7 @@
             <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="220" ezremote:identifier="caption" name="Caption" type="ezxmltext">
               <section xmlns:image="http://ez.no/namespaces/ezpublish3/image/" xmlns:xhtml="http://ez.no/namespaces/ezpublish3/xhtml/" xmlns:custom="http://ez.no/namespaces/ezpublish3/custom/"/>
             </ezobject:attribute>
-            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="221" ezremote:identifier="image" name="Image" type="ezimage" image-file-key="f8073a6340ed6be4408770ced7ba88ae" alternative-text=""/>
+            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="221" ezremote:identifier="image" name="Image" type="ezimage" image-file-key="ba291e76e019d1c29d9aaa11631b35b4" alternative-text=""/>
             <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="222" ezremote:identifier="tags" name="Tags" type="ezkeyword">
               <keyword-string></keyword-string>
             </ezobject:attribute>
@@ -118,8 +118,8 @@
       </ezobject:version-list>
     </ezremote:object>
     <ezremote:object xmlns:ezremote="http://ez.no/ezobject" xmlns:ezobject="http://ez.no/object/" ezremote:id="62" name="red apple" ezremote:section_id="3" ezremote:owner_id="14" ezremote:class_id="30" ezremote:published="Tue, 27 Oct 2009 14:51:04 GMT" ezremote:modified="Tue, 17 Aug 2010 16:54:20 GMT" remote_id="bdde07774e5e5d1e52b3e3a67a08764b" class_remote_id="f6df12aa74e36230eb675f364fccd25a" ezremote:class_identifier="image" ezremote:always_available="0" initial_language="ger-DE">
-      <ezobject:version-list xmlns:ezobject="http://ez.no/object/" active_version="2">
-        <ezobject:version xmlns:ezremote="http://ez.no/ezobject" ezremote:version="2" ezremote:status="1" ezremote:created="Tue, 17 Aug 2010 16:54:12 GMT" ezremote:modified="Tue, 17 Aug 2010 16:54:20 GMT" initial_language="ger-DE">
+      <ezobject:version-list xmlns:ezobject="http://ez.no/object/" active_version="1">
+        <ezobject:version xmlns:ezremote="http://ez.no/ezobject" ezremote:version="1" ezremote:status="1" ezremote:created="Tue, 17 Aug 2010 16:54:12 GMT" ezremote:modified="Tue, 17 Aug 2010 16:54:20 GMT" initial_language="ger-DE">
           <ezobject:object-translation language="ger-DE" object_name="red apple">
             <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="223" ezremote:identifier="name" name="Name" type="ezstring">
               <text>red apple</text>
@@ -127,7 +127,7 @@
             <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="224" ezremote:identifier="caption" name="Caption" type="ezxmltext">
               <section xmlns:image="http://ez.no/namespaces/ezpublish3/image/" xmlns:xhtml="http://ez.no/namespaces/ezpublish3/xhtml/" xmlns:custom="http://ez.no/namespaces/ezpublish3/custom/"/>
             </ezobject:attribute>
-            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="225" ezremote:identifier="image" name="Image" type="ezimage" image-file-key="c27a03dbb24941d21a183d3be15f8013" alternative-text=""/>
+            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="225" ezremote:identifier="image" name="Image" type="ezimage" image-file-key="4ec595aa7dbccccfb57411aeb406aaa5" alternative-text=""/>
             <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="226" ezremote:identifier="tags" name="Tags" type="ezkeyword">
               <keyword-string></keyword-string>
             </ezobject:attribute>
@@ -139,8 +139,8 @@
       </ezobject:version-list>
     </ezremote:object>
     <ezremote:object xmlns:ezremote="http://ez.no/ezobject" xmlns:ezobject="http://ez.no/object/" ezremote:id="63" name="Homepage Banner" ezremote:section_id="3" ezremote:owner_id="14" ezremote:class_id="30" ezremote:published="Fri, 29 Jan 2010 23:54:20 GMT" ezremote:modified="Tue, 17 Aug 2010 16:54:37 GMT" remote_id="cb0bf6a626e26601c6e1afc229c0aa86" class_remote_id="f6df12aa74e36230eb675f364fccd25a" ezremote:class_identifier="image" ezremote:always_available="0" initial_language="ger-DE">
-      <ezobject:version-list xmlns:ezobject="http://ez.no/object/" active_version="2">
-        <ezobject:version xmlns:ezremote="http://ez.no/ezobject" ezremote:version="2" ezremote:status="1" ezremote:created="Tue, 17 Aug 2010 16:54:27 GMT" ezremote:modified="Tue, 17 Aug 2010 16:54:37 GMT" initial_language="ger-DE">
+      <ezobject:version-list xmlns:ezobject="http://ez.no/object/" active_version="1">
+        <ezobject:version xmlns:ezremote="http://ez.no/ezobject" ezremote:version="1" ezremote:status="1" ezremote:created="Tue, 17 Aug 2010 16:54:27 GMT" ezremote:modified="Tue, 17 Aug 2010 16:54:37 GMT" initial_language="ger-DE">
           <ezobject:object-translation language="ger-DE" object_name="Homepage Banner">
             <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="227" ezremote:identifier="name" name="Name" type="ezstring">
               <text>Homepage Banner</text>
@@ -148,7 +148,7 @@
             <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="228" ezremote:identifier="caption" name="Caption" type="ezxmltext">
               <section xmlns:image="http://ez.no/namespaces/ezpublish3/image/" xmlns:xhtml="http://ez.no/namespaces/ezpublish3/xhtml/" xmlns:custom="http://ez.no/namespaces/ezpublish3/custom/"/>
             </ezobject:attribute>
-            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="229" ezremote:identifier="image" name="Image" type="ezimage" image-file-key="d6ace06e1987aa9a3e0e85f1cdb47194" alternative-text=""/>
+            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="229" ezremote:identifier="image" name="Image" type="ezimage" image-file-key="ac797880fdc7617ca0b02e970fb85fee" alternative-text=""/>
             <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="230" ezremote:identifier="tags" name="Tags" type="ezkeyword">
               <keyword-string></keyword-string>
             </ezobject:attribute>
@@ -169,7 +169,7 @@
             <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="232" ezremote:identifier="caption" name="Caption" type="ezxmltext">
               <section xmlns:image="http://ez.no/namespaces/ezpublish3/image/" xmlns:xhtml="http://ez.no/namespaces/ezpublish3/xhtml/" xmlns:custom="http://ez.no/namespaces/ezpublish3/custom/"/>
             </ezobject:attribute>
-            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="233" ezremote:identifier="image" name="Image" type="ezimage" image-file-key="78978d5f7dcb43a0521895a9d7911c2f" alternative-text=""/>
+            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="233" ezremote:identifier="image" name="Image" type="ezimage" image-file-key="2a59ed366a57936e5b3b7959ddc146d0" alternative-text=""/>
             <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="234" ezremote:identifier="tags" name="Tags" type="ezkeyword">
               <keyword-string></keyword-string>
             </ezobject:attribute>
@@ -231,7 +231,7 @@
                 </paragraph>
               </section>
             </ezobject:attribute>
-            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="244" ezremote:identifier="logo" name="Logo" type="ezimage" image-file-key="8e67b7f9177705741e18b3012162a09f" alternative-text=""/>
+            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="244" ezremote:identifier="logo" name="Logo" type="ezimage" image-file-key="75e083b66e3d130b3a8943f371439f39" alternative-text=""/>
           </ezobject:object-translation>
           <ezobject:node-assignment-list>
             <node-assignment is-main-node="1" parent-node-remote-id="930c8537e2f241cab7133b72da5353c4" name="Bakery" node-id="68" remote-id="a0af34b2b4e4da392cf8b046f399509d" sort-field="path" sort-order="1" priority="0"/>
@@ -251,7 +251,7 @@
                 <paragraph>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</paragraph>
               </section>
             </ezobject:attribute>
-            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="247" ezremote:identifier="logo" name="Logo" type="ezimage" image-file-key="2297cb86e58dda29b2f385a30772a11a" alternative-text=""/>
+            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="247" ezremote:identifier="logo" name="Logo" type="ezimage" image-file-key="78c947833ccc2b4feac80cdfb3eef048" alternative-text=""/>
           </ezobject:object-translation>
           <ezobject:node-assignment-list>
             <node-assignment is-main-node="1" parent-node-remote-id="930c8537e2f241cab7133b72da5353c4" name="Drinks" node-id="69" remote-id="a043d4e538efc690ac4a0a7f8c015e62" sort-field="path" sort-order="1" priority="0"/>
@@ -271,7 +271,7 @@
                 <paragraph>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. </paragraph>
               </section>
             </ezobject:attribute>
-            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="250" ezremote:identifier="logo" name="Logo" type="ezimage" image-file-key="dde6334c2f158b42abec1a92097e1e16" alternative-text=""/>
+            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="250" ezremote:identifier="logo" name="Logo" type="ezimage" image-file-key="44345e8f2fe5c1218489e5f630ab429b" alternative-text=""/>
           </ezobject:object-translation>
           <ezobject:node-assignment-list>
             <node-assignment is-main-node="1" parent-node-remote-id="930c8537e2f241cab7133b72da5353c4" name="Cheese Dairy" node-id="70" remote-id="9c0da0496befc0937e40b5d2a05b08fc" sort-field="path" sort-order="1" priority="0"/>
@@ -291,7 +291,7 @@
                 <paragraph>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</paragraph>
               </section>
             </ezobject:attribute>
-            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="253" ezremote:identifier="logo" name="Logo" type="ezimage" image-file-key="64575707a3d0ae7fbf8deae66135cdd9" alternative-text=""/>
+            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="253" ezremote:identifier="logo" name="Logo" type="ezimage" image-file-key="3f244527a3b253fee690cef204688389" alternative-text=""/>
           </ezobject:object-translation>
           <ezobject:node-assignment-list>
             <node-assignment is-main-node="1" parent-node-remote-id="930c8537e2f241cab7133b72da5353c4" name="Fruit Farmers" node-id="71" remote-id="a8655b88725b4c9369adc1686ae82251" sort-field="path" sort-order="1" priority="0"/>
@@ -350,7 +350,7 @@
             </ezobject:attribute>
           </ezobject:object-translation>
           <ezobject:node-assignment-list>
-            <node-assignment is-main-node="1" name="Shop" node-id="104" remote-id="587f86c32b2360df145d6143d14c4e6a" sort-field="path" sort-order="1" priority="0"/>
+            <node-assignment is-main-node="1" name="Shop" node-id="103" remote-id="5e657ba251d8fb951f31473155e5c4dd" sort-field="path" sort-order="1" priority="0"/>
           </ezobject:node-assignment-list>
         </ezobject:version>
       </ezobject:version-list>
@@ -561,34 +561,79 @@
         </ezobject:version>
       </ezobject:version-list>
     </ezremote:object>
-    <ezremote:object xmlns:ezremote="http://ez.no/ezobject" xmlns:ezobject="http://ez.no/object/" ezremote:id="100" name="Packages" ezremote:section_id="1" ezremote:owner_id="14" ezremote:class_id="1" ezremote:published="Tue, 17 Aug 2010 15:51:30 GMT" ezremote:modified="Tue, 17 Aug 2010 15:51:30 GMT" remote_id="358da6364a9f2a4a59c8afc6f54d9656" class_remote_id="a3d405b81be900468eb153d774f4f0d2" ezremote:class_identifier="folder" ezremote:always_available="1" initial_language="ger-DE">
+    <ezremote:object xmlns:ezremote="http://ez.no/ezobject" xmlns:ezobject="http://ez.no/object/" ezremote:id="102" name="Coupon 10%" ezremote:section_id="1" ezremote:owner_id="14" ezremote:class_id="49" ezremote:published="Tue, 17 Aug 2010 17:53:14 GMT" ezremote:modified="Tue, 17 Aug 2010 17:53:14 GMT" remote_id="3b8a18d68a134c870d0315110b0156fd" class_remote_id="f51836e0ef8131bbbbfde7cc3030267c" ezremote:class_identifier="coupon" ezremote:always_available="1" initial_language="ger-DE">
+      <ezobject:version-list xmlns:ezobject="http://ez.no/object/" active_version="1">
+        <ezobject:version xmlns:ezremote="http://ez.no/ezobject" ezremote:version="1" ezremote:status="1" ezremote:created="Tue, 17 Aug 2010 17:52:13 GMT" ezremote:modified="Tue, 17 Aug 2010 17:53:14 GMT" initial_language="ger-DE">
+          <ezobject:object-translation language="ger-DE" object_name="Coupon 10%">
+            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="483" ezremote:identifier="name" name="Name" type="ezstring">
+              <text>Coupon 10%</text>
+            </ezobject:attribute>
+            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="484" ezremote:identifier="description" name="Description" type="ezxmltext">
+              <section xmlns:image="http://ez.no/namespaces/ezpublish3/image/" xmlns:xhtml="http://ez.no/namespaces/ezpublish3/xhtml/" xmlns:custom="http://ez.no/namespaces/ezpublish3/custom/"/>
+            </ezobject:attribute>
+            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="485" ezremote:identifier="coupon" name="Coupon" type="ezcoupon">
+              <data-int>0</data-int>
+              <data-float>10</data-float>
+              <data-text>10PERCENT;-3600;1577833200</data-text>
+            </ezobject:attribute>
+          </ezobject:object-translation>
+          <ezobject:node-assignment-list>
+            <node-assignment is-main-node="1" parent-node-remote-id="425e4b6501a6a2ce164fcf21fcf4be1e" name="Coupon 10%" node-id="104" remote-id="ec9b5da854182af82606372b4973be56" sort-field="path" sort-order="1" priority="0"/>
+          </ezobject:node-assignment-list>
+        </ezobject:version>
+      </ezobject:version-list>
+    </ezremote:object>
+    <ezremote:object xmlns:ezremote="http://ez.no/ezobject" xmlns:ezobject="http://ez.no/object/" ezremote:id="76" name="Packages" ezremote:section_id="1" ezremote:owner_id="14" ezremote:class_id="1" ezremote:published="Tue, 17 Aug 2010 15:51:30 GMT" ezremote:modified="Tue, 17 Aug 2010 15:51:30 GMT" remote_id="358da6364a9f2a4a59c8afc6f54d9656" class_remote_id="a3d405b81be900468eb153d774f4f0d2" ezremote:class_identifier="folder" ezremote:always_available="1" initial_language="ger-DE">
       <ezobject:version-list xmlns:ezobject="http://ez.no/object/" active_version="1">
         <ezobject:version xmlns:ezremote="http://ez.no/ezobject" ezremote:version="1" ezremote:status="1" ezremote:created="Tue, 17 Aug 2010 15:46:08 GMT" ezremote:modified="Tue, 17 Aug 2010 15:51:30 GMT" initial_language="ger-DE">
           <ezobject:object-translation language="ger-DE" object_name="Packages">
-            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="482" ezremote:identifier="name" name="Name" type="ezstring">
+            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="302" ezremote:identifier="name" name="Name" type="ezstring">
               <text>Packages</text>
             </ezobject:attribute>
-            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="483" ezremote:identifier="short_name" name="Short name" type="ezstring">
+            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="303" ezremote:identifier="short_name" name="Short name" type="ezstring">
               <text></text>
             </ezobject:attribute>
-            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="484" ezremote:identifier="short_description" name="Summary" type="ezxmltext">
+            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="304" ezremote:identifier="short_description" name="Summary" type="ezxmltext">
               <section xmlns:image="http://ez.no/namespaces/ezpublish3/image/" xmlns:xhtml="http://ez.no/namespaces/ezpublish3/xhtml/" xmlns:custom="http://ez.no/namespaces/ezpublish3/custom/"/>
             </ezobject:attribute>
-            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="485" ezremote:identifier="description" name="Description" type="ezxmltext">
+            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="305" ezremote:identifier="description" name="Description" type="ezxmltext">
               <section xmlns:image="http://ez.no/namespaces/ezpublish3/image/" xmlns:xhtml="http://ez.no/namespaces/ezpublish3/xhtml/" xmlns:custom="http://ez.no/namespaces/ezpublish3/custom/"/>
             </ezobject:attribute>
-            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="486" ezremote:identifier="show_children" name="Display sub items" type="ezboolean">
+            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="306" ezremote:identifier="show_children" name="Display sub items" type="ezboolean">
               <value>1</value>
             </ezobject:attribute>
-            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="487" ezremote:identifier="tags" name="Tags" type="ezkeyword">
+            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="307" ezremote:identifier="tags" name="Tags" type="ezkeyword">
               <keyword-string></keyword-string>
             </ezobject:attribute>
-            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="488" ezremote:identifier="publish_date" name="Publish date" type="ezdatetime">
+            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="308" ezremote:identifier="publish_date" name="Publish date" type="ezdatetime">
               <date_time>Thu, 01 Jan 1970 00:00:00 GMT</date_time>
             </ezobject:attribute>
           </ezobject:object-translation>
           <ezobject:node-assignment-list>
-            <node-assignment is-main-node="1" name="Packages" node-id="102" remote-id="3d1f7f1a2f6bfabbbd9ec34403dbdaf5" sort-field="path" sort-order="1" priority="0"/>
+            <node-assignment is-main-node="1" name="Packages" node-id="78" remote-id="3d1f7f1a2f6bfabbbd9ec34403dbdaf5" sort-field="path" sort-order="1" priority="0"/>
+          </ezobject:node-assignment-list>
+        </ezobject:version>
+      </ezobject:version-list>
+    </ezremote:object>
+    <ezremote:object xmlns:ezremote="http://ez.no/ezobject" xmlns:ezobject="http://ez.no/object/" ezremote:id="100" name="Big Box" ezremote:section_id="1" ezremote:owner_id="14" ezremote:class_id="51" ezremote:published="Tue, 17 Aug 2010 17:46:39 GMT" ezremote:modified="Tue, 17 Aug 2010 17:46:39 GMT" remote_id="9d06994652f237522c67ce2497110c49" class_remote_id="084d2ef798b924ad2055382ba7a0a04f" ezremote:class_identifier="xrow_package" ezremote:always_available="1" initial_language="ger-DE">
+      <ezobject:version-list xmlns:ezobject="http://ez.no/object/" active_version="1">
+        <ezobject:version xmlns:ezremote="http://ez.no/ezobject" ezremote:version="1" ezremote:status="1" ezremote:created="Tue, 17 Aug 2010 17:46:21 GMT" ezremote:modified="Tue, 17 Aug 2010 17:46:39 GMT" initial_language="ger-DE">
+          <ezobject:object-translation language="ger-DE" object_name="Big Box">
+            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="472" ezremote:identifier="name" name="Name" type="ezstring">
+              <text>Big Box</text>
+            </ezobject:attribute>
+            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="473" ezremote:identifier="length" name="Length" type="ezfloat">
+              <value>100</value>
+            </ezobject:attribute>
+            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="474" ezremote:identifier="width" name="Width" type="ezfloat">
+              <value>100</value>
+            </ezobject:attribute>
+            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="475" ezremote:identifier="height" name="Height" type="ezfloat">
+              <value>100</value>
+            </ezobject:attribute>
+          </ezobject:object-translation>
+          <ezobject:node-assignment-list>
+            <node-assignment is-main-node="1" parent-node-remote-id="3d1f7f1a2f6bfabbbd9ec34403dbdaf5" name="Big Box" node-id="102" remote-id="9d44def7428b1e1cc780e7ebd6c1b430" sort-field="path" sort-order="1" priority="0"/>
           </ezobject:node-assignment-list>
         </ezobject:version>
       </ezobject:version-list>
@@ -597,13 +642,13 @@
       <ezobject:version-list xmlns:ezobject="http://ez.no/object/" xmlns:custom="http://ez.no/namespaces/ezpublish3/custom/" active_version="1">
         <ezobject:version xmlns:ezremote="http://ez.no/ezobject" xmlns:custom="http://ez.no/namespaces/ezpublish3/custom/" ezremote:version="1" ezremote:status="1" ezremote:created="Thu, 25 Feb 2010 14:39:38 GMT" ezremote:modified="Thu, 25 Feb 2010 14:40:01 GMT" initial_language="ger-DE">
           <ezobject:object-translation xmlns:custom="http://ez.no/namespaces/ezpublish3/custom/" language="ger-DE" object_name="Products">
-            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="305" ezremote:identifier="name" name="Name" type="ezstring">
+            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="309" ezremote:identifier="name" name="Name" type="ezstring">
               <text>Products</text>
             </ezobject:attribute>
-            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="306" ezremote:identifier="short_name" name="Short name" type="ezstring">
+            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="310" ezremote:identifier="short_name" name="Short name" type="ezstring">
               <text>Products</text>
             </ezobject:attribute>
-            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" xmlns:custom="http://ez.no/namespaces/ezpublish3/custom/" ezremote:id="307" ezremote:identifier="short_description" name="Summary" type="ezxmltext">
+            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" xmlns:custom="http://ez.no/namespaces/ezpublish3/custom/" ezremote:id="311" ezremote:identifier="short_description" name="Summary" type="ezxmltext">
               <section xmlns:image="http://ez.no/namespaces/ezpublish3/image/" xmlns:xhtml="http://ez.no/namespaces/ezpublish3/xhtml/" xmlns:custom="http://ez.no/namespaces/ezpublish3/custom/">
                 <paragraph>Featured Products:</paragraph>
                 <paragraph xmlns:tmp="http://ez.no/namespaces/ezpublish3/temporary/">
@@ -613,18 +658,18 @@
                 <paragraph>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.</paragraph>
               </section>
             </ezobject:attribute>
-            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="308" ezremote:identifier="description" name="Description" type="ezxmltext">
+            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="312" ezremote:identifier="description" name="Description" type="ezxmltext">
               <section xmlns:image="http://ez.no/namespaces/ezpublish3/image/" xmlns:xhtml="http://ez.no/namespaces/ezpublish3/xhtml/" xmlns:custom="http://ez.no/namespaces/ezpublish3/custom/">
                 <paragraph>At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</paragraph>
               </section>
             </ezobject:attribute>
-            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="309" ezremote:identifier="show_children" name="Display sub items" type="ezboolean">
+            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="313" ezremote:identifier="show_children" name="Display sub items" type="ezboolean">
               <value>1</value>
             </ezobject:attribute>
-            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="310" ezremote:identifier="tags" name="Tags" type="ezkeyword">
+            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="314" ezremote:identifier="tags" name="Tags" type="ezkeyword">
               <keyword-string></keyword-string>
             </ezobject:attribute>
-            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="311" ezremote:identifier="publish_date" name="Publish date" type="ezdatetime">
+            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="315" ezremote:identifier="publish_date" name="Publish date" type="ezdatetime">
               <date_time>Thu, 01 Jan 1970 00:00:00 GMT</date_time>
             </ezobject:attribute>
           </ezobject:object-translation>
@@ -638,15 +683,15 @@
       <ezobject:version-list xmlns:ezobject="http://ez.no/object/" active_version="1">
         <ezobject:version xmlns:ezremote="http://ez.no/ezobject" ezremote:version="1" ezremote:status="1" ezremote:created="Wed, 27 Jan 2010 20:01:42 GMT" ezremote:modified="Wed, 27 Jan 2010 20:01:50 GMT" initial_language="ger-DE">
           <ezobject:object-translation language="ger-DE" object_name="Food">
-            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="312" ezremote:identifier="name" name="Name" type="ezstring">
+            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="316" ezremote:identifier="name" name="Name" type="ezstring">
               <text>Food</text>
             </ezobject:attribute>
-            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="313" ezremote:identifier="description" name="Description" type="ezxmltext">
+            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="317" ezremote:identifier="description" name="Description" type="ezxmltext">
               <section xmlns:image="http://ez.no/namespaces/ezpublish3/image/" xmlns:xhtml="http://ez.no/namespaces/ezpublish3/xhtml/" xmlns:custom="http://ez.no/namespaces/ezpublish3/custom/">
                 <paragraph>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</paragraph>
               </section>
             </ezobject:attribute>
-            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="314" ezremote:identifier="image" name="Image" type="ezimage" image-file-key="3dcda9a2a337f8f51ed44430036f2f24" alternative-text="Food"/>
+            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="318" ezremote:identifier="image" name="Image" type="ezimage" image-file-key="7f13b619f7ae6e94a8c4ad21c4552c40" alternative-text="Food"/>
           </ezobject:object-translation>
           <ezobject:node-assignment-list>
             <node-assignment is-main-node="1" parent-node-remote-id="9b4e2eb48f5e4ef38f751a230c610c09" name="Food" node-id="80" remote-id="2c67607bb18f7d39ab80e49d98b203c8" sort-field="priority" sort-order="1" priority="0"/>
@@ -655,62 +700,62 @@
       </ezobject:version-list>
     </ezremote:object>
     <ezremote:object xmlns:ezremote="http://ez.no/ezobject" xmlns:ezobject="http://ez.no/object/" xmlns:xhtml="http://ez.no/namespaces/ezpublish3/xhtml/" ezremote:id="79" name="Peach" ezremote:section_id="1" ezremote:owner_id="14" ezremote:class_id="47" ezremote:published="Thu, 29 Oct 2009 13:06:11 GMT" ezremote:modified="Tue, 17 Aug 2010 16:57:33 GMT" remote_id="eb1d51c80f71c9cac0f601676d9d7c68" class_remote_id="5ae2c8c21f26c3cda7a88477d12708a2" ezremote:class_identifier="xrow_product" ezremote:always_available="0" initial_language="ger-DE">
-      <ezobject:version-list xmlns:ezobject="http://ez.no/object/" xmlns:xhtml="http://ez.no/namespaces/ezpublish3/xhtml/" active_version="2">
-        <ezobject:version xmlns:ezremote="http://ez.no/ezobject" xmlns:xhtml="http://ez.no/namespaces/ezpublish3/xhtml/" ezremote:version="2" ezremote:status="1" ezremote:created="Tue, 17 Aug 2010 16:57:21 GMT" ezremote:modified="Tue, 17 Aug 2010 16:57:33 GMT" initial_language="ger-DE">
+      <ezobject:version-list xmlns:ezobject="http://ez.no/object/" xmlns:xhtml="http://ez.no/namespaces/ezpublish3/xhtml/" active_version="1">
+        <ezobject:version xmlns:ezremote="http://ez.no/ezobject" xmlns:xhtml="http://ez.no/namespaces/ezpublish3/xhtml/" ezremote:version="1" ezremote:status="1" ezremote:created="Tue, 17 Aug 2010 16:57:21 GMT" ezremote:modified="Tue, 17 Aug 2010 16:57:33 GMT" initial_language="ger-DE">
           <ezobject:object-translation xmlns:xhtml="http://ez.no/namespaces/ezpublish3/xhtml/" language="ger-DE" object_name="Peach">
-            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="315" ezremote:identifier="name" name="Name" type="ezstring">
+            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="319" ezremote:identifier="name" name="Name" type="ezstring">
               <text>Peach</text>
             </ezobject:attribute>
-            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="316" ezremote:identifier="product_id" name="Product ID" type="ezstring">
+            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="320" ezremote:identifier="product_id" name="Product ID" type="ezstring">
               <text>666</text>
             </ezobject:attribute>
-            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="317" ezremote:identifier="remote_id" name="Internal Product ID" type="ezstring">
+            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="321" ezremote:identifier="remote_id" name="Internal Product ID" type="ezstring">
               <text>1337</text>
             </ezobject:attribute>
-            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="318" ezremote:identifier="manufacturer" name="Manufacturer" type="ezobjectrelation"/>
-            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="319" ezremote:identifier="short_description" name="Short description" type="ezxmltext">
+            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="322" ezremote:identifier="manufacturer" name="Manufacturer" type="ezobjectrelation"/>
+            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="323" ezremote:identifier="short_description" name="Short description" type="ezxmltext">
               <section xmlns:image="http://ez.no/namespaces/ezpublish3/image/" xmlns:xhtml="http://ez.no/namespaces/ezpublish3/xhtml/" xmlns:custom="http://ez.no/namespaces/ezpublish3/custom/">
                 <paragraph>The <strong>peach</strong>&amp;nbsp;(<emphasize>Prunus persica</emphasize>) is a species of <emphasize>Prunus</emphasize>&amp;nbsp;native to China that bears an edible juicy fruit also called a peach. It is a deciduous tree growing to 4-10 m tall, belonging to the subfamily Prunoideae of the family Rosaceae.</paragraph>
               </section>
             </ezobject:attribute>
-            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" xmlns:xhtml="http://ez.no/namespaces/ezpublish3/xhtml/" ezremote:id="320" ezremote:identifier="description" name="Description" type="ezxmltext">
+            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" xmlns:xhtml="http://ez.no/namespaces/ezpublish3/xhtml/" ezremote:id="324" ezremote:identifier="description" name="Description" type="ezxmltext">
               <section xmlns:image="http://ez.no/namespaces/ezpublish3/image/" xmlns:xhtml="http://ez.no/namespaces/ezpublish3/xhtml/" xmlns:custom="http://ez.no/namespaces/ezpublish3/custom/">
                 <paragraph>The <strong>peach</strong>&amp;nbsp;(<emphasize>Prunus persica</emphasize>) is a species of <emphasize>Prunus</emphasize>&amp;nbsp;native to China that bears an edible juicy fruit also called a peach. It is a deciduous <link xhtml:title="Tree" href="http://en.wikipedia.org/wiki/Tree">tree</link>&amp;nbsp;growing to 4-10 m tall, belonging to the subfamily Prunoideae of the family Rosaceae. It is classified with the almond in the subgenus <emphasize>Amygdalus</emphasize>&amp;nbsp;within the genus <emphasize>Prunus</emphasize>, distinguished from the other subgenera by the corrugated seed shell.</paragraph>
               </section>
             </ezobject:attribute>
-            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="321" ezremote:identifier="image" name="Image" type="ezimage" image-file-key="6663aa40509f9d9bf15a1a485bfe9890" alternative-text="Peach"/>
-            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="322" ezremote:identifier="caption" name="Caption (Image)" type="ezxmltext">
+            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="325" ezremote:identifier="image" name="Image" type="ezimage" image-file-key="b837d24b927f656e8b324707937a70f4" alternative-text="Peach"/>
+            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="326" ezremote:identifier="caption" name="Caption (Image)" type="ezxmltext">
               <section xmlns:image="http://ez.no/namespaces/ezpublish3/image/" xmlns:xhtml="http://ez.no/namespaces/ezpublish3/xhtml/" xmlns:custom="http://ez.no/namespaces/ezpublish3/custom/"/>
             </ezobject:attribute>
-            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="323" ezremote:identifier="tags" name="Tags" type="ezkeyword">
+            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="327" ezremote:identifier="tags" name="Tags" type="ezkeyword">
               <keyword-string>Peach, Food, Fruits</keyword-string>
             </ezobject:attribute>
-            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="324" ezremote:identifier="price" name="Price" type="ezmultiprice">
+            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="328" ezremote:identifier="price" name="Price" type="ezmultiprice">
               <ezmultiprice>
                 <price-list>
                   <price currency-code="EUR" value="3.00" type="1"/>
                 </price-list>
               </ezmultiprice>
             </ezobject:attribute>
-            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="325" ezremote:identifier="options" name="Options" type="ezoption2">
+            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="329" ezremote:identifier="options" name="Options" type="ezoption2">
               <ezoption>
                 <name/>
                 <options/>
               </ezoption>
             </ezobject:attribute>
-            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="326" ezremote:identifier="weight" name="Weight" type="ezfloat">
+            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="330" ezremote:identifier="weight" name="Weight" type="ezfloat">
               <value>0.1</value>
             </ezobject:attribute>
-            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="327" ezremote:identifier="freight_item" name="Freight Item" type="ezboolean">
+            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="331" ezremote:identifier="freight_item" name="Freight Item" type="ezboolean">
               <value>0</value>
             </ezobject:attribute>
-            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="328" ezremote:identifier="free_shipping_item" name="Free Shipping and Handling" type="ezboolean">
+            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="332" ezremote:identifier="free_shipping_item" name="Free Shipping and Handling" type="ezboolean">
               <value>0</value>
             </ezobject:attribute>
-            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="329" ezremote:identifier="hazardous" name="Hazardous" type="ezboolean">
+            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="333" ezremote:identifier="hazardous" name="Hazardous" type="ezboolean">
               <value>0</value>
             </ezobject:attribute>
-            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="330" ezremote:identifier="no_auto_delivery" name="Not available for auto delivery" type="ezboolean">
+            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="334" ezremote:identifier="no_auto_delivery" name="Not available for auto delivery" type="ezboolean">
               <value>0</value>
             </ezobject:attribute>
           </ezobject:object-translation>
@@ -724,45 +769,45 @@
       <ezobject:version-list xmlns:ezobject="http://ez.no/object/" xmlns:xhtml="http://ez.no/namespaces/ezpublish3/xhtml/" active_version="1">
         <ezobject:version xmlns:ezremote="http://ez.no/ezobject" xmlns:xhtml="http://ez.no/namespaces/ezpublish3/xhtml/" ezremote:version="1" ezremote:status="1" ezremote:created="Thu, 25 Feb 2010 14:29:33 GMT" ezremote:modified="Thu, 25 Feb 2010 14:29:58 GMT" initial_language="ger-DE">
           <ezobject:object-translation xmlns:xhtml="http://ez.no/namespaces/ezpublish3/xhtml/" language="ger-DE" object_name="Apple">
-            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="331" ezremote:identifier="name" name="Name" type="ezstring">
+            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="335" ezremote:identifier="name" name="Name" type="ezstring">
               <text>Apple</text>
             </ezobject:attribute>
-            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="332" ezremote:identifier="product_id" name="Product ID" type="ezstring">
+            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="336" ezremote:identifier="product_id" name="Product ID" type="ezstring">
               <text>12345</text>
             </ezobject:attribute>
-            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="333" ezremote:identifier="remote_id" name="Internal Product ID" type="ezstring">
+            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="337" ezremote:identifier="remote_id" name="Internal Product ID" type="ezstring">
               <text>0987</text>
             </ezobject:attribute>
-            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="334" ezremote:identifier="manufacturer" name="Manufacturer" type="ezobjectrelation">
+            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="338" ezremote:identifier="manufacturer" name="Manufacturer" type="ezobjectrelation">
               <related-object-remote-id>e42562ecd8feec43bc75fa5697234ad5</related-object-remote-id>
             </ezobject:attribute>
-            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" xmlns:xhtml="http://ez.no/namespaces/ezpublish3/xhtml/" ezremote:id="335" ezremote:identifier="short_description" name="Short description" type="ezxmltext">
+            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" xmlns:xhtml="http://ez.no/namespaces/ezpublish3/xhtml/" ezremote:id="339" ezremote:identifier="short_description" name="Short description" type="ezxmltext">
               <section xmlns:image="http://ez.no/namespaces/ezpublish3/image/" xmlns:xhtml="http://ez.no/namespaces/ezpublish3/xhtml/" xmlns:custom="http://ez.no/namespaces/ezpublish3/custom/">
                 <paragraph>The <strong>apple</strong> is the pomaceous fruit of the apple tree, species <emphasize>Malus domestica</emphasize> in the rose family Rosaceae. It is one of the most widely <link xhtml:title="Tillage" href="http://en.wikipedia.org/wiki/Tillage">cultivated</link> tree fruits.</paragraph>
               </section>
             </ezobject:attribute>
-            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" xmlns:xhtml="http://ez.no/namespaces/ezpublish3/xhtml/" ezremote:id="336" ezremote:identifier="description" name="Description" type="ezxmltext">
+            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" xmlns:xhtml="http://ez.no/namespaces/ezpublish3/xhtml/" ezremote:id="340" ezremote:identifier="description" name="Description" type="ezxmltext">
               <section xmlns:image="http://ez.no/namespaces/ezpublish3/image/" xmlns:xhtml="http://ez.no/namespaces/ezpublish3/xhtml/" xmlns:custom="http://ez.no/namespaces/ezpublish3/custom/">
                 <paragraph>The <strong>apple</strong> is the <link xhtml:title="Pome" href="http://en.wikipedia.org/wiki/Pome">pomaceous</link> <link xhtml:title="Fruit" href="http://en.wikipedia.org/wiki/Fruit">fruit</link> of the apple <link xhtml:title="Tree" href="http://en.wikipedia.org/wiki/Tree">tree</link>, <link xhtml:title="Species" href="http://en.wikipedia.org/wiki/Species">species</link> <emphasize>Malus domestica</emphasize> in the <link xhtml:title="Rose" href="http://en.wikipedia.org/wiki/Rose">rose</link> family <link xhtml:title="Rosaceae" href="http://en.wikipedia.org/wiki/Rosaceae">Rosaceae</link>. It is one of the most widely <link xhtml:title="Tillage" href="http://en.wikipedia.org/wiki/Tillage">cultivated</link> tree fruits.</paragraph>
                 <paragraph>The tree originated from <link xhtml:title="Central Asia" href="http://en.wikipedia.org/wiki/Central_Asia">Central Asia</link>, where its wild ancestor is still found today. There are more than 7,500 known <link xhtml:title="List of apple cultivars" href="http://en.wikipedia.org/wiki/List_of_apple_cultivars">cultivars</link> of apples resulting in a range of desired characteristics. Cultivars vary in their <link xhtml:title="Yield" href="http://en.wikipedia.org/wiki/Yield">yield</link> and the ultimate size of the tree, even when grown on the same <link xhtml:title="Rootstock" href="http://en.wikipedia.org/wiki/Rootstock">rootstock</link>.</paragraph>
                 <paragraph>At least 55 million tons of apples were grown worldwide in 2005, with a value of about $10 billion. <link xhtml:title="People's Republic of China" href="http://en.wikipedia.org/wiki/People%27s_Republic_of_China">China</link> produced about 35% of this total. The <link xhtml:title="United States" href="http://en.wikipedia.org/wiki/United_States">United States</link> is the second leading producer, with more than 7.5% of world production. <link xhtml:title="Iran" href="http://en.wikipedia.org/wiki/Iran">Iran</link> is third followed by <link xhtml:title="Turkey" href="http://en.wikipedia.org/wiki/Turkey">Turkey</link>, <link xhtml:title="Russia" href="http://en.wikipedia.org/wiki/Russia">Russia</link>, <link xhtml:title="Italy" href="http://en.wikipedia.org/wiki/Italy">Italy</link> and <link xhtml:title="India" href="http://en.wikipedia.org/wiki/India">India</link>.</paragraph>
               </section>
             </ezobject:attribute>
-            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="337" ezremote:identifier="image" name="Image" type="ezimage" image-file-key="251d669a3ce8aec2521247c1ec99cdb6" alternative-text=""/>
-            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="338" ezremote:identifier="caption" name="Caption (Image)" type="ezxmltext">
+            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="341" ezremote:identifier="image" name="Image" type="ezimage" image-file-key="5493fa7447d821184d3792079ddd447e" alternative-text=""/>
+            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="342" ezremote:identifier="caption" name="Caption (Image)" type="ezxmltext">
               <section xmlns:image="http://ez.no/namespaces/ezpublish3/image/" xmlns:xhtml="http://ez.no/namespaces/ezpublish3/xhtml/" xmlns:custom="http://ez.no/namespaces/ezpublish3/custom/"/>
             </ezobject:attribute>
-            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="339" ezremote:identifier="tags" name="Tags" type="ezkeyword">
+            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="343" ezremote:identifier="tags" name="Tags" type="ezkeyword">
               <keyword-string>Apple, Food, Fruits</keyword-string>
             </ezobject:attribute>
-            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="340" ezremote:identifier="price" name="Price" type="ezmultiprice">
+            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="344" ezremote:identifier="price" name="Price" type="ezmultiprice">
               <ezmultiprice>
                 <price-list>
                   <price currency-code="EUR" value="0.00" type="1"/>
                 </price-list>
               </ezmultiprice>
             </ezobject:attribute>
-            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="341" ezremote:identifier="options" name="Options" type="ezoption2">
+            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="345" ezremote:identifier="options" name="Options" type="ezoption2">
               <ezoption>
                 <name/>
                 <options>
@@ -771,19 +816,19 @@
                 </options>
               </ezoption>
             </ezobject:attribute>
-            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="342" ezremote:identifier="weight" name="Weight" type="ezfloat">
+            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="346" ezremote:identifier="weight" name="Weight" type="ezfloat">
               <value>3</value>
             </ezobject:attribute>
-            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="343" ezremote:identifier="freight_item" name="Freight Item" type="ezboolean">
+            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="347" ezremote:identifier="freight_item" name="Freight Item" type="ezboolean">
               <value>0</value>
             </ezobject:attribute>
-            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="344" ezremote:identifier="free_shipping_item" name="Free Shipping and Handling" type="ezboolean">
+            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="348" ezremote:identifier="free_shipping_item" name="Free Shipping and Handling" type="ezboolean">
               <value>0</value>
             </ezobject:attribute>
-            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="345" ezremote:identifier="hazardous" name="Hazardous" type="ezboolean">
+            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="349" ezremote:identifier="hazardous" name="Hazardous" type="ezboolean">
               <value>0</value>
             </ezobject:attribute>
-            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="346" ezremote:identifier="no_auto_delivery" name="Not available for auto delivery" type="ezboolean">
+            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="350" ezremote:identifier="no_auto_delivery" name="Not available for auto delivery" type="ezboolean">
               <value>0</value>
             </ezobject:attribute>
           </ezobject:object-translation>
@@ -797,19 +842,14 @@
       <ezobject:version-list xmlns:ezobject="http://ez.no/object/" active_version="1">
         <ezobject:version xmlns:ezremote="http://ez.no/ezobject" ezremote:version="1" ezremote:status="1" ezremote:created="Tue, 27 Oct 2009 16:01:40 GMT" ezremote:modified="Tue, 27 Oct 2009 16:02:23 GMT" initial_language="ger-DE">
           <ezobject:object-translation language="ger-DE" object_name="Lorem ipsum dolor sit amet, consetetur sadipscing elitr,">
-            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="347" ezremote:identifier="author" name="Name" type="ezstring">
+            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="351" ezremote:identifier="author" name="Name" type="ezstring">
               <text>John Q. Public</text>
             </ezobject:attribute>
-            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="348" ezremote:identifier="name" name="Title" type="ezstring">
+            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="352" ezremote:identifier="name" name="Title" type="ezstring">
               <text>Lorem ipsum dolor sit amet, consetetur sadipscing elitr,</text>
             </ezobject:attribute>
-            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="349" ezremote:identifier="review" name="Review" type="eztext">
+            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="353" ezremote:identifier="review" name="Review" type="eztext">
               <text>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</text>
-            </ezobject:attribute>
-            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="350" ezremote:identifier="rating" name="rating" type="ezsrrating">
-              <data-int>0</data-int>
-              <data-float>0</data-float>
-              <data-text></data-text>
             </ezobject:attribute>
           </ezobject:object-translation>
           <ezobject:node-assignment-list>
@@ -822,19 +862,14 @@
       <ezobject:version-list xmlns:ezobject="http://ez.no/object/" active_version="1">
         <ezobject:version xmlns:ezremote="http://ez.no/ezobject" ezremote:version="1" ezremote:status="1" ezremote:created="Tue, 27 Oct 2009 16:09:18 GMT" ezremote:modified="Tue, 27 Oct 2009 16:10:24 GMT" initial_language="ger-DE">
           <ezobject:object-translation language="ger-DE" object_name="Lorem ipsum dolor sit amet, consetetur sadipscing elitr">
-            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="351" ezremote:identifier="author" name="Name" type="ezstring">
+            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="354" ezremote:identifier="author" name="Name" type="ezstring">
               <text>John Q. Public</text>
             </ezobject:attribute>
-            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="352" ezremote:identifier="name" name="Title" type="ezstring">
+            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="355" ezremote:identifier="name" name="Title" type="ezstring">
               <text>Lorem ipsum dolor sit amet, consetetur sadipscing elitr</text>
             </ezobject:attribute>
-            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="353" ezremote:identifier="review" name="Review" type="eztext">
+            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="356" ezremote:identifier="review" name="Review" type="eztext">
               <text>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</text>
-            </ezobject:attribute>
-            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="354" ezremote:identifier="rating" name="rating" type="ezsrrating">
-              <data-int>0</data-int>
-              <data-float>0</data-float>
-              <data-text></data-text>
             </ezobject:attribute>
           </ezobject:object-translation>
           <ezobject:node-assignment-list>
@@ -847,19 +882,14 @@
       <ezobject:version-list xmlns:ezobject="http://ez.no/object/" active_version="1">
         <ezobject:version xmlns:ezremote="http://ez.no/ezobject" ezremote:version="1" ezremote:status="1" ezremote:created="Tue, 27 Oct 2009 16:10:31 GMT" ezremote:modified="Tue, 27 Oct 2009 16:10:48 GMT" initial_language="ger-DE">
           <ezobject:object-translation language="ger-DE" object_name="Lorem ipsum dolor sit amet, consetetur sadipscing elitr">
-            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="355" ezremote:identifier="author" name="Name" type="ezstring">
+            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="357" ezremote:identifier="author" name="Name" type="ezstring">
               <text>John Q. Public</text>
             </ezobject:attribute>
-            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="356" ezremote:identifier="name" name="Title" type="ezstring">
+            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="358" ezremote:identifier="name" name="Title" type="ezstring">
               <text>Lorem ipsum dolor sit amet, consetetur sadipscing elitr</text>
             </ezobject:attribute>
-            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="357" ezremote:identifier="review" name="Review" type="eztext">
+            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="359" ezremote:identifier="review" name="Review" type="eztext">
               <text>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</text>
-            </ezobject:attribute>
-            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="358" ezremote:identifier="rating" name="rating" type="ezsrrating">
-              <data-int>0</data-int>
-              <data-float>0</data-float>
-              <data-text></data-text>
             </ezobject:attribute>
           </ezobject:object-translation>
           <ezobject:node-assignment-list>
@@ -872,19 +902,14 @@
       <ezobject:version-list xmlns:ezobject="http://ez.no/object/" active_version="1">
         <ezobject:version xmlns:ezremote="http://ez.no/ezobject" ezremote:version="1" ezremote:status="1" ezremote:created="Tue, 27 Oct 2009 16:28:25 GMT" ezremote:modified="Tue, 27 Oct 2009 16:28:39 GMT" initial_language="ger-DE">
           <ezobject:object-translation language="ger-DE" object_name="Lorem ipsum dolor sit amet, consetetur sadipscing elitr">
-            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="359" ezremote:identifier="author" name="Name" type="ezstring">
+            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="360" ezremote:identifier="author" name="Name" type="ezstring">
               <text>John Q. Public</text>
             </ezobject:attribute>
-            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="360" ezremote:identifier="name" name="Title" type="ezstring">
+            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="361" ezremote:identifier="name" name="Title" type="ezstring">
               <text>Lorem ipsum dolor sit amet, consetetur sadipscing elitr</text>
             </ezobject:attribute>
-            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="361" ezremote:identifier="review" name="Review" type="eztext">
+            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="362" ezremote:identifier="review" name="Review" type="eztext">
               <text>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</text>
-            </ezobject:attribute>
-            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="362" ezremote:identifier="rating" name="rating" type="ezsrrating">
-              <data-int>0</data-int>
-              <data-float>0</data-float>
-              <data-text></data-text>
             </ezobject:attribute>
           </ezobject:object-translation>
           <ezobject:node-assignment-list>
@@ -906,11 +931,6 @@
             <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="365" ezremote:identifier="review" name="Review" type="eztext">
               <text>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</text>
             </ezobject:attribute>
-            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="366" ezremote:identifier="rating" name="rating" type="ezsrrating">
-              <data-int>0</data-int>
-              <data-float>0</data-float>
-              <data-text></data-text>
-            </ezobject:attribute>
           </ezobject:object-translation>
           <ezobject:node-assignment-list>
             <node-assignment is-main-node="1" parent-node-remote-id="a5ea4f451488d67ccc2e989a0aee0406" name="Lorem ipsum dolor sit amet, consetetur sadipscing elitr" node-id="87" remote-id="85fe91fc6a9f2c26806479fb4ee523b5" sort-field="path" sort-order="1" priority="0"/>
@@ -919,63 +939,63 @@
       </ezobject:version-list>
     </ezremote:object>
     <ezremote:object xmlns:ezremote="http://ez.no/ezobject" xmlns:ezobject="http://ez.no/object/" xmlns:xhtml="http://ez.no/namespaces/ezpublish3/xhtml/" ezremote:id="86" name="Pear" ezremote:section_id="1" ezremote:owner_id="14" ezremote:class_id="47" ezremote:published="Thu, 15 Oct 2009 11:34:44 GMT" ezremote:modified="Tue, 17 Aug 2010 16:58:13 GMT" remote_id="36d453d610667b00dbed12bef3a4607b" class_remote_id="5ae2c8c21f26c3cda7a88477d12708a2" ezremote:class_identifier="xrow_product" ezremote:always_available="0" initial_language="ger-DE">
-      <ezobject:version-list xmlns:ezobject="http://ez.no/object/" xmlns:xhtml="http://ez.no/namespaces/ezpublish3/xhtml/" active_version="2">
-        <ezobject:version xmlns:ezremote="http://ez.no/ezobject" xmlns:xhtml="http://ez.no/namespaces/ezpublish3/xhtml/" ezremote:version="2" ezremote:status="1" ezremote:created="Tue, 17 Aug 2010 16:57:58 GMT" ezremote:modified="Tue, 17 Aug 2010 16:58:13 GMT" initial_language="ger-DE">
+      <ezobject:version-list xmlns:ezobject="http://ez.no/object/" xmlns:xhtml="http://ez.no/namespaces/ezpublish3/xhtml/" active_version="1">
+        <ezobject:version xmlns:ezremote="http://ez.no/ezobject" xmlns:xhtml="http://ez.no/namespaces/ezpublish3/xhtml/" ezremote:version="1" ezremote:status="1" ezremote:created="Tue, 17 Aug 2010 16:57:58 GMT" ezremote:modified="Tue, 17 Aug 2010 16:58:13 GMT" initial_language="ger-DE">
           <ezobject:object-translation xmlns:xhtml="http://ez.no/namespaces/ezpublish3/xhtml/" language="ger-DE" object_name="Pear">
-            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="367" ezremote:identifier="name" name="Name" type="ezstring">
+            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="366" ezremote:identifier="name" name="Name" type="ezstring">
               <text>Pear</text>
             </ezobject:attribute>
-            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="368" ezremote:identifier="product_id" name="Product ID" type="ezstring">
+            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="367" ezremote:identifier="product_id" name="Product ID" type="ezstring">
               <text>123456</text>
             </ezobject:attribute>
-            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="369" ezremote:identifier="remote_id" name="Internal Product ID" type="ezstring">
+            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="368" ezremote:identifier="remote_id" name="Internal Product ID" type="ezstring">
               <text>4545621</text>
             </ezobject:attribute>
-            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="370" ezremote:identifier="manufacturer" name="Manufacturer" type="ezobjectrelation"/>
-            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="371" ezremote:identifier="short_description" name="Short description" type="ezxmltext">
+            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="369" ezremote:identifier="manufacturer" name="Manufacturer" type="ezobjectrelation"/>
+            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="370" ezremote:identifier="short_description" name="Short description" type="ezxmltext">
               <section xmlns:image="http://ez.no/namespaces/ezpublish3/image/" xmlns:xhtml="http://ez.no/namespaces/ezpublish3/xhtml/" xmlns:custom="http://ez.no/namespaces/ezpublish3/custom/">
                 <paragraph>The <strong>pear</strong>&amp;nbsp;is a fruit tree of genus <emphasize><strong>Pyrus</strong></emphasize>&amp;nbsp;and also the name of the tree's edible pomaceous fruit. The pear is classified in subtribe Pyrinae within tribe Pyreae. The apple (<emphasize>Malus</emphasize>&amp;nbsp;<emphasize>domestica</emphasize>), which it resembles in floral structure, is also a member of this subcategories.</paragraph>
               </section>
             </ezobject:attribute>
-            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" xmlns:xhtml="http://ez.no/namespaces/ezpublish3/xhtml/" ezremote:id="372" ezremote:identifier="description" name="Description" type="ezxmltext">
+            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" xmlns:xhtml="http://ez.no/namespaces/ezpublish3/xhtml/" ezremote:id="371" ezremote:identifier="description" name="Description" type="ezxmltext">
               <section xmlns:image="http://ez.no/namespaces/ezpublish3/image/" xmlns:xhtml="http://ez.no/namespaces/ezpublish3/xhtml/" xmlns:custom="http://ez.no/namespaces/ezpublish3/custom/">
                 <paragraph>The <strong>pear</strong>&amp;nbsp;is a fruit tree of <link xhtml:title="Genus" href="http://en.wikipedia.org/wiki/Genus">genus</link>&amp;nbsp;<emphasize><strong>Pyrus</strong></emphasize>&amp;nbsp;and also the name of the tree's edible <link xhtml:title="Pome" href="http://en.wikipedia.org/wiki/Pome">pomaceous</link>&amp;nbsp;<link xhtml:title="Fruit" href="http://en.wikipedia.org/wiki/Fruit">fruit</link>. The pear is classified in subtribe <link xhtml:title="Pyrinae" href="http://en.wikipedia.org/wiki/Pyrinae">Pyrinae</link>&amp;nbsp;within tribe <link xhtml:title="Pyreae" href="http://en.wikipedia.org/wiki/Pyreae">Pyreae</link>. The <link xhtml:title="Apple" href="http://en.wikipedia.org/wiki/Apple">apple</link>&amp;nbsp;(<emphasize>Malus</emphasize>&amp;nbsp;<emphasize>domestica</emphasize>), which it resembles in floral structure, is also a member of this subcategories.</paragraph>
                 <paragraph>The <link xhtml:title="English language" href="http://en.wikipedia.org/wiki/English_language">English</link>&amp;nbsp;word “pear” is probably from Common <link xhtml:title="West Germanic" href="http://en.wikipedia.org/wiki/West_Germanic">West Germanic</link>&amp;nbsp;<emphasize>*pera</emphasize>, probably a <link xhtml:title="Loanword" href="http://en.wikipedia.org/wiki/Loanword">loanword</link>&amp;nbsp;of <link xhtml:title="Vulgar Latin" href="http://en.wikipedia.org/wiki/Vulgar_Latin">Vulgar Latin</link>&amp;nbsp;<emphasize>pira</emphasize>, the plural of <emphasize>pirum</emphasize>, akin to <link xhtml:title="Ancient Greek" href="http://en.wikipedia.org/wiki/Ancient_Greek">Greek</link>&amp;nbsp;<emphasize>api(r)os</emphasize>, which is likely of <link xhtml:title="Semitic" href="http://en.wikipedia.org/wiki/Semitic">Semitic</link>&amp;nbsp;origin. The <link xhtml:title="Perry (disambiguation)" href="http://en.wikipedia.org/wiki/Perry_(disambiguation)">place name <emphasize>Perry</emphasize></link>&amp;nbsp;can indicate the historical presence of pear trees. The term "pyriform" is sometimes used to describe something which is "pear-shaped".</paragraph>
               </section>
             </ezobject:attribute>
-            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="373" ezremote:identifier="image" name="Image" type="ezimage" image-file-key="8e5da06387bb3d98584e2e5da2ce9560" alternative-text="Pears"/>
-            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="374" ezremote:identifier="caption" name="Caption (Image)" type="ezxmltext">
+            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="372" ezremote:identifier="image" name="Image" type="ezimage" image-file-key="082662013eae30f55493b0a0edab5afc" alternative-text="Pears"/>
+            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="373" ezremote:identifier="caption" name="Caption (Image)" type="ezxmltext">
               <section xmlns:image="http://ez.no/namespaces/ezpublish3/image/" xmlns:xhtml="http://ez.no/namespaces/ezpublish3/xhtml/" xmlns:custom="http://ez.no/namespaces/ezpublish3/custom/"/>
             </ezobject:attribute>
-            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="375" ezremote:identifier="tags" name="Tags" type="ezkeyword">
+            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="374" ezremote:identifier="tags" name="Tags" type="ezkeyword">
               <keyword-string>Pear, Fruits, Food</keyword-string>
             </ezobject:attribute>
-            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="376" ezremote:identifier="price" name="Price" type="ezmultiprice">
+            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="375" ezremote:identifier="price" name="Price" type="ezmultiprice">
               <ezmultiprice>
                 <price-list>
                   <price currency-code="EUR" value="2.00" type="1"/>
                 </price-list>
               </ezmultiprice>
             </ezobject:attribute>
-            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="377" ezremote:identifier="options" name="Options" type="ezoption2">
+            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="376" ezremote:identifier="options" name="Options" type="ezoption2">
               <ezoption>
                 <name/>
                 <options/>
               </ezoption>
             </ezobject:attribute>
-            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="378" ezremote:identifier="weight" name="Weight" type="ezfloat">
+            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="377" ezremote:identifier="weight" name="Weight" type="ezfloat">
               <value>7</value>
             </ezobject:attribute>
-            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="379" ezremote:identifier="freight_item" name="Freight Item" type="ezboolean">
+            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="378" ezremote:identifier="freight_item" name="Freight Item" type="ezboolean">
               <value>0</value>
             </ezobject:attribute>
-            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="380" ezremote:identifier="free_shipping_item" name="Free Shipping and Handling" type="ezboolean">
+            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="379" ezremote:identifier="free_shipping_item" name="Free Shipping and Handling" type="ezboolean">
               <value>0</value>
             </ezobject:attribute>
-            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="381" ezremote:identifier="hazardous" name="Hazardous" type="ezboolean">
+            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="380" ezremote:identifier="hazardous" name="Hazardous" type="ezboolean">
               <value>0</value>
             </ezobject:attribute>
-            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="382" ezremote:identifier="no_auto_delivery" name="Not available for auto delivery" type="ezboolean">
+            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="381" ezremote:identifier="no_auto_delivery" name="Not available for auto delivery" type="ezboolean">
               <value>0</value>
             </ezobject:attribute>
           </ezobject:object-translation>
@@ -989,19 +1009,14 @@
       <ezobject:version-list xmlns:ezobject="http://ez.no/object/" active_version="1">
         <ezobject:version xmlns:ezremote="http://ez.no/ezobject" ezremote:version="1" ezremote:status="1" ezremote:created="Tue, 27 Oct 2009 16:02:41 GMT" ezremote:modified="Tue, 27 Oct 2009 16:03:00 GMT" initial_language="ger-DE">
           <ezobject:object-translation language="ger-DE" object_name="Lorem ipsum dolor sit amet, consetetur sadipscing elitr,">
-            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="383" ezremote:identifier="author" name="Name" type="ezstring">
+            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="382" ezremote:identifier="author" name="Name" type="ezstring">
               <text>John Q. Public</text>
             </ezobject:attribute>
-            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="384" ezremote:identifier="name" name="Title" type="ezstring">
+            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="383" ezremote:identifier="name" name="Title" type="ezstring">
               <text>Lorem ipsum dolor sit amet, consetetur sadipscing elitr,</text>
             </ezobject:attribute>
-            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="385" ezremote:identifier="review" name="Review" type="eztext">
+            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="384" ezremote:identifier="review" name="Review" type="eztext">
               <text>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</text>
-            </ezobject:attribute>
-            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="386" ezremote:identifier="rating" name="rating" type="ezsrrating">
-              <data-int>0</data-int>
-              <data-float>0</data-float>
-              <data-text></data-text>
             </ezobject:attribute>
           </ezobject:object-translation>
           <ezobject:node-assignment-list>
@@ -1014,19 +1029,14 @@
       <ezobject:version-list xmlns:ezobject="http://ez.no/object/" active_version="1">
         <ezobject:version xmlns:ezremote="http://ez.no/ezobject" ezremote:version="1" ezremote:status="1" ezremote:created="Tue, 27 Oct 2009 16:03:09 GMT" ezremote:modified="Tue, 27 Oct 2009 16:03:27 GMT" initial_language="ger-DE">
           <ezobject:object-translation language="ger-DE" object_name="Lorem ipsum dolor sit amet, consetetur sadipscing elitr">
-            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="387" ezremote:identifier="author" name="Name" type="ezstring">
+            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="385" ezremote:identifier="author" name="Name" type="ezstring">
               <text>John Q. Public</text>
             </ezobject:attribute>
-            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="388" ezremote:identifier="name" name="Title" type="ezstring">
+            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="386" ezremote:identifier="name" name="Title" type="ezstring">
               <text>Lorem ipsum dolor sit amet, consetetur sadipscing elitr</text>
             </ezobject:attribute>
-            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="389" ezremote:identifier="review" name="Review" type="eztext">
+            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="387" ezremote:identifier="review" name="Review" type="eztext">
               <text>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</text>
-            </ezobject:attribute>
-            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="390" ezremote:identifier="rating" name="rating" type="ezsrrating">
-              <data-int>0</data-int>
-              <data-float>0</data-float>
-              <data-text></data-text>
             </ezobject:attribute>
           </ezobject:object-translation>
           <ezobject:node-assignment-list>
@@ -1039,62 +1049,62 @@
       <ezobject:version-list xmlns:ezobject="http://ez.no/object/" xmlns:xhtml="http://ez.no/namespaces/ezpublish3/xhtml/" active_version="1">
         <ezobject:version xmlns:ezremote="http://ez.no/ezobject" xmlns:xhtml="http://ez.no/namespaces/ezpublish3/xhtml/" ezremote:version="1" ezremote:status="1" ezremote:created="Thu, 25 Feb 2010 14:28:54 GMT" ezremote:modified="Thu, 25 Feb 2010 14:29:17 GMT" initial_language="ger-DE">
           <ezobject:object-translation xmlns:xhtml="http://ez.no/namespaces/ezpublish3/xhtml/" language="ger-DE" object_name="Cheese">
-            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="391" ezremote:identifier="name" name="Name" type="ezstring">
+            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="388" ezremote:identifier="name" name="Name" type="ezstring">
               <text>Cheese</text>
             </ezobject:attribute>
-            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="392" ezremote:identifier="product_id" name="Product ID" type="ezstring">
+            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="389" ezremote:identifier="product_id" name="Product ID" type="ezstring">
               <text>456456</text>
             </ezobject:attribute>
-            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="393" ezremote:identifier="remote_id" name="Internal Product ID" type="ezstring">
+            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="390" ezremote:identifier="remote_id" name="Internal Product ID" type="ezstring">
               <text></text>
             </ezobject:attribute>
-            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="394" ezremote:identifier="manufacturer" name="Manufacturer" type="ezobjectrelation">
+            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="391" ezremote:identifier="manufacturer" name="Manufacturer" type="ezobjectrelation">
               <related-object-remote-id>605b8820a487a4fe6d75e7d137830180</related-object-remote-id>
             </ezobject:attribute>
-            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" xmlns:xhtml="http://ez.no/namespaces/ezpublish3/xhtml/" ezremote:id="395" ezremote:identifier="short_description" name="Short description" type="ezxmltext">
+            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" xmlns:xhtml="http://ez.no/namespaces/ezpublish3/xhtml/" ezremote:id="392" ezremote:identifier="short_description" name="Short description" type="ezxmltext">
               <section xmlns:image="http://ez.no/namespaces/ezpublish3/image/" xmlns:xhtml="http://ez.no/namespaces/ezpublish3/xhtml/" xmlns:custom="http://ez.no/namespaces/ezpublish3/custom/">
                 <paragraph><strong>Cheese</strong> is a generic term for a diverse group of milk-based <link xhtml:title="Food" href="http://en.wikipedia.org/wiki/Food">food</link> products. Cheese is produced throughout the world in wide-ranging flavors, textures, and forms.</paragraph>
               </section>
             </ezobject:attribute>
-            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" xmlns:xhtml="http://ez.no/namespaces/ezpublish3/xhtml/" ezremote:id="396" ezremote:identifier="description" name="Description" type="ezxmltext">
+            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" xmlns:xhtml="http://ez.no/namespaces/ezpublish3/xhtml/" ezremote:id="393" ezremote:identifier="description" name="Description" type="ezxmltext">
               <section xmlns:image="http://ez.no/namespaces/ezpublish3/image/" xmlns:xhtml="http://ez.no/namespaces/ezpublish3/xhtml/" xmlns:custom="http://ez.no/namespaces/ezpublish3/custom/">
                 <paragraph><strong>Cheese</strong> is a generic term for a diverse group of milk-based <link xhtml:title="Food" href="http://en.wikipedia.org/wiki/Food">food</link> products. Cheese is produced throughout the world in wide-ranging flavors, textures, and forms.</paragraph>
                 <paragraph>Cheese consists of proteins and fat from <link xhtml:title="Milk" href="http://en.wikipedia.org/wiki/Milk">milk</link>, usually the milk of <link xhtml:title="Cattle" href="http://en.wikipedia.org/wiki/Cattle">cows</link>, <link xhtml:title="Water Buffalo" href="http://en.wikipedia.org/wiki/Water_Buffalo">buffalo</link>, <link xhtml:title="Goat" href="http://en.wikipedia.org/wiki/Goat">goats</link>, or <link xhtml:title="Sheep's milk" href="http://en.wikipedia.org/wiki/Sheep%27s_milk">sheep</link>. It is produced by <link xhtml:title="Coagulation (milk)" href="http://en.wikipedia.org/wiki/Coagulation_(milk)">coagulation</link> of the milk protein <link xhtml:title="Casein" href="http://en.wikipedia.org/wiki/Casein">casein</link>. Typically, the milk is acidified and addition of the enzyme <link xhtml:title="Rennet" href="http://en.wikipedia.org/wiki/Rennet">rennet</link> causes coagulation. The solids are separated and pressed into final form. Some cheeses have <link xhtml:title="Mold" href="http://en.wikipedia.org/wiki/Mold">molds</link> on the rind or throughout. Most cheeses melt at cooking temperature.</paragraph>
               </section>
             </ezobject:attribute>
-            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="397" ezremote:identifier="image" name="Image" type="ezimage" image-file-key="c4b2a529100c525c9438c87233898896" alternative-text=""/>
-            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="398" ezremote:identifier="caption" name="Caption (Image)" type="ezxmltext">
+            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="394" ezremote:identifier="image" name="Image" type="ezimage" image-file-key="451f7e70eafb60170c57d797ccd1a719" alternative-text=""/>
+            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="395" ezremote:identifier="caption" name="Caption (Image)" type="ezxmltext">
               <section xmlns:image="http://ez.no/namespaces/ezpublish3/image/" xmlns:xhtml="http://ez.no/namespaces/ezpublish3/xhtml/" xmlns:custom="http://ez.no/namespaces/ezpublish3/custom/"/>
             </ezobject:attribute>
-            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="399" ezremote:identifier="tags" name="Tags" type="ezkeyword">
+            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="396" ezremote:identifier="tags" name="Tags" type="ezkeyword">
               <keyword-string>Cheese, Food</keyword-string>
             </ezobject:attribute>
-            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="400" ezremote:identifier="price" name="Price" type="ezmultiprice">
+            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="397" ezremote:identifier="price" name="Price" type="ezmultiprice">
               <ezmultiprice>
                 <price-list>
                   <price currency-code="EUR" value="3.45" type="1"/>
                 </price-list>
               </ezmultiprice>
             </ezobject:attribute>
-            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="401" ezremote:identifier="options" name="Options" type="ezoption2">
+            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="398" ezremote:identifier="options" name="Options" type="ezoption2">
               <ezoption>
                 <name/>
                 <options/>
               </ezoption>
             </ezobject:attribute>
-            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="402" ezremote:identifier="weight" name="Weight" type="ezfloat">
+            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="399" ezremote:identifier="weight" name="Weight" type="ezfloat">
               <value>1</value>
             </ezobject:attribute>
-            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="403" ezremote:identifier="freight_item" name="Freight Item" type="ezboolean">
+            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="400" ezremote:identifier="freight_item" name="Freight Item" type="ezboolean">
               <value>0</value>
             </ezobject:attribute>
-            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="404" ezremote:identifier="free_shipping_item" name="Free Shipping and Handling" type="ezboolean">
+            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="401" ezremote:identifier="free_shipping_item" name="Free Shipping and Handling" type="ezboolean">
               <value>0</value>
             </ezobject:attribute>
-            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="405" ezremote:identifier="hazardous" name="Hazardous" type="ezboolean">
+            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="402" ezremote:identifier="hazardous" name="Hazardous" type="ezboolean">
               <value>0</value>
             </ezobject:attribute>
-            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="406" ezremote:identifier="no_auto_delivery" name="Not available for auto delivery" type="ezboolean">
+            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="403" ezremote:identifier="no_auto_delivery" name="Not available for auto delivery" type="ezboolean">
               <value>0</value>
             </ezobject:attribute>
           </ezobject:object-translation>
@@ -1108,19 +1118,14 @@
       <ezobject:version-list xmlns:ezobject="http://ez.no/object/" active_version="1">
         <ezobject:version xmlns:ezremote="http://ez.no/ezobject" ezremote:version="1" ezremote:status="1" ezremote:created="Tue, 27 Oct 2009 16:26:33 GMT" ezremote:modified="Tue, 27 Oct 2009 16:26:51 GMT" initial_language="ger-DE">
           <ezobject:object-translation language="ger-DE" object_name="sed diam nonumy eirmod tempor invidunt ut labore et dolore magna ">
-            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="407" ezremote:identifier="author" name="Name" type="ezstring">
+            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="404" ezremote:identifier="author" name="Name" type="ezstring">
               <text>John Q. Public</text>
             </ezobject:attribute>
-            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="408" ezremote:identifier="name" name="Title" type="ezstring">
+            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="405" ezremote:identifier="name" name="Title" type="ezstring">
               <text>sed diam nonumy eirmod tempor invidunt ut labore et dolore magna </text>
             </ezobject:attribute>
-            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="409" ezremote:identifier="review" name="Review" type="eztext">
+            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="406" ezremote:identifier="review" name="Review" type="eztext">
               <text>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</text>
-            </ezobject:attribute>
-            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="410" ezremote:identifier="rating" name="rating" type="ezsrrating">
-              <data-int>0</data-int>
-              <data-float>0</data-float>
-              <data-text></data-text>
             </ezobject:attribute>
           </ezobject:object-translation>
           <ezobject:node-assignment-list>
@@ -1133,19 +1138,14 @@
       <ezobject:version-list xmlns:ezobject="http://ez.no/object/" active_version="1">
         <ezobject:version xmlns:ezremote="http://ez.no/ezobject" ezremote:version="1" ezremote:status="1" ezremote:created="Tue, 27 Oct 2009 16:26:57 GMT" ezremote:modified="Tue, 27 Oct 2009 16:27:14 GMT" initial_language="ger-DE">
           <ezobject:object-translation language="ger-DE" object_name="ed diam nonumy eirmod tempor invidunt ut labore et dolore magna ">
-            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="411" ezremote:identifier="author" name="Name" type="ezstring">
+            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="407" ezremote:identifier="author" name="Name" type="ezstring">
               <text>John Q. Public</text>
             </ezobject:attribute>
-            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="412" ezremote:identifier="name" name="Title" type="ezstring">
+            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="408" ezremote:identifier="name" name="Title" type="ezstring">
               <text>ed diam nonumy eirmod tempor invidunt ut labore et dolore magna </text>
             </ezobject:attribute>
-            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="413" ezremote:identifier="review" name="Review" type="eztext">
+            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="409" ezremote:identifier="review" name="Review" type="eztext">
               <text>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</text>
-            </ezobject:attribute>
-            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="414" ezremote:identifier="rating" name="rating" type="ezsrrating">
-              <data-int>0</data-int>
-              <data-float>0</data-float>
-              <data-text></data-text>
             </ezobject:attribute>
           </ezobject:object-translation>
           <ezobject:node-assignment-list>
@@ -1158,19 +1158,14 @@
       <ezobject:version-list xmlns:ezobject="http://ez.no/object/" active_version="1">
         <ezobject:version xmlns:ezremote="http://ez.no/ezobject" ezremote:version="1" ezremote:status="1" ezremote:created="Tue, 27 Oct 2009 16:27:21 GMT" ezremote:modified="Tue, 27 Oct 2009 16:27:40 GMT" initial_language="ger-DE">
           <ezobject:object-translation language="ger-DE" object_name="Lorem ipsum dolor sit amet, consetetur sadipscing elit">
-            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="415" ezremote:identifier="author" name="Name" type="ezstring">
+            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="410" ezremote:identifier="author" name="Name" type="ezstring">
               <text>John Q. Public</text>
             </ezobject:attribute>
-            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="416" ezremote:identifier="name" name="Title" type="ezstring">
+            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="411" ezremote:identifier="name" name="Title" type="ezstring">
               <text>Lorem ipsum dolor sit amet, consetetur sadipscing elit</text>
             </ezobject:attribute>
-            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="417" ezremote:identifier="review" name="Review" type="eztext">
+            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="412" ezremote:identifier="review" name="Review" type="eztext">
               <text>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</text>
-            </ezobject:attribute>
-            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="418" ezremote:identifier="rating" name="rating" type="ezsrrating">
-              <data-int>0</data-int>
-              <data-float>0</data-float>
-              <data-text></data-text>
             </ezobject:attribute>
           </ezobject:object-translation>
           <ezobject:node-assignment-list>
@@ -1183,19 +1178,14 @@
       <ezobject:version-list xmlns:ezobject="http://ez.no/object/" active_version="1">
         <ezobject:version xmlns:ezremote="http://ez.no/ezobject" ezremote:version="1" ezremote:status="1" ezremote:created="Tue, 27 Oct 2009 16:27:48 GMT" ezremote:modified="Tue, 27 Oct 2009 16:28:00 GMT" initial_language="ger-DE">
           <ezobject:object-translation language="ger-DE" object_name="Lorem ipsum dolor sit amet, consetetur sadipscing elit">
-            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="419" ezremote:identifier="author" name="Name" type="ezstring">
+            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="413" ezremote:identifier="author" name="Name" type="ezstring">
               <text>John Q. Public</text>
             </ezobject:attribute>
-            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="420" ezremote:identifier="name" name="Title" type="ezstring">
+            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="414" ezremote:identifier="name" name="Title" type="ezstring">
               <text>Lorem ipsum dolor sit amet, consetetur sadipscing elit</text>
             </ezobject:attribute>
-            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="421" ezremote:identifier="review" name="Review" type="eztext">
+            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="415" ezremote:identifier="review" name="Review" type="eztext">
               <text>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</text>
-            </ezobject:attribute>
-            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="422" ezremote:identifier="rating" name="rating" type="ezsrrating">
-              <data-int>0</data-int>
-              <data-float>0</data-float>
-              <data-text></data-text>
             </ezobject:attribute>
           </ezobject:object-translation>
           <ezobject:node-assignment-list>
@@ -1205,44 +1195,44 @@
       </ezobject:version-list>
     </ezremote:object>
     <ezremote:object xmlns:ezremote="http://ez.no/ezobject" xmlns:ezobject="http://ez.no/object/" xmlns:xhtml="http://ez.no/namespaces/ezpublish3/xhtml/" ezremote:id="94" name="Beer" ezremote:section_id="1" ezremote:owner_id="14" ezremote:class_id="47" ezremote:published="Tue, 20 Oct 2009 13:25:35 GMT" ezremote:modified="Tue, 17 Aug 2010 16:58:38 GMT" remote_id="077b5b122f71151d2d38e241224ab6f5" class_remote_id="5ae2c8c21f26c3cda7a88477d12708a2" ezremote:class_identifier="xrow_product" ezremote:always_available="0" initial_language="ger-DE">
-      <ezobject:version-list xmlns:ezobject="http://ez.no/object/" xmlns:xhtml="http://ez.no/namespaces/ezpublish3/xhtml/" active_version="2">
-        <ezobject:version xmlns:ezremote="http://ez.no/ezobject" xmlns:xhtml="http://ez.no/namespaces/ezpublish3/xhtml/" ezremote:version="2" ezremote:status="1" ezremote:created="Tue, 17 Aug 2010 16:58:26 GMT" ezremote:modified="Tue, 17 Aug 2010 16:58:38 GMT" initial_language="ger-DE">
+      <ezobject:version-list xmlns:ezobject="http://ez.no/object/" xmlns:xhtml="http://ez.no/namespaces/ezpublish3/xhtml/" active_version="1">
+        <ezobject:version xmlns:ezremote="http://ez.no/ezobject" xmlns:xhtml="http://ez.no/namespaces/ezpublish3/xhtml/" ezremote:version="1" ezremote:status="1" ezremote:created="Tue, 17 Aug 2010 16:58:26 GMT" ezremote:modified="Tue, 17 Aug 2010 16:58:38 GMT" initial_language="ger-DE">
           <ezobject:object-translation xmlns:xhtml="http://ez.no/namespaces/ezpublish3/xhtml/" language="ger-DE" object_name="Beer">
-            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="423" ezremote:identifier="name" name="Name" type="ezstring">
+            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="416" ezremote:identifier="name" name="Name" type="ezstring">
               <text>Beer</text>
             </ezobject:attribute>
-            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="424" ezremote:identifier="product_id" name="Product ID" type="ezstring">
+            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="417" ezremote:identifier="product_id" name="Product ID" type="ezstring">
               <text>123123</text>
             </ezobject:attribute>
-            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="425" ezremote:identifier="remote_id" name="Internal Product ID" type="ezstring">
+            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="418" ezremote:identifier="remote_id" name="Internal Product ID" type="ezstring">
               <text>78900</text>
             </ezobject:attribute>
-            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="426" ezremote:identifier="manufacturer" name="Manufacturer" type="ezobjectrelation"/>
-            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" xmlns:xhtml="http://ez.no/namespaces/ezpublish3/xhtml/" ezremote:id="427" ezremote:identifier="short_description" name="Short description" type="ezxmltext">
+            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="419" ezremote:identifier="manufacturer" name="Manufacturer" type="ezobjectrelation"/>
+            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" xmlns:xhtml="http://ez.no/namespaces/ezpublish3/xhtml/" ezremote:id="420" ezremote:identifier="short_description" name="Short description" type="ezxmltext">
               <section xmlns:image="http://ez.no/namespaces/ezpublish3/image/" xmlns:xhtml="http://ez.no/namespaces/ezpublish3/xhtml/" xmlns:custom="http://ez.no/namespaces/ezpublish3/custom/">
                 <paragraph><strong>Beer</strong>&amp;nbsp;is the world's oldest and most widely consumed <link xhtml:title="Alcoholic beverage" href="http://en.wikipedia.org/wiki/Alcoholic_beverage">alcoholic beverage</link>&amp;nbsp;and the third most popular drink overall after water and tea.</paragraph>
               </section>
             </ezobject:attribute>
-            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" xmlns:xhtml="http://ez.no/namespaces/ezpublish3/xhtml/" ezremote:id="428" ezremote:identifier="description" name="Description" type="ezxmltext">
+            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" xmlns:xhtml="http://ez.no/namespaces/ezpublish3/xhtml/" ezremote:id="421" ezremote:identifier="description" name="Description" type="ezxmltext">
               <section xmlns:image="http://ez.no/namespaces/ezpublish3/image/" xmlns:xhtml="http://ez.no/namespaces/ezpublish3/xhtml/" xmlns:custom="http://ez.no/namespaces/ezpublish3/custom/">
                 <paragraph><strong>Beer</strong>&amp;nbsp;is the world's oldest and most widely consumed <link xhtml:title="Alcoholic beverage" href="http://en.wikipedia.org/wiki/Alcoholic_beverage">alcoholic beverage</link>&amp;nbsp;and the third most popular drink overall after water and tea. It is produced by the <link xhtml:title="Brewing" href="http://en.wikipedia.org/wiki/Brewing">brewing</link>&amp;nbsp;and <link xhtml:title="Fermentation (food)" href="http://en.wikipedia.org/wiki/Fermentation_(food)">fermentation</link>&amp;nbsp;of <link xhtml:title="Starch" href="http://en.wikipedia.org/wiki/Starch">starches</link>, mainly derived from <link xhtml:title="Cereal" href="http://en.wikipedia.org/wiki/Cereal">cereal grains</link>—most commonly <link xhtml:title="Malt" href="http://en.wikipedia.org/wiki/Malt">malted</link>&amp;nbsp;<link xhtml:title="Barley" href="http://en.wikipedia.org/wiki/Barley">barley</link>, although wheat, maize (corn), and rice are widely used. Most beer is flavoured with <link xhtml:title="Hops" href="http://en.wikipedia.org/wiki/Hops">hops</link>, which add bitterness and act as a natural <link xhtml:title="Preservative" href="http://en.wikipedia.org/wiki/Preservative">preservative</link>, though other flavourings such as herbs or fruit may occasionally be included.</paragraph>
               </section>
             </ezobject:attribute>
-            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="429" ezremote:identifier="image" name="Image" type="ezimage" image-file-key="bce5ee80f442bb040f684a273c977458" alternative-text="Three sorts of beer"/>
-            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="430" ezremote:identifier="caption" name="Caption (Image)" type="ezxmltext">
+            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="422" ezremote:identifier="image" name="Image" type="ezimage" image-file-key="d5ce96caead730f2f2c21b86b3cbd8a1" alternative-text="Three sorts of beer"/>
+            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="423" ezremote:identifier="caption" name="Caption (Image)" type="ezxmltext">
               <section xmlns:image="http://ez.no/namespaces/ezpublish3/image/" xmlns:xhtml="http://ez.no/namespaces/ezpublish3/xhtml/" xmlns:custom="http://ez.no/namespaces/ezpublish3/custom/"/>
             </ezobject:attribute>
-            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="431" ezremote:identifier="tags" name="Tags" type="ezkeyword">
+            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="424" ezremote:identifier="tags" name="Tags" type="ezkeyword">
               <keyword-string>Beer, Ale, Dark Beer, Pilsner, Drinks, Food</keyword-string>
             </ezobject:attribute>
-            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="432" ezremote:identifier="price" name="Price" type="ezmultiprice">
+            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="425" ezremote:identifier="price" name="Price" type="ezmultiprice">
               <ezmultiprice>
                 <price-list>
                   <price currency-code="EUR" value="0.00" type="1"/>
                 </price-list>
               </ezmultiprice>
             </ezobject:attribute>
-            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="433" ezremote:identifier="options" name="Options" type="ezoption2">
+            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="426" ezremote:identifier="options" name="Options" type="ezoption2">
               <ezoption>
                 <name/>
                 <options>
@@ -1252,19 +1242,19 @@
                 </options>
               </ezoption>
             </ezobject:attribute>
-            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="434" ezremote:identifier="weight" name="Weight" type="ezfloat">
+            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="427" ezremote:identifier="weight" name="Weight" type="ezfloat">
               <value>0.6</value>
             </ezobject:attribute>
-            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="435" ezremote:identifier="freight_item" name="Freight Item" type="ezboolean">
+            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="428" ezremote:identifier="freight_item" name="Freight Item" type="ezboolean">
               <value>0</value>
             </ezobject:attribute>
-            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="436" ezremote:identifier="free_shipping_item" name="Free Shipping and Handling" type="ezboolean">
+            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="429" ezremote:identifier="free_shipping_item" name="Free Shipping and Handling" type="ezboolean">
               <value>0</value>
             </ezobject:attribute>
-            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="437" ezremote:identifier="hazardous" name="Hazardous" type="ezboolean">
+            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="430" ezremote:identifier="hazardous" name="Hazardous" type="ezboolean">
               <value>0</value>
             </ezobject:attribute>
-            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="438" ezremote:identifier="no_auto_delivery" name="Not available for auto delivery" type="ezboolean">
+            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="431" ezremote:identifier="no_auto_delivery" name="Not available for auto delivery" type="ezboolean">
               <value>0</value>
             </ezobject:attribute>
           </ezobject:object-translation>
@@ -1278,19 +1268,14 @@
       <ezobject:version-list xmlns:ezobject="http://ez.no/object/" active_version="1">
         <ezobject:version xmlns:ezremote="http://ez.no/ezobject" ezremote:version="1" ezremote:status="1" ezremote:created="Tue, 27 Oct 2009 14:21:58 GMT" ezremote:modified="Tue, 27 Oct 2009 14:22:39 GMT" initial_language="ger-DE">
           <ezobject:object-translation language="ger-DE" object_name="Satisfied Customer">
-            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="439" ezremote:identifier="author" name="Name" type="ezstring">
+            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="432" ezremote:identifier="author" name="Name" type="ezstring">
               <text>Lorem Ipsum</text>
             </ezobject:attribute>
-            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="440" ezremote:identifier="name" name="Title" type="ezstring">
+            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="433" ezremote:identifier="name" name="Title" type="ezstring">
               <text>Satisfied Customer</text>
             </ezobject:attribute>
-            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="441" ezremote:identifier="review" name="Review" type="eztext">
+            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="434" ezremote:identifier="review" name="Review" type="eztext">
               <text>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</text>
-            </ezobject:attribute>
-            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="442" ezremote:identifier="rating" name="rating" type="ezsrrating">
-              <data-int>0</data-int>
-              <data-float>0</data-float>
-              <data-text></data-text>
             </ezobject:attribute>
           </ezobject:object-translation>
           <ezobject:node-assignment-list>
@@ -1303,19 +1288,14 @@
       <ezobject:version-list xmlns:ezobject="http://ez.no/object/" active_version="1">
         <ezobject:version xmlns:ezremote="http://ez.no/ezobject" ezremote:version="1" ezremote:status="1" ezremote:created="Tue, 27 Oct 2009 14:22:56 GMT" ezremote:modified="Tue, 27 Oct 2009 14:24:10 GMT" initial_language="ger-DE">
           <ezobject:object-translation language="ger-DE" object_name="Lorem ipsum dolor sit amet">
-            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="443" ezremote:identifier="author" name="Name" type="ezstring">
+            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="435" ezremote:identifier="author" name="Name" type="ezstring">
               <text>Peter Fox</text>
             </ezobject:attribute>
-            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="444" ezremote:identifier="name" name="Title" type="ezstring">
+            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="436" ezremote:identifier="name" name="Title" type="ezstring">
               <text>Lorem ipsum dolor sit amet</text>
             </ezobject:attribute>
-            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="445" ezremote:identifier="review" name="Review" type="eztext">
+            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="437" ezremote:identifier="review" name="Review" type="eztext">
               <text>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</text>
-            </ezobject:attribute>
-            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="446" ezremote:identifier="rating" name="rating" type="ezsrrating">
-              <data-int>0</data-int>
-              <data-float>0</data-float>
-              <data-text></data-text>
             </ezobject:attribute>
           </ezobject:object-translation>
           <ezobject:node-assignment-list>
@@ -1325,62 +1305,62 @@
       </ezobject:version-list>
     </ezremote:object>
     <ezremote:object xmlns:ezremote="http://ez.no/ezobject" xmlns:ezobject="http://ez.no/object/" xmlns:xhtml="http://ez.no/namespaces/ezpublish3/xhtml/" ezremote:id="97" name="Bread" ezremote:section_id="1" ezremote:owner_id="14" ezremote:class_id="47" ezremote:published="Tue, 20 Oct 2009 13:26:35 GMT" ezremote:modified="Tue, 17 Aug 2010 16:57:51 GMT" remote_id="4583ff9e18d54de9b11a3d0d647b36ab" class_remote_id="5ae2c8c21f26c3cda7a88477d12708a2" ezremote:class_identifier="xrow_product" ezremote:always_available="0" initial_language="ger-DE">
-      <ezobject:version-list xmlns:ezobject="http://ez.no/object/" xmlns:xhtml="http://ez.no/namespaces/ezpublish3/xhtml/" active_version="2">
-        <ezobject:version xmlns:ezremote="http://ez.no/ezobject" xmlns:xhtml="http://ez.no/namespaces/ezpublish3/xhtml/" ezremote:version="2" ezremote:status="1" ezremote:created="Tue, 17 Aug 2010 16:57:39 GMT" ezremote:modified="Tue, 17 Aug 2010 16:57:51 GMT" initial_language="ger-DE">
+      <ezobject:version-list xmlns:ezobject="http://ez.no/object/" xmlns:xhtml="http://ez.no/namespaces/ezpublish3/xhtml/" active_version="1">
+        <ezobject:version xmlns:ezremote="http://ez.no/ezobject" xmlns:xhtml="http://ez.no/namespaces/ezpublish3/xhtml/" ezremote:version="1" ezremote:status="1" ezremote:created="Tue, 17 Aug 2010 16:57:39 GMT" ezremote:modified="Tue, 17 Aug 2010 16:57:51 GMT" initial_language="ger-DE">
           <ezobject:object-translation xmlns:xhtml="http://ez.no/namespaces/ezpublish3/xhtml/" language="ger-DE" object_name="Bread">
-            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="447" ezremote:identifier="name" name="Name" type="ezstring">
+            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="438" ezremote:identifier="name" name="Name" type="ezstring">
               <text>Bread</text>
             </ezobject:attribute>
-            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="448" ezremote:identifier="product_id" name="Product ID" type="ezstring">
+            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="439" ezremote:identifier="product_id" name="Product ID" type="ezstring">
               <text>89707</text>
             </ezobject:attribute>
-            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="449" ezremote:identifier="remote_id" name="Internal Product ID" type="ezstring">
+            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="440" ezremote:identifier="remote_id" name="Internal Product ID" type="ezstring">
               <text>678</text>
             </ezobject:attribute>
-            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="450" ezremote:identifier="manufacturer" name="Manufacturer" type="ezobjectrelation"/>
-            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="451" ezremote:identifier="short_description" name="Short description" type="ezxmltext">
+            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="441" ezremote:identifier="manufacturer" name="Manufacturer" type="ezobjectrelation"/>
+            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="442" ezremote:identifier="short_description" name="Short description" type="ezxmltext">
               <section xmlns:image="http://ez.no/namespaces/ezpublish3/image/" xmlns:xhtml="http://ez.no/namespaces/ezpublish3/xhtml/" xmlns:custom="http://ez.no/namespaces/ezpublish3/custom/">
                 <paragraph><strong>Bread</strong>&amp;nbsp;is a staple food prepared by cooking a dough of flour and water and possibly more ingredients.</paragraph>
               </section>
             </ezobject:attribute>
-            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" xmlns:xhtml="http://ez.no/namespaces/ezpublish3/xhtml/" ezremote:id="452" ezremote:identifier="description" name="Description" type="ezxmltext">
+            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" xmlns:xhtml="http://ez.no/namespaces/ezpublish3/xhtml/" ezremote:id="443" ezremote:identifier="description" name="Description" type="ezxmltext">
               <section xmlns:image="http://ez.no/namespaces/ezpublish3/image/" xmlns:xhtml="http://ez.no/namespaces/ezpublish3/xhtml/" xmlns:custom="http://ez.no/namespaces/ezpublish3/custom/">
                 <paragraph><strong>Bread</strong>&amp;nbsp;is a <link xhtml:title="Staple food" href="http://en.wikipedia.org/wiki/Staple_food">staple food</link>&amp;nbsp;prepared by <link xhtml:title="Cooking" href="http://en.wikipedia.org/wiki/Cooking">cooking</link>&amp;nbsp;a <link xhtml:title="Dough" href="http://en.wikipedia.org/wiki/Dough">dough</link>&amp;nbsp;of <link xhtml:title="Flour" href="http://en.wikipedia.org/wiki/Flour">flour</link>&amp;nbsp;and <link xhtml:title="Water" href="http://en.wikipedia.org/wiki/Water">water</link>&amp;nbsp;and possibly more ingredients. Doughs are usually baked, but in some cuisines breads are <link xhtml:title="Mantou" href="http://en.wikipedia.org/wiki/Mantou">steamed</link>, <link xhtml:title="Poori" href="http://en.wikipedia.org/wiki/Poori">fried</link>, or <link xhtml:title="Tortilla" href="http://en.wikipedia.org/wiki/Tortilla">baked on an unoiled skillet</link>. It may be <link xhtml:title="Leavened" href="http://en.wikipedia.org/wiki/Leavened">leavened</link>&amp;nbsp;or unleavened. <link xhtml:title="Edible salt" href="http://en.wikipedia.org/wiki/Edible_salt">Salt</link>, <link xhtml:title="Fat" href="http://en.wikipedia.org/wiki/Fat">fat</link>&amp;nbsp;and <link xhtml:title="Leavening agent" href="http://en.wikipedia.org/wiki/Leavening_agent">leavening agents</link>&amp;nbsp;such as <link xhtml:title="Yeast (baking)" href="http://en.wikipedia.org/wiki/Yeast_(baking)">yeast</link>&amp;nbsp;and <link xhtml:title="Baking soda" href="http://en.wikipedia.org/wiki/Baking_soda">baking soda</link>&amp;nbsp;are common ingredients, though bread may contain other ingredients, such as <link xhtml:title="Milk" href="http://en.wikipedia.org/wiki/Milk">milk</link>, <link xhtml:title="Egg (food)" href="http://en.wikipedia.org/wiki/Egg_(food)">egg</link>, <link xhtml:title="Sugar" href="http://en.wikipedia.org/wiki/Sugar">sugar</link>, <link xhtml:title="Spice" href="http://en.wikipedia.org/wiki/Spice">spice</link>, <link xhtml:title="Fruit" href="http://en.wikipedia.org/wiki/Fruit">fruit</link>&amp;nbsp;(such as <link xhtml:title="Raisin" href="http://en.wikipedia.org/wiki/Raisin">raisins</link>), <link xhtml:title="Vegetable" href="http://en.wikipedia.org/wiki/Vegetable">vegetables</link>&amp;nbsp;(such as <link xhtml:title="Onion" href="http://en.wikipedia.org/wiki/Onion">onion</link>), <link xhtml:title="Nut (fruit)" href="http://en.wikipedia.org/wiki/Nut_(fruit)">nuts</link>&amp;nbsp;(such as <link xhtml:title="Walnuts" href="http://en.wikipedia.org/wiki/Walnuts">walnuts</link>) or <link xhtml:title="Seeds" href="http://en.wikipedia.org/wiki/Seeds">seeds</link>&amp;nbsp;(such as <link xhtml:title="Poppy" href="http://en.wikipedia.org/wiki/Poppy">poppy seeds</link>). Bread is one of the oldest prepared foods, dating back to the <link xhtml:title="Neolithic" href="http://en.wikipedia.org/wiki/Neolithic">Neolithic</link>&amp;nbsp;era. The development of leavened bread can probably also be traced to prehistoric times.</paragraph>
               </section>
             </ezobject:attribute>
-            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="453" ezremote:identifier="image" name="Image" type="ezimage" image-file-key="0315f5394805e2efbd831617ed48081e" alternative-text="Slized Bread"/>
-            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="454" ezremote:identifier="caption" name="Caption (Image)" type="ezxmltext">
+            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="444" ezremote:identifier="image" name="Image" type="ezimage" image-file-key="49da266fe6e1a7d2175d8cf0e7a7da18" alternative-text="Slized Bread"/>
+            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="445" ezremote:identifier="caption" name="Caption (Image)" type="ezxmltext">
               <section xmlns:image="http://ez.no/namespaces/ezpublish3/image/" xmlns:xhtml="http://ez.no/namespaces/ezpublish3/xhtml/" xmlns:custom="http://ez.no/namespaces/ezpublish3/custom/"/>
             </ezobject:attribute>
-            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="455" ezremote:identifier="tags" name="Tags" type="ezkeyword">
+            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="446" ezremote:identifier="tags" name="Tags" type="ezkeyword">
               <keyword-string>Bread, Food</keyword-string>
             </ezobject:attribute>
-            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="456" ezremote:identifier="price" name="Price" type="ezmultiprice">
+            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="447" ezremote:identifier="price" name="Price" type="ezmultiprice">
               <ezmultiprice>
                 <price-list>
                   <price currency-code="EUR" value="4.50" type="1"/>
                 </price-list>
               </ezmultiprice>
             </ezobject:attribute>
-            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="457" ezremote:identifier="options" name="Options" type="ezoption2">
+            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="448" ezremote:identifier="options" name="Options" type="ezoption2">
               <ezoption>
                 <name/>
                 <options/>
               </ezoption>
             </ezobject:attribute>
-            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="458" ezremote:identifier="weight" name="Weight" type="ezfloat">
+            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="449" ezremote:identifier="weight" name="Weight" type="ezfloat">
               <value>3</value>
             </ezobject:attribute>
-            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="459" ezremote:identifier="freight_item" name="Freight Item" type="ezboolean">
+            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="450" ezremote:identifier="freight_item" name="Freight Item" type="ezboolean">
               <value>0</value>
             </ezobject:attribute>
-            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="460" ezremote:identifier="free_shipping_item" name="Free Shipping and Handling" type="ezboolean">
+            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="451" ezremote:identifier="free_shipping_item" name="Free Shipping and Handling" type="ezboolean">
               <value>0</value>
             </ezobject:attribute>
-            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="461" ezremote:identifier="hazardous" name="Hazardous" type="ezboolean">
+            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="452" ezremote:identifier="hazardous" name="Hazardous" type="ezboolean">
               <value>0</value>
             </ezobject:attribute>
-            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="462" ezremote:identifier="no_auto_delivery" name="Not available for auto delivery" type="ezboolean">
+            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="453" ezremote:identifier="no_auto_delivery" name="Not available for auto delivery" type="ezboolean">
               <value>0</value>
             </ezobject:attribute>
           </ezobject:object-translation>
@@ -1394,21 +1374,16 @@
       <ezobject:version-list xmlns:ezobject="http://ez.no/object/" active_version="1">
         <ezobject:version xmlns:ezremote="http://ez.no/ezobject" ezremote:version="1" ezremote:status="1" ezremote:created="Tue, 27 Oct 2009 16:25:20 GMT" ezremote:modified="Tue, 27 Oct 2009 16:25:29 GMT" initial_language="ger-DE">
           <ezobject:object-translation language="ger-DE" object_name="Lorem ipsum dolor sit amet, consetetur sadipscing elitr">
-            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="463" ezremote:identifier="author" name="Name" type="ezstring">
+            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="454" ezremote:identifier="author" name="Name" type="ezstring">
               <text>John Q. Public</text>
             </ezobject:attribute>
-            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="464" ezremote:identifier="name" name="Title" type="ezstring">
+            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="455" ezremote:identifier="name" name="Title" type="ezstring">
               <text>Lorem ipsum dolor sit amet, consetetur sadipscing elitr</text>
             </ezobject:attribute>
-            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="465" ezremote:identifier="review" name="Review" type="eztext">
+            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="456" ezremote:identifier="review" name="Review" type="eztext">
               <text>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.   &#13;
 &#13;
 Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Lorem ipsum dolor sit amet,</text>
-            </ezobject:attribute>
-            <ezobject:attribute xmlns:ezremote="http://ez.no/ezobject" ezremote:id="466" ezremote:identifier="rating" name="rating" type="ezsrrating">
-              <data-int>0</data-int>
-              <data-float>0</data-float>
-              <data-text></data-text>
             </ezobject:attribute>
           </ezobject:object-translation>
           <ezobject:node-assignment-list>
@@ -1424,11 +1399,11 @@ Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie co
   <top-node-list>
     <top-node node-id="59" remote-id="12c50b4d9862bb5390a9a541f05f3258">DemoContent</top-node>
     <top-node node-id="67" remote-id="930c8537e2f241cab7133b72da5353c4">Manufacturer</top-node>
-    <top-node node-id="104" remote-id="587f86c32b2360df145d6143d14c4e6a">Shop</top-node>
+    <top-node node-id="103" remote-id="5e657ba251d8fb951f31473155e5c4dd">Shop</top-node>
     <top-node node-id="73" remote-id="0f550eedb26f7be787e848f5af8c7255">News</top-node>
     <top-node node-id="76" remote-id="8efd19acb6c4c39aab775cd25d286df7">Beer</top-node>
     <top-node node-id="77" remote-id="425e4b6501a6a2ce164fcf21fcf4be1e">Coupons</top-node>
-    <top-node node-id="102" remote-id="3d1f7f1a2f6bfabbbd9ec34403dbdaf5">Packages</top-node>
+    <top-node node-id="78" remote-id="3d1f7f1a2f6bfabbbd9ec34403dbdaf5">Packages</top-node>
     <top-node node-id="79" remote-id="9b4e2eb48f5e4ef38f751a230c610c09">Products</top-node>
   </top-node-list>
 </content-object>
