@@ -6,14 +6,14 @@
   <object-name-pattern>&lt;name&gt;</object-name-pattern>
   <url-alias-pattern>&lt;name&gt; &lt;product_id&gt; &lt;tags&gt; </url-alias-pattern>
   <remote>
-    <site-url>http://shop.example.com/index.php/eng/</site-url>
-    <url>http://shop.example.com/index.php/eng/class/view/48</url>
+    <site-url>http://shop.web4.xrow.net/ger/</site-url>
+    <url>http://shop.web4.xrow.net/ger/class/view/47</url>
     <groups>
       <group id="1" name="Content"/>
     </groups>
-    <id>48</id>
-    <created>1253895459</created>
-    <modified>1264607658</modified>
+    <id>47</id>
+    <created>1282057356</created>
+    <modified>1282057356</modified>
     <creator>
       <user-id>14</user-id>
       <user-login>admin</user-login>
@@ -26,7 +26,7 @@
   <ezcontentclass-attri:attributes xmlns:ezcontentclass-attribute="http://ezpublish/contentclassattribute">
     <attribute datatype="ezstring" required="false" searchable="true" information-collector="false" translatable="true">
       <remote>
-        <id>351</id>
+        <id>336</id>
       </remote>
       <serialized-name-list>a:2:{s:6:"eng-GB";s:4:"Name";s:16:"always-available";s:6:"eng-GB";}</serialized-name-list>
       <identifier>name</identifier>
@@ -38,7 +38,7 @@
     </attribute>
     <attribute datatype="ezstring" required="false" searchable="true" information-collector="false" translatable="true">
       <remote>
-        <id>352</id>
+        <id>337</id>
       </remote>
       <serialized-name-list>a:2:{s:6:"eng-GB";s:10:"Product ID";s:16:"always-available";s:6:"eng-GB";}</serialized-name-list>
       <identifier>product_id</identifier>
@@ -50,7 +50,7 @@
     </attribute>
     <attribute datatype="ezstring" required="false" searchable="true" information-collector="false" translatable="true">
       <remote>
-        <id>368</id>
+        <id>338</id>
       </remote>
       <serialized-name-list>a:2:{s:6:"eng-GB";s:19:"Internal Product ID";s:16:"always-available";s:6:"eng-GB";}</serialized-name-list>
       <identifier>remote_id</identifier>
@@ -62,7 +62,7 @@
     </attribute>
     <attribute datatype="ezobjectrelation" required="false" searchable="true" information-collector="false" translatable="true">
       <remote>
-        <id>367</id>
+        <id>339</id>
       </remote>
       <serialized-name-list>a:2:{s:6:"eng-GB";s:12:"Manufacturer";s:16:"always-available";s:6:"eng-GB";}</serialized-name-list>
       <identifier>manufacturer</identifier>
@@ -75,7 +75,7 @@
     </attribute>
     <attribute datatype="ezxmltext" required="false" searchable="true" information-collector="false" translatable="true">
       <remote>
-        <id>353</id>
+        <id>340</id>
       </remote>
       <serialized-name-list>a:2:{s:6:"eng-GB";s:17:"Short description";s:16:"always-available";s:6:"eng-GB";}</serialized-name-list>
       <identifier>short_description</identifier>
@@ -86,7 +86,7 @@
     </attribute>
     <attribute datatype="ezxmltext" required="false" searchable="true" information-collector="false" translatable="true">
       <remote>
-        <id>354</id>
+        <id>341</id>
       </remote>
       <serialized-name-list>a:2:{s:6:"eng-GB";s:11:"Description";s:16:"always-available";s:6:"eng-GB";}</serialized-name-list>
       <identifier>description</identifier>
@@ -97,7 +97,7 @@
     </attribute>
     <attribute datatype="ezimage" required="false" searchable="false" information-collector="false" translatable="true">
       <remote>
-        <id>356</id>
+        <id>342</id>
       </remote>
       <serialized-name-list>a:2:{s:6:"eng-GB";s:5:"Image";s:16:"always-available";s:6:"eng-GB";}</serialized-name-list>
       <identifier>image</identifier>
@@ -108,7 +108,7 @@
     </attribute>
     <attribute datatype="ezxmltext" required="false" searchable="true" information-collector="false" translatable="true">
       <remote>
-        <id>357</id>
+        <id>343</id>
       </remote>
       <serialized-name-list>a:2:{s:6:"eng-GB";s:15:"Caption (Image)";s:16:"always-available";s:6:"eng-GB";}</serialized-name-list>
       <identifier>caption</identifier>
@@ -119,7 +119,7 @@
     </attribute>
     <attribute datatype="ezkeyword" required="false" searchable="true" information-collector="false" translatable="true">
       <remote>
-        <id>359</id>
+        <id>344</id>
       </remote>
       <serialized-name-list>a:2:{s:6:"eng-GB";s:4:"Tags";s:16:"always-available";s:6:"eng-GB";}</serialized-name-list>
       <identifier>tags</identifier>
@@ -128,7 +128,7 @@
     </attribute>
     <attribute datatype="ezmultiprice" required="true" searchable="false" information-collector="false" translatable="true">
       <remote>
-        <id>360</id>
+        <id>345</id>
       </remote>
       <serialized-name-list>a:2:{s:6:"eng-GB";s:5:"Price";s:16:"always-available";s:6:"eng-GB";}</serialized-name-list>
       <identifier>price</identifier>
@@ -141,7 +141,7 @@
     </attribute>
     <attribute datatype="ezoption2" required="false" searchable="false" information-collector="false" translatable="true">
       <remote>
-        <id>361</id>
+        <id>346</id>
       </remote>
       <serialized-name-list>a:2:{s:6:"eng-GB";s:7:"Options";s:16:"always-available";s:6:"eng-GB";}</serialized-name-list>
       <identifier>options</identifier>
@@ -150,7 +150,7 @@
     </attribute>
     <attribute datatype="ezfloat" required="true" searchable="false" information-collector="false" translatable="true">
       <remote>
-        <id>362</id>
+        <id>347</id>
       </remote>
       <serialized-name-list>a:2:{s:6:"eng-GB";s:6:"Weight";s:16:"always-available";s:6:"eng-GB";}</serialized-name-list>
       <identifier>weight</identifier>
@@ -161,7 +161,7 @@
     </attribute>
     <attribute datatype="ezboolean" required="false" searchable="true" information-collector="false" translatable="true">
       <remote>
-        <id>363</id>
+        <id>348</id>
       </remote>
       <serialized-name-list>a:2:{s:6:"eng-GB";s:12:"Freight Item";s:16:"always-available";s:6:"eng-GB";}</serialized-name-list>
       <identifier>freight_item</identifier>
@@ -172,7 +172,7 @@
     </attribute>
     <attribute datatype="ezboolean" required="false" searchable="true" information-collector="false" translatable="true">
       <remote>
-        <id>364</id>
+        <id>349</id>
       </remote>
       <serialized-name-list>a:2:{s:6:"eng-GB";s:26:"Free Shipping and Handling";s:16:"always-available";s:6:"eng-GB";}</serialized-name-list>
       <identifier>free_shipping_item</identifier>
@@ -183,7 +183,7 @@
     </attribute>
     <attribute datatype="ezboolean" required="false" searchable="true" information-collector="false" translatable="true">
       <remote>
-        <id>365</id>
+        <id>350</id>
       </remote>
       <serialized-name-list>a:2:{s:6:"eng-GB";s:9:"Hazardous";s:16:"always-available";s:6:"eng-GB";}</serialized-name-list>
       <identifier>hazardous</identifier>
@@ -194,7 +194,7 @@
     </attribute>
     <attribute datatype="ezboolean" required="false" searchable="true" information-collector="false" translatable="true">
       <remote>
-        <id>366</id>
+        <id>351</id>
       </remote>
       <serialized-name-list>a:2:{s:6:"eng-GB";s:31:"Not available for auto delivery";s:16:"always-available";s:6:"eng-GB";}</serialized-name-list>
       <identifier>no_auto_delivery</identifier>
@@ -202,15 +202,6 @@
       <datatype-parameters>
         <default-value is-set="false"/>
       </datatype-parameters>
-    </attribute>
-    <attribute datatype="ezsrrating" required="false" searchable="true" information-collector="false" translatable="true" unsupported="true">
-      <remote>
-        <id>396</id>
-      </remote>
-      <serialized-name-list>a:2:{s:6:"eng-GB";s:6:"rating";s:16:"always-available";s:6:"eng-GB";}</serialized-name-list>
-      <identifier>rating</identifier>
-      <placement>17</placement>
-      <datatype-parameters/>
     </attribute>
   </ezcontentclass-attri:attributes>
 </content-class>

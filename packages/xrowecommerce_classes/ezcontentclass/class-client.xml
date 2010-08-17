@@ -6,14 +6,14 @@
   <object-name-pattern>&lt;company_name&gt; &lt;last_name&gt; &lt;first_name&gt;</object-name-pattern>
   <url-alias-pattern></url-alias-pattern>
   <remote>
-    <site-url>http://shop.example.com/index.php/eng/</site-url>
-    <url>http://shop.example.com/index.php/eng/class/view/49</url>
+    <site-url>http://shop.web4.xrow.net/ger/</site-url>
+    <url>http://shop.web4.xrow.net/ger/class/view/50</url>
     <groups>
       <group id="2" name="Users"/>
     </groups>
-    <id>49</id>
-    <created>1253898981</created>
-    <modified>1258032020</modified>
+    <id>50</id>
+    <created>1282057356</created>
+    <modified>1282057356</modified>
     <creator>
       <user-id>14</user-id>
       <user-login>admin</user-login>
@@ -26,7 +26,7 @@
   <ezcontentclass-attri:attributes xmlns:ezcontentclass-attribute="http://ezpublish/contentclassattribute">
     <attribute datatype="ezstring" required="false" searchable="true" information-collector="false" translatable="true">
       <remote>
-        <id>370</id>
+        <id>358</id>
       </remote>
       <serialized-name-list>a:4:{s:16:"always-available";s:6:"ger-AT";s:6:"ger-AT";s:23:"Int. Steuernummer (UID)";s:6:"ger-DE";s:23:"Int. Steuernummer (UID)";s:6:"eng-GB";s:6:"Tax ID";}</serialized-name-list>
       <identifier>tax_id</identifier>
@@ -38,7 +38,7 @@
     </attribute>
     <attribute datatype="ezstring" required="false" searchable="true" information-collector="false" translatable="true">
       <remote>
-        <id>394</id>
+        <id>359</id>
       </remote>
       <serialized-name-list>a:4:{s:16:"always-available";s:6:"ger-AT";s:6:"ger-AT";s:23:"Firmenzusatz (optional)";s:6:"ger-DE";s:12:"Firmenzusatz";s:6:"eng-GB";s:18:"Company Additional";}</serialized-name-list>
       <identifier>company_additional</identifier>
@@ -50,7 +50,7 @@
     </attribute>
     <attribute datatype="ezstring" required="false" searchable="true" information-collector="false" translatable="true">
       <remote>
-        <id>369</id>
+        <id>360</id>
       </remote>
       <serialized-name-list>a:4:{s:16:"always-available";s:6:"ger-AT";s:6:"ger-AT";s:5:"Firma";s:6:"ger-DE";s:5:"Firma";s:6:"eng-GB";s:7:"Company";}</serialized-name-list>
       <identifier>company_name</identifier>
@@ -62,7 +62,7 @@
     </attribute>
     <attribute datatype="ezstring" required="true" searchable="true" information-collector="false" translatable="true">
       <remote>
-        <id>371</id>
+        <id>361</id>
       </remote>
       <serialized-name-list>a:4:{s:16:"always-available";s:6:"ger-AT";s:6:"ger-AT";s:7:"Vorname";s:6:"ger-DE";s:7:"Vorname";s:6:"eng-GB";s:8:"Forename";}</serialized-name-list>
       <identifier>first_name</identifier>
@@ -74,7 +74,7 @@
     </attribute>
     <attribute datatype="ezstring" required="false" searchable="false" information-collector="false" translatable="true">
       <remote>
-        <id>402</id>
+        <id>362</id>
       </remote>
       <serialized-name-list>a:2:{s:6:"eng-GB";s:2:"MI";s:16:"always-available";s:6:"eng-GB";}</serialized-name-list>
       <identifier>mi</identifier>
@@ -86,7 +86,7 @@
     </attribute>
     <attribute datatype="ezstring" required="true" searchable="true" information-collector="false" translatable="true">
       <remote>
-        <id>372</id>
+        <id>363</id>
       </remote>
       <serialized-name-list>a:4:{s:16:"always-available";s:6:"ger-AT";s:6:"ger-AT";s:8:"Nachname";s:6:"ger-DE";s:8:"Nachname";s:6:"eng-GB";s:7:"Surname";}</serialized-name-list>
       <identifier>last_name</identifier>
@@ -98,7 +98,7 @@
     </attribute>
     <attribute datatype="ezuser" required="true" searchable="true" information-collector="false" translatable="true">
       <remote>
-        <id>373</id>
+        <id>364</id>
       </remote>
       <serialized-name-list>a:4:{s:16:"always-available";s:6:"ger-AT";s:6:"ger-AT";s:13:"Benutzerkonto";s:6:"ger-DE";s:13:"Benutzerkonto";s:6:"eng-GB";s:12:"User Account";}</serialized-name-list>
       <identifier>user_account</identifier>
@@ -107,7 +107,7 @@
     </attribute>
     <attribute datatype="ezstring" required="true" searchable="true" information-collector="false" translatable="true">
       <remote>
-        <id>374</id>
+        <id>365</id>
       </remote>
       <serialized-name-list>a:4:{s:16:"always-available";s:6:"ger-AT";s:6:"ger-AT";s:7:"Straße";s:6:"ger-DE";s:7:"Straße";s:6:"eng-GB";s:9:"Address 1";}</serialized-name-list>
       <identifier>address1</identifier>
@@ -119,7 +119,7 @@
     </attribute>
     <attribute datatype="ezstring" required="false" searchable="true" information-collector="false" translatable="true">
       <remote>
-        <id>375</id>
+        <id>366</id>
       </remote>
       <serialized-name-list>a:4:{s:16:"always-available";s:6:"ger-AT";s:6:"ger-AT";s:24:"Adresszusatz  (optional)";s:6:"ger-DE";s:12:"Adresszusatz";s:6:"eng-GB";s:9:"Address 2";}</serialized-name-list>
       <identifier>address2</identifier>
@@ -131,7 +131,7 @@
     </attribute>
     <attribute datatype="ezstring" required="true" searchable="true" information-collector="false" translatable="true">
       <remote>
-        <id>376</id>
+        <id>367</id>
       </remote>
       <serialized-name-list>a:4:{s:16:"always-available";s:6:"ger-AT";s:6:"ger-AT";s:3:"PLZ";s:6:"ger-DE";s:3:"PLZ";s:6:"eng-GB";s:3:"ZIP";}</serialized-name-list>
       <identifier>zip_code</identifier>
@@ -143,7 +143,7 @@
     </attribute>
     <attribute datatype="ezstring" required="true" searchable="true" information-collector="false" translatable="true">
       <remote>
-        <id>377</id>
+        <id>368</id>
       </remote>
       <serialized-name-list>a:4:{s:16:"always-available";s:6:"ger-AT";s:6:"ger-AT";s:3:"Ort";s:6:"ger-DE";s:3:"Ort";s:6:"eng-GB";s:16:"City or Location";}</serialized-name-list>
       <identifier>city</identifier>
@@ -155,7 +155,7 @@
     </attribute>
     <attribute datatype="ezstring" required="true" searchable="true" information-collector="false" translatable="true">
       <remote>
-        <id>378</id>
+        <id>369</id>
       </remote>
       <serialized-name-list>a:4:{s:16:"always-available";s:6:"ger-AT";s:6:"ger-AT";s:7:"Telefon";s:6:"ger-DE";s:7:"Telefon";s:6:"eng-GB";s:5:"Phone";}</serialized-name-list>
       <identifier>phone</identifier>
@@ -167,7 +167,7 @@
     </attribute>
     <attribute datatype="ezstring" required="false" searchable="true" information-collector="false" translatable="true">
       <remote>
-        <id>379</id>
+        <id>370</id>
       </remote>
       <serialized-name-list>a:4:{s:6:"ger-AT";s:3:"Fax";s:16:"always-available";s:6:"ger-AT";s:6:"ger-DE";s:0:"";s:6:"eng-GB";s:3:"Fax";}</serialized-name-list>
       <identifier>fax</identifier>
@@ -179,7 +179,7 @@
     </attribute>
     <attribute datatype="ezcountry" required="true" searchable="true" information-collector="false" translatable="false">
       <remote>
-        <id>380</id>
+        <id>371</id>
       </remote>
       <serialized-name-list>a:4:{s:16:"always-available";s:6:"ger-AT";s:6:"ger-AT";s:4:"Land";s:6:"ger-DE";s:4:"Land";s:6:"eng-GB";s:7:"Country";}</serialized-name-list>
       <identifier>country</identifier>
@@ -188,7 +188,7 @@
     </attribute>
     <attribute datatype="ezstring" required="false" searchable="true" information-collector="false" translatable="true">
       <remote>
-        <id>403</id>
+        <id>372</id>
       </remote>
       <serialized-name-list>a:2:{s:6:"eng-GB";s:5:"State";s:16:"always-available";s:6:"eng-GB";}</serialized-name-list>
       <identifier>state</identifier>
@@ -200,7 +200,7 @@
     </attribute>
     <attribute datatype="ezboolean" required="false" searchable="true" information-collector="false" translatable="true">
       <remote>
-        <id>381</id>
+        <id>373</id>
       </remote>
       <serialized-name-list>a:4:{s:16:"always-available";s:6:"ger-AT";s:6:"ger-AT";s:32:"Andere Lieferadresse? (optional)";s:6:"ger-DE";s:21:"Andere Lieferadresse?";s:6:"eng-GB";s:15:"Shippingaddress";}</serialized-name-list>
       <identifier>shippingaddress</identifier>
@@ -211,7 +211,7 @@
     </attribute>
     <attribute datatype="ezstring" required="false" searchable="true" information-collector="false" translatable="true">
       <remote>
-        <id>382</id>
+        <id>374</id>
       </remote>
       <serialized-name-list>a:4:{s:16:"always-available";s:6:"ger-AT";s:6:"ger-AT";s:5:"Firma";s:6:"ger-DE";s:5:"Firma";s:6:"eng-GB";s:7:"Company";}</serialized-name-list>
       <identifier>s_company_name</identifier>
@@ -223,7 +223,7 @@
     </attribute>
     <attribute datatype="ezstring" required="false" searchable="true" information-collector="false" translatable="true">
       <remote>
-        <id>383</id>
+        <id>375</id>
       </remote>
       <serialized-name-list>a:4:{s:16:"always-available";s:6:"ger-AT";s:6:"ger-AT";s:12:"Firmenzusatz";s:6:"ger-DE";s:12:"Firmenzusatz";s:6:"eng-GB";s:18:"Company Additional";}</serialized-name-list>
       <identifier>s_company_additional</identifier>
@@ -235,7 +235,7 @@
     </attribute>
     <attribute datatype="ezstring" required="false" searchable="true" information-collector="false" translatable="true">
       <remote>
-        <id>384</id>
+        <id>376</id>
       </remote>
       <serialized-name-list>a:4:{s:16:"always-available";s:6:"ger-AT";s:6:"ger-AT";s:7:"Vorname";s:6:"ger-DE";s:7:"Vorname";s:6:"eng-GB";s:8:"Forename";}</serialized-name-list>
       <identifier>s_first_name</identifier>
@@ -247,7 +247,7 @@
     </attribute>
     <attribute datatype="ezstring" required="false" searchable="true" information-collector="false" translatable="true">
       <remote>
-        <id>385</id>
+        <id>377</id>
       </remote>
       <serialized-name-list>a:4:{s:16:"always-available";s:6:"ger-AT";s:6:"ger-AT";s:8:"Nachname";s:6:"ger-DE";s:8:"Nachname";s:6:"eng-GB";s:7:"Surname";}</serialized-name-list>
       <identifier>s_last_name</identifier>
@@ -259,7 +259,7 @@
     </attribute>
     <attribute datatype="ezstring" required="false" searchable="true" information-collector="false" translatable="true">
       <remote>
-        <id>386</id>
+        <id>378</id>
       </remote>
       <serialized-name-list>a:4:{s:16:"always-available";s:6:"ger-AT";s:6:"ger-AT";s:7:"Straße";s:6:"ger-DE";s:7:"Straße";s:6:"eng-GB";s:9:"Address 1";}</serialized-name-list>
       <identifier>s_address1</identifier>
@@ -271,7 +271,7 @@
     </attribute>
     <attribute datatype="ezstring" required="false" searchable="true" information-collector="false" translatable="true">
       <remote>
-        <id>387</id>
+        <id>379</id>
       </remote>
       <serialized-name-list>a:4:{s:16:"always-available";s:6:"ger-AT";s:6:"ger-AT";s:24:"Adresszusatz  (optional)";s:6:"ger-DE";s:12:"Adresszusatz";s:6:"eng-GB";s:9:"Address 2";}</serialized-name-list>
       <identifier>s_address2</identifier>
@@ -283,7 +283,7 @@
     </attribute>
     <attribute datatype="ezstring" required="false" searchable="true" information-collector="false" translatable="true">
       <remote>
-        <id>388</id>
+        <id>380</id>
       </remote>
       <serialized-name-list>a:4:{s:16:"always-available";s:6:"ger-AT";s:6:"ger-AT";s:3:"PLZ";s:6:"ger-DE";s:3:"PLZ";s:6:"eng-GB";s:3:"ZIP";}</serialized-name-list>
       <identifier>s_zip_code</identifier>
@@ -295,7 +295,7 @@
     </attribute>
     <attribute datatype="ezstring" required="false" searchable="true" information-collector="false" translatable="true">
       <remote>
-        <id>389</id>
+        <id>381</id>
       </remote>
       <serialized-name-list>a:4:{s:16:"always-available";s:6:"ger-AT";s:6:"ger-AT";s:3:"Ort";s:6:"ger-DE";s:3:"Ort";s:6:"eng-GB";s:16:"City or Location";}</serialized-name-list>
       <identifier>s_city</identifier>
@@ -307,7 +307,7 @@
     </attribute>
     <attribute datatype="ezstring" required="false" searchable="true" information-collector="false" translatable="true">
       <remote>
-        <id>390</id>
+        <id>382</id>
       </remote>
       <serialized-name-list>a:4:{s:16:"always-available";s:6:"ger-AT";s:6:"ger-AT";s:7:"Telefon";s:6:"ger-DE";s:7:"Telefon";s:6:"eng-GB";s:5:"Phone";}</serialized-name-list>
       <identifier>s_phone</identifier>
@@ -319,7 +319,7 @@
     </attribute>
     <attribute datatype="ezstring" required="false" searchable="true" information-collector="false" translatable="true">
       <remote>
-        <id>391</id>
+        <id>383</id>
       </remote>
       <serialized-name-list>a:4:{s:6:"ger-AT";s:3:"Fax";s:16:"always-available";s:6:"ger-AT";s:6:"ger-DE";s:0:"";s:6:"eng-GB";s:3:"Fax";}</serialized-name-list>
       <identifier>s_fax</identifier>
@@ -331,7 +331,7 @@
     </attribute>
     <attribute datatype="ezemail" required="false" searchable="true" information-collector="false" translatable="true">
       <remote>
-        <id>392</id>
+        <id>384</id>
       </remote>
       <serialized-name-list>a:4:{s:16:"always-available";s:6:"ger-AT";s:6:"ger-AT";s:6:"E-Mail";s:6:"ger-DE";s:6:"E-Mail";s:6:"eng-GB";s:5:"Email";}</serialized-name-list>
       <identifier>s_email</identifier>
@@ -340,7 +340,7 @@
     </attribute>
     <attribute datatype="ezcountry" required="false" searchable="false" information-collector="false" translatable="true">
       <remote>
-        <id>393</id>
+        <id>385</id>
       </remote>
       <serialized-name-list>a:4:{s:16:"always-available";s:6:"ger-AT";s:6:"ger-AT";s:5:"Staat";s:6:"ger-DE";s:5:"Staat";s:6:"eng-GB";s:7:"Country";}</serialized-name-list>
       <identifier>s_country</identifier>
@@ -349,7 +349,7 @@
     </attribute>
     <attribute datatype="ezboolean" required="false" searchable="true" information-collector="false" translatable="true">
       <remote>
-        <id>395</id>
+        <id>386</id>
       </remote>
       <serialized-name-list>a:4:{s:6:"ger-AT";s:50:"Newsletter abonnieren (erscheint ca. 4 x pro Jahr)";s:16:"always-available";s:6:"ger-AT";s:6:"ger-DE";s:0:"";s:6:"eng-GB";s:10:"Newsletter";}</serialized-name-list>
       <identifier>newsletter</identifier>
@@ -360,7 +360,7 @@
     </attribute>
     <attribute datatype="ezcreditcard" required="false" searchable="false" information-collector="false" translatable="true">
       <remote>
-        <id>404</id>
+        <id>387</id>
       </remote>
       <serialized-name-list>a:2:{s:6:"eng-GB";s:19:"Payment Information";s:16:"always-available";s:6:"eng-GB";}</serialized-name-list>
       <identifier>creditcard</identifier>

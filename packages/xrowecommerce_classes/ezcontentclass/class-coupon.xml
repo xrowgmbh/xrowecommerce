@@ -6,14 +6,14 @@
   <object-name-pattern>&lt;name&gt;</object-name-pattern>
   <url-alias-pattern>&lt;name&gt;</url-alias-pattern>
   <remote>
-    <site-url>http://shop.example.com/index.php/eng/</site-url>
-    <url>http://shop.example.com/index.php/eng/class/view/45</url>
+    <site-url>http://shop.web4.xrow.net/ger/</site-url>
+    <url>http://shop.web4.xrow.net/ger/class/view/49</url>
     <groups>
       <group id="1" name="Content"/>
     </groups>
-    <id>45</id>
-    <created>1253893639</created>
-    <modified>1264607597</modified>
+    <id>49</id>
+    <created>1282057356</created>
+    <modified>1282057356</modified>
     <creator>
       <user-id>14</user-id>
       <user-login>admin</user-login>
@@ -26,7 +26,7 @@
   <ezcontentclass-attri:attributes xmlns:ezcontentclass-attribute="http://ezpublish/contentclassattribute">
     <attribute datatype="ezstring" required="true" searchable="true" information-collector="false" translatable="true">
       <remote>
-        <id>342</id>
+        <id>355</id>
       </remote>
       <serialized-name-list>a:2:{s:6:"eng-GB";s:4:"Name";s:16:"always-available";s:6:"eng-GB";}</serialized-name-list>
       <identifier>name</identifier>
@@ -38,7 +38,7 @@
     </attribute>
     <attribute datatype="ezxmltext" required="false" searchable="true" information-collector="false" translatable="true">
       <remote>
-        <id>344</id>
+        <id>356</id>
       </remote>
       <serialized-name-list>a:2:{s:6:"eng-GB";s:11:"Description";s:16:"always-available";s:6:"eng-GB";}</serialized-name-list>
       <identifier>description</identifier>
@@ -49,7 +49,7 @@
     </attribute>
     <attribute datatype="ezcoupon" required="true" searchable="true" information-collector="false" translatable="true">
       <remote>
-        <id>343</id>
+        <id>357</id>
       </remote>
       <serialized-name-list>a:2:{s:6:"eng-GB";s:6:"Coupon";s:16:"always-available";s:6:"eng-GB";}</serialized-name-list>
       <identifier>coupon</identifier>
