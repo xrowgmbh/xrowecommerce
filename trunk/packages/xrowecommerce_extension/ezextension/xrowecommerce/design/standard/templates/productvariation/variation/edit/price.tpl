@@ -14,7 +14,7 @@
 <tbody>
 
 {foreach $country_array as $country => $currency}
-{if is_set( $price_array[$country.code] )}{set $price_item=$price_array[$country.code]}{else}{set $price_item=hash( 'country', $country.code,
+{if is_set( $price_array[$country] )}{set $price_item=$price_array[$country]}{else}{set $price_item=hash( 'country', $country,
                                                                                                           'price', '' )}{/if}
 <tr>
     <td>{if and($amount|ne(1),$first)}<img src={"trash-icon-16x16.gif"|ezimage} alt="{"Delete line"|i18n( 'extension/xrowecommerce/productvariation' )|wash}"  width="16" height="16" onclick="return this.parentNode.parentNode.parentNode.parentNode.removeChild( this.parentNode.parentNode.parentNode );" />{else}<img src={"1x1.gif"|ezimage} width="16" height="16" alt="" />{/if}</td>
@@ -61,3 +61,4 @@
 {if $data.template_item.sliding}
     <div><input type="button" class="button" name="PriceButton{$attribute.id}_{$line}_{$data.template_item.attribute.identifier}" value="{"Add price"|i18n('extension/xrowecommerce/productvariation')}" onclick="return xrowaddpriceline( 'XrowProductVariation_{$attribute.id}_price_{$data.template_item.attribute.identifier}_from', 'XrowProductVariation_{$attribute.id}_{$line}_{$data.template_item.attribute.identifier}_to', {$line} );" /></div>
 {/if}
+{undef}
