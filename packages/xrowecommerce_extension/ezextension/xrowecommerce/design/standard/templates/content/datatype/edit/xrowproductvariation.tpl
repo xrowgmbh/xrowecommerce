@@ -3,15 +3,15 @@
      $error=$content.error
      $template=$content.template
      $data=false()
-     $index=0
+     $xindex=0
      $column_name_array=$content.column_name_array
      $column_desc_array=$content.column_desc_array
 }
-{if $content.data|count|gt(0)}{set $index=$content.data|count}{/if}
+{if $content.data|count|gt(0)}{set $xindex=$content.data|count}{/if}
 
 <script type="text/javascript">
 <!--
-    var newindex={$index};
+    var newindex={$xindex};
 {literal}
     function toggleview( button, id, ontext, offtext )
     {
@@ -141,3 +141,4 @@
 
 
 {/if}
+{undef}
