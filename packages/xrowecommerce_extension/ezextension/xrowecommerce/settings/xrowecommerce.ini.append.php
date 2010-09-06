@@ -97,6 +97,8 @@ Mode=cfb
 [ShippingSettings]
 #fields can be disabled / enabled in the shipping information
 DisplayFax=enabled
+
+[ShippingInterfaceSettings]
 #ShipmentInterface=xrowDefaultShipping
 
 [MerchantLocations]
