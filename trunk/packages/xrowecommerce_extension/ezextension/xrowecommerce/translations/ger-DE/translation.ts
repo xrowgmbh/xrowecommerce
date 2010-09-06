@@ -428,7 +428,7 @@
     </message>
     <message>
         <source>Order total</source>
-        <translation>Gesamtbestellung</translation>
+        <translation>Gesamtpreis</translation>
     </message>
     <message>
         <source>Remove</source>
@@ -641,7 +641,7 @@
     </message>
     <message>
         <source>Order total</source>
-        <translation>Gesamtbestellung</translation>
+        <translation>Gesamtpreis</translation>
     </message>
     <message>
         <source>Subtotal Ex. Tax</source>
