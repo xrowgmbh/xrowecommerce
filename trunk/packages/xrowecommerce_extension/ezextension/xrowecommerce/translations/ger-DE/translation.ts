@@ -1573,7 +1573,7 @@
     </message>
     <message>
         <source>Accept the terms and conditions to continue.</source>
-        <translation>Nehmen Sie die allgemeinen Geschäftsbedingungen an um fortzufahren.</translation>
+        <translation>Bitte akzeptieren Sie die allgemeinen Geschäftsbedingungen, damit Sie fortfahren können.</translation>
     </message>
     <message>
         <source>Cancel order</source>
