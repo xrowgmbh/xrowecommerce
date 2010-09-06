@@ -80,7 +80,7 @@ StatusIncludeArray[]
 StatusExcludeArray[]
 
 # Set the display of the price in the templates xrow_product_....tpl, related_products.tpl, product_list.tpl and aftersale.tpl
-# price = like in the field in backend 
+# price = like in the field in backend
 # ex_vat_price = without VAT
 # inc_vat_price = with VAT
 # discount_price_ex_vat = without VAT with discount
@@ -141,7 +141,7 @@ CompanyPhone=+1 555 123456
 
 [ShopAccountHandlerDefaults]
 # set the country code to which the country select defaults to
-#CountryCode=USA
+#DefaultCountryCode=USA
 
 [EPaymentSettings]
 # Payments should be capture right away or later

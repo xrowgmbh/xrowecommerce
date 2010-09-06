@@ -16,11 +16,12 @@ $user = eZUser::currentUser();
 // Initialize variables
 $email = $first_name = $last_name = $shippingtype = $shipping = $s_email = $s_last_name = $s_first_name = $s_address1 = $s_address2 = $s_zip = $s_city = $s_state = $s_country = $s_phone = $s_mi = $address1 = $address2 = $zip = $city = $state = $country = $phone = $recaptcha = $mi = null;
 $userobject = $user->attribute( 'contentobject' );
-if ( eZINI::instance( 'xrowecommerce.ini' )->hasVariable( 'ShopAccountHandlerDefaults', 'CountryCode' ) )
+$xini = eZINI::instance( 'xrowecommerce.ini' );
+if ( $xini->hasVariable( 'ShopAccountHandlerDefaults', 'CountryCode' ) )
 {
-	$country = eZINI::instance( 'xrowecommerce.ini' )->variable( 'ShopAccountHandlerDefaults', 'DefaultCountryCode' );
+    $country = $xini->variable( 'ShopAccountHandlerDefaults', 'DefaultCountryCode' );
 }
-if ( $user->isLoggedIn() and in_array( $userobject->attribute( 'class_identifier' ), eZINI::instance( 'xrowecommerce.ini' )->variable( 'Settings', 'ShopUserClassList' ) ) )
+if ( $user->isLoggedIn() and in_array( $userobject->attribute( 'class_identifier' ), $xini->variable( 'Settings', 'ShopUserClassList' ) ) )
 {
     $userObject = $user->attribute( 'contentobject' );
     $userMap = $userObject->dataMap();
@@ -107,7 +108,7 @@ if ( $user->isLoggedIn() and in_array( $userobject->attribute( 'class_identifier
         $payment_method = $userMap['payment_method']->content();
     }
     $email = $user->attribute( 'email' );
-    
+
     if ( $shipping != '1' )
     {
         if ( isset( $userMap['s_company_name'] ) )
@@ -183,7 +184,6 @@ if ( $order instanceof eZOrder )
 {
     if ( $order->attribute( 'is_temporary' ) )
     {
-        
         $accountInfo = $order->accountInformation();
         foreach ( $accountInfo as $name => $value )
         {
@@ -201,9 +201,8 @@ if ( count( $orderList ) > 0 and $user->isLoggedIn() )
 }
 */
 
-$ecommerceini = eZINI::instance( 'xrowecommerce.ini' );
 $fields = array();
-$field_keys = array( 'company_name', 
+$field_keys = array( 'company_name',
                      'company_additional',
                      'tax_id',
                      'first_name',
@@ -234,24 +233,31 @@ $field_keys = array( 'company_name',
                      's_email' );
 foreach( $field_keys as $key )
 {
-	$ecommerceini->variable( 'Fields', $key );
-	$fields[$key] = array();
-	$field_settings  = $ecommerceini->variable( 'Fields', $key );
-	if( $field_settings['required'] == 'true' )
-	{
-		$fields[$key]['required'] = true;
-	}
-	else
-	{
-		$fields[$key]['required'] = false;
-	}
-   if( $field_settings['enabled'] == 'false' )
+    $fields[$key] = array();
+    if ( $xini->hasVariable( 'Fields', $key ) )
     {
-        $fields[$key]['enabled'] = false;
+        $field_settings  = $xini->variable( 'Fields', $key );
+        if ( isset( $field_settings['required'] ) AND $field_settings['required'] == 'true' )
+        {
+            $fields[$key]['enabled'] = true;
+            $fields[$key]['required'] = true;
+        }
+        else
+        {
+            $fields[$key]['required'] = false;
+        }
+        if ( isset( $field_settings['enabled'] ) AND $field_settings['enabled'] == 'false' )
+        {
+            $fields[$key]['enabled'] = false;
+        }
+        else
+        {
+            $fields[$key]['enabled'] = true;
+        }
     }
     else
     {
-        $fields[$key]['enabled'] = true;
+        eZDebug::writeError( "$key variable not set in xrowecommerce.ini", __FILE__ . ':' . __LINE__ );
     }
 }
 
@@ -263,50 +269,50 @@ if ( $module->isCurrentAction( 'Store' ) )
 
     if ( $fields['company_name']['enabled'] == true )
     {
-	    $company_name = trim( $http->postVariable( 'company_name' ) );
-	    if ( $company_name == '' and $fields['company_name']['required'] == true )
-	    {
-		        $inputIsValid = false;
-		        $fields['company_name']['errors'][0] = ezpI18n::tr( 'extension/xrowecommerce', 'The billing company name is not given.' );
-	    }
+        $company_name = trim( $http->postVariable( 'company_name' ) );
+        if ( $company_name == '' and $fields['company_name']['required'] == true )
+        {
+                $inputIsValid = false;
+                $fields['company_name']['errors'][0] = ezpI18n::tr( 'extension/xrowecommerce', 'The billing company name is not given.' );
+        }
     }
 
     if ( $fields['company_additional']['enabled'] == true )
     {
-    	$company_additional = trim( $http->postVariable( 'company_additional' ) );
-   	    if ( $company_additional == '' and $fields['company_additional']['required'] == true )
-	   	{
-	   		$inputIsValid = false;
-	   		$fields['company_additional']['errors'][0] = ezpI18n::tr( 'extension/xrowecommerce', 'The billing company additional is not given.' );
-	   	}
-	}
+        $company_additional = trim( $http->postVariable( 'company_additional' ) );
+        if ( $company_additional == '' and $fields['company_additional']['required'] == true )
+        {
+            $inputIsValid = false;
+            $fields['company_additional']['errors'][0] = ezpI18n::tr( 'extension/xrowecommerce', 'The billing company additional is not given.' );
+        }
+    }
 
     if ( $fields['first_name']['enabled'] == true )
     {
-	    $first_name = trim( $http->postVariable( 'first_name' ) );
-	    if ( $fields['first_name']['required'] == true )
-	    {
-		    if ( $first_name == '' )
-		    {
-		        $inputIsValid = false;
-		        $fields['first_name']['errors'][0] = ezpI18n::tr( 'extension/xrowecommerce', 'The billing first name is not given.' );
-		    }
-	    }
+        $first_name = trim( $http->postVariable( 'first_name' ) );
+        if ( $fields['first_name']['required'] == true )
+        {
+            if ( $first_name == '' )
+            {
+                $inputIsValid = false;
+                $fields['first_name']['errors'][0] = ezpI18n::tr( 'extension/xrowecommerce', 'The billing first name is not given.' );
+            }
+        }
     }
-    
+
     if ( $fields['last_name']['enabled'] == true )
     {
-	    $last_name = trim( $http->postVariable( 'last_name' ) );
-	    if ( $last_name == '' and $fields['last_name']['required'] == true )
-	    {
-	        $inputIsValid = false;
-	        $fields['last_name']['errors'][0] = ezpI18n::tr( 'extension/xrowecommerce', 'The billing last name is not given.' );
-	    }
+        $last_name = trim( $http->postVariable( 'last_name' ) );
+        if ( $last_name == '' and $fields['last_name']['required'] == true )
+        {
+            $inputIsValid = false;
+            $fields['last_name']['errors'][0] = ezpI18n::tr( 'extension/xrowecommerce', 'The billing last name is not given.' );
+        }
     }
-    
+
     if ( $fields['mi']['enabled'] == true )
     {
-    	$mi = trim( $http->postVariable( 'mi' ) );
+        $mi = trim( $http->postVariable( 'mi' ) );
         if ( $mi == '' and $fields['mi']['required'] == true )
         {
             $inputIsValid = false;
@@ -316,25 +322,25 @@ if ( $module->isCurrentAction( 'Store' ) )
 
     if ( $fields['email']['enabled'] == true )
     {
-	    $email = trim( $http->postVariable( 'email' ) );
-	    if ( $fields['email']['required'] == true )
-	    {
-		    if ( empty( $email ) )
-		    {
-		        $inputIsValid = false;
-		        $errors[] = ezpI18n::tr( 'extension/xrowecommerce', 'The email address is not given.' );
-		        $fields['email']['errors'][0] = ezpI18n::tr( 'extension/xrowecommerce', 'The billing email address is not given.' );
-		    }
-		    else
-		    {
-		        if ( !eZMail::validate( $email ) )
-		        {
-		            $inputIsValid = false;
-		            $errors[] = ezpI18n::tr( 'extension/xrowecommerce', 'The email address is not valid.' );
-		            $fields['email']['errors'][0] = ezpI18n::tr( 'extension/xrowecommerce', 'The billing email address is not valid.' );
-		        }
-		    }
-	    }
+        $email = trim( $http->postVariable( 'email' ) );
+        if ( $fields['email']['required'] == true )
+        {
+            if ( empty( $email ) )
+            {
+                $inputIsValid = false;
+                $errors[] = ezpI18n::tr( 'extension/xrowecommerce', 'The email address is not given.' );
+                $fields['email']['errors'][0] = ezpI18n::tr( 'extension/xrowecommerce', 'The billing email address is not given.' );
+            }
+            else
+            {
+                if ( !eZMail::validate( $email ) )
+                {
+                    $inputIsValid = false;
+                    $errors[] = ezpI18n::tr( 'extension/xrowecommerce', 'The email address is not valid.' );
+                    $fields['email']['errors'][0] = ezpI18n::tr( 'extension/xrowecommerce', 'The billing email address is not valid.' );
+                }
+            }
+        }
     }
 
     if ( $fields['address1']['enabled'] == true )
@@ -342,11 +348,11 @@ if ( $module->isCurrentAction( 'Store' ) )
         $address1 = trim( $http->postVariable( 'address1' ) );
         if ( $fields['address1']['required'] == true )
         {
-	        if ( $address1 == '' )
-	        {
-	            $inputIsValid = false;
-	            $fields['address1']['errors'][0] = ezpI18n::tr( 'extension/xrowecommerce', 'The billing address is not given.' );
-	        }
+            if ( $address1 == '' )
+            {
+                $inputIsValid = false;
+                $fields['address1']['errors'][0] = ezpI18n::tr( 'extension/xrowecommerce', 'The billing address is not given.' );
+            }
         }
     }
 
@@ -362,7 +368,7 @@ if ( $module->isCurrentAction( 'Store' ) )
             }
         }
     }
-    
+
     if ( $fields['country']['enabled'] == true )
     {
         $country = trim( $http->postVariable( 'country' ) );
@@ -373,7 +379,8 @@ if ( $module->isCurrentAction( 'Store' ) )
         }
         else
         {
-            if ( eZINI::instance( 'xrowecommerce.ini' )->hasVariable( 'Settings', 'CountryWihtStatesList' ) and in_array( $country, eZINI::instance( 'xrowecommerce.ini' )->variable( 'Settings', 'CountryWihtStatesList' ) ) and $state == '' )
+            if ( $xini->hasVariable( 'Settings', 'CountryWihtStatesList' ) and
+                 in_array( $country, $xini->variable( 'Settings', 'CountryWihtStatesList' ) ) and $state == '' )
             {
                 $inputIsValid = false;
                 $fields['country']['errors'][0] = ezpI18n::tr( 'extension/xrowecommerce', 'No billing country has been selected.' );
@@ -393,147 +400,147 @@ if ( $module->isCurrentAction( 'Store' ) )
 
     if ( $fields['city']['enabled'] == true )
     {
-	    $city = trim( $http->postVariable( 'city' ) );
-	    if ( $city == '' and $fields['city']['required'] == true )
-	    {
-	    	$inputIsValid = false;
-	    	$fields['city']['errors'][0] = ezpI18n::tr( 'extension/xrowecommerce', 'The billing city is not given.' );
-	    }
+        $city = trim( $http->postVariable( 'city' ) );
+        if ( $city == '' and $fields['city']['required'] == true )
+        {
+            $inputIsValid = false;
+            $fields['city']['errors'][0] = ezpI18n::tr( 'extension/xrowecommerce', 'The billing city is not given.' );
+        }
     }
 
     if ( $fields['zip']['enabled'] == true )
     {
-	    $zip = trim( $http->postVariable( 'zip' ) );
-	    if ( $zip == '' and $fields['zip']['required'] == true)
-	    {
-	    	$inputIsValid = false;
-	    	$fields['zip']['errors'][0] = ezpI18n::tr( 'extension/xrowecommerce', 'The billing zip is not given.' );
-	    }
+        $zip = trim( $http->postVariable( 'zip' ) );
+        if ( $zip == '' and $fields['zip']['required'] == true)
+        {
+            $inputIsValid = false;
+            $fields['zip']['errors'][0] = ezpI18n::tr( 'extension/xrowecommerce', 'The billing zip is not given.' );
+        }
     }
 
     if ( $fields['tax_id']['enabled'] == true )
     {
-	    if ( $http->hasPostVariable( 'tax_id' ) and $tax_id_valid != xrowTINType::STATUS_VALIDATED_BY_ADMIN )
-	    {
-	        $merchantcountries = xrowECommerce::merchantsCountries();
-	        $ezcountry = eZCountryType::fetchCountry( $country, 'Alpha3' );
-	        $Alpha2 = $ezcountry['Alpha2'];
-	        /* EU doesn`t use ISO all the time */
-	        if ( $Alpha2 == 'GR' )
-	        {
-	            $Alpha2 = 'EL';
-	        }
-	        $ids = array( 
-	            "AT" , 
-	            "BE" , 
-	            "BG" , 
-	            "CY" , 
-	            "CZ" , 
-	            "DE" , 
-	            "DK" , 
-	            "EE" , 
-	            "EL" , 
-	            "ES" , 
-	            "FI" , 
-	            "FR" , 
-	            "GB" , 
-	            "HU" , 
-	            "IE" , 
-	            "IT" , 
-	            "LT" , 
-	            "LU" , 
-	            "LV" , 
-	            "MT" , 
-	            "NL" , 
-	            "PL" , 
-	            "PT" , 
-	            "RO" , 
-	            "SE" , 
-	            "SI" , 
-	            "SK" 
-	        );
-	        $tax_id = strtoupper( trim( $http->postVariable( 'tax_id' ) ) );
-	        if ( $fields['tax_id']['required'] == true )
-	        {
-	        	if ( $tax_id == '' and $company_name != '')
-	        	{
+        if ( $http->hasPostVariable( 'tax_id' ) and $tax_id_valid != xrowTINType::STATUS_VALIDATED_BY_ADMIN )
+        {
+            $merchantcountries = xrowECommerce::merchantsCountries();
+            $ezcountry = eZCountryType::fetchCountry( $country, 'Alpha3' );
+            $Alpha2 = $ezcountry['Alpha2'];
+            /* EU doesn`t use ISO all the time */
+            if ( $Alpha2 == 'GR' )
+            {
+                $Alpha2 = 'EL';
+            }
+            $ids = array(
+                "AT" ,
+                "BE" ,
+                "BG" ,
+                "CY" ,
+                "CZ" ,
+                "DE" ,
+                "DK" ,
+                "EE" ,
+                "EL" ,
+                "ES" ,
+                "FI" ,
+                "FR" ,
+                "GB" ,
+                "HU" ,
+                "IE" ,
+                "IT" ,
+                "LT" ,
+                "LU" ,
+                "LV" ,
+                "MT" ,
+                "NL" ,
+                "PL" ,
+                "PT" ,
+                "RO" ,
+                "SE" ,
+                "SI" ,
+                "SK"
+            );
+            $tax_id = strtoupper( trim( $http->postVariable( 'tax_id' ) ) );
+            if ( $fields['tax_id']['required'] == true )
+            {
+                if ( $tax_id == '' and $company_name != '')
+                {
                     $fields['tax_id']['errors'][0] = ezpI18n::tr( 'extension/xrowecommerce', 'The companies tax ID number is not given.' );
                     $errors[] = ezpI18n::tr( 'extension/xrowecommerce', 'The companies tax ID number is not given.' );
                     $inputIsValid = false;
-	        	}
+                }
                 elseif ( empty( $tax_id ) and $company_name and in_array( $Alpha2, $ids ) and ! in_array( $Alpha2, $merchantcountries ) )
-		        {
-		        	$errors[] = ezpI18n::tr( 'extension/xrowecommerce', 'The companies tax ID number is not given.' );
-		            $fields['tax_id']['errors'][1] = ezpI18n::tr( 'extension/xrowecommerce', 'The companies tax ID number is not given.' );
-		            $inputIsValid = false;
-		        }
-		        elseif ( in_array( $Alpha2, $ids ) and $company_name )
-		        {
-		            $matches = array();
-		            if ( preg_match( "/^(" . join( '|', $ids ) . ")([a-z0-9]+)/i", $tax_id, $matches ) )
-		            {
-		                if ( $Alpha2 != $matches[1] )
-		                {
-		                    $inputIsValid = false;
-		                    $errors[] = ezpI18n::tr( 'extension/xrowecommerce', 'Country doesn`t match tax ID number.' );
-		                    $fields['tax_id']['errors'][2] = ezpI18n::tr( 'extension/xrowecommerce', 'Country doesn`t match tax ID number.' );
-		                }
-		                try
-		                {
-		                    $ret = xrowECommerce::checkVat( $ezcountry['Alpha2'], $matches[2] );
-		                    if ( ! $ret )
-		                    {
-		                        $inputIsValid = false;
-		                        $errors[] = ezpI18n::tr( 'extension/xrowecommerce', 'Your companies tax ID number is not valid.' );
-		                        $fields['tax_id']['errors'][3] = ezpI18n::tr( 'extension/xrowecommerce', 'Your companies tax ID number is not valid.' );
-		                    }
-		                    else
-		                    {
-		                        $tax_id_valid = 1;
-		                    }
-		                }
-		                catch ( Exception $e )
-		                {
-		                    eZDebug::writeError( $e->getMessage(), 'TAX ID Validation problem.' );
-		                }
-		            }
-		            elseif ( in_array( $Alpha2, $merchantcountries ) )
-		            {
-		                if ( empty( $tax_id ) )
-		                {
-		                
-		                }
-		                elseif ( !xrowECommerce::validateTIN( $Alpha2, $tax_id, $errors2 ) )
-		                {
-		                    $inputIsValid = false;
-		                    $errors = array_merge( $errors, $errors2 );
-		                    $fields['tax_id']['errors'][4] = ezpI18n::tr( 'extension/xrowecommerce', 'Your companies tax ID number is not valid.' );
-		                }
-		            }
-		            else
-		            {
-		                $inputIsValid = false;
-		                $errors[] = ezpI18n::tr( 'extension/xrowecommerce', 'Your companies tax ID number is not valid.' );
-		                $fields['tax_id']['errors'][5] = ezpI18n::tr( 'extension/xrowecommerce', 'Your companies tax ID number is not valid.' );
-		            }
-		        }
+                {
+                    $errors[] = ezpI18n::tr( 'extension/xrowecommerce', 'The companies tax ID number is not given.' );
+                    $fields['tax_id']['errors'][1] = ezpI18n::tr( 'extension/xrowecommerce', 'The companies tax ID number is not given.' );
+                    $inputIsValid = false;
+                }
+                elseif ( in_array( $Alpha2, $ids ) and $company_name )
+                {
+                    $matches = array();
+                    if ( preg_match( "/^(" . join( '|', $ids ) . ")([a-z0-9]+)/i", $tax_id, $matches ) )
+                    {
+                        if ( $Alpha2 != $matches[1] )
+                        {
+                            $inputIsValid = false;
+                            $errors[] = ezpI18n::tr( 'extension/xrowecommerce', 'Country doesn`t match tax ID number.' );
+                            $fields['tax_id']['errors'][2] = ezpI18n::tr( 'extension/xrowecommerce', 'Country doesn`t match tax ID number.' );
+                        }
+                        try
+                        {
+                            $ret = xrowECommerce::checkVat( $ezcountry['Alpha2'], $matches[2] );
+                            if ( ! $ret )
+                            {
+                                $inputIsValid = false;
+                                $errors[] = ezpI18n::tr( 'extension/xrowecommerce', 'Your companies tax ID number is not valid.' );
+                                $fields['tax_id']['errors'][3] = ezpI18n::tr( 'extension/xrowecommerce', 'Your companies tax ID number is not valid.' );
+                            }
+                            else
+                            {
+                                $tax_id_valid = 1;
+                            }
+                        }
+                        catch ( Exception $e )
+                        {
+                            eZDebug::writeError( $e->getMessage(), 'TAX ID Validation problem.' );
+                        }
+                    }
+                    elseif ( in_array( $Alpha2, $merchantcountries ) )
+                    {
+                        if ( empty( $tax_id ) )
+                        {
+
+                        }
+                        elseif ( !xrowECommerce::validateTIN( $Alpha2, $tax_id, $errors2 ) )
+                        {
+                            $inputIsValid = false;
+                            $errors = array_merge( $errors, $errors2 );
+                            $fields['tax_id']['errors'][4] = ezpI18n::tr( 'extension/xrowecommerce', 'Your companies tax ID number is not valid.' );
+                        }
+                    }
+                    else
+                    {
+                        $inputIsValid = false;
+                        $errors[] = ezpI18n::tr( 'extension/xrowecommerce', 'Your companies tax ID number is not valid.' );
+                        $fields['tax_id']['errors'][5] = ezpI18n::tr( 'extension/xrowecommerce', 'Your companies tax ID number is not valid.' );
+                    }
+                }
             }
-	    }
+        }
     }
 
     if ( $fields['phone']['enabled'] == true )
     {
-	    $phone = trim( $http->postVariable( 'phone' ) );
-	    if ( $fields['phone']['required'] == true and $phone == '' )
-	    {
-	    	$inputIsValid = false;
-	    	$fields['phone']['errors'][0] = ezpI18n::tr( 'extension/xrowecommerce', 'The billing phone number is not given.' );
-	    }
+        $phone = trim( $http->postVariable( 'phone' ) );
+        if ( $fields['phone']['required'] == true and $phone == '' )
+        {
+            $inputIsValid = false;
+            $fields['phone']['errors'][0] = ezpI18n::tr( 'extension/xrowecommerce', 'The billing phone number is not given.' );
+        }
     }
 
     if ( $fields['fax']['enabled'] == true )
     {
-	    $fax = trim( $http->postVariable( 'fax' ) );
+        $fax = trim( $http->postVariable( 'fax' ) );
         if ( $fields['fax']['required'] == true and $fax == '' )
         {
             $inputIsValid = false;
@@ -560,7 +567,8 @@ if ( $module->isCurrentAction( 'Store' ) )
     {
         $no_partial_delivery = '0';
     }
-    elseif ( ! $http->hasPostVariable( 'no_partial_delivery' ) and eZINI::instance( 'xrowecommerce.ini' )->variable( 'Settings', 'NoPartialDelivery' ) == 'enabled' )
+    elseif ( !$http->hasPostVariable( 'no_partial_delivery' ) and
+             $xini->variable( 'Settings', 'NoPartialDelivery' ) == 'enabled' )
     {
         $no_partial_delivery = '1';
     }
@@ -575,119 +583,119 @@ if ( $module->isCurrentAction( 'Store' ) )
     }
     $shippingtype = $http->postVariable( 'shippingtype' );
     $shippingdestination = $country;
-    
-    if ( $shipping != 1 )
+
+    if ( $shipping != '1' )
     {
         if ( $fields['s_company_name']['enabled'] == true )
         {
-        	$s_company_name = trim( $http->postVariable( 's_company_name' ) );
-        	if ( $s_first_name == '' and $fields['s_company_name']['required'] == true )
-        	{
-        		$inputIsValid = false;
-        		$fields['s_company_name']['errors'][0] = ezpI18n::tr( 'extension/xrowecommerce', 'The shipping company name is not given.' );
-        	}
+            $s_company_name = trim( $http->postVariable( 's_company_name' ) );
+            if ( $s_first_name == '' and $fields['s_company_name']['required'] == true )
+            {
+                $inputIsValid = false;
+                $fields['s_company_name']['errors'][0] = ezpI18n::tr( 'extension/xrowecommerce', 'The shipping company name is not given.' );
+            }
         }
 
         if ( $fields['s_company_additional']['enabled'] == true )
         {
-        	$s_company_additional = trim( $http->postVariable( 's_company_additional' ) );
-        	if ( $s_company_additional == '' and $fields['s_company_additional']['required'] == true )
-        	{
-        		$inputIsValid = false;
-        		$fields['s_company_additional']['errors'][0] = ezpI18n::tr( 'extension/xrowecommerce', 'The shipping company additional field is not given.' );
-        	}
+            $s_company_additional = trim( $http->postVariable( 's_company_additional' ) );
+            if ( $s_company_additional == '' and $fields['s_company_additional']['required'] == true )
+            {
+                $inputIsValid = false;
+                $fields['s_company_additional']['errors'][0] = ezpI18n::tr( 'extension/xrowecommerce', 'The shipping company additional field is not given.' );
+            }
         }
 
         if ( $fields['s_first_name']['enabled'] == true )
         {
-        	$s_first_name = trim( $http->postVariable( 's_first_name' ) );
+            $s_first_name = trim( $http->postVariable( 's_first_name' ) );
             if ( $s_first_name == '' and $fields['s_first_name']['required'] == true )
             {
-            	$inputIsValid = false;
-            	$fields['s_first_name']['errors'][0] = ezpI18n::tr( 'extension/xrowecommerce', 'The shipping first name is not given.' );
+                $inputIsValid = false;
+                $fields['s_first_name']['errors'][0] = ezpI18n::tr( 'extension/xrowecommerce', 'The shipping first name is not given.' );
             }
         }
 
         if ( $fields['s_last_name']['enabled'] == true )
         {
-	        $s_last_name = trim( $http->postVariable( 's_last_name' ) );
-	        if ( $s_last_name == '' and $fields['s_last_name']['required'] == true )
-	        {
-	        	$inputIsValid = false;
-	        	$fields['s_last_name']['errors'][0] = ezpI18n::tr( 'extension/xrowecommerce', 'The shipping last name is not given.' );
-	        }
+            $s_last_name = trim( $http->postVariable( 's_last_name' ) );
+            if ( $s_last_name == '' and $fields['s_last_name']['required'] == true )
+            {
+                $inputIsValid = false;
+                $fields['s_last_name']['errors'][0] = ezpI18n::tr( 'extension/xrowecommerce', 'The shipping last name is not given.' );
+            }
         }
-        
+
         if ( $fields['s_mi']['enabled'] == true )
         {
-        	$s_mi = trim( $http->postVariable( 's_mi' ) );
-        	if ( $s_mi == '' and $fields['s_mi']['required'] == true )
-        	{
-        		$inputIsValid = false;
-        		$fields['s_mi']['errors'][0] = ezpI18n::tr( 'extension/xrowecommerce', 'The shipping mi is not given.' );
-        	}
+            $s_mi = trim( $http->postVariable( 's_mi' ) );
+            if ( $s_mi == '' and $fields['s_mi']['required'] == true )
+            {
+                $inputIsValid = false;
+                $fields['s_mi']['errors'][0] = ezpI18n::tr( 'extension/xrowecommerce', 'The shipping mi is not given.' );
+            }
         }
-        
+
         if ( $fields['s_email']['enabled'] == true )
         {
-	        $s_email = trim( $http->postVariable( 's_email' ) );
-	        if ( empty( $s_email ) )
-	        {
-	            $inputIsValid = false;
-	            $errors[] = ezpI18n::tr( 'extension/xrowecommerce', 'The email address is not given.' );
-	            $fields['s_email']['errors'][0] = ezpI18n::tr( 'extension/xrowecommerce', 'The shipping email address is not given.' );
-	        }
-	        else
-	        {
-	            if ( !eZMail::validate( $s_email ) )
-	            {
-	                $inputIsValid = false;
-	                $errors[] = ezpI18n::tr( 'extension/xrowecommerce', 'The email address is not valid.' );
-	                $fields['s_email']['errors'][0] = ezpI18n::tr( 'extension/xrowecommerce', 'The shipping email address is not valid' );
-	            }
-	        }
+            $s_email = trim( $http->postVariable( 's_email' ) );
+            if ( empty( $s_email ) )
+            {
+                $inputIsValid = false;
+                $errors[] = ezpI18n::tr( 'extension/xrowecommerce', 'The email address is not given.' );
+                $fields['s_email']['errors'][0] = ezpI18n::tr( 'extension/xrowecommerce', 'The shipping email address is not given.' );
+            }
+            else
+            {
+                if ( !eZMail::validate( $s_email ) )
+                {
+                    $inputIsValid = false;
+                    $errors[] = ezpI18n::tr( 'extension/xrowecommerce', 'The email address is not valid.' );
+                    $fields['s_email']['errors'][0] = ezpI18n::tr( 'extension/xrowecommerce', 'The shipping email address is not valid' );
+                }
+            }
         }
-        
+
         if ( $fields['s_address1']['enabled'] == true )
         {
-	        $s_address1 = trim( $http->postVariable( 's_address1' ) );
-	        if ( $s_address1 == '' and $fields['s_address1']['required'] == true )
-	        {
-	            $inputIsValid = false;
-	            $fields['s_address1']['errors'][0] = ezpI18n::tr( 'extension/xrowecommerce', 'The shipping address is not given.' );
-	        }
+            $s_address1 = trim( $http->postVariable( 's_address1' ) );
+            if ( $s_address1 == '' and $fields['s_address1']['required'] == true )
+            {
+                $inputIsValid = false;
+                $fields['s_address1']['errors'][0] = ezpI18n::tr( 'extension/xrowecommerce', 'The shipping address is not given.' );
+            }
         }
 
         if ( $fields['s_address2']['enabled'] == true )
-	    {
-	        $s_address2 = trim( $http->postVariable( 's_address2' ) );
-	        if ( $s_address2 == '' and $fields['s_address2']['required'] == true )
-	        {
-	        	$inputIsValid = false;
-	        	$fields['s_address2']['errors'][0] = ezpI18n::tr( 'extension/xrowecommerce', 'The shipping address 2 is not given.' );
-	        }
-	    }
-        
-	    if ( $fields['s_city']['enabled'] == true )
-	    {
-	        $s_city = trim( $http->postVariable( 's_city' ) );
-	        if ( $s_city == '' and  $fields['s_city']['required'] == true )
-	        {
-	        	$inputIsValid = false;
-	        	$fields['s_city']['errors'][0] = ezpI18n::tr( 'extension/xrowecommerce', 'The shipping city is not given.' );
-	        }
-	    }
-        
-	    if ( $fields['s_zip']['enabled'] == true )
-	    {
-	        $s_zip = trim( $http->postVariable( 's_zip' ) );
-	        if ( $s_zip == '' and $fields['s_zip']['required'] == true )
-	        {
-	        	$inputIsValid = false;
-	        	$fields['s_zip']['errors'][0] = ezpI18n::tr( 'extension/xrowecommerce', 'The shipping zip is not given.' );
-	        }
-	    }
-        
+        {
+            $s_address2 = trim( $http->postVariable( 's_address2' ) );
+            if ( $s_address2 == '' and $fields['s_address2']['required'] == true )
+            {
+                $inputIsValid = false;
+                $fields['s_address2']['errors'][0] = ezpI18n::tr( 'extension/xrowecommerce', 'The shipping address 2 is not given.' );
+            }
+        }
+
+        if ( $fields['s_city']['enabled'] == true )
+        {
+            $s_city = trim( $http->postVariable( 's_city' ) );
+            if ( $s_city == '' and  $fields['s_city']['required'] == true )
+            {
+                $inputIsValid = false;
+                $fields['s_city']['errors'][0] = ezpI18n::tr( 'extension/xrowecommerce', 'The shipping city is not given.' );
+            }
+        }
+
+        if ( $fields['s_zip']['enabled'] == true )
+        {
+            $s_zip = trim( $http->postVariable( 's_zip' ) );
+            if ( $s_zip == '' and $fields['s_zip']['required'] == true )
+            {
+                $inputIsValid = false;
+                $fields['s_zip']['errors'][0] = ezpI18n::tr( 'extension/xrowecommerce', 'The shipping zip is not given.' );
+            }
+        }
+
         if ( $fields['s_country']['enabled'] == true )
         {
             $s_country = trim( $http->postVariable( 's_country' ) );
@@ -698,14 +706,14 @@ if ( $module->isCurrentAction( 'Store' ) )
             }
             else
             {
-                if ( in_array( $s_country, eZINI::instance( 'xrowecommerce.ini' )->variable( 'Settings', 'CountryWithStatesList' ) ) and $s_state == '' )
+                if ( in_array( $s_country, $xini->variable( 'Settings', 'CountryWithStatesList' ) ) and $s_state == '' )
                 {
                     $inputIsValid = false;
                     $fields['s_country']['errors'][0] = ezpI18n::tr( 'extension/xrowecommerce', 'No shipping country has been selected.' );
                 }
             }
         }
-        
+
         if ( $fields['s_state']['enabled'] == true and $fields['s_state']['required'] == true )
         {
             $s_state = trim( $http->postVariable( 's_state' ) );
@@ -716,17 +724,17 @@ if ( $module->isCurrentAction( 'Store' ) )
             }
         }
 
-	    if ( $fields['s_phone']['enabled'] == true )
-	    {
-	        $s_phone = trim( $http->postVariable( 's_phone' ) );
-	        if ( $s_phone == '' )
-	        {
-	        	$inputIsValid = false;
-	        	$fields['s_phone']['errors'][0] = ezpI18n::tr( 'extension/xrowecommerce', 'The shipping phone number is not given.' );
-	        }
-	    }
-        
-        
+        if ( $fields['s_phone']['enabled'] == true )
+        {
+            $s_phone = trim( $http->postVariable( 's_phone' ) );
+            if ( $s_phone == '' )
+            {
+                $inputIsValid = false;
+                $fields['s_phone']['errors'][0] = ezpI18n::tr( 'extension/xrowecommerce', 'The shipping phone number is not given.' );
+            }
+        }
+
+
         if ( $fields['s_fax']['enabled'] == true )
         {
             $s_fax = trim( $http->postVariable( 's_fax' ) );
@@ -736,8 +744,8 @@ if ( $module->isCurrentAction( 'Store' ) )
                 $fields['s_fax']['errors'][0] = ezpI18n::tr( 'extension/xrowecommerce', 'The shipping fax number is not given.' );
             }
         }
-        
-        
+
+
         $shippingdestination = $s_country;
         /*
         if ($s_country !="USA" and $shippingtype <= "5" )
@@ -786,7 +794,7 @@ if ( $module->isCurrentAction( 'Store' ) )
         }
     }
     /* Coupon check */
-    $fields_coupon = eZINI::instance( 'xrowecommerce.ini' )->variable( 'Fields', 'Coupon' );
+    $fields_coupon = $xini->variable( 'Fields', 'Coupon' );
     if ( class_exists( 'xrowCoupon' ) and $fields_coupon['enabled'] == 'true' )
     {
         $coupon = new xrowCoupon( $http->postVariable( 'coupon_code' ) );
@@ -795,8 +803,11 @@ if ( $module->isCurrentAction( 'Store' ) )
     $currentUser = eZUser::currentUser();
     $accessAllowed = $currentUser->hasAccessTo( 'xrowecommerce', 'bypass_captcha' );
     /* Captcha check */
-    $fields_captcha = eZINI::instance( 'xrowecommerce.ini' )->variable( 'Fields', 'Captcha' );
-    if ( class_exists( 'xrowVerification' ) and $fields_captcha['enabled'] == 'true' and $accessAllowed['accessWord'] != 'yes' and empty( $_SESSION['xrowCaptchaSolved'] ) )
+    $fields_captcha = $xini->variable( 'Fields', 'Captcha' );
+    if ( class_exists( 'xrowVerification' ) AND
+         $fields_captcha['enabled'] == 'true' AND
+         $accessAllowed['accessWord'] != 'yes' AND
+         empty( $_SESSION['xrowCaptchaSolved'] ) )
     {
         $captcha = true;
         $verification = new xrowVerification( );
@@ -811,29 +822,29 @@ if ( $module->isCurrentAction( 'Store' ) )
             $_SESSION['xrowCaptchaSolved'] = 1;
         }
     }
-    
+
     if ( $inputIsValid == true )
     {
         // Check for validation
         $basket = eZBasket::currentBasket();
-        
+
         $db = eZDB::instance();
         $db->begin();
         $order = $basket->createOrder();
-        
+
         $doc = new DOMDocument( '1.0', 'utf-8' );
         $root = $doc->createElement( 'shop_account' );
         $doc->appendChild( $root );
         $siteaccessNode = $doc->createElement( 'siteaccess', $GLOBALS['eZCurrentAccess']['name'] );
-        
+
         $root->appendChild( $siteaccessNode );
-        
+
         $company_nameNode = $doc->createElement( 'company_name', $company_name );
         $root->appendChild( $company_nameNode );
-        
+
         $company_additionalNode = $doc->createElement( 'company_additional', $company_additional );
         $root->appendChild( $company_additionalNode );
-        
+
         $tax_idNode = $doc->createElement( 'tax_id', $tax_id );
         $root->appendChild( $tax_idNode );
         if ( $tax_id and $tax_id_valid )
@@ -848,49 +859,49 @@ if ( $module->isCurrentAction( 'Store' ) )
         }
         $first_nameNode = $doc->createElement( 'first_name', $first_name );
         $root->appendChild( $first_nameNode );
-        
+
         $miNode = $doc->createElement( 'mi', $mi );
         $root->appendChild( $miNode );
-        
+
         $last_nameNode = $doc->createElement( 'last_name' );
         $last_nameNode->appendChild( $doc->createTextNode( $last_name ) );
         $root->appendChild( $last_nameNode );
-        
+
         $address1Node = $doc->createElement( 'address1' );
         $address1Node->appendChild( $doc->createTextNode( $address1 ) );
         $root->appendChild( $address1Node );
-        
+
         $address2Node = $doc->createElement( 'address2' );
         $address2Node->appendChild( $doc->createTextNode( $address2 ) );
         $root->appendChild( $address2Node );
-        
+
         $cityNode = $doc->createElement( 'city', $city );
         $root->appendChild( $cityNode );
-        
+
         $stateNode = $doc->createElement( 'state', $state );
         $root->appendChild( $stateNode );
-        
+
         $zipNode = $doc->createElement( 'zip', $zip );
         $root->appendChild( $zipNode );
-        
+
         $countryNode = $doc->createElement( 'country', $country );
         $root->appendChild( $countryNode );
-        
+
         $phoneNode = $doc->createElement( 'phone', $phone );
         $root->appendChild( $phoneNode );
-        
+
         $faxNode = $doc->createElement( 'fax', $fax );
         $root->appendChild( $faxNode );
-        
+
         $emailNode = $doc->createElement( 'email', $email );
         $root->appendChild( $emailNode );
-        
+
         $shippingNode = $doc->createElement( 'shipping', $shipping );
         $root->appendChild( $shippingNode );
-        
+
         $shippingTypeNode = $doc->createElement( 'shippingtype', $shippingtype );
         $root->appendChild( $shippingTypeNode );
-        
+
         $recaptacheNode = $doc->createElement( 'captcha', $captcha );
         $root->appendChild( $recaptacheNode );
         if ( ! empty( $payment_method ) )
@@ -915,116 +926,116 @@ if ( $module->isCurrentAction( 'Store' ) )
         }
         $referenceNode = $doc->createElement( 'reference', $reference );
         $root->appendChild( $referenceNode );
-        
+
         $messageNode = $doc->createElement( 'message', $message );
         $root->appendChild( $messageNode );
-        
+
         if ( $shipping != '1' )
         {
             /* Shipping address*/
-            
+
             $s_company_nameNode = $doc->createElement( 's_company_name', $s_company_name );
-            
+
             $root->appendChild( $s_company_nameNode );
-            
+
             $s_company_additionalNode = $doc->createElement( 's_company_additional', $s_company_additional );
             $root->appendChild( $s_company_additionalNode );
-            
+
             $s_first_nameNode = $doc->createElement( 's_first_name', $s_first_name );
             $root->appendChild( $s_first_nameNode );
-            
+
             $s_miNode = $doc->createElement( 's_mi', $s_mi );
             $root->appendChild( $s_miNode );
-            
+
             $s_last_nameNode = $doc->createElement( 's_last_name', $s_last_name );
             $root->appendChild( $s_last_nameNode );
-            
+
             $s_address1Node = $doc->createElement( 's_address1', $s_address1 );
             $root->appendChild( $s_address1Node );
-            
+
             $s_address2Node = $doc->createElement( 's_address2', $s_address2 );
             $root->appendChild( $s_address2Node );
-            
+
             $s_cityNode = $doc->createElement( 's_city', $s_city );
             $root->appendChild( $s_cityNode );
-            
+
             $s_stateNode = $doc->createElement( 's_state', $s_state );
             $root->appendChild( $s_stateNode );
-            
+
             $s_zipNode = $doc->createElement( 's_zip', $s_zip );
             $root->appendChild( $s_zipNode );
-            
+
             $s_countryNode = $doc->createElement( 's_country', $s_country );
             $root->appendChild( $s_countryNode );
-            
+
             $s_phoneNode = $doc->createElement( 's_phone', $s_phone );
             $root->appendChild( $s_phoneNode );
-            
+
             $s_faxNode = $doc->createElement( 's_fax', $s_fax );
             $root->appendChild( $s_faxNode );
-            
+
             $s_emailNode = $doc->createElement( 's_email', $s_email );
             $root->appendChild( $s_emailNode );
-            
+
         /* Shipping address*/
         } /* Shippingaddress is equal or not */
         else
         {
-        	$s_company_nameNode = $doc->createElement( 's_company_name', $company_name );
+            $s_company_nameNode = $doc->createElement( 's_company_name', $company_name );
             $root->appendChild( $s_company_nameNode );
-            
+
             $s_company_additionalNode = $doc->createElement( 's_company_additional', $company_additional );
             $root->appendChild( $s_company_additionalNode );
-            
+
             $s_first_nameNode = $doc->createElement( 's_first_name', $first_name );
             $root->appendChild( $s_first_nameNode );
-            
+
             $s_miNode = $doc->createElement( 's_mi', $mi );
             $root->appendChild( $s_miNode );
-            
+
             $s_last_nameNode = $doc->createElement( 's_last_name', $last_name );
             $root->appendChild( $s_last_nameNode );
-            
+
             $s_address1Node = $doc->createElement( 's_address1', $address1 );
             $root->appendChild( $s_address1Node );
-            
+
             $s_address2Node = $doc->createElement( 's_address2', $address2 );
             $root->appendChild( $s_address2Node );
-            
+
             $s_cityNode = $doc->createElement( 's_city', $city );
             $root->appendChild( $s_cityNode );
-            
+
             $s_stateNode = $doc->createElement( 's_state', $state );
             $root->appendChild( $s_stateNode );
-            
+
             $s_zipNode = $doc->createElement( 's_zip', $zip );
             $root->appendChild( $s_zipNode );
-            
+
             $s_countryNode = $doc->createElement( 's_country', $country );
             $root->appendChild( $s_countryNode );
-            
+
             $s_phoneNode = $doc->createElement( 's_phone', $phone );
             $root->appendChild( $s_phoneNode );
-            
+
             $s_faxNode = $doc->createElement( 's_fax', $fax );
             $root->appendChild( $s_faxNode );
-            
+
             $s_emailNode = $doc->createElement( 's_email', $email );
             $root->appendChild( $s_emailNode );
         }
 
         $order->setAttribute( 'data_text_1', $doc->saveXML() );
         $shopAccountINI = eZINI::instance( 'shopaccount.ini' );
-        
+
         $order->setAttribute( 'account_identifier', $shopAccountINI->variable( 'AccountSettings', 'Handler' ) );
-        
+
         $order->setAttribute( 'ignore_vat', 0 );
-        
+
         $order->store();
         $db->commit();
-        
+
         $http->setSessionVariable( 'MyTemporaryOrderID', $order->attribute( 'id' ) );
-        
+
         $module->redirectTo( '/xrowecommerce/confirmorder/' );
         return;
     }
@@ -1051,6 +1062,13 @@ $tpl->setVariable( 'zip', $zip );
 $tpl->setVariable( 'country', $country );
 $tpl->setVariable( 'phone', $phone );
 $tpl->setVariable( 'fax', $fax );
+
+// default value for shipping
+if ( !isset( $shipping ) )
+{
+    $shipping = '1';
+}
+
 $tpl->setVariable( 'shipping', $shipping );
 
 $tpl->setVariable( 'shippingtype', $shippingtype );
@@ -1083,25 +1101,25 @@ $tpl->setVariable( 'fields', $fields );
 $tpl->setVariable( 'countries', xrowGeonames::getCountries() );
 if ( !isset( $country ) )
 {
-	$tmp = xrowGeonames::getCountries();
-	$tmp = array_shift( $tmp );
-	$country  = $tmp['Alpha3'];
+    $tmp = xrowGeonames::getCountries();
+    $tmp = array_shift( $tmp );
+    $country  = $tmp['Alpha3'];
 }
 if ( !isset( $s_country ) )
 {
-	$tmp = xrowGeonames::getCountries();
-	$tmp = array_shift( $tmp );
-	$s_country  = $tmp['Alpha3'];
+    $tmp = xrowGeonames::getCountries();
+    $tmp = array_shift( $tmp );
+    $s_country  = $tmp['Alpha3'];
 }
 $tpl->setVariable( 'states', xrowGeonames::getSubdivisions( $country ) );
 $tpl->setVariable( 's_states', xrowGeonames::getSubdivisions( $s_country ) );
 
 $Result = array();
 $Result['content'] = $tpl->fetch( 'design:shop/userregister.tpl' );
-$Result['path'] = array( 
-    array( 
-        'url' => false , 
-        'text' => ezpI18n::tr( 'extension/xrowecommerce', 'Enter account information' ) 
-    ) 
+$Result['path'] = array(
+    array(
+        'url' => false ,
+        'text' => ezpI18n::tr( 'extension/xrowecommerce', 'Enter account information' )
+    )
 );
 ?>
