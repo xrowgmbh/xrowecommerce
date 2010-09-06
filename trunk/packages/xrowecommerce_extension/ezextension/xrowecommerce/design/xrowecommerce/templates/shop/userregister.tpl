@@ -3,10 +3,10 @@
     <form method="post" action={"xrowecommerce/userregister/"|ezurl} name='register' >
         <input type="submit" class="hide" style="display: hide;" name="StoreButton" value="{'Continue'|i18n('extension/xrowecommerce')}" />
         <h1>{'My Account'|i18n('extension/xrowecommerce')}</h1>
-        
+
         {include uri="design:shop/basket_navigator.tpl" step='2'}
         {include uri="design:shop/userregister_preface.tpl"}
-        {def $country_default_ini=ezini( 'ShopAccountHandlerDefaults', 'DefaultCountryCode' )}
+        {def $country_default_ini=ezini( 'ShopAccountHandlerDefaults', 'DefaultCountryCode', 'xrowecommerce.ini' )}
         {def $error_count = false}
         {foreach $fields as $error}
         {if is_set($error.errors)}
@@ -37,7 +37,7 @@
                 <h2>{'Billing Information'|i18n('extension/xrowecommerce')}</h2>
                 <p><span class="required">* <i>{'Required field'|i18n('extension/xrowecommerce')}</i></span></p>
                 <div class="labelbreak"></div>
-                
+
                 {if $fields.company_name.enabled}
                     <div class="ur_companyname block{if is_set($fields.company_name.errors)} error{/if}">
                         <label>{'Company name'|i18n('extension/xrowecommerce')}{if $fields.company_name.required}<span class="required">*</span>{/if}</label>
@@ -139,6 +139,8 @@
                         </select>
                     </div>
                     <div class="break"></div>
+                {else}
+
                 {/if}
                 {if $fields.phone.enabled}
                     <div class="block{if is_set($fields.phone.errors)} error{/if}">
@@ -190,7 +192,7 @@
                 <label class="shipping-checkbox" for="shipping-checkbox"><input class="shipping-checkbox" id="shipping-checkbox" name="shipping" value="1" type="checkbox" {if $shipping} checked="checked" {/if}  />{'My billing and shipping addresses are identical.'|i18n('extension/xrowecommerce')}</label>
                 <div class="block" id="shippinginfo"{if $shipping} style="display: none;"{else} style="display: block;"{/if}>
                     <p><span class="required">* {'Required field'|i18n('extension/xrowecommerce')}</span></p>
-                    
+
                     {if $fields.s_company_name.enabled}
                         <div class="ur_companyname block{if is_set($fields.s_company_name.errors)} error{/if}">
                             <label>{'Company name'|i18n('extension/xrowecommerce')}{if $fields.s_company_name.required}<span class="required">*</span>{/if}</label>
@@ -198,7 +200,7 @@
                             <input type="text" name="s_company_name" id="s_company_name" value="{$s_company_name|wash}" />
                         </div>
                     {/if}
-                    
+
                     {if $fields.s_company_additional.enabled}
                         <div class="ur_company_additional block{if is_set($fields.s_company_additional.errors)} error{/if}">
                             <label>{'Form of company'|i18n('extension/xrowecommerce')}{if $fields.s_company_additional.required}<span class="required">*</span>{/if}</label>
@@ -206,7 +208,7 @@
                             <input type="text" name="s_company_additional" id="s_company_additional" value="{$s_company_additional|wash}" />
                         </div>
                     {/if}
-                    
+
                     {if $fields.s_first_name.enabled}
                         <div class="ur_firstname block{if is_set($fields.s_first_name.errors)} error{/if}">
                             <label>{'First name'|i18n('extension/xrowecommerce')}{if $fields.s_first_name.required}<span class="required">*</span>{/if}</label>
@@ -214,7 +216,7 @@
                             <input type="text" name="s_first_name" id="s_first_name" value="{$s_first_name|wash}" />
                         </div>
                     {/if}
-                    
+
                     {if $fields.s_mi.enabled}
                         <div class="ur_mi block{if is_set($fields.s_mi.errors)} error{/if}">
                             <label>{'MI'|i18n('extension/xrowecommerce')}{if $fields.s_mi.required}<span class="required">*</span>{/if}</label>
@@ -222,7 +224,7 @@
                             <input class="halfbox" type="text" name="s_mi" id="s_mi" size="2" value="{$s_mi|wash}" />
                         </div>
                     {/if}
-                    
+
                     {if $fields.s_last_name.enabled}
                         <div class="ur_lastname block{if is_set($fields.s_last_name.errors)} error{/if}">
                             <label>{'Last name'|i18n('extension/xrowecommerce')}{if $fields.s_last_name.required}<span class="required">*</span>{/if}</label>
@@ -230,7 +232,7 @@
                             <input type="text" name="s_last_name" id="s_last_name" value="{$s_last_name|wash}" />
                         </div>
                     {/if}
-                    
+
                     {if $fields.s_address1.enabled}
                         <div class="block{if is_set($fields.s_address1.errors)} error{/if}">
                             <label>{'Address 1'|i18n('extension/xrowecommerce')}{if $fields.s_address1.required}<span class="required">*</span>{/if}</label>
@@ -238,7 +240,7 @@
                             <input type="text" name="s_address1" id="s_address1" size="20" value="{$s_address1|wash}" />
                         </div>
                     {/if}
-                    
+
                     {if $fields.s_address2.enabled}
                         <div class="block{if is_set($fields.s_address2.errors)} error{/if}">
                             <label>{'Address 2'|i18n('extension/xrowecommerce')}{if $fields.s_address2.required}<span class="required">*</span>{/if}</label>
@@ -246,7 +248,7 @@
                             <input type="text" name="s_address2" size="20" id="s_address2" value="{$s_address2|wash}" />
                         </div>
                     {/if}
-                    
+
                     {if $fields.s_city.enabled}
                         <div class="city block{if is_set($fields.s_city.errors)} error{/if}">
                             <label>{'City'|i18n('extension/xrowecommerce')}{if $fields.s_city.required}<span class="required">*</span>{/if}</label>
@@ -254,7 +256,7 @@
                             <input type="text" name="s_city" value="{$s_city|wash}" id="s_city" />
                         </div>
                     {/if}
-                    
+
                     {if $fields.s_zip.enabled}
                         <div class="zip block{if is_set($fields.s_zip.errors)} error{/if}">
                             <label>{'Zip'|i18n('extension/xrowecommerce')}{if $fields.s_zip.required}<span class="required">*</span>{/if}</label>
@@ -263,7 +265,7 @@
                         </div>
                         <div class="break"></div>
                     {/if}
-                    
+
                     {if $fields.s_country.enabled}
                         <div class="country block{if $fields.s_country.errors|count()|gt(0)} error{/if}">
                             <label>{'Country'|i18n('extension/xrowecommerce')}{if $fields.s_country.required}<span class="required">*</span>{/if}</label>
@@ -391,7 +393,7 @@
                     </div>
                 {/if}
             </div>
-            
+
             <div class="buttonblock">
                 <input id="cancel-button" class="button" type="submit" name="CancelButton" value="{'Cancel'|i18n('extension/xrowecommerce')}" title="{'Cancel order'|i18n('extension/xrowecommerce')}" />
                 <input id="continue-button" class="button" type="submit" name="StoreButton" value="{'Continue'|i18n('extension/xrowecommerce')}" title="{'Continue order'|i18n('extension/xrowecommerce')}" />
@@ -401,7 +403,7 @@
             <script type="text/javascript">
                 // removed because it updates the values, if we already have data for shipping.
                 // Idea only update if we have no data fopr shipping and data for billing.
-                // changeShipping(); 
+                // changeShipping();
                 updateShipping();
             </script>
         {/literal}
