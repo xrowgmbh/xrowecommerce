@@ -98,8 +98,10 @@ Mode=cfb
 #fields can be disabled / enabled in the shipping information
 DisplayFax=enabled
 
+#ShippingGateways=
+
 [ShippingInterfaceSettings]
-#ShipmentInterface=xrowDefaultShipping
+#ShippingInterface=xrowDefaultShipping
 
 [MerchantLocations]
 # Use ISO 3 letter country locales
