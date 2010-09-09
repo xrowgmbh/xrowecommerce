@@ -123,11 +123,11 @@
     </message>
     <message>
         <source>Tax identification numbers</source>
-        <translation type="unfinished"></translation>
+        <translation>Int. Steuernummern</translation>
     </message>
     <message>
         <source>Tax identification</source>
-        <translation type="unfinished"></translation>
+        <translation>Int. Steuernummer</translation>
     </message>
 </context>
 <context>
@@ -170,11 +170,11 @@
     </message>
     <message>
         <source>Invert selection.</source>
-        <translation>Auswahl invertieren.</translation>
+        <translation>Auswahl umkehren.</translation>
     </message>
     <message>
         <source>ID</source>
-        <translation>Nummer</translation>
+        <translation>ID</translation>
     </message>
     <message>
         <source>Total (ex. VAT)</source>
@@ -222,31 +222,31 @@
     </message>
     <message>
         <source>Order status</source>
-        <translation type="unfinished">Bestellstatus</translation>
+        <translation>Bestellstatus</translation>
     </message>
     <message>
         <source>Payment status</source>
-        <translation type="unfinished"></translation>
+        <translation>Bezahlstatus</translation>
     </message>
     <message>
         <source>unpaid</source>
-        <translation type="unfinished"></translation>
+        <translation>nicht bezahlt</translation>
     </message>
     <message>
         <source>paid</source>
-        <translation type="unfinished"></translation>
+        <translation>bezahlt</translation>
     </message>
     <message>
         <source>Remove selected</source>
-        <translation type="unfinished"></translation>
+        <translation>Ausgewähltes entfernen</translation>
     </message>
     <message>
         <source>Remove selected orders.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ausgewählte Bestellungen entfernen.</translation>
     </message>
     <message>
         <source>Close</source>
-        <translation type="unfinished"></translation>
+        <translation>Schließen</translation>
     </message>
     <message>
         <source>Print invoice and packaging slip</source>
@@ -388,7 +388,7 @@
     </message>
     <message>
         <source>VAT</source>
-        <translation>Mehrwertsteuer</translation>
+        <translation>USt</translation>
     </message>
     <message>
         <source>Price ex. VAT</source>
@@ -420,7 +420,7 @@
     </message>
     <message>
         <source>Order summary</source>
-        <translation>Bestellungszusammenfassung</translation>
+        <translation>Bestellübersicht</translation>
     </message>
     <message>
         <source>Subtotal of items</source>
@@ -428,7 +428,7 @@
     </message>
     <message>
         <source>Order total</source>
-        <translation>Gesamtpreis</translation>
+        <translation>Gesamtsumme</translation>
     </message>
     <message>
         <source>Remove</source>
@@ -548,6 +548,14 @@
         <source>Select which nodes from which classes can be selected</source>
         <translation>Welche Knoten von welchen Klassen können ausgewählt werden</translation>
     </message>
+    <message>
+        <source>using payment gateway</source>
+        <translation>gewhlte Zahlungsmethode</translation>
+    </message>
+    <message>
+        <source>disabled</source>
+        <translation>gesperrt</translation>
+    </message>
 </context>
 <context>
     <name>design/standard/content/datatype</name>
@@ -558,6 +566,66 @@
     <message>
         <source>Country</source>
         <translation>Land</translation>
+    </message>
+    <message>
+        <source>Current stored card</source>
+        <translation>Gespeicherte Karteninformationen</translation>
+    </message>
+    <message>
+        <source>Account number</source>
+        <translation>Accountnummer</translation>
+    </message>
+    <message>
+        <source>Bank code</source>
+        <translation>Bankleitzahl</translation>
+    </message>
+    <message>
+        <source>Remove debit card</source>
+        <translation>Lastschriftdaten entfernen</translation>
+    </message>
+    <message>
+        <source>expires</source>
+        <translation>gltig bis</translation>
+    </message>
+    <message>
+        <source>Card type</source>
+        <translation>Kartentyp</translation>
+    </message>
+    <message>
+        <source>Name on card</source>
+        <translation>Name der Karte</translation>
+    </message>
+    <message>
+        <source>Security Code</source>
+        <translation>Sicherheitscode</translation>
+    </message>
+    <message>
+        <source>Help</source>
+        <translation>Hilfe</translation>
+    </message>
+    <message>
+        <source>Month</source>
+        <translation>Monat</translation>
+    </message>
+    <message>
+        <source>Year</source>
+        <translation>Jahr</translation>
+    </message>
+    <message>
+        <source>Name of account</source>
+        <translation>Name des Accounts</translation>
+    </message>
+    <message>
+        <source>No card stored.</source>
+        <translation>Keine Karteninformationen gespeichert.</translation>
+    </message>
+    <message>
+        <source>Remove credit card</source>
+        <translation>Kreditkarte entfernen</translation>
+    </message>
+    <message>
+        <source>Credit card number</source>
+        <translation>Kreditkarten Nummer</translation>
     </message>
 </context>
 <context>
@@ -601,6 +669,54 @@
     <message>
         <source>Print</source>
         <translation>Drucken</translation>
+    </message>
+    <message>
+        <source>Billing Address</source>
+        <translation>Rechnungsadresse</translation>
+    </message>
+    <message>
+        <source>Shipping and Billing Address</source>
+        <translation>Liefer- und Rechnugnsadresse</translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation>Name</translation>
+    </message>
+    <message>
+        <source>Email</source>
+        <translation>E-Mail</translation>
+    </message>
+    <message>
+        <source>Address</source>
+        <translation>Adresse</translation>
+    </message>
+    <message>
+        <source>City</source>
+        <translation>Ort</translation>
+    </message>
+    <message>
+        <source>State</source>
+        <translation>Bundesland</translation>
+    </message>
+    <message>
+        <source>Zip code</source>
+        <translation>Postleitzahl</translation>
+    </message>
+    <message>
+        <source>Country</source>
+        <translation>Land</translation>
+    </message>
+    <message>
+        <source>Phone</source>
+        <translation>Telefon</translation>
+    </message>
+    <message>
+        <source>Shipping</source>
+        <translation>Leiferung</translation>
+    </message>
+    <message>
+        <source>Shipping Address</source>
+        <translation>Lieferadresse</translation>
     </message>
 </context>
 <context>
@@ -748,7 +864,7 @@
         <source>starting at</source>
         <translation>ab</translation>
     </message>
-	<message>
+    <message>
         <source>view products</source>
         <translation>Produkte ansehen</translation>
     </message>
@@ -1811,19 +1927,19 @@
     </message>
     <message>
         <source>Tax identification numbers</source>
-        <translation type="unfinished"></translation>
+        <translation>Int. Steuernummern</translation>
     </message>
     <message>
         <source>Status</source>
-        <translation type="unfinished">Status</translation>
+        <translation>Status</translation>
     </message>
     <message>
         <source>Package</source>
-        <translation type="unfinished"></translation>
+        <translation>Paket</translation>
     </message>
     <message>
         <source>Name of package</source>
-        <translation type="unfinished"></translation>
+        <translation>Name des Pakets</translation>
     </message>
     <message>
         <source>Products</source>
@@ -1909,19 +2025,19 @@
     </message>
     <message>
         <source>Please enter the name of the card holder.</source>
-        <translation type="unfinished"></translation>
+        <translation>Bitte geben Sie den Namen des Kreditkartenbesitzers ein.</translation>
     </message>
     <message>
         <source>Please enter the correct account number</source>
-        <translation type="unfinished"></translation>
+        <translation>Bitte geben Sie die korrekte Kontonummer ein</translation>
     </message>
     <message>
         <source>Please enter the correct bank code</source>
-        <translation type="unfinished"></translation>
+        <translation>Bitte geben Sie die korrekte Bankleitzahl ein</translation>
     </message>
     <message>
         <source>The validity of your credit card has expired.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ihre Kreditkarte ist abgelaufen.</translation>
     </message>
 </context>
 <context>
@@ -2457,23 +2573,23 @@ Es ist nicht möglich, den Datentyp danach zu ändern.</translation>
     </message>
     <message>
         <source>Country doesn`t match tax ID number.</source>
-        <translation type="unfinished">Das Land entspricht nicht der Steuernummer.</translation>
+        <translation>Das Land entspricht nicht der Steuernummer.</translation>
     </message>
     <message>
         <source>Your companies tax ID number is not valid.</source>
-        <translation type="unfinished">Ungültige Steuernummer.</translation>
+        <translation>Ungültige Steuernummer.</translation>
     </message>
     <message>
         <source>not validated</source>
-        <translation type="unfinished"></translation>
+        <translation>nicht überprüft</translation>
     </message>
     <message>
         <source>validated</source>
-        <translation type="unfinished"></translation>
+        <translation>überprüft</translation>
     </message>
     <message>
         <source>validated by administration</source>
-        <translation type="unfinished"></translation>
+        <translation>Von Administrator überprüft </translation>
     </message>
 </context>
 <context>
@@ -2506,11 +2622,45 @@ Es ist nicht möglich, den Datentyp danach zu ändern.</translation>
     <message>
         <source>Tax Identification Number</source>
         <comment>Datatype name</comment>
-        <translation type="unfinished"></translation>
+        <translation>Int. Steuernummer</translation>
     </message>
     <message>
         <source>Input required.</source>
         <translation>Eingabe erforderlich.</translation>
+    </message>
+    <message>
+        <source>Input is required, if you have active subscriptions or recurring orders.</source>
+        <translation>Eingabe ist erforderlich, falls Sie laufende Bestellungen oder ausstehende Kosten haben.</translation>
+    </message>
+    <message>
+        <source>Mastercard</source>
+        <translation>Mastercard</translation>
+    </message>
+    <message>
+        <source>Visa</source>
+        <translation>Visa</translation>
+    </message>
+    <message>
+        <source>Discover</source>
+        <translation>Discover</translation>
+    </message>
+    <message>
+        <source>American Express</source>
+        <translation>American Express</translation>
+    </message>
+    <message>
+        <source>Debit card</source>
+        <translation>Lastschrift</translation>
+    </message>
+    <message>
+        <source>Billing cycle</source>
+        <comment>Datatype name</comment>
+        <translation>Abrechnungszyklus</translation>
+    </message>
+    <message>
+        <source>Credit card</source>
+        <comment>Datatype name</comment>
+        <translation>Kreditkarte</translation>
     </message>
 </context>
 <context>
@@ -2561,7 +2711,7 @@ Es ist nicht möglich, den Datentyp danach zu ändern.</translation>
     </message>
     <message>
         <source>Remove order</source>
-        <translation type="unfinished"></translation>
+        <translation>Bestellung enfernen</translation>
     </message>
     <message>
         <source>Shipping plan</source>
@@ -2637,7 +2787,7 @@ Es ist nicht möglich, den Datentyp danach zu ändern.</translation>
     </message>
     <message>
         <source>The message list is empty.</source>
-        <translation type="unfinished"></translation>
+        <translation>Die Nachrichten Liste ist leer.</translation>
     </message>
 </context>
 <context>
@@ -2645,131 +2795,6 @@ Es ist nicht möglich, den Datentyp danach zu ändern.</translation>
     <message>
         <source>Total recurring forecast on revenue</source>
         <translation>Gesammtbetrag der ausstehenden Kosten</translation>
-    </message>
-</context>
-<context>
-    <name>design/standard/class/datatype</name>
-    <message>
-        <source>using payment gateway</source>
-        <translation>gewhlte Zahlungsmethode</translation>
-    </message>
-    <message>
-        <source>disabled</source>
-        <translation>gesperrt</translation>
-    </message>
-</context>
-<context>
-    <name>design/standard/content/datatype</name>
-    <message>
-        <source>Current stored card</source>
-        <translation>Gespeicherte Karteninformationen</translation>
-    </message>
-    <message>
-        <source>Account number</source>
-        <translation>Accountnummer</translation>
-    </message>
-    <message>
-        <source>Bank code</source>
-        <translation>Bankleitzahl</translation>
-    </message>
-    <message>
-        <source>Remove debit card</source>
-        <translation>Lastschriftdaten entfernen</translation>
-    </message>
-    <message>
-        <source>expires</source>
-        <translation>gltig bis</translation>
-    </message>
-    <message>
-        <source>Card type</source>
-        <translation>Kartentyp</translation>
-    </message>
-    <message>
-        <source>Name on card</source>
-        <translation>Name der Karte</translation>
-    </message>
-    <message>
-        <source>Security Code</source>
-        <translation>Sicherheitscode</translation>
-    </message>
-    <message>
-        <source>Help</source>
-        <translation>Hilfe</translation>
-    </message>
-    <message>
-        <source>Month</source>
-        <translation>Monat</translation>
-    </message>
-    <message>
-        <source>Year</source>
-        <translation>Jahr</translation>
-    </message>
-    <message>
-        <source>Name of account</source>
-        <translation>Name des Accounts</translation>
-    </message>
-    <message>
-        <source>No card stored.</source>
-        <translation>Keine Karteninformationen gespeichert</translation>
-    </message>
-    <message>
-        <source>Remove credit card</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Credit card number</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>design/standard/shop</name>
-    <message>
-        <source>Billing Address</source>
-        <translation>Rechnungsadresse</translation>
-    </message>
-    <message>
-        <source>Shipping and Billing Address</source>
-        <translation>Liefer- und Rechnugnsadresse</translation>
-    </message>
-    <message>
-        <source>Name</source>
-        <translation>Name</translation>
-    </message>
-    <message>
-        <source>Email</source>
-        <translation>E-Mail</translation>
-    </message>
-    <message>
-        <source>Address</source>
-        <translation>Adresse</translation>
-    </message>
-    <message>
-        <source>City</source>
-        <translation>Ort</translation>
-    </message>
-    <message>
-        <source>State</source>
-        <translation>Bundesland</translation>
-    </message>
-    <message>
-        <source>Zip code</source>
-        <translation>Postleitzahl</translation>
-    </message>
-    <message>
-        <source>Country</source>
-        <translation>Land</translation>
-    </message>
-    <message>
-        <source>Phone</source>
-        <translation>Telefon</translation>
-    </message>
-    <message>
-        <source>Shipping</source>
-        <translation>Leiferung</translation>
-    </message>
-    <message>
-        <source>Shipping Address</source>
-        <translation>Lieferadresse</translation>
     </message>
 </context>
 <context>
@@ -2784,47 +2809,6 @@ Es ist nicht möglich, den Datentyp danach zu ändern.</translation>
     </message>
     <message>
         <source>(period %startdate% till %enddate%)</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>kernel/classes/datatypes</name>
-    <message>
-        <source>Input is required, if you have active subscriptions or recurring orders.</source>
-        <translation>Eingabe ist erforderlich, falls Sie laufende Bestellungen oder ausstehende Kosten haben.</translation>
-    </message>
-    <message>
-        <source>Input required.</source>
-        <translation>Eingabe erforderlich</translation>
-    </message>
-    <message>
-        <source>Mastercard</source>
-        <translation>Mastercard</translation>
-    </message>
-    <message>
-        <source>Visa</source>
-        <translation>Visa</translation>
-    </message>
-    <message>
-        <source>Discover</source>
-        <translation>Discover</translation>
-    </message>
-    <message>
-        <source>American Express</source>
-        <translation>American Express</translation>
-    </message>
-    <message>
-        <source>Debit card</source>
-        <translation>Lastschrift</translation>
-    </message>
-    <message>
-        <source>Billing cycle</source>
-        <comment>Datatype name</comment>
-        <translation>Abrechnungszyklus</translation>
-    </message>
-    <message>
-        <source>Credit card</source>
-        <comment>Datatype name</comment>
         <translation type="unfinished"></translation>
     </message>
 </context>
