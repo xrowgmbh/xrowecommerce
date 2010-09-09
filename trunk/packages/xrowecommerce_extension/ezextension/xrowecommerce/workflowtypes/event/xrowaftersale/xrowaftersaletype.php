@@ -44,12 +44,12 @@ class xrowAfterSaleType extends eZWorkflowEventType
     function xrowAfterSaleType()
     {
         $this->eZWorkflowEventType( xrowAfterSaleType::WORKFLOW_TYPE_STRING, ezpI18n::tr( 'kernel/workflow/event', 'After Sale' ) );
-        $this->setTriggerTypes( array( 
-            'shop' => array( 
-                'checkout' => array( 
-                    'after' 
-                ) 
-            ) 
+        $this->setTriggerTypes( array(
+            'shop' => array(
+                'checkout' => array(
+                    'after'
+                )
+            )
         ) );
     }
 
@@ -63,7 +63,7 @@ class xrowAfterSaleType extends eZWorkflowEventType
                     $returnValue = empty( $attributeValue ) ? array() : explode( ',', $attributeValue );
                 }
                 break;
-            
+
             default:
                 $returnValue = null;
         }
@@ -77,7 +77,7 @@ class xrowAfterSaleType extends eZWorkflowEventType
         $processParameters = $process->attribute( 'parameter_list' );
         $order = eZOrder::fetch( $processParameters['order_id'] );
         $errors = array();
-        
+
         $xmlstring = $order->attribute( 'data_text_1' );
         if ( $xmlstring != null )
         {
@@ -98,36 +98,36 @@ class xrowAfterSaleType extends eZWorkflowEventType
             {
                 $order->setAttribute( 'is_temporary', 1 );
                 $order->store();
-                
+
                 // get the shelf warmer
-                $params = array( 
-                    'ClassFilterType' => 'include' , 
-                    'ClassFilterArray' => array( 
-                        'xrow_product' 
-                    ) , 
-                    'SortBy' => array( 
-                        'name' , 
-                        'asc' 
-                    ) , 
-                    'IgnoreVisibility' => true 
+                $params = array(
+                    'ClassFilterType' => 'include' ,
+                    'ClassFilterArray' => array(
+                        'xrow_product'
+                    ) ,
+                    'SortBy' => array(
+                        'name' ,
+                        'asc'
+                    ) ,
+                    'IgnoreVisibility' => true
                 );
                 $parentContentObject = eZContentObjectTreeNode::subTreeByNodeID( $params, $event->DataInt1 );
-                
+
                 if ( $http->hasPostVariable( 'Cancel' ) and $http->postVariable( 'Cancel' ) )
                 {
                     return eZWorkflowEventType::STATUS_ACCEPTED;
                 }
-                
+
                 if ( $http->hasPostVariable( 'SelectMoreProducts' ) )
                 {
                     $itemCountList = $http->hasPostVariable( 'ProductItemCountList' ) ? $http->postVariable( 'ProductItemCountList' ) : false;
-                    
+
                     if ( is_array( $itemCountList ) )
                     {
                         $newproductCollectionArray = array();
                         $total_amount_inc_vat = 0.00;
                         $itemOptionIDList = array();
-                        
+
                         foreach ( $itemCountList as $id => $itemCount )
                         {
                             if ( is_array( $itemCount ) )
@@ -140,7 +140,7 @@ class xrowAfterSaleType extends eZWorkflowEventType
                                     }
                                 }
                             }
-                            
+
                             if ( ( ! is_array( $itemCount ) && $itemCount > 0 ) || ( is_array( $itemOptionIDList ) && count( $itemOptionIDList ) > 0 && is_array( $itemCount ) ) )
                             {
                                 // get the productdata
@@ -148,13 +148,13 @@ class xrowAfterSaleType extends eZWorkflowEventType
                                 $productDataMap = $productObject->attribute( 'data_map' );
 
                                 $attributes = $productObject->contentObjectAttributes();
-                                
+
                                 $inc_vat_price = 0.00;
-                                
+
                                 foreach ( $attributes as $attribute )
                                 {
 	                                $name = $productObject->attribute( 'name' );
-						            
+
 						            if( $productObject->is_subscription and $productObject->cycle_unit != XROWRecurringOrderCollection::CYCLE_ONETIME )
 						            {
 						                $ts_args = array();
@@ -162,16 +162,16 @@ class xrowAfterSaleType extends eZWorkflowEventType
 						                $ts_args['%enddate%'] = strftime( '%d.%m.%y', $productObject->attribute( 'next_date' ) );
 						                $name .= ' ' . ezpI18n::tr( 'extension/recurringorders', "(period %startdate% till %enddate%)", false, $ts_args );
 						            }
-					            
+
                                     $dataType = $attribute->dataType();
-                                    
+
                                     // if a product have more than one option
                                 	if ( $dataType->isA() == 'ezoption2' && is_array( $itemOptionIDList ) && count( $itemOptionIDList ) > 0 )
 				                    {
 				                    	$optionsObj = $attribute->content();
 				                    	$object_attribute_id = $attribute->attribute( 'id' );
 				                    	$optionList = $optionsObj->attribute( 'option_list' );
-				                    	
+
 				                    	foreach ($optionList as $option)
 				                    	{
 				                    		if ( $itemOptionIDList['options'][$option['id']] > 0 )
@@ -180,38 +180,38 @@ class xrowAfterSaleType extends eZWorkflowEventType
 					                    		{
 					                    			$priceDataObj = $this->getAmount( $productDataMap['price'], $itemOptionIDList['options'][$option['id']], $option['multi_price'] );
 					                    			$total_amount_inc_vat += $priceDataObj->amount_inc_vat;
-					                    			
-					                    			$newproductCollectionArray[$productObject->attribute( 'id' )]['option'][$option['id']]['productcollection_id'] = $order->attribute( 'productcollection_id' );
-										    		$newproductCollectionArray[$productObject->attribute( 'id' )]['option'][$option['id']]['contentobject_id'] = $productObject->attribute( 'id' );
-										    		$newproductCollectionArray[$productObject->attribute( 'id' )]['option'][$option['id']]['name'] = $name;
-					                    			$newproductCollectionArray[$productObject->attribute( 'id' )]['option'][$option['id']]['item_count'] = $itemOptionIDList['options'][$option['id']];
-										            $newproductCollectionArray[$productObject->attribute( 'id' )]['option'][$option['id']]['price'] = $priceDataObj->price;
-										            $newproductCollectionArray[$productObject->attribute( 'id' )]['option'][$option['id']]['is_vat_inc'] = $priceDataObj->is_vat_inc;
-										            $newproductCollectionArray[$productObject->attribute( 'id' )]['option'][$option['id']]['vat_value'] = $priceDataObj->vat;
-										            $newproductCollectionArray[$productObject->attribute( 'id' )]['option'][$option['id']]['discount'] = $priceDataObj->discount;
+
+					                    			$newproductCollectionArray[$id]['option'][$option['id']]['productcollection_id'] = $order->attribute( 'productcollection_id' );
+										    		$newproductCollectionArray[$id]['option'][$option['id']]['contentobject_id'] = $id;
+										    		$newproductCollectionArray[$id]['option'][$option['id']]['name'] = $name;
+					                    			$newproductCollectionArray[$id]['option'][$option['id']]['item_count'] = $itemOptionIDList['options'][$option['id']];
+										            $newproductCollectionArray[$id]['option'][$option['id']]['price'] = $priceDataObj->price;
+										            $newproductCollectionArray[$id]['option'][$option['id']]['is_vat_inc'] = $priceDataObj->is_vat_inc;
+										            $newproductCollectionArray[$id]['option'][$option['id']]['vat_value'] = $priceDataObj->vat;
+										            $newproductCollectionArray[$id]['option'][$option['id']]['discount'] = $priceDataObj->discount;
 										            // for the product collection itemOpt
-										            $newproductCollectionArray[$productObject->attribute( 'id' )]['option'][$option['id']]['options']['option_item_id'] = $option['id'];
-										            $newproductCollectionArray[$productObject->attribute( 'id' )]['option'][$option['id']]['options']['object_attribute_id'] = $object_attribute_id;
-										            $newproductCollectionArray[$productObject->attribute( 'id' )]['option'][$option['id']]['options']['name'] = $option['comment'];
-										            $newproductCollectionArray[$productObject->attribute( 'id' )]['option'][$option['id']]['options']['value'] = $option['value'];
-										            $newproductCollectionArray[$productObject->attribute( 'id' )]['option'][$option['id']]['options']['price'] = $priceDataObj->price;
+										            $newproductCollectionArray[$id]['option'][$option['id']]['options']['option_item_id'] = $option['id'];
+										            $newproductCollectionArray[$id]['option'][$option['id']]['options']['object_attribute_id'] = $object_attribute_id;
+										            $newproductCollectionArray[$id]['option'][$option['id']]['options']['name'] = $option['comment'];
+										            $newproductCollectionArray[$id]['option'][$option['id']]['options']['value'] = $option['value'];
+										            $newproductCollectionArray[$id]['option'][$option['id']]['options']['price'] = $priceDataObj->price;
 					                    		}
 				                    		}
 				                    	}
-				                    } 
+				                    }
 				                    elseif ( eZShopFunctions::isProductDatatype( $dataType->isA() ) && !is_array( $itemCount ))
         							{
                                     	$priceDataObj = $this->getAmount( $productDataMap['price'], $itemCount );
                                     	$total_amount_inc_vat += $priceDataObj->amount_inc_vat;
-                                    	
-                                    	$newproductCollectionArray[$productObject->attribute( 'id' )]['productcollection_id'] = $order->attribute( 'productcollection_id' );
-							            $newproductCollectionArray[$productObject->attribute( 'id' )]['contentobject_id'] = $productObject->attribute( 'id' );
-							            $newproductCollectionArray[$productObject->attribute( 'id' )]['name'] = $name;
-							            $newproductCollectionArray[$productObject->attribute( 'id' )]['item_count'] = $itemCount;
-							            $newproductCollectionArray[$productObject->attribute( 'id' )]['price'] = $priceDataObj->price;
-							            $newproductCollectionArray[$productObject->attribute( 'id' )]['is_vat_inc'] = $priceDataObj->is_vat_inc;
-							            $newproductCollectionArray[$productObject->attribute( 'id' )]['vat_value'] = $priceDataObj->vat;
-							            $newproductCollectionArray[$productObject->attribute( 'id' )]['discount'] = $priceDataObj->discount;
+
+                                    	$newproductCollectionArray[$id]['productcollection_id'] = $order->attribute( 'productcollection_id' );
+							            $newproductCollectionArray[$id]['contentobject_id'] = $id;
+							            $newproductCollectionArray[$id]['name'] = $name;
+							            $newproductCollectionArray[$id]['item_count'] = $itemCount;
+							            $newproductCollectionArray[$id]['price'] = $priceDataObj->price;
+							            $newproductCollectionArray[$id]['is_vat_inc'] = $priceDataObj->is_vat_inc;
+							            $newproductCollectionArray[$id]['vat_value'] = $priceDataObj->vat;
+							            $newproductCollectionArray[$id]['discount'] = $priceDataObj->discount;
         							}
                                 }
                             }
@@ -275,21 +275,21 @@ class xrowAfterSaleType extends eZWorkflowEventType
                         return eZWorkflowEventType::STATUS_WORKFLOW_CANCELLED;
                     }
                 }
-                
+
                 if ( $http->hasPostVariable( 'WithoutMoreProducts' ) )
                 {
                     $order->setAttribute( 'is_temporary', 0 );
                     $order->store();
                     return eZWorkflowEventType::STATUS_ACCEPTED;
                 }
-                
+
                 $process->Template = array();
                 $process->Template['templateName'] = 'design:workflow/aftersale.tpl';
-                $process->Template['templateVars'] = array( 
-                    'process' => $process , 
-                    'event' => $event , 
-                    'product_list' => $parentContentObject , 
-                    'errors' => $errors 
+                $process->Template['templateVars'] = array(
+                    'process' => $process ,
+                    'event' => $event ,
+                    'product_list' => $parentContentObject ,
+                    'errors' => $errors
                 );
             }
             return eZWorkflowType::STATUS_FETCH_TEMPLATE_REPEAT;
@@ -320,11 +320,11 @@ class xrowAfterSaleType extends eZWorkflowEventType
                                 case 'AddObject':
                                     {
                                         $implodeString = implode( ',', array_unique( array_merge( $this->attributeDecoder( $event, 'get_object_id' ), $objectIDArray ) ) );
-                                        
+
                                         $event->setAttribute( 'data_int1', $implodeString );
                                     }
                                     break;
-                                
+
                                 default:
                                     break;
                             }
@@ -340,22 +340,22 @@ class xrowAfterSaleType extends eZWorkflowEventType
     {
         $eventID = $workflowEvent->attribute( 'id' );
         $module = & $GLOBALS['eZRequestedModule'];
-        
+
         switch ( $action )
         {
             case 'AddObject':
                 {
-                    eZContentBrowse::browse( array( 
-                        'action_name' => 'SelectObjectRelationNode' , 
-                        'from_page' => '/workflow/edit/' . $workflowEvent->attribute( 'workflow_id' ) , 
-                        'custom_action_data' => array( 
-                            'event_id' => $eventID , 
-                            'browse_action' => $action 
-                        ) 
+                    eZContentBrowse::browse( array(
+                        'action_name' => 'SelectObjectRelationNode' ,
+                        'from_page' => '/workflow/edit/' . $workflowEvent->attribute( 'workflow_id' ) ,
+                        'custom_action_data' => array(
+                            'event_id' => $eventID ,
+                            'browse_action' => $action
+                        )
                     ), $module );
                 }
                 break;
-            
+
             case 'RemoveObject':
                 {
                     if ( $http->hasPostVariable( 'DeleteObjectIDArray_' . $eventID ) )
@@ -364,7 +364,7 @@ class xrowAfterSaleType extends eZWorkflowEventType
                     }
                 }
                 break;
-            
+
             default:
                 break;
         }
@@ -392,11 +392,11 @@ class xrowAfterSaleType extends eZWorkflowEventType
 
     /**
      * Calculate prices and get some important details for the order
-     * 
-     * @param $parentPrice 
+     *
+     * @param $parentPrice
      * @param $count
      * @param $optionPriceObj
-     * 
+     *
      * @return object $priceDataObj
      */
     function getAmount( $parentPrice, $count, $optionPriceObj = false )
@@ -404,28 +404,28 @@ class xrowAfterSaleType extends eZWorkflowEventType
     	$price_option = 0.00;
     	$discount_price_option = 0.00;
     	$totalDiscountPriceProduct = 0.00;
-    	
+
     	// get the parent price object
     	$dataType = $parentPrice->dataType();
     	if ( $dataType->isA() == 'ezmultiprice' )
 	    {
 			$parentPriceObj = $parentPrice->content();
 	    }
-	    
+
 	    // get the vat value
 		$vat_percent = $parentPriceObj->VATType->getPercentage( false, '' );
 	    // get the discount value
 		$discount_percent = $parentPriceObj->DiscountPercent;
-		
+
 		if ( is_object( $optionPriceObj ) )
 		{
 			$price_option = $optionPriceObj->attribute( 'price' );
 		}
-		
+
 		// sum the parent price with the option price
 		$priceProduct = $parentPriceObj->attribute( 'price' ) + $price_option;
 		$discountPriceProduct = round( $priceProduct, 2 ) * ( 100 - $discount_percent ) / 100;
-		
+
 		if ( $parentPriceObj->IsVATIncluded )
 		{
 			$totalDiscountPriceProduct = round( ($count * round( $discountPriceProduct, 2 ) ), 2 );
@@ -434,7 +434,7 @@ class xrowAfterSaleType extends eZWorkflowEventType
 		{
 			$totalDiscountPriceProduct = round( ($count * round( $discountPriceProduct, 2 ) * ( 100 + $vat_percent ) / 100), 2 );
 		}
-	    
+
         $priceDataObj = false;
         $priceDataObj->discount = $discount_percent;
         $priceDataObj->vat = $vat_percent;
