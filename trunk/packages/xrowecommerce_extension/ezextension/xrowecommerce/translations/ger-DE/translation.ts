@@ -874,11 +874,11 @@
     </message>
     <message>
         <source>Type</source>
-        <translation>Eintippen</translation>
+        <translation>Typ</translation>
     </message>
     <message>
         <source>Any</source>
-        <translation>Irgendwelche</translation>
+        <translation>Alle</translation>
     </message>
     <message>
         <source>Add to Automatic Delivery</source>
