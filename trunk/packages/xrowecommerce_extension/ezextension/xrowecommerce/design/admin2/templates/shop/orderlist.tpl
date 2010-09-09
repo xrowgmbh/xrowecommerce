@@ -1,5 +1,5 @@
 {def $show_payment_status=cond( and( ezini_hasvariable( 'StatusSettings', 'ShowPaymentStatus', 'xrowecommerce.ini' ), ezini( 'StatusSettings', 'ShowPaymentStatus', 'xrowecommerce.ini' )|eq( 'disabled' ) ), false(), true() )}
-<!-- 
+<!--
 <link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/2.8.1/build/container/assets/skins/sam/container.css" />
 <script type="text/javascript" src="http://yui.yahooapis.com/2.8.1/build/yahoo-dom-event/yahoo-dom-event.js"></script>
 <script type="text/javascript" src="http://yui.yahooapis.com/2.8.1/build/container/container-min.js"></script>
@@ -20,7 +20,7 @@
 {/literal}
 
  -->
- 
+
 <div class="context-block">
 
 {* DESIGN: Header START *}<div class="box-header"><div class="box-tc"><div class="box-ml"><div class="box-mr"><div class="box-tl"><div class="box-tr">
@@ -63,7 +63,7 @@
         <th scope="row">{'E-mail address or Order No'|i18n( 'extension/xrowecommerce')}</th>
         <td>
             <form name="contentserver" method="post" action={'customersearch/search'|ezurl}>
-                <input name="E-mail" type="text" {if is_set($email)}value="{$email}"{else}value="{$E-mail}"{/if} size="50" />
+                <input name="E-mail" type="text" {if is_set($email)}value="{$email}"{else}value=""{/if} size="50" />
                 <input class="button" name="Search" type="submit" value="Search" />
             </form>
         </td>
@@ -99,17 +99,17 @@
 {let can_apply=false()}
 <form name="orderlist" method="post" action={concat( '/xrowecommerce/orderlist' )|ezurl}>
     <div class="context-block">
-    
+
     {* DESIGN: Header START *}<div class="box-header"><div class="box-tc"><div class="box-ml"><div class="box-mr"><div class="box-tl"><div class="box-tr">
-    
+
     <h1 class="context-title">{'Orders [%count]'|i18n( 'design/admin/shop/orderlist',, hash( '%count', $order_list|count ) )}</h1>
-    
+
     {* DESIGN: Mainline *}<div class="header-mainline"></div>
-    
+
     {* DESIGN: Header END *}</div></div></div></div></div></div>
-    
+
     {* DESIGN: Content START *}<div class="box-ml"><div class="box-mr"><div class="box-content">
-    
+
     {if $order_list}
     <div class="context-toolbar">
     <div class="block">
@@ -135,16 +135,16 @@
     {/if}
     </p>
     </div>
-    
+
     <div class="break"></div>
-    
+
     </div>
     </div>
-    
+
     {def $currency = false()
          $locale = false()
          $symbol = false()}
-    
+
     <table class="list" cellspacing="0">
     <tr>
         <th class="tight"><img src={'toggle-button-16x16.gif'|ezimage} alt="{'Invert selection.'|i18n( 'design/admin/shop/orderlist' )}" title="{'Invert selection.'|i18n( 'design/admin/shop/orderlist' )}" onclick="ezjs_toggleCheckboxes( document.orderlist, 'OrderIDArray[]' ); return false;" /></th>
@@ -160,7 +160,7 @@
         <th class="wide">{'Actions'|i18n( 'design/admin/shop/orderlist' )}</th>
     </tr>
     {foreach $order_list as $order sequence array( bglight, bgdark ) as $seq}
-    
+
     {set $currency = fetch( 'shop', 'currency', hash( 'code', $order.productcollection.currency_code ) )}
     {if $currency}
         {set locale = $currency.locale
@@ -169,7 +169,7 @@
         {set locale = false()
              symbol = false()}
     {/if}
-    
+
     <tr class="{$seq}">
         <td><input type="checkbox" name="OrderIDArray[]" value="{$order.id}" title="{'Select order for removal.'|i18n( 'design/admin/shop/orderlist' )}" /></td>
         <td><a href={concat( '/shop/orderview/', $order.id, '/' )|ezurl}>{$order.order_nr}</a></td>
@@ -259,7 +259,7 @@
     <p>{'The order list is empty.'|i18n( 'design/admin/shop/orderlist' )}</p>
     </div>
     {/if}
-    
+
     <div class="context-toolbar">
     {include name=navigator
              uri='design:navigator/google.tpl'
@@ -268,12 +268,12 @@
              view_parameters=$view_parameters
              item_limit=$limit}
     </div>
-    
+
     {* DESIGN: Content END *}</div></div></div>
-    
+
     <div class="controlbar">
     {* DESIGN: Control bar START *}<div class="box-bc"><div class="box-ml"><div class="box-mr"><div class="box-tc"><div class="box-bl"><div class="box-br">
-    
+
     <div class="block">
     <div class="button-left">
     {if $order_list}
@@ -292,9 +292,9 @@
         {/if}
     </div>
     <div class="break"></div>
-    
+
     </div>
-    
+
     {* DESIGN: Control bar END *}</div></div></div></div></div></div>
     </div>
 
