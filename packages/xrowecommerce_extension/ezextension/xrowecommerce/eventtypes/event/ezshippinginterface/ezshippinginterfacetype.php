@@ -22,17 +22,17 @@ class eZShippingInterfaceType extends eZWorkflowEventType
     function __construct()
     {
         $this->eZWorkflowEventType( eZShippingInterfaceType::WORKFLOW_TYPE_STRING, ezpI18n::tr( 'kernel/workflow/event', "Shipping Interface" ) );
-        $this->setTriggerTypes( array( 
-            'shop' => array( 
-                'confirmorder' => array( 
-                    'before' 
-                ) 
-            ) , 
-            'recurringorders' => array( 
-                'checkout' => array( 
-                    'before' 
-                ) 
-            ) 
+        $this->setTriggerTypes( array(
+            'shop' => array(
+                'confirmorder' => array(
+                    'before'
+                )
+            ) ,
+            'recurringorders' => array(
+                'checkout' => array(
+                    'before'
+                )
+            )
         ) );
     }
 
@@ -64,21 +64,21 @@ class eZShippingInterfaceType extends eZWorkflowEventType
             $Value = $http->postVariable( $Variable );
             $event->setAttribute( 'data_text3', serialize( $Value ) );
             echo $event->store();
-        
+
         }
-        else 
+        else
             if ( $http->hasPostVariable( $VariableFlag ) and ! $http->hasPostVariable( $Variable ) )
             {
                 $event->setAttribute( 'data_text3', serialize( array() ) );
                 $event->store();
             }
-    
+
     }
 
     function attributes()
     {
-        return array_merge( array( 
-            'methods' 
+        return array_merge( array(
+            'methods'
         ), eZWorkflowEventType::attributes() );
     }
 
@@ -92,10 +92,10 @@ class eZShippingInterfaceType extends eZWorkflowEventType
 
     function execute( $process, $event )
     {
-        
+
         // Fetch Workflow Settings
         $ini = eZINI::instance( 'shipping.ini' );
-        
+
         // Setting to control calculations (Product Option Attribute Processing)
         $settingUseeZoption2ProductVariations = ( $ini->variable( "Settings", "eZoption2ProductVariations" ) == 'Enabled' );
         $FreeShippingProducts = $ini->variable( "Settings", "FreeShippingProducts" );
@@ -104,14 +104,14 @@ class eZShippingInterfaceType extends eZWorkflowEventType
         $add_handling_fee = $ini->variable( "Settings", "HandlingFee" );
         $handling_fee_name = $ini->variable( "Settings", "HandlingFeeName" );
         $free_shippingitem_reduce = $ini->variable( "Settings", "FreeShippingitemReduce" );
-        
+
         // Process parameters
         $parameters = $process->attribute( 'parameter_list' );
         $orderID = $parameters['order_id'];
-        
+
         // Fetch order
         $order = eZOrder::fetch( $orderID );
-        
+
         // If order class was fetched
         if ( $order instanceof eZOrder )
         {
@@ -134,41 +134,41 @@ class eZShippingInterfaceType extends eZWorkflowEventType
                 // If order has a shipping country use it instead.
                 if ( isset( $shipping_s_country ) and $shipping_s_country != '' )
                     $shipping_country = $shipping_s_country;
-                    
+
                 // If order has a shipping state use it instead.
                 if ( isset( $shipping_s_state ) and $shipping_s_state != '' )
                     $shipping_state = $shipping_s_state;
-                    
+
                 // If order has a shipping zip use it instead.
                 if ( isset( $shipping_s_zip ) and $shipping_s_zip != '' )
                     $shipping_zip = $shipping_s_zip;
-                    
+
                 // If order has a shipping city use it instead.
                 if ( isset( $shipping_s_city ) and $shipping_s_city != '' )
                     $shipping_city = $shipping_s_city;
             }
         }
-        
+
         $tax_country = $shipping_country;
         $tax_state = $shipping_state;
-        
+
         // Fetch order products
         $productcollection = $order->productCollection();
-        
+
         // Fetch order items
         $items = $productcollection->itemList();
         $freeshippingproduct = false;
         $freehandlingproduct = false;
-        
+
         $hazardousproducts = array();
         foreach ( $items as $item )
         {
             // fetch order item option
             $option = eZProductCollectionItemOption::fetchList( $item->attribute( "id" ) );
-            
+
             if ( is_array( $option ) and array_key_exists( 0, $option ) )
                 $option = $option[0];
-            
+
             if ( in_array( $item->attribute( 'contentobject_id' ), $FreeShippingProducts ) )
             {
                 if ( $item->ItemCount >= 2 )
@@ -176,13 +176,13 @@ class eZShippingInterfaceType extends eZWorkflowEventType
                     $freeshippingproduct = true;
                 }
             }
-            
+
             // Fetch object
             $co = eZContentObject::fetch( $item->attribute( 'contentobject_id' ) );
-            
+
             // Fetch object datamap
             $dm = $co->dataMap();
-            
+
             // FreeShipping Item check
             if ( array_key_exists( 'freeshipping', $dm ) and $dm['freeshipping']->DataInt == 1 )
             {
@@ -192,7 +192,7 @@ class eZShippingInterfaceType extends eZWorkflowEventType
             {
                 $freeshippingproduct = false;
             }
-            
+
             // FreeHandling Item check
             if ( array_key_exists( 'freehandling', $dm ) and $dm["freehandling"]->DataInt == 1 )
             {
@@ -202,7 +202,7 @@ class eZShippingInterfaceType extends eZWorkflowEventType
             {
                 $freehandlingproduct = false;
             }
-            
+
             // Hazardous Item check
             if ( array_key_exists( 'hazardous', $dm ) and $dm["hazardous"]->DataInt == 1 )
             {
@@ -213,7 +213,7 @@ class eZShippingInterfaceType extends eZWorkflowEventType
                     continue;
                 }
             }
-            
+
 
             /*START ABSTRACTION LAYER NEEDED FOR WEIGHT
 
@@ -230,7 +230,7 @@ class eZShippingInterfaceType extends eZWorkflowEventType
             if ( $found )
             {
                 $content = $dm[$attribute_name]->content();
-                
+
                 if ( ! empty( $content->Weight ) )
                 {
                     $totalweight += (float) $content->Weight * $item->ItemCount;
@@ -255,7 +255,7 @@ class eZShippingInterfaceType extends eZWorkflowEventType
             if ( ! empty( $option ) and $found )
             {
                 $optionID = $option->OptionItemID;
-                
+
                 if ( array_key_exists( $attribute_name, $dm ) )
                 {
                     $content = $dm[$attribute_name]->content();
@@ -270,7 +270,7 @@ class eZShippingInterfaceType extends eZWorkflowEventType
                     }
                 }
             }
-            
+
 
             // Conditional, if weight is defined in datamap array
             if ( array_key_exists( 'weight', $dm ) )
@@ -286,9 +286,9 @@ class eZShippingInterfaceType extends eZWorkflowEventType
                 {
                     eZDebug::writeDebug( $co->name() . " #" . $co->ID, "Zero Weight Product in attribute weight" );
                 }
-            
+
             }
-            
+
             END ABSTRACTION LAYER NEEDED FOR WEIGHT */
         }
         // Order product total weight calculation
@@ -381,7 +381,7 @@ class eZShippingInterfaceType extends eZWorkflowEventType
         $tpl = eZTemplate::factory();
         $tpl->setVariable( "hazardous", $hazardousproducts );
         */
-        
+
         #### SHIPPING COST CALCULATION
         $shippingerror = false;
 
@@ -424,36 +424,36 @@ class eZShippingInterfaceType extends eZWorkflowEventType
             {
                 $process->Template = array();
                 $process->Template['templateName'] = 'design:workflow/shipping/error_shipping.tpl';
-                $process->Template['path'] = array( 
-                    array( 
-                        'url' => false , 
-                        'text' => ezpI18n::tr( 'extension/xrowecommerce', 'Shipping Information' ) 
-                    ) 
+                $process->Template['path'] = array(
+                    array(
+                        'url' => false ,
+                        'text' => ezpI18n::tr( 'extension/xrowecommerce', 'Shipping Information' )
+                    )
                 );
-                $process->Template['templateVars'] = array( 
-                    'event' => $event , 
-                    'message' => $e->getMessage() , 
-                    'type' => $shippingtype 
+                $process->Template['templateVars'] = array(
+                    'event' => $event ,
+                    'message' => $e->getMessage() ,
+                    'type' => $shippingtype
                 );
-                
+
                 return eZWorkflowType::STATUS_FETCH_TEMPLATE_REPEAT;
             }
             catch ( xrowShippingGatewayException $e )
             {
                 $process->Template = array();
                 $process->Template['templateName'] = 'design:workflow/shipping/error_shippinggateway.tpl';
-                $process->Template['path'] = array( 
-                    array( 
-                        'url' => false , 
-                        'text' => ezpI18n::tr( 'extension/xrowecommerce', 'Shipping Information' ) 
-                    ) 
+                $process->Template['path'] = array(
+                    array(
+                        'url' => false ,
+                        'text' => ezpI18n::tr( 'extension/xrowecommerce', 'Shipping Information' )
+                    )
                 );
-                $process->Template['templateVars'] = array( 
-                    'event' => $event , 
-                    'message' => $e->getMessage() , 
-                    'type' => $shippingtype 
+                $process->Template['templateVars'] = array(
+                    'event' => $event ,
+                    'message' => $e->getMessage() ,
+                    'type' => $shippingtype
                 );
-                
+
                 return eZWorkflowType::STATUS_FETCH_TEMPLATE_REPEAT;
             }
         }
@@ -475,22 +475,22 @@ class eZShippingInterfaceType extends eZWorkflowEventType
                $roundedweight = 1;
             else $roundedweight = $totalweight;
                $ups->setWeight( $roundedweight );
-               
+
             if ( $shippingtype == "3" )
                 $ups->setService( "03" );
             elseif ( $shippingtype == "4" )
                 $ups->setService( "01" );
             elseif ( $shippingtype == "5" )
                 $ups->setService( "02" );
-            
-            
+
+
             $shipping_country = $ups->convert_country( $shipping_country, "Alpha3", "Alpha2");
             $ups->setAddressTo( $shipping_country, $shipping_state, $shipping_zip, $shipping_city );
-            
+
             $ups_price = $ups->getPrice();
             // adding 2$ handling fee
             $ups_price->costs->costs = $ups_price->costs->costs;
-        
+
             if($ups_price->error)
             {
                 //echo "Error: ".$ups_price->error->description." <br />";
@@ -498,7 +498,7 @@ class eZShippingInterfaceType extends eZWorkflowEventType
                 $cost = 0.00;
                 $shippingerror = true;
             }
-            else 
+            else
             {
                 //echo $ups_price->costs->shipping_type." ".$ups_price->costs->currency_unit." ".$ups_price->costs->costs."<br />";
                 $shipping_type_name =$shippingservicename[$shippingtype]." for ( ".$totalweight." lbs)";
@@ -508,7 +508,7 @@ class eZShippingInterfaceType extends eZWorkflowEventType
             }
             ############# End UPS of calculation #############
             $description = $shipping_type_name;
-            
+
             if (!$shippingerror)
             {
 
@@ -521,13 +521,13 @@ class eZShippingInterfaceType extends eZWorkflowEventType
                     $description_discounted_shipping = "Discounted Shipping! $shipping_type_name";
                     $description = $description_discounted_shipping;
                 }
-                
+
             }
-            
+
         }
-        
-        
-        
+
+
+
         elseif ( $shippingtype == "6" OR $shippingtype == "7" )
         {
             // USPS Service
@@ -538,7 +538,7 @@ class eZShippingInterfaceType extends eZWorkflowEventType
             #$shippingservicename[7] = "Airmail Parcel Post";
             $shippingservicename[7] = "Global Express Guaranteed";
             $usps->setService( $shippingservicename[$shippingtype] );
-            
+
             #Global Express Guaranteed
             #Global Express Guaranteed Non-Document Rectangular
             #Global Express Guaranteed Non-Document Non-Rectangular
@@ -546,8 +546,8 @@ class eZShippingInterfaceType extends eZWorkflowEventType
             #Express Mail International (EMS) Flat Rate Envelope
             #Priority Mail International
             #Priority Mail International Flat Rate Box
-            
-            
+
+
             ############# Start of USPS calculation #############
             $shipping_country = $usps->convert_country( $shipping_country, "Alpha3", "Name");
             $usps->setAddressTo( $shipping_country, $shipping_state, $shipping_zip, $shipping_city );
@@ -556,7 +556,7 @@ class eZShippingInterfaceType extends eZWorkflowEventType
             $totalweight_ounces = round( $totalweight * 16 );
             $usps->setOunces ( $totalweight_ounces );
             $usps_price = $usps->getPrice();
-            
+
             if ( $usps_price->error )
             {
                 //echo "Error in USPS: ".$usps_price->error->description." <br />";
@@ -564,7 +564,7 @@ class eZShippingInterfaceType extends eZWorkflowEventType
                 $cost = 0.00;
                 $shippingerror = true;
             }
-            else 
+            else
             {
                 $usps_service = $usps->getService($usps_price->list, $shippingservicename[$shippingtype]);
 
@@ -609,12 +609,12 @@ class eZShippingInterfaceType extends eZWorkflowEventType
         {
             if ( ! $freehandlingproduct and $add_handling_fee == "enabled" and $handling_fee_include != "enabled" )
             {
-                $HandlingItem = new eZOrderItem( array( 
-                    'order_id' => $orderID , 
-                    'description' => $handling_fee_name , 
-                    'price' => $handling_fee , 
-                    'vat_value' => $vat_value , 
-                    'type' => 'handlingfee' 
+                $HandlingItem = new eZOrderItem( array(
+                    'order_id' => $orderID ,
+                    'description' => $handling_fee_name ,
+                    'price' => $handling_fee ,
+                    'vat_value' => $vat_value ,
+                    'type' => 'handlingfee'
                 ) );
                 $HandlingItem->store();
             }
@@ -628,16 +628,16 @@ class eZShippingInterfaceType extends eZWorkflowEventType
                 $item->remove();
             }
         }
-        
-        $orderItem = new eZOrderItem( array( 
-            'order_id' => $orderID , 
-            'description' => $description , 
-            'price' => $cost , 
-            'vat_value' => $vat_value , 
-            'type' => 'shippingcost' 
+
+        $orderItem = new eZOrderItem( array(
+            'order_id' => $orderID ,
+            'description' => $description ,
+            'price' => $cost ,
+            'vat_value' => $vat_value ,
+            'type' => 'shippingcost'
         ) );
         $orderItem->store();
-        
+
         return eZWorkflowType::STATUS_ACCEPTED;
     }
 }
