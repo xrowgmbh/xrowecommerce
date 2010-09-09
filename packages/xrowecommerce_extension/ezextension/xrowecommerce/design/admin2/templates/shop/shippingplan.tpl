@@ -31,4 +31,4 @@
 </table>
 <div class="break" style="clear:both;"></div>
 
-{$order|attribute(show)}
+{* $order|attribute(show) *}
