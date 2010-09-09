@@ -1,6 +1,6 @@
 <?php
 
-
+$list = array();
 $module = $Params['Module'];
 
 $http = eZHTTPTool::instance();
@@ -34,7 +34,7 @@ if ( isset( $Params['UserParameters']['offset'] ) and is_numeric( $Params['UserP
 {
     $offset = (int)$Params['UserParameters']['offset'];
 }
-else 
+else
 {
     $offset = 0;
 }
@@ -42,7 +42,7 @@ if ( isset( $Params['UserParameters']['limit'] ) and is_numeric( $Params['UserPa
 {
     $limit = (int)$Params['UserParameters']['limit'];
 }
-else 
+else
 {
     $limit = 50;
 }

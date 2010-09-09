@@ -39,8 +39,8 @@
             <td>{$order.account_information.email|wash}</td>
         </tr>
     </table>
-    
-    
+
+
     {if eq($order.account_information.shipping,1)}
     <table id="combined-address-table" border="0" cellspacing="0"
         cellpadding="0" class="order_box">
@@ -227,9 +227,9 @@
         </tr>
         {/if}
         {if ezini( 'BasketInformation', 'DisplayPaymentmethod', 'xrowecommerce.ini' )|eq( 'enabled' )}
-    
+
             {* Enhancement - If credit card information is needed, include the number of the step in which the credit card information should be displayed. *}
-    
+
             {if array( '' )|contains( $step )}
                 {if $order.account_information.paymentmethod}
                 <tr>
@@ -270,9 +270,9 @@
         </tr>
         {/if}
     </table>
-    
+
     {if and( eq( $fetchStoredTransaction, true), ne( $order.account_information.ezauthorize_card_date, '') )} {def $key = ezini( 'eZGPGSettings', 'KeyID', 'ezgpg.ini' )}
-    
+
     <table id="paymentinformation-table" class="order_box" cellspacing="0">
         <caption>{'Payment information'|i18n( 'extension/xrowecommerce' )}</caption>
         <tr>

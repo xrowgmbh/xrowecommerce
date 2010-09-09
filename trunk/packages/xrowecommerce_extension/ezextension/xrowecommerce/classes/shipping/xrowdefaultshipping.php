@@ -76,7 +76,11 @@ class xrowDefaultShipping implements xrowShipment
                 {
                     $tmp->name = $object->name();
                     $tmp->id = $object->ID;
-                    $tmp->weight = $dm['weight']->content();
+                    $tmp->weight = 0;
+                    if ( isset( $dm['weight'] ) )
+                    {
+                        $tmp->weight = $dm['weight']->content();
+                    }
                     $return[] = $tmp;
                 }
             }

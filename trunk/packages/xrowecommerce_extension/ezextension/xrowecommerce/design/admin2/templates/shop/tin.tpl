@@ -79,7 +79,7 @@
         <form name="edit-{$object.id}" method="post" action={concat( 'content/action' )|ezurl}>
         <input type="hidden" name="ContentObjectID" value="{$object.id}" />
         <input type="hidden" name="RedirectURIAfterPublish" value="xrowecommerce/tin/(offset)/{$view_parameters.offset}/(limit)/{$view_parameters.limit}" />
-        
+
         <input type="hidden" value="yes" name="EditButton" />
         </form>
 {/foreach}
