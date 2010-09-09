@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.0">
+<TS version="2.0" language="de_AT">
 <context>
     <name>design/admin/class/edit_language</name>
     <message>
@@ -51,7 +51,7 @@
     </message>
     <message>
         <source>VAT rules</source>
-        <translation>Mehrwertsteuer Regeln</translation>
+        <translation>Mehrwertsteueregeln</translation>
     </message>
     <message>
         <source>Product categories</source>
@@ -123,11 +123,11 @@
     </message>
     <message>
         <source>Tax identification numbers</source>
-        <translation type="unfinished"></translation>
+        <translation>Int. Steuernummern</translation>
     </message>
     <message>
         <source>Tax identification</source>
-        <translation type="unfinished"></translation>
+        <translation>Int. Steuernummer</translation>
     </message>
 </context>
 <context>
@@ -170,11 +170,11 @@
     </message>
     <message>
         <source>Invert selection.</source>
-        <translation>Auswahl invertieren.</translation>
+        <translation>Auswahl umkehren.</translation>
     </message>
     <message>
         <source>ID</source>
-        <translation>Nummer</translation>
+        <translation>ID</translation>
     </message>
     <message>
         <source>Total (ex. VAT)</source>
@@ -183,10 +183,6 @@
     <message>
         <source>Total (inc. VAT)</source>
         <translation>Summe (inkl. USt.)</translation>
-    </message>
-    <message>
-        <source>Status</source>
-        <translation type="obsolete">Status</translation>
     </message>
     <message>
         <source>Actions</source>
@@ -226,23 +222,31 @@
     </message>
     <message>
         <source>Order status</source>
-        <translation type="unfinished">Bestellstatus</translation>
+        <translation>Bestellstatus</translation>
     </message>
     <message>
         <source>Payment status</source>
-        <translation type="unfinished"></translation>
+        <translation>Bezahlstatus</translation>
     </message>
     <message>
         <source>unpaid</source>
-        <translation type="unfinished"></translation>
+        <translation>nicht bezahlt</translation>
     </message>
     <message>
         <source>paid</source>
-        <translation type="unfinished"></translation>
+        <translation>bezahlt</translation>
+    </message>
+    <message>
+        <source>Remove selected</source>
+        <translation>Ausgewähltes entfernen</translation>
+    </message>
+    <message>
+        <source>Remove selected orders.</source>
+        <translation>Ausgewählte Bestellungen entfernen.</translation>
     </message>
     <message>
         <source>Close</source>
-        <translation type="unfinished"></translation>
+        <translation>Schließen</translation>
     </message>
     <message>
         <source>Print invoice and packaging slip</source>
@@ -250,14 +254,6 @@
     </message>
     <message>
         <source>Print shipping plan</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Remove selected</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Remove selected orders.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -392,7 +388,7 @@
     </message>
     <message>
         <source>VAT</source>
-        <translation>Mehrwertsteuer</translation>
+        <translation>USt</translation>
     </message>
     <message>
         <source>Price ex. VAT</source>
@@ -424,7 +420,7 @@
     </message>
     <message>
         <source>Order summary</source>
-        <translation>Bestellungszusammenfassung</translation>
+        <translation>Bestellübersicht</translation>
     </message>
     <message>
         <source>Subtotal of items</source>
@@ -432,7 +428,7 @@
     </message>
     <message>
         <source>Order total</source>
-        <translation>Gesamtbestellung</translation>
+        <translation>Gesamtsumme</translation>
     </message>
     <message>
         <source>Remove</source>
@@ -552,6 +548,14 @@
         <source>Select which nodes from which classes can be selected</source>
         <translation>Welche Knoten von welchen Klassen können ausgewählt werden</translation>
     </message>
+    <message>
+        <source>using payment gateway</source>
+        <translation>gewhlte Zahlungsmethode</translation>
+    </message>
+    <message>
+        <source>disabled</source>
+        <translation>gesperrt</translation>
+    </message>
 </context>
 <context>
     <name>design/standard/content/datatype</name>
@@ -562,6 +566,66 @@
     <message>
         <source>Country</source>
         <translation>Land</translation>
+    </message>
+    <message>
+        <source>Current stored card</source>
+        <translation>Gespeicherte Karteninformationen</translation>
+    </message>
+    <message>
+        <source>Account number</source>
+        <translation>Accountnummer</translation>
+    </message>
+    <message>
+        <source>Bank code</source>
+        <translation>Bankleitzahl</translation>
+    </message>
+    <message>
+        <source>Remove debit card</source>
+        <translation>Lastschriftdaten entfernen</translation>
+    </message>
+    <message>
+        <source>expires</source>
+        <translation>gltig bis</translation>
+    </message>
+    <message>
+        <source>Card type</source>
+        <translation>Kartentyp</translation>
+    </message>
+    <message>
+        <source>Name on card</source>
+        <translation>Name der Karte</translation>
+    </message>
+    <message>
+        <source>Security Code</source>
+        <translation>Sicherheitscode</translation>
+    </message>
+    <message>
+        <source>Help</source>
+        <translation>Hilfe</translation>
+    </message>
+    <message>
+        <source>Month</source>
+        <translation>Monat</translation>
+    </message>
+    <message>
+        <source>Year</source>
+        <translation>Jahr</translation>
+    </message>
+    <message>
+        <source>Name of account</source>
+        <translation>Name des Accounts</translation>
+    </message>
+    <message>
+        <source>No card stored.</source>
+        <translation>Keine Karteninformationen gespeichert.</translation>
+    </message>
+    <message>
+        <source>Remove credit card</source>
+        <translation>Kreditkarte entfernen</translation>
+    </message>
+    <message>
+        <source>Credit card number</source>
+        <translation>Kreditkarten Nummer</translation>
     </message>
 </context>
 <context>
@@ -606,6 +670,54 @@
         <source>Print</source>
         <translation>Drucken</translation>
     </message>
+    <message>
+        <source>Billing Address</source>
+        <translation>Rechnungsadresse</translation>
+    </message>
+    <message>
+        <source>Shipping and Billing Address</source>
+        <translation>Liefer- und Rechnugnsadresse</translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation>Name</translation>
+    </message>
+    <message>
+        <source>Email</source>
+        <translation>E-Mail</translation>
+    </message>
+    <message>
+        <source>Address</source>
+        <translation>Adresse</translation>
+    </message>
+    <message>
+        <source>City</source>
+        <translation>Ort</translation>
+    </message>
+    <message>
+        <source>State</source>
+        <translation>Bundesland</translation>
+    </message>
+    <message>
+        <source>Zip code</source>
+        <translation>Postleitzahl</translation>
+    </message>
+    <message>
+        <source>Country</source>
+        <translation>Land</translation>
+    </message>
+    <message>
+        <source>Phone</source>
+        <translation>Telefon</translation>
+    </message>
+    <message>
+        <source>Shipping</source>
+        <translation>Leiferung</translation>
+    </message>
+    <message>
+        <source>Shipping Address</source>
+        <translation>Lieferadresse</translation>
+    </message>
 </context>
 <context>
     <name>extension/xrowcommerce/productvariation</name>
@@ -645,7 +757,7 @@
     </message>
     <message>
         <source>Order total</source>
-        <translation>Gesamtbestellung</translation>
+        <translation>Gesamtpreis</translation>
     </message>
     <message>
         <source>Subtotal Ex. Tax</source>
@@ -753,8 +865,12 @@
         <translation>ab</translation>
     </message>
     <message>
-        <source>read more</source>
-        <translation>mehr Infos</translation>
+        <source>view products</source>
+        <translation>Produkte ansehen</translation>
+    </message>
+    <message>
+        <source>view product</source>
+        <translation>Produkt ansehen</translation>
     </message>
     <message>
         <source>Type</source>
@@ -1565,7 +1681,7 @@
     </message>
     <message>
         <source>Position</source>
-        <translation>Porition</translation>
+        <translation>Position</translation>
     </message>
     <message>
         <source>Pos.</source>
@@ -1573,7 +1689,7 @@
     </message>
     <message>
         <source>Accept the terms and conditions to continue.</source>
-        <translation>Nehmen Sie die allgemeinen Geschäftsbedingungen an um fortzufahren.</translation>
+        <translation>Bitte akzeptieren Sie die allgemeinen Geschäftsbedingungen, damit Sie fortfahren können.</translation>
     </message>
     <message>
         <source>Cancel order</source>
@@ -1806,48 +1922,36 @@
         <translation>Speichern</translation>
     </message>
     <message>
-        <source>Website</source>
-        <translation type="obsolete">Internetseite</translation>
-    </message>
-    <message>
-        <source>Order date</source>
-        <translation type="obsolete">Bestelldatum</translation>
-    </message>
-    <message>
-        <source>Shipping method</source>
-        <translation type="obsolete">Versandart</translation>
-    </message>
-    <message>
         <source>A tax identification number in the Federal Republic of Germany consists of 10 or 11 digits, depending on the &quot;Bundesland&quot; (State). These are divided into groups of 2 - 5 by forward slashes or blanks (e.g. &quot;181/815/08155&quot;). A unified German tax identification number consists of 13 digits like &quot;2893081508152&quot;.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Package</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Name of package</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Products</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Tax identification numbers</source>
-        <translation type="unfinished"></translation>
+        <translation>Int. Steuernummern</translation>
     </message>
     <message>
         <source>Status</source>
-        <translation type="unfinished">Status</translation>
+        <translation>Status</translation>
+    </message>
+    <message>
+        <source>Package</source>
+        <translation>Paket</translation>
+    </message>
+    <message>
+        <source>Name of package</source>
+        <translation>Name des Pakets</translation>
+    </message>
+    <message>
+        <source>Products</source>
+        <translation>Produkte</translation>
     </message>
     <message>
         <source>One step back</source>
-        <translation type="unfinished"></translation>
+        <translation>Schritt zurück</translation>
     </message>
     <message>
         <source>Send Order</source>
-        <translation type="unfinished"></translation>
+        <translation>Bestellung absenden</translation>
     </message>
     <message>
         <source>Shipping mathod is not allowed for destionation.</source>
@@ -1908,48 +2012,32 @@
 <context>
     <name>extension/xrowecommerce/epayment</name>
     <message>
-        <source>Please enter the name of the bank account.</source>
-        <translation type="obsolete">Bitte geben Sie den Kontonamen an.</translation>
-    </message>
-    <message>
-        <source>Please enter your correct account number (max. 10 numbers)</source>
-        <translation type="obsolete">Bitte geben Sie Ihre Kontonummer an (max. 10 Zeichen)</translation>
-    </message>
-    <message>
-        <source>Please enter your correct bank code (8 numbers)</source>
-        <translation type="obsolete">Bitte geben Sie Ihre korrekte Bankleitzahl an (8 Zeichen)</translation>
-    </message>
-    <message>
         <source>Please enter a name</source>
         <translation>Bitte geben Sie einen Namen ein</translation>
     </message>
     <message>
         <source>Credit card number is not a number</source>
-        <translation>Kreditkartennummer ist keine Zahl</translation>
+        <translation>Die Kreditkartennummer ist keine Zahl</translation>
     </message>
     <message>
         <source>Please enter the correct security code.</source>
-        <translation>Bitte geben Sie den korrekten Sicherheitscode ein.</translation>
-    </message>
-    <message>
-        <source>Your credit card is expired.</source>
-        <translation type="obsolete">Ihre Kreditkarte ist abgelaufen.</translation>
+        <translation>Bitte geben Sie den gültigen Sicherheitsschlüssel an.</translation>
     </message>
     <message>
         <source>Please enter the name of the card holder.</source>
-        <translation type="unfinished"></translation>
+        <translation>Bitte geben Sie den Namen des Kreditkartenbesitzers ein.</translation>
     </message>
     <message>
         <source>Please enter the correct account number</source>
-        <translation type="unfinished"></translation>
+        <translation>Bitte geben Sie die korrekte Kontonummer ein</translation>
     </message>
     <message>
         <source>Please enter the correct bank code</source>
-        <translation type="unfinished"></translation>
+        <translation>Bitte geben Sie die korrekte Bankleitzahl ein</translation>
     </message>
     <message>
         <source>The validity of your credit card has expired.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ihre Kreditkarte ist abgelaufen.</translation>
     </message>
 </context>
 <context>
@@ -2455,23 +2543,18 @@ Es ist nicht möglich, den Datentyp danach zu ändern.</translation>
         <translation>Feld in Select Box anzeigen:</translation>
     </message>
     <message>
-        <source>You need to select a datatype for the attribute.
-      It&apos;s not possible to change this afterwards.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Please enter a valid date.</source>
-        <translation type="unfinished"></translation>
+        <translation>Bitten geben Sie ein korrektes Datum ein.</translation>
     </message>
     <message>
         <source>Date</source>
         <comment>Datatype name</comment>
-        <translation type="unfinished">Datum</translation>
+        <translation>Datum</translation>
     </message>
     <message>
         <source>Stores a date value.</source>
         <comment>Datatype description</comment>
-        <translation type="unfinished"></translation>
+        <translation>Speichert ein Datum.</translation>
     </message>
 </context>
 <context>
@@ -2490,23 +2573,23 @@ Es ist nicht möglich, den Datentyp danach zu ändern.</translation>
     </message>
     <message>
         <source>Country doesn`t match tax ID number.</source>
-        <translation type="unfinished">Das Land entspricht nicht der Steuernummer.</translation>
+        <translation>Das Land entspricht nicht der Steuernummer.</translation>
     </message>
     <message>
         <source>Your companies tax ID number is not valid.</source>
-        <translation type="unfinished">Ungültige Steuernummer.</translation>
+        <translation>Ungültige Steuernummer.</translation>
     </message>
     <message>
         <source>not validated</source>
-        <translation type="unfinished"></translation>
+        <translation>nicht überprüft</translation>
     </message>
     <message>
         <source>validated</source>
-        <translation type="unfinished"></translation>
+        <translation>überprüft</translation>
     </message>
     <message>
         <source>validated by administration</source>
-        <translation type="unfinished"></translation>
+        <translation>Von Administrator überprüft </translation>
     </message>
 </context>
 <context>
@@ -2517,11 +2600,11 @@ Es ist nicht möglich, den Datentyp danach zu ändern.</translation>
     </message>
     <message>
         <source>Pay by invoice</source>
-        <translation>Rechnung (Erlagschein)</translation>
+        <translation>Per Rechnung zahlen</translation>
     </message>
     <message>
         <source>Advance payment</source>
-        <translation>per Vorauskassa</translation>
+        <translation>Vorkasse</translation>
     </message>
     <message>
         <source>Product variations</source>
@@ -2539,11 +2622,45 @@ Es ist nicht möglich, den Datentyp danach zu ändern.</translation>
     <message>
         <source>Tax Identification Number</source>
         <comment>Datatype name</comment>
-        <translation type="unfinished"></translation>
+        <translation>Int. Steuernummer</translation>
     </message>
     <message>
         <source>Input required.</source>
-        <translation type="unfinished">Eingabe erforderlich.</translation>
+        <translation>Eingabe erforderlich.</translation>
+    </message>
+    <message>
+        <source>Input is required, if you have active subscriptions or recurring orders.</source>
+        <translation>Eingabe ist erforderlich, falls Sie laufende Bestellungen oder ausstehende Kosten haben.</translation>
+    </message>
+    <message>
+        <source>Mastercard</source>
+        <translation>Mastercard</translation>
+    </message>
+    <message>
+        <source>Visa</source>
+        <translation>Visa</translation>
+    </message>
+    <message>
+        <source>Discover</source>
+        <translation>Discover</translation>
+    </message>
+    <message>
+        <source>American Express</source>
+        <translation>American Express</translation>
+    </message>
+    <message>
+        <source>Debit card</source>
+        <translation>Lastschrift</translation>
+    </message>
+    <message>
+        <source>Billing cycle</source>
+        <comment>Datatype name</comment>
+        <translation>Abrechnungszyklus</translation>
+    </message>
+    <message>
+        <source>Credit card</source>
+        <comment>Datatype name</comment>
+        <translation>Kreditkarte</translation>
     </message>
 </context>
 <context>
@@ -2594,7 +2711,7 @@ Es ist nicht möglich, den Datentyp danach zu ändern.</translation>
     </message>
     <message>
         <source>Remove order</source>
-        <translation type="unfinished"></translation>
+        <translation>Bestellung enfernen</translation>
     </message>
     <message>
         <source>Shipping plan</source>
@@ -2610,6 +2727,183 @@ Es ist nicht möglich, den Datentyp danach zu ändern.</translation>
     <message>
         <source>xrow Ecommerce Payment Gateway</source>
         <translation>xrow Ecommerce Zahlungsgateway</translation>
+    </message>
+</context>
+<context>
+    <name>content/datatype/edit/xrowbillingcycle</name>
+    <message>
+        <source>Quantity</source>
+        <translation>Anzahl</translation>
+    </message>
+    <message>
+        <source>Period</source>
+        <translation>Dauer</translation>
+    </message>
+</context>
+<context>
+    <name>design/admin/parts/visual/menu</name>
+    <message>
+        <source>Recurring orders</source>
+        <translation>Dauerauftrge</translation>
+    </message>
+</context>
+<context>
+    <name>design/admin/shop/customerlist</name>
+    <message>
+        <source>Forecast [%forecast]</source>
+        <translation>Ausstehend [%forecast]</translation>
+    </message>
+    <message>
+        <source>The forecast list is empty.</source>
+        <translation>Es sind keine Kosten angefallen.</translation>
+    </message>
+    <message>
+        <source>Messages [%history]</source>
+        <translation>Nachrichten [%history]</translation>
+    </message>
+    <message>
+        <source>Text</source>
+        <translation>Text</translation>
+    </message>
+    <message>
+        <source>Type</source>
+        <translation>Typ</translation>
+    </message>
+    <message>
+        <source>Date</source>
+        <translation>Datum</translation>
+    </message>
+    <message>
+        <source>Order ID</source>
+        <translation>Auftragsnummer</translation>
+    </message>
+    <message>
+        <source>Collection ID</source>
+        <translation>Einzugsnummer</translation>
+    </message>
+    <message>
+        <source>User ID</source>
+        <translation>Benutzer ID</translation>
+    </message>
+    <message>
+        <source>The message list is empty.</source>
+        <translation>Die Nachrichten Liste ist leer.</translation>
+    </message>
+</context>
+<context>
+    <name>design/admin/shop/discountgroupmembershipview</name>
+    <message>
+        <source>Total recurring forecast on revenue</source>
+        <translation>Gesammtbetrag der ausstehenden Kosten</translation>
+    </message>
+</context>
+<context>
+    <name>extension/recurringorders</name>
+    <message>
+        <source>Your input has been stored.</source>
+        <translation>Ihre Eingaben wurden gespeichert.</translation>
+    </message>
+    <message>
+        <source>We have encountered problems with your credit card. Please update your profile.</source>
+        <translation>Ihre Kreditkartendaten konntent nicht bestätigt werden. Aktualisieren Sie Ihr Profil.</translation>
+    </message>
+    <message>
+        <source>(period %startdate% till %enddate%)</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>kernel/classes/recurringordercollection</name>
+    <message>
+        <source>one time</source>
+        <translation>einmalig</translation>
+    </message>
+    <message>
+        <source>day(s)</source>
+        <translation>Tag(e)</translation>
+    </message>
+    <message>
+        <source>weeks(s)</source>
+        <translation>Woche(n)</translation>
+    </message>
+    <message>
+        <source>month(s)</source>
+        <translation>Monat(e)</translation>
+    </message>
+    <message>
+        <source>quarter(s)</source>
+        <translation>Quartal(e)</translation>
+    </message>
+    <message>
+        <source>year(s)</source>
+        <translation>Jahr(e)</translation>
+    </message>
+    <message>
+        <source>daily</source>
+        <translation>tglich</translation>
+    </message>
+    <message>
+        <source>weekly</source>
+        <translation>wchentlich</translation>
+    </message>
+    <message>
+        <source>monthly</source>
+        <translation>monatlich</translation>
+    </message>
+    <message>
+        <source>quarterly</source>
+        <translation>vierteljhrig</translation>
+    </message>
+    <message>
+        <source>yearly</source>
+        <translation>jhrlich</translation>
+    </message>
+    <message>
+        <source>days</source>
+        <translation>Tage</translation>
+    </message>
+    <message>
+        <source>day</source>
+        <translation>Tag</translation>
+    </message>
+    <message>
+        <source>weeks</source>
+        <translation>Wochen</translation>
+    </message>
+    <message>
+        <source>week</source>
+        <translation>Woche</translation>
+    </message>
+    <message>
+        <source>months</source>
+        <translation>Monate</translation>
+    </message>
+    <message>
+        <source>month</source>
+        <translation>Monat</translation>
+    </message>
+    <message>
+        <source>quarters</source>
+        <translation>Quartale</translation>
+    </message>
+    <message>
+        <source>quarter</source>
+        <translation>Quartal</translation>
+    </message>
+    <message>
+        <source>years</source>
+        <translation>Jahre</translation>
+    </message>
+    <message>
+        <source>year</source>
+        <translation>Jahr</translation>
+    </message>
+</context>
+<context>
+    <name>standard/datatype/ezcreditcard</name>
+    <message>
+        <source>Not used</source>
+        <translation>Nicht genutzt</translation>
     </message>
 </context>
 </TS>
