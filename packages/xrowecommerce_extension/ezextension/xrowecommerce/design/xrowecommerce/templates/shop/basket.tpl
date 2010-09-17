@@ -39,10 +39,11 @@
 {/literal}
 
 <div class="shop shop-basket">
-    {include uri="design:shop/basket_navigator.tpl" step='1'}
-    <div class="break"></div>
 
     <h1>{"Shopping Cart"|i18n("extension/xrowecommerce")}</h1>
+
+    {include uri="design:shop/basket_navigator.tpl" step='1'}
+    <div class="break"></div>
 
     {if ezini( 'Settings', 'Catalogueorder', 'xrowecommerce.ini' )|eq('enabled')}
         {include uri="design:shop/basket_catalogue_order.tpl"}
@@ -142,16 +143,16 @@
                         </th>
                         {/if}
                     </tr>
-            
+
                     {foreach $basket.items as $key => $product_item sequence array(bglight,bgdark) as $sequence}
                         <tr class="{$sequence} product-line">
-                
+
                             {if ezini( 'Settings', 'ShowColumnPosition', 'xrowecommerce.ini' )|eq('enabled')}
                                 <td class="position">
                                     {$key|sum(1)}
                                 </td>
                             {/if}
-                
+
                             <td class="basketspace quantity">
                                 <input type="hidden" name="ProductItemIDList[]" value="{$product_item.id}" />
                                 <input class="quantity" type="text" name="ProductItemCountList[]" value="{$product_item.item_count}" size="5" maxlength="4" />
@@ -163,7 +164,7 @@
                             
                             {if and( eq(ezini( 'BasketInformation', 'DisplayTax', 'xrowecommerce.ini' ), 'enabled' ), ezini( 'Settings', 'ShowColumnTax', 'xrowecommerce.ini' )|eq('enabled') )}
                                 <td class="basketspace">
-                    
+
                                     {if ne( $product_item.vat_value, -1 )}
                                         {$product_item.vat_value} %
                                     {else}
@@ -171,7 +172,7 @@
                                     {/if}
                                 </td>
                             {/if}
-                            
+
                             <td class="basketspace price">
                                 {if $product_item.discount_percent}
                                     {def $discount = $product_item.price_ex_vat|div(100)|mul($product_item.discount_percent)
