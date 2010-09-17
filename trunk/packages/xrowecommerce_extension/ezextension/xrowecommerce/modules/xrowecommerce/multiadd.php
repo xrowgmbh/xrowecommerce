@@ -76,9 +76,9 @@ if ( count( $list ) > 0  )
                                                                               'option_list' => $position['variations'],
                                                                               'quantity' => $position['quantity'] ) );
 	}
-    return $module->redirectTo( 'shop/basket' );
+    return $module->redirectTo( 'xrowecommerce/cart' );
 }
 
-return $module->redirectTo( 'shop/basket' );
+return $module->redirectTo( 'xrowecommerce/cart' );
 
 ?>

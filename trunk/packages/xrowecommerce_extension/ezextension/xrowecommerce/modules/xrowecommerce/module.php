@@ -23,6 +23,13 @@ $ViewList["basket"] = array(
     'unordered_params' => array( 'error' => 'Error' ),
     "params" => array(  ) );
 
+$ViewList["cart"] = array(
+    "functions" => array( 'buy' ),
+    "script" => "cart.php",
+    "default_navigation_part" => 'ezmynavigationpart',
+    'unordered_params' => array( 'error' => 'Error' ),
+    "params" => array(  ) );
+
 $ViewList["multiadd"] = array(
     "functions" => array( 'buy' ),
     "script" => "multiadd.php",
