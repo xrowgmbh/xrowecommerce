@@ -206,4 +206,43 @@ ExportPriceLanguage=
 # ExportFieldsArray[manufacturer]=manufacturer
 # ExportFieldsArray[price]=price
 
-* */ ?>
+# only for xrowproductvariation
+# set a general vat here
+# VAT=1.19
+
+# only for xrowproductvariation
+ExportVariationFieldArray[]
+#ExportVariationFieldArray[höhe]=höhe
+#ExportVariationFieldArray[hoehe]=höhe
+#ExportVariationFieldArray[length]=länge
+#ExportVariationFieldArray[laenge]=länge
+#ExportVariationFieldArray[depth]=breite
+#ExportVariationFieldArray[tiefe]=breite
+
+# Name of the description field
+DescField=description
+
+# export these attributes
+#GoogleAttributes[]
+#GoogleAttributes[id]=id
+#GoogleAttributes[höhe]=höhe
+#GoogleAttributes[länge]=länge
+#GoogleAttributes[breite]=breite
+#GoogleAttributes[preis]=preis
+#GoogleAttributes[bild_url]=bild_url
+
+#host for links
+#BaseURL=www.kaisersysteme.com
+
+#extended links with this siteaccess
+#ExportSiteaccess=/ger
+#input of product_type attribute
+GoogleProductType=new
+
+# Export to var/cache/googleexport directory?
+ExportAsFile=false
+
+# Export to ftp
+ExportToFTP=true
+
+*/ ?>

@@ -36,6 +36,14 @@ class xrowProductDataType
         $this->Attributes["unique"] = $unique;
         $this->Attributes["data_type_string"] = $dataTypeString;
     }
+    
+    public static function clearCache()
+    {
+    	unset( $GLOBALS['xrowProductVariation'] );
+        unset( $GLOBALS['XrowProductPriceData'] );
+        unset( $GLOBALS['xrowProductAttributeCache'] );
+        unset( $GLOBALS['xrowproductdatavariation'] );
+    }
 
     /*!
      \static

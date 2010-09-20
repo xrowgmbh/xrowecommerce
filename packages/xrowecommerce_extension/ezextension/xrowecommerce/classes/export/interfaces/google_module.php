@@ -53,31 +53,32 @@
  * @property ezcFeedTextElement $compatible_with
  * @property ezcFeedTextElement $expiration_date
  * @property ezcFeedTextElement $height
- * @property ezcFeedTextElement $length 
+ * @property ezcFeedTextElement $length
  * @property ezcFeedTextElement $model_number
  * @property ezcFeedTextElement $online_only
  * @property ezcFeedTextElement $price_type
  * @property ezcFeedTextElement $quantity
  * @property ezcFeedTextElement $pickup
- * @property ezcFeedTextElement $payment_accepted 
+ * @property ezcFeedTextElement $payment_accepted
  * @property ezcFeedTextElement $payment_notes
- * 
+ *
  * @package Feed
  * @version 1.2.1
  */
 class ezcFeedGoogleProductModule extends ezcFeedModule
 {
-	/**
-	 * List of all known Google Product Attributes.
-	 * @var Array
-	 */
-	static $GoogleAttributes = array( 
+    /**
+     * List of all known Google Product Attributes.
+     * @var Array
+     */
+    static $GoogleAttributes = array(
                 // Products required
                 'condition', 'id', 'price',
                 // Products recommended
                 'brand', 'image_link', 'isbn', 'mpn', 'product_type', 'upc', 'weight',
-	            // Products optional
-	            'expiration_date', 'color', 'compatible_with', 'expiration_date', 'height', 'length', 'model_number', 'online_only', 'price_type', 'quantity', 'pickup', 'payment_accepted', 'payment_notes'
+                // Products optional
+                'expiration_date', 'color', 'compatible_with', 'expiration_date', 'height', 'length', 'model_number',
+                'online_only', 'price_type', 'quantity', 'pickup', 'payment_accepted', 'payment_notes',
                 /*/ Events and Activities
                 'event_date_range', 'event_type', 'performer', 'venue_description', 'venue_name', 'venue_type', 'venue_website',
                 // Housing
@@ -86,8 +87,14 @@ class ezcFeedGoogleProductModule extends ezcFeedModule
                 'education', 'employer', 'immigration_status', 'job_function', 'job_industry', 'job_type', 'publish_date', 'salary', 'salary_type',
                 // Vehicles
                 'color', 'condition', 'make', 'mileage', 'model', 'vehicle_type', 'vin', 'year'*/
-	 );
-	
+
+               // german attributes
+               // http://www.google.com/support/merchants/bin/answer.py?hl=de&answer=160085
+                'autor', 'beschreibung', 'bild_url', 'breite', 'ean', 'einband', 'farbe', 'genre', 'größe', 'herstellungsjahr', 'höhe',
+                'kompatible_mit', 'länge', 'link', 'marke', 'menge', 'merkmal', 'modellnummer', 'preis', 'preisart', 'produktart',
+                'verfallsdatum', 'verlag', 'versand', 'versandgewicht', 'youtube', 'zahlungshinweise', 'zahlungsmethode', 'zustand'
+     );
+
     /**
      * Constructs a new ezcFeedContentModule object.
      *
@@ -203,7 +210,7 @@ class ezcFeedGoogleProductModule extends ezcFeedModule
         {
             if ( in_array( $name, self::$GoogleAttributes ) )
             {
-                    $node = new ezcFeedTextElement();
+                $node = new ezcFeedTextElement();
             }
 
             $this->properties[$name] = $node;
@@ -223,7 +230,7 @@ class ezcFeedGoogleProductModule extends ezcFeedModule
      */
     public function generate( DOMDocument $xml, DOMNode $root )
     {
-    	               
+                       
         $elements = self::$GoogleAttributes;
         foreach ( $elements as $element )
         {
@@ -253,7 +260,7 @@ class ezcFeedGoogleProductModule extends ezcFeedModule
 
             if ( in_array( $name, self::$GoogleAttributes ) )
             {
-                    $element->text = $value;
+                $element->text = $value;
             }
         }
     }
