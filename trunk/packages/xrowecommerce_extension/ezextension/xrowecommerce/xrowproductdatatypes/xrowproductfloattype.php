@@ -185,6 +185,17 @@ class xrowProductFloatType extends xrowProductDataType
         }
         $variation->setAttribute( $column, $content );
     }
+    
+    /**
+     * Returns data for ezfind
+     * @param $variation
+     * @param $column
+     */
+    public function eZFindData( xrowProductData $variation, $column )
+    {
+        return array( 'content' => $this->metaData( $variation, $column ),
+                      'type' => 'sfloat' );
+    }
 }
 
 ?>

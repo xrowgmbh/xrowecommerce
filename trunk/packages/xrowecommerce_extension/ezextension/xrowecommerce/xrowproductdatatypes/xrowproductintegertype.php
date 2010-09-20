@@ -87,6 +87,17 @@ class xrowProductIntegerType extends xrowProductDataType
             $errorArray[$line][$column]['not_valid'] = true;
         }
     }
+    
+    /**
+     * Returns data for ezfind
+     * @param $variation
+     * @param $column
+     */
+    public function eZFindData( xrowProductData $variation, $column )
+    {
+        return array( 'content' => $this->metaData( $variation, $column ),
+                      'type' => 'sint' );
+    }
 }
 
 ?>

@@ -12,9 +12,27 @@ class xrowProductData extends eZPersistentObject
         $this->eZPersistentObject( $row );
     }
 
-    static function definition()
+    public static function refreshDefCache()
     {
-        if ( ! isset( $GLOBALS['xrowproductdata_def'] ) )
+        if ( isset( $GLOBALS['xrowproductdata_def'] ) )
+        {
+            unset( $GLOBALS['xrowproductdata_def'] );
+        }
+        self::createDefinition( true );
+    }
+
+    public static function createDefinition( $refresh = false )
+    {
+        $cacheDir = eZSys::cacheDirectory() . '/xrowproductdata';
+        if ( ! is_dir( $cacheDir ) )
+        {
+            mkdir( $cacheDir, 0777, true );
+        }
+        ezcCacheManager::createCache( 'xrowproductdatadef', $cacheDir, 'ezcCacheStorageFileArray' );
+        $cacheKey = 'xrowproductdatadef';
+        $cache = ezcCacheManager::getCache( $cacheKey );
+        
+        if ( $refresh || ( $GLOBALS['xrowproductdata_def'] = $cache->restore( $cacheKey ) ) === false )
         {
             $db = eZDB::instance();
             $sql = "SHOW COLUMNS FROM xrowproduct_data";
@@ -29,8 +47,7 @@ class xrowProductData extends eZPersistentObject
                 $column = array();
                 $column['name'] = $key;
                 
-                if ( strtolower( substr( $item['Type'], 0, 7 ) ) == 'varchar' 
-                     or preg_match( "/date/", $item['Type'], $matches ) )
+                if ( strtolower( substr( $item['Type'], 0, 7 ) ) == 'varchar' or preg_match( "/date/", $item['Type'], $matches ) )
                 {
                     $column['datatype'] = 'string';
                     if ( preg_match( "/varchar\((\d{0,3})\)/i", $item['Type'], $matches ) )
@@ -38,20 +55,20 @@ class xrowProductData extends eZPersistentObject
                         $column['max_length'] = $matches[1];
                     }
                 }
-                else 
+                else
                 {
                     if ( preg_match( "/int/i", $item['Type'], $matches ) )
                     {
                         $column['datatype'] = 'integer';
                     }
                     else
-                    { 
+                    {
                         if ( preg_match( "/float/i", $item['Type'], $matches ) )
                         {
                             $column['datatype'] = 'float';
                         }
                         else
-                        { 
+                        {
                             if ( preg_match( "/text/", $item['Type'], $matches ) )
                             {
                                 $column['datatype'] = 'text';
@@ -66,7 +83,6 @@ class xrowProductData extends eZPersistentObject
                 
                 $column['required'] = false;
                 $column['default'] = null;
-                $key = $key;
                 $def['fields'][$key] = $column;
             }
             
@@ -85,6 +101,16 @@ class xrowProductData extends eZPersistentObject
                 'class_name' => 'xrowProductData' , 
                 'name' => 'xrowproduct_data' 
             ) );
+            
+            $cache->store( $cacheKey, $GLOBALS['xrowproductdata_def'] );
+        }
+    }
+
+    static function definition()
+    {
+        if ( ! isset( $GLOBALS['xrowproductdata_def'] ) )
+        {
+            self::createDefinition();
         }
         
         return $GLOBALS['xrowproductdata_def'];

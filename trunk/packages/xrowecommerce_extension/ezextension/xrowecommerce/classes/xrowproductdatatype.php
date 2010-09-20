@@ -176,6 +176,7 @@ class xrowProductDataType
             $db->query( $sql );
             $db->commit();
             $attribute->store();
+            xrowProductData::refreshDefCache();
         }
     }
 
@@ -223,6 +224,7 @@ class xrowProductDataType
             $db->query( $sql );
             $db->commit();
             $attribute->store();
+            xrowProductData::refreshDefCache();
         }
     }
 
@@ -483,6 +485,17 @@ class xrowProductDataType
     {
         return $variation->attribute( $column );
     }
+    
+    /**
+     * Returns data for ezfind
+     * @param $variation
+     * @param $column
+     */
+    public function eZFindData( xrowProductData $variation, $column )
+    {
+    	return array( 'content' => $variation->attribute( $column ),
+    	              'type' => 'text' );
+    } 
 
     /**
      * Returns the content for the option name field

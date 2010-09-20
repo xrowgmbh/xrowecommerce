@@ -420,6 +420,17 @@ class xrowProductPriceType extends xrowProductDataType
        	$result = trim( $result );
         return $result;
     }
+    
+    /**
+     * Returns data for ezfind
+     * @param $variation
+     * @param $column
+     */
+    public function eZFindData( xrowProductData $variation, $column )
+    {
+        return array( 'content' => $this->metaData( $variation, $column ),
+                      'type' => 'text' );
+    }
 
     /**
      * Returns the content for the option name field
