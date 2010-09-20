@@ -1,7 +1,5 @@
 <?php
 
-
-
 $http = eZHTTPTool::instance();
 $Module = $Params['Module'];
 
@@ -14,7 +12,7 @@ $tpl = eZTemplate::factory();
 if ( $http->hasPostVariable( 'ExportButton' ) )
 {
     $export = true;
-	$country = $http->postVariable( 'Country' );
+    $country = $http->postVariable( 'Country' );
     $xINI = eZINI::instance( 'xrowproduct.ini' );
     $separator = $xINI->variable( 'ExportSettings', 'Separator' );
     $lineEnding = $xINI->variable( 'ExportSettings', 'LineEnding' );
@@ -31,7 +29,7 @@ if ( $http->hasPostVariable( 'ExportButton' ) )
     /**
      * Fetch all products, even hidden ones
      */
-	$contentNode = eZContentObjectTreeNode::fetch( $exportParentNodeID );
+    $contentNode = eZContentObjectTreeNode::fetch( $exportParentNodeID );
 
     $nodeList = array();
 
@@ -39,28 +37,28 @@ if ( $http->hasPostVariable( 'ExportButton' ) )
     {
         $offset = 0;
         $limit = 50;
-    	$params = array( 'IgnoreVisibility' => true,
+        $params = array( 'IgnoreVisibility' => true,
                          'Limitation' => array(),
                          'ClassFilterType' => 'include',
                          'ClassFilterArray' => array_keys( $exportClasses ) );
 
-    	$contentCount = $contentNode->subTreeCount( $params );
-    	if ( $contentCount > 0 )
-    	{
-    		$params['Limit'] = $limit;
-    		$params['SortBy'] = array( 'node_id' => 'asc' );
+        $contentCount = $contentNode->subTreeCount( $params );
+        if ( $contentCount > 0 )
+        {
+            $params['Limit'] = $limit;
+            $params['SortBy'] = array( 'node_id' => 'asc' );
 
-    		while( $offset < $contentCount )
-    		{
-    			$params['Offset'] = $offset;
-    			$productArray = $contentNode->subTree( $params );
+            while( $offset < $contentCount )
+            {
+                $params['Offset'] = $offset;
+                $productArray = $contentNode->subTree( $params );
 
-    			foreach ( $productArray as $product )
-    			{
-    				//$dataMap = $product->attribute( 'data_map' );
-    				$classIdentifier = $product->attribute( 'class_identifier' );
-    				$attributeID = $exportClasses[$classIdentifier];
-    				$classAttributeID = (int) eZContentObjectTreeNode::classAttributeIDByIdentifier( $classIdentifier . '/' . $attributeID );
+                foreach ( $productArray as $product )
+                {
+                    //$dataMap = $product->attribute( 'data_map' );
+                    $classIdentifier = $product->attribute( 'class_identifier' );
+                    $attributeID = $exportClasses[$classIdentifier];
+                    $classAttributeID = (int) eZContentObjectTreeNode::classAttributeIDByIdentifier( $classIdentifier . '/' . $attributeID );
 
                     $variationAttribute = eZPersistentObject::fetchObject( eZContentObjectAttribute::definition(),
                                                 null,
@@ -72,67 +70,62 @@ if ( $http->hasPostVariable( 'ExportButton' ) )
 
                     if ( $variationAttribute instanceof eZContentObjectAttribute )
                     {
-	                    $id = $variationAttribute->attribute( 'id' );
-	                    $version = $variationAttribute->attribute( 'version' );
+                        $id = $variationAttribute->attribute( 'id' );
+                        $version = $variationAttribute->attribute( 'version' );
 
-	                    $dataArray = xrowProductData::fetchList( array( 'attribute_id' => $id,
-	                                                               'version' => $version,
-	                                                               'language_code' => $languageCode ),
-	                                                        true,
-	                                                        false,
-	                                                        false );
+                        $dataArray = xrowProductData::fetchList( array( 'attribute_id' => $id,
+                                                                   'version' => $version,
+                                                                   'language_code' => $languageCode ),
+                                                            true,
+                                                            false,
+                                                            false );
 
-	                    foreach ( $dataArray as $variation )
-	                    {
-	                        $sku = $variation->attribute( $skuField );
-	                        if ( !isset( $exportArray[$sku] ) )
-	                        {
-	                            $exportArray[$sku] = array( $sku );
-	                            $priceID = $variation->attribute( $priceField );
-	                            $priceList = xrowProductPrice::fetchList( array( 'price_id' => $priceID, 'country' => $country ),
-	                                                                              true,
-	                                                                              false,
-	                                                                              false,
-	                                                                              array( 'amount' => 'asc' ) );
+                        foreach ( $dataArray as $variation )
+                        {
+                            $sku = $variation->attribute( $skuField );
+                            if ( !isset( $exportArray[$sku] ) )
+                            {
+                                $exportArray[$sku] = array( $sku );
+                                $priceID = $variation->attribute( $priceField );
+                                $priceList = xrowProductPrice::fetchList( array( 'price_id' => $priceID, 'country' => $country ),
+                                                                                  true,
+                                                                                  false,
+                                                                                  false,
+                                                                                  array( 'amount' => 'asc' ) );
 
-	                            foreach ( $priceList as $price )
-	                            {
-	                                $exportArray[$sku][] = number_format( $price->attribute( 'price' ), $precision, $decPoint, '' );
-	                            }
-	                        }
-	                    }
+                                foreach ( $priceList as $price )
+                                {
+                                    $exportArray[$sku][] = number_format( $price->attribute( 'price' ), $precision, $decPoint, '' );
+                                }
+                            }
+                        }
                     }
-    			}
-    			$offset += $limit;
+                }
+                $offset += $limit;
                 /**
                  * Unset the cache
                  */
-			    global $eZContentObjectContentObjectCache;
-			    unset( $eZContentObjectContentObjectCache );
-			    global $eZContentObjectVersionCache;
-			    unset( $eZContentObjectVersionCache );
 
-			    unset( $GLOBALS['xrowProductVariation'] );
-			    unset( $GLOBALS['XrowProductPriceData'] );
-			    unset( $GLOBALS['xrowProductAttributeCache'] );
-			    unset( $GLOBALS['xrowproductdatavariation'] );
+                // delete cache to avoid memory overflow
+                eZContentObject::clearCache();
+                xrowProductDataType::clearCache();
 
-    		}
-    		$content = "";
-    		ksort( $exportArray );
-    		foreach ( $exportArray as $line )
-    		{
-    			$content .= implode( $separator, $line ) . "\n";
+            }
+            $content = "";
+            ksort( $exportArray );
+            foreach ( $exportArray as $line )
+            {
+                $content .= implode( $separator, $line ) . "\n";
 
-    		}
-    		$dir =  eZSys::cacheDirectory().'/';
+            }
+            $dir =  eZSys::cacheDirectory().'/';
             $file = $dir . date( "Y-m-d-H-i" ) . "-price-export-" . strtolower( $country ) . ".csv";
             @unlink( $file );
-		    eZFile::create( $file, false, $content );
+            eZFile::create( $file, false, $content );
 
-		    !eZFile::download( $file );
-		    $module->redirectToView( 'priceexport' );
-    	}
+            !eZFile::download( $file );
+            $module->redirectToView( 'priceexport' );
+        }
     }
 }
 

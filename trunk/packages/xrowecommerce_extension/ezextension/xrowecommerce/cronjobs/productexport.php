@@ -3,54 +3,110 @@ $contentIni = eZINI::instance( 'content.ini' );
 $root_node = $contentIni->variable( 'NodeSettings', 'RootNode' );
 
 $siteIni = eZINI::instance( 'site.ini' );
-$baseUrl = $siteIni->variable( 'SiteSettings', 'SiteURL' );
-
 $xrowIni = eZINI::instance( 'xrowecommerce.ini' );
+
+if ( $xrowIni->hasVariable( 'GoogleExportSettings', 'BaseURL' ) )
+{
+    $baseUrl = $xrowIni->variable( 'GoogleExportSettings', 'BaseURL' );
+}
+else
+{
+    $baseUrl = $siteIni->variable( 'SiteSettings', 'SiteURL' );
+}
+
+$exportSiteAccess = '';
+if ( $xrowIni->hasVariable( 'GoogleExportSettings', 'ExportSiteaccess' ) )
+{
+    $exportSiteAccess = $xrowIni->variable( 'GoogleExportSettings', 'ExportSiteaccess' );
+}
+
 $exportSettingsFieldsArray = $xrowIni->variable( 'GoogleExportSettings', 'ExportFieldsArray' );
 $classIdentifier = $xrowIni->variable( 'GoogleExportSettings', 'ClassIdentifier' );
 $priceLang = $xrowIni->variable( 'GoogleExportSettings', 'ExportPriceLanguage' );
+$vat = $xrowIni->variable( 'GoogleExportSettings', 'VAT' );
+
+$country = '';
+if ( $xrowIni->hasVariable( 'GoogleExportSettings', 'Country' ) )
+{
+    $country = $xrowIni->variable( 'GoogleExportSettings', 'Country' );
+}
+
 if ( trim( $priceLang ) == '' )
 {
     $priceLang = 'EUR';
 }
 
-$list = new xrowExportProductList( );
+$list = new xrowExportProductList();
 $nodeDataMap = array();
 $exportFields = array();
 
 // get the products
-$nodeList = eZContentObjectTreeNode::subTreeByNodeID( array( 
-    'ClassFilterType' => 'include' , 
-    'ClassFilterArray' => array( 
-        $classIdentifier 
-    ) , 
-    'AttributeFilter' => array( 
-        array( 
-            'published' , 
-            '<=' , 
-            time() 
-        ) 
-    ) 
+$nodeList = eZContentObjectTreeNode::subTreeByNodeID( array(
+    'ClassFilterType' => 'include' ,
+    'ClassFilterArray' => array(
+        $classIdentifier
+    ) ,
+    'MainNodeOnly' => true,
+    'IgnoreVisibility' => false,
+    'AttributeFilter' => array(
+        array(
+            'published' ,
+            '<=' ,
+            time()
+        )
+    ),
 ), $root_node );
+
+if ( ! $isQuiet )
+{
+    $cli->output( 'Exporting ' . count( $nodeList ) . ' products.' );
+}
+
+// only export a product once
+$idArray = array();
+
+// xrowproductvariation settings
+$xINI = eZINI::instance( 'xrowproduct.ini' );
+$exportParentNodeID = $xINI->variable( 'ExportSettings', 'ExportNodeID' );
+$precision = $xINI->variable( 'ExportSettings', 'Precision' );
+$skuField = $xINI->variable( 'ExportSettings', 'SKUIdentifier' );
+$priceField = $xINI->variable( 'PriceSettings', 'PriceIdentifier' );
+$decPoint = $xINI->variable( 'ExportSettings', 'DecimalPoint' );
+$exportClasses = $xINI->variable( 'ExportSettings', 'ExportClassArray' );
+
+$xFieldArray = $xrowIni->variable( 'GoogleExportSettings', 'ExportVariationFieldArray' );
+$skuArray = array();
+
+if ( ! $isQuiet )
+{
+    $output = new ezcConsoleOutput();
+    $bar = new ezcConsoleProgressbar( $output, count( $nodeList ) );
+}
 
 // append the products to the export list
 foreach ( $nodeList as $node )
 {
-	$exportFields = array();
-	
+    // only export visible nodes
+    if ( $node->IsInvisible )
+    {
+        continue;
+    }
+
     $exportFields['name'] = $node->attribute( 'name' );
     unset( $exportSettingsFieldsArray['name'] );
-    
+
     $url = $node->attribute( 'url_alias' );
     eZURI::transformURI( $url, true );
-    $exportFields['link'] = 'http://' . $baseUrl . $url;
+    $exportFields['link'] = 'http://' . $baseUrl . $exportSiteAccess . $url;
     unset( $exportSettingsFieldsArray['link'] );
-    
+
     $nodeDataMap = $node->attribute( 'data_map' );
     // get the product_id
-    $exportFields['id'] = $nodeDataMap['product_id']->DataText;
-    unset( $exportSettingsFieldsArray['id'] );
-    
+    if ( isset( $nodeDataMap['product_id'] ) )
+    {
+        $exportFields['id'] = $nodeDataMap['product_id']->DataText;
+        unset( $exportSettingsFieldsArray['id'] );
+    }
     // get the rest of details
     foreach ( $exportSettingsFieldsArray as $exportSettingsFieldIndex => $exportSettingsFieldName )
     {
@@ -87,73 +143,176 @@ foreach ( $nodeList as $node )
     }
     // now check whether the product have options/variations
     $variationFieldName = $xrowIni->variable( 'GoogleExportSettings', 'ExportVariationFieldName' );
-    $option2_handler = $nodeDataMap[$variationFieldName]->attribute( 'content' );
-    $option2_list = $option2_handler->attribute( 'option_list' );
-    if ( is_array( $option2_list ) && count( $option2_list ) > 0 )
+
+    if ( isset( $nodeDataMap[$variationFieldName] ) and $nodeDataMap[$variationFieldName]->attribute( 'data_type_string' ) == 'ezoption2' )
     {
-        $optionArray = array();
-        $exportVariationFieldsArray = $xrowIni->variable( 'GoogleExportSettings', 'ExportVariationFieldsArray' );
-        
-        foreach ( $option2_list as $option )
-	    {
-	    	foreach ( $exportVariationFieldsArray as $exportVariationFieldIndex => $exportVariationFieldName )
-        	{
-		        // get the full name
-		        if ( $option[$exportVariationFieldName] != '' )
-		        {
-		        	switch ($exportVariationFieldIndex)
-		        	{
-		        		case 'name':
-		        			$default_name = $exportFields['name'];
-		            		$exportFields['name'] = $exportFields['name'] . ' ' . $option[$exportVariationFieldName];
-		        			break;
-		        			
-		        		case 'id':
-		            		$default_id = $exportFields['id'];
-            				$exportFields['id'] = $exportFields['id'] . '-' . $option[$exportVariationFieldName];
-		        			break;
-		        			
-		        		case 'price':
-		            		$exportFields['price'] = get_multi_price( $option[$exportVariationFieldName], $priceLang, 'array' );
-		        			break;
-		        			
-		        		case 'image_link':
-		            		$image_contentobject_attributes = $option[$exportVariationFieldName]->attribute( 'contentobject_attributes' );
-            				$image_handler = $image_contentobject_attributes[2]->attribute( 'content' );
-            				$exportFields['image_link'] = get_image_path( $image_handler, $baseUrl );
-		        			break;
-		        			
-		        		default :
-		            		$exportFields[$exportVariationFieldIndex] = $option[$exportVariationFieldName];
-		        			break;
-		        	}
-		            
-		        }
-        	}
-        	$list->append( new xrowExportProduct( $exportFields ) );
-	        $exportFields['name'] = $default_name;
-	        $exportFields['id'] = $default_id;
-	        foreach ( $exportVariationFieldsArray as $exportVariationFieldIndex => $exportVariationFieldName )
-        	{
-        		if ($exportVariationFieldIndex != 'name' && $exportVariationFieldIndex != 'id')
-        		{
-	        		unset( $exportFields[$exportVariationFieldIndex] );
-        		}
-        	}
+        $option2_handler = $nodeDataMap[$variationFieldName]->attribute( 'content' );
+        $option2_list = $option2_handler->attribute( 'option_list' );
+        if ( is_array( $option2_list ) && count( $option2_list ) > 0 )
+        {
+            $optionArray = array();
+            $exportVariationFieldsArray = $xrowIni->variable( 'GoogleExportSettings', 'ExportVariationFieldsArray' );
+
+            foreach ( $option2_list as $option )
+            {
+                foreach ( $exportVariationFieldsArray as $exportVariationFieldIndex => $exportVariationFieldName )
+                {
+                    // get the full name
+                    if ( $option[$exportVariationFieldName] != '' )
+                    {
+                        switch ( $exportVariationFieldIndex )
+                        {
+                            case 'name':
+                                $default_name = $exportFields['name'];
+                                $exportFields['name'] = $exportFields['name'] . ' ' . $option[$exportVariationFieldName];
+                                break;
+
+                            case 'id':
+                                $default_id = $exportFields['id'];
+                                $exportFields['id'] = $exportFields['id'] . '-' . $option[$exportVariationFieldName];
+                                break;
+
+                            case 'price':
+                                $exportFields['price'] = get_multi_price( $option[$exportVariationFieldName], $priceLang, 'array' );
+                                break;
+
+                            case 'image_link':
+                                $image_contentobject_attributes = $option[$exportVariationFieldName]->attribute( 'contentobject_attributes' );
+                                $image_handler = $image_contentobject_attributes[2]->attribute( 'content' );
+                                $exportFields['image_link'] = get_image_path( $image_handler, $baseUrl );
+                                break;
+
+                            default:
+                                $exportFields[$exportVariationFieldIndex] = $option[$exportVariationFieldName];
+                                break;
+                        }
+
+                    }
+                }
+                $list->append( new xrowExportProduct( $exportFields ) );
+                $exportFields['name'] = $default_name;
+                $exportFields['id'] = $default_id;
+                foreach ( $exportVariationFieldsArray as $exportVariationFieldIndex => $exportVariationFieldName )
+                {
+                    if ( $exportVariationFieldIndex != 'name' && $exportVariationFieldIndex != 'id' )
+                    {
+                        unset( $exportFields[$exportVariationFieldIndex] );
+                    }
+                }
+            }
         }
+    }
+    elseif ( isset( $nodeDataMap[$variationFieldName] ) and $nodeDataMap[$variationFieldName]->attribute( 'data_type_string' ) == 'xrowproductvariation' )
+    {
+        if ( !isset( $attributeID ) )
+        {
+            $classIdentifier = $node->attribute( 'class_identifier' );
+            $attributeID = $exportClasses[$classIdentifier];
+            $classAttributeID = (int) eZContentObjectTreeNode::classAttributeIDByIdentifier( $classIdentifier . '/' . $attributeID );
+        }
+
+        $obj = $node->object();
+        $languageCode = $obj->currentLanguage();
+
+        $variationAttribute = eZPersistentObject::fetchObject( eZContentObjectAttribute::definition(), null, array(
+            'contentclassattribute_id' => $classAttributeID,
+            'contentobject_id' => (int) $node->attribute( 'contentobject_id' ),
+            'version' => (int) $node->attribute( 'contentobject_version' ),
+            'language_code' => $languageCode
+        ), true );
+
+        if ( $variationAttribute instanceof eZContentObjectAttribute )
+        {
+            $id = $variationAttribute->attribute( 'id' );
+            $version = $variationAttribute->attribute( 'version' );
+
+            $dataArray = xrowProductData::fetchList( array(
+                'attribute_id' => $id ,
+                'version' => $version ,
+                'language_code' => $languageCode
+            ), true, 0, 1, array( 'placement' => 'asc' ) );
+
+
+            if ( count( $dataArray ) == 0 )
+            {
+                continue;
+            }
+
+            // only export 1st item
+            $variation = $dataArray[0];
+            $sku = $variation->attribute( $skuField );
+
+            if ( in_array( $sku, $skuArray ) )
+            {
+                continue;
+            }
+            else
+            {
+                $skuArray[] = $sku;
+            }
+
+            $exportFields['id'] = $sku;
+
+            $priceID = $variation->attribute( $priceField );
+            $priceList = xrowProductPrice::fetchList( array(
+                    'price_id' => $priceID ,
+                    'country' => $country
+                ), true, false, false, array(
+                    'amount' => 'asc'
+                ) );
+
+            $price = $priceList[0]->attribute( 'price' ) * $vat;
+            $exportFields['preis'] = number_format( $price, $precision, $decPoint, '' );
+            foreach( $xFieldArray as $xkey => $xfield )
+            {
+                if ( $variation->hasAttribute( $xkey ) )
+                {
+                    $ta = $variation->attribute( $xkey );
+                    if ( $ta && strlen( $ta ) > 0 )
+                    {
+                        $exportFields[$xfield] = $ta;
+                    }
+                }
+            }
+
+            $list->append( new xrowExportProduct( $exportFields ) );
+            foreach( $xFieldArray as $xkey => $xfield )
+            {
+                if ( isset( $exportFields[$xfield] ) )
+                {
+                   unset( $exportFields[$xfield] );
+                }
+            }
+
+        }
+        xrowProductDataType::clearCache();
     }
     else
     {
-    	$list->append( new xrowExportProduct( $exportFields ) );
+        $list->append( new xrowExportProduct( $exportFields ) );
     }
+    if ( ! $isQuiet )
+    {
+        $bar->advance();
+    }
+
+    // delete cache to avoid memory overflow
+    eZContentObject::clearCache();
 }
+
+
+    if ( ! $isQuiet )
+    {
+        $bar->finish();
+        $output->outputLine();
+    }
 
 $plugins = $xrowIni->variable( 'GoogleExportSettings', 'ActivePlugins' );
 if ( is_array( $plugins ) )
 {
     foreach ( $plugins as $plugin )
     {
-        $export = new $plugin( );
+        $export = new $plugin();
         $export->export( $list );
         unset( $export );
     }
@@ -161,19 +320,19 @@ if ( is_array( $plugins ) )
 
 /**
  * get the xml data an convert it to strin
- * 
+ *
  * @param eZContentObjectAttribute $contentObjectAttribute
  * @return string $result
  */
 function get_xml_text( $handler )
 {
     $xml_data = $handler->attribute( 'xml_data' );
-    
+
     $result = str_replace( "\r", '', $xml_data );
     $result = str_replace( "\n", " ", $result );
     $result = str_replace( "\t", " ", $result );
     $result = preg_replace( "#<br\s?/?>#si", " ", $result );
-    
+
     $result = gwf_TextUtils::replaceWordChars( $result, true );
     $result = gwf_TextUtils::cleanUpHTML( $result );
     $result = gwf_TextUtils::strip_whitespaces( $result );
@@ -184,7 +343,7 @@ function get_xml_text( $handler )
 
 /**
  * get the image path
- * 
+ *
  * @param eZContentObjectAttribute $contentObjectAttribute
  * @param string $baseUrl
  * @return string $result
@@ -199,7 +358,7 @@ function get_image_path( $handler, $baseUrl )
 
 /**
  * get the price out of a multi_price list
- * 
+ *
  * @param eZContentObjectAttribute $contentObjectAttribute
  * @return string $result
  */

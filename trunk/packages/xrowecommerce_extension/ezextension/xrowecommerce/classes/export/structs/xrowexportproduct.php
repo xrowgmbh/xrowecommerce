@@ -12,10 +12,10 @@ class xrowExportProduct extends ezcBaseStruct
 {
     /**
      * Name of dataset
-     * 
+     *
      * @var string
      */
-	public $name = false;
+    public $name = false;
     public $link = false;
     public $id = false;
     public $image_link = false;
@@ -24,19 +24,26 @@ class xrowExportProduct extends ezcBaseStruct
     public $price = false;
     public $color = false;
     public $model_number = false;
+    public $bild_url = false;
+    public $preis = false;
+    public $breite = false;
+    public $höhe = false;
+    public $länge = false;
+    public $beschreibung = false;
+
 
     /**
-     * Simple constructor 
-     * 
+     * Simple constructor
+     *
      * @return void
      * @ignore
      */
-    public function __construct( $exportFieldArray )
+    public function __construct( array $exportFieldArray )
     {
-    	foreach ($exportFieldArray as $exportFieldName => $exportFieldValue)
-    	{
-    		$this->$exportFieldName = $exportFieldValue;
-    	}
+        foreach ( $exportFieldArray as $exportFieldName => $exportFieldValue )
+        {
+            $this->$exportFieldName = $exportFieldValue;
+        }
     }
 }
 ?>
