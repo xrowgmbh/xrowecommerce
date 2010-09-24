@@ -679,7 +679,7 @@ class xrowProductVariationType extends eZDataType
     */
     function metaData( $contentObjectAttribute )
     {
-        $result = "";
+        $result = array();
     	if ( $contentObjectAttribute->hasContent() )
         {
             $cObj = $contentObjectAttribute->content();
@@ -688,12 +688,19 @@ class xrowProductVariationType extends eZDataType
             {
             	if ( $data['obj'] )
             	{
-            	    $result .= " " . $data['obj']->metaData();
+            	    $result = array_merge( $result, $data['obj']->metaData() );
             	}
             }
         }
-        return array( array( 'id' => $contentObjectAttribute->attribute( 'contentclass_attribute_identifier' ),
-                             'text' => trim( $result ) ) );
+        $final = array();
+        foreach ( $result as $item )
+        {
+            if ( $item != '' )
+            {
+            	$final[] = $item;
+            }   
+        }
+        return $result;
     }
 
     /*!

@@ -406,7 +406,7 @@ class xrowProductPriceType extends xrowProductDataType
      */
     function metaData( xrowProductData $variation, $column )
     {
-        $result = "";
+        $result = array();
         $id = $variation->attribute( $column );
         $resultArray = xrowProductPrice::fetchList( array( 'price_id' => $id ),
                                                       true,
@@ -415,10 +415,9 @@ class xrowProductPriceType extends xrowProductDataType
                                                       array( 'amount' => 'asc' ) );
        	foreach ( $resultArray as $item )
        	{
-       		$result .= " " . $item->attribute( 'price' );
+       		$result[] = $item->attribute( 'price' );
        	}
-       	$result = trim( $result );
-        return $result;
+       	return $result;
     }
     
     /**
