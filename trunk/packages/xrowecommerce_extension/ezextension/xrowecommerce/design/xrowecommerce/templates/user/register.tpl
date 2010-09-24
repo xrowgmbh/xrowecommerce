@@ -2,7 +2,7 @@
      $ca = $content_attributes_data_map
      $countries = fetch( 'content', 'country_list')
      $castring = 'ContentObjectAttribute_ezstring_data_text'
-     $country_default_ini = ezini( 'ShopAccountHandlerDefaults', 'DefaultCountryCode' )}
+     $country_default_ini = ezini( 'ShopAccountHandlerDefaults', 'DefaultCountryCode', 'xrowecommerce.ini' )}
 
 <div class="shop-basket user_register">
     <form enctype="multipart/form-data"  action={"/user/register/"|ezurl} method="post" name="Register" id="register">
@@ -69,7 +69,7 @@
         </div>
 
         <div class="billing_shipping">
-        
+
             <div class="billing">
                 <h2>{'Billing Information'|i18n('extension/xrowecommerce')}</h2>
                 <p>{'Please enter your billing address exactly as it appears on your credit card statement.'|i18n('extension/xrowecommerce')}</p>
@@ -100,14 +100,14 @@
                         <input type="hidden" name="ContentObjectAttribute_id[]" value="{$ca.tax_id.id}" />
                     </div>
                     {/if}
-                    
+
                     <div class="block first_name">
                         <label>{if ezini( 'Fields', 'first_name', 'xrowecommerce.ini' ).required|eq("true")}<span class="required">*</span>{/if}{'First name'|i18n('extension/xrowecommerce')}</label>
                         <div class="labelbreak"></div>
                         <input type="text" id="first_name" name="{$castring}_{$ca.first_name.id}" value="{$ca.first_name.content|wash()}" />
                         <input type="hidden" name="ContentObjectAttribute_id[]" value="{$ca.first_name.id}" />
                     </div>
-                    
+
                     {if ezini( 'Fields', 'mi', 'xrowecommerce.ini' ).enabled|eq("true")}
                     <div class="block mi">
                         <label>{'MI'|i18n('extension/xrowecommerce')}</label>
@@ -116,21 +116,21 @@
                         <input type="hidden" name="ContentObjectAttribute_id[]" value="{$ca.mi.id}" />
                     </div>
                     {/if}
-                    
+
                     <div class="block last_name">
                         <label>{if ezini( 'Fields', 'last_name', 'xrowecommerce.ini' ).required|eq("true")}<span class="required">*</span>{/if}{'Last name'|i18n('extension/xrowecommerce')}</label>
                         <div class="labelbreak"></div>
                         <input type="text" id="last_name" name="{$castring}_{$ca.last_name.id}" value="{$ca.last_name.content|wash()}" />
                         <input type="hidden" name="ContentObjectAttribute_id[]" value="{$ca.last_name.id}" />
                     </div>
-                    
+
                     <div class="block address1">
                         <label>{if ezini( 'Fields', 'address1', 'xrowecommerce.ini' ).required|eq("true")}<span class="required">*</span>{/if}{'Address 1'|i18n('extension/xrowecommerce')}</label>
                         <div class="labelbreak"></div>
                         <input type="text" id="address1" class="box" name="{$castring}_{$ca.address1.id}" size="20" value="{$ca.address1.content|wash()}" title="{'Apartment, suite, unit, building, floor, etc.'|i18n('extension/xrowecommerce')}" />
                         <input type="hidden" name="ContentObjectAttribute_id[]" value="{$ca.address1.id}" />
                     </div>
-                    
+
                     {if ezini( 'Fields', 'address2', 'xrowecommerce.ini' ).enabled|eq("true")}
                     <div class="block address2">
                         <label>{if ezini( 'Fields', 'address2', 'xrowecommerce.ini' ).required|eq("true")}<span class="required">*</span>{/if}{'Address 2'|i18n('extension/xrowecommerce')}</label>
@@ -174,7 +174,7 @@
                         </select>
                     </div>
                     {/if}
-                    
+
                     {if ezini( 'Fields', 'state', 'xrowecommerce.ini' ).enabled|eq("true")}
                     <div class="state block{if is_set($fields.state.errors)} error{/if}">
                         <label>{'State / Province'|i18n('extension/xrowecommerce')}{if ezini( 'Fields', 'state', 'xrowecommerce.ini' ).required|eq("true")}<span class="required">*</span>{/if}</label>
@@ -189,6 +189,8 @@
                         </select>
                     </div>
                     <div class="break"></div>
+                    {else}
+                        <input type="hidden" name="state" id="state" value="">
                     {/if}
 
                     {if ezini( 'Fields', 'phone', 'xrowecommerce.ini' ).enabled|eq("true")}
@@ -227,7 +229,7 @@
                         <input type="hidden" name="ContentObjectAttribute_id[]" value="{$ca.s_company_name.id}" />
                     </div>
                     {/if}
-                    
+
                     {if ezini( 'Fields', 's_company_additional', 'xrowecommerce.ini' ).enabled|eq("true")}
                     <div class="block s_company_additional">
                         <label>{if ezini( 'Fields', 's_company_additional', 'xrowecommerce.ini' ).required|eq("true")}<span class="required">*</span>{/if}{'Form of company'|i18n('extension/xrowecommerce')}</label>
@@ -236,7 +238,7 @@
                         <input type="hidden" name="ContentObjectAttribute_id[]" value="{$ca.s_company_additional.id}" />
                     </div>
                     {/if}
-                    
+
                     {if ezini( 'Fields', 's_first_name', 'xrowecommerce.ini' ).enabled|eq("true")}
                     <div class="block s_first_name">
                         <label>{if ezini( 'Fields', 's_first_name', 'xrowecommerce.ini' ).required|eq("true")}<span class="required">*</span>{/if}{'First name'|i18n('extension/xrowecommerce')}</label>
@@ -245,7 +247,7 @@
                         <input type="hidden" name="ContentObjectAttribute_id[]" value="{$ca.s_first_name.id}" />
                     </div>
                     {/if}
-                    
+
                     {if ezini( 'Fields', 's_mi', 'xrowecommerce.ini' ).enabled|eq("true")}
                     <div class="block s_mi">
                         <label>{'MI'|i18n('extension/xrowecommerce')}</label>
@@ -254,7 +256,7 @@
                         <input type="hidden" name="ContentObjectAttribute_id[]" value="{$ca.s_mi.id}" />
                     </div>
                     {/if}
-                    
+
                     {if ezini( 'Fields', 's_last_name', 'xrowecommerce.ini' ).enabled|eq("true")}
                     <div class="block s_last_name">
                         <label>{if ezini( 'Fields', 's_last_name', 'xrowecommerce.ini' ).required|eq("true")}<span class="required">*</span>{/if}{'Last name'|i18n('extension/xrowecommerce')}</label>
@@ -264,7 +266,7 @@
                     </div>
                     <div class="break"></div>
                     {/if}
-                    
+
                     <div class="block s_address1">
                         <label>{if ezini( 'Fields', 's_address1', 'xrowecommerce.ini' ).required|eq("true")}<span class="required">*</span>{/if}{'Address 1'|i18n('extension/xrowecommerce')}</label>
                         <div class="labelbreak"></div>
@@ -272,7 +274,7 @@
                         <input type="hidden" name="ContentObjectAttribute_id[]" value="{$ca.s_address1.id}" />
                     </div>
                     <div class="break"></div>
-                    
+
                     {if ezini( 'Fields', 's_address2', 'xrowecommerce.ini' ).enabled|eq("true")}
                     <div class="block s_address2">
                         <label>{if ezini( 'Fields', 's_address2', 'xrowecommerce.ini' ).required|eq("true")}<span class="required">*</span>{/if}{'Address 2'|i18n('extension/xrowecommerce')}</label>
@@ -282,7 +284,7 @@
                     </div>
                     <div class="break"></div>
                     {/if}
-                    
+
                     <div class="block s_city">
                         <label>{if ezini( 'Fields', 's_city', 'xrowecommerce.ini' ).required|eq("true")}<span class="required">*</span>{/if}{'City / Town'|i18n('extension/xrowecommerce')}</label>
                         <div class="labelbreak"></div>
@@ -333,6 +335,8 @@
                         </select>
                     </div>
                     <div class="break"></div>
+                    {else}
+                    <input type="hidden" name="state" id="s_state" value="">
                     {/if}
 
                     {if ezini( 'Fields', 's_phone', 'xrowecommerce.ini' ).enabled|eq("true")}
@@ -375,3 +379,14 @@
             </div>
     </form>
 </div>
+{*
+        {literal}
+            <script type="text/javascript">
+                // removed because it updates the values, if we already have data for shipping.
+                // Idea only update if we have no data fopr shipping and data for billing.
+                // changeShipping();
+                updateShipping();
+            </script>
+        {/literal}
+
+*}
