@@ -197,7 +197,7 @@ class xrowProductData extends eZPersistentObject
 
     function metaData()
     {
-        $result = "";
+        $result = array();
         $template = $this->attribute( 'template' );
         if ( $template )
         {
@@ -207,7 +207,15 @@ class xrowProductData extends eZPersistentObject
                 $field = $attribute['attribute']->Identifier;
                 if ( $dataType and isset( $attribute['search'] ) and $attribute['search'] == true )
                 {
-                    $result .= " " . $dataType->metaData( $this, $field );
+                    $temp = $dataType->metaData( $this, $field );
+                    if ( is_array( $temp ) )
+                    {
+                    	$result = array_merge( $result, $temp );
+                    }
+                    else
+                    {
+                	   $result[] = $temp;
+                    } 
                 }
             }
         }
