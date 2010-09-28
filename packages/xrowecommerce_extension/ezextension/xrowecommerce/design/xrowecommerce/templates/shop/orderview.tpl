@@ -154,7 +154,7 @@ document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.
 
   pageTracker._addTrans(
     "{$order.order_nr}",                                          // Order ID
-    "{ezini( 'InvoiceSettings', 'CompanyName', 'xrowecommmerce.ini'  )}", // Affiliation
+    "{ezini( 'InvoiceSettings', 'CompanyName', 'xrowecommerce.ini'  )}", // Affiliation
     "{$order.total_ex_vat}",                                    // Total
     "{$order.order_info.total_price_info.total_price_vat}",    // Tax
     "{$order.account_information.shipping}",                  // Shipping
