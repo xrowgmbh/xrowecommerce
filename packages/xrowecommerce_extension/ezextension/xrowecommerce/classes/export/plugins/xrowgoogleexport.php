@@ -78,11 +78,14 @@ class xrowGoogleExport implements xrowExportProductPlugin
             {
                 $module->condition = 'new';
             }
+            if ( isset( $googleMapping['zustand'] ) )
+            {
+                $module->zustand = 'neu';
+            }
             if ( isset( $googleMapping['payment_accepted'] ) )
             {
                 $module->payment_accepted = '';
             }
-
         }
         /*
   Try to add TAX with var_dump(xrowECommerce::merchantsLocations());
