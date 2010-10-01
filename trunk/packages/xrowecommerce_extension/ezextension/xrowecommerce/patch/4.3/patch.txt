@@ -1,0 +1,37 @@
+eZ Publish 4.3
+
+xrowproduct variation hack
+=========================================================
+To use the xrowproduct variation you need to hack
+eZShopFunctions::productDatatypeStringList and add the the xrowproductvariation datatype
+
+return array( 'ezprice',
+              'ezmultiprice',
+              'xrowproductvariation' );
+
+
+
+Sliding price hack
+=========================================================
+To use the feature of sliding prices, you need to patch
+2 files:
+kernel/classes/ezdatatype.php
+
+function productOptionInformation( $objectAttribute, $optionID, $productItem )
+
+Add parameter amount:
+
+function productOptionInformation( $objectAttribute, $optionID, $productItem, $amount = 1 )
+
+
+and
+kernel/classes/ezproductcollectionitem.php
+
+function calculatePriceWithOptions( $currency = false )
+...
+$optionData = $dataType->productOptionInformation( $objectAttribute, $option->attribute( 'option_item_id' ), $this );
+
+to
+
+$optionData = $dataType->productOptionInformation( $objectAttribute, $option->attribute( 'option_item_id' ), $this, $this->attribute( 'item_count' ) );
+
