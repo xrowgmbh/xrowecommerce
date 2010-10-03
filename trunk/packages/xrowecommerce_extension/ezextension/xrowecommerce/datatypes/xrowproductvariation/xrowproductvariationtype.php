@@ -679,7 +679,7 @@ class xrowProductVariationType extends eZDataType
     */
     function metaData( $contentObjectAttribute )
     {
-        $result = array();
+       $result = array();
     	if ( $contentObjectAttribute->hasContent() )
         {
             $cObj = $contentObjectAttribute->content();
@@ -700,7 +700,7 @@ class xrowProductVariationType extends eZDataType
             	$final[] = $item;
             }   
         }
-        return $result;
+        return $final;
     }
 
     /*!

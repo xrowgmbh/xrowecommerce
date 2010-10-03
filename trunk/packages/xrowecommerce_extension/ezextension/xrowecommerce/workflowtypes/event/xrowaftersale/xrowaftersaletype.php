@@ -92,7 +92,7 @@ class xrowAfterSaleType extends eZWorkflowEventType
             }
         }
         // check if 'after sale list' is allowed
-        if ( $Gateway::AFTER_SALE )
+        if ( 1 == 2 )
         {
             if ( $order instanceof eZOrder )
             {
