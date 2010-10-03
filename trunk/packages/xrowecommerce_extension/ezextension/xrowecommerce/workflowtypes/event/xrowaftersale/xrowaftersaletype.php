@@ -79,6 +79,7 @@ class xrowAfterSaleType extends eZWorkflowEventType
         $errors = array();
 
         $xmlstring = $order->attribute( 'data_text_1' );
+        $classname = false;
         if ( $xmlstring != null )
         {
             $doc = new DOMDocument( );
@@ -92,7 +93,7 @@ class xrowAfterSaleType extends eZWorkflowEventType
             }
         }
         // check if 'after sale list' is allowed
-        if ( 1 == 2 )
+        if ( $classname and $classname::AFTER_SALE )
         {
             if ( $order instanceof eZOrder )
             {
