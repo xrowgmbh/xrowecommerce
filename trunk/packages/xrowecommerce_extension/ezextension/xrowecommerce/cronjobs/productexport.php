@@ -42,7 +42,7 @@ $exportFields = array();
 
 // get the products
 $nodeList = eZContentObjectTreeNode::subTreeByNodeID( array(
-    'ClassFilterType' => 'include' ,
+    'ClassFilterType' => 'include',
     'ClassFilterArray' => array(
         $classIdentifier
     ) ,
@@ -50,7 +50,7 @@ $nodeList = eZContentObjectTreeNode::subTreeByNodeID( array(
     'IgnoreVisibility' => false,
     'AttributeFilter' => array(
         array(
-            'published' ,
+            'published',
             '<=' ,
             time()
         )
@@ -91,8 +91,22 @@ foreach ( $nodeList as $node )
     {
         continue;
     }
-
-    $exportFields['name'] = $node->attribute( 'name' );
+    
+    // take complete path in name - SEO optimisation
+    $title = $node->attribute( 'name' );
+    $pathArray = $node->attribute( 'path' );
+    $pathArray = array_reverse( $pathArray );
+    foreach ( $pathArray as $pitem )
+    {
+    	if ( mb_strlen( $title ) > 80 or $pitem->attribute( 'depth' ) < 3 )
+    	{
+    		break;
+    	}
+    	$title .= ', ' . trim( $pitem->attribute( 'name' ) );
+    }
+    
+    $exportFields['name'] = trim( $title, ', ' );
+    
     unset( $exportSettingsFieldsArray['name'] );
 
     $url = $node->attribute( 'url_alias' );

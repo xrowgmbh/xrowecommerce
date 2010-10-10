@@ -103,7 +103,7 @@ class xrowGoogleExport implements xrowExportProductPlugin
         if ( $xrowIni->hasVariable( 'GoogleExportSettings', 'ExportAsFile' ) &&
              $xrowIni->variable( 'GoogleExportSettings', 'ExportAsFile' ) == 'true' )
         {
-            $cacheDir = eZSys::cacheDirectory();
+            $cacheDir = eZSys::storageDirectory();
             eZFile::create( $ftpfilename, $cacheDir . '/googleexport', $xml );
         }
 
