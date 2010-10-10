@@ -2986,6 +2986,7 @@ class xrowecommerceInstaller extends eZSiteInstaller
                         '../lib/yui/2.7.0/build/yahoo-dom-event/yahoo-dom-event.js' , 
                         '../lib/yui/2.7.0/build/calendar/calendar-min.js' , 
                         'ezdatepicker.js' , 
+						'insertmedia.js' ,
                         'xrowecommerce.js' , 
                         'xrowproductvariation.js' 
                     ) 
