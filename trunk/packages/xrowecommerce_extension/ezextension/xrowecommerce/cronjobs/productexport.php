@@ -255,7 +255,7 @@ foreach ( $nodeList as $node )
             // only export 1st item
             $variation = $dataArray[0];
             // avoid to short skus, filling with zeros
-            $sku = sprintf( "%09d", $variation->attribute( $skuField ) );
+            $sku = str_pad( $variation->attribute( $skuField ), 10, "0", STR_PAD_LEFT);
 
             if ( in_array( $sku, $skuArray ) )
             {
