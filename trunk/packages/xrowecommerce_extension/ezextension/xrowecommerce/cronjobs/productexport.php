@@ -91,7 +91,7 @@ foreach ( $nodeList as $node )
     {
         continue;
     }
-    
+
     // take complete path in name - SEO optimisation
     $title = $node->attribute( 'name' );
     $pathArray = $node->attribute( 'path' );
@@ -104,9 +104,9 @@ foreach ( $nodeList as $node )
     	}
     	$title .= ', ' . trim( $pitem->attribute( 'name' ) );
     }
-    
+
     $exportFields['name'] = trim( $title, ', ' );
-    
+
     unset( $exportSettingsFieldsArray['name'] );
 
     $url = $node->attribute( 'url_alias' );
@@ -349,8 +349,12 @@ function get_xml_text( $handler )
 
     $result = gwf_TextUtils::replaceWordChars( $result, true );
     $result = gwf_TextUtils::cleanUpHTML( $result );
-    $result = gwf_TextUtils::strip_whitespaces( $result );
+
     $result = html_entity_decode( $result );
+    # ez bug
+    $result = str_replace( "&nbsp;", " ", $result );
+    $result = gwf_TextUtils::strip_whitespaces( $result );
+
     $result = trim( $result );
     return $result;
 }
