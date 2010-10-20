@@ -118,7 +118,7 @@ foreach ( $nodeList as $node )
     // get the product_id
     if ( isset( $nodeDataMap['product_id'] ) )
     {
-        $exportFields['id'] = $nodeDataMap['product_id']->DataText;
+        $exportFields['id'] = $nodeDataMap['product_id']->content();
         unset( $exportSettingsFieldsArray['id'] );
     }
     // get the rest of details
@@ -150,6 +150,11 @@ foreach ( $nodeList as $node )
                 {
                     $cur = new eZCurrency( $handler->attribute( 'inc_vat_price' ) );
                     $content = $cur->Locale->formatCleanCurrency( $cur->Value );
+                }break;
+                case 'ezfloat':
+                case 'ezinteger':
+                {
+                    $content = $handler;
                 }break;
                 default:
                 {
