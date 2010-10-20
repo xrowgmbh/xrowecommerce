@@ -127,31 +127,36 @@ foreach ( $nodeList as $node )
         if ( array_key_exists( $exportSettingsFieldName, $nodeDataMap ) )
         {
             $handler = $nodeDataMap[$exportSettingsFieldName]->attribute( 'content' );
-            // get description
-            if ( $nodeDataMap[$exportSettingsFieldName]->DataTypeString == 'ezxmltext' )
+            $content = '';
+            switch ( $nodeDataMap[$exportSettingsFieldName]->DataTypeString )
             {
-                $content = get_xml_text( $handler );
+                case 'ezxmltext':
+                {
+                    $content = get_xml_text( $handler );
+                }break;
+                case 'ezimage':
+                {
+                    $content = get_image_path( $handler, $baseUrl );
+                }break;
+                case 'ezmultiprice':
+                {
+                    $content = get_multi_price( $handler, $priceLang );
+                }break;
+                case 'ezobjectrelation':
+                {
+                    $content = $handler->Name;
+                }break;
+                case 'ezprice':
+                {
+                    $cur = new eZCurrency( $handler->attribute( 'inc_vat_price' ) );
+                    $content = $cur->Locale->formatCleanCurrency( $cur->Value );
+                }break;
+                default:
+                {
+                    $content = $nodeDataMap[$exportSettingsFieldName]->DataText;
+                }break;
             }
-            // get image path
-            elseif ( $nodeDataMap[$exportSettingsFieldName]->DataTypeString == 'ezimage' )
-            {
-                $content = get_image_path( $handler, $baseUrl );
-            }
-            // get price
-            elseif ( $nodeDataMap[$exportSettingsFieldName]->DataTypeString == 'ezmultiprice' )
-            {
-                $content = get_multi_price( $handler, $priceLang );
-            }
-            // get manufacturer
-            elseif ( $nodeDataMap[$exportSettingsFieldName]->DataTypeString == 'ezobjectrelation' )
-            {
-                $content = $handler->Name;
-            }
-            // get the rest
-            else
-            {
-                $content = $nodeDataMap[$exportSettingsFieldName]->DataText;
-            }
+
             $exportFields[$exportSettingsFieldIndex] = $content;
         }
     }
@@ -341,7 +346,16 @@ if ( is_array( $plugins ) )
  */
 function get_xml_text( $handler )
 {
-    $xml_data = $handler->attribute( 'xml_data' );
+    $xml_data = '';
+    if ( is_object( $handler ) )
+    {
+        $output = $handler->attribute( 'output' );
+        if ( is_object( $output ) )
+        {
+            $xml_data = trim( $output->attribute( 'output_text' ) );
+
+        }
+    }
 
     $result = str_replace( "\r", '', $xml_data );
     $result = str_replace( "\n", " ", $result );
