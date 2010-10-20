@@ -367,13 +367,13 @@ function get_xml_text( $handler )
     $result = str_replace( "\t", " ", $result );
     $result = preg_replace( "#<br\s?/?>#si", " ", $result );
 
-    $result = gwf_TextUtils::replaceWordChars( $result, true );
-    $result = gwf_TextUtils::cleanUpHTML( $result );
+    $result = xrowTextUtils::replaceWordChars( $result, true );
+    $result = xrowTextUtils::cleanUpHTML( $result );
 
-    $result = html_entity_decode( $result );
+    $result = html_entity_decode( $result, ENT_COMPAT, 'UTF-8' );
     # ez bug
     $result = str_replace( "&nbsp;", " ", $result );
-    $result = gwf_TextUtils::strip_whitespaces( $result );
+    $result = xrowTextUtils::strip_whitespaces( $result );
 
     $result = trim( $result );
     return $result;
