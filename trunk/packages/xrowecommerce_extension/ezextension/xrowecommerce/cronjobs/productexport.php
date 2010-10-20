@@ -98,7 +98,7 @@ foreach ( $nodeList as $node )
     $pathArray = array_reverse( $pathArray );
     foreach ( $pathArray as $pitem )
     {
-    	if ( mb_strlen( $title ) > 60 or $pitem->attribute( 'depth' ) < 3 )
+    	if ( mb_strlen( $title . ', ' . $pitem->attribute( 'name' ) ) > 70 or $pitem->attribute( 'depth' ) < 3 )
     	{
     		break;
     	}
