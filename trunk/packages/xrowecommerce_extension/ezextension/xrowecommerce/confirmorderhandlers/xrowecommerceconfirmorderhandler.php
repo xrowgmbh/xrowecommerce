@@ -20,7 +20,6 @@ class xrowECommerceConfirmOrderHandler
             $order = $params['order'];
             $clientEmail = $params['email'];
 
-            require_once ( "kernel/common/template.php" );
             $tpl = eZTemplate::factory();
             $tpl->setVariable( 'order', $order );
             $htmlMode = eZINI::instance( 'xrowecommerce.ini' )->variable( 'MailSettings', 'HTMLEmail' );

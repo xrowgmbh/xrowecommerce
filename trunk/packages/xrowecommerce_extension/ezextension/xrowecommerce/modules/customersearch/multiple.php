@@ -30,14 +30,12 @@
 
 /*! \file customorderview.php
 */
-$db =& eZDB::instance();
+$db = eZDB::instance();
 $email = $db->escapeString( $Params['email'] );
-$module =& $Params['Module'];
-include_once( "kernel/common/template.php" );
-include_once( "kernel/classes/ezorder.php" );
+$module = $Params['Module'];
 
-$http =& eZHTTPTool::instance();
-$tpl =& templateInit();
+$http = eZHTTPTool::instance();
+$tpl = eZTemplate::factory();
 
 
 
@@ -65,7 +63,7 @@ elseif ( count($userarray) == 0 )
 }
 
 $Result = array();
-$Result['content'] =& $tpl->fetch( "design:shop/orderlist.tpl" );
+$Result['content'] = $tpl->fetch( "design:shop/orderlist.tpl" );
 $path = array();
 $path[] = array( 'url' => '/shop/orderlist',
                  'text' => ezpI18n::tr( 'kernel/shop', 'Order list' ) );

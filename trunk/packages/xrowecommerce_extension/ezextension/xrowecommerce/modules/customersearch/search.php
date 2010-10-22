@@ -1,18 +1,18 @@
 <?php
 
-include_once( 'kernel/common/template.php' );
-include_once( 'kernel/classes/eznodeviewfunctions.php' );
-include_once( 'lib/ezutils/classes/ezhttptool.php' );
-$Module =& $Params['Module'];
-$http =& eZHTTPTool::instance();
-$db =& eZDB::instance();
-if( $http->hasPostVariable( 'E-mail' ) ) 
+$Module = $Params['Module'];
+$http = eZHTTPTool::instance();
+$db = eZDB::instance();
+if( $http->hasPostVariable( 'E-mail' ) )
 {
-    $email       = $db->escapeString( $http->Variable( 'E-mail' ) );
+    $email = $db->escapeString( $http->Variable( 'E-mail' ) );
 }
-else return $Module->handleError( EZ_ERROR_KERNEL_NOT_AVAILABLE, 'kernel' );
+else
+{
+    return $Module->handleError( EZ_ERROR_KERNEL_NOT_AVAILABLE, 'kernel' );
+}
 
-eZDebug::writeDebug( "Starting module", "Customersearch1");
+eZDebug::writeDebug( "Starting module", "Customersearch");
 /*
 SELECT e.user_id, e.email FROM ezorder e
 WHERE e.is_archived ="0" AND e.is_temporary ="0"
@@ -50,7 +50,7 @@ elseif ( count($userarray) == 0 )
 {
     $Module->redirectTo( "/customersearch/multiple/".$email );
 }
-    
+
 
 $Result = array();
 $Result['content'] = "";

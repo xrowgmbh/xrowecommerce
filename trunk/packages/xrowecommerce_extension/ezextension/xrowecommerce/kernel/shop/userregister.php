@@ -26,16 +26,10 @@
 // ## END COPYRIGHT, LICENSE AND WARRANTY NOTICE ##
 //
 
-$http =& eZHTTPTool::instance();
-$module =& $Params["Module"];
+$http = eZHTTPTool::instance();
+$module = $Params["Module"];
 
-include_once( 'kernel/common/template.php' );
-include_once( 'lib/ezutils/classes/ezhttptool.php' );
-include_once( 'kernel/classes/ezbasket.php' );
-include_once( 'lib/ezxml/classes/ezxml.php' );
-include_once( 'lib/ezutils/classes/ezmail.php' );
-
-$tpl =& templateInit();
+$tpl = eZTemplate::factory();
 
 if ( $module->isCurrentAction( 'Cancel' ) )
 {
@@ -43,7 +37,7 @@ if ( $module->isCurrentAction( 'Cancel' ) )
     return;
 }
 
-$user =& eZUser::currentUser();
+$user = eZUser::currentUser();
 
 $firstName = '';
 $lastName = '';
@@ -110,7 +104,7 @@ if ( count( $orderList ) > 0 and  $user->isLoggedIn() )
 $tpl->setVariable( "input_error", false );
 if ( $module->isCurrentAction( 'Store' ) )
 {
-    
+
     $inputIsValid = true;
     $companyName = $http->postVariable( "CompanyName" );
     $companyAdditional = $http->postVariable( "CompanyAdditional" );
@@ -122,41 +116,41 @@ if ( $module->isCurrentAction( 'Store' ) )
     if ( trim( $lastName ) == "" )
         $inputIsValid = false;
     $mi = $http->postVariable( "MI" );
-        
+
     $email = $http->postVariable( "EMail" );
     if ( ! eZMail::validate( $email ) )
         $inputIsValid = false;
 
     $address1 = $http->postVariable( "Address1" );
-    
+
     $address2 = $http->postVariable( "Address2" );
         if ( trim( $address1 ) == "" )
             $inputIsValid = false;
-    
+
     $state = $http->postVariable( "State" );
     if ( trim( $state ) == "" )
         $inputIsValid = false;
-        
+
 	$city = $http->postVariable( "City" );
     if ( trim( $city ) == "" )
         $inputIsValid = false;
-        
+
     $zip = $http->postVariable( "Zip" );
     if ( trim( $zip ) == "" )
         $inputIsValid = false;
-        
+
     $phone = $http->postVariable( "Phone" );
     if ( trim( $phone ) == "" )
         $inputIsValid = false;
-        
+
     $fax = $http->postVariable( "Fax" );
 
     if ( $inputIsValid == true )
     {
         // Check for validation
-        $basket =& eZBasket::currentBasket();
+        $basket = eZBasket::currentBasket();
 
-        $db =& eZDB::instance();
+        $db = eZDB::instance();
         $db->begin();
         $order = $basket->createOrder();
 
@@ -177,17 +171,17 @@ if ( $module->isCurrentAction( 'Store' ) )
         #$companyAdditionalNode = $doc->createElementNode( "company_additional" );
         $companyAdditionalNode->appendChild( $doc->createTextNode( $companyAdditional ) );
         $root->appendChild( $companyAdditionalNode );
-        
+
         $taxIdNode = $doc->createElement( "tax_id" );
         #$taxIdNode = $doc->createElementNode( "tax_id" );
         $taxIdNode->appendChild( $doc->createTextNode( $taxId ) );
         $root->appendChild( $taxIdNode );
-        
+
         $firstNameNode = $doc->createElement( "first-name" );
         #$firstNameNode = $doc->createElementNode( "first-name" );
         $firstNameNode->appendChild( $doc->createTextNode( $firstName ) );
         $root->appendChild( $firstNameNode );
-        
+
         $miNode = $doc->createElement( "mi" );
         #$miNode = $doc->createElementNode( "mi" );
         $miNode->appendChild( $doc->createTextNode( $mi ) );
@@ -212,7 +206,7 @@ if ( $module->isCurrentAction( 'Store' ) )
         #$cityNode = $doc->createElementNode( "city" );
         $cityNode->appendChild( $doc->createTextNode( $city ) );
         $root->appendChild( $cityNode );
-        
+
         $zipNode = $doc->createElement( "zip" );
         #$zipNode = $doc->createElementNode( "zip" );
         $zipNode->appendChild( $doc->createTextNode( $zip ) );
@@ -222,7 +216,7 @@ if ( $module->isCurrentAction( 'Store' ) )
         #$stateNode = $doc->createElementNode( "state" );
         $stateNode->appendChild( $doc->createTextNode( $state ) );
         $root->appendChild( $stateNode );
-        
+
         $phoneNode = $doc->createElement( "phone" );
         #$phoneNode = $doc->createElementNode( "phone" );
         $phoneNode->appendChild( $doc->createTextNode( $phone ) );
@@ -232,7 +226,7 @@ if ( $module->isCurrentAction( 'Store' ) )
         #$faxNode = $doc->createElementNode( "fax" );
         $faxNode->appendChild( $doc->createTextNode( $fax ) );
         $root->appendChild( $phoneNode );
-        
+
 		$emailNode = $doc->createElement( "email" );
 		#$emailNode = $doc->createElementNode( "email" );
         $emailNode->appendChild( $doc->createTextNode( $email ) );
@@ -290,7 +284,7 @@ $tpl->setVariable( "s_phone", $sphone );
 $tpl->setVariable( "s_fax", $sfax );
 
 $Result = array();
-$Result['content'] =& $tpl->fetch( "design:shop/userregister.tpl" );
+$Result['content'] = $tpl->fetch( "design:shop/userregister.tpl" );
 $Result['path'] = array( array( 'url' => false,
                                 'text' => ezpI18n::tr( 'kernel/shop', 'Enter account information' ) ) );
 ?>
