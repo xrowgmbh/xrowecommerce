@@ -1,13 +1,14 @@
 <?php
 
-$Module =& $Params['Module'];
-include_once( 'kernel/common/template.php' );
+$Module = $Params['Module'];
+
 $tpl = eZTemplate::factory();
 $user = eZUser::currentUser();
 $http = eZHTTPTool::instance();
+
 if ( isset( $Params['UserParameters'] ) )
 {
-    $viewParameters = $Params['UserParameters'];                  
+    $viewParameters = $Params['UserParameters'];
 }
 else
 {
@@ -18,7 +19,6 @@ $offset = (int)$viewParameters['offset'];
 $messages = array();
 
 $limit = 10;
-
 
 if ( $Module->isCurrentAction( 'Update' ) and $Module->hasActionParameter( 'ItemArray' ) )
 {

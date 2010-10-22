@@ -1,7 +1,6 @@
 <?php
 
-$Module =& $Params['Module'];
-include_once( 'kernel/common/template.php' );
+$Module = $Params['Module'];
 $tpl = eZTemplate::factory();
 
 if ( isset( $Params['UserParameters'] ) )
@@ -64,7 +63,7 @@ foreach ( $list as $item )
     {
         $totals[$item->cycle_unit] += $item->pricePerItem() * $item->amount / $item->cycle;
     }
-        
+
 }
 $tpl->setVariable( "limit", $limit );
 $tpl->setVariable( 'list', $list_result );

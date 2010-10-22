@@ -26,8 +26,6 @@
 // ## END COPYRIGHT, LICENSE AND WARRANTY NOTICE ##
 //
 
-include_once( 'kernel/common/template.php' );
-
 $objectID        = isset( $Params['ObjectID'] ) ? (int) $Params['ObjectID'] : 0;
 $objectVersion   = isset( $Params['ObjectVersion'] ) ? (int) $Params['ObjectVersion'] : 0;
 $variationName   = isset( $Params['VariationName'] ) ? (int) $Params['VariationName'] : 0;
@@ -42,7 +40,7 @@ if ( isset( $Params['ContentType'] ) && $Params['ContentType'] !== '' )
     $contentType   = $Params['ContentType'];
 }
 
-    
+
 if ( $objectID === 0  || $objectVersion === 0 )
 {
    echo ezpI18n::tr( 'design/standard/ezoe', 'Invalid or missing parameter: %parameter', null, array( '%parameter' => 'ObjectID/ObjectVersion' ) );
@@ -109,11 +107,8 @@ if ( $http->hasPostVariable( 'uploadButton' ) )
     {
         $newObject = $result['contentobject'];
         $newObjectID = $newObject->attribute( 'id' );
-        
+
         // edit attributes
-    }
-    else
-    {
     }
 }
 

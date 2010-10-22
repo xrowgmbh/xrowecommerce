@@ -6,7 +6,7 @@ class XROWRecurringOrderCollection extends eZPersistentObject
 	const CYCLE_DAY = 1;
 	const CYCLE_WEEK = 2;
 	const CYCLE_MONTH = 3;
-	const CYCLE_QUARTER = 4; 
+	const CYCLE_QUARTER = 4;
 	const CYCLE_YEAR = 5;
 
 	const STATUS_ACTIVE = 1;
@@ -90,7 +90,7 @@ class XROWRecurringOrderCollection extends eZPersistentObject
         $list = $this->fetchList();
         if ( count( $list ) == 0 )
             return false;
-    
+
         $userco = $user->attribute( 'contentobject' );
         $dm = $userco->attribute( 'data_map' );
         if ( !array_key_exists( xrowECommerce::ACCOUNT_KEY_CREDITCARD, $dm ) )
@@ -187,7 +187,7 @@ class XROWRecurringOrderCollection extends eZPersistentObject
         {
             $handler = $recurringitem->attribute( 'handler' );
             $object = $recurringitem->attribute( 'object' );
-            
+
             if ( !$handler )
             {
                 $attributes = $object->contentObjectAttributes();
@@ -221,8 +221,8 @@ class XROWRecurringOrderCollection extends eZPersistentObject
             $item->setAttribute( "contentobject_id", $object->attribute( 'id' ) );
             $item->setAttribute( "item_count", $recurringitem->attribute( 'amount' ) );
             $item->setAttribute( "price", $price );
-            
-            
+
+
             $item->store();
             if ( !$handler )
             {
@@ -421,7 +421,6 @@ class XROWRecurringOrderCollection extends eZPersistentObject
         $mail->setSender( $ini->variable( 'MailSettings', 'AdminEmail' ) );
         $mail->setReceiver( $user->attribute( 'email' ), $userobject->attribute( 'name' ) );
 
-        include_once( 'kernel/common/template.php' );
         // fetch text from mail template
         $mailtpl = templateInit();
         foreach ( $params as $key => $value )

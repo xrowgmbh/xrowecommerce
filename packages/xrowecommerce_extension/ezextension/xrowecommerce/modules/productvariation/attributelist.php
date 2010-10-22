@@ -3,8 +3,6 @@
  * List the attributes of the product variation datatype
  */
 
-require_once( 'kernel/common/template.php' );
-
 $Module = $Params['Module'];
 $Module->setTitle( 'Product variation - column list' );
 
@@ -12,7 +10,9 @@ $tpl = eZTemplate::factory();
 $http = eZHTTPTool::instance();
 
 if ( isset( $Params['Language'] ) and strlen( $Params['Language'] ) > 1 )
+{
     $languageCode = $Params['Language'];
+}
 else
 {
     $languageObj = eZContentLanguage::topPriorityLanguage();
@@ -24,7 +24,9 @@ $languageID = eZContentLanguage::idByLocale( $languageCode );
 if ( $http->hasPostVariable( "NewButton" ) )
 {
     if ( $http->hasPostVariable( "LanguageCode" ) )
+    {
         $languageCode = $http->postVariable( "LanguageCode" );
+    }
     $params = array( null, $languageCode );
     $unorderedParams = array( 'Language' => $languageCode );
     $Module->run( 'attributeedit', $params, $unorderedParams );
@@ -40,7 +42,9 @@ if ( $limit == false )
 
 $offset = 0;
 if ( isset( $Params['Offset'] ) )
+{
     $offset = $Params['Offset'];
+}
 
 $attributeList = xrowProductAttribute::fetchList( array(), true, $offset, $limit, array( 'name' => 'asc' ) );
 $attributeCount = xrowProductAttribute::fetchListCount();

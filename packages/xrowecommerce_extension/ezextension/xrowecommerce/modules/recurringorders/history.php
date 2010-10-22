@@ -1,7 +1,6 @@
 <?php
 
-$Module =& $Params['Module'];
-include_once( 'kernel/common/template.php' );
+$Module = $Params['Module'];
 $tpl = eZTemplate::factory();
 
 
@@ -9,7 +8,7 @@ $limit = 10;
 
 if ( isset( $Params['UserParameters'] ) )
 {
-    $viewParameters = $Params['UserParameters'];                  
+    $viewParameters = $Params['UserParameters'];
 }
 else
 {
@@ -23,10 +22,8 @@ else
 {
     $offset = 0;
 }
-    
+
 $http = eZHTTPTool::instance();
-
-
 
 $tpl->setVariable( "history_list", XROWRecurringOrderHistory::historyList( $offset, $limit ) );
 $tpl->setVariable( "history_list_count", XROWRecurringOrderHistory::historyCount() );

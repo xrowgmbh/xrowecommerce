@@ -27,7 +27,6 @@
 //
 
 
-require_once ( 'kernel/common/template.php' );
 $Module = $Params['Module'];
 
 $tpl = eZTemplate::factory();
@@ -114,13 +113,13 @@ if ( $http->hasPostVariable( 'SaveOrderStatusButton' ) )
         {
             $order = eZOrder::fetch( $orderID );
             $access = $order->canModifyStatus( $statusID );
-            
+
             if ( $access and $order->attribute( 'status_id' ) != $statusID )
             {
             	$old = xrowECommerce::instanceStatus( $order->attribute( 'status_id' ) );
             	$new = xrowECommerce::instanceStatus( $statusID );
             	if ( $old->canChangeStatus( $new ) )
-            	{ 
+            	{
             		$old->changeStatus( $order, $new );
             	}
             }
@@ -135,19 +134,19 @@ $tpl->setVariable( 'order_list', $orderArray );
 $tpl->setVariable( 'order_list_count', $orderCount );
 $tpl->setVariable( 'limit', $limit );
 
-$viewParameters = array( 
-    'offset' => $offset 
+$viewParameters = array(
+    'offset' => $offset
 );
 $tpl->setVariable( 'view_parameters', $viewParameters );
 $tpl->setVariable( 'sort_field', $sortField );
 $tpl->setVariable( 'sort_order', $sortOrder );
 
 $Result = array();
-$Result['path'] = array( 
-    array( 
-        'text' => ezpI18n::tr( 'kernel/shop', 'Order list' ) , 
-        'url' => false 
-    ) 
+$Result['path'] = array(
+    array(
+        'text' => ezpI18n::tr( 'kernel/shop', 'Order list' ) ,
+        'url' => false
+    )
 );
 
 $Result['content'] = $tpl->fetch( 'design:shop/orderlist.tpl' );
