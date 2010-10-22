@@ -6,6 +6,7 @@ $ViewList = array();
 $ViewList["userregister"] = array(
     "functions" => array( 'buy' ),
     "script" => "userregister.php",
+    'ui_component' => 'shop',
     'ui_context' => 'edit',
     "default_navigation_part" => 'ezshopnavigationpart',
     'single_post_actions' => array( 'StoreButton' => 'Store',
@@ -14,11 +15,13 @@ $ViewList["userregister"] = array(
     );
 $ViewList["register"] = array(
     "functions" => array( ),
+    'ui_component' => 'shop',
     "script" => "register.php"
     );
 $ViewList["basket"] = array(
     "functions" => array( 'buy' ),
     "script" => "basket.php",
+    'ui_component' => 'shop',
     "default_navigation_part" => 'ezshopnavigationpart',
     'unordered_params' => array( 'error' => 'Error' ),
     "params" => array(  ) );
@@ -26,78 +29,91 @@ $ViewList["basket"] = array(
 $ViewList["cart"] = array(
     "functions" => array( 'buy' ),
     "script" => "cart.php",
+    'ui_component' => 'shop',
     "default_navigation_part" => 'ezmynavigationpart',
     'unordered_params' => array( 'error' => 'Error' ),
     "params" => array(  ) );
 
 $ViewList["multiadd"] = array(
     "functions" => array( 'buy' ),
+    'ui_component' => 'shop',
     "script" => "multiadd.php",
     "default_navigation_part" => 'ezshopnavigationpart',
     "params" => array(  ) );
 
 $ViewList["statistics"] = array(
     "functions" => array( 'administrate' ),
+    'ui_component' => 'shop',
     "script" => "orderstatistics.php",
     "default_navigation_part" => 'ezshopnavigationpart',
     "params" => array( 'StartYear', 'StartMonth', 'StopMonth', 'StartDay', 'StopDay' ) );
 
 $ViewList["confirmorder"] = array(
     "functions" => array( 'buy' ),
+    'ui_component' => 'shop',
     "script" => "confirmorder.php",
     "default_navigation_part" => 'ezshopnavigationpart',
     "params" => array(  ) );
 
 $ViewList["checkout"] = array(
     "functions" => array( 'buy' ),
+    'ui_component' => 'shop',
     "script" => "checkout.php",
     "default_navigation_part" => 'ezshopnavigationpart',
     "params" => array(  ) );
 
 $ViewList["orderview"] = array(
     "functions" => array( 'buy' ),
+    'ui_component' => 'shop',
     "script" => "orderview.php",
     "default_navigation_part" => 'ezshopnavigationpart',
     "params" => array( "OrderID" ) );
 
 $ViewList["invoiceprint"] = array(
     "functions" => array( 'buy' ),
+    'ui_component' => 'shop',
     "script" => "invoiceprint.php",
     "default_navigation_part" => 'ezshopnavigationpart',
     "params" => array( "OrderID" ) );
 
 $ViewList["shippingplanprint"] = array(
     "functions" => array( 'administrate' ),
+    'ui_component' => 'shop',
     "script" => "shippingplanprint.php",
     "default_navigation_part" => 'ezshopnavigationpart',
     "params" => array( "OrderID" ) );
 
 $ViewList["tin"] = array(
     "functions" => array( 'administrate' ),
+    'ui_component' => 'shop',
     "script" => "tin.php",
     "default_navigation_part" => 'ezshopnavigationpart',
     "params" => array() );
 
 $ViewList["priceimport"] = array(
     "functions" => array( 'administrate' ),
+    'ui_component' => 'shop',
     "script" => "price_import.php",
     "default_navigation_part" => 'ezshopnavigationpart',
     "params" => array() );
 
 $ViewList["priceexport"] = array(
     "functions" => array( 'administrate' ),
+    'ui_component' => 'shop',
     "script" => "price_export.php",
     "default_navigation_part" => 'ezshopnavigationpart',
     "params" => array() );
 
 $ViewList["directorder"] = array(
     "script" => "direct_order.php",
+    'ui_component' => 'shop',
     "default_navigation_part" => 'ezshopnavigationpart',
     "params" => array() );
 
 $Payment = array(
     'name' => 'Payment',
     'values' => array(),
+    'ui_component' => 'shop',
     'extension' => 'xrowecommerce',
     'path' => 'classes/',
     'file' => 'xrowecommerce.php',
@@ -108,6 +124,7 @@ $Payment = array(
 $ViewList["orderlist"] = array(
     "functions" => array( 'administrate' ),
     "script" => "orderlist.php",
+    'ui_component' => 'shop',
     "default_navigation_part" => 'ezshopnavigationpart',
     "unordered_params" => array( "offset" => "Offset" ),
     "params" => array(  ) );
@@ -115,6 +132,7 @@ $ViewList["orderlist"] = array(
 $ViewList["removeorder"] = array(
     "functions" => array( 'remove_order' ),
     "script" => "removeorder.php",
+    'ui_component' => 'shop',
     'ui_context' => 'edit',
     "default_navigation_part" => 'ezshopnavigationpart',
     "params" => array() );
@@ -122,11 +140,12 @@ $ViewList["removeorder"] = array(
 $ViewList["archiveorder"] = array(
     "functions" => array( 'administrate' ),
     "script" => "archiveorder.php",
+    'ui_component' => 'shop',
     'ui_context' => 'edit',
     "default_navigation_part" => 'ezshopnavigationpart',
     "params" => array() );
 
-$ViewList["json"] = array( "script" => "json.php", "params" => array ( 'object', 'method' ) ); 
+$ViewList["json"] = array( "script" => "json.php", "params" => array ( 'object', 'method' ) );
 
 
 $FunctionList['buy'] = array( );
