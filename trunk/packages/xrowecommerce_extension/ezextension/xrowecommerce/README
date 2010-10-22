@@ -1,0 +1,17 @@
+Extension xrowecommerce
+=====================================================================
+
+Install:
+- Add sql to your database: extension/xrowecommerce/sql/mysql/mysql.sql
+- Regenerate autoloads: php bin/php/ezpgenerateautoloads.php -e
+- Clear your cache
+
+If you need to use all features of the extension, you need to patch
+some kernel files. A list of this files is in
+doc/kernelpatches.txt
+
+The extension requires str_getcsv to be installed in php.
+If you don't have this function, put this to your config.php:
+include_once( 'extension/xrowecommerce/config.php' );
+
+Alternativly you can copy the code of extension/xrowecommerce/config.php to your config.php
