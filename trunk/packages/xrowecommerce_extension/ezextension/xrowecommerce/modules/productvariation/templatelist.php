@@ -3,8 +3,6 @@
  * List the templates of the product variation datatype
  */
 
-require_once( 'kernel/common/template.php' );
-
 $Module = $Params['Module'];
 $Module->setTitle( 'Product variation - template list' );
 
