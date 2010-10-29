@@ -6,7 +6,7 @@
                     <div class="searchline-img">
                         {if $node.data_map.image.has_content}
                             <div class="search-productline-img">
-                                {attribute_view_gui image_class=product_thumb attribute=$node.data_map.image}
+                                {attribute_view_gui image_class=product_thumb attribute=$node.data_map.image href=$node.url_alias|ezurl}
                             </div>
                         {else}
                             <div class="nopic"><a href="{$node.url_alias|ezurl('no')}"><img src={'shop/nopic.gif'|ezimage()} alt="{'No image available'|i18n('extension/xrowecommerce')}" /></a></div>
@@ -22,7 +22,7 @@
 {else}
     {$node.data_map.short_description.data_text|strip_all|wash()|shorten( 50 )}
 {/if}
-                
+
                 </td>
             </tr>
         </table>
