@@ -377,7 +377,7 @@ class eZShippingInterfaceType extends eZWorkflowEventType
 
         // @TODO show template that hazardous items got removed
         /*
-        include_once( 'kernel/common/template.php' );
+        
         $tpl = eZTemplate::factory();
         $tpl->setVariable( "hazardous", $hazardousproducts );
         */
