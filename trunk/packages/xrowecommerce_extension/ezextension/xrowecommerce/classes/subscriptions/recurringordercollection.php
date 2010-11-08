@@ -422,7 +422,7 @@ class XROWRecurringOrderCollection extends eZPersistentObject
         $mail->setReceiver( $user->attribute( 'email' ), $userobject->attribute( 'name' ) );
 
         // fetch text from mail template
-        $mailtpl = templateInit();
+        $mailtpl = eZTemplate::factory();
         foreach ( $params as $key => $value )
         {
             $mailtpl->setVariable( $key, $value );
