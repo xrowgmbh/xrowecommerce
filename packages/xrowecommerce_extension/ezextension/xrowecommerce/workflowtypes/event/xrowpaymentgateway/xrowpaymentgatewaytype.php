@@ -389,4 +389,5 @@ class xrowPaymentGatewayType extends eZWorkflowEventType
 }
 
 eZWorkflowEventType::registerEventType( xrowPaymentGatewayType::WORKFLOW_TYPE_STRING, 'xrowpaymentgatewaytype' );
+
 ?>

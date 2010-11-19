@@ -20,10 +20,10 @@ Service_code[]=03:UPS Ground
 Service_code[]=07:UPS Worldwide Express
 
 [ShipperSettings]
-City=New York City
-Zip=10019
-State=NY
-Country=US
+City=My City
+Zip=00000
+State=XX
+Country=XX
 
 [AvailableSettings]
 AvailableFor=USA
