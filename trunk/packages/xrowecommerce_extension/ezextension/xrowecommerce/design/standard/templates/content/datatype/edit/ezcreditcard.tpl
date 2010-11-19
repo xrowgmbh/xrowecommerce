@@ -3,7 +3,6 @@
      $gateway_array=$attribute.contentclass_attribute.content.gateway_array
      $card_array=$attribute.contentclass_attribute.content.card_array
      $card_gateway_array=$attribute.contentclass_attribute.content.card_gateway_array}
-     
 {*<link rel="stylesheet" type="text/css" href={'javascript/yui/build/container/assets/skins/sam/container.css'|ezdesign(no)} />
 <script type="text/javascript" src={'javascript/yui/build/yahoo-dom-event/yahoo-dom-event.js'|ezdesign(no)}></script>
 <script type="text/javascript" src={'javascript/yui/build/container/container-min.js'|ezdesign(no)}></script>
@@ -80,15 +79,16 @@
     }
     <label>{'Card type'|i18n( 'design/standard/content/datatype' )}</label>
     <select name="{$attribute_base}_ezcreditcard_type_{$attribute.id}" id="ezcoa-{if ne( $attribute_base, 'ContentObjectAttribute' )}{$attribute_base}-{/if}{$attribute.contentclassattribute_id}_{$attribute.contentclass_attribute_identifier}" class="{eq( $html_class, 'half' )|choose( 'box', 'halfbox' )} ezcc-{$attribute.object.content_class.identifier} ezcca-{$attribute.object.content_class.identifier}_{$attribute.contentclass_attribute_identifier}" onchange="updateCCField{$attribute.id}(this.value, {$attribute.id} );" >
+
     {if $gateway|count()|gt( 0 )}
         <option></option>
         {foreach $card_array as $key => $card}
         {if $gateway.$key|ne( '' )}
-        	<option value="{$key}"{if $type|eq($key)} selected="selected"{/if}>{$card|wash}</option>
+        <option value="{$key}"{if $type|eq($key)} selected="selected"{/if}>{$card|wash}</option>
         {/if}
         {/foreach}
     {else}
-        {foreach $gateway_array as $key => $gateway}
+        {foreach $card_array as $key => $gateway}
         <option value="{$key}"{if $type|eq($key)} selected="selected"{/if}>{$card_array[$key]|wash}</option>
         {/foreach}
     {/if}
@@ -118,55 +118,46 @@
 
 <script type="text/javascript">
     YAHOO.namespace("example.container");
-
     function init() {
     // Build overlay1 based on markup, initially hidden, fixed to the center of the viewport, and 300px wide
         YAHOO.example.container.overlay1 = new YAHOO.widget.Overlay("overlay1", { fixedcenter:false,
                                                                                   visible:false,
                                                                                   width:"400px" } );
         YAHOO.example.container.overlay1.render();
-
         YAHOO.util.Event.addListener("show_auto_tip", "mouseover", YAHOO.example.container.overlay1.show, YAHOO.example.container.overlay1, true);
         YAHOO.util.Event.addListener("show_auto_tip", "mouseout", YAHOO.example.container.overlay1.hide, YAHOO.example.container.overlay1, true);
     }
-
     YAHOO.util.Event.addListener(window, "load", init);
 </script>
 {/literal}
 <div id="overlay1" style="visibility:hidden;">
-<h3>What is a Security Code?</h3>
-
-<img src={'CVC2SampleVisaNew.png'|ezimage} alt="Sample credit card">
-
-<p>The Card Security Code is located on the back of MasterCard, Visa and Discover credit or debit cards and is typically a separate group of 3 digits to the right of the signature strip.</p>
-
-<img src={'CVC2SampleVisaNew.png'|ezimage} alt="Sample credit card">
-
-<p>On American Express cards, the Card Security Code is a printed (NOT embossed) group of four digits on the front towards the right.</p>
-
-<img src={'CIDSampleAmex.png'|ezimage} alt="Sample credit card">
-
+    <h3>{'What is a Security Code?'|i18n('extension/xrowecommerce')}</h3>
+    <img src={'CVC2SampleVisaNew.png'|ezimage} alt="Sample credit card" />
+    <p>{'The Card Security Code is located on the back of MasterCard, Visa and Discover credit or debit cards and is typically a separate group of 3 digits to the right of the signature strip.'|i18n('extension/xrowecommerce')}</p>
+    <img src={'CVC2SampleVisaNew.png'|ezimage} alt="Sample credit card" />
+    <p>{'On American Express cards, the Card Security Code is a printed (NOT embossed) group of four digits on the front towards the right.'|i18n('extension/xrowecommerce')}</p>
+    <img src={'CIDSampleAmex.png'|ezimage} alt="Sample credit card" />
 </div>
         <div class="block">
             <div class="element">
             <label>{'Month'|i18n( 'design/standard/content/datatype' )}</label>
             <select name="{$attribute_base}_ezcreditcard_month_{$attribute.id}" id="ezcoa-{if ne( $attribute_base, 'ContentObjectAttribute' )}{$attribute_base}-{/if}{$attribute.contentclassattribute_id}_{$attribute.contentclass_attribute_identifier}" class="{eq( $html_class, 'half' )|choose( 'box', 'halfbox' )} ezcc-{$attribute.object.content_class.identifier} ezcca-{$attribute.object.content_class.identifier}_{$attribute.contentclass_attribute_identifier}" >
-            <option></option>
-            {def $months = array('01','02','03','04','05','06','07','08','09','10','11','12')}
-            {foreach $months as $month}
-            <option value="{$month}"{if $month|eq($cmonth)} selected="selected"{/if}>{$month}</option>
-            {/foreach}
+                <option></option>
+                {def $months = array('01','02','03','04','05','06','07','08','09','10','11','12')}
+                {foreach $months as $month}
+                <option value="{$month}"{if $month|eq($cmonth)} selected="selected"{/if}>{$month}</option>
+                {/foreach}
             </select>
             </div>
 
             <div class="element">
             <label>{'Year'|i18n( 'design/standard/content/datatype' )}</label>
             <select name="{$attribute_base}_ezcreditcard_year_{$attribute.id}" id="ezcoa-{if ne( $attribute_base, 'ContentObjectAttribute' )}{$attribute_base}-{/if}{$attribute.contentclassattribute_id}_{$attribute.contentclass_attribute_identifier}" class="{eq( $html_class, 'half' )|choose( 'box', 'halfbox' )} ezcc-{$attribute.object.content_class.identifier} ezcca-{$attribute.object.content_class.identifier}_{$attribute.contentclass_attribute_identifier}" >
-            <option></option>
-            {def $year=currentdate()|datetime(custom,'%Y')}
-            {for $year to sum($year,10) as $i}
-            <option value="{$i}"{if $i|eq($cyear)}selected="selected"{/if}>{$i}</option>
-            {/for}
+                <option></option>
+                {def $year=currentdate()|datetime(custom,'%Y')}
+                {for $year to sum($year,10) as $i}
+                <option value="{$i}"{if $i|eq($cyear)}selected="selected"{/if}>{$i}</option>
+                {/for}
             </select>
             </div>
             <div class="break"></div>

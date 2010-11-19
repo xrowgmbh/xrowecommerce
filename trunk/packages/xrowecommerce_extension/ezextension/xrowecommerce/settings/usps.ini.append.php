@@ -13,10 +13,10 @@ RETURNTRANSFER=1
 SSL_VERIFYPEER=false
 
 [ShipperSettings]
-City=New York City
-Zip=10019
-State=NY
-Country=USA
+City=My City
+Zip=00000
+State=XX
+Country=XXX
 
 [AvailableSettings]
 AvailableFor=INTERNATIONAL

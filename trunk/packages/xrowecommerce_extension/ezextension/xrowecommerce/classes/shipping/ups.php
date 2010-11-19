@@ -8,37 +8,37 @@ class UPS extends ShippingInterface
 
     
     function methods() {
-    	return array( 
-	    	array(
-	    		'identifier' => '3', 
-	    		'name' => 'UPS Ground (USA only)'
-	    	),
-	    	array(
-	    		'identifier' => '4',
-	    		'name' => 'UPS Next Business Day Air (USA only)'
-	    	),
-	    	array(
-	    		'identifier' => '5',
-	    		'name' => 'UPS 2nd Business Day Air (USA only)'
-	    	),
-	    	array(
-	    		'identifier' => 'ups_ground',
-	    		'name' => 'UPS Ground (USA only)'
-	    	),
-	    	array(
-	    		'identifier' => 'ups_air_nextday',
-	    		'name' => 'UPS Next Business Day Air (USA only)'
-	    	),
-	    	array(
-	    		'identifier' => 'ups_air_2ndday',
-	    		'name' => 'UPS 2nd Business Day Air (USA only)'
-	    	)
-    	);
+        return array( 
+            array(
+                'identifier' => '3', 
+                'name' => 'UPS Ground (USA only)'
+            ),
+            array(
+                'identifier' => '4',
+                'name' => 'UPS Next Business Day Air (USA only)'
+            ),
+            array(
+                'identifier' => '5',
+                'name' => 'UPS 2nd Business Day Air (USA only)'
+            ),
+            array(
+                'identifier' => 'ups_ground',
+                'name' => 'UPS Ground (USA only)'
+            ),
+            array(
+                'identifier' => 'ups_air_nextday',
+                'name' => 'UPS Next Business Day Air (USA only)'
+            ),
+            array(
+                'identifier' => 'ups_air_2ndday',
+                'name' => 'UPS 2nd Business Day Air (USA only)'
+            )
+        );
     }
 
     function loadConfiguration()
     {
-    	$upsini = eZINI::instance( 'ups.ini' );
+        $upsini = eZINI::instance( 'ups.ini' );
         $this->setLicense($upsini->variable( "Account", "AccessLicenseNumber" ));
         $this->ShipperNumber = $upsini->variable( "Account", "ShipperNumber" );
         $this->setUserID($upsini->variable( "Account", "Userid" ));
@@ -58,7 +58,7 @@ class UPS extends ShippingInterface
     
     function setAddressTo( $shipping_country, $shipping_state, $shipping_zip, $shipping_city )
     {
-    	$shipping_country = $this->convert_country( $shipping_country, "Alpha3", "Alpha2");
+        $shipping_country = $this->convert_country( $shipping_country, "Alpha3", "Alpha2");
         parent::setAddressTo( $shipping_country, $shipping_state, $shipping_zip, $shipping_city );
     }
     
@@ -88,7 +88,7 @@ class UPS extends ShippingInterface
             return $ups_services;
         }
         else return false;
-    	
+        
     }
     function setLicense($license) {
         $this->license = $license;
@@ -126,17 +126,17 @@ class UPS extends ShippingInterface
 
     function getShippingDetails()
     {
-    	if ( $this->method == "3" ||  $this->method == "ups_ground" )
-    	{
-    		$this->setService( "03" );
-    	}
-    	elseif ( $this->method == "4" ||  $this->method == "ups_air_nextday" )
-    	{
-    		$this->setService( "01" );
-    	}
+        if ( $this->method == "3" ||  $this->method == "ups_ground" )
+        {
+            $this->setService( "03" );
+        }
+        elseif ( $this->method == "4" ||  $this->method == "ups_air_nextday" )
+        {
+            $this->setService( "01" );
+        }
         elseif ( $this->method == "5" || $this->method == "ups_air_2ndday" )
         {
-        	$this->setService( "02" );
+            $this->setService( "02" );
         }
         $strXML = "<?xml version='1.0'?>
    <AccessRequest xml:lang='en-US'>
@@ -265,13 +265,13 @@ class UPS extends ShippingInterface
         }
         elseif ($resp_array["Response"]["ResponseStatusCode"] == "0")
         {
-        	eZDebug::writeError( $resp_array["Response"]["Error"]["ErrorDescription"] , __METHOD__ );
-        	throw new xrowShippingGatewayException( $resp_array["Response"]["Error"]["ErrorDescription"], $resp_array["Response"]["Error"]["ErrorCode"] );
+            eZDebug::writeError( $resp_array["Response"]["Error"]["ErrorDescription"] , __METHOD__ );
+            throw new xrowShippingGatewayException( $resp_array["Response"]["Error"]["ErrorDescription"], $resp_array["Response"]["Error"]["ErrorCode"] );
         }
         elseif( $curl_error == '' )
         {
-        	eZDebug::writeError( "Unknown error." . $ups_error->error_code , __METHOD__ );
-        	throw new xrowShippingGatewayException( "Unknown error.", $ups_error->error_code );
+            eZDebug::writeError( "Unknown error." . $ups_error->error_code , __METHOD__ );
+            throw new xrowShippingGatewayException( "Unknown error.", $ups_error->error_code );
         }
         return $this;
     } // End of GetPrice
