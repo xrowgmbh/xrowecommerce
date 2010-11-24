@@ -78,7 +78,7 @@ class xrowPaymentGatewayType extends eZWorkflowEventType
             $process->store();
         }
         $theGateway = $this->getCurrentGateway( $process, $event );
-        
+
         if ( $process->attribute( 'event_state' ) == xrowPaymentGatewayType::GATEWAY_NOT_SELECTED and $theGateway instanceof eZPaymentGateway )
         {
             $process->setAttribute( 'event_state', xrowPaymentGatewayType::GATEWAY_SELECTED );
@@ -86,18 +86,14 @@ class xrowPaymentGatewayType extends eZWorkflowEventType
         if ( $process->attribute( 'event_state' ) == xrowPaymentGatewayType::GATEWAY_NOT_SELECTED or ! ( $theGateway instanceof eZPaymentGateway ) )
         {
             $this->logger->writeTimedString( 'execute: eZPaymentGatewayType::GATEWAY_NOT_SELECTED' );
-            
-            if ( ! $this->selectGateway( $process, $event ) )
-            {
-                $process->Template = array();
-                $process->Template['templateName'] = 'design:workflow/selectgateway.tpl';
-                $process->Template['path'] = array( array( 'url' => false, 'text' => ezpI18n::tr( 'extension/xrowecommerce', 'Payment Information' ) ) );
-                $process->Template['templateVars'] = array( 
-                    'event' => $event 
-                );
+            $process->Template = array();
+            $process->Template['templateName'] = 'design:workflow/selectgateway.tpl';
+            $process->Template['path'] = array( array( 'url' => false, 'text' => ezpI18n::tr( 'extension/xrowecommerce', 'Payment Information' ) ) );
+            $process->Template['templateVars'] = array( 
+                'event' => $event 
+             );
                 
-                return eZWorkflowType::STATUS_FETCH_TEMPLATE_REPEAT;
-            }
+             return eZWorkflowType::STATUS_FETCH_TEMPLATE_REPEAT;
         }
         
         $status = $theGateway->execute( $process, $event );
@@ -247,7 +243,7 @@ class xrowPaymentGatewayType extends eZWorkflowEventType
     Returns 'current' gateway.
     */
     
-    function getCurrentGateway( $process, $event )
+    function getCurrentGateway( &$process, $event )
     {
         $theGateway = null;
         $gatewayType = $this->getCurrentGatewayType( $process, $event );
@@ -263,7 +259,7 @@ class xrowPaymentGatewayType extends eZWorkflowEventType
     Returns 'current' gatewaytype.
     */
     
-    function getCurrentGatewayType( $process, $event )
+    function getCurrentGatewayType( &$process, $event )
     {
         $gateway = null;
         $http = eZHTTPTool::instance();
@@ -294,6 +290,16 @@ class xrowPaymentGatewayType extends eZWorkflowEventType
             }
             else 
             {
+                $selectedGatewaysTypes = explode( ',', $event->attribute( 'data_text3' ) );
+        	if ( count( $selectedGatewaysTypes ) == 1 && $selectedGatewaysTypes[0] != - 1 )
+        	{
+            	    $params = $process->parameterList();
+                    $params['paymentgateway'] = $selectedGatewaysTypes[0];
+                    $process->setParameters( $params );
+                    $process->store();
+                    $this->logger->writeTimedString( $selectedGatewaysTypes[0], __METHOD__ );
+                    return $params['paymentgateway'];
+                }    
             	$gateway = false;
             }
         }
@@ -316,7 +322,7 @@ class xrowPaymentGatewayType extends eZWorkflowEventType
             $params['paymentgateway'] = $selectedGatewaysTypes[0];
             $process->setParameters( $params );
             $process->store();
-            $this->logger->writeTimedString( $selectedGatewaysTypes[0], 'selectGateway' );
+            $this->logger->writeTimedString( $selectedGatewaysTypes[0], __METHOD__ );
             return true;
         }
         elseif ( array_key_exists( 'paymentgateway', $process->parameterList() ) )
