@@ -1,7 +1,7 @@
-<?php /* #?ini charset="iso-8859-1"?
+<?php /* #?ini charset="utf-8"?
 
-#?ini charset="iso-8859-1"?
-# eZ publish configuration file for workflows.
+[OperationSettings]
+AvailableOperationList[]=recurringorders_checkout
 
 [EventSettings]
 RepositoryDirectories[]=extension/xrowecommerce/workflowtypes

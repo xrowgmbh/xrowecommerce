@@ -32,7 +32,11 @@
         <tr>
             <th>{'Name'|i18n('extension/xrowecommerce')}:</th>
             <td>{$order.account_information.first_name|wash}
-            {$order.account_information.last_name|wash}</td>
+            {if $order.account_information.mi}
+            {$order.account_information.mi|wash}
+            {/if}
+            {$order.account_information.last_name|wash}
+            </td>
         </tr>
         <tr>
             <th>{'Email'|i18n('extension/xrowecommerce')}:</th>
