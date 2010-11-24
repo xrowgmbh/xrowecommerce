@@ -140,7 +140,7 @@ foreach ( $list as $collection )
     $operationResult = eZOperationHandler::execute( 'recurringorders', 'checkout', array( 'order_id' => $order->attribute( 'id' ) ) );
     switch( $operationResult['status'] )
     {
-        case EZ_MODULE_OPERATION_HALTED:
+        case eZModuleOperationInfo::STATUS_HALTED:
         {
             if (  isset( $operationResult['redirect_url'] ) )
             {
@@ -155,7 +155,7 @@ foreach ( $list as $collection )
                 continue 2;
             }
         }break;
-        case EZ_MODULE_OPERATION_CANCELED:
+        case eZModuleOperationInfo::STATUS_CANCELLED:
         {
             $collection->addHistory( XROWRecurringOrderCollection::STATUSTYPE_FAILURE, 'Order has been CANCELED.', $order->ID );
             $order->remove();
@@ -174,10 +174,8 @@ foreach ( $list as $collection )
         $item->store();
         $cli->output( '  Item #' . $item->item_id . ' next order is on ' . strftime( '%d.%m.%Y', $item->attribute( 'next_date' ) ) );
     }
-    $collection->addHistory( XROWRecurringOrderCollection::STATUSTYPE_SUCCESS, 'Order has been completed.', $order->ID ); 
+    $collection->addHistory( XROWRecurringOrderCollection::STATUSTYPE_SUCCESS, 'Order has been completed.', $order->ID );
 }
 $cli->output( 'Recurring Orders processed' );
-/*
-$script->shutdown();
-*/
+
 ?>
