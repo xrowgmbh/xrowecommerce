@@ -7,15 +7,15 @@ Debug=false
 SSLVerify=true
 
 # (Required) Authorize.Net Merchant Login User Name
-MerchantLogin=false
+#MerchantLogin=false
 
 # (Required) Authorize.Net Transaction Key
-TransactionKey=false
+#TransactionKey=false
 
 # Enable or Disable Authorize.Net Test Mode
 # TestMode disables charing credit card
 
-TestMode=true
+TestMode=false
 
 ## Optional
 
