@@ -138,7 +138,7 @@ HazardousItems=disabled
 
 [InvoiceSettings]
 ShowFooter=enabled
-CompanyName=Example Inc
+#CompanyName=Example Inc
 #CompanyAddress[]
 CompanyWebsite=http://www.example.com/
 CompanyPhone=+1 555 123456
@@ -212,10 +212,10 @@ ExportPriceLanguage=
 
 # only for xrowproductvariation
 ExportVariationFieldArray[]
-#ExportVariationFieldArray[höhe]=höhe
-#ExportVariationFieldArray[hoehe]=höhe
-#ExportVariationFieldArray[length]=länge
-#ExportVariationFieldArray[laenge]=länge
+#ExportVariationFieldArray[hï¿½he]=hï¿½he
+#ExportVariationFieldArray[hoehe]=hï¿½he
+#ExportVariationFieldArray[length]=lï¿½nge
+#ExportVariationFieldArray[laenge]=lï¿½nge
 #ExportVariationFieldArray[depth]=breite
 #ExportVariationFieldArray[tiefe]=breite
 
@@ -225,8 +225,8 @@ DescField=description
 # export these attributes
 #GoogleAttributes[]
 #GoogleAttributes[id]=id
-#GoogleAttributes[höhe]=höhe
-#GoogleAttributes[länge]=länge
+#GoogleAttributes[hï¿½he]=hï¿½he
+#GoogleAttributes[lï¿½nge]=lï¿½nge
 #GoogleAttributes[breite]=breite
 #GoogleAttributes[preis]=preis
 #GoogleAttributes[bild_url]=bild_url
