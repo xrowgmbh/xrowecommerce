@@ -232,7 +232,7 @@ DescField=description
 #GoogleAttributes[bild_url]=bild_url
 
 #host for links
-#BaseURL=www.kaisersysteme.com
+#BaseURL=www.example.com
 
 #extended links with this siteaccess
 #ExportSiteaccess=/ger
