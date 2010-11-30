@@ -152,7 +152,7 @@ function load() {
         <th class="wide">{'Destination'|i18n( 'extension/xrowecommerce')}</th>
         <th class="number">{'Net Sale'|i18n( 'extension/xrowecommerce')}</th>
         <th class="number">{'Tax'|i18n( 'extension/xrowecommerce')}</th>
-        <th class="number">{'Shipping/Handling'|i18n( 'extension/xrowecommerce')}</th>
+        <th class="number">{'Shipping'|i18n( 'extension/xrowecommerce')}</th>
         <th class="number">{'Order Total'|i18n( 'extension/xrowecommerce')}</th>
     </tr>
     <tr>

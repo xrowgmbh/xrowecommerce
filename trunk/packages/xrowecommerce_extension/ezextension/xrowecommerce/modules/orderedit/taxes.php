@@ -35,6 +35,7 @@ if ( $http->hasPostVariable( "country" ) )
 {
     $country = $http->postVariable( "country" );
 }
+
 if ( $http->hasPostVariable( "state" ) )
 {
     $state = $http->postVariable( "state" );
@@ -154,24 +155,22 @@ foreach ( $orderArray as $item )
     if ( $xml != null )
     {
         $shipping = (string) $xml->shipping;
-        
-        if ( $shipping and (string) $xml->s_country)
+
+        if ( (string) $xml->s_country )
         {
-            $shipping = true;
-            $state = (string) $xml->s_state;
-            $country = (string) $xml->s_country;
+
+            $orderstate = (string) $xml->s_state;
+            $ordercountry = (string) $xml->s_country;
         }
         else
         {
-        	$state = (string) $xml->state;
-        	$country = (string) $xml->country;
-            $shipping = false;
+        	$orderstate = (string) $xml->state;
+        	$ordercountry = (string) $xml->country;
         }
         
     }
-
+/**
     $tmpcountry = xrowGeonames::getCountry( $country );
-
     $tmpstate = xrowGeonames::getSubdivisionName( $country, $state );
     if ( $tmpstate )
     {
@@ -181,9 +180,17 @@ foreach ( $orderArray as $item )
     {
     	$destination =  $tmpcountry['Name'] ;
     }
-
-    unset( $state );
-    unset( $country );
+*/
+    if ( $orderstate )
+    {
+        $destination =  $ordercountry . " / " . $orderstate ;
+    }
+    else
+    {
+        $destination =  $ordercountry;
+    }
+    unset( $ordercountry );
+    unset( $orderstate );
     unset( $shipping );
     $productitemsArray = $db->arrayQuery( "SELECT e.vat_value, e.item_count, e.price
 FROM ezproductcollection_item e
@@ -263,6 +270,7 @@ $tpl->setVariable( "startDay", $startDay );
 $tpl->setVariable( "stopDay", $stopDay );
 $tpl->setVariable( "country", $country );
 $tpl->setVariable( "countries", xrowGeonames::getCountries() );
+
 $tpl->setVariable( "states", xrowGeonames::getSubdivisions( $country ) );
 $tpl->setVariable( "state", $state );
 
