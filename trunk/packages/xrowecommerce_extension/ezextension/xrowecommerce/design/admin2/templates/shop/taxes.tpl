@@ -180,15 +180,16 @@ function load() {
                 <td class="number">{$order.ordersum.price_ex_tax|l10n( 'currency' )}</td>
                 <td class="number">{$order.total_inc_vat|l10n( 'currency' )}</td>
             </tr>
-            {if or( and($i|eq(40), $page_count|eq(1)), and($i|eq(50), $page_count|gt(1) ) ) }
+            {if or( and($i|eq(55), $page_count|eq(1)), and($i|eq(65), $page_count|gt(1) ) ) }
             {set $i=0}
             {set $page_count=inc($page_count)}
             <tr style="page-break-before:always;">
                 <th>{'Order'|i18n( 'extension/xrowecommerce')}</th>
                 <th>{'Date'|i18n( 'extension/xrowecommerce')}</th>
+                <th class="number">{'Destination'|i18n( 'extension/xrowecommerce')}</th>
                 <th class="number">{'Net Sale'|i18n( 'extension/xrowecommerce')}</th>
                 <th class="number">{'Tax'|i18n( 'extension/xrowecommerce')}</th>
-                <th class="number">{'Shipping/Handling'|i18n( 'extension/xrowecommerce')}</th>
+                <th class="number">{'Shipping'|i18n( 'extension/xrowecommerce')}</th>
                 <th class="number">{'Order Total'|i18n( 'extension/xrowecommerce')}</th>
             </tr>
 
