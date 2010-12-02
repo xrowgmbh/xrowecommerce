@@ -165,7 +165,16 @@ if ( $user->isLoggedIn() and in_array( $userobject->attribute( 'class_identifier
             }
             else
             {
-                $s_country = eZCountryType::fetchCountry( $s_country['value'], false );
+            if ( key_exists('value', $s_country ) ) {
+                $s_country = $s_country['value'];
+            }
+            if ( strlen( $s_country ) == 3 ) {
+                $s_country = eZCountryType::fetchCountry( $s_country, 'Alpha3' );
+            } elseif ( strlen( $country ) == 2 ) {
+                $s_country = eZCountryType::fetchCountry( $s_country, 'Alpha2' );
+            } else {
+                $s_country = eZCountryType::fetchCountry( $s_country, false );
+                }
             }
             $s_country = $s_country['Alpha3'];
         }
