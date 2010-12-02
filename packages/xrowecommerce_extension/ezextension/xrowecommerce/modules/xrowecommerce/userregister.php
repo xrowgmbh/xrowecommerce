@@ -79,7 +79,16 @@ if ( $user->isLoggedIn() and in_array( $userobject->attribute( 'class_identifier
         }
         else
         {
-            $country = eZCountryType::fetchCountry( $country['value'], false );
+            if (key_exists('value', $country )) {
+                $country = $country['value'];
+            }
+            if ( strlen( $country ) == 3 ) {
+                $country = eZCountryType::fetchCountry( $country, 'Alpha3' );
+            } elseif ( strlen( $country ) == 2 ) {
+                $country = eZCountryType::fetchCountry( $country, 'Alpha2' );
+            } else {
+                $country = eZCountryType::fetchCountry( $country, false );
+            }
         }
         $country = $country['Alpha3'];
     }
@@ -178,6 +187,7 @@ if ( $user->isLoggedIn() and in_array( $userobject->attribute( 'class_identifier
         }
     }
 }
+
 $orderID = $http->sessionVariable( 'MyTemporaryOrderID' );
 $order = eZOrder::fetch( $orderID );
 if ( $order instanceof eZOrder )
@@ -1053,7 +1063,6 @@ $tpl->setVariable( 'first_name', $first_name );
 $tpl->setVariable( 'mi', $mi );
 $tpl->setVariable( 'last_name', $last_name );
 $tpl->setVariable( 'email', $email );
-
 $tpl->setVariable( 'address1', $address1 );
 $tpl->setVariable( 'address2', $address2 );
 $tpl->setVariable( 'city', $city );
