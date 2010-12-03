@@ -555,21 +555,37 @@ class eZAuthorizeGateway extends xrowEPaymentGateway
         if ( $xml )
         {
             // assign shop account handeler values (now staticly)
-	        $this->order_first_name = (string)$xml->{'first_name'};
-	        $this->order_last_name = (string)$xml->{'last_name'};
-	        $this->order_company = (string)$xml->{'company'};
-	       	$this->order_email = (string)$xml->{'email'};
-	        $this->order_street1 = (string)$xml->{'address1'};
-	            
-	        $this->order_fax = '';
-	        $this->order_street2 = (string)$xml->{'address2'};
-	        $this->order_zip = (string)$xml->{'zip'};
-	        $this->order_place = (string)$xml->{'city'};
-	        $this->order_state = (string)$xml->{'state'};
-	        $this->order_country = (string)$xml->{'country'};
-	        $this->order_comment = (string)$xml->{'comment'};
-	        $this->order_phone = (string)$xml->{'phone'};
+            $this->order_company_name = (string)$xml->{'company_name'};
+            $this->order_company_additional = (string)$xml->{'company_additional'};
+            $this->order_first_name = (string)$xml->{'first_name'};
+            $this->order_last_name = (string)$xml->{'last_name'};
+            $this->order_company = (string)$xml->{'company'};
+            $this->order_email = (string)$xml->{'email'};
+            $this->order_street1 = (string)$xml->{'address1'};
+            $this->order_fax = (string)$xml->{'fax'};
+            $this->order_street2 = (string)$xml->{'address2'};
+            $this->order_zip = (string)$xml->{'zip'};
+            $this->order_place = (string)$xml->{'city'};
+            $this->order_state = (string)$xml->{'state'};
+            $this->order_country = (string)$xml->{'country'};
+            $this->order_comment = (string)$xml->{'comment'};
+            $this->order_phone = (string)$xml->{'phone'};
             
+            if ( (string)$xml->{'shipping'} == "0" ) {
+
+                $this->order_shipping = (string)$xml->{'shipping'};
+                $this->s_order_company_name = (string)$xml->{'s_company_name'};
+                $this->s_order_company_additional = (string)$xml->{'s_company_additional'};
+                $this->s_order_first_name = (string)$xml->{'s_first_name'};
+                $this->s_order_last_name = (string)$xml->{'s_last_name'};
+                $this->s_order_address1 = (string)$xml->{'s_address1'};
+                $this->s_order_address2 = (string)$xml->{'s_address2'};
+                $this->s_order_city = (string)$xml->{'s_city'};
+                $this->s_order_state = (string)$xml->{'s_state'};
+                $this->s_order_zip = (string)$xml->{'s_zip'};
+                $this->s_order_coutry = (string)$xml->{'s_country'};
+            }
+
             return true;
         }
         return false;
@@ -580,35 +596,35 @@ class eZAuthorizeGateway extends xrowEPaymentGateway
         // customer billing address
         $aim->addField( 'x_first_name', $this->order_first_name );
         $aim->addField( 'x_last_name', $this->order_last_name );
-        $aim->addField( 'x_company', $this->order_company );
+        $aim->addField( 'x_company', $this->order_company . $this->order_company_additional );
         $aim->addField( 'x_address', $this->order_street1 . ' ' . $this->order_street2 );
         $aim->addField( 'x_city', $this->order_place );
         $aim->addField( 'x_state', $this->order_state );
         $aim->addField( 'x_zip', $this->order_zip );
         $aim->addField( 'x_country', str_replace( " ", "%20", $this->order_country ) );
-    
+
     }
 
     function addShipping( &$aim )
     {
-        if ( (string)$this->data{'s_address1'} )
+        if ( $this->order_shipping == "0" )
         {
             // customer shipping address
-            $aim->addField( 'x_ship_to_first_name', (string)$this->data{'s_first-name'} );
-            $aim->addField( 'x_ship_to_last_name', (string)$this->data{'s_last-name'} );
-            $aim->addField( 'x_ship_to_company', (string)$this->data{'s_city'} );
-            $aim->addField( 'x_ship_to_address', (string)$this->data{'s_address1'} . ' ' . (string)$this->data{'s_address2'} );
-            $aim->addField( 'x_ship_to_city', (string)$this->data{'s_city'} );
-            $aim->addField( 'x_ship_to_state', (string)$this->data{'s_state'} );
-            $aim->addField( 'x_ship_to_zip', (string)$this->data{'s_zip'} );
-            $aim->addField( 'x_ship_to_country', str_replace( " ", "%20", (string)$this->data{'s_country'} ) );
+            $aim->addField( 'x_ship_to_first_name', $this->s_order_first_name );
+            $aim->addField( 'x_ship_to_last_name', $this->s_order_last_name );
+            $aim->addField( 'x_ship_to_company', $this->s_order_company_name . ' ' . $this->s_order_company_additional );
+            $aim->addField( 'x_ship_to_address', $this->s_order_address1 . ' ' . $this->s_order_address2 );
+            $aim->addField( 'x_ship_to_city', $this->s_order_city );
+            $aim->addField( 'x_ship_to_state', $this->s_order_state );
+            $aim->addField( 'x_ship_to_zip', $this->s_order_zip );
+            $aim->addField( 'x_ship_to_country', str_replace( " ", "%20", $this->s_order_coutry ) );
         }
         else
         {
             // customer billing address
             $aim->addField( 'x_ship_to_first_name', $this->order_first_name );
             $aim->addField( 'x_ship_to_last_name', $this->order_last_name );
-            $aim->addField( 'x_ship_to_company', $this->order_company );
+            $aim->addField( 'x_ship_to_company', $this->order_company . ' ' . $this->order_company_additional );
             $aim->addField( 'x_ship_to_address', $this->order_street1 . ' ' . $this->order_street2 );
             $aim->addField( 'x_ship_to_city', $this->order_place );
             $aim->addField( 'x_ship_to_state', $this->order_state );
