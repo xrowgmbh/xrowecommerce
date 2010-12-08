@@ -612,7 +612,8 @@ if ( $module->isCurrentAction( 'Store' ) )
     }
 $gateway = xrowShippingInterface::instanceByMethod( $shippingtype );
 
-$productcollection = $order->productCollection();
+$basket = eZBasket::currentBasket();
+$productcollection = $basket->productCollection();
 $items = $productcollection->itemList();
 $hazardous = array();
 foreach ( $items as $item )
