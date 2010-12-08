@@ -149,6 +149,8 @@ class eZShippingInterfaceType extends eZWorkflowEventType
             }
         }
 
+        $gateway = xrowShippingInterface::instanceByMethod( $shippingtype );
+
         $tax_country = $shipping_country;
         $tax_state = $shipping_state;
 
@@ -206,7 +208,7 @@ class eZShippingInterfaceType extends eZWorkflowEventType
             // Hazardous Item check
             if ( array_key_exists( 'hazardous', $dm ) and $dm["hazardous"]->DataInt == 1 )
             {
-                if ( $shipping_country != "USA" and $shipping_country != "CAN" or $shippingtype == 4 or $shippingtype == 5 )
+                if ( $gateway->is_air === true )
                 {
                     $hazardousproducts[] = $item;
                     $item->remove();
@@ -380,12 +382,11 @@ class eZShippingInterfaceType extends eZWorkflowEventType
         
         $tpl = eZTemplate::factory();
         $tpl->setVariable( "hazardous", $hazardousproducts );
+	return eZWorkflowType::STATUS_ACCEPTED;
         */
 
         #### SHIPPING COST CALCULATION
         $shippingerror = false;
-
-        $gateway = xrowShippingInterface::instanceByMethod( $shippingtype );
 
         if ( $gateway )
         {

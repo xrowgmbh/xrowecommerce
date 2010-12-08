@@ -36,12 +36,7 @@ class ShippingInterface
     public $address_from = array();
     public $address_to = array();
     public $method;
-
-    function ShippingInterface()
-    {
-        return false;
-    }
-
+    public $is_air = false;
     function description()
     {
         foreach ( $this->methods() as $method )

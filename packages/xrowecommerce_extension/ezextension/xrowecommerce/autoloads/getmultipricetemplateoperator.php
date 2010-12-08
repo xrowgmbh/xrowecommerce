@@ -61,7 +61,7 @@ class getMutliPriceTemplateOperator
         if (is_object( $price ))
         {
             $dataType = $price->dataType();
-            if ( $dataType->isA() == 'ezmultiprice' )
+            if ( $dataType->isA() == 'ezmultiprice' or $dataType->isA() == 'ezprice' )
             {
                 $parentPriceObj = $price->content();
                 // get the vat value

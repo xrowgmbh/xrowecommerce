@@ -8,8 +8,7 @@ class USPS extends ShippingInterface
     var $container = "None";
     var $size = "REGULAR";
     var $machinable;
-    var $MailType = "Package";
-    
+    var $MailType = "Package";    
     /*  USPS International Services
 
         Global Express Guaranteed
@@ -28,10 +27,12 @@ class USPS extends ShippingInterface
             ) , 
             array(
                 'identifier' => 'usps_international' , 
+                'is_air' => true,
                 'name' => 'USPS Express Mail International (EMS) (Intl. only)' 
             ) , 
             array(
-                'identifier' => 'usps_international_guaranteed' , 
+                'identifier' => 'usps_international_guaranteed' ,
+                'is_air' => true, 
                 'name' => 'USPS Global Express Guaranteed (Intl. only)' 
             ) 
         );

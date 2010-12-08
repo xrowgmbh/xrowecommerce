@@ -35,9 +35,10 @@ $tpl->setVariable( "module_name", 'shop' );
 
 $orderID = $http->sessionVariable( 'MyTemporaryOrderID' );
 
+
 $order = eZOrder::fetch( $orderID );
 if ( !is_object( $order ) )
-    return $Module->handleError( EZ_ERROR_KERNEL_NOT_AVAILABLE, 'kernel' );
+    return $module->handleError( eZError::KERNEL_NOT_AVAILABLE, 'kernel' );
 
 if ( $order instanceof eZOrder )
 {
@@ -56,7 +57,7 @@ if ( $order instanceof eZOrder )
 
     if ( $http->hasPostVariable( "CancelButton" ) )
     {
-        $order->purge( /*$removeCollection = */ false );
+        $order->purge( false );
         $module->redirectTo( '/xrowecommerce/basket/' );
         return;
     }

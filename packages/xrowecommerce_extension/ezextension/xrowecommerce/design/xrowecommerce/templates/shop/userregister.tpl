@@ -7,6 +7,21 @@
         {include uri="design:shop/basket_navigator.tpl" step='2'}
         {include uri="design:shop/userregister_preface.tpl"}
         {def $country_default_ini=ezini( 'ShopAccountHandlerDefaults', 'DefaultCountryCode', 'xrowecommerce.ini' )}
+            {if count($hazardous)|gt(0)}
+<div class="warning">
+                <h2>{'Hazardous item(s) found in your cart.'|i18n('extension/xrowecommerce')}</h2>
+                <p>
+                    {'Dear Customer,'|i18n('extension/xrowecommerce')}<br />
+                    {"We've found the following hazardous items from your shopping cart since we are not allowed to ship 
+these items to your destination. For further questions please contact us."|i18n('extension/xrowecommerce')}<br />
+                </p>
+                    <ul>
+                        {foreach $hazardous as $item}
+                        <li>{$item.item_count} x <a href={concat("/content/view/full/", $item.contentobject.main_node_id)|ezurl()}>{$item.name}</a></li>
+                        {/foreach}
+                    </ul>
+</div>
+            {/if}
         {def $error_count = false}
         {foreach $fields as $error}
         {if is_set($error.errors)}

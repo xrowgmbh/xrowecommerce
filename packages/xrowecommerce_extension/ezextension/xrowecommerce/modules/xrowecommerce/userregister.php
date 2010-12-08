@@ -481,7 +481,7 @@ if ( $module->isCurrentAction( 'Store' ) )
             $tax_id = strtoupper( trim( $http->postVariable( 'tax_id' ) ) );
             if ( $fields['tax_id']['required'] == true )
             {
-                if ( $tax_id == '' and $company_name != '')
+                if ( in_array( $Alpha2, $ids ) and $tax_id == '' and $company_name != '')
                 {
                     $fields['tax_id']['errors'][0] = ezpI18n::tr( 'extension/xrowecommerce', 'The companies tax ID number is not given.' );
                     $errors[] = ezpI18n::tr( 'extension/xrowecommerce', 'The companies tax ID number is not given.' );
@@ -610,6 +610,28 @@ if ( $module->isCurrentAction( 'Store' ) )
     } elseif ( ( $shippingtype == "ups_ground" or $shippingtype == "ups_air_2ndday" or $shippingtype == "ups_air_nextday") and $country != "USA" ) {
         $fields['shippingtype']['errors'][0] = ezpI18n::tr( 'extension/xrowecommerce', 'Please select a proper shipping method for your destination.' );
     }
+$gateway = xrowShippingInterface::instanceByMethod( $shippingtype );
+
+$productcollection = $order->productCollection();
+$items = $productcollection->itemList();
+$hazardous = array();
+foreach ( $items as $item )
+{
+            $co = eZContentObject::fetch( $item->attribute( 'contentobject_id' ) );
+            // Fetch object datamap
+            $dm = $co->dataMap();
+
+            // Hazardous Item check
+            if ( array_key_exists( 'hazardous', $dm ) and $dm["hazardous"]->DataInt == 1 )
+            {
+                if ( $gateway->is_air === true )
+                {
+                    $hazardous[] = $item;
+	            $inputIsValid = false;
+                }
+            }
+}
+
     $shippingdestination = $country;
 
     if ( $shipping != '1' )
@@ -1126,6 +1148,7 @@ $tpl->setVariable( 'message', $message );
 $tpl->setVariable( 'no_partial_delivery', $no_partial_delivery );
 $tpl->setVariable( 'fields', $fields );
 $tpl->setVariable( 'countries', xrowGeonames::getCountries() );
+$tpl->setVariable( 'hazardous', $hazardous );
 if ( !isset( $country ) )
 {
     $tmp = xrowGeonames::getCountries();
