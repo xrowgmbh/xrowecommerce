@@ -610,7 +610,6 @@ if ( $module->isCurrentAction( 'Store' ) )
     } elseif ( ( $shippingtype != "usps_international" or $shippingtype != "usps_international_guaranteed" ) and $country != "USA" ) {
         $fields['shippingtype']['errors'][0] = ezpI18n::tr( 'extension/xrowecommerce', 'Please select a proper shipping method for your destination.' );
     }
-    echo $country;
     $shippingdestination = $country;
 
     if ( $shipping != '1' )
