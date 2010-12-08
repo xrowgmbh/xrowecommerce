@@ -168,7 +168,7 @@
                 {/if}
 
                 {def $shipping_methods=fetch( 'shipping', 'list_methods' )}
-                <div class="block">
+                <div class="block {if is_set($fields.shippingtype.errors)} error{/if}">
                 {if $shipping_methods|count|gt(1)}
                     <label>{'Shipping'|i18n('extension/xrowecommerce')}<span class="required">*</span></label>
                     <div class="labelbreak"></div>
@@ -179,7 +179,7 @@
                         {/foreach}
                     </select>
                 {elseif $shipping_methods|count|eq(1)}
-                    <input id="shippingtype" name="shippingtype" value="{$shipping_methods.0.identifier}" type="hidden">
+                    <input id="shippingtype" name="shippingtype" value="{$shipping_methods.0.identifier}" type="hidden" />
                 {/if}
                 </div>
                 <div class="break"></div>
