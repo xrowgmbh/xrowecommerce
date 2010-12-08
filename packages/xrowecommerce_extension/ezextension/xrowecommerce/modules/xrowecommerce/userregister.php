@@ -607,7 +607,7 @@ if ( $module->isCurrentAction( 'Store' ) )
     } elseif ( ( $shippingtype == "usps_international" or $shippingtype == "usps_international_guaranteed" ) and $country == "USA" ) {
         $inputIsValid = false;
         $fields['shippingtype']['errors'][0] = ezpI18n::tr( 'extension/xrowecommerce', 'Please select a proper shipping method for your destination.' );
-    } elseif ( ( $shippingtype != "usps_international" or $shippingtype != "usps_international_guaranteed" ) and $country != "USA" ) {
+    } elseif ( ( $shippingtype == "ups_ground" or $shippingtype == "ups_air_2ndday" or $shippingtype == "ups_air_nextday") and $country != "USA" ) {
         $fields['shippingtype']['errors'][0] = ezpI18n::tr( 'extension/xrowecommerce', 'Please select a proper shipping method for your destination.' );
     }
     $shippingdestination = $country;
