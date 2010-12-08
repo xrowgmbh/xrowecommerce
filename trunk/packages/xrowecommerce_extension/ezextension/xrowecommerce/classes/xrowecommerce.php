@@ -361,9 +361,9 @@ class xrowECommerce
      */
     static function checkVat( $cc, $vat )
     {
-        $wsdl = 'extension/xrowecommerce/WDSL/checkVatPort.xml';
-        
-        $vies = new SoapClient( $wsdl );
+        $wsdl = 'http://ec.europa.eu/taxation_customs/vies/checkVatService.wsdl';
+
+        $vies = new SoapClient( $wsdl, array( 'connection_timeout', 5 ) );
         
         $nii = new checkVat( $cc, $vat );
         
@@ -384,7 +384,14 @@ class xrowECommerce
                 'TIMEOUT' => 'The Member State service could not be reached in time, try again later or with another Member State' , 
                 'SERVER_BUSY' => 'Server Busy. The service cannot process your request. Try again later.' 
             );
-            throw new Exception( $faults[$ret] );
+	    if( isset( $faults[$ret]  ) )
+            {
+                throw new Exception( $faults[$ret] );
+            }
+            else
+            {
+                throw new Exception( $e->faultstring );
+            }
         }
         return $ret->valid;
     }

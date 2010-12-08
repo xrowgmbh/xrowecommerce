@@ -23,14 +23,17 @@ class UPS extends ShippingInterface
             ),
             array(
                 'identifier' => 'ups_ground',
+                'is_air' => false,
                 'name' => 'UPS Ground (USA only)'
             ),
             array(
                 'identifier' => 'ups_air_nextday',
+                'is_air' => true,
                 'name' => 'UPS Next Business Day Air (USA only)'
             ),
             array(
                 'identifier' => 'ups_air_2ndday',
+                'is_air' => true,
                 'name' => 'UPS 2nd Business Day Air (USA only)'
             )
         );

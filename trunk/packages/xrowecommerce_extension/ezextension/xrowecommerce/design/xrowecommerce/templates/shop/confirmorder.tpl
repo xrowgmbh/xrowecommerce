@@ -54,8 +54,10 @@ function checkCOS( element )
 
         <div id="buttonblock-top" class="buttonblock">
 			<input id="cancel-button" class="button left-arrow2" type="submit" name="CancelButton" value="{'Cancel'|i18n('extension/xrowecommerce')}" title="{'Cancel order'|i18n('extension/xrowecommerce')}"/>
+			{if count( $order.product_items )|gt(0)}
 			<input id="continue-button" class="button right-arrow2" type="button" onclick="checkCOS(this);" name="ConfirmOrderButton" value="{'Confirm'|i18n('extension/xrowecommerce')}" title="{'Confirm order'|i18n('extension/xrowecommerce')}"/>
-        </div>
+        		{/if}
+	</div>
 
         <div class="break"></div>
         {shop_account_view_gui view=html order=$order step=3}
@@ -184,8 +186,10 @@ function checkCOS( element )
     {/if}
         <div id="buttonblock-bottom" class="buttonblock">
             <input id="cancel-button" class="button left-arrow2" type="submit" name="CancelButton" value="{'Cancel'|i18n('extension/xrowecommerce')}" title="{'Cancel order'|i18n('extension/xrowecommerce')}"/>
+	    {if count( $order.product_items )|gt(0)}
             <input id="continue-button" class="button right-arrow2" type="button" onclick="checkCOS(this);" name="ConfirmOrderButton" value="{'Confirm'|i18n('extension/xrowecommerce')}" title="{'Confirm order'|i18n('extension/xrowecommerce')}"/>
-        </div>
+            {/if}
+	</div>
     {else}
     {* If the shopping cart is empty after removing hazardous items... *}
     <h3>{"Sorry, there are no items left in your cart."|i18n("extension/xrowecommerce")}</h3>

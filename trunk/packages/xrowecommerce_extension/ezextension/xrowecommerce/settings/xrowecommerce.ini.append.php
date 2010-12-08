@@ -105,7 +105,7 @@ DisplayFax=enabled
 
 [MerchantLocations]
 # Use ISO 3 letter country locales
-Location[]
+#Location[]
 #Location[]=USA
 #Location[]=DEU
 #USA[]=CT
