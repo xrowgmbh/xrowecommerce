@@ -632,7 +632,7 @@ class eZShippingInterfaceType extends eZWorkflowEventType
 
         $orderItem = new eZOrderItem( array(
             'order_id' => $orderID ,
-            'description' => $description ,
+            'description' => $description ." ( ".$totalweight." lbs)" ,
             'price' => $cost ,
             'vat_value' => $vat_value ,
             'type' => 'shippingcost'
