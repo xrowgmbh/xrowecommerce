@@ -1,4 +1,4 @@
-<a name="cos"></a>
+<a name="cos-anchor"></a>
 <label id="cos-content-label" class="cos" for="cos" >
 <input id="cos" name="cos" class="cos" value="1" type="checkbox" />
     <span title="{'Show the terms and conditions.'|i18n('extension/xrowecommerce')}">
