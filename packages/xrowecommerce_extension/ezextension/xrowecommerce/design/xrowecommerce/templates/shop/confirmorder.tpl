@@ -38,7 +38,7 @@ function checkCOS( element )
 		else
 		{
 			alert( '{/literal}{'Accept the terms and conditions to continue.'|i18n('extension/xrowecommerce')}{literal}' );
-			window.location.hash="cos";
+			window.location.hash="cos-anchor";
 			YAHOO.util.Dom.setStyle( 'cos-content', 'display', 'block');
 			return false;
 		}
