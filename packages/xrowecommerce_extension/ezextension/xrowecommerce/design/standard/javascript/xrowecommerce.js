@@ -131,7 +131,9 @@ function updateSubdivisions( country_node )
     YUI().use( 'node', 'io', 'io-ez', function( Y )
     {
         var country = country_node.get( 'options' ).item( country_node.get( 'selectedIndex' ) ).get( 'value' );
-        
+
+        Y.Node.get( '#s_state' ).set( 'disabled', 'disabled' );
+        Y.Node.get( '#state' ).set( 'disabled', 'disabled' );
         Y.io.ez( 'xrowecommerce::getSubdivisions::' + country, 
         {
             arguments: country_node,
@@ -198,6 +200,8 @@ function updateSubdivisions( country_node )
                         {
                             subdivision_node.set('selectedIndex', 0);
                         }
+                        Y.Node.get( '#s_state' ).removeAttribute( 'disabled' );
+                        Y.Node.get( '#state' ).removeAttribute( 'disabled' );
                     });
                 }
             }
