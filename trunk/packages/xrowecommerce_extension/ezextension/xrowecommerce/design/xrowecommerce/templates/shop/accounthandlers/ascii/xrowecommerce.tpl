@@ -35,7 +35,7 @@
  
 {'Phone'|i18n( 'extension/xrowecommerce')}: {$order.account_information.phone}
  
-{'Shipping'|i18n( 'extension/xrowecommerce')}: {foreach  $shiplist as $method}{if $method.identifier|eq($order.account_information.shippingtype)}$method.name}{/if}{/foreach}
+{'Shipping'|i18n( 'extension/xrowecommerce')}: {foreach  $shiplist as $method}{if $method.identifier|eq($order.account_information.shippingtype)}{$method.name}{/if}{/foreach}
  
 {if eq($order.account_information.shipping,0)}
 {'Shipped to'|i18n( 'extension/xrowecommerce')}:
