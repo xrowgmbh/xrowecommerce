@@ -10,7 +10,7 @@ class xrowGoogleExport implements xrowExportProductPlugin
 
         ezcFeed::registerModule( 'GoogleProduct', 'ezcFeedGoogleProductModule', 'g' );
         $feed = new ezcFeed( );
-        $dom = new DOMDocument();
+        $dom = new DOMDocument( '1.0', 'utf-8' );
 
         $feed->title = 'Products of ' . eZINI::instance( 'site.ini')->variable( 'SiteSettings', 'SiteName');
         # site url
