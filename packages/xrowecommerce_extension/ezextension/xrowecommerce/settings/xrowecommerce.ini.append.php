@@ -185,6 +185,9 @@ GoogleFileName=
 GoogleFTPUsername=
 GoogleFTPPassword=
 
+# Class identifier of the product class that should be exported
+ClassIdentifier=xrow_product
+
 # e.g.
 # ExportPriceLanguage=USD
 # or
