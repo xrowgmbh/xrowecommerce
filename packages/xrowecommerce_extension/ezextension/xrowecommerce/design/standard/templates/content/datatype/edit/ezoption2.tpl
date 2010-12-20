@@ -94,7 +94,6 @@
         <p>{'Price list is empty'|i18n( 'design/standard/content/datatype' )}</p>
         {*
         <input class="button-disabled" type="submit" name="CustomActionButton[{$attribute.id}_remove_prices]" value="{'Remove selected'|i18n( 'design/standard/content/datatype' )}" disabled="disabled" />
-        
         *}
     {/if}
 
@@ -112,7 +111,9 @@
 <a id="variation_image_link_{$attribute.id}_{$option.id}" href={$option.image.main_node.url_alias|ezurl()} target="_blank">{attribute_view_gui image_class=small attribute=$option.image.current.data_map.image}</a>
 </div>
 {else}
+<div id="variation_image_div_{$attribute.id}_{$option.id}">
 <div id="variation_noimage_div_{$attribute.id}_{$option.id}">{'No image'|i18n( 'design/standard/content/datatype' )}</div>
+</div>
 {/if}
 {if $option.image|is_object}<input class="button" type="submit" name="CustomActionButton[{$attribute.id}_remove_object-{$option.id}]" value="{'Remove'|i18n( 'design/standard/content/datatype' )}" />{/if}
 <input class="button" type="submit" name="CustomActionButton[{$attribute.id}_browse_object-{$option.id}]" value="{'Add'|i18n( 'design/standard/content/datatype' )}" />
@@ -171,7 +172,7 @@
 {literal}
 <script type="text/javascript">
 function variationupload (id, version, type, varname, varid) {
-  NewWindow = window.open("http://" + window.location.hostname + "/{/literal}{$access_type.name}{literal}/variationupload/upload/"+ id +"/"+ version +"/"+ type +"/" + varname + "/" + varid, "Uploadwindow", "width=700,height=500,left=100,top=200");
+  NewWindow = window.open("http://" + window.location.hostname + "/{/literal}{if $access_type.name|ne("")}{$access_type.name}/{/if}{literal}variationupload/upload/"+ id +"/"+ version +"/"+ type +"/" + varname + "/" + varid, "Uploadwindow", "width=700,height=500,left=100,top=200");
   NewWindow.focus();
 }
 </script>
