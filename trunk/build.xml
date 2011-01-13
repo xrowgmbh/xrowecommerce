@@ -11,7 +11,7 @@
     <import file="ant/ezextensionbuilder/build.xml"/>
     <!-- deploys all tarballs for distribution -->
 	<target name="deploy">
-		<sshexec host="${host}" username="${user}" password="${password}" trust="yes" command="mkdir -p ${path}/{$extension.name}/latest"/>
+		<sshexec host="${host}" username="${user}" password="${password}" trust="yes" command="mkdir -p ${path}/${extension.name}/latest"/>
 		<scp trust="yes" todir="${user}:${password}@${host}:${path}/${extension.name}/latest">
 			<fileset dir="${build.dir}">
 				<include name="*.ezpkg"/>
