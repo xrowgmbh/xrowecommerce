@@ -103,7 +103,6 @@ class eZShippingInterfaceType extends eZWorkflowEventType
         $handling_fee_include = $ini->variable( "Settings", "HandlingFeeInclude" );
         $add_handling_fee = $ini->variable( "Settings", "HandlingFee" );
         $handling_fee_name = $ini->variable( "Settings", "HandlingFeeName" );
-        $free_shippingitem_reduce = $ini->variable( "Settings", "FreeShippingitemReduce" );
 
         // Process parameters
         $parameters = $process->attribute( 'parameter_list' );
@@ -215,83 +214,6 @@ class eZShippingInterfaceType extends eZWorkflowEventType
                     continue;
                 }
             }
-
-
-            /*START ABSTRACTION LAYER NEEDED FOR WEIGHT
-
-            //MX specific datatype remove later when we have abstraction
-            $found = false;
-            foreach ( $dm as $attribute_name => $attribute )
-            {
-                if ( $attribute->DataTypeString == 'mxmeasuredata' )
-                {
-                    $found = true;
-                    break;
-                }
-            }
-            if ( $found )
-            {
-                $content = $dm[$attribute_name]->content();
-
-                if ( ! empty( $content->Weight ) )
-                {
-                    $totalweight += (float) $content->Weight * $item->ItemCount;
-                    continue;
-                }
-                else
-                {
-                    eZDebug::writeDebug( $co->name() . " #" . $co->ID, "Zero Weight Product  in attribute mxmeasuredata" );
-                }
-            }
-
-            $found = false;
-            foreach ( $dm as $attribute_name => $attribute )
-            {
-                if ( $attribute->DataTypeString == eZOption2Type::OPTION2 )
-                {
-                    $found = true;
-                    break;
-                }
-            }
-            //Variation with option 2
-            if ( ! empty( $option ) and $found )
-            {
-                $optionID = $option->OptionItemID;
-
-                if ( array_key_exists( $attribute_name, $dm ) )
-                {
-                    $content = $dm[$attribute_name]->content();
-                    if ( ! empty( $content->Options[$option->OptionItemID]["weight"] ) )
-                    {
-                        $totalweight += (float) $content->Options[$option->OptionItemID]["weight"] * $item->ItemCount;
-                        continue;
-                    }
-                    else
-                    {
-                        eZDebug::writeDebug( $co->name() . " #" . $co->ID, "Zero Weight Product in attribute option" );
-                    }
-                }
-            }
-
-
-            // Conditional, if weight is defined in datamap array
-            if ( array_key_exists( 'weight', $dm ) )
-            {
-                // Fetch weight
-                $weight = $dm['weight']->content();
-                if ( ! empty( $contentoptselect["weight"] ) )
-                {
-                    $totalweight += $weight * $item->ItemCount;
-                    continue;
-                }
-                else
-                {
-                    eZDebug::writeDebug( $co->name() . " #" . $co->ID, "Zero Weight Product in attribute weight" );
-                }
-
-            }
-
-            END ABSTRACTION LAYER NEEDED FOR WEIGHT */
         }
         // Order product total weight calculation
         $ini = eZINI::instance( 'xrowecommerce.ini' );
@@ -409,14 +331,7 @@ class eZShippingInterfaceType extends eZWorkflowEventType
 
                 if ( $freeshippingproduct )
                 {
-                    if ( $cost >= $free_shippingitem_reduce )
-                    {
-                        $cost = $cost - $free_shippingitem_reduce;
-                    }
-                    else
-                    {
-                        $cost = 0.00;
-                    }
+                    $cost = 0.00;
                     $description_discounted_shipping = "Discounted Shipping! $description";
                     $description = $description_discounted_shipping;
                 }
@@ -463,132 +378,6 @@ class eZShippingInterfaceType extends eZWorkflowEventType
             $description = ezpI18n::tr( 'extension/xrowecommerce', "Sorry, the shipping method you have selected is no longer supported. Vendor will call you to calculate the shipping price." );
             $cost = 0.00;
         }
-        /*
-        if ( $shippingtype == 3 OR $shippingtype == 4 OR $shippingtype == 5)
-        {
-            // UPS Service
-            $ups = ShippingInterface::instance( "ups" );
-            $shippingservicename    = array();
-            $shippingservicename[3] = "UPS Ground";
-            $shippingservicename[4] = "UPS Next Business Day Air";
-            $shippingservicename[5] = "UPS 2nd Business Day Air";
-            if ( $totalweight > 0 && $totalweight < 1 )
-               $roundedweight = 1;
-            else $roundedweight = $totalweight;
-               $ups->setWeight( $roundedweight );
-
-            if ( $shippingtype == "3" )
-                $ups->setService( "03" );
-            elseif ( $shippingtype == "4" )
-                $ups->setService( "01" );
-            elseif ( $shippingtype == "5" )
-                $ups->setService( "02" );
-
-
-            $shipping_country = $ups->convert_country( $shipping_country, "Alpha3", "Alpha2");
-            $ups->setAddressTo( $shipping_country, $shipping_state, $shipping_zip, $shipping_city );
-
-            $ups_price = $ups->getPrice();
-            // adding 2$ handling fee
-            $ups_price->costs->costs = $ups_price->costs->costs;
-
-            if($ups_price->error)
-            {
-                //echo "Error: ".$ups_price->error->description." <br />";
-                $shipping_type_name = $shippingservicename[$shippingtype]." for ( ".$totalweight." lbs): ".$ups_price->error->description.": Vendor will call you to calculate the shipping price!";
-                $cost = 0.00;
-                $shippingerror = true;
-            }
-            else
-            {
-                //echo $ups_price->costs->shipping_type." ".$ups_price->costs->currency_unit." ".$ups_price->costs->costs."<br />";
-                $shipping_type_name =$shippingservicename[$shippingtype]." for ( ".$totalweight." lbs)";
-                $cost = (double)$ups_price->costs->costs;
-                if ( $add_handling_fee == "enabled" AND $handling_fee_include == "enabled" AND $handling_fee > 0 AND !$freehandlingproduct)
-                    $cost = $cost + $handling_fee;
-            }
-            ############# End UPS of calculation #############
-            $description = $shipping_type_name;
-
-            if (!$shippingerror)
-            {
-
-                if ( $freeshippingproduct and $shippingtype == 3)
-                {
-                    if ( $cost >= $free_shippingitem_reduce )
-                        $cost = $cost - $free_shippingitem_reduce;
-                    else
-                        $cost = 0.00;
-                    $description_discounted_shipping = "Discounted Shipping! $shipping_type_name";
-                    $description = $description_discounted_shipping;
-                }
-
-            }
-
-        }
-
-
-
-        elseif ( $shippingtype == "6" OR $shippingtype == "7" )
-        {
-            // USPS Service
-            $usps = ShippingInterface::instance( "usps" );
-            $shippingservicename    = array();
-            #$shippingservicename[6] = "Global Express Mail (EMS)";
-            $shippingservicename[6] = "Express Mail International (EMS)";
-            #$shippingservicename[7] = "Airmail Parcel Post";
-            $shippingservicename[7] = "Global Express Guaranteed";
-            $usps->setService( $shippingservicename[$shippingtype] );
-
-            #Global Express Guaranteed
-            #Global Express Guaranteed Non-Document Rectangular
-            #Global Express Guaranteed Non-Document Non-Rectangular
-            #Express Mail International (EMS)
-            #Express Mail International (EMS) Flat Rate Envelope
-            #Priority Mail International
-            #Priority Mail International Flat Rate Box
-
-
-            ############# Start of USPS calculation #############
-            $shipping_country = $usps->convert_country( $shipping_country, "Alpha3", "Name");
-            $usps->setAddressTo( $shipping_country, $shipping_state, $shipping_zip, $shipping_city );
-            $usps->setPounds( "0" );
-            $usps->setContainer( "Flat Rate Box" );
-            $totalweight_ounces = round( $totalweight * 16 );
-            $usps->setOunces ( $totalweight_ounces );
-            $usps_price = $usps->getPrice();
-
-            if ( $usps_price->error )
-            {
-                //echo "Error in USPS: ".$usps_price->error->description." <br />";
-                $shipping_type_name = "USPS ".$shippingservicename[$shippingtype]." for ( ".$totalweight." lbs): ".$usps_price->error->description.": Vendor will call you to calculate the shipping price!";
-                $cost = 0.00;
-                $shippingerror = true;
-            }
-            else
-            {
-                $usps_service = $usps->getService($usps_price->list, $shippingservicename[$shippingtype]);
-
-                //echo $usps_service->svcdescription.": $".$usps_service->rate."<br />";
-                $shipping_type_name = "USPS ".$shippingservicename[$shippingtype]." for ( ".$totalweight." lbs)";
-
-                if ( is_object( $usps_service ) )
-                    $cost = (double)$usps_service->rate;
-                else
-                    $cost = 0.00;
-                if ( $add_handling_fee == "enabled" AND $handling_fee_include == "enabled" AND $handling_fee > 0 AND !$freehandlingproduct)
-                    $cost = $cost + $handling_fee;
-            }
-            ############# End of USPS calculation #############
-            $description = $shipping_type_name;
-        }
-        else
-        {
-            // Wrong shippingtype ID
-            $description = "Sorry, the shipping type you have selected is no longer supported. Vendor will call you to calculate the shipping price!";
-            $cost = 0.00;
-        }
-*/
 
         // get actual tax value
         $vat_value = eZVATManager::getVAT( false, false );
