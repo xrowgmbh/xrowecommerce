@@ -80,7 +80,7 @@ else
         $Module->redirectTo( '/shop/orderlist' );
 
 $Result = array();
-$Result['content'] =& $tpl->fetch( "design:shop/ordereditedit.tpl" );
+$Result['content'] = $tpl->fetch( "design:shop/ordereditedit.tpl" );
 $path = array();
 $path[] = array( 'url' => '/orderedit/edit',
                  'text' => ezpI18n::tr( 'kernel/shop', 'Orderedit' ) );
