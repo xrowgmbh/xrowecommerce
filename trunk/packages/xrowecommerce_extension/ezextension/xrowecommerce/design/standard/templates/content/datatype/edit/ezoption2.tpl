@@ -115,7 +115,9 @@
 <div id="variation_noimage_div_{$attribute.id}_{$option.id}">{'No image'|i18n( 'design/standard/content/datatype' )}</div>
 </div>
 {/if}
-{if $option.image|is_object}<input class="button" type="submit" name="CustomActionButton[{$attribute.id}_remove_object-{$option.id}]" value="{'Remove'|i18n( 'design/standard/content/datatype' )}" />{/if}
+{if $option.image|is_object}
+<input class="button" type="submit" name="CustomActionButton[{$attribute.id}_remove_object-{$option.id}]" value="{'Remove'|i18n( 'design/standard/content/datatype' )}" />
+{/if}
 <input class="button" type="submit" name="CustomActionButton[{$attribute.id}_browse_object-{$option.id}]" value="{'Add'|i18n( 'design/standard/content/datatype' )}" />
 <input class="button" type="button" name="Uploadbutton" value="Upload" onClick="javascript:variationupload(  '{$attribute.contentobject_id}', '{$attribute.version}', 'object', '{$attribute.id}', '{$option.id}' );" />
 </td></tr>
