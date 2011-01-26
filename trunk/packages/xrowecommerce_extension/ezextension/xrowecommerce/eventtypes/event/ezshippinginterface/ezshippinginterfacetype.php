@@ -95,10 +95,14 @@ class eZShippingInterfaceType extends eZWorkflowEventType
 
         // Fetch Workflow Settings
         $ini = eZINI::instance( 'shipping.ini' );
-
+        
         // Setting to control calculations (Product Option Attribute Processing)
         $settingUseeZoption2ProductVariations = ( $ini->variable( "Settings", "eZoption2ProductVariations" ) == 'Enabled' );
         $FreeShippingProducts = $ini->variable( "Settings", "FreeShippingProducts" );
+        $FreeShippingAdditionalProducts = $ini->variable( "Settings", "FreeShippingAdditionalProducts" );
+        $FreeShippingProductConditions = $ini->variable( "Settings", "FreeShippingProductConditions" );
+        $FreeShippingHandlingGateways = $ini->variable( "Settings", "FreeShippingHandlingGateways" );
+        $FreeShippingHandlingCountries = $ini->variable( "Settings", "FreeShippingHandlingCountries" );
         $handling_fee = $ini->variable( "Settings", "HandlingFeeAmount" );
         $handling_fee_include = $ini->variable( "Settings", "HandlingFeeInclude" );
         $add_handling_fee = $ini->variable( "Settings", "HandlingFee" );
@@ -170,14 +174,6 @@ class eZShippingInterfaceType extends eZWorkflowEventType
             if ( is_array( $option ) and array_key_exists( 0, $option ) )
                 $option = $option[0];
 
-            if ( in_array( $item->attribute( 'contentobject_id' ), $FreeShippingProducts ) )
-            {
-                if ( $item->ItemCount >= 2 )
-                {
-                    $freeshippingproduct = true;
-                }
-            }
-
             // Fetch object
             $co = eZContentObject::fetch( $item->attribute( 'contentobject_id' ) );
 
@@ -185,23 +181,36 @@ class eZShippingInterfaceType extends eZWorkflowEventType
             $dm = $co->dataMap();
 
             // FreeShipping Item check
-            if ( array_key_exists( 'freeshipping', $dm ) and $dm['freeshipping']->DataInt == 1 )
+            
+            if (  in_array( $shippingtype, $FreeShippingHandlingGateways ) and in_array( $shipping_country, $FreeShippingHandlingCountries ) and in_array( $item->attribute( 'contentobject_id' ), $FreeShippingProducts ) )
             {
                 $freeshippingproduct = true;
             }
-            else
+            elseif ( $FreeShippingAdditionalProducts != "enabled" )
+            {
+                $freeshippingproduct = false;
+            }
+            
+            if (  $item->ItemCount >= $FreeShippingProductConditions[$item->attribute( 'contentobject_id' )] and in_array( $shippingtype, $FreeShippingHandlingGateways ) and in_array( $shipping_country, $FreeShippingHandlingCountries ) and array_key_exists( 'freeshipping', $dm ) and $dm['freeshipping']->DataInt == 1 )
+            {
+                $freeshippingproduct = true;
+            }
+            elseif ( $FreeShippingAdditionalProducts != "enabled" )
             {
                 $freeshippingproduct = false;
             }
 
             // FreeHandling Item check
-            if ( array_key_exists( 'freehandling', $dm ) and $dm["freehandling"]->DataInt == 1 )
+            if ( in_array( $shippingtype, $FreeShippingHandlingGateways ) and in_array( $shipping_country, $FreeShippingHandlingCountries ) and array_key_exists( 'freehandling', $dm ) and $dm["freehandling"]->DataInt == 1 )
             {
-                $freehandlingproduct = true;
-            }
-            else
-            {
-                $freehandlingproduct = false;
+                if ( $item->ItemCount >= $FreeShippingProductConditions[$item->attribute( 'contentobject_id' )] )
+                {   
+                    $freehandlingproduct = true;
+                }
+                elseif ( $FreeShippingAdditionalProducts != "enabled" )
+                {
+                    $freehandlingproduct = false;
+                }
             }
 
             // Hazardous Item check
@@ -304,7 +313,7 @@ class eZShippingInterfaceType extends eZWorkflowEventType
         
         $tpl = eZTemplate::factory();
         $tpl->setVariable( "hazardous", $hazardousproducts );
-	return eZWorkflowType::STATUS_ACCEPTED;
+    return eZWorkflowType::STATUS_ACCEPTED;
         */
 
         #### SHIPPING COST CALCULATION
