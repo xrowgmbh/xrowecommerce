@@ -81,7 +81,7 @@ thead {
      $percentage = mul( div(sub($order.total_inc_vat, $order.total_ex_vat), $order.total_ex_vat), 100)|l10n('number') }
 <tr>
     <th colspan="4">{'Tax'|i18n( 'extension/xrowecommerce' )}:</th>
-    <td class="number" align="right">{$order.product_total_inc_vat|sub($order.product_total_ex_vat)|l10n( 'currency' )}</td>
+    <td class="number" align="right">{$order.total_inc_vat|sub($order.total_ex_vat)|l10n( 'currency' )}</td>
 </tr>
 
 <tr>
