@@ -786,7 +786,7 @@ foreach ( $items as $item )
         }
 
 
-        if ( $fields['s_fax']['enabled'] == true )
+        if ( $fields['s_fax']['enabled'] == true and $fields['s_fax']['required'] == true)
         {
             $s_fax = trim( $http->postVariable( 's_fax' ) );
             if ( $s_fax == '' )
