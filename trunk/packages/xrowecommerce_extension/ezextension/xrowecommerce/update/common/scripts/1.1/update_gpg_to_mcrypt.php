@@ -24,9 +24,9 @@ $offset = 0;
  * Set here your parameters
  ******************************************/
 // Initialize the gpg parameters
-$keyGPG = 'clay@oneando.com';
+$keyGPG = 'SetYourOldKeyHere0123456789';
 // Initialize the mcrypt parameters
-$key = 'd249ebf9435eeea8838a43b7fd83bbe6';
+$key = 'SetYourNewKeyHere0123456789';
 $algorithm = 'tripledes';
 $mode = 'cfb';
 
