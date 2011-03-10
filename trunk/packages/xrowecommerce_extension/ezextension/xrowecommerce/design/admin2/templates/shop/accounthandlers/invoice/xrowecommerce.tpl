@@ -37,6 +37,12 @@
 <div style="width:40%;float: left;">
 <table  class="list" width="100%" cellspacing="0" cellpadding="0" border="0" align="right">
 <caption style="font-size: 12pt;"><b>{'Bill to'|i18n( 'design/admin/shop/orderview' )}</b></caption>
+{if is_set($order.account_information.company_name)}
+    <tr>
+        <th class="tight">{'Company'|i18n( 'design/admin/shop/orderview' )}</th>
+        <td>{$order.account_information.company_name|wash()} {$order.account_information.company_additional|wash()}</td>
+    </tr>
+{/if}
 <tr>
     <th class="tight">{'Name'|i18n( 'design/admin/shop/orderview' )}</th>
     <td>{$order.account_information.first_name|wash} {$order.account_information.mi|wash} {$order.account_information.last_name|wash}</td>
@@ -66,10 +72,15 @@
 
 <div style="width:40%;float: right;">
 
-{if $order.account_information.shipping|not}
-
+{if $order.account_information.shippingaddress|not}
 <table  class="list" width="100%" cellspacing="0" cellpadding="0" border="0" align="right">
 <caption style="font-size: 12pt;"><b>Ship to</b></caption>
+{if is_set($order.account_information.s_company_name)}
+    <tr>
+        <th class="tight">{'Company'|i18n( 'design/admin/shop/orderview' )}</th>
+        <td>{$order.account_information.s_company_name|wash()} {$order.account_information.s_company_additional|wash()}</td>
+    </tr>
+{/if}
 <tr>
     <th class="tight">{'Name'|i18n( 'design/admin/shop/orderview' )}</th>
     <td>{$order.account_information.s_first_name|wash} {$order.account_information.s_mi|wash} {$order.account_information.s_last_name|wash}</td>
@@ -97,6 +108,12 @@
 
 <table  class="list" width="100%" cellspacing="0" cellpadding="0" border="0" align="right">
 <caption style="font-size: 12pt;"><b>{'Ship to'|i18n( 'design/admin/shop/orderview' )}</b></caption>
+{if is_set($order.account_information.company_name)}
+    <tr>
+        <th class="tight">{'Company'|i18n( 'design/admin/shop/orderview' )}</th>
+        <td>{$order.account_information.company_name|wash()} {$order.account_information.company_additional|wash()}</td>
+    </tr>
+{/if}
 <tr>
     <th class="tight">{'Name'|i18n( 'design/admin/shop/orderview' )}</th>
     <td>{$order.account_information.first_name|wash} {$order.account_information.mi|wash} {$order.account_information.last_name|wash}</td>
