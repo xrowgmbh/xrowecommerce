@@ -113,7 +113,7 @@
             {/if}
 
             <div class="content-basket">
-                <table class="order">
+                <table class="order" summary="{'Basket items'|i18n("extension/xrowecommerce")}">
                     <tr class="lightbg">
                         {if ezini( 'Settings', 'ShowColumnPosition', 'xrowecommerce.ini' )|eq('enabled')}
                             <th class="position">
@@ -139,7 +139,7 @@
                         </th>
                         {if ezini( 'Settings', 'ShowColumnRemove', 'xrowecommerce.ini')|eq('enabled')}
                         <th>
-                           <input id="delete-button" class="icon" type="image" name="RemoveProductItemButton" src={'shop/basket-delete-icon.gif'|ezimage} value="{'Delete'|i18n( 'extension/xrowecommerce' )}" title="{'Use this button to remove items from your shopping cart.'|i18n( 'extension/xrowecommerce' )}" />
+                            {"Delete"|i18n("extension/xrowecommerce")}
                         </th>
                         {/if}
                     </tr>
@@ -184,22 +184,33 @@
                                 {if is_set($discount)}{undef $discount}{/if}
                                 {if is_set($price)}{undef $price}{/if}
                             </td>
-                
+
                             <td class="basketspace totalprice">
                                 {$product_item.total_price_ex_vat|l10n( 'currency', $locale, $symbol )}
                             </td>
-                            
+
                             {if ezini( 'Settings', 'ShowColumnRemove', 'xrowecommerce.ini')|eq('enabled')}
                                 <td class="delete basketspace">
-                                    <input class="shopping_cart_checkbox" type="checkbox" name="RemoveProductItemDeleteList[]" value="{$product_item.id}" />
+                                    <div class="basket_remove_item" id="basket_remove_item_{$product_item.id}">
+                                        <input id="delete-button_{$product_item.id}" class="icon basket_remove_item" type="image" name="RemoveProductItemButton" src={'shop/basket-delete-icon.gif'|ezimage} value="{'Delete'|i18n( 'extension/xrowecommerce' )}" title="{'Use this button to remove items from your shopping cart.'|i18n( 'extension/xrowecommerce' )}" />
+                                    </div>
+                                    {literal}
+                                        <script type="text/javascript">
+                                            $(document).ready(function() {
+                                                $("#delete-button_{/literal}{$product_item.id}{literal}").click(function() {
+                                                    $('#basket_remove_item_{/literal}{$product_item.id}{literal}').append('<input type="hidden" name="RemoveProductItemDeleteList[]" value="{/literal}{$product_item.id}{literal}" />');
+                                                });
+                                            });
+                                        </script>
+                                    {/literal}
                                 </td>
                             {/if}
                         </tr>
                     {/foreach}
-            
+
                     {def $taxpercent = mul( div(sub($basket.total_inc_vat, $basket.total_ex_vat), $basket.total_ex_vat), 100)
                          $percentage = mul( div(sub($basket.total_inc_vat, $basket.total_ex_vat), $basket.total_ex_vat), 100)|l10n('number') }
-            
+
                     {if is_set( $shipping_info )}
                         <tr>
                             <td class="product-subtotal" colspan="{$cols|sub(1)}"><a href={$shipping_info.management_link|ezurl}>{'Shipping'|i18n( 'extension/xrowecommerce' )}{if $shipping_info.description} ({$shipping_info.description}){/if}</a>:
@@ -283,7 +294,7 @@
              {if $user.is_logged_in|not()}
                 <div class="loginbox">
                     <p>{'Already a user?'|i18n("extension/xrowecommerce",'User name')}</p>
-                    <form method="post" action={"user/login"|ezurl}">
+                    <form method="post" action={"user/login"|ezurl}>
                         <div class="wrap">
                             <label for="id1">{"Username"|i18n("extension/xrowecommerce",'Username')}</label><div class="labelbreak"></div>
                             <input type="text" name="Login" id="id1" value="" tabindex="1" />
@@ -293,7 +304,7 @@
                             <input type="password" name="Password" id="id2" value="" tabindex="1" />
                         </div>
                         <div class="login-button">
-                            <input class="button" type="submit" name="LoginButton" value="{'Login'|i18n('extension/xrowecommerce')}" tabindex="1">
+                            <input class="button" type="submit" name="LoginButton" value="{'Login'|i18n('extension/xrowecommerce')}" tabindex="1" />
                         </div>
                         <input type="hidden" name="RedirectURI" value={"xrowecommerce/userregister"|ezroot} />
                      </form>

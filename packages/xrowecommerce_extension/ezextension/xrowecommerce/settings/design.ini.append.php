@@ -4,6 +4,7 @@
 DesignExtensions[]=xrowecommerce
 
 [JavaScriptSettings]
+FrontendJavaScriptList[]=ezjsc::jquery
 FrontendJavaScriptList[]=xrowecommerce.js
 BackendJavaScriptList[]=xrowproductvariation.js
 JavaScriptList[]=xrowproductvariation.js
@@ -12,4 +13,6 @@ JavaScriptList[]=xrowecommerce.js
 [StylesheetSettings]
 BackendCSSFileList[]=xrowproductvariation.css
 BackendCSSFileList[]=backend.css
+FrontendCSSFileList[]=frontend.css
+
 */ ?>
