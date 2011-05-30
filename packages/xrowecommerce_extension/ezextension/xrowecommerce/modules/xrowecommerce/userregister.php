@@ -249,7 +249,8 @@ $field_keys = array( 'company_name',
                      's_country',
                      's_phone',
                      's_fax',
-                     's_email' );
+                     's_email',
+                     'client_ip' );
 foreach( $field_keys as $key )
 {
     $fields[$key] = array();
@@ -981,6 +982,13 @@ foreach ( $items as $item )
         $messageNode = $doc->createElement( 'message', $message );
         $root->appendChild( $messageNode );
 
+        if ( isset($_SERVER['REMOTE_ADDR']) )
+        {
+            $remote_address = $_SERVER['REMOTE_ADDR'];
+            $client_ip = $doc->createElement( 'client_ip', $remote_address );
+            $root->appendChild( $client_ip );
+        }
+
         if ( $shipping != '1' )
         {
             /* Shipping address*/
@@ -1112,6 +1120,7 @@ $tpl->setVariable( 'zip', $zip );
 $tpl->setVariable( 'country', $country );
 $tpl->setVariable( 'phone', $phone );
 $tpl->setVariable( 'fax', $fax );
+$tpl->setVariable( 'client_ip', $remote_address );
 
 // default value for shipping
 if ( !isset( $shipping ) )
