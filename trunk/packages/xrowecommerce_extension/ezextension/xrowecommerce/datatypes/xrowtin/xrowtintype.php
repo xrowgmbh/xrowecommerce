@@ -21,12 +21,12 @@ class xrowTINType extends eZDataType
     */
     function xrowTINType()
     {
-        $this->eZDataType( self::DATA_TYPE_STRING, ezpI18n::tr( 'kernel/classes/datatypes', 'Tax Identification Number', 'Datatype name' ), array( 
-            'serialize_supported' => true , 
-            'object_serialize_map' => array( 
-                'data_int' => 'int' , 
-                'data_text' => 'text' 
-            ) 
+        $this->eZDataType( self::DATA_TYPE_STRING, ezpI18n::tr( 'kernel/classes/datatypes', 'Tax Identification Number', 'Datatype name' ), array(
+            'serialize_supported' => true ,
+            'object_serialize_map' => array(
+                'data_int' => 'int' ,
+                'data_text' => 'text'
+            )
         ) );
     }
 
@@ -40,7 +40,7 @@ class xrowTINType extends eZDataType
             $tax_id = $http->postVariable( $base . '_xrowtin_data_text_' . $contentObjectAttribute->attribute( 'id' ) );
             $tax_id = strtoupper( trim( $tax_id ) );
             $classAttribute = $contentObjectAttribute->contentClassAttribute();
-            
+
             if ( $tax_id == "" )
             {
                 if ( ! $classAttribute->attribute( 'is_information_collector' ) and $contentObjectAttribute->validateIsRequired() )
@@ -96,36 +96,36 @@ class xrowTINType extends eZDataType
             {
                 $Alpha2 = 'EL';
             }
-            $idsEU = array( 
-                "AT" , 
-                "BE" , 
-                "BG" , 
-                "CY" , 
-                "CZ" , 
-                "DE" , 
-                "DK" , 
-                "EE" , 
-                "EL" , 
-                "ES" , 
-                "FI" , 
-                "FR" , 
-                "GB" , 
-                "HU" , 
-                "IE" , 
-                "IT" , 
-                "LT" , 
-                "LU" , 
-                "LV" , 
-                "MT" , 
-                "NL" , 
-                "PL" , 
-                "PT" , 
-                "RO" , 
-                "SE" , 
-                "SI" , 
-                "SK" 
+            $idsEU = array(
+                "AT" ,
+                "BE" ,
+                "BG" ,
+                "CY" ,
+                "CZ" ,
+                "DE" ,
+                "DK" ,
+                "EE" ,
+                "EL" ,
+                "ES" ,
+                "FI" ,
+                "FR" ,
+                "GB" ,
+                "HU" ,
+                "IE" ,
+                "IT" ,
+                "LT" ,
+                "LU" ,
+                "LV" ,
+                "MT" ,
+                "NL" ,
+                "PL" ,
+                "PT" ,
+                "RO" ,
+                "SE" ,
+                "SI" ,
+                "SK"
             );
-            
+
             if ( in_array( $Alpha2, $idsEU ) )
             {
                 $matches = array();
@@ -136,7 +136,7 @@ class xrowTINType extends eZDataType
                         $contentObjectAttribute->setValidationError( ezpI18n::tr( 'extension/xrowtin', 'Country doesn`t match tax ID number.' ) );
                         return eZInputValidator::STATE_INVALID;
                     }
-                    
+
                     if ( $contentObjectAttribute->attribute( 'data_int' ) != self::STATUS_VALIDATED_BY_ADMIN )
                     {
                         try
@@ -194,7 +194,7 @@ class xrowTINType extends eZDataType
         {
             $data = $http->postVariable( $base . '_ezstring_data_text_' . $contentObjectAttribute->attribute( 'id' ) );
             $classAttribute = $contentObjectAttribute->contentClassAttribute();
-            
+
             if ( $data == "" )
             {
                 if ( $contentObjectAttribute->validateIsRequired() )
@@ -237,7 +237,7 @@ class xrowTINType extends eZDataType
                 $contentObjectAttribute->setAttribute( 'data_int', self::STATUS_NOT_VALIDATED );
             }
         }
-        
+
         if ( $contentObjectAttribute->attribute( 'data_int' ) == self::STATUS_TMP_VALIDATED )
         {
             $contentObjectAttribute->setAttribute( 'data_int', self::STATUS_VALIDATED );
@@ -283,9 +283,9 @@ class xrowTINType extends eZDataType
     */
     function insertSimpleString( $object, $objectVersion, $objectLanguage, $objectAttribute, $string, &$result )
     {
-        $result = array( 
-            'errors' => array() , 
-            'require_storage' => true 
+        $result = array(
+            'errors' => array() ,
+            'require_storage' => true
         );
         $objectAttribute->setContent( $string );
         $objectAttribute->setAttribute( 'data_text', $string );
@@ -372,7 +372,6 @@ class xrowTINType extends eZDataType
     */
     function sortKey( $contentObjectAttribute )
     {
-        //include_once( 'lib/ezi18n/classes/ezchartransform.php' );
         $trans = eZCharTransform::instance();
         return $trans->transformByGroup( $contentObjectAttribute->attribute( 'data_text' ), 'lowercase' );
     }
@@ -429,7 +428,7 @@ class xrowTINType extends eZDataType
         $diffObject = $diff->diff( $old->content(), $new->content() );
         return $diffObject;
     }
-    
+
     /// \privatesection
     /// The max len validator
     public $MaxLenValidator;
