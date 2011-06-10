@@ -1,0 +1,6 @@
+#?ini charset="iso-8859-1"?
+
+[RoleSettings]
+PolicyOmitList[]=paypal/notify_url
+
+
