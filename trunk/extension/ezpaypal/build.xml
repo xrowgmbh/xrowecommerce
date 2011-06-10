@@ -1,0 +1,153 @@
+<?xml version="1.0"?>
+<project name="eZPaypal" default="all">
+
+    <description>eZPaypal extension build file</description>
+
+    <mkdir dir="build"/>
+
+    <!-- ================== -->
+    <!-- dynamic properties -->
+    <!-- ================== -->
+
+    <!-- current year -->
+    <tstamp>
+        <format property="date.current.year" pattern="yyyy"/>
+    </tstamp>
+
+    <!-- ========================= -->
+    <!-- end of dynamic properties -->
+    <!-- ========================= -->
+
+    <!-- ================= -->
+    <!-- static properties -->
+    <!-- ================= -->
+
+    <property name="ezpaypal.build.dir" location="build"/>
+    <property file="./ant/ezpaypal.properties"/>
+
+    <!-- ======================== -->
+    <!-- end of static properties -->
+    <!-- ======================== -->
+
+    <!-- ============================= -->
+    <!-- high level ( public ) targets -->
+    <!-- ============================= -->
+
+    <!-- Shows the list of properties used for building this extension    -->
+    <!-- Anytime the ezpaypal.properties file is update, this target must -->
+    <!-- be updated as well                                               -->
+    <target name="infos">
+        <echo message="EZPAYPAL BUILD INFORMATION"/>
+        <echo message="--------------------------"/>
+        <echo message="ezpaypal.version.major   : ${ezpaypal.version.major}"/>
+        <echo message="ezpaypal.version.minor   : ${ezpaypal.version.minor}"/>
+        <echo message="ezpaypal.version.release : ${ezpaypal.version.release}"/>
+        <echo message="ezpaypal.version.alias   : ${ezpaypal.version.alias}"/>
+        <echo message="ezpaypal.svn.trunk.url   : ${ezpaypal.svn.trunk.url}"/>
+        <echo message="ezpaypal.build.dir       : ${ezpaypal.build.dir}"/>
+    </target>
+
+    <!-- Displays a warning before building the extension        -->
+    <!-- Also waits for 5 seconds before starting the real build -->
+    <!-- This makes it possible to interrupt the script before   -->
+    <!-- any real task is done                                   -->
+    <target name="warning" depends="infos">
+        <echo message="Please check informations defined above are correct"/>
+        <echo message="If not feel free to update the ant/ezpaypal.properties file"/>
+        <echo message="This script will wait for 5 seconds before it starts"/>
+
+        <sleep seconds="5"/>
+    </target>
+
+    <!-- Prepares the build                               -->
+    <!-- Runs an svn export of the extension's repository -->
+    <target name="init" depends="warning">
+        <exec executable="svn" failonerror="true">
+            <arg value="export"/>
+            <arg value="${ezpaypal.svn.trunk.url}"/>
+            <arg value="${ezpaypal.build.dir}/ezpaypal"/>
+        </exec>
+    </target>
+
+    <!-- Builds the extension once the SVN repository is exported -->
+    <!-- Prune miscaellanous useless files                        -->
+    <target name="build" depends="init">
+        <antcall target="update-ezinfo-php"/>
+        <antcall target="update-license-headers"/>
+
+        <delete dir="${ezpaypal.build.dir}/ezpaypal/ant"/>
+        <delete file="${ezpaypal.build.dir}/ezpaypal/build.xml"/>
+    </target>
+
+    <!-- Creates a tarball of the newly built extension -->
+    <target name="dist">
+        <mkdir dir="dist"/>
+        <tar destfile="dist/ezpaypal-${ezpaypal.version.alias}.${ezpaypal.version.release}.tar.gz"
+             compression="gzip"
+             longfile="gnu"
+             basedir="${ezpaypal.build.dir}"/>
+    </target>
+
+    <!-- Meta target, calls build and dist -->
+    <target name="all" depends="build,dist"/>
+
+    <!-- Cleans the generated tarball by dist-->
+    <target name="distclean">
+        <delete dir="dist"/>
+    </target>
+
+    <!-- Purge everything in the build directory -->
+    <!-- Also remove the build directory         -->
+    <target name="cleanall" depends="distclean">
+        <delete dir="${ezpaypal.build.dir}"/>
+    </target>
+
+    <!-- ==================================== -->
+    <!-- end of high level ( public ) targets -->
+    <!-- ==================================== -->
+
+    <!-- ====================================================== -->
+    <!-- low level ( private ) targets, for internal usage ONLY -->
+    <!-- ====================================================== -->
+
+    <!-- Updates the license headers with correct version numbers -->
+    <!-- Updates the // SOFTWARE RELEASE line                     -->
+    <!-- Updates the // COPYRIGHT NOTICE line                     -->
+    <target name="update-license-headers">
+        <echo message="Updating license headers"/>
+
+        <!-- SOFTWARE RELEASE -->
+        <replaceregexp byline="true">
+            <regexp pattern="// SOFTWARE RELEASE: (.*)"/>
+            <substitution expression="// SOFTWARE RELEASE: ${ezpaypal.version.alias}-${ezpaypal.version.release}"/>
+            <fileset dir="${ezpaypal.build.dir}">
+                <include name="**/*.php"/>
+            </fileset>
+        </replaceregexp>
+
+        <!-- COPYRIGHT NOTICE -->
+        <replaceregexp byline="true">
+            <regexp pattern="// COPYRIGHT NOTICE: Copyright \(C\) 1999-[\d]{4} eZ Systems AS"/>
+            <substitution expression="// COPYRIGHT NOTICE: Copyright (C) 1999-${date.current.year} eZ Systems AS"/>
+            <fileset dir="${ezpaypal.build.dir}">
+                <include name="**/*.php"/>
+            </fileset>
+        </replaceregexp>
+    </target>
+
+    <!-- Updates ezinfo.php with correct version numbers -->
+    <target name="update-ezinfo-php">
+        <echo message="Updating ezinfo.php"/>
+
+        <replaceregexp byline="true" flags="i">
+            <regexp pattern="^([\s]+\047version\047[\s]+=>[\s]+\047)(.*)(\047,)$"/>
+            <substitution expression='\1${ezpaypal.version.alias}-${ezpaypal.version.release}\3'/>
+            <fileset dir="${ezpaypal.build.dir}" includes="**/*ezinfo.php"/>
+        </replaceregexp>
+    </target>
+
+    <!-- ============================================================= -->
+    <!-- end of low level ( private ) targets, for internal usage ONLY -->
+    <!-- ============================================================= -->
+
+</project>
