@@ -31,8 +31,6 @@
 /*! \file notify_url.php
 */
 
-ext_activate( 'ezpaypal', 'classes/ezpaypalchecker.php' );
-
 $logger  = eZPaymentLogger::CreateForAdd('var/log/eZPaypal_notify_url.log');
 $checker = new eZPaypalChecker( 'paypal.ini' );
 

@@ -38,17 +38,11 @@
   payment server.
 */
 
-// include_once( 'kernel/shop/classes/ezpaymentobject.php' );
-// include_once( 'kernel/shop/classes/ezredirectgateway.php' );
-
-//__DEBUG__
-// include_once( 'kernel/classes/workflowtypes/event/ezpaymentgateway/ezpaymentlogger.php' );
-//___end____
-
-define( "EZ_PAYMENT_GATEWAY_TYPE_PAYPAL", "ezpaypal" );
+#define( "EZ_PAYMENT_GATEWAY_TYPE_PAYPAL", "ezpaypal" );
 
 class eZPaypalGateway extends eZRedirectGateway
 {
+    const PaymentType = 'ezpaypal';
     /*!
         Constructor.
     */
@@ -162,6 +156,6 @@ class eZPaypalGateway extends eZRedirectGateway
     }
 }
 
-eZPaymentGatewayType::registerGateway( EZ_PAYMENT_GATEWAY_TYPE_PAYPAL, "ezpaypalgateway", "Paypal" );
+eZPaymentGatewayType::registerGateway( eZPaypalGateway::PaymentType, "ezpaypalgateway", "Paypal" );
 
 ?>
