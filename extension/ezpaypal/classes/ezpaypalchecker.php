@@ -38,8 +38,6 @@
   paypal's callback.
 */
 
-// include_once( 'kernel/shop/classes/ezpaymentcallbackchecker.php' );
-
 class eZPaypalChecker extends eZPaymentCallbackChecker
 {
     /*!
