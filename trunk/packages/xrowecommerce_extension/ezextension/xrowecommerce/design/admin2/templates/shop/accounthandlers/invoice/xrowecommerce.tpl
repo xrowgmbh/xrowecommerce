@@ -34,7 +34,7 @@
 &nbsp;
 </p>
 <div class="break" style="clear:both;"></div>
-<div style="width:40%;float: left;">
+<div style="width:45%;float: left;">
 <table  class="list" width="100%" cellspacing="0" cellpadding="0" border="0" align="right">
 <caption style="font-size: 12pt;"><b>{'Bill to'|i18n( 'design/admin/shop/orderview' )}</b></caption>
 {if is_set($order.account_information.company_name)}
@@ -70,7 +70,7 @@
 </div>
 
 
-<div style="width:40%;float: right;">
+<div style="width:45%;float: right;">
 
 {if $order.account_information.shippingaddress|not}
 <table  class="list" width="100%" cellspacing="0" cellpadding="0" border="0" align="right">
