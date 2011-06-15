@@ -300,6 +300,7 @@ class USPS extends ShippingInterface
         $this->setPounds( $totalweight );
         $this->setContainer( "Flat Rate Box" );
         $totalweight_ounces = round( $totalweight * 16 );
+        ezDebug::writeDebug( $totalweight_ounces, 'USPS Total Weight ounces' );
         $this->setOunces( $totalweight_ounces );
     }
 

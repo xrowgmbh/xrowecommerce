@@ -44,7 +44,12 @@ $product_item is the current product in the cart
         </p>
                    
         <p class="product-id">
-            {'SKU number'|i18n("extension/xrowecommerce")}: {$product_item.item_object.contentobject.data_map.product_id.content|wash()}{$option_item.value}
+            {'SKU number'|i18n("extension/xrowecommerce")}:
+            {if and(is_set($option_item.value), $option_item.value|ne(''))}
+                {$option_item.value}
+            {else}
+                {$product_item.item_object.contentobject.data_map.product_id.content|wash()}
+            {/if}
         </p>
         <p class="product-description">
             {foreach $prod.data_map.options.content.option_list as $option}
@@ -96,7 +101,12 @@ $product_item is the current product in the cart
                 {/if}
             </p>
             <p class="product-id">
-                {'SKU number'|i18n("extension/xrowecommerce")}: {$prod.data_map.product_id.content|wash()}{$prod.data_map.variation.content.name|wash()}
+                {'SKU number'|i18n("extension/xrowecommerce")}:
+                {if and(is_set($prod.data_map.variation.content.name), $prod.data_map.variation.content.name|ne(''))}
+                    {$prod.data_map.variation.content.name|wash()}
+                {else}
+                    {$prod.data_map.product_id.content|wash()}
+                {/if}
             </p>
             <p class="product-description">
                 {def $vary=$product_item.item_object.contentobject.data_map.options.content.option_list[$product_item.item_object.option_list.0.option_item_id]}

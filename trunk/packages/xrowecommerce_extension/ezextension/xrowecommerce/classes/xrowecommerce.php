@@ -30,6 +30,56 @@ class xrowECommerce
      * @access static
      * @return array First element country, Second state
      */
+    
+    static function checkOrderAccess($module, $OrderID)
+    {
+        $user = eZUser::currentUser();
+        $order = eZOrder::fetch( $OrderID );
+        $ini = eZINI::instance();
+        $http = eZHTTPTool::instance();
+        
+        $accessToAdministrate = $user->hasAccessTo( 'shop', 'administrate' );
+        $accessToAdministrateWord = $accessToAdministrate['accessWord'];
+        
+        
+        $accessToBuy = $user->hasAccessTo( 'shop', 'buy' );
+        $accessToBuyWord = $accessToBuy['accessWord'];
+        
+        if ( $accessToAdministrateWord == 'yes' )
+        {
+            $access = true;
+        }
+        elseif ( $accessToBuyWord == 'yes' )
+        {
+            if ( $user->id() == $ini->variable( 'UserSettings', 'AnonymousUserID' ) )
+            {
+                if( $OrderID != $http->sessionVariable( 'UserOrderID' ) )
+                {
+                    $access = false;
+                }
+                else
+                {
+                    $access = true;
+                }
+            }
+            else
+            {
+                if ( $order->attribute( 'user_id' ) == $user->id() )
+                {
+                    $access = true;
+                }
+                else
+                {
+                    $access = false;
+                }
+            }
+        } else 
+        {
+            $access = false;
+        }
+        return $access;
+    }
+
     static function merchantsLocations()
     {
         $ini = eZINI::instance( 'xrowecommerce.ini' );
