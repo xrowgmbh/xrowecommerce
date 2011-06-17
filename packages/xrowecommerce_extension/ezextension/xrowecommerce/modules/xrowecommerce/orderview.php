@@ -46,41 +46,14 @@ $accessToAdministrateWord = $accessToAdministrate['accessWord'];
 $accessToBuy = $user->hasAccessTo( 'shop', 'buy' );
 $accessToBuyWord = $accessToBuy['accessWord'];
 
-if ( $accessToAdministrateWord != 'no' )
-{
-    $access = true;
-}
-elseif ( $accessToBuyWord != 'no' )
-{
-    if ( $user->id() == $ini->variable( 'UserSettings', 'AnonymousUserID' ) )
-    {
-        if( $OrderID != $http->sessionVariable( 'UserOrderID' ) )
-        {
-            $access = false;
-        }
-        else
-        {
-            $access = true;
-        }
-    }
-    else
-    {
-        if ( $order->attribute( 'user_id' ) == $user->id() )
-        {
-            $access = true;
-        }
-        else
-        {
-            $access = false;
-        }
-    }
-}
-if ( !$access )
-{
-     return $module->handleError( eZError::KERNEL_ACCESS_DENIED, 'kernel' );
-}
+
 $tpl = eZTemplate::factory();
 
+$access = xrowECommerce::checkOrderAccess($module, $OrderID);
+if ( !$access )
+{
+    return $module->handleError( eZError::KERNEL_NOT_AVAILABLE, 'kernel' );
+}
 
 $tpl->setVariable( "order", $order );
 
