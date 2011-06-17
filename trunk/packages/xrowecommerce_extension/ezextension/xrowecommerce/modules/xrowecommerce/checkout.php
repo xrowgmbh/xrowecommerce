@@ -122,11 +122,10 @@ if ( $order instanceof eZOrder )
             else
             {
                 // Get the attempt number and the order.
-                $attempt = ($http->hasSessionVariable("CheckoutAttempt") ? $http->sessionVariable("CheckoutAttempt") : 0 );
-                $attemptOrderID = ($http->hasSessionVariable("CheckoutAttemptOrderID") ? $http->sessionVariable("CheckoutAttemptOrderID") : 0 );
-
+                $attempt = $http->sessionVariable("CheckoutAttempt", 0 );
+                
                 // This attempt is for another order. So reset the attempt.
-                if ($attempt != 0 && $attemptOrderID != $orderID) $attempt = 0;
+                if ($attempt != 0) $attempt = 0;
 
                 $http->setSessionVariable("CheckoutAttempt", ++$attempt);
                 $http->setSessionVariable("CheckoutAttemptOrderID", $orderID);

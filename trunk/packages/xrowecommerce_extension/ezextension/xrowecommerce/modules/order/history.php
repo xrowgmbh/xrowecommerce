@@ -2,11 +2,16 @@
 
 $Path       = array();
 $Result     = array();
-$User       = eZUser::currentUser();
-$Email      = $User->Email;
-$CustomerID = $User->ContentObjectID;
-$Email      = urldecode( $Email );
-$OrderList  = eZOrder::orderList( $CustomerID, $Email );
+
+if ( !eZUser::isAnonymous() )
+{
+    $OrderList  = eZOrder::orderList( eZUser::currentUser()->ContentObjectID, false );
+}
+else 
+{
+    $OrderList = array();
+}
+
 $tpl = eZTemplate::factory();
 
 rsort($OrderList);

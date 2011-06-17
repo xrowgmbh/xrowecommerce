@@ -18,7 +18,7 @@ $http = eZHTTPTool::instance();
 $user = eZUser::currentUser();
 $access = false;
 $order = eZOrder::fetch( $OrderID );
-if ( !$order )
+if ( !$order or !( (int)$OrderID > 0 ) )
 {
     return $module->handleError( EZ_ERROR_KERNEL_NOT_AVAILABLE, 'kernel' );
 }
