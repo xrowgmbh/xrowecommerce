@@ -248,4 +248,10 @@ ExportAsFile=false
 # Export to ftp
 ExportToFTP=true
 
+[SocialNetwork]
+socialplugins=disabled
+plugins[facebook]=enabled
+plugins[twitter]=enabled
+account[twitter]=
+
 */ ?>

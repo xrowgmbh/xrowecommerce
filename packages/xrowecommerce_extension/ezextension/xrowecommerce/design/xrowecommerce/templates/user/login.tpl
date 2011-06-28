@@ -1,4 +1,5 @@
 {* Login - Override Template *}
+<div class="content-login">
 <form method="post" action={"/user/login/"|ezurl}>
     <div id="login_full">
         <h2>{'My Account'|i18n("extension/xrowecommerce")}</h2>
@@ -55,3 +56,4 @@
         </div>
     </div>
 </form>
+</div>
