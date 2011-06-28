@@ -708,7 +708,7 @@ div.productwrapper input.right-arrow
     float: right;
 }
 
-div.shop #checkout-button, div.shop #checkout-button-2
+div.shop .continue-button
 {
     float: right;
     border-color: #F5AE55;
@@ -724,8 +724,8 @@ div.coupon
     width: 360px;
 }
 
-div.shop-userregister input,
-div.user_register input,
+div.shop-userregister input[type=text],
+div.user_register input[type=text],
 div.shop-userregister select,
 div.user_register select
 {
@@ -775,7 +775,8 @@ div.shipping
 
 div.additional-information
 {
-    float: right;
+    float: left;
+    clear: left;
 }
 
 div.warning ul li
@@ -1138,5 +1139,5 @@ td.after_sale_opt_description
 
 #AutomaticDeliveryTooltip
 {
-    position: absolute;
+    display: none;
 }

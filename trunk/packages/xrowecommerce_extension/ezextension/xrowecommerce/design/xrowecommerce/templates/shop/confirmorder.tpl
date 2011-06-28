@@ -48,16 +48,16 @@ function checkCOS( element )
 </script>
 <div class="shop shop-confirmorder">
     <form method="post" action={"xrowecommerce/confirmorder"|ezurl} id="confirmorder" name="confirmorder">
-        <input type="submit" class="hide" sytle="display: hide;" name="ConfirmOrderButton" value="{'Confirm'|i18n('extension/xrowecommerce')}" />
+        <input type="submit" class="hide" style="display: hide;" name="ConfirmOrderButton" value="{'Confirm'|i18n('extension/xrowecommerce')}" />
         <h1>{"Confirm order"|i18n("extension/xrowecommerce")}</h1>
         {include uri="design:shop/basket_navigator.tpl" step='3'}
 
         <div id="buttonblock-top" class="buttonblock">
-			<input id="cancel-button" class="button left-arrow2" type="submit" name="CancelButton" value="{'Cancel'|i18n('extension/xrowecommerce')}" title="{'Cancel order'|i18n('extension/xrowecommerce')}"/>
+			<input id="cancel-button" class="button left-arrow2 cancel-button" type="submit" name="CancelButton" value="{'Cancel'|i18n('extension/xrowecommerce')}" title="{'Cancel order'|i18n('extension/xrowecommerce')}"/>
 			{if count( $order.product_items )|gt(0)}
-			<input id="continue-button" class="button right-arrow2" type="button" onclick="checkCOS(this);" name="ConfirmOrderButton" value="{'Confirm'|i18n('extension/xrowecommerce')}" title="{'Confirm order'|i18n('extension/xrowecommerce')}"/>
-        		{/if}
-	</div>
+                <input id="continue-button" class="button right-arrow2 continue-button" type="button" onclick="checkCOS(this);" name="ConfirmOrderButton" value="{'Confirm'|i18n('extension/xrowecommerce')}" title="{'Confirm order'|i18n('extension/xrowecommerce')}"/>
+            {/if}
+        </div>
 
         <div class="break"></div>
         {shop_account_view_gui view=html order=$order step=3}
@@ -182,9 +182,9 @@ function checkCOS( element )
         {include uri="design:shop/terms_and_conditions.tpl" view="confirmorder"}
     {/if}
         <div id="buttonblock-bottom" class="buttonblock">
-            <input id="cancel-button" class="button left-arrow2" type="submit" name="CancelButton" value="{'Cancel'|i18n('extension/xrowecommerce')}" title="{'Cancel order'|i18n('extension/xrowecommerce')}"/>
+            <input id="cancel-button2" class="button left-arrow2 cancel-button" type="submit" name="CancelButton" value="{'Cancel'|i18n('extension/xrowecommerce')}" title="{'Cancel order'|i18n('extension/xrowecommerce')}"/>
 	    {if count( $order.product_items )|gt(0)}
-            <input id="continue-button" class="button right-arrow2" type="button" onclick="checkCOS(this);" name="ConfirmOrderButton" value="{'Confirm'|i18n('extension/xrowecommerce')}" title="{'Confirm order'|i18n('extension/xrowecommerce')}"/>
+            <input id="continue-button2" class="button right-arrow2 continue-button" type="button" onclick="checkCOS(this);" name="ConfirmOrderButton" value="{'Confirm'|i18n('extension/xrowecommerce')}" title="{'Confirm order'|i18n('extension/xrowecommerce')}"/>
             {/if}
 	</div>
     {else}
