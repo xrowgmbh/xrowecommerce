@@ -1141,3 +1141,9 @@ td.after_sale_opt_description
 {
     display: none;
 }
+
+.shop-userregister div.company,
+.shop-userregister div.s_company
+{
+    display: none;
+}
