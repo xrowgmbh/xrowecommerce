@@ -1,5 +1,16 @@
 <!DOCTYPE TS><TS>
 <context>
+    <name>content/datatype/edit/xrowbillingcycle</name>
+    <message>
+        <source>Quantity</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Period</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>design/admin/class/edit_language</name>
     <message>
         <source>Edit</source>
@@ -16,79 +27,7 @@
 <context>
     <name>design/admin/parts/shop/menu</name>
     <message>
-        <source>Shop</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Customers</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Discounts</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Orders</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Archive</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Order status</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Product statistics</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>VAT types</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>VAT rules</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Product categories</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Currencies</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Preferred currency</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Products overview</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Order statistics</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Customer Feedback</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Google Analytics</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Payments Pending</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Payment Terminal</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Zero weight prods</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -97,10 +36,6 @@
     </message>
     <message>
         <source>Recurring order history</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Product variation setup</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -120,11 +55,68 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Tax identification numbers</source>
+        <source>Tax identification</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Tax identification</source>
+        <source>List subscriptions</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>design/admin/section/edit</name>
+    <message>
+        <source>Update</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>design/admin/shop/customerlist</name>
+    <message>
+        <source>Forecast [%forecast]</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The forecast list is empty.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Messages [%history]</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Text</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Type</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Date</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Order ID</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Collection ID</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>User ID</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The message list is empty.</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>design/admin/shop/discountgroupmembershipview</name>
+    <message>
+        <source>Total recurring forecast on revenue</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -357,6 +349,10 @@
         <source>The list is empty.</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Print</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>design/admin/shop/orderview</name>
@@ -532,6 +528,29 @@
         <source>Shipping plan</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Bill to</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Company</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>design/admin/workflow/eventtype/edit</name>
+    <message>
+        <source>Node</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Remove selected</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add objects</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>design/ezwebin/collectedinfo/form</name>
@@ -541,9 +560,67 @@
     </message>
 </context>
 <context>
+    <name>design/ezwebin/collectedinfo/poll</name>
+    <message>
+        <source>%count total votes</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>design/ezwebin/full/article</name>
+    <message>
+        <source>Tip a friend</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Related products</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Product reviews</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>design/ezwebin/full/forum</name>
+    <message>
+        <source>Create your review</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>design/ezwebin/full/poll</name>
+    <message>
+        <source>Vote</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>design/ezwebin/full/product</name>
+    <message>
+        <source>Add to wish list</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>design/ezwebin/user/edit</name>
+    <message>
+        <source>My notification settings.</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>design/standard/class/datatype</name>
     <message>
         <source>Select which nodes from which classes can be selected</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>using payment gateway</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>disabled</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -557,6 +634,241 @@
         <source>CSV File for import</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Year</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Month</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Day</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Code</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Discount</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Type</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Percent (basket)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Flat (basket)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Free Shipping and Handling</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Current stored card</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Account number</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Bank code</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Remove debit card</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>expires</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Remove credit card</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Card type</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Name on card</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Credit card number</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Security Code</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Help</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Name of account</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Options</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>No</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Description</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Additional price</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Weight</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Image</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Select option for removal.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Currency</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Value</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Select price for removal.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Auto</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Remove selected</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Remove selected prices.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Price list is empty</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>No image</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Remove</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Set custom price</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Set custom price.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Remove custom price</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>There are no available currencies.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>There are no options.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Remove selected options.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add option</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add a new option.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>No card stored.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Select option</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>design/standard/ezoe</name>
+    <message>
+        <source>Upload new</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>File</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Location</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Automatic</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Caption</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Description</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Upload local file</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Upload is in progress, it may take a few seconds...</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>design/standard/shop</name>
@@ -566,14 +878,6 @@
     </message>
     <message>
         <source>Note</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>The above is information from your last order.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Order History</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -600,15 +904,49 @@
         <source>Print</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>The information above is from your last order.</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
-    <name>extension/xrowcommerce/productvariation</name>
+    <name>design/standard/workflow</name>
     <message>
-        <source>yes</source>
+        <source>Aftersale</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>no</source>
+        <source>Add to order</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>No coupon</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Coupon validation</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Have coupon</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>design/standard/workflow/eventtype</name>
+    <message>
+        <source>Node which includes shelf warmer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>No objects selected.</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>extension/recurringorders</name>
+    <message>
+        <source>Subscriptions</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -695,10 +1033,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Input did not validate, all fields marked with %mark% must be filled in.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Select a payment method</source>
         <translation type="unfinished"></translation>
     </message>
@@ -744,10 +1078,6 @@
     </message>
     <message>
         <source>starting at</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>read more</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -870,10 +1200,6 @@
     </message>
     <message>
         <source>State / Province</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>ZIP</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1126,10 +1452,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Validation error</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Validation errors</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1294,14 +1616,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Total NY Tax</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Total CT Tax</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Total Products</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1330,19 +1644,11 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Did you know about our...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Add your selections to</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Automatic Delivery</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Note</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1434,42 +1740,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Payment Information</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Please enter your credit card information</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>There were errors on the form</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Name on Card</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Card Type</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Card Number</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Security Number</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Expiration Date</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Help?</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Order Number</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1487,30 +1757,6 @@
     </message>
     <message>
         <source>Enter your email address, login and password.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Q: What are the advantages of security code verification?</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Please enter the last 3 digits of your credit card&apos;s security code, which is printed on the back of your card.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>There are several advantages of security code verification</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Increased customer security</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Faster order fullfilment</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Deters fraud</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1596,26 +1842,6 @@
     </message>
     <message>
         <source>You do not have permission to use any of the available payment methods.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Please enter a your companies tax ID number.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Country doesn`t match tax ID number.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Your companies tax ID number is not valid.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Shipping destionation is not allowed.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Enter account information</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1759,26 +1985,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Cannot fetch uploaded file, please choose a valid CSV file.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>File has a wrong extension. Only CSV files are supported.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Empty file uploaded.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>The email address isn&apos;t given.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>The email address isn&apos;t valid.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Apartment, suite, unit, building, floor, etc.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1797,10 +2003,6 @@
     <message>
         <source>Save</source>
         <comment>Save Button</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>A tax identification number in the Federal Republic of Germany consists of 10 or 11 digits, depending on the &quot;Bundesland&quot; (State). These are divided into groups of 2 - 5 by forward slashes or blanks (e.g. &quot;181/815/08155&quot;). A unified German tax identification number consists of 13 digits like &quot;2893081508152&quot;.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1824,15 +2026,267 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Send Order</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>One step back</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Shipping mathod is not allowed for destionation.</source>
+        <source>Destination</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Net Sale</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Order Total</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>There is no order in the selection for this period.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>What is a Security Code?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The Card Security Code is located on the back of MasterCard, Visa and Discover credit or debit cards and is typically a separate group of 3 digits to the right of the signature strip.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>On American Express cards, the Card Security Code is a printed (NOT embossed) group of four digits on the front towards the right.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Pause Automatic Delivery</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>If you are away and you wish to not receive your orders please check this box. We will also pause your Automatic Delivery, if we notice problems with your order request.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Important Note</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Items with the same &quot;Next order&quot; date will be combined on the same order.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Product name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Variation</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Date added</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Amount</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Price per item</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Frequency</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Next order</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Last order</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>All prices exclude tax, shipping and handling. Those will be added to your order once a new order is created.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>View All Tags</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Shipping Gateway</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The shipping gateway can`t process your data. Please contact support.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Back</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The shipping gateway provider has a problem. Please try again or contact support.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Take a look at our</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Double click on above image to view full picture</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>view products</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>view product</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Basket items</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>There are no reviews yet.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>You need to be logged in to create reviews. You can do so %login_link_start%here%login_link_end%</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Customer Reviews</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Rate this review:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Create your review</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>We&apos;ve found the following hazardous items from your shopping cart since we are not allowed to ship these items to your destination. For further questions please contact us.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Company Address</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Home Address</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Enter different shipping address.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Subtotal</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>User profile</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>My Account:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Profile</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Personal Information</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Account Settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Change my billing and shipping address or your credit card information.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Change my billing and shipping address or creditcard.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Change my password</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Shop Features</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>View my recent and current orders.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>My orders.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>View my recurring orders.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>My recurring orders.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Edit or view my wishlist.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>My wishlist.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Edit or view your notification settings.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Select a product</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Errors</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please select your product below.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Regular Retail Price</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Our Thank You Price</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add to my order</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>No. Thanks</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1880,41 +2334,6 @@
     </message>
     <message>
         <source>Add products to shopping cart</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Direct order</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>extension/xrowecommerce/epayment</name>
-    <message>
-        <source>Please enter a name</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Credit card number is not a number</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Please enter the correct security code.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Please enter the name of the card holder.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Please enter the correct account number</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Please enter the correct bank code</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>The validity of your credit card has expired.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2293,124 +2712,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Attribute edit</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Product variation - edit attribute</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Product variation attributes</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Product variation columns</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Template edit</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Product variation - edit template</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Product variation templates</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Boolean</source>
-        <comment>Datatype name</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Stores true or false.</source>
-        <comment>Datatype description</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Float</source>
-        <comment>Datatype name</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Stores a floating-point number.</source>
-        <comment>Datatype description</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Integer</source>
-        <comment>Datatype name</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Stores an integer.</source>
-        <comment>Datatype description</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Price</source>
-        <comment>Datatype name</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Stores price of the variation</source>
-        <comment>Datatype description</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Object relation</source>
-        <comment>Datatype name</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Stores an object relation. (e.g. to an image)</source>
-        <comment>Datatype description</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Selection</source>
-        <comment>Datatype name</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Stores a selection like colours green, blue, red....</source>
-        <comment>Datatype description</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>stockkeeping unit</source>
-        <comment>Datatype name</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Stores the stockkeeping unit of the variation</source>
-        <comment>Datatype description</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Text line</source>
-        <comment>Datatype name</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Stores a line of text of the variation</source>
-        <comment>Datatype description</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Text block</source>
-        <comment>Datatype name</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Stores text of the variation</source>
-        <comment>Datatype description</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Show in select box:</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2423,39 +2724,24 @@
         <source>Please enter a valid date.</source>
         <translation type="unfinished"></translation>
     </message>
+</context>
+<context>
+    <name>extension/xrowexommerce</name>
     <message>
-        <source>Date</source>
-        <comment>Datatype name</comment>
+        <source>Product review</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Stores a date value.</source>
-        <comment>Datatype description</comment>
+        <source>Send</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Discard</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>extension/xrowtin</name>
-    <message>
-        <source>The class identifier name of the country field is incorrect in xrowecommerce.ini</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>The class identifier name of the company field is incorrect in xrowecommerce.ini</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Please provide a company name with your companies tax ID.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Country doesn`t match tax ID number.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Your companies tax ID number is not valid.</source>
-        <translation type="unfinished"></translation>
-    </message>
     <message>
         <source>not validated</source>
         <translation type="unfinished"></translation>
@@ -2470,105 +2756,9 @@
     </message>
 </context>
 <context>
-    <name>kernel/classes/datatypes</name>
+    <name>standard/datatype/ezcreditcard</name>
     <message>
-        <source>Pay by invoice</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Advance payment</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Product variations</source>
-        <comment>Datatype name</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Please choose a template for the product variation.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Please correct the input of product variations. The wrong or missing input is marked with a red border.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Tax Identification Number</source>
-        <comment>Datatype name</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Input required.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Cash on delivery</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>kernel/shop</name>
-    <message>
-        <source>Enter account information</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Order list</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Customer order view</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Orderedit</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Orderitem</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Zero weight prods</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Tax listing</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Order #%order_id</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Statistics</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Basket</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Order history</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Remove order</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Shipping plan</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>kernel/workflow/event</name>
-    <message>
-        <source>Inventory Manager</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>xrow Ecommerce Payment Gateway</source>
+        <source>Not used</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
