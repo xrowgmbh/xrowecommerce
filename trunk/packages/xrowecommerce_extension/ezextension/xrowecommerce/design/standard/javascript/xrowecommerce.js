@@ -7,8 +7,24 @@ $(document).ready(function() {
     }).mouseleave(function(){
         $('#AutomaticDeliveryTooltip').slideUp('300');
     });
-});
+    $('.shop-userregister input#company').click(function(){
+        $('div.company').slideDown('slow');
+    });
+    $('.shop-userregister input#home').click(function(){
+        $('div.company').slideUp('slow');
+    });
+    $('.shop-userregister input#s_company').click(function(){
+        $('div.s_company').slideDown('slow');
+    });
+    $('.shop-userregister input#s_home').click(function(){
+        $('div.s_company').slideUp('slow');
+    });
+    $('#shipping-link').mousedown(function(){
+        $('input#shipping-checkbox').trigger('click');
+    });
+    
 
+});
 YUI().use( 'node', function(Y)
 {
     Y.on( 'domready', function() 

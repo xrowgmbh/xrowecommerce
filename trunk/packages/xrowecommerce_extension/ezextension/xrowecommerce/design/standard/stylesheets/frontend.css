@@ -4,3 +4,8 @@
 {
     cursor: pointer;
 }
+.shop-userregister div.company,
+.shop-userregister div.s_company
+ {
+    display: none;
+ }

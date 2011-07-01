@@ -8,19 +8,18 @@
         {include uri="design:shop/userregister_preface.tpl"}
         {def $country_default_ini=ezini( 'ShopAccountHandlerDefaults', 'DefaultCountryCode', 'xrowecommerce.ini' )}
             {if count($hazardous)|gt(0)}
-<div class="warning">
-                <h2>{'Hazardous item(s) found in your cart.'|i18n('extension/xrowecommerce')}</h2>
-                <p>
-                    {'Dear Customer,'|i18n('extension/xrowecommerce')}<br />
-                    {"We've found the following hazardous items from your shopping cart since we are not allowed to ship 
-these items to your destination. For further questions please contact us."|i18n('extension/xrowecommerce')}<br />
-                </p>
+                <div class="warning">
+                    <h2>{'Hazardous item(s) found in your cart.'|i18n('extension/xrowecommerce')}</h2>
+                    <p>
+                        {'Dear Customer,'|i18n('extension/xrowecommerce')}<br />
+                        {"We've found the following hazardous items from your shopping cart since we are not allowed to ship these items to your destination. For further questions please contact us."|i18n('extension/xrowecommerce')}<br />
+                    </p>
                     <ul>
                         {foreach $hazardous as $item}
                         <li>{$item.item_count} x <a href={concat("/content/view/full/", $item.contentobject.main_node_id)|ezurl()}>{$item.name}</a></li>
                         {/foreach}
                     </ul>
-</div>
+                </div>
             {/if}
         {def $error_count = false}
         {foreach $fields as $error}
@@ -52,28 +51,43 @@ these items to your destination. For further questions please contact us."|i18n(
                 <h2>{'Billing Information'|i18n('extension/xrowecommerce')}</h2>
                 <p><span class="required">* <i>{'Required field'|i18n('extension/xrowecommerce')}</i></span></p>
                 <div class="labelbreak"></div>
-
-                {if $fields.company_name.enabled}
-                    <div class="ur_companyname block{if is_set($fields.company_name.errors)} error{/if}">
-                        <label>{'Company name'|i18n('extension/xrowecommerce')}{if $fields.company_name.required}<span class="required">*</span>{/if}</label>
-                        <div class="labelbreak"></div>
-                        <input type="text" name="company_name" id="company_name" value="{$company_name|wash}" />
+                <div class="address-selection">
+                    <div class="comp">
+                        <label for="company">
+                        <input id="company" type="radio" value="company" name="company" />
+                        {'Company Address'|i18n('extension/xrowecommerce')}
+                        </label>
                     </div>
-                {/if}
-                {if $fields.company_additional.enabled}
-                    <div class="ur_company_additional block{if is_set($fields.company_additional.errors)} error{/if}">
-                        <label>{'Company additional information'|i18n('extension/xrowecommerce')}{if $fields.company_additional.required}<span class="required">*</span>{/if}</label>
-                        <div class="labelbreak"></div>
-                        <input type="text" name="company_additional" id="company_additional" value="{$company_additional|wash}" />
+                    <div class="home">
+                        <label for="home">
+                        <input checked="checked" id="home" type="radio" value="company" name="company" />
+                        {'Home Address'|i18n('extension/xrowecommerce')}
+                        </label>
                     </div>
-                {/if}
-                {if $fields.tax_id.enabled}
-                    <div class="ur_taxid block{if is_set($fields.tax_id.errors)} error{/if}">
-                        <label>{'Tax ID'|i18n('extension/xrowecommerce')}{if $fields.tax_id.required}<span class="required">*</span>{/if}</label>
-                        <div class="labelbreak"></div>
-                        <input type="text" name="tax_id" {if and( $tax_id, $tax_id_valid|eq('2') )} readonly="readonly" disabled{/if} value="{$tax_id|wash}" />
-                    </div>
-                {/if}
+                </div>
+                <div class="company">
+                    {if $fields.company_name.enabled}
+                        <div class="ur_companyname block{if is_set($fields.company_name.errors)} error{/if}">
+                            <label>{'Company name'|i18n('extension/xrowecommerce')}{if $fields.company_name.required}<span class="required">*</span>{/if}</label>
+                            <div class="labelbreak"></div>
+                            <input type="text" name="company_name" id="company_name" value="{$company_name|wash}" />
+                        </div>
+                    {/if}
+                    {if $fields.company_additional.enabled}
+                        <div class="ur_company_additional block{if is_set($fields.company_additional.errors)} error{/if}">
+                            <label>{'Company additional information'|i18n('extension/xrowecommerce')}{if $fields.company_additional.required}<span class="required">*</span>{/if}</label>
+                            <div class="labelbreak"></div>
+                            <input type="text" name="company_additional" id="company_additional" value="{$company_additional|wash}" />
+                        </div>
+                    {/if}
+                    {if $fields.tax_id.enabled}
+                        <div class="ur_taxid block{if is_set($fields.tax_id.errors)} error{/if}">
+                            <label>{'Tax ID'|i18n('extension/xrowecommerce')}{if $fields.tax_id.required}<span class="required">*</span>{/if}</label>
+                            <div class="labelbreak"></div>
+                            <input type="text" name="tax_id" {if and( $tax_id, $tax_id_valid|eq('2') )} readonly="readonly" disabled{/if} value="{$tax_id|wash}" />
+                        </div>
+                    {/if}
+                </div>
                 {if $fields.first_name.enabled}
                     <div class="ur_firstname block{if is_set($fields.first_name.errors)} error{/if}">
                         <label>{'First name'|i18n('extension/xrowecommerce')}{if $fields.first_name.required}<span class="required">*</span></label>
@@ -204,10 +218,33 @@ these items to your destination. For further questions please contact us."|i18n(
             {* right column *}
             <div class="shipping">
                 <h2>{'Shipping Information'|i18n( 'extension/xrowecommerce' )}</h2>
-                <label class="shipping-checkbox" for="shipping-checkbox"><input class="shipping-checkbox" id="shipping-checkbox" name="shipping" value="1" type="checkbox" {if $shipping} checked="checked" {/if}  />{'My billing and shipping addresses are identical.'|i18n('extension/xrowecommerce')}</label>
+                <label class="shipping-checkbox" for="shipping-checkbox">
+                <p id="shipping-checkbox-text">
+                    <a id="shipping-link" href="#">
+                        {'Enter different shipping address.'|i18n('extension/xrowecommerce')}
+                    </a>
+                </p>
+                <input class="shipping-checkbox" id="shipping-checkbox" name="shipping" value="1" type="checkbox" {if $shipping} checked="checked" {/if}  />
+                {'My billing and shipping addresses are identical.'|i18n('extension/xrowecommerce')}
+                </label>
+
                 <div class="block" id="shippinginfo"{if $shipping} style="display: none;"{else} style="display: block;"{/if}>
                     <p><span class="required">* {'Required field'|i18n('extension/xrowecommerce')}</span></p>
-
+                <div class="s_address-selection">
+                    <div class="comp">
+                        <label for="s_company">
+                        <input id="s_company" type="radio" value="company" name="s_company" />
+                        {'Company Address'|i18n('extension/xrowecommerce')}
+                        </label>
+                    </div>
+                    <div class="s_home">
+                        <label for="s_home">
+                        <input checked="checked" id="s_home" type="radio" value="company" name="s_company" />
+                        {'Home Address'|i18n('extension/xrowecommerce')}
+                        </label>
+                    </div>
+                </div>
+                <div class="s_company">
                     {if $fields.s_company_name.enabled}
                         <div class="ur_companyname block{if is_set($fields.s_company_name.errors)} error{/if}">
                             <label>{'Company name'|i18n('extension/xrowecommerce')}{if $fields.s_company_name.required}<span class="required">*</span>{/if}</label>
@@ -223,6 +260,7 @@ these items to your destination. For further questions please contact us."|i18n(
                             <input type="text" name="s_company_additional" id="s_company_additional" value="{$s_company_additional|wash}" />
                         </div>
                     {/if}
+                </div>
 
                     {if $fields.s_first_name.enabled}
                         <div class="ur_firstname block{if is_set($fields.s_first_name.errors)} error{/if}">
