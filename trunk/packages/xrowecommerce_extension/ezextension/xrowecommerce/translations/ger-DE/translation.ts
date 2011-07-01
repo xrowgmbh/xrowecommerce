@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.0" language="de_DE">
+<!DOCTYPE TS><TS>
 <context>
     <name>content/datatype/edit/xrowbillingcycle</name>
     <message>
@@ -29,80 +27,8 @@
 <context>
     <name>design/admin/parts/shop/menu</name>
     <message>
-        <source>Shop</source>
-        <translation type="obsolete">Shop</translation>
-    </message>
-    <message>
-        <source>Customers</source>
-        <translation type="obsolete">Kunden</translation>
-    </message>
-    <message>
-        <source>Discounts</source>
-        <translation type="obsolete">Rabatte</translation>
-    </message>
-    <message>
-        <source>Orders</source>
-        <translation type="obsolete">Bestellungen</translation>
-    </message>
-    <message>
-        <source>Archive</source>
-        <translation type="obsolete">Archiv</translation>
-    </message>
-    <message>
-        <source>Order status</source>
-        <translation type="obsolete">Bestellstatus</translation>
-    </message>
-    <message>
-        <source>Product statistics</source>
-        <translation type="obsolete">Produktstatistiken</translation>
-    </message>
-    <message>
-        <source>VAT types</source>
-        <translation type="obsolete">Mehrwertsteuer</translation>
-    </message>
-    <message>
-        <source>VAT rules</source>
-        <translation type="obsolete">Mehrwertsteueregeln</translation>
-    </message>
-    <message>
-        <source>Product categories</source>
-        <translation type="obsolete">Produktkategorien</translation>
-    </message>
-    <message>
-        <source>Currencies</source>
-        <translation type="obsolete">Währungen</translation>
-    </message>
-    <message>
-        <source>Preferred currency</source>
-        <translation type="obsolete">Bevorzugte Währung</translation>
-    </message>
-    <message>
-        <source>Products overview</source>
-        <translation type="obsolete">Produktüberblick</translation>
-    </message>
-    <message>
         <source>Order statistics</source>
         <translation>Bestellstatistiken</translation>
-    </message>
-    <message>
-        <source>Customer Feedback</source>
-        <translation type="obsolete">Kundenrückmeldungen</translation>
-    </message>
-    <message>
-        <source>Google Analytics</source>
-        <translation type="obsolete">Google Analytics</translation>
-    </message>
-    <message>
-        <source>Payments Pending</source>
-        <translation type="obsolete">Ausstehende Zahlungen</translation>
-    </message>
-    <message>
-        <source>Payment Terminal</source>
-        <translation type="obsolete">Bezahlungsterminal</translation>
-    </message>
-    <message>
-        <source>Zero weight prods</source>
-        <translation type="obsolete">Produkte ohne Gewichtsangabe</translation>
     </message>
     <message>
         <source>Recurring order forecast</source>
@@ -111,10 +37,6 @@
     <message>
         <source>Recurring order history</source>
         <translation>Chronik wiederkehrender Bestellungen</translation>
-    </message>
-    <message>
-        <source>Product variation setup</source>
-        <translation type="obsolete">Produkt Variationen Setup</translation>
     </message>
     <message>
         <source>Product attributes</source>
@@ -133,23 +55,12 @@
         <translation>Preis Export</translation>
     </message>
     <message>
-        <source>Tax identification numbers</source>
-        <translation type="obsolete">Int. Steuernummern</translation>
-    </message>
-    <message>
         <source>Tax identification</source>
         <translation>Int. Steuernummer</translation>
     </message>
     <message>
         <source>List subscriptions</source>
         <translation>Abonnenten Liste</translation>
-    </message>
-</context>
-<context>
-    <name>design/admin/parts/visual/menu</name>
-    <message>
-        <source>Recurring orders</source>
-        <translation type="obsolete">Dauerauftrge</translation>
     </message>
 </context>
 <context>
@@ -885,15 +796,15 @@
     </message>
     <message>
         <source>Set custom price</source>
-        <translation type="unfinished"></translation>
+        <translation>Benutzerdefinierten Preis festlegen</translation>
     </message>
     <message>
         <source>Set custom price.</source>
-        <translation type="unfinished"></translation>
+        <translation>Benutzerdefinierten Preis festlegen.</translation>
     </message>
     <message>
         <source>Remove custom price</source>
-        <translation type="unfinished"></translation>
+        <translation>Benutzerdefinierten Preis entfernen</translation>
     </message>
     <message>
         <source>There are no available currencies.</source>
@@ -970,14 +881,6 @@
         <translation>Hinweis</translation>
     </message>
     <message>
-        <source>The above is information from your last order.</source>
-        <translation type="obsolete">Oben sehen Sie die Informationen Ihrer letzten Bestellung.</translation>
-    </message>
-    <message>
-        <source>Order History</source>
-        <translation type="obsolete">Bestellverlauf</translation>
-    </message>
-    <message>
         <source>Order No</source>
         <translation>Bestellnummer</translation>
     </message>
@@ -1000,54 +903,6 @@
     <message>
         <source>Print</source>
         <translation>Drucken</translation>
-    </message>
-    <message>
-        <source>Billing Address</source>
-        <translation type="obsolete">Rechnungsadresse</translation>
-    </message>
-    <message>
-        <source>Shipping and Billing Address</source>
-        <translation type="obsolete">Liefer- und Rechnugnsadresse</translation>
-    </message>
-    <message>
-        <source>Name</source>
-        <translation type="obsolete">Name</translation>
-    </message>
-    <message>
-        <source>Email</source>
-        <translation type="obsolete">E-Mail</translation>
-    </message>
-    <message>
-        <source>Address</source>
-        <translation type="obsolete">Adresse</translation>
-    </message>
-    <message>
-        <source>City</source>
-        <translation type="obsolete">Ort</translation>
-    </message>
-    <message>
-        <source>State</source>
-        <translation type="obsolete">Bundesland</translation>
-    </message>
-    <message>
-        <source>Zip code</source>
-        <translation type="obsolete">Postleitzahl</translation>
-    </message>
-    <message>
-        <source>Country</source>
-        <translation type="obsolete">Land</translation>
-    </message>
-    <message>
-        <source>Phone</source>
-        <translation type="obsolete">Telefon</translation>
-    </message>
-    <message>
-        <source>Shipping</source>
-        <translation type="obsolete">Leiferung</translation>
-    </message>
-    <message>
-        <source>Shipping Address</source>
-        <translation type="obsolete">Lieferadresse</translation>
     </message>
     <message>
         <source>The information above is from your last order.</source>
@@ -1091,27 +946,8 @@
 <context>
     <name>extension/recurringorders</name>
     <message>
-        <source>Your input has been stored.</source>
-        <translation type="obsolete">Ihre Eingaben wurden gespeichert.</translation>
-    </message>
-    <message>
-        <source>We have encountered problems with your credit card. Please update your profile.</source>
-        <translation type="obsolete">Ihre Kreditkartendaten konntent nicht bestätigt werden. Aktualisieren Sie Ihr Profil.</translation>
-    </message>
-    <message>
         <source>Subscriptions</source>
         <translation>Abonnements</translation>
-    </message>
-</context>
-<context>
-    <name>extension/xrowcommerce/productvariation</name>
-    <message>
-        <source>yes</source>
-        <translation type="obsolete">ja</translation>
-    </message>
-    <message>
-        <source>no</source>
-        <translation type="obsolete">nein</translation>
     </message>
 </context>
 <context>
@@ -1195,10 +1031,6 @@
     <message>
         <source>Sorry, there are no items left in your cart.</source>
         <translation>Sie haben keine Artikel im Warenkorb.</translation>
-    </message>
-    <message>
-        <source>Input did not validate, all fields marked with %mark% must be filled in.</source>
-        <translation type="obsolete">Eingabe ungültig, alle Felder mit %mark% müssen ausgefüllt werden.</translation>
     </message>
     <message>
         <source>Select a payment method</source>
@@ -1377,10 +1209,6 @@
     <message>
         <source>State / Province</source>
         <translation>Bundesland</translation>
-    </message>
-    <message>
-        <source>ZIP</source>
-        <translation type="obsolete">PLZ</translation>
     </message>
     <message>
         <source>Fax</source>
@@ -1632,10 +1460,6 @@
         <translation>Mein Konto</translation>
     </message>
     <message>
-        <source>Validation error</source>
-        <translation type="obsolete">Fehler bei der Gültigkeitsüberprüfung</translation>
-    </message>
-    <message>
         <source>Validation errors</source>
         <translation>Fehler bei der Gültigkeitsüberprüfung</translation>
     </message>
@@ -1812,14 +1636,6 @@
         <translation>USt. gesamt</translation>
     </message>
     <message>
-        <source>Total NY Tax</source>
-        <translation type="obsolete">NY Steuern gesamt</translation>
-    </message>
-    <message>
-        <source>Total CT Tax</source>
-        <translation type="obsolete">CT Steuern gesamt</translation>
-    </message>
-    <message>
         <source>Total Products</source>
         <translation>Produkte gesamt</translation>
     </message>
@@ -1848,20 +1664,12 @@
         <translation>Ihre Kreditkarteninformation werden benötigt, wenn Sie die Option &quot;Wiederkehrenden Bestellungen&quot; nutzen möchten.</translation>
     </message>
     <message>
-        <source>Did you know about our...</source>
-        <translation type="obsolete">Kennen Sie schon unsere...</translation>
-    </message>
-    <message>
         <source>Add your selections to</source>
         <translation>Fügen Sie Ihre Bestellungen der</translation>
     </message>
     <message>
         <source>Automatic Delivery</source>
         <translation>Automatischen Auslieferung</translation>
-    </message>
-    <message>
-        <source>Note</source>
-        <translation type="obsolete">Hinweis</translation>
     </message>
     <message>
         <source>This product is available for</source>
@@ -1952,72 +1760,12 @@
         <translation>Shop</translation>
     </message>
     <message>
-        <source>Payment Information</source>
-        <translation type="obsolete">Zahlungsart</translation>
-    </message>
-    <message>
-        <source>Please enter your credit card information</source>
-        <translation type="obsolete">Bitte geben Sie Ihre Kreditkarteninformationen ein</translation>
-    </message>
-    <message>
-        <source>There were errors on the form</source>
-        <translation type="obsolete">Es gab Fehler im Dokument</translation>
-    </message>
-    <message>
-        <source>Name on Card</source>
-        <translation type="obsolete">Name auf der Karte</translation>
-    </message>
-    <message>
-        <source>Card Type</source>
-        <translation type="obsolete">Kartentyp</translation>
-    </message>
-    <message>
-        <source>Card Number</source>
-        <translation type="obsolete">Kartennummer</translation>
-    </message>
-    <message>
-        <source>Security Number</source>
-        <translation type="obsolete">Sicherheitsnummer</translation>
-    </message>
-    <message>
-        <source>Expiration Date</source>
-        <translation type="obsolete">Gültig bis</translation>
-    </message>
-    <message>
-        <source>Help?</source>
-        <translation type="obsolete">Hilfe?</translation>
-    </message>
-    <message>
         <source>This table contains the specific product images, product id&apos;s, product names and links to the full view of the product</source>
         <translation>Diese Tabelle enhält die jeweiligen Produktbilder, Produktnummern, Produktnamen und den Links zur Vollansicht des Produktes</translation>
     </message>
     <message>
         <source>Enter your email address, login and password.</source>
         <translation>Geben Sie Ihre Emailadresse, den Benutzernamen und das Passwort ein.</translation>
-    </message>
-    <message>
-        <source>Q: What are the advantages of security code verification?</source>
-        <translation type="obsolete">Q: Was sind die Vorteile der Prüfung des Sicherheitscodes?</translation>
-    </message>
-    <message>
-        <source>Please enter the last 3 digits of your credit card&apos;s security code, which is printed on the back of your card.</source>
-        <translation type="obsolete">Bitte geben Sie die letzten 3 Zeichen des Sicherheitscodes Ihrer Kreditkarte ein, welcher auf der Rückseite abgebildet ist.</translation>
-    </message>
-    <message>
-        <source>There are several advantages of security code verification</source>
-        <translation type="obsolete">Es gibt einige Vorzüge bei der Überprüfung des Sicherheitscodes</translation>
-    </message>
-    <message>
-        <source>Increased customer security</source>
-        <translation type="obsolete">Erhöhte Kundensicherheit</translation>
-    </message>
-    <message>
-        <source>Faster order fullfilment</source>
-        <translation type="obsolete">Schnellere Erfüllung der Bestellung</translation>
-    </message>
-    <message>
-        <source>Deters fraud</source>
-        <translation type="obsolete">Betrüger abschrecken</translation>
     </message>
     <message>
         <source>Use eZ Publish roles and policies for payment method selection.</source>
@@ -2109,26 +1857,6 @@
         <translation>Sie haben keine Erlaubnis eine der verfügbaren Zahlungsmethoden zu nutzen.</translation>
     </message>
     <message>
-        <source>Please enter a your companies tax ID number.</source>
-        <translation type="obsolete">Bitte geben Sie die Steuernummer Ihres Unternehmens ein.</translation>
-    </message>
-    <message>
-        <source>Country doesn`t match tax ID number.</source>
-        <translation type="obsolete">Das Land entspricht nicht der Steuernummer.</translation>
-    </message>
-    <message>
-        <source>Your companies tax ID number is not valid.</source>
-        <translation type="obsolete">Ungültige Steuernummer.</translation>
-    </message>
-    <message>
-        <source>Shipping destionation is not allowed.</source>
-        <translation type="obsolete">Der Versand an Ihren Standort ist nicht erlaubt.</translation>
-    </message>
-    <message>
-        <source>Enter account information</source>
-        <translation type="obsolete">Geben Sie Ihre Benutzerdaten ein</translation>
-    </message>
-    <message>
         <source>Your notes on order</source>
         <translation>Ihre Anmerkung(en) zur Bestellung</translation>
     </message>
@@ -2159,14 +1887,6 @@
     <message>
         <source>Use this button to place your order.</source>
         <translation>Verwenden Sie diesen Button, um die Bestellung abzusenden.</translation>
-    </message>
-    <message>
-        <source>The email address isn&apos;t given.</source>
-        <translation type="obsolete">Die E-Mail Adresse wurde nicht angegeben.</translation>
-    </message>
-    <message>
-        <source>The email address isn&apos;t valid.</source>
-        <translation type="obsolete">Die E-Mail Adresse ist ungültig.</translation>
     </message>
     <message>
         <source>Empty cart</source>
@@ -2227,18 +1947,6 @@
     <message>
         <source>These SKUs were not found, prices couldn&apos;t be imported:</source>
         <translation>Diese Artikelnummern wurden nicht gefunden, Preise konnten nicht importiert werden:</translation>
-    </message>
-    <message>
-        <source>Cannot fetch uploaded file, please choose a valid CSV file.</source>
-        <translation type="obsolete">Konnte Datei nicht verarbeiten, bitte wählen Sie eine gültige CSV Datei aus.</translation>
-    </message>
-    <message>
-        <source>File has a wrong extension. Only CSV files are supported.</source>
-        <translation type="obsolete">Datei hat falsche Erweiterung. Nur CSV Dateien werden unterstützt.</translation>
-    </message>
-    <message>
-        <source>Empty file uploaded.</source>
-        <translation type="obsolete">Leere Datei hochgeladen.</translation>
     </message>
     <message>
         <source>Price export</source>
@@ -2328,10 +2036,6 @@
     <message>
         <source>One step back</source>
         <translation>Schritt zurück</translation>
-    </message>
-    <message>
-        <source>Send Order</source>
-        <translation type="obsolete">Bestellung absenden</translation>
     </message>
     <message>
         <source>Destination</source>
@@ -2471,7 +2175,7 @@
     </message>
     <message>
         <source>Create your review</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Eine Kundenmeinung schreiben</translation>
     </message>
     <message>
         <source>Subtotal</source>
@@ -2567,12 +2271,23 @@
     </message>
     <message>
         <source>No. Thanks</source>
+        <translation>Nein. Danke</translation>
+    </message>
+    <message>
+        <source>We&apos;ve found the following hazardous items from your shopping cart since we are not allowed to ship these items to your destination. For further questions please contact us.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>We&apos;ve found the following hazardous items from your shopping cart since we are not allowed to ship 
-these items to your destination. For further questions please contact us.</source>
-        <translation type="unfinished"></translation>
+        <source>Company Address</source>
+        <translation>Firmenadresse</translation>
+    </message>
+    <message>
+        <source>Home Address</source>
+        <translation>Privatadresse</translation>
+    </message>
+    <message>
+        <source>Enter different shipping address.</source>
+        <translation>Eine abweichende Lieferadresse eingeben.</translation>
     </message>
 </context>
 <context>
@@ -2620,41 +2335,6 @@ these items to your destination. For further questions please contact us.</sourc
     <message>
         <source>Add products to shopping cart</source>
         <translation>Fügen Sie Ihre gewünschten Produkte dem Warenkorb hinzu</translation>
-    </message>
-    <message>
-        <source>Direct order</source>
-        <translation type="obsolete">Direkt bestellen</translation>
-    </message>
-</context>
-<context>
-    <name>extension/xrowecommerce/epayment</name>
-    <message>
-        <source>Please enter a name</source>
-        <translation type="obsolete">Bitte geben Sie einen Namen ein</translation>
-    </message>
-    <message>
-        <source>Credit card number is not a number</source>
-        <translation type="obsolete">Die Kreditkartennummer ist keine Zahl</translation>
-    </message>
-    <message>
-        <source>Please enter the correct security code.</source>
-        <translation type="obsolete">Bitte geben Sie den gültigen Sicherheitsschlüssel an.</translation>
-    </message>
-    <message>
-        <source>Please enter the name of the card holder.</source>
-        <translation type="obsolete">Bitte geben Sie den Namen des Kreditkartenbesitzers ein.</translation>
-    </message>
-    <message>
-        <source>Please enter the correct account number</source>
-        <translation type="obsolete">Bitte geben Sie die korrekte Kontonummer ein</translation>
-    </message>
-    <message>
-        <source>Please enter the correct bank code</source>
-        <translation type="obsolete">Bitte geben Sie die korrekte Bankleitzahl ein</translation>
-    </message>
-    <message>
-        <source>The validity of your credit card has expired.</source>
-        <translation type="obsolete">Ihre Kreditkarte ist abgelaufen.</translation>
     </message>
 </context>
 <context>
@@ -2714,7 +2394,7 @@ these items to your destination. For further questions please contact us.</sourc
     <message>
         <source>You need to select a datatype for the attribute.
       It&apos;s not possible to change this afterwards.</source>
-        <translation type="obsolete">Sie müssen einen Datentyp für das Attribut auswählen.
+        <translation>Sie müssen einen Datentyp für das Attribut auswählen.
 Es ist nicht möglich, den Datentyp danach zu ändern.</translation>
     </message>
     <message>
@@ -3018,124 +2698,6 @@ Es ist nicht möglich, den Datentyp danach zu ändern.</translation>
         <translation>Bitte geben Sie Text ein.</translation>
     </message>
     <message>
-        <source>Attribute edit</source>
-        <translation type="obsolete">Attribut bearbeiten</translation>
-    </message>
-    <message>
-        <source>Product variation - edit attribute</source>
-        <translation type="obsolete">Produkt Variation - Attribut bearbeiten</translation>
-    </message>
-    <message>
-        <source>Product variation attributes</source>
-        <translation type="obsolete">Produkt Variations Attribute</translation>
-    </message>
-    <message>
-        <source>Product variation columns</source>
-        <translation type="obsolete">Produkt Variations Spalten</translation>
-    </message>
-    <message>
-        <source>Template edit</source>
-        <translation type="obsolete">Vorlage bearbeiten</translation>
-    </message>
-    <message>
-        <source>Product variation - edit template</source>
-        <translation type="obsolete">Produkt Variation - Vorlage bearbeiten</translation>
-    </message>
-    <message>
-        <source>Product variation templates</source>
-        <translation type="obsolete">Produkt Variations Vorlagen</translation>
-    </message>
-    <message>
-        <source>Boolean</source>
-        <comment>Datatype name</comment>
-        <translation type="obsolete">Ja/Nein</translation>
-    </message>
-    <message>
-        <source>Stores true or false.</source>
-        <comment>Datatype description</comment>
-        <translation type="obsolete">Speichert &quot;wahr&quot; oder &quot;falsch&quot; Werte.</translation>
-    </message>
-    <message>
-        <source>Float</source>
-        <comment>Datatype name</comment>
-        <translation type="obsolete">Kommazahl</translation>
-    </message>
-    <message>
-        <source>Stores a floating-point number.</source>
-        <comment>Datatype description</comment>
-        <translation type="obsolete">Speichert Komma Zahlen.</translation>
-    </message>
-    <message>
-        <source>Integer</source>
-        <comment>Datatype name</comment>
-        <translation type="obsolete">Ganzzahl</translation>
-    </message>
-    <message>
-        <source>Stores an integer.</source>
-        <comment>Datatype description</comment>
-        <translation type="obsolete">Speichert ganze Zahlen.</translation>
-    </message>
-    <message>
-        <source>Price</source>
-        <comment>Datatype name</comment>
-        <translation type="obsolete">Preis</translation>
-    </message>
-    <message>
-        <source>Object relation</source>
-        <comment>Datatype name</comment>
-        <translation type="obsolete">Objekt Verknüpfung</translation>
-    </message>
-    <message>
-        <source>Stores an object relation. (e.g. to an image)</source>
-        <comment>Datatype description</comment>
-        <translation type="obsolete">Speichert eine Objekt Verknüpfung. (z.B. ein Bild)</translation>
-    </message>
-    <message>
-        <source>Selection</source>
-        <comment>Datatype name</comment>
-        <translation type="obsolete">Auswahl</translation>
-    </message>
-    <message>
-        <source>Stores a selection like colours green, blue, red....</source>
-        <comment>Datatype description</comment>
-        <translation type="obsolete">Speichert eine Auswahl vorhandener Werte wie z.B. Farben grün, blau, rot...</translation>
-    </message>
-    <message>
-        <source>stockkeeping unit</source>
-        <comment>Datatype name</comment>
-        <translation type="obsolete">Artikel Nummer</translation>
-    </message>
-    <message>
-        <source>Stores the stockkeeping unit of the variation</source>
-        <comment>Datatype description</comment>
-        <translation type="obsolete">Speichert die Artikelnummer der Variation</translation>
-    </message>
-    <message>
-        <source>Text line</source>
-        <comment>Datatype name</comment>
-        <translation type="obsolete">Textzeile</translation>
-    </message>
-    <message>
-        <source>Stores a line of text of the variation</source>
-        <comment>Datatype description</comment>
-        <translation type="obsolete">Speichert eine Zeile Text</translation>
-    </message>
-    <message>
-        <source>Text block</source>
-        <comment>Datatype name</comment>
-        <translation type="obsolete">Text Block</translation>
-    </message>
-    <message>
-        <source>Stores text of the variation</source>
-        <comment>Datatype description</comment>
-        <translation type="obsolete">Speichert einen Text Block, mehrzeilig</translation>
-    </message>
-    <message>
-        <source>Stores price of the variation</source>
-        <comment>Datatype description</comment>
-        <translation type="obsolete">Speichert den Preis der Variation</translation>
-    </message>
-    <message>
         <source>Column headline configuration</source>
         <translation>Konfiguration der Spalten Überschriften</translation>
     </message>
@@ -3163,42 +2725,24 @@ Es ist nicht möglich, den Datentyp danach zu ändern.</translation>
         <source>Please enter a valid date.</source>
         <translation>Bitten geben Sie ein korrektes Datum ein.</translation>
     </message>
-    <message>
-        <source>Date</source>
-        <comment>Datatype name</comment>
-        <translation type="obsolete">Datum</translation>
-    </message>
-    <message>
-        <source>Stores a date value.</source>
-        <comment>Datatype description</comment>
-        <translation type="obsolete">Speichert ein Datum.</translation>
-    </message>
 </context>
 <context>
     <name>extension/xrowexommerce</name>
     <message>
         <source>Product review</source>
-        <translation type="unfinished"></translation>
+        <translation>Produktrezension</translation>
     </message>
     <message>
         <source>Send</source>
-        <translation type="unfinished"></translation>
+        <translation>Senden</translation>
     </message>
     <message>
         <source>Discard</source>
-        <translation type="unfinished"></translation>
+        <translation>Verwerfen</translation>
     </message>
 </context>
 <context>
     <name>extension/xrowtin</name>
-    <message>
-        <source>Country doesn`t match tax ID number.</source>
-        <translation type="obsolete">Das Land entspricht nicht der Steuernummer.</translation>
-    </message>
-    <message>
-        <source>Your companies tax ID number is not valid.</source>
-        <translation type="obsolete">Ungültige Steuernummer.</translation>
-    </message>
     <message>
         <source>not validated</source>
         <translation>nicht überprüft</translation>
@@ -3210,226 +2754,6 @@ Es ist nicht möglich, den Datentyp danach zu ändern.</translation>
     <message>
         <source>validated by administration</source>
         <translation>Von Administrator überprüft </translation>
-    </message>
-</context>
-<context>
-    <name>kernel/classes/datatypes</name>
-    <message>
-        <source>Pay on delivery</source>
-        <translation type="obsolete">Nachnahme</translation>
-    </message>
-    <message>
-        <source>Pay by invoice</source>
-        <translation type="obsolete">Per Rechnung zahlen</translation>
-    </message>
-    <message>
-        <source>Advance payment</source>
-        <translation type="obsolete">Vorkasse</translation>
-    </message>
-    <message>
-        <source>Product variations</source>
-        <comment>Datatype name</comment>
-        <translation type="obsolete">Produkt Variationen</translation>
-    </message>
-    <message>
-        <source>Please choose a template for the product variation.</source>
-        <translation type="obsolete">Bitte wählen Sie eine Vorlage für die Produkt Variation.</translation>
-    </message>
-    <message>
-        <source>Please correct the input of product variations. The wrong or missing input is marked with a red border.</source>
-        <translation type="obsolete">Bitte korrigieren Sie die Eingabe bei den Produkt Variationen. Falsche Eingaben sind mit einem roten Rand markiert.</translation>
-    </message>
-    <message>
-        <source>Tax Identification Number</source>
-        <comment>Datatype name</comment>
-        <translation type="obsolete">Int. Steuernummer</translation>
-    </message>
-    <message>
-        <source>Input required.</source>
-        <translation type="obsolete">Eingabe erforderlich.</translation>
-    </message>
-    <message>
-        <source>Input is required, if you have active subscriptions or recurring orders.</source>
-        <translation type="obsolete">Eingabe ist erforderlich, falls Sie laufende Bestellungen oder ausstehende Kosten haben.</translation>
-    </message>
-    <message>
-        <source>Mastercard</source>
-        <translation type="obsolete">Mastercard</translation>
-    </message>
-    <message>
-        <source>Visa</source>
-        <translation type="obsolete">Visa</translation>
-    </message>
-    <message>
-        <source>Discover</source>
-        <translation type="obsolete">Discover</translation>
-    </message>
-    <message>
-        <source>American Express</source>
-        <translation type="obsolete">American Express</translation>
-    </message>
-    <message>
-        <source>Debit card</source>
-        <translation type="obsolete">Lastschrift</translation>
-    </message>
-    <message>
-        <source>Billing cycle</source>
-        <comment>Datatype name</comment>
-        <translation type="obsolete">Abrechnungszyklus</translation>
-    </message>
-    <message>
-        <source>Credit card</source>
-        <comment>Datatype name</comment>
-        <translation type="obsolete">Kreditkarte</translation>
-    </message>
-</context>
-<context>
-    <name>kernel/classes/recurringordercollection</name>
-    <message>
-        <source>one time</source>
-        <translation type="obsolete">einmalig</translation>
-    </message>
-    <message>
-        <source>day(s)</source>
-        <translation type="obsolete">Tag(e)</translation>
-    </message>
-    <message>
-        <source>weeks(s)</source>
-        <translation type="obsolete">Woche(n)</translation>
-    </message>
-    <message>
-        <source>month(s)</source>
-        <translation type="obsolete">Monat(e)</translation>
-    </message>
-    <message>
-        <source>quarter(s)</source>
-        <translation type="obsolete">Quartal(e)</translation>
-    </message>
-    <message>
-        <source>year(s)</source>
-        <translation type="obsolete">Jahr(e)</translation>
-    </message>
-    <message>
-        <source>daily</source>
-        <translation type="obsolete">tglich</translation>
-    </message>
-    <message>
-        <source>weekly</source>
-        <translation type="obsolete">wchentlich</translation>
-    </message>
-    <message>
-        <source>monthly</source>
-        <translation type="obsolete">monatlich</translation>
-    </message>
-    <message>
-        <source>quarterly</source>
-        <translation type="obsolete">vierteljhrig</translation>
-    </message>
-    <message>
-        <source>yearly</source>
-        <translation type="obsolete">jhrlich</translation>
-    </message>
-    <message>
-        <source>days</source>
-        <translation type="obsolete">Tage</translation>
-    </message>
-    <message>
-        <source>day</source>
-        <translation type="obsolete">Tag</translation>
-    </message>
-    <message>
-        <source>weeks</source>
-        <translation type="obsolete">Wochen</translation>
-    </message>
-    <message>
-        <source>week</source>
-        <translation type="obsolete">Woche</translation>
-    </message>
-    <message>
-        <source>months</source>
-        <translation type="obsolete">Monate</translation>
-    </message>
-    <message>
-        <source>month</source>
-        <translation type="obsolete">Monat</translation>
-    </message>
-    <message>
-        <source>quarters</source>
-        <translation type="obsolete">Quartale</translation>
-    </message>
-    <message>
-        <source>quarter</source>
-        <translation type="obsolete">Quartal</translation>
-    </message>
-    <message>
-        <source>years</source>
-        <translation type="obsolete">Jahre</translation>
-    </message>
-    <message>
-        <source>year</source>
-        <translation type="obsolete">Jahr</translation>
-    </message>
-</context>
-<context>
-    <name>kernel/shop</name>
-    <message>
-        <source>Enter account information</source>
-        <translation type="obsolete">Geben Sie Ihre Benutzerdaten ein</translation>
-    </message>
-    <message>
-        <source>Order list</source>
-        <translation type="obsolete">Bestellliste</translation>
-    </message>
-    <message>
-        <source>Customer order view</source>
-        <translation type="obsolete">Bestellungsansicht</translation>
-    </message>
-    <message>
-        <source>Orderedit</source>
-        <translation type="obsolete">Bestellungen Bearbeiten</translation>
-    </message>
-    <message>
-        <source>Orderitem</source>
-        <translation type="obsolete">Bestellter Artikel</translation>
-    </message>
-    <message>
-        <source>Zero weight prods</source>
-        <translation type="obsolete">Produkte ohne Gewichtsangabe</translation>
-    </message>
-    <message>
-        <source>Tax listing</source>
-        <translation type="obsolete">Mehrwertsteuerliste</translation>
-    </message>
-    <message>
-        <source>Order #%order_id</source>
-        <translation type="obsolete">Bestellung Nr %order_id</translation>
-    </message>
-    <message>
-        <source>Statistics</source>
-        <translation type="obsolete">Statistiken</translation>
-    </message>
-    <message>
-        <source>Basket</source>
-        <translation type="obsolete">Warenkorb</translation>
-    </message>
-    <message>
-        <source>Order history</source>
-        <translation type="obsolete">Bestellverlauf</translation>
-    </message>
-    <message>
-        <source>Remove order</source>
-        <translation type="obsolete">Bestellung enfernen</translation>
-    </message>
-</context>
-<context>
-    <name>kernel/workflow/event</name>
-    <message>
-        <source>Inventory Manager</source>
-        <translation type="obsolete">Warenbestands Manager</translation>
-    </message>
-    <message>
-        <source>xrow Ecommerce Payment Gateway</source>
-        <translation type="obsolete">xrow Ecommerce Zahlungsgateway</translation>
     </message>
 </context>
 <context>
