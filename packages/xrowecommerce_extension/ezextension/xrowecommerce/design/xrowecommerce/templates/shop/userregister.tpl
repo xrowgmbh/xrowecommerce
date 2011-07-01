@@ -255,7 +255,7 @@
 
                     {if $fields.s_company_additional.enabled}
                         <div class="ur_company_additional block{if is_set($fields.s_company_additional.errors)} error{/if}">
-                            <label>{'Form of company'|i18n('extension/xrowecommerce')}{if $fields.s_company_additional.required}<span class="required">*</span>{/if}</label>
+                            <label>{'Company additional information'|i18n('extension/xrowecommerce')}{if $fields.s_company_additional.required}<span class="required">*</span>{/if}</label>
                             <div class="labelbreak"></div>
                             <input type="text" name="s_company_additional" id="s_company_additional" value="{$s_company_additional|wash}" />
                         </div>
