@@ -8,7 +8,7 @@
             </div>
             <div class="attribute-logo">
                 {if $object.data_map.link.has_content}
-                    <a href={$object.data_map.link.content|wash()}>
+                    <a target="_blank" href={$object.data_map.link.content|wash()}>
                 {/if}
                 {attribute_view_gui image_class=medium attribute=$object.data_map.logo}
                 {if $object.data_map.link.has_content}
