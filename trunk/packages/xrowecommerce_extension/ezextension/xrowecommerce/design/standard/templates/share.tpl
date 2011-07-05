@@ -1,12 +1,13 @@
-{if and(not(ezurl('no','full')|begins_with('https')) ,ezini( 'SocialNetwork', 'socialplugins', 'xrowecommerce.ini' 
-)|ne('disabled'))}
-    {def $shared_node_id = module_params().parameters.NodeID
-         $shared_node = fetch('content', 'node', hash('node_id', $shared_node_id))
-         $plugins = ezini( 'SocialNetwork', 'plugins', 'xrowecommerce.ini' )
+{if and(not(ezurl('no','full')|begins_with('https')) ,ezini( 'SocialNetwork', 'socialplugins', 'xrowecommerce.ini' )|ne('disabled'))}
+    {if is_set(module_params().parameters.NodeID)}
+        {def $shared_node_id = module_params().parameters.NodeID
+             $shared_node = fetch('content', 'node', hash('node_id', $shared_node_id))}
+    {/if}
+    {def $plugins = ezini( 'SocialNetwork', 'plugins', 'xrowecommerce.ini' )
          $accounts = ezini( 'SocialNetwork', 'account', 'xrowecommerce.ini' )}
     <div class="share-icons">
 
-        {if $plugins['facebook']|eq('enabled')}
+        {if and(is_set($shared_node),$plugins['facebook']|eq('enabled'))}
             <div class="plugin">
                 <div id="fb-root"></div>
                 <script src="http://connect.facebook.net/en_US/all.js#xfbml=1"></script>
@@ -21,7 +22,7 @@
             </div>
         {/if}
 
-        {if $plugins['twitter']|eq('enabled')}
+        {if and(is_set($shared_node),$plugins['twitter']|eq('enabled'))}
             <div class="plugin">
                 {if and(is_set($node), is_set($node.object.current_language_object.language_code))}
                     {if $node.object.current_language_object.language_code|eq('ger')}
