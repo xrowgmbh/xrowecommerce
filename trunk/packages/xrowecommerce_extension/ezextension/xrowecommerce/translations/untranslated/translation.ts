@@ -2182,14 +2182,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Company Address</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Home Address</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Enter different shipping address.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2287,6 +2279,14 @@
     </message>
     <message>
         <source>No. Thanks</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Private Person</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Private person</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
