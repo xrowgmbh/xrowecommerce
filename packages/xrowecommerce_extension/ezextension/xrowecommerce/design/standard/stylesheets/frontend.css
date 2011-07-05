@@ -4,8 +4,11 @@
 {
     cursor: pointer;
 }
+
 .shop-userregister div.company,
-.shop-userregister div.s_company
+.shop-userregister div.s_company,
+.user_register div.company,
+.user_register div.s_company
  {
     display: none;
  }

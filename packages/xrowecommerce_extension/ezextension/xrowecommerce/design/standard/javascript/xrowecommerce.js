@@ -7,16 +7,16 @@ $(document).ready(function() {
     }).mouseleave(function(){
         $('#AutomaticDeliveryTooltip').slideUp('300');
     });
-    $('.shop-userregister input#company').click(function(){
+    $('.shop-userregister input#company, .user_register input#company').click(function(){
         $('div.company').slideDown('slow');
     });
-    $('.shop-userregister input#home').click(function(){
+    $('.shop-userregister input#home, .user_register input#home').click(function(){
         $('div.company').slideUp('slow');
     });
-    $('.shop-userregister input#s_company').click(function(){
+    $('.shop-userregister input#s_company, .user_register input#s_company').click(function(){
         $('div.s_company').slideDown('slow');
     });
-    $('.shop-userregister input#s_home').click(function(){
+    $('.shop-userregister input#s_home, .user_register input#s_home').click(function(){
         $('div.s_company').slideUp('slow');
     });
     $('#shipping-link').mousedown(function(){

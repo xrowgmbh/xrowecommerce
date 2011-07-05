@@ -240,11 +240,11 @@
     </message>
     <message>
         <source>Print invoice and packaging slip</source>
-        <translation type="unfinished"></translation>
+        <translation>Rechnung und Packschein drucken</translation>
     </message>
     <message>
         <source>Print shipping plan</source>
-        <translation type="unfinished"></translation>
+        <translation>Versandplan drucken</translation>
     </message>
 </context>
 <context>
@@ -526,11 +526,11 @@
     </message>
     <message>
         <source>Shipping plan</source>
-        <translation type="unfinished"></translation>
+        <translation>Versandplan</translation>
     </message>
     <message>
         <source>Bill to</source>
-        <translation type="unfinished"></translation>
+        <translation>Rechnung an</translation>
     </message>
     <message>
         <source>Company</source>
@@ -716,11 +716,11 @@
     </message>
     <message>
         <source>Flat (basket)</source>
-        <translation type="unfinished"></translation>
+        <translation>Flach (Warenkorb)</translation>
     </message>
     <message>
         <source>Free Shipping and Handling</source>
-        <translation type="unfinished"></translation>
+        <translation>Kostenloser Versand und Verpackung</translation>
     </message>
     <message>
         <source>Name</source>
@@ -808,15 +808,15 @@
     </message>
     <message>
         <source>There are no available currencies.</source>
-        <translation type="unfinished"></translation>
+        <translation>Es sind keine Währungen verfügbar.</translation>
     </message>
     <message>
         <source>There are no options.</source>
-        <translation type="unfinished"></translation>
+        <translation>Es gibt keine Optionen.</translation>
     </message>
     <message>
         <source>Remove selected options.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ausgewählte Optionen entfernen.</translation>
     </message>
     <message>
         <source>Add option</source>
@@ -906,41 +906,41 @@
     </message>
     <message>
         <source>The information above is from your last order.</source>
-        <translation type="unfinished"></translation>
+        <translation>Die obige Information ist aus Ihrer letzten Bestellung.</translation>
     </message>
 </context>
 <context>
     <name>design/standard/workflow</name>
     <message>
         <source>Aftersale</source>
-        <translation type="unfinished"></translation>
+        <translation>Nach Verkauf</translation>
     </message>
     <message>
         <source>Add to order</source>
-        <translation type="unfinished"></translation>
+        <translation>Zur Bestellung hinzufügen</translation>
     </message>
     <message>
         <source>No coupon</source>
-        <translation type="unfinished"></translation>
+        <translation>Kein Gutschein</translation>
     </message>
     <message>
         <source>Coupon validation</source>
-        <translation type="unfinished"></translation>
+        <translation>Gutschein überprüfen</translation>
     </message>
     <message>
         <source>Have coupon</source>
-        <translation type="unfinished"></translation>
+        <translation>Habe Gutschein</translation>
     </message>
 </context>
 <context>
     <name>design/standard/workflow/eventtype</name>
     <message>
         <source>Node which includes shelf warmer</source>
-        <translation type="unfinished"></translation>
+        <translation>Node, welche Ladenhüter beinhaltet</translation>
     </message>
     <message>
         <source>No objects selected.</source>
-        <translation type="unfinished"></translation>
+        <translation>Kein Objekt ausgewählt.</translation>
     </message>
 </context>
 <context>
@@ -2039,27 +2039,27 @@
     </message>
     <message>
         <source>Destination</source>
-        <translation type="unfinished"></translation>
+        <translation>Ziel</translation>
     </message>
     <message>
         <source>Net Sale</source>
-        <translation type="unfinished"></translation>
+        <translation>Netz-Ausverkauf</translation>
     </message>
     <message>
         <source>Order Total</source>
-        <translation type="unfinished"></translation>
+        <translation>Bestellsumme</translation>
     </message>
     <message>
         <source>There is no order in the selection for this period.</source>
-        <translation type="unfinished"></translation>
+        <translation>Es gibt keine Bestellung im gewählten Zeitraum.</translation>
     </message>
     <message>
         <source>What is a Security Code?</source>
-        <translation type="unfinished"></translation>
+        <translation>Was ist ein Sicherheitscode?</translation>
     </message>
     <message>
         <source>The Card Security Code is located on the back of MasterCard, Visa and Discover credit or debit cards and is typically a separate group of 3 digits to the right of the signature strip.</source>
-        <translation type="unfinished"></translation>
+        <translation>Der Kartensicherheitscode findet sich auf der Rückseite der Master Card, Visa und Discover Kredit- oder Debitkarte und ist typischerweise eine seperate Gruppe dreier Zahlen rechts des Unterschriftenfeldes.</translation>
     </message>
     <message>
         <source>On American Express cards, the Card Security Code is a printed (NOT embossed) group of four digits on the front towards the right.</source>
@@ -2071,7 +2071,7 @@
     </message>
     <message>
         <source>Pause Automatic Delivery</source>
-        <translation type="unfinished"></translation>
+        <translation>Automatische Auslieferung unterbrechen</translation>
     </message>
     <message>
         <source>If you are away and you wish to not receive your orders please check this box. We will also pause your Automatic Delivery, if we notice problems with your order request.</source>
@@ -2079,7 +2079,7 @@
     </message>
     <message>
         <source>Important Note</source>
-        <translation type="unfinished"></translation>
+        <translation>Wichtiger Hinweis</translation>
     </message>
     <message>
         <source>Items with the same &quot;Next order&quot; date will be combined on the same order.</source>
@@ -2091,11 +2091,11 @@
     </message>
     <message>
         <source>Variation</source>
-        <translation type="unfinished"></translation>
+        <translation>Variation</translation>
     </message>
     <message>
         <source>Date added</source>
-        <translation type="unfinished"></translation>
+        <translation>Datum hinzugefügt</translation>
     </message>
     <message>
         <source>Amount</source>
@@ -2103,19 +2103,19 @@
     </message>
     <message>
         <source>Price per item</source>
-        <translation type="unfinished"></translation>
+        <translation>Preis pro Artikel</translation>
     </message>
     <message>
         <source>Frequency</source>
-        <translation type="unfinished"></translation>
+        <translation>Frequenz</translation>
     </message>
     <message>
         <source>Next order</source>
-        <translation type="unfinished"></translation>
+        <translation>Nächste Bestellung</translation>
     </message>
     <message>
         <source>Last order</source>
-        <translation type="unfinished"></translation>
+        <translation>Letzte Bestellung</translation>
     </message>
     <message>
         <source>All prices exclude tax, shipping and handling. Those will be added to your order once a new order is created.</source>
@@ -2123,11 +2123,11 @@
     </message>
     <message>
         <source>View All Tags</source>
-        <translation type="unfinished"></translation>
+        <translation>Alle Schlagworte ansehen</translation>
     </message>
     <message>
         <source>Shipping Gateway</source>
-        <translation type="unfinished"></translation>
+        <translation>Versand Gateway</translation>
     </message>
     <message>
         <source>Error</source>
@@ -2147,7 +2147,7 @@
     </message>
     <message>
         <source>Take a look at our</source>
-        <translation type="unfinished"></translation>
+        <translation>Betrachten Sie auch unsere</translation>
     </message>
     <message>
         <source>Double click on above image to view full picture</source>
@@ -2155,11 +2155,11 @@
     </message>
     <message>
         <source>Basket items</source>
-        <translation type="unfinished"></translation>
+        <translation>Warenkorb-Artikel</translation>
     </message>
     <message>
         <source>There are no reviews yet.</source>
-        <translation type="unfinished"></translation>
+        <translation>Es gibt noch keine Rezensionen.</translation>
     </message>
     <message>
         <source>You need to be logged in to create reviews. You can do so %login_link_start%here%login_link_end%</source>
@@ -2167,107 +2167,107 @@
     </message>
     <message>
         <source>Customer Reviews</source>
-        <translation type="unfinished"></translation>
+        <translation>Kundenrezensionen</translation>
     </message>
     <message>
         <source>Rate this review:</source>
-        <translation type="unfinished"></translation>
+        <translation>Benoten Sie diese Rezension:</translation>
     </message>
     <message>
         <source>Create your review</source>
-        <translation type="unfinished">Eine Kundenmeinung schreiben</translation>
+        <translation>Eine Rezension schreiben</translation>
     </message>
     <message>
         <source>Subtotal</source>
-        <translation type="unfinished"></translation>
+        <translation>Zwischensumme</translation>
     </message>
     <message>
         <source>User profile</source>
-        <translation type="unfinished"></translation>
+        <translation>Benutzerprofil</translation>
     </message>
     <message>
         <source>My Account:</source>
-        <translation type="unfinished"></translation>
+        <translation>Mein Konto:</translation>
     </message>
     <message>
         <source>Profile</source>
-        <translation type="unfinished"></translation>
+        <translation>Profil</translation>
     </message>
     <message>
         <source>Personal Information</source>
-        <translation type="unfinished"></translation>
+        <translation>Persönliche Informationen</translation>
     </message>
     <message>
         <source>Account Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Kontoeinstellungen</translation>
     </message>
     <message>
         <source>Change my billing and shipping address or your credit card information.</source>
-        <translation type="unfinished"></translation>
+        <translation>Meine Versand- und Rechnungsadresse oder Kreditkarteninformationen ändern.</translation>
     </message>
     <message>
         <source>Change my billing and shipping address or creditcard.</source>
-        <translation type="unfinished"></translation>
+        <translation>Meine Versand- und Rechnungsadresse oder Kreditkarte ändern.</translation>
     </message>
     <message>
         <source>Change my password</source>
-        <translation type="unfinished"></translation>
+        <translation>Mein Passwort ändern</translation>
     </message>
     <message>
         <source>Shop Features</source>
-        <translation type="unfinished"></translation>
+        <translation>Shop Funktionen</translation>
     </message>
     <message>
         <source>View my recent and current orders.</source>
-        <translation type="unfinished"></translation>
+        <translation>Meine jüngsten und aktuellen Bestellungen ansehen.</translation>
     </message>
     <message>
         <source>My orders.</source>
-        <translation type="unfinished"></translation>
+        <translation>Meine Bestellungen.</translation>
     </message>
     <message>
         <source>View my recurring orders.</source>
-        <translation type="unfinished"></translation>
+        <translation>Meine Wiederkehrenden Bestellungen ansehen.</translation>
     </message>
     <message>
         <source>My recurring orders.</source>
-        <translation type="unfinished"></translation>
+        <translation>Meine Wiederkehrenden Bestellungen.</translation>
     </message>
     <message>
         <source>Edit or view my wishlist.</source>
-        <translation type="unfinished"></translation>
+        <translation>Meine Wunschliste ansehen oder bearbeiten.</translation>
     </message>
     <message>
         <source>My wishlist.</source>
-        <translation type="unfinished"></translation>
+        <translation>Meine Wunschliste.</translation>
     </message>
     <message>
         <source>Edit or view your notification settings.</source>
-        <translation type="unfinished"></translation>
+        <translation>Meine Notificationeinstellungen ansehen oder bearbeiten.</translation>
     </message>
     <message>
         <source>Select a product</source>
-        <translation type="unfinished"></translation>
+        <translation>Ein Produkt auswählen</translation>
     </message>
     <message>
         <source>Errors</source>
-        <translation type="unfinished"></translation>
+        <translation>Fehler</translation>
     </message>
     <message>
         <source>Please select your product below.</source>
-        <translation type="unfinished"></translation>
+        <translation>Bitte wählen Sie Ihr Produkt unten aus.</translation>
     </message>
     <message>
         <source>Regular Retail Price</source>
-        <translation type="unfinished"></translation>
+        <translation>Regulärer Einzelhandelspreis</translation>
     </message>
     <message>
         <source>Our Thank You Price</source>
-        <translation type="unfinished"></translation>
+        <translation>Unser Dankeschön-Preis</translation>
     </message>
     <message>
         <source>Add to my order</source>
-        <translation type="unfinished"></translation>
+        <translation>Meiner Bestellung hinzufügen</translation>
     </message>
     <message>
         <source>No. Thanks</source>
@@ -2278,16 +2278,16 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Company Address</source>
-        <translation>Firmenadresse</translation>
-    </message>
-    <message>
-        <source>Home Address</source>
-        <translation>Privatadresse</translation>
-    </message>
-    <message>
         <source>Enter different shipping address.</source>
         <translation>Eine abweichende Lieferadresse eingeben.</translation>
+    </message>
+    <message>
+        <source>Private Person</source>
+        <translation>Privatperson</translation>
+    </message>
+    <message>
+        <source>Private person</source>
+        <translation>Privatperson</translation>
     </message>
 </context>
 <context>

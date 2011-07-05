@@ -55,13 +55,13 @@
                     <div class="comp">
                         <label for="company">
                         <input id="company" type="radio" value="company" name="company" />
-                        {'Company Address'|i18n('extension/xrowecommerce')}
+                        {'Company'|i18n('extension/xrowecommerce')}
                         </label>
                     </div>
                     <div class="home">
                         <label for="home">
                         <input checked="checked" id="home" type="radio" value="company" name="company" />
-                        {'Home Address'|i18n('extension/xrowecommerce')}
+                        {'Private person'|i18n('extension/xrowecommerce')}
                         </label>
                     </div>
                 </div>
@@ -231,16 +231,16 @@
                 <div class="block" id="shippinginfo"{if $shipping} style="display: none;"{else} style="display: block;"{/if}>
                     <p><span class="required">* {'Required field'|i18n('extension/xrowecommerce')}</span></p>
                 <div class="s_address-selection">
-                    <div class="comp">
+                    <div class="s_comp">
                         <label for="s_company">
                         <input id="s_company" type="radio" value="company" name="s_company" />
-                        {'Company Address'|i18n('extension/xrowecommerce')}
+                        {'Company'|i18n('extension/xrowecommerce')}
                         </label>
                     </div>
                     <div class="s_home">
                         <label for="s_home">
                         <input checked="checked" id="s_home" type="radio" value="company" name="s_company" />
-                        {'Home Address'|i18n('extension/xrowecommerce')}
+                        {'Private Person'|i18n('extension/xrowecommerce')}
                         </label>
                     </div>
                 </div>
