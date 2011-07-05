@@ -1,4 +1,5 @@
-{if and(ezurl(,'full')|begins_with('https')|not ,ezini( 'SocialNetwork', 'socialplugins', 'xrowecommerce.ini' )|ne('disabled' ))}
+{if and(not(ezurl('no','full')|begins_with('https')) ,ezini( 'SocialNetwork', 'socialplugins', 'xrowecommerce.ini' 
+)|ne('disabled'))}
     {def $shared_node_id = module_params().parameters.NodeID
          $shared_node = fetch('content', 'node', hash('node_id', $shared_node_id))
          $plugins = ezini( 'SocialNetwork', 'plugins', 'xrowecommerce.ini' )
