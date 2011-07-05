@@ -38,20 +38,7 @@
 				<td>{"Security Code"|i18n("extension/xrowcomdirect")}: </td>
 				<td>
 		   			<input id="securitycode" type="text" maxlength="4" size="5" name="securitycode" value="{$securitycode|wash()}" />
-		    		<button id="help-securitycode" class="help" type="button" alt="{"Information"|i18n("extension/xrowcomdirect")}">{"i"|i18n("extension/xrowcomdirect", 'i for information')}</button>
-		    		{literal}
-				    	<script>
-					    	$(document).ready(function() {
-					    		$('#security-code-info').hide();
-					    	});
-					    	$('#help-securitycode').mouseover(function() {
-					    		$('#security-code-info').show();
-					    	});
-					    	$('#help-securitycode').mouseout(function() {
-				    			$('#security-code-info').hide();
-				    		});
-						</script>
-					{/literal}
+					<img id="help-securitycode" src={"tooltip.jpg"|ezimage()} alt="{'Information'|i18n('mobotix/memory_calculator')}" width="16" height="16" hspace="0" vspace="0" border="0"/>
 				</td>
 			</tr>
 			<tr>
@@ -78,11 +65,21 @@
 			</tr>
 		</table>
 	</div>
-	<div id="security-code-info" style="padding:15px;">
+	<div id="security-code-info" class="jqtooltip" style="width:400px;">
 		<p>{"The card security code consists of a series of 3 digits on the back of your credit card."|i18n("extension/xrowcomdirect")}</p>
 		<p><img src={"three_digit_code_example.png"|ezimage} alt="{"The card with 3 digits security code."|i18n("extension/xrowcomdirect")}" title="{"The card with 3 digits security code."|i18n("extension/xrowcomdirect")}" /></p>
 		<p>{"This code constitutes an important security feature which should prevent the use of faked or stolen credit cards. It is not stored on our servers, and its request is for increased safety of our customers only."|i18n("extension/xrowcomdirect")}</p>
 	</div>
+					{literal}
+					<script type="text/javascript">
+						$("#help-securitycode").tooltip({
+							tip: '#security-code-info',
+							position: 'center right',
+							offset: [0, 15],
+							delay: 0
+						});
+					</script>
+					{/literal}
 	<div id="buttonblock-bottom" class="buttonblock">
 	 	<input id="cancel-button" class="button" type="submit" name="CancelButton" value="{'One step back'|i18n('extension/xrowcomdirect')}" />    
 	    <input id="continue-button" class="defaultbutton" type="submit" name="validate" value="{'Send Order'|i18n('extension/xrowcomdirect')}" />
