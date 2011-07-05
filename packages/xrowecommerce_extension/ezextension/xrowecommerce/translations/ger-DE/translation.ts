@@ -2757,10 +2757,24 @@ Es ist nicht möglich, den Datentyp danach zu ändern.</translation>
     </message>
 </context>
 <context>
-    <name>standard/datatype/ezcreditcard</name>
+    <name>kernel/classes/datatypes</name>
     <message>
-        <source>Not used</source>
-        <translation>Nicht genutzt</translation>
+        <source>Advance payment</source>
+        <translation>Vorauszahlung</translation>
+    </message>
+</context>
+<context>
+    <name>kernel/classes/datatypes</name>
+    <message>
+        <source>Advance payment</source>
+        <translation>Vorauszahlung</translation>
+    </message>
+</context>
+<context>
+    <name>kernel/classes/datatypes</name>
+    <message>
+        <source>Pay by invoice</source>
+        <translation>Rechnungszahlung</translation>
     </message>
 </context>
 </TS>
