@@ -1,4 +1,4 @@
-﻿{set-block scope=root variable=subject}{ezini( 'InvoiceSettings', 'CompanyName', 'xrowecommmerce.ini'  )} {"Order"|i18n("extension/xrowecommerce")} #{$order.order_nr}{/set-block}
+﻿{set-block scope=root variable=subject}{ezini( 'InvoiceSettings', 'CompanyName', 'xrowecommerce.ini'  )} {"Order"|i18n("extension/xrowecommerce")} #{$order.order_nr}{/set-block}
 {include uri="design:shop/orderemail/html/pre_text.tpl"}
 
 <hr />

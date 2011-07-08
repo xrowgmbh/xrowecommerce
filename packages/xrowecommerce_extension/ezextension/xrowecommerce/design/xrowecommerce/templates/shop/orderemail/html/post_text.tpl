@@ -1,6 +1,4 @@
-﻿
-
-{if ezini( 'InvoiceSettings', 'CompanyName', 'xrowecommmerce.ini'  )|ne('')}<p>{'The Staff at'|i18n( 'extension/xrowecommerce' )} {ezini( 'InvoiceSettings', 'CompanyName', 'xrowecommmerce.ini'  )}</p>{/if}
+﻿{if ezini( 'InvoiceSettings', 'CompanyName', 'xrowecommmerce.ini'  )|ne('')}<p>{'The Staff at'|i18n( 'extension/xrowecommerce' )} {ezini( 'InvoiceSettings', 'CompanyName', 'xrowecommmerce.ini'  )}</p>{/if}
 
 <hr />
 <p>{'Contact Us'|i18n( 'extension/xrowecommerce' )}:</p>
