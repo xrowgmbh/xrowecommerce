@@ -176,7 +176,7 @@
                         <div class="labelbreak"></div>
                         {def $country = $ca.country.content.value}
                         <input type="hidden" name="ContentObjectAttribute_id[]" value="{$ca.country.id}" />
-                        <select name="{$castring}_ezcountry_data_text_{$ca.country.id}" id="country">
+                        <select name="{$castring}_country_{$ca.country.id}" id="country">
                         {foreach $countries as $country_list_item}
                             {if $country|ne( '' )}
                             {* Backwards compatability *}
@@ -338,7 +338,7 @@
                         <div class="labelbreak"></div>
                         {def $s_country = $ca.s_country.content.value}
                         <input type="hidden" name="ContentObjectAttribute_id[]" value="{$ca.s_country.id}" />
-                        <select name="{$castring}_ezcountry_data_text_{$ca.s_country.id}" id="s_country">
+                        <select name="{$castring}_country_{$ca.s_country.id}" id="s_country">
                         {foreach $countries as $country_list_item}
                             {if $s_country|ne( '' )}
                             {* Backwards compatability *}
