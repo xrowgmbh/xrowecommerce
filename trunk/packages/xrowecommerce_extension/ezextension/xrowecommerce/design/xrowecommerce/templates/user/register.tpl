@@ -174,7 +174,7 @@
                     <div class="country">
                         <label>{if ezini( 'Fields', 'country', 'xrowecommerce.ini' ).required|eq("true")}<span class="required">*</span>{/if}{'Country'|i18n('extension/xrowecommerce')}</label>
                         <div class="labelbreak"></div>
-                        {def $country = $ca.country.content}
+                        {def $country = $ca.country.content.value}
                         <input type="hidden" name="ContentObjectAttribute_id[]" value="{$ca.country.id}" />
                         <select name="{$castring}_ezcountry_data_text_{$ca.country.id}" id="country">
                         {foreach $countries as $country_list_item}
@@ -336,7 +336,7 @@
                     <div class="s_country">
                         <label>{if ezini( 'Fields', 's_country', 'xrowecommerce.ini' ).required|eq("true")}<span class="required">*</span>{/if}{'Country'|i18n('extension/xrowecommerce')}</label>
                         <div class="labelbreak"></div>
-                        {def $s_country = $ca.s_country.content}
+                        {def $s_country = $ca.s_country.content.value}
                         <input type="hidden" name="ContentObjectAttribute_id[]" value="{$ca.s_country.id}" />
                         <select name="{$castring}_ezcountry_data_text_{$ca.s_country.id}" id="s_country">
                         {foreach $countries as $country_list_item}
