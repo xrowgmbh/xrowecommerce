@@ -87,18 +87,18 @@ array(19) {
 
             foreach ( $lines as $key => $value )
             {
-            	if ( $value[0] )
-            	{
-            	foreach( $namedkeys as $key2 => $value2 )
-            	{
-            		$lines[$key][$value2] = trim( $value[$key2] );
-            		unset( $lines[$key][$key2] );
-            	}
-            	}
-            	else
-            	{
-            		unset( $lines[$key] );
-            	}
+                if ( $value[0] )
+                {
+                foreach( $namedkeys as $key2 => $value2 )
+                {
+                    $lines[$key][$value2] = trim( $value[$key2] );
+                    unset( $lines[$key][$key2] );
+                }
+                }
+                else
+                {
+                    unset( $lines[$key] );
+                }
             }
             usort( $lines, 'xrowGeonames::compareCountryNames' );
             foreach ( $lines as $key => $value )
@@ -135,7 +135,7 @@ array(19) {
             }
             foreach ( $this->map as $key => $value )
             {
-            	uasort( $this->map[$key], 'xrowGeonames::compareSubdivisionNames' );
+                uasort( $this->map[$key], 'xrowGeonames::compareSubdivisionNames' );
             }
             $cache->store( 'states', $this->map );
         }
@@ -170,20 +170,20 @@ array(19) {
 
     static function getCountry( $country )
     {
-    	if( isset( self::instance()->country_map[$country] ) )
-    	{
-        	return self::instance()->country_map[$country];
-    	}
-    	else
-    	{
-    		foreach ( self::instance()->country_map as $country2 )
-    		{
-    			if( $country2['Alpha3'] == $country)
-    			{
-    				 return $country2;
-    			}
-    		}
-    	}
+        if( isset( self::instance()->country_map[$country] ) )
+        {
+            return self::instance()->country_map[$country];
+        }
+        else
+        {
+            foreach ( self::instance()->country_map as $country2 )
+            {
+                if( $country2['Alpha3'] == $country)
+                {
+                     return $country2;
+                }
+            }
+        }
     }
 
     static function getCountries()
@@ -193,7 +193,7 @@ array(19) {
 
     static function getSubdivisions( $country )
     {
-    	$instance = self::instance();
+        $instance = self::instance();
         if ( isset( $instance->map[$country] ) )
         {
             return $instance->map[$country];
