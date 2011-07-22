@@ -163,7 +163,7 @@
                         <select name="state" id="state">
                             <option>&nbsp;</option>
                             {foreach $states as $key => $state_item}
-                            <option {if eq( $state, $key )} selected="selected" {/if} value="{$key}">{$state_item|wash}</option>
+                                <option {if eq( $state, $key )} selected="selected" {/if} value="{$key}">{$state_item|wash}</option>
                             {/foreach}
                         </select>
                     </div>

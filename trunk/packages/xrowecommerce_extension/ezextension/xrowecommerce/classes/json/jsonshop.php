@@ -2,7 +2,7 @@
 
 class xrowECommerceJSON extends ezjscServerFunctions
 {
-	public static function test( $args )
+    public static function test( $args )
     {
         if ( isset( $args[0] ) )
         {
@@ -23,7 +23,7 @@ class xrowECommerceJSON extends ezjscServerFunctions
                 but you did not send any 
                 post / function parameters!";
     }
-	public static function test_exception( $args )
+    public static function test_exception( $args )
     {
         if ( isset( $args[0] ) )
         {
@@ -48,10 +48,10 @@ class xrowECommerceJSON extends ezjscServerFunctions
     {
         switch ( $_POST['text'] )
         {
-        	case "The shipping method '%old%' is not available for your country of destination and was changed to '%new%'.":
-        	{
-        		return ezpI18n::tr( 'extension/xrowecommerce', "The shipping method '%old%' is not available for your country of destination and was changed to '%new%'." ) ;
-        	} break;
+            case "The shipping method '%old%' is not available for your country of destination and was changed to '%new%'.":
+            {
+                return ezpI18n::tr( 'extension/xrowecommerce', "The shipping method '%old%' is not available for your country of destination and was changed to '%new%'." ) ;
+            } break;
         }
         throw new Exception( 'Tranlation not found.' );
     }
@@ -66,14 +66,14 @@ class xrowECommerceJSON extends ezjscServerFunctions
 
         foreach ( $list as $item )
         {
-        	try
-        	{
-        		$result = $item->methodCheck( $args );
-        	}
-        	catch( xrowShippingException $e )
-        	{
-        		$result = false;
-        	}
+            try
+            {
+                $result = $item->methodCheck( $args );
+            }
+            catch( xrowShippingException $e )
+            {
+                $result = false;
+            }
             if ( $result )
             {
                 $return[] = array( 

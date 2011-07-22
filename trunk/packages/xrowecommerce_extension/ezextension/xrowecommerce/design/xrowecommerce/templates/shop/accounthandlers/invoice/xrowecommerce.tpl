@@ -49,7 +49,7 @@
     <th>{'Address'|i18n( 'design/admin/shop/orderview' )}</th>
     <td>{$order.account_information.address1}
      {if $order.account_information.address2}<br />{$order.account_information.address2}{/if}
-     <br />{$order.account_information.city}, {$order.account_information.state} {$order.account_information.zip}<br />
+     <br />{$order.account_information.city}, {$order.account_information.state|get_state($order.account_information.country)} {$order.account_information.zip}<br />
      {$order.account_information.country}
      
      </td>
@@ -82,7 +82,7 @@
     <th>{'Address'|i18n( 'design/admin/shop/orderview' )}</th>
     <td>{$order.account_information.s_address1}
      {if $order.account_information.s_address2}<br />{$order.account_information.s_address2}{/if}
-     <br />{$order.account_information.s_city}, {$order.account_information.s_state} {$order.account_information.s_zip}<br />
+     <br />{$order.account_information.s_city}, {$order.account_information.s_state|get_state($order.account_information.s_country)} {$order.account_information.s_zip}<br />
      {$order.account_information.s_country}
      
      </td>

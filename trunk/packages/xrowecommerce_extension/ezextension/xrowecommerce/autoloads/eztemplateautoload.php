@@ -37,4 +37,11 @@ $eZTemplateOperatorArray[] = array(
     'class' => 'getMutliPriceTemplateOperator', 
     'operator_names' => array ( 'get_multiprice' )
 );
+
+$eZTemplateOperatorArray[] = array(
+    'script' => 'extension/xrowecommerce/autoloads/getstatenametemplateoperator.php', 
+    'class' => 'getStateNameTemplateOperator', 
+    'operator_names' => array ( 'get_state' )
+);
+
 ?>
