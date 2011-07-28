@@ -176,13 +176,22 @@
                         <div class="labelbreak"></div>
                         {def $country = $ca.country.content.value}
                         <input type="hidden" name="ContentObjectAttribute_id[]" value="{$ca.country.id}" />
-                        <select name="{$castring}_country_{$ca.country.id}" id="country">
+                        <select name="{$castring}_country_{$ca.country.id}[]" id="country">
                         {foreach $countries as $country_list_item}
-                            {if $country|ne( '' )}
-                            {* Backwards compatability *}
-                                <option value="{$country_list_item.Alpha3}" {if and( $country|ne(''), eq( $country, $country_list_item.Alpha3 ))} selected="selected"{/if}>{$country_list_item.Name|wash}</option>
+                            {if ezini( 'Settings', 'UseAlpha3', 'xrowecommerce.ini' )|eq('true')}
+                                {if $country|ne( '' )}
+                                {* Backwards compatability *}
+                                    <option value="{$country_list_item.Alpha3}" {if and( $country|ne(''), eq( $country, $country_list_item.Alpha3 ))} selected="selected"{/if}>{$country_list_item.Name|wash}</option>
+                                {else}
+                                    <option {if $country_default_ini|eq( $country_list_item.Alpha3 )}selected="selected"{/if} value="{$country_list_item.Alpha3}">{$country_list_item.Name|wash}</option>
+                                {/if}
                             {else}
-                                <option {if $country_default_ini|eq( $country_list_item.Alpha3 )}selected="selected"{/if} value="{$country_list_item.Alpha3}">{$country_list_item.Name|wash}</option>
+                                {if $country|ne( '' )}
+                                {* Backwards compatability *}
+                                    <option value="{$country_list_item.Alpha2}" {if and( $country|ne(''), eq( $country, $country_list_item.Alpha2 ))} selected="selected"{/if}>{$country_list_item.Name|wash}</option>
+                                {else}
+                                    <option {if $country_default_ini|eq( $country_list_item.Alpha2 )}selected="selected"{/if} value="{$country_list_item.Alpha2}">{$country_list_item.Name|wash}</option>
+                                {/if}
                             {/if}
                         {/foreach}
                         </select>
@@ -340,11 +349,20 @@
                         <input type="hidden" name="ContentObjectAttribute_id[]" value="{$ca.s_country.id}" />
                         <select name="{$castring}_country_{$ca.s_country.id}" id="s_country">
                         {foreach $countries as $country_list_item}
-                            {if $s_country|ne( '' )}
-                            {* Backwards compatability *}
-                                <option value="{$country_list_item.Alpha3}" {if and( $s_country|ne(''), eq( $s_country, $country_list_item.Alpha3 ))} selected="selected"{/if}>{$country_list_item.Name|wash}</option>
+                            {if ezini( 'Settings', 'UseAlpha3', 'xrowecommerce.ini' )|eq('true')}
+                                {if $s_country|ne( '' )}
+                                {* Backwards compatability *}
+                                    <option value="{$country_list_item.Alpha3}" {if and( $s_country|ne(''), eq( $s_country, $country_list_item.Alpha3 ))} selected="selected"{/if}>{$country_list_item.Name|wash}</option>
+                                {else}
+                                    <option {if $country_default_ini|eq( $country_list_item.Alpha3 )}selected="selected"{/if} value="{$country_list_item.Alpha3}">{$country_list_item.Name|wash}</option>
+                                {/if}
                             {else}
-                                <option {if $country_default_ini|eq( $country_list_item.Alpha3 )}selected="selected"{/if} value="{$country_list_item.Alpha3}">{$country_list_item.Name|wash}</option>
+                                {if $s_country|ne( '' )}
+                                {* Backwards compatability *}
+                                    <option value="{$country_list_item.Alpha2}" {if and( $s_country|ne(''), eq( $s_country, $country_list_item.Alpha2 ))} selected="selected"{/if}>{$country_list_item.Name|wash}</option>
+                                {else}
+                                    <option {if $country_default_ini|eq( $country_list_item.Alpha2 )}selected="selected"{/if} value="{$country_list_item.Alpha2}">{$country_list_item.Name|wash}</option>
+                                {/if}
                             {/if}
                         {/foreach}
                         </select>
