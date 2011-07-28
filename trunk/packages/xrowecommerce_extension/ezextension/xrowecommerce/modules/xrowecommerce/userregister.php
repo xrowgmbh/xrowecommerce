@@ -582,15 +582,17 @@ if ( $module->isCurrentAction( 'Store' ) )
     {
         $message = $http->postVariable( 'message' );
     }
-
+    
+    $no_partial_delivery_temp = $xini->variable( 'Fields', 'NoPartialDelivery' );
+    
     if ( $http->hasPostVariable( 'no_partial_delivery' ) )
     {
-        $no_partial_delivery = '0';
+        $no_partial_delivery = '1';
     }
     elseif ( !$http->hasPostVariable( 'no_partial_delivery' ) and
-             $xini->variable( 'Settings', 'NoPartialDelivery' ) == 'enabled' )
+            $no_partial_delivery_temp['enabled'] == 'true' )
     {
-        $no_partial_delivery = '1';
+        $no_partial_delivery = '0';
     }
 
     if ( $http->hasPostVariable( 'shipping' ) )
