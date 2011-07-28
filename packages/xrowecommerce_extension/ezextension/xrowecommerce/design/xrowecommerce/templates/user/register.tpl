@@ -89,7 +89,7 @@
                     </div>
                 </div>
                 <div class="block">
-                    <div class="company">
+                    <div class="block company">
                         {if ezini( 'Fields', 'company_name', 'xrowecommerce.ini' ).enabled|eq("true")}
                         <div class="block company_name">
                             <label>{if ezini( 'Fields', 'company_name', 'xrowecommerce.ini' ).required|eq("true")}<span class="required">*</span>{/if}{'Company name'|i18n('extension/xrowecommerce')}</label>
@@ -171,7 +171,7 @@
                     <div class="break"></div>
                     {/if}
                     {if ezini( 'Fields', 'country', 'xrowecommerce.ini' ).enabled|eq("true")}
-                    <div class="country">
+                    <div class="block country">
                         <label>{if ezini( 'Fields', 'country', 'xrowecommerce.ini' ).required|eq("true")}<span class="required">*</span>{/if}{'Country'|i18n('extension/xrowecommerce')}</label>
                         <div class="labelbreak"></div>
                         {def $country = $ca.country.content.value}
@@ -333,7 +333,7 @@
                     <div class="break"></div>
 
                     {if ezini( 'Fields', 's_country', 'xrowecommerce.ini' ).enabled|eq("true")}
-                    <div class="s_country">
+                    <div class="block s_country">
                         <label>{if ezini( 'Fields', 's_country', 'xrowecommerce.ini' ).required|eq("true")}<span class="required">*</span>{/if}{'Country'|i18n('extension/xrowecommerce')}</label>
                         <div class="labelbreak"></div>
                         {def $s_country = $ca.s_country.content.value}
