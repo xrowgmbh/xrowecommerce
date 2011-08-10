@@ -961,6 +961,9 @@ foreach ( $items as $item )
         $emailNode = $doc->createElement( 'email', $email );
         $root->appendChild( $emailNode );
 
+        $newsletter = $doc->createElement( 'newsletter', $newsletter );
+        $root->appendChild( $newsletter );
+
         $shippingNode = $doc->createElement( 'shipping', $shipping );
         $root->appendChild( $shippingNode );
 
@@ -1125,6 +1128,7 @@ $tpl->setVariable( 'first_name', $first_name );
 $tpl->setVariable( 'mi', $mi );
 $tpl->setVariable( 'last_name', $last_name );
 $tpl->setVariable( 'email', $email );
+$tpl->setVariable( 'newsletter', $newsletter );
 $tpl->setVariable( 'address1', $address1 );
 $tpl->setVariable( 'address2', $address2 );
 $tpl->setVariable( 'city', $city );
