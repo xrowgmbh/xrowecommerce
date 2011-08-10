@@ -195,6 +195,12 @@
                     </div>
                     <div class="break"></div>
                 {/if}
+                
+                {if ezini('Fields','Newsletter','xrowecommerce.ini').enabled|eq('true')}
+                    <div class="block">
+                            <label class="newsletter" for="newsletter"><input class="newsletter" type="checkbox" name="newsletter" id="newsletter" {if is_set($newsletter)} checked="checked" {/if} value="1" />{'Subscribe to newsletter'|i18n('extension/xrowecommerce')}</label>
+                    </div>
+                {/if}
 
                 {def $shipping_methods=fetch( 'shipping', 'list_methods' )}
                 <div class="block {if is_set($fields.shippingtype.errors)} error{/if}">

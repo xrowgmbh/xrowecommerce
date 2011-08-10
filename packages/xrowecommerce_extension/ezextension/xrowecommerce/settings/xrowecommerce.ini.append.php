@@ -57,6 +57,8 @@ Reference[enabled]=true
 Message[enabled]=true
 Captcha[enabled]=true
 Coupon[enabled]=true
+#Newsletter software required
+Newsletter[enabled]=false
 
 [Settings]
 ShowColumnPosition=enabled

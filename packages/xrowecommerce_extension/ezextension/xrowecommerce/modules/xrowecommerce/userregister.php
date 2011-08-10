@@ -595,6 +595,17 @@ if ( $module->isCurrentAction( 'Store' ) )
         $no_partial_delivery = '0';
     }
 
+    $newsletter_temp = $xini->variable( 'Fields', 'Newsletter' );
+    
+    if ( $http->hasPostVariable( 'newsletter' ) and $newsletter_temp['enabled'] == 'true' )
+    {
+        $newsletter = '1';
+    }
+    else
+    {
+        $newsletter = '0';
+    }
+
     if ( $http->hasPostVariable( 'shipping' ) )
     {
         $shipping = '1';
