@@ -2777,4 +2777,11 @@ Es ist nicht möglich, den Datentyp danach zu ändern.</translation>
         <translation>Rechnungszahlung</translation>
     </message>
 </context>
+<context>
+    <name>kernel/classes/datatypes</name>
+    <message>
+        <source>Cash on delivery</source>
+        <translation>Nachnahme</translation>
+    </message>
+</context>
 </TS>
