@@ -213,7 +213,7 @@
 
                     {if is_set( $shipping_info )}
                         <tr>
-                            <td class="product-subtotal" colspan="{$cols|sub(1)}"><a href={$shipping_info.management_link|ezurl}>{'Shipping'|i18n( 'extension/xrowecommerce' )}{if $shipping_info.description} ({$shipping_info.description}){/if}</a>:
+                            <td class="product-subtotal" colspan="{if ezini( 'Settings', 'ShowColumnPosition', 'xrowecommerce.ini' )|eq('enabled')}{$cols|sub(1)}{else}{$cols|sub(2)}{/if}"><a href={$shipping_info.management_link|ezurl}>{'Shipping'|i18n( 'extension/xrowecommerce' )}{if $shipping_info.description} ({$shipping_info.description}){/if}</a>:
                                 {$shipping_info.cost|l10n( 'currency', $locale, $symbol )}
                             </td>
                             <td class="product-subtotal">
@@ -221,7 +221,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td class="product-subtotal" colspan="{$cols|sub(1)}"><b>{'Order total'|i18n( 'extension/xrowecommerce' )}</b>:
+                            <td class="product-subtotal" colspan="{if ezini( 'Settings', 'ShowColumnPosition', 'xrowecommerce.ini' )|eq('enabled')}{$cols|sub(1)}{else}{$cols|sub(2)}{/if}"><b>{'Order total'|i18n( 'extension/xrowecommerce' )}</b>:
                                 {$total_inc_shipping_inc_vat|l10n( 'currency', $locale, $symbol )}
                             </td>
                             <td class="product-subtotal">
@@ -231,7 +231,7 @@
                     {/if}
             
                     <tr class="subtotal-line">
-                         <td colspan="{$cols|sub(2)}" class="align_right">
+                         <td colspan="{if ezini( 'Settings', 'ShowColumnPosition', 'xrowecommerce.ini' )|eq('enabled')}{$cols|sub(2)}{else}{$cols|sub(3)}{/if}" class="align_right">
                             {"Subtotal ex. tax"|i18n("extension/xrowecommerce")}
                          </td>
                          <td class="totalprice">
@@ -242,7 +242,7 @@
             
                     {if eq(ezini( 'BasketInformation', 'DisplayShipping', 'xrowecommerce.ini' ), 'enabled' )}
                         <tr class="orderitem-line">
-                            <td colspan="{$cols|sub(2)}" class="align_right">
+                            <td colspan="{if ezini( 'Settings', 'ShowColumnPosition', 'xrowecommerce.ini' )|eq('enabled')}{$cols|sub(2)}{else}{$cols|sub(3)}{/if}" class="align_right">
                                 {"Estimated shipping and handling"|i18n("extension/xrowecommerce")}
                             </td>
                             <td class="price totalprice">
@@ -254,7 +254,7 @@
             
                     {if eq(ezini( 'BasketInformation', 'DisplayTax', 'xrowecommerce.ini' ), 'enabled' )}
                         <tr class="tax-line">
-                            <td colspan="{$cols|sub(2)}" class="align_right">
+                            <td colspan="{if ezini( 'Settings', 'ShowColumnPosition', 'xrowecommerce.ini' )|eq('enabled')}{$cols|sub(2)}{else}{$cols|sub(3)}{/if}" class="align_right">
                                 {"Estimated Tax"|i18n("extension/xrowecommerce")}
                             </td>
                             <td class="price totalprice">
@@ -265,7 +265,7 @@
                     {/if}
             
                     <tr class="grandtotal-line">
-                        <td colspan="{$cols|sub(2)}" class="align_right">
+                        <td colspan="{if ezini( 'Settings', 'ShowColumnPosition', 'xrowecommerce.ini' )|eq('enabled')}{$cols|sub(2)}{else}{$cols|sub(3)}{/if}" class="align_right">
                             <strong>
                                 {'Total'|i18n( 'extension/xrowecommerce' )}
                             </strong>
