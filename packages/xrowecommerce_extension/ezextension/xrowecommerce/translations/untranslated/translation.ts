@@ -1436,10 +1436,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>SKU number</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Weight</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2287,6 +2283,10 @@
     </message>
     <message>
         <source>Private person</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Subscribe to newsletter</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

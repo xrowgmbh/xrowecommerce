@@ -44,7 +44,7 @@ $product_item is the current product in the cart
             {/if}
         </p>
         <p class="product-id">
-            {'SKU number'|i18n("extension/xrowecommerce")}:
+            {'SKU'|i18n("extension/xrowecommerce")}:
             {if and(is_set($prod.data_map.variation.content.name), $prod.data_map.variation.content.name|ne(''))}
                 {$prod.data_map.variation.content.name|wash()}
             {else}
@@ -97,7 +97,7 @@ $product_item is the current product in the cart
                 {/foreach}
             </p>
             <p class="product-id">
-                {'SKU number'|i18n("extension/xrowecommerce")}:
+                {'SKU'|i18n("extension/xrowecommerce")}:
                 {if and(is_set($option_item.value), $option_item.value|ne(''))}
                     {$option_item.value}
                 {else}
@@ -153,7 +153,7 @@ $product_item is the current product in the cart
         {/if}
     </p>
     <p class="product-id">
-        {'SKU number'|i18n("extension/xrowecommerce")}:
+        {'SKU'|i18n("extension/xrowecommerce")}:
         {if and(is_set($prod.data_map.variation.content.name), $prod.data_map.variation.content.name|ne(''))}
             {$prod.data_map.variation.content.name|wash()}
         {else}
