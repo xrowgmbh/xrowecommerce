@@ -7,7 +7,7 @@ GroupedInput[]=xrowbillingcycle
 
 [EditSettings]
 GroupedInput[]=xrowproductvariation
-GroupedInput[]=ezcoupon
+#GroupedInput[]=ezcoupon
 GroupedInput[]=ezcreditcard
 GroupedInput[]=xrowbillingcycle
 
