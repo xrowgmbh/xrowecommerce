@@ -88,6 +88,13 @@
                         </div>
                     {/if}
                 </div>
+                {if $fields.title.enabled}
+                    <div class="ur_title block{if is_set($fields.title.errors)} error{/if}">
+                        <label>{'Title'|i18n('extension/xrowecommerce')}{if $fields.title.required}<span class="required">*</span></label>
+                        <div class="labelbreak"></div>
+                        <input type="text" name="title" id="title" value="{$title|wash}" />
+                    </div>
+                {/if}
                 {if $fields.first_name.enabled}
                     <div class="ur_firstname block{if is_set($fields.first_name.errors)} error{/if}">
                         <label>{'First name'|i18n('extension/xrowecommerce')}{if $fields.first_name.required}<span class="required">*</span></label>
@@ -267,6 +274,14 @@
                         </div>
                     {/if}
                 </div>
+
+                    {if $fields.s_title.enabled}
+                        <div class="ur_title block{if is_set($fields.s_title.errors)} error{/if}">
+                            <label>{'Title'|i18n('extension/xrowecommerce')}{if $fields.s_title.required}<span class="required">*</span>{/if}</label>
+                            <div class="labelbreak"></div>
+                            <input type="text" name="s_title" id="s_title" value="{$s_title|wash}" />
+                        </div>
+                    {/if}
 
                     {if $fields.s_first_name.enabled}
                         <div class="ur_firstname block{if is_set($fields.s_first_name.errors)} error{/if}">

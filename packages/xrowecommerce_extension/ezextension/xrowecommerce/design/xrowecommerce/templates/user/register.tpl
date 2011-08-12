@@ -115,6 +115,14 @@
                         </div>
                         {/if}
                     </div>
+
+                    <div class="block title">
+                        <label>{if ezini( 'Fields', 'title', 'xrowecommerce.ini' ).required|eq("true")}<span class="required">*</span>{/if}{'Title'|i18n('extension/xrowecommerce')}</label>
+                        <div class="labelbreak"></div>
+                        <input type="text" id="title" name="{$castring}_ezstring_data_text_{$ca.title.id}" value="{$ca.title.content|wash()}" />
+                        <input type="hidden" name="ContentObjectAttribute_id[]" value="{$ca.title.id}" />
+                    </div>
+
                     <div class="block first_name">
                         <label>{if ezini( 'Fields', 'first_name', 'xrowecommerce.ini' ).required|eq("true")}<span class="required">*</span>{/if}{'First name'|i18n('extension/xrowecommerce')}</label>
                         <div class="labelbreak"></div>
@@ -279,6 +287,16 @@
                         </div>
                         {/if}
                     </div>
+
+                    {if ezini( 'Fields', 's_title', 'xrowecommerce.ini' ).enabled|eq("true")}
+                    <div class="block s_title">
+                        <label>{if ezini( 'Fields', 's_title', 'xrowecommerce.ini' ).required|eq("true")}<span class="required">*</span>{/if}{'Title'|i18n('extension/xrowecommerce')}</label>
+                        <div class="labelbreak"></div>
+                        <input type="text" id="s_title" name="{$castring}_ezstring_data_text_{$ca.s_title.id}" value="{$ca.s_title.content|wash()}" />
+                        <input type="hidden" name="ContentObjectAttribute_id[]" value="{$ca.s_title.id}" />
+                    </div>
+                    {/if}
+
                     {if ezini( 'Fields', 's_first_name', 'xrowecommerce.ini' ).enabled|eq("true")}
                     <div class="block s_first_name">
                         <label>{if ezini( 'Fields', 's_first_name', 'xrowecommerce.ini' ).required|eq("true")}<span class="required">*</span>{/if}{'First name'|i18n('extension/xrowecommerce')}</label>
