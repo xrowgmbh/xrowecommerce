@@ -14,7 +14,7 @@ if ( $module->isCurrentAction( 'Cancel' ) )
 $user = eZUser::currentUser();
 
 // Initialize variables
-$email = $first_name = $last_name = $shippingtype = $shipping = $s_email = $s_last_name = $s_first_name = $s_address1 = $s_address2 = $s_zip = $s_city = $s_state = $s_country = $s_phone = $s_mi = $address1 = $address2 = $zip = $city = $state = $country = $phone = $recaptcha = $mi = null;
+$email = $title = $s_title = $first_name = $last_name = $shippingtype = $shipping = $s_email = $s_last_name = $s_first_name = $s_address1 = $s_address2 = $s_zip = $s_city = $s_state = $s_country = $s_phone = $s_mi = $address1 = $address2 = $zip = $city = $state = $country = $phone = $recaptcha = $mi = null;
 $userobject = $user->attribute( 'contentobject' );
 $xini = eZINI::instance( 'xrowecommerce.ini' );
 if ( $xini->hasVariable( 'ShopAccountHandlerDefaults', 'CountryCode' ) )
@@ -40,6 +40,10 @@ if ( $user->isLoggedIn() and in_array( $userobject->attribute( 'class_identifier
             $tax_id_valid = xrowTINType::STATUS_VALIDATED_BY_ADMIN;
         }
         $tax_id = $userMap['tax_id']->content();
+    }
+    if ( isset( $userMap['title'] ) )
+    {
+        $title = $userMap['title']->content();
     }
     if ( isset( $userMap['first_name'] ) )
     {
@@ -127,6 +131,10 @@ if ( $user->isLoggedIn() and in_array( $userobject->attribute( 'class_identifier
         if ( isset( $userMap['s_company_additional'] ) )
         {
             $s_company_additional = $userMap['s_company_additional']->content();
+        }
+        if ( isset( $userMap['s_title'] ) )
+        {
+            $s_title = $userMap['s_title']->content();
         }
         if ( isset( $userMap['s_first_name'] ) )
         {
@@ -224,6 +232,7 @@ $fields = array();
 $field_keys = array( 'company_name',
                      'company_additional',
                      'tax_id',
+                     'title',
                      'first_name',
                      'mi',
                      'last_name',
@@ -238,6 +247,7 @@ $field_keys = array( 'company_name',
                      'email',
                      's_company_name',
                      's_company_additional',
+                     's_title',
                      's_first_name',
                      's_mi',
                      's_last_name',
@@ -304,6 +314,19 @@ if ( $module->isCurrentAction( 'Store' ) )
         {
             $inputIsValid = false;
             $fields['company_additional']['errors'][0] = ezpI18n::tr( 'extension/xrowecommerce', 'The billing company additional is not given.' );
+        }
+    }
+    
+    if ( $fields['title']['enabled'] == true )
+    {
+        $title = trim( $http->postVariable( 'title' ) );
+        if ( $fields['title']['required'] == true )
+        {
+            if ( $title == '' )
+            {
+                $inputIsValid = false;
+                $fields['title']['errors'][0] = ezpI18n::tr( 'extension/xrowecommerce', 'The billing title is not given.' );
+            }
         }
     }
 
@@ -671,6 +694,16 @@ foreach ( $items as $item )
             }
         }
 
+            if ( $fields['s_title']['enabled'] == true )
+        {
+            $s_title = trim( $http->postVariable( 's_title' ) );
+            if ( $s_title == '' and $fields['s_title']['required'] == true )
+            {
+                $inputIsValid = false;
+                $fields['s_title']['errors'][0] = ezpI18n::tr( 'extension/xrowecommerce', 'The shipping title is not given.' );
+            }
+        }
+
         if ( $fields['s_first_name']['enabled'] == true )
         {
             $s_first_name = trim( $http->postVariable( 's_first_name' ) );
@@ -922,6 +955,10 @@ foreach ( $items as $item )
             $tax_idNode = $doc->createElement( 'tax_id_valid', '0' );
             $root->appendChild( $tax_idNode );
         }
+
+        $titleNode = $doc->createElement( 'title', $title );
+        $root->appendChild( $titleNode );
+
         $first_nameNode = $doc->createElement( 'first_name', $first_name );
         $root->appendChild( $first_nameNode );
 
@@ -1016,6 +1053,9 @@ foreach ( $items as $item )
             $s_company_additionalNode = $doc->createElement( 's_company_additional', $s_company_additional );
             $root->appendChild( $s_company_additionalNode );
 
+            $s_titleNode = $doc->createElement( 's_title', $s_title );
+            $root->appendChild( $s_titleNode );
+
             $s_first_nameNode = $doc->createElement( 's_first_name', $s_first_name );
             $root->appendChild( $s_first_nameNode );
 
@@ -1061,6 +1101,9 @@ foreach ( $items as $item )
 
             $s_company_additionalNode = $doc->createElement( 's_company_additional', $company_additional );
             $root->appendChild( $s_company_additionalNode );
+
+            $s_titleNode = $doc->createElement( 's_title', $title );
+            $root->appendChild( $s_titleNode );
 
             $s_first_nameNode = $doc->createElement( 's_first_name', $first_name );
             $root->appendChild( $s_first_nameNode );
@@ -1125,6 +1168,7 @@ $tpl->setVariable( 'company_additional', $company_additional );
 $tpl->setVariable( 'tax_id', $tax_id );
 $tpl->setVariable( 'tax_id_valid', $tax_id_valid );
 $tpl->setVariable( 'first_name', $first_name );
+$tpl->setVariable( 'title', $title );
 $tpl->setVariable( 'mi', $mi );
 $tpl->setVariable( 'last_name', $last_name );
 $tpl->setVariable( 'email', $email );
@@ -1156,6 +1200,7 @@ if ( isset( $payment_method ) )
 $tpl->setVariable( 'recaptcha', $recaptcha );
 $tpl->setVariable( 's_company_name', $s_company_name );
 $tpl->setVariable( 's_company_additional', $s_company_additional );
+$tpl->setVariable( 's_title', $s_title );
 $tpl->setVariable( 's_first_name', $s_first_name );
 $tpl->setVariable( 's_mi', $s_mi );
 $tpl->setVariable( 's_last_name', $s_last_name );

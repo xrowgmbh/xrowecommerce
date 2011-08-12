@@ -2289,6 +2289,10 @@
         <source>Subscribe to newsletter</source>
         <translation>Den Newsletter abonnieren</translation>
     </message>
+    <message>
+        <source>Title</source>
+        <translation>Anrede</translation>
+    </message>
 </context>
 <context>
     <name>extension/xrowecommerce/directorder</name>
