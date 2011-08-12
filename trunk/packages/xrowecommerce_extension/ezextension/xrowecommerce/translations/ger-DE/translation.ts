@@ -1444,10 +1444,6 @@
         <translation>Zwischensumme exkl. USt.</translation>
     </message>
     <message>
-        <source>SKU number</source>
-        <translation>Artikelnummer</translation>
-    </message>
-    <message>
         <source>Weight</source>
         <translation>Gewicht</translation>
     </message>
@@ -2063,7 +2059,7 @@
     </message>
     <message>
         <source>On American Express cards, the Card Security Code is a printed (NOT embossed) group of four digits on the front towards the right.</source>
-        <translation type="unfinished"></translation>
+        <translation>Bei American Express Karten ist der Sicherheitscode eine gedruckte (nicht geprägte) Gruppe vierer Ziffern auf der Vorderseite rechts.</translation>
     </message>
     <message>
         <source>Settings</source>
@@ -2075,7 +2071,7 @@
     </message>
     <message>
         <source>If you are away and you wish to not receive your orders please check this box. We will also pause your Automatic Delivery, if we notice problems with your order request.</source>
-        <translation type="unfinished"></translation>
+        <translation>Wenn Sie abwensend sind und keine Bestellungen erhalten möchten, wählen Sie diese Box aus. Wir werden die automatische Auslieferung auch einstellen, wenn wir Probleme bei Ihren Bestellwunsch festestellen.</translation>
     </message>
     <message>
         <source>Important Note</source>
@@ -2083,7 +2079,7 @@
     </message>
     <message>
         <source>Items with the same &quot;Next order&quot; date will be combined on the same order.</source>
-        <translation type="unfinished"></translation>
+        <translation>Artikel mit dem gleichen Datum der &quot;Nächsten Bestellung&quot;  werden mit der gleichen Bestellung kombiniert.</translation>
     </message>
     <message>
         <source>Product name</source>
@@ -2119,7 +2115,7 @@
     </message>
     <message>
         <source>All prices exclude tax, shipping and handling. Those will be added to your order once a new order is created.</source>
-        <translation type="unfinished"></translation>
+        <translation>Alle Preise ohne MwSt., Versand und Verpackung. Diese werden Ihrer Bestellung hinzugefügt, wenn eine Bestellung erfolgt.</translation>
     </message>
     <message>
         <source>View All Tags</source>
@@ -2135,7 +2131,7 @@
     </message>
     <message>
         <source>The shipping gateway can`t process your data. Please contact support.</source>
-        <translation type="unfinished"></translation>
+        <translation>Der Versand-Gateway kann Ihre Eingabe nicht verarbeiten. Bitte kontaktieren Sie den Support.</translation>
     </message>
     <message>
         <source>Back</source>
@@ -2143,7 +2139,7 @@
     </message>
     <message>
         <source>The shipping gateway provider has a problem. Please try again or contact support.</source>
-        <translation type="unfinished"></translation>
+        <translation>Beim Anbieter des Versand-Gateways gibt es ein Problem. Bitte versuchen Sie es erneut oder kontaktieren Sie unseren Support.</translation>
     </message>
     <message>
         <source>Take a look at our</source>
@@ -2151,7 +2147,7 @@
     </message>
     <message>
         <source>Double click on above image to view full picture</source>
-        <translation type="unfinished"></translation>
+        <translation>Doppelklicken Sie auf das obige Bild zur Vollansicht</translation>
     </message>
     <message>
         <source>Basket items</source>
@@ -2163,7 +2159,7 @@
     </message>
     <message>
         <source>You need to be logged in to create reviews. You can do so %login_link_start%here%login_link_end%</source>
-        <translation type="unfinished"></translation>
+        <translation>Sie müssen eingeloggt sein um Rezensionen erstellen zu können. Dies können Sie %login_link_start%hier%login_link_end% tun</translation>
     </message>
     <message>
         <source>Customer Reviews</source>
@@ -2275,7 +2271,7 @@
     </message>
     <message>
         <source>We&apos;ve found the following hazardous items from your shopping cart since we are not allowed to ship these items to your destination. For further questions please contact us.</source>
-        <translation type="unfinished"></translation>
+        <translation>Wir haben folgende gesundheitsgefährdende Artikel gefunden. Es ist uns leider nicht erlaubt Ihnen diese an den gewählten Bestimmungsort zu liefern. Für weitere Fragen kontaktieren Sie uns.</translation>
     </message>
     <message>
         <source>Enter different shipping address.</source>
@@ -2288,6 +2284,10 @@
     <message>
         <source>Private person</source>
         <translation>Privatperson</translation>
+    </message>
+    <message>
+        <source>Subscribe to newsletter</source>
+        <translation>Den Newsletter abonnieren</translation>
     </message>
 </context>
 <context>
@@ -2757,31 +2757,10 @@ Es ist nicht möglich, den Datentyp danach zu ändern.</translation>
     </message>
 </context>
 <context>
-    <name>kernel/classes/datatypes</name>
+    <name>standard/datatype/ezcreditcard</name>
     <message>
-        <source>Advance payment</source>
-        <translation>Vorauszahlung</translation>
-    </message>
-</context>
-<context>
-    <name>kernel/classes/datatypes</name>
-    <message>
-        <source>Advance payment</source>
-        <translation>Vorauszahlung</translation>
-    </message>
-</context>
-<context>
-    <name>kernel/classes/datatypes</name>
-    <message>
-        <source>Pay by invoice</source>
-        <translation>Rechnungszahlung</translation>
-    </message>
-</context>
-<context>
-    <name>kernel/classes/datatypes</name>
-    <message>
-        <source>Cash on delivery</source>
-        <translation>Nachnahme</translation>
+        <source>Not used</source>
+        <translation>Ungenutzt</translation>
     </message>
 </context>
 </TS>

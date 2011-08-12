@@ -231,11 +231,14 @@ while ( count( $areas ) > 0 );
     final static function sortByVolume( &$boxes, $sort = SORT_DESC )
     {
         $nbrBoxes = count( $boxes );
+
+        #potential bugfix to avoid a timeout because of too much recursion - we are unsure if the sorting still works as expected
+        $keys = array_keys( $boxes );
+
         for ( $i = $nbrBoxes - 1; $i > 0; $i -- )
         {
             for ( $j = 0; $j < $i; $j ++ )
             {
-                $keys = array_keys( $boxes );
                 if ( $sort == SORT_DESC )
                 {
                     
