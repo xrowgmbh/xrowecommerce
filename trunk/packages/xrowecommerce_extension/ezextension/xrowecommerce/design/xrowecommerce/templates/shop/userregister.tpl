@@ -90,14 +90,13 @@
                 </div>
                 {if $fields.title.enabled}
                     <div class="ur_title block{if is_set($fields.title.errors)} error{/if}">
-                        <label>{'Title'|i18n('extension/xrowecommerce')}{if $fields.title.required}<span class="required">*</span></label>
-                        <div class="labelbreak"></div>
+                        <label>{'Title'|i18n('extension/xrowecommerce')}</label>
                         <input type="text" name="title" id="title" value="{$title|wash}" />
                     </div>
                 {/if}
                 {if $fields.first_name.enabled}
                     <div class="ur_firstname block{if is_set($fields.first_name.errors)} error{/if}">
-                        <label>{'First name'|i18n('extension/xrowecommerce')}{if $fields.first_name.required}<span class="required">*</span></label>
+                        <label>{'First name'|i18n('extension/xrowecommerce')}{if $fields.first_name.required}<span class="required">*</span>{/if}</label>
                         <div class="labelbreak"></div>
                         <input type="text" name="first_name" id="first_name" value="{$first_name|wash}" />
                     </div>
@@ -175,8 +174,6 @@
                         </select>
                     </div>
                     <div class="break"></div>
-                {else}
-
                 {/if}
                 {if $fields.phone.enabled}
                     <div class="block{if is_set($fields.phone.errors)} error{/if}">
@@ -195,7 +192,7 @@
                     <div class="break"></div>
                 {/if}
                 {if $fields.email.enabled}
-                    <div class="block{/if}{if is_set($fields.email.errors)} error{/if}">
+                    <div class="block{if is_set($fields.email.errors)} error{/if}">
                         <label>{'E-mail'|i18n('extension/xrowecommerce')}{if $fields.email.required}<span class="required">*</span>{/if}</label>
                         <div class="labelbreak"></div>
                         <input class="phone" type="text" name="email" id="email" value="{$email|wash}" />

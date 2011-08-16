@@ -31,8 +31,11 @@
         {/if}
         <tr>
             <th>{'Name'|i18n('extension/xrowecommerce')}:</th>
-            <td>{$order.account_information.first_name|wash}
-            {$order.account_information.last_name|wash}</td>
+            <td>
+                {$order.account_information.title|wash}
+                {$order.account_information.first_name|wash}
+                {$order.account_information.last_name|wash}
+            </td>
         </tr>
         <tr>
             <th>{'Email'|i18n('extension/xrowecommerce')}:</th>
@@ -51,6 +54,7 @@
                         {$order.account_information.company_name|wash}
                         {$order.account_information.company_additional|wash},
                     {/if}
+                    {$order.account_information.title}
                     {$order.account_information.first_name|wash}
                     {$order.account_information.last_name|wash}
                 </td>
@@ -102,14 +106,20 @@
             {/if}
         </table>
     {else}
-        <table id="billing-address-table" class="order_box" border="0"
-            cellspacing="0" cellpadding="0">
+        <table id="billing-address-table" class="order_box" border="0" cellspacing="0" cellpadding="0">
             <caption>{"Billing Address"|i18n("extension/xrowecommerce")}</caption>
             <tr>
                 <th>{'Name'|i18n('extension/xrowecommerce')}:</th>
-                <td>{if $order.account_information.company_name|wash}{$order.account_information.company_name|wash}
-                {$order.account_information.company_additional|wash}{else}{$order.account_information.first_name|wash}
-                {$order.account_information.last_name|wash}{/if}</td>
+                <td>
+                    {if $order.account_information.company_name}
+                        {$order.account_information.company_name|wash}
+                        {$order.account_information.company_additional|wash}
+                    {else}
+                        {$order.account_information.title|wash}
+                        {$order.account_information.first_name|wash}
+                        {$order.account_information.last_name|wash}
+                    {/if}
+                </td>
             </tr>
             <tr>
                 <th>{'Address'|i18n('extension/xrowecommerce')}:</th>
@@ -166,10 +176,11 @@
             <tr>
                 <th>{'To'|i18n('extension/xrowecommerce')}:</th>
                 <td>
-                    {if $order.account_information.s_company_name|wash}
+                    {if $order.account_information.s_company_name}
                         {$order.account_information.s_company_name|wash}
                         {$order.account_information.s_company_additional|wash},
                     {/if}
+                    {$order.account_information.s_title|wash}
                     {$order.account_information.s_first_name|wash}
                     {$order.account_information.s_mi|wash}
                     {$order.account_information.s_last_name|wash}
