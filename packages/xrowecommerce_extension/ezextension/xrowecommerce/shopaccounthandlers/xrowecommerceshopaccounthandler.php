@@ -33,6 +33,7 @@ class xrowECommerceShopAccountHandler
         $billing['company_name'] = $userMap['company_name']->content();
         $billing['company_additional'] = $userMap['company_additional']->content();
         $billing['tax_id'] = $userMap['tax_id']->content();
+        $billing['title'] = $userMap['title']->content();
         $billing['first_name'] = $userMap['first_name']->content();
         $billing['mi'] = $userMap['mi']->content();
         $billing['last_name'] = $userMap['last_name']->content();
@@ -56,6 +57,7 @@ class xrowECommerceShopAccountHandler
         {
             $shipping['s_companyname'] = $userMap['s_company_name']->content();
             $shipping['s_companyadditional'] = $userMap['s_company_additional']->content();
+            $shipping['s_title'] = $userMap['s_title']->content();
             $shipping['s_first-name'] = $userMap['s_first_name']->content();
             $shipping['s_mi'] = $userMap['s_last_name']->content();
             $shipping['s_last-name'] = $userMap['s_mi']->content();
@@ -177,6 +179,7 @@ class xrowECommerceShopAccountHandler
             'company_additional' , 
             'tax_id' , 
             'tax_id_valid' , 
+            'title' , 
             'first_name' , 
             'mi' , 
             'last_name' , 
@@ -193,6 +196,7 @@ class xrowECommerceShopAccountHandler
             'shippingtype' , 
             's_company_name' , 
             's_company_additional' , 
+            's_title' ,
             's_first_name' , 
             's_mi' , 
             's_last_name' , 

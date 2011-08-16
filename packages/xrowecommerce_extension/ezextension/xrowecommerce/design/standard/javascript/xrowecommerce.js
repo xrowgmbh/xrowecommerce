@@ -45,7 +45,10 @@ YUI().use( 'node', function(Y)
                 {
                     updateShipping();
                 }
-                updateSubdivisions( e.currentTarget );
+                if ( Y.one( '#country' ) )
+                {
+                    updateSubdivisions( e.currentTarget );
+                }
             }, '#country');
             Y.on( 'change', function( e )
             {
@@ -53,7 +56,10 @@ YUI().use( 'node', function(Y)
                 {
                     updateShipping();
                 }
+                if ( Y.one( '#country' ) )
+                {
                 updateSubdivisions( e.currentTarget );
+                }
             }, '#s_country');
             Y.on( 'click', function( e )
             {
@@ -158,9 +164,14 @@ function updateSubdivisions( country_node )
     YUI().use( 'node', 'io', 'io-ez', function( Y )
     {
         var country = country_node.get( 'options' ).item( country_node.get( 'selectedIndex' ) ).get( 'value' );
-
-        Y.one( '#s_state' ).set( 'disabled', 'disabled' );
-        Y.one( '#state' ).set( 'disabled', 'disabled' );
+        if( Y.one( '#s_state' ) )
+        {
+            Y.one( '#s_state' ).set( 'disabled', 'disabled' );
+        }
+        if( Y.one( '#state' ) )
+        {
+            Y.one( '#state' ).set( 'disabled', 'disabled' );
+        }
         Y.io.ez( 'xrowecommerce::getSubdivisions::' + country, 
         {
             arguments: country_node,
@@ -374,6 +385,11 @@ function changeShipping()
             if ( Y.one( '#s_company_additional' ) && Y.one( '#company_additional' ) && Y.one( '#company_additional' ).get( 'value' ) != '' )
             {
                 Y.one( '#s_company_additional' ).set( 'value', Y.one( '#company_additional' ).get( 'value' ) );
+            }
+            
+            if ( Y.one( '#s_title' ) && Y.one( '#title' ) && Y.one( '#title' ).get( 'value' ) != '' )
+            {
+                Y.one( '#s_title' ).set( 'value', Y.one( '#title' ).get( 'value' ) );
             }
 
             //document.register.s_first_name.value = document.register.first_name.value;
