@@ -74,6 +74,7 @@ class xrowProductTemplate extends eZPersistentObject
             {
                 $identifier = $item['attribute']->attribute( 'identifier' );
                 $this->AttributeListByIdentifier[$identifier] = $item;
+                $this->AttrIDList[$identifier] = $identifier;
             }
         }
     }
@@ -95,6 +96,7 @@ class xrowProductTemplate extends eZPersistentObject
         $this->AttributeList = array();
         $this->Data['attributes'] = array();
         $this->AttributeListByIdentifier = array();
+        $this->AttrIDList = array();
     }
 
     static function definition()
@@ -418,6 +420,7 @@ class xrowProductTemplate extends eZPersistentObject
     public $Name;
     public $AttributeList = array();
     public $AttributeListByIdentifier = array();
+    public $AttrIDList = array();
 }
 
 ?>

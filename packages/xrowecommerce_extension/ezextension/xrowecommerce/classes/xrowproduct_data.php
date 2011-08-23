@@ -124,6 +124,26 @@ class xrowProductData extends eZPersistentObject
             $template->updateAttributes( $languageCode );
         return $template;
     }
+    
+	/**
+	 * Fetchtes the template by object id
+	 * @param int $objectID
+	 * @return mixed 
+	 */
+    public static function fetchTemplateByObjectID( $objectID )
+    {
+    	$db = eZDB::instance();
+    	$objectID = $db->escapeString( $objectID );
+    	$sql = "SELECT DISTINCT template_id FROM xrowproduct_data WHERE object_id = '$objectID'";
+    	$res = $db->arrayQuery( $sql );
+    	$template = null;
+    	if ( $res && isset( $res[0] ) )
+    	{
+    		$templateID = $res[0]['template_id'];
+    		$template = xrowProductTemplate::fetch( $templateID );
+    	}
+    	return $template;
+    }
 
     /**
      * Translates a variation

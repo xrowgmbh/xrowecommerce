@@ -344,11 +344,11 @@ class xrowProductAttribute extends eZPersistentObject
     }
 
     /**
-     * return true if the identifier is already in use_soap_error_handler
+     * return true if the identifier is already in use
      * @param string identifier
      * @return true or false
      */
-    function checkIdentifierDupe( $identifier )
+    public function checkIdentifierDupe( $identifier )
     {
         $def = self::definition();
         $table = $def['name'];
@@ -356,6 +356,25 @@ class xrowProductAttribute extends eZPersistentObject
         $identifier = $db->escapeString( $identifier );
         $id = $this->attribute( 'id' );
         $sql = "SELECT * FROM $table WHERE identifier LIKE '$identifier' and id != $id";
+        $result = $db->arrayQuery( $sql );
+        if ( count( $result ) > 0 )
+            return true;
+        else
+            return false;
+    }
+    
+	/**
+     * return true if the identifier is already in use
+     * @param string identifier
+     * @return true or false
+     */
+    public static function checkColumnName( $identifier )
+    {
+        $def = self::definition();
+        $table = $def['name'];
+        $db = eZDB::instance();
+        $identifier = $db->escapeString( $identifier );
+        $sql = "SELECT * FROM $table WHERE identifier LIKE '$identifier'";
         $result = $db->arrayQuery( $sql );
         if ( count( $result ) > 0 )
             return true;
