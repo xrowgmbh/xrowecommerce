@@ -104,6 +104,20 @@ $ViewList["priceexport"] = array(
     "default_navigation_part" => 'ezshopnavigationpart',
     "params" => array() );
 
+$ViewList["productimport"] = array(
+    "functions" => array( 'administrate' ),
+    'ui_component' => 'shop',
+    "script" => "product_import.php",
+    "default_navigation_part" => 'ezshopnavigationpart',
+    "params" => array( 'object_id' => 'ObjectID' ) );
+
+$ViewList["productexport"] = array(
+    "functions" => array( 'administrate' ),
+    'ui_component' => 'shop',
+    "script" => "product_export.php",
+    "default_navigation_part" => 'ezshopnavigationpart',
+    "params" => array( 'object_id' => 'ObjectID' ) );
+
 $ViewList["directorder"] = array(
     "script" => "direct_order.php",
     'ui_component' => 'shop',
