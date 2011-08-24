@@ -51,6 +51,7 @@ div.overlay
     border: 1px solid #385617;
     padding: 1em 0 1em 0;
     text-align: center;
+    z-index: 9999; 
 }
 div.overlay span.row-hr
 {

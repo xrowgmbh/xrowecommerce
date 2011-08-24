@@ -78,7 +78,7 @@ ShopUserClassList[]=client
 # Please use an override instead
 
 #use Alpha3 or Alpha2 for country datatype
-UseAlpha3=false
+UseAlpha3=true
 
 # If an order has this IDs it will be shown in the order statistic
 # If empty, this setting will be ignored
