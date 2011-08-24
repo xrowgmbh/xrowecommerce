@@ -1,5 +1,9 @@
-{'Thank you for ordering from'|i18n( 'extension/xrowecommerce' )} {ezini( 'InvoiceSettings', 'CompanyName', 'xrowecommerce.ini'  )}.
+{'Hello'|i18n( 'extension/harley' )} {$order.account_information.title|wash} {$order.account_information.last_name|wash},
+{'many thanks for ordering at'|i18n( 'extension/harley' )} {ezini( 'InvoiceSettings', 'CompanyName', 'xrowecommerce.ini'  )}.
+............................................................................................
+{ezini( 'InvoiceSettings', 'CompanyName', 'xrowecommerce.ini'  )|attribute(show)}
 
-{'The details of the order are below.  If you have a question, please do not reply to this email.'|i18n( 'extension/xrowe"extension/xrowecommerce/design/xrowecommerce/templates/shop/orderemail.tpl"commerce' )}
-{'Rather, email'|i18n( 'extension/xrowecommerce' )} {ezini( 'InvoiceSettings', 'CompanyEmail', 'xrowecommerce.ini'  )} {'or call'|i18n( 'extension/xrowecommerce' )} {ezini( 'InvoiceSettings', 'CompanyPhone', 'order.ini'  )}.
-{'Thank you again, and have a wonderful day!'|i18n( 'extension/xrowecommerce' )}
+{'If you have any questions concerning your customer account or your order,'|i18n( 'extension/harley' )}
+{'please send an email to'|i18n( 'extension/harley' )} {ezini( 'InvoiceSettings', 'CompanyEmail', 'xrowecommerce.ini'  )}
+{'or call us by phone on '|i18n( 'extension/harley' )} {ezini( 'InvoiceSettings', 'CompanyPhone', 'order.ini'  )}.
+{'Below you can find your order confirmation, thank you!'|i18n( 'extension/harley' )}
