@@ -2767,4 +2767,25 @@ Es ist nicht möglich, den Datentyp danach zu ändern.</translation>
         <translation>Ungenutzt</translation>
     </message>
 </context>
+<context>
+    <name>kernel/classes/datatypes</name>
+    <message>
+        <source>Pay by invoice</source>
+        <translation>Rechnung</translation>
+    </message>
+</context>
+<context>
+    <name>kernel/classes/datatypes</name>
+    <message>
+        <source>Cash on delivery</source>
+        <translation>Nachnahme</translation>
+    </message>
+</context>
+<context>
+    <name>kernel/classes/datatypes</name>
+    <message>
+        <source>Advance payment</source>
+        <translation>Vorauskasse</translation>
+    </message>
+</context>
 </TS>
