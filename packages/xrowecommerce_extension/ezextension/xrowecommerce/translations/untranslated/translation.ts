@@ -623,6 +623,26 @@
         <source>disabled</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Multiple choice</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Default selection</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Select which countries by default</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unchecked</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Checked</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>design/standard/content/datatype</name>
@@ -830,6 +850,10 @@
         <source>Select option</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Not specified</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>design/standard/ezoe</name>
@@ -944,16 +968,83 @@
     </message>
 </context>
 <context>
-    <name>extension/recurringorders</name>
+    <name>extension/harley</name>
     <message>
-        <source>Subscriptions</source>
+        <source>Your Purchase Order</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Items</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Total</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Tax</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Cancellation Policy</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Right of Revocation</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>You may declare the revocation of your contractual statement in text form (e.g. letter, email) or by returning the merchandise within two weeks. The revocation does not have to contain any explanation. The revocation period commences the day following the receipt of merchandise and this revocation instruction in text form. The time-limit shall be deemed to be observed by the timely dispatch of the declaration of revocation or the returning of the shipment.The revocation is to be addressed to:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Consequences of Revocation</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>In case of a valid revocation, all mutually received performances as well as emoluments taken (e.g. interest), if applicable, are to be restituted by either side. If you are unable or partially unable to restitute the merchandise to us or can only restitute it in a deteriorated condition, you have to insofar compensate for its value where applicable. This does not apply if the deterioration is exclusively due to examining the merchandise ? as for instance in a retail store ? or putting the merchandise to its intended use. Things that can be shipped by parcel are to be returned on our risk. Things that cannot be shipped by parcel will be picked up. You are obliged to bear the costs of the return shipment, if the merchandise delivered corresponds to the merchandise ordered, and if the price of the merchandise to be sent back does not exceed an amount of forty euros or if, where the price is higher, you have at the date of the revocation not yet rendered consideration or given a part payment. In all other cases, the returning of the shipment for you is free of charge. All reimbursement obligations must be fulfilled within 30 days of the declaration of revocation.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Hello</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>many thanks for ordering at</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>If you have any questions concerning your customer account or your order,</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>please send an email to</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>or call us by phone on </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Below you can find your order confirmation, thank you!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>SKU</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
-    <name>extension/xrowe&quot;extension/xrowecommerce/design/xrowecommerce/templates/shop/orderemail.tpl&quot;commerce</name>
+    <name>extension/harley/email</name>
     <message>
-        <source>The details of the order are below.  If you have a question, please do not reply to this email.</source>
+        <source>Total</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>extension/recurringorders</name>
+    <message>
+        <source>Subscriptions</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1704,38 +1795,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Thank you for ordering from</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Rather, email</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>or call</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Thank you again, and have a wonderful day!</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Order ID</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>The Staff at</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Contact Us</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Shop</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Order Number</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1970,10 +2029,6 @@
     </message>
     <message>
         <source>Estimated shipping and handling</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Order confirmation email from</source>
         <translation type="unfinished"></translation>
     </message>
     <message>

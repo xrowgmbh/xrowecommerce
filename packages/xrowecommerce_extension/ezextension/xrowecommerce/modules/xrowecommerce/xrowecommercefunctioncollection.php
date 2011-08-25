@@ -11,7 +11,7 @@ class xrowECommerceFunctionCollection
     public function getCountryList()
     {
         return array(
-            'result' => eZCountryType::fetchCountryList()
+            'result' => xrowCountryType::fetchCountryList()
         );
     }
 

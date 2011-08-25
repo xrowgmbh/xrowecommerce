@@ -21,11 +21,11 @@
                                 </div>
                             {/if}
 
-<script type="text/javascript"> 
-YUI( YUI3_config ).use("node", function(Y) {ldelim}
-	Y.on("load", function(e) {ldelim} generatePopup( '#product_image', '{$node.data_map.image.content.original.full_path|ezroot(no, full)}','{$node.data_map.image.content.original.text|wash(javascript)}', false ); {rdelim}, window, Y );
-{rdelim});
-</script>  
+                    <script type="text/javascript"> 
+                    $(document).ready(function(){ldelim}
+                        generatePopup( '#product_image', '{$node.data_map.image.content.original.full_path|ezroot(no, full)}','click me', false );
+                    {rdelim});
+                    </script> 
                     {else}
                         <div class="nopic attribute-image"><img src={'shop/nopic.gif'|ezimage()} alt="{'No image available'|i18n('extension/xrowecommerce')}" /></div>
                     {/if}
