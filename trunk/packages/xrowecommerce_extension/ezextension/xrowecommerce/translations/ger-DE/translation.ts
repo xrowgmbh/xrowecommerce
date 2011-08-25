@@ -623,6 +623,26 @@
         <source>disabled</source>
         <translation>gesperrt</translation>
     </message>
+    <message>
+        <source>Multiple choice</source>
+        <translation>Mehrfachauswahl</translation>
+    </message>
+    <message>
+        <source>Default selection</source>
+        <translation>Standardauswahl</translation>
+    </message>
+    <message>
+        <source>Select which countries by default</source>
+        <translation>Wähle aus, welche Länder standardmäßig</translation>
+    </message>
+    <message>
+        <source>Unchecked</source>
+        <translation>Abgewählt</translation>
+    </message>
+    <message>
+        <source>Checked</source>
+        <translation>Ausgewählt</translation>
+    </message>
 </context>
 <context>
     <name>design/standard/content/datatype</name>
@@ -830,6 +850,10 @@
         <source>Select option</source>
         <translation>Option auswählen</translation>
     </message>
+    <message>
+        <source>Not specified</source>
+        <translation>Nicht spezifiziert</translation>
+    </message>
 </context>
 <context>
     <name>design/standard/ezoe</name>
@@ -944,6 +968,80 @@
     </message>
 </context>
 <context>
+    <name>extension/harley</name>
+    <message>
+        <source>Your Purchase Order</source>
+        <translation>Ihre Bestellung</translation>
+    </message>
+    <message>
+        <source>Items</source>
+        <translation>Artikel</translation>
+    </message>
+    <message>
+        <source>Total</source>
+        <translation>Gesamtsumme</translation>
+    </message>
+    <message>
+        <source>Tax</source>
+        <translation>MwSt</translation>
+    </message>
+    <message>
+        <source>Cancellation Policy</source>
+        <translation>Widerrufsbelehrung</translation>
+    </message>
+    <message>
+        <source>Right of Revocation</source>
+        <translation>Widerrufsrecht</translation>
+    </message>
+    <message>
+        <source>You may declare the revocation of your contractual statement in text form (e.g. letter, email) or by returning the merchandise within two weeks. The revocation does not have to contain any explanation. The revocation period commences the day following the receipt of merchandise and this revocation instruction in text form. The time-limit shall be deemed to be observed by the timely dispatch of the declaration of revocation or the returning of the shipment.The revocation is to be addressed to:</source>
+        <translation>Sie können Ihre Vertragserklärung innerhalb von zwei Wochen ohne Angabe von Gründen in Textform (z. B. Brief, Fax, E-Mail) oder, wenn Ihnen die Sache vor Fristablauf überlassen wird, durch Rücksendung der Sache widerrufen. Die Widerrufsfrist beginnt nach Erhalt dieser Belehrung, jedoch nicht vor Eingang der Ware beim Empfänger, (bei der wiederkehrenden Lieferung gleichartiger Waren nicht vor dem Eingang der ersten Teillieferung) und auch nicht vor Erfüllung unserer Informationspflichtengemäß Artikel 246 § 2 in Verbindung mit § 1 Abs. 1 und 2 EGBGB sowie unserer Pflichten gemäß § 312e Abs. 1 Satz 1 BGB in Verbindung mit Artikel 246 § 3 EGBGB. Zur Wahrung der Widerrufsfrist genügt die rechtzeitige Absendung des Widerrufs oder der Ware. Der Widerruf ist zu richten an:</translation>
+    </message>
+    <message>
+        <source>Consequences of Revocation</source>
+        <translation>Widerrufsfolgen</translation>
+    </message>
+    <message>
+        <source>In case of a valid revocation, all mutually received performances as well as emoluments taken (e.g. interest), if applicable, are to be restituted by either side. If you are unable or partially unable to restitute the merchandise to us or can only restitute it in a deteriorated condition, you have to insofar compensate for its value where applicable. This does not apply if the deterioration is exclusively due to examining the merchandise ? as for instance in a retail store ? or putting the merchandise to its intended use. Things that can be shipped by parcel are to be returned on our risk. Things that cannot be shipped by parcel will be picked up. You are obliged to bear the costs of the return shipment, if the merchandise delivered corresponds to the merchandise ordered, and if the price of the merchandise to be sent back does not exceed an amount of forty euros or if, where the price is higher, you have at the date of the revocation not yet rendered consideration or given a part payment. In all other cases, the returning of the shipment for you is free of charge. All reimbursement obligations must be fulfilled within 30 days of the declaration of revocation.</source>
+        <translation>Im Falle eines wirksamen Widerrufs sind die beiderseits empfangenen Leistungen zurückzugewähren und ggf. gezogene Nutzungen (z.B. Zinsen) herauszugeben. Können Sie House of FLames die empfangene Leistung ganz oder teilweise nicht oder nur in verschlechtertem Zustand zurückgewähren, müssen Sie House of Flames insoweit ggf. Wertersatz leisten. Bei der Überlassung von Sachen gilt dies insoweit nicht, als die Verschlechterung der Sache ausschließlich auf deren Prüfung - wie sie Ihnen etwa im Ladengeschäft möglich gewesen wäre - zurückzuführen ist. Im Übrigen können Sie die Pflicht zum Wertersatz für eine durch die bestimmungsgemäße Ingebrauchnahme der Sache entstandene Verschlechterung vermeiden, indem Sie die Sache nicht wie Ihr Eigentum in Gebrauch nehmen und alles unterlassen, was deren Wert beeinträchtigt. Paketversandfähige Waren sind auf unsere Gefahr zurückzusenden. Sie haben die Kosten der Rücksendung zu tragen, wenn die gelieferte Ware der bestellten entspricht und wenn der Preis der zurückzusendenden Sache einen Betrag von 40 Euro nicht übersteigt oder wenn Sie bei einem höheren Preis der Sache zum Zeitpunkt des Widerrufs noch nicht die Gegenleistung oder eine vertraglich vereinbarte Teilzahlung erbracht haben. Anderenfalls ist die Rücksendung für Sie kostenfrei. Nicht paketversandfähige Waren werden bei Ihnen abgeholt. Verpflichtungen zur Erstattung von Zahlungen müssen innerhalb von 30 Tagen erfüllt werden. Die Frist beginnt für Sie mit der Absendung Ihrer Widerrufserklärung oder der Sache, für uns mit deren Empfang.</translation>
+    </message>
+    <message>
+        <source>Hello</source>
+        <translation>Hallo</translation>
+    </message>
+    <message>
+        <source>many thanks for ordering at</source>
+        <translation>vielen Dank für Ihre Bestellung bei</translation>
+    </message>
+    <message>
+        <source>If you have any questions concerning your customer account or your order,</source>
+        <translation>Sollten Sie Fragen zu Ihrem Kundenkonto oder Ihrer Bestellung haben,</translation>
+    </message>
+    <message>
+        <source>please send an email to</source>
+        <translation>senden Sie uns bitte eine E-Mail an</translation>
+    </message>
+    <message>
+        <source>or call us by phone on </source>
+        <translation>oder rufen Sie uns unter der Nummer</translation>
+    </message>
+    <message>
+        <source>Below you can find your order confirmation, thank you!</source>
+        <translation>Nachfolgend finden Sie Ihre Bestellbestätigung, vielen Dank!</translation>
+    </message>
+    <message>
+        <source>SKU</source>
+        <translation>Artikelnummer</translation>
+    </message>
+</context>
+<context>
+    <name>extension/harley/email</name>
+    <message>
+        <source>Total</source>
+        <translation>Gesamtsumme</translation>
+    </message>
+</context>
+<context>
     <name>extension/recurringorders</name>
     <message>
         <source>Subscriptions</source>
@@ -951,14 +1049,175 @@
     </message>
 </context>
 <context>
-    <name>extension/xrowe&quot;extension/xrowecommerce/design/xrowecommerce/templates/shop/orderemail.tpl&quot;commerce</name>
-    <message>
-        <source>The details of the order are below.  If you have a question, please do not reply to this email.</source>
-        <translation>Anbei die Details Ihrer Bestellung. Wenn Sie eine Frage haben, antworten Sie bitte nicht an diese Emailadresse.</translation>
-    </message>
-</context>
-<context>
     <name>extension/xrowecommerce</name>
+    <message>
+        <source>Enter account information</source>
+        <translation>Accountinformation eingeben.</translation>
+    </message>
+    <message>
+        <source>Shipping destination is not allowed.</source>
+        <translation>Versandziel nicht erlaubt.</translation>
+    </message>
+    <message>
+        <source>Shipping method is not allowed for destination.</source>
+        <translation>Die Versandart ist für Ihr Ziel nicht verfügbar.</translation>
+    </message>
+    <message>
+        <source>The shipping fax number is not given.</source>
+        <translation>Die Versand-Faxnummer fehlt.</translation>
+    </message>
+    <message>
+        <source>The shipping phone number is not given.</source>
+        <translation>Die Versand-Telefonnummer fehlt.</translation>
+    </message>
+    <message>
+        <source>No shipping state has been selected.</source>
+        <translation>Der Versand-Bundesland fehlt.</translation>
+    </message>
+    <message>
+        <source>No shipping country has been selected.</source>
+        <translation>Das Versand-Land fehlt.</translation>
+    </message>
+    <message>
+        <source>The shipping zip is not given.</source>
+        <translation>Der Versand-PLZ fehlt.</translation>
+    </message>
+    <message>
+        <source>The shipping city is not given.</source>
+        <translation>Die Versand-Stadt fehlt.</translation>
+    </message>
+    <message>
+        <source>The shipping address 2 is not given</source>
+        <translation>Die Versand-Adresse 2 fehlt.</translation>
+    </message>
+    <message>
+        <source>The shipping address is not given.</source>
+        <translation>Die Versand-Adresse fehlt.</translation>
+    </message>
+    <message>
+        <source>The shipping email address is not valid</source>
+        <translation>Der Versand-Emailadresse ist ungültig.</translation>
+    </message>
+    <message>
+        <source>The shipping email address is not given.</source>
+        <translation>Die Versand-Emailadresse fehlt.</translation>
+    </message>
+    <message>
+        <source>The shipping mi is not given.</source>
+        <translation>Der Versand-Zweitname fehlt.</translation>
+    </message>
+    <message>
+        <source>The shipping last name is not given.</source>
+        <translation>Der Versand-Nachname fehlt.</translation>
+    </message>
+    <message>
+        <source>The shipping first name is not given.</source>
+        <translation>Der Versand-Vorname fehlt.</translation>
+    </message>
+    <message>
+        <source>The shipping title is not given.</source>
+        <translation>Die Versand-Anrede fehlt.</translation>
+    </message>
+    <message>
+        <source>The shipping company additional field is not given.</source>
+        <translation>Der Versand-Firmenzusatz fehlt.</translation>
+    </message>
+    <message>
+        <source>The shipping company name is not given.</source>
+        <translation>Der Versand-Firmenname fehlt.</translation>
+    </message>
+    <message>
+        <source>Please select a proper shipping method for your destination.</source>
+        <translation>Bitte wählen Sie eine passende Versandmethode für Ihr Ziel.</translation>
+    </message>
+    <message>
+        <source>The shipping type is not given.</source>
+        <translation>Die Versandart fehlt.</translation>
+    </message>
+    <message>
+        <source>The billing fax number is not given.</source>
+        <translation>Die Rechnungs-Faxnummer fehlt.</translation>
+    </message>
+    <message>
+        <source>The billing phone number is not given.</source>
+        <translation>Die Rechnungs-Telefonnummer fehlt.</translation>
+    </message>
+    <message>
+        <source>TAX ID Validation problem.</source>
+        <translation>Problem bei der Gültigkeitsüberprüfung der Steuernummer.</translation>
+    </message>
+    <message>
+        <source>Your companies tax ID number is not valid.</source>
+        <translation>Die Steuernummer ist ungültig.</translation>
+    </message>
+    <message>
+        <source>Country doesn`t match tax ID number.</source>
+        <translation>Das Land entspricht nicht der Steuernummer</translation>
+    </message>
+    <message>
+        <source>The companies tax ID number is not given.</source>
+        <translation>Die Steuernummer fehlt.</translation>
+    </message>
+    <message>
+        <source>The billing zip is not given.</source>
+        <translation>Das Rechnungs-PLZ fehlt.</translation>
+    </message>
+    <message>
+        <source>The billing city is not given.</source>
+        <translation>Das Rechnungs-Stadt fehlt.</translation>
+    </message>
+    <message>
+        <source>No billing state has been selected.</source>
+        <translation>Das Rechnungs-Staat fehlt.</translation>
+    </message>
+    <message>
+        <source>No billing country has been selected.</source>
+        <translation>Das Rechnungs-Land fehlt.</translation>
+    </message>
+    <message>
+        <source>The billing address is not given.</source>
+        <translation>Die Rechnungsadresse fehlt.</translation>
+    </message>
+    <message>
+        <source>The billing email address is not valid.</source>
+        <translation>Die Rechnungs-Emailadresse ist ungültig.</translation>
+    </message>
+    <message>
+        <source>The email address is not valid.</source>
+        <translation>Die Emailadresse ist ungültig.</translation>
+    </message>
+    <message>
+        <source>The billing email address is not given.</source>
+        <translation>Die Rechnungs-Emailadresse fehlt.</translation>
+    </message>
+    <message>
+        <source>The email address is not given.</source>
+        <translation>Die Emailadresse fehlt.</translation>
+    </message>
+    <message>
+        <source>The billing mi is not given</source>
+        <translation>Der Rechnungs-Zweitname fehlt.</translation>
+    </message>
+    <message>
+        <source>The billing last name is not given.</source>
+        <translation>Der Rechnungs-Nachname fehlt.</translation>
+    </message>
+    <message>
+        <source>The billing first name is not given.</source>
+        <translation>Der Rechnungs-Vorname fehlt.</translation>
+    </message>
+    <message>
+        <source>The billing title is not given.</source>
+        <translation>Die Rechnungs-Anrede fehlt.</translation>
+    </message>
+    <message>
+        <source>The billing company name is not given.</source>
+        <translation>Der Rechnungs-Firmenname fehlt.</translation>
+    </message>
+    <message>
+        <source>The billing company additional is not given.</source>
+        <translation>Der Rechnungs-Firmenzusatz fehlt.</translation>
+    </message>
     <message>
         <source>Fraud detected</source>
         <translation>Betrug festgestellt</translation>
@@ -1724,38 +1983,6 @@
         <translation>Gültig bis</translation>
     </message>
     <message>
-        <source>Thank you for ordering from</source>
-        <translation>Danke für Ihre Bestellung bei</translation>
-    </message>
-    <message>
-        <source>Rather, email</source>
-        <translation>Vielmehr, emailen Sie</translation>
-    </message>
-    <message>
-        <source>or call</source>
-        <translation>oder Rufen uns an unter</translation>
-    </message>
-    <message>
-        <source>Thank you again, and have a wonderful day!</source>
-        <translation>Abermals vielen Dank und einen schönen Tag!</translation>
-    </message>
-    <message>
-        <source>Order ID</source>
-        <translation>Bestellnummer</translation>
-    </message>
-    <message>
-        <source>The Staff at</source>
-        <translation>Das Personal bei</translation>
-    </message>
-    <message>
-        <source>Contact Us</source>
-        <translation>Kontaktieren Sie uns</translation>
-    </message>
-    <message>
-        <source>Shop</source>
-        <translation>Shop</translation>
-    </message>
-    <message>
         <source>This table contains the specific product images, product id&apos;s, product names and links to the full view of the product</source>
         <translation>Diese Tabelle enhält die jeweiligen Produktbilder, Produktnummern, Produktnamen und den Links zur Vollansicht des Produktes</translation>
     </message>
@@ -1963,10 +2190,6 @@
     <message>
         <source>unconfirmed</source>
         <translation>unbestätigt</translation>
-    </message>
-    <message>
-        <source>Order confirmation email from</source>
-        <translation>Bestellbestätigungsemail von</translation>
     </message>
     <message>
         <source>Order receipt #%order_id </source>
@@ -2773,16 +2996,10 @@ Es ist nicht möglich, den Datentyp danach zu ändern.</translation>
         <source>Pay by invoice</source>
         <translation>Rechnung</translation>
     </message>
-</context>
-<context>
-    <name>kernel/classes/datatypes</name>
     <message>
         <source>Cash on delivery</source>
         <translation>Nachnahme</translation>
     </message>
-</context>
-<context>
-    <name>kernel/classes/datatypes</name>
     <message>
         <source>Advance payment</source>
         <translation>Vorauskasse</translation>

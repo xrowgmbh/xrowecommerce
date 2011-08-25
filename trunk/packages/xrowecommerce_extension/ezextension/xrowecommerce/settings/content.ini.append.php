@@ -8,5 +8,6 @@ AvailableDataTypes[]=xrowproductvariation
 AvailableDataTypes[]=ezcreditcard
 AvailableDataTypes[]=xrowbillingcycle
 AvailableDataTypes[]=ezoption2
+AvailableDataTypes[]=xrowcountry
 
 */ ?>
