@@ -32,7 +32,11 @@
         <tr>
             <th>{'Name'|i18n('extension/xrowecommerce')}:</th>
             <td>
-                {$order.account_information.title|wash}
+                {if and(is_set($order.account_information.title),$order.account_information.title|eq('0'))}
+                    {'Mrs.'|i18n('extension/xrowecommerce')}
+                {else}
+                    {'Mrs.'|i18n('extension/xrowecommerce')}
+                {/if}
                 {$order.account_information.first_name|wash}
                 {$order.account_information.last_name|wash}
             </td>
@@ -54,7 +58,11 @@
                         {$order.account_information.company_name|wash}
                         {$order.account_information.company_additional|wash},
                     {/if}
-                    {$order.account_information.title}
+                    {if and(is_set($order.account_information.title),$order.account_information.title|eq('0'))}
+                        {'Mrs.'|i18n('extension/xrowecommerce')}
+                    {else}
+                        {'Mrs.'|i18n('extension/xrowecommerce')}
+                    {/if}
                     {$order.account_information.first_name|wash}
                     {$order.account_information.last_name|wash}
                 </td>
@@ -115,7 +123,11 @@
                         {$order.account_information.company_name|wash}
                         {$order.account_information.company_additional|wash}
                     {else}
-                        {$order.account_information.title|wash}
+                        {if and(is_set($order.account_information.title),$order.account_information.title|eq('0'))}
+                            {'Mrs.'|i18n('extension/xrowecommerce')}
+                        {else}
+                            {'Mrs.'|i18n('extension/xrowecommerce')}
+                        {/if}
                         {$order.account_information.first_name|wash}
                         {$order.account_information.last_name|wash}
                     {/if}
@@ -180,7 +192,11 @@
                         {$order.account_information.s_company_name|wash}
                         {$order.account_information.s_company_additional|wash},
                     {/if}
-                    {$order.account_information.s_title|wash}
+                    {if and(is_set($order.account_information.s_title),$order.account_information.s_title|eq('0'))}
+                        {'Mrs.'|i18n('extension/xrowecommerce')}
+                    {else}
+                        {'Mrs.'|i18n('extension/xrowecommerce')}
+                    {/if}
                     {$order.account_information.s_first_name|wash}
                     {$order.account_information.s_mi|wash}
                     {$order.account_information.s_last_name|wash}
