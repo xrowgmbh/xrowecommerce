@@ -33,7 +33,7 @@
             <th>{'Name'|i18n('extension/xrowecommerce')}:</th>
             <td>
                 {if and(is_set($order.account_information.title),$order.account_information.title|eq('0'))}
-                    {'Mrs.'|i18n('extension/xrowecommerce')}
+                    {'Mr.'|i18n('extension/xrowecommerce')}
                 {else}
                     {'Mrs.'|i18n('extension/xrowecommerce')}
                 {/if}
@@ -59,7 +59,7 @@
                         {$order.account_information.company_additional|wash},
                     {/if}
                     {if and(is_set($order.account_information.title),$order.account_information.title|eq('0'))}
-                        {'Mrs.'|i18n('extension/xrowecommerce')}
+                        {'Mr.'|i18n('extension/xrowecommerce')}
                     {else}
                         {'Mrs.'|i18n('extension/xrowecommerce')}
                     {/if}
@@ -124,7 +124,7 @@
                         {$order.account_information.company_additional|wash}
                     {else}
                         {if and(is_set($order.account_information.title),$order.account_information.title|eq('0'))}
-                            {'Mrs.'|i18n('extension/xrowecommerce')}
+                            {'Mr.'|i18n('extension/xrowecommerce')}
                         {else}
                             {'Mrs.'|i18n('extension/xrowecommerce')}
                         {/if}
@@ -193,7 +193,7 @@
                         {$order.account_information.s_company_additional|wash},
                     {/if}
                     {if and(is_set($order.account_information.s_title),$order.account_information.s_title|eq('0'))}
-                        {'Mrs.'|i18n('extension/xrowecommerce')}
+                        {'Mr.'|i18n('extension/xrowecommerce')}
                     {else}
                         {'Mrs.'|i18n('extension/xrowecommerce')}
                     {/if}
