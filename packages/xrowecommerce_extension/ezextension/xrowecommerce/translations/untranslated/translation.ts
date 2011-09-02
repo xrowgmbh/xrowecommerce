@@ -854,6 +854,10 @@
         <source>Not specified</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Email</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>design/standard/ezoe</name>
@@ -2346,6 +2350,54 @@
     </message>
     <message>
         <source>Title</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Mr.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Mrs.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Subscription</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Guest Login</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>When you want to proceed your purchase as a guest please type in your name and email adress here.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Checkout as guest</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>New Customer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>You want to register as a new customer? Then type in your data and proceed.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Register &amp; Proceed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Customer Login</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>You already are a customer? Then login here with your account data.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Login &amp; Proceed</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
