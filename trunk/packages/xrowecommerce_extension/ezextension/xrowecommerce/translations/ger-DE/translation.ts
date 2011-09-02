@@ -854,6 +854,10 @@
         <source>Not specified</source>
         <translation>Nicht spezifiziert</translation>
     </message>
+    <message>
+        <source>Email</source>
+        <translation>Email</translation>
+    </message>
 </context>
 <context>
     <name>design/standard/ezoe</name>
@@ -2516,6 +2520,54 @@
         <source>Title</source>
         <translation>Anrede</translation>
     </message>
+    <message>
+        <source>Mr.</source>
+        <translation>Herr</translation>
+    </message>
+    <message>
+        <source>Mrs.</source>
+        <translation>Frau</translation>
+    </message>
+    <message>
+        <source>Subscription</source>
+        <translation>Anmelden</translation>
+    </message>
+    <message>
+        <source>Guest Login</source>
+        <translation>Gastlogin</translation>
+    </message>
+    <message>
+        <source>When you want to proceed your purchase as a guest please type in your name and email adress here.</source>
+        <translation>Wenn Sie den Einkauf als Gast fortsetzen wollen, dann geben Sie hier Name und Email-Adresse an. </translation>
+    </message>
+    <message>
+        <source>Checkout as guest</source>
+        <translation>Als Gast einkaufen</translation>
+    </message>
+    <message>
+        <source>New Customer</source>
+        <translation>Neukunde</translation>
+    </message>
+    <message>
+        <source>You want to register as a new customer? Then type in your data and proceed.</source>
+        <translation>Sie wollen sich als neuer Kunde registrieren? Dann geben Sie Ihre Daten an und fahren sie fort.</translation>
+    </message>
+    <message>
+        <source>Register &amp; Proceed</source>
+        <translation>Registrieren &amp; Weiter</translation>
+    </message>
+    <message>
+        <source>Customer Login</source>
+        <translation>Kundenlogin</translation>
+    </message>
+    <message>
+        <source>You already are a customer? Then login here with your account data.</source>
+        <translation>Sie sind bereits Kunde? Loggen Sie sich hier mit Ihren Kontodaten ein. </translation>
+    </message>
+    <message>
+        <source>Login &amp; Proceed</source>
+        <translation>Einloggen &amp; Weiter</translation>
+    </message>
 </context>
 <context>
     <name>extension/xrowecommerce/directorder</name>
@@ -2984,13 +3036,6 @@ Es ist nicht möglich, den Datentyp danach zu ändern.</translation>
     </message>
 </context>
 <context>
-    <name>standard/datatype/ezcreditcard</name>
-    <message>
-        <source>Not used</source>
-        <translation>Ungenutzt</translation>
-    </message>
-</context>
-<context>
     <name>kernel/classes/datatypes</name>
     <message>
         <source>Pay by invoice</source>
@@ -3003,6 +3048,13 @@ Es ist nicht möglich, den Datentyp danach zu ändern.</translation>
     <message>
         <source>Advance payment</source>
         <translation>Vorauskasse</translation>
+    </message>
+</context>
+<context>
+    <name>standard/datatype/ezcreditcard</name>
+    <message>
+        <source>Not used</source>
+        <translation>Ungenutzt</translation>
     </message>
 </context>
 </TS>
