@@ -1401,7 +1401,7 @@
     </message>
     <message>
         <source>City</source>
-        <translation>Ort</translation>
+        <translation>Stadt</translation>
     </message>
     <message>
         <source>State</source>

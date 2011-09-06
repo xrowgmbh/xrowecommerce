@@ -163,7 +163,7 @@
                     {/if}
                     {if ezini( 'Fields', 'city', 'xrowecommerce.ini' ).enabled|eq("true")}
                     <div class="block city">
-                        <label>{if ezini( 'Fields', 'city', 'xrowecommerce.ini' ).required|eq("true")}<span class="required">*</span>{/if}{'City / Town'|i18n('extension/xrowecommerce')}</label>
+                        <label>{if ezini( 'Fields', 'city', 'xrowecommerce.ini' ).required|eq("true")}<span class="required">*</span>{/if}{'City'|i18n('extension/xrowecommerce')}</label>
                         <div class="labelbreak"></div>
                         <input type="text" id="city" name="{$castring}_ezstring_data_text_{$ca.city.id}" value="{$ca.city.content|wash()}" />
                         <input type="hidden" name="ContentObjectAttribute_id[]" value="{$ca.city.id}" />
@@ -344,7 +344,7 @@
                     {/if}
 
                     <div class="block s_city">
-                        <label>{if ezini( 'Fields', 's_city', 'xrowecommerce.ini' ).required|eq("true")}<span class="required">*</span>{/if}{'City / Town'|i18n('extension/xrowecommerce')}</label>
+                        <label>{if ezini( 'Fields', 's_city', 'xrowecommerce.ini' ).required|eq("true")}<span class="required">*</span>{/if}{'City'|i18n('extension/xrowecommerce')}</label>
                         <div class="labelbreak"></div>
                         <input type="text" id="s_city" name="{$castring}_ezstring_data_text_{$ca.s_city.id}" value="{$ca.s_city.content|wash()}" />
                         <input type="hidden" name="ContentObjectAttribute_id[]" value="{$ca.s_city.id}" />
