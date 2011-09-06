@@ -15,7 +15,7 @@ FreeShippingAdditionalProducts=disabled
 FreeShippingProductConditions[]
 ##example: Shipping is free, when 2 or more items from contentobject 1234 are in the cart
 ##FreeShippingProductConditions[1234]=2
- 
+
 # List of gateways where free shipping and/or handling is allowed (gateway identifiers)
 FreeShippingHandlingGateways[]
 
@@ -34,6 +34,11 @@ HandlingFeeName=Handling
 HandlingFeeInclude=disabled
 FreeShippingitemReduce=9.00
 eZoption2ProductVariations=Enabled
+
+# Enter weight unit
+# Possible values: lbs | kg
+WeightUnit=lbs
+ShowShippingWeight=enabled
 
 [FixedPrice]
 Amount=6

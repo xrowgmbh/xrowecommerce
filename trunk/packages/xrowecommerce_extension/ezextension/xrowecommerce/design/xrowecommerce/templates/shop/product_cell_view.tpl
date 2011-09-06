@@ -18,15 +18,15 @@ $product_item is the current product in the cart
             {if $product_item.item_object.contentobject.data_map.image.has_content}
                 {set $type=$product_item.item_object.contentobject.data_map.image.data_type_string}
                 {switch match=$type}
-                    {case match='ezobjectrelationlist'} 
+                    {case match='ezobjectrelationlist'}
                         {set $image = fetch( 'content', 'object', hash( 'object_id', $product_item.item_object.contentobject.data_map.image.content.relation_list.0.contentobject_id ) )}
                         <img src={$image.data_map.image.content['product_tiny'].url|ezroot} width="{$image.data_map.image.content['product_tiny'].width}" height="{$image.data_map.image.content['product_tiny'].height}" alt="{$image.data_map.image.content['product_tiny'].text|wash(xhtml)}" title="{$image.data_map.image.content['product_tiny'].text|wash(xhtml)}" />
                     {/case}
-                    {case match='ezimage'} 
+                    {case match='ezimage'}
                         {set $image = $product_item.item_object.contentobject}
                         <img src={$image.data_map.image.content['product_tiny'].url|ezroot} width="{$image.data_map.image.content['product_tiny'].width}" height="{$image.data_map.image.content['product_tiny'].height}" alt="{$image.data_map.image.content['product_tiny'].text|wash(xhtml)}" title="{$image.data_map.image.content['product_tiny'].text|wash(xhtml)}" />
                     {/case}
-                    {case} 
+                    {case}
                         no image<br />
                     {/case}
                 {/switch}
@@ -57,7 +57,7 @@ $product_item is the current product in the cart
         </p>
         {if $prod.data_map.weight}
             <p class="product-weight">
-                {'Weight'|i18n("extension/xrowecommerce")}: {attribute_view_gui attribute=$prod.data_map.weight} {'lbs'|i18n("extension/xrowecommerce")}
+                {'Weight'|i18n("extension/xrowecommerce")}: {attribute_view_gui attribute=$prod.data_map.weight} {ezini( 'Settings', 'WeightUnit', 'shipping.ini' )|wash}
             </p>
         {/if}
         <p class="product-id">
@@ -80,7 +80,7 @@ $product_item is the current product in the cart
                             {set $image = $product_item.item_object.contentobject}
                             <img src={$image.data_map.image.content['product_tiny'].url|ezroot} width="{$image.data_map.image.content['product_tiny'].width}" height="{$image.data_map.image.content['product_tiny'].height}" alt="{$image.data_map.image.content['product_tiny'].text|wash(xhtml)}" title="{$image.data_map.image.content['product_tiny'].text|wash()}" />
                         {/case}
-                        {case} 
+                        {case}
                             no image<br />
                         {/case}
                     {/switch}
@@ -118,7 +118,7 @@ $product_item is the current product in the cart
                             {$option.weight|l10n()}
                         {/if}
                     {/foreach}
-                {'lbs'|i18n("extension/xrowecommerce")}
+                {ezini( 'Settings', 'WeightUnit', 'shipping.ini' )|wash}
             </p>
         {/foreach}
     {/if}
@@ -127,15 +127,15 @@ $product_item is the current product in the cart
         {if $product_item.item_object.contentobject.data_map.image.has_content}
             {set $type=$product_item.item_object.contentobject.data_map.image.data_type_string}
             {switch match=$type}
-                {case match='ezobjectrelationlist'} 
+                {case match='ezobjectrelationlist'}
                     {set $image = fetch( 'content', 'object', hash( 'object_id', $product_item.item_object.contentobject.data_map.image.content.relation_list.0.contentobject_id ) )}
                     <img src={$image.data_map.image.content['product_tiny'].url|ezroot} width="{$image.data_map.image.content['product_tiny'].width}" height="{$image.data_map.image.content['product_tiny'].height}" alt="{$image.data_map.image.content['product_tiny'].text|wash(xhtml)}" title="{$image.data_map.image.content['product_tiny'].text|wash(xhtml)}" />
                 {/case}
-                {case match='ezimage'} 
+                {case match='ezimage'}
                     {set $image = $product_item.item_object.contentobject}
                     <img src={$image.data_map.image.content['product_tiny'].url|ezroot} width="{$image.data_map.image.content['product_tiny'].width}" height="{$image.data_map.image.content['product_tiny'].height}" alt="{$image.data_map.image.content['product_tiny'].text|wash(xhtml)}" title="{$image.data_map.image.content['product_tiny'].text|wash(xhtml)}" />
                 {/case}
-                {case} 
+                {case}
                     no image<br />
                 {/case}
             {/switch}
@@ -166,7 +166,7 @@ $product_item is the current product in the cart
     </p>
     {if $prod.data_map.weight}
         <p class="product-weight">
-        {'Weight'|i18n("extension/xrowecommerce")}: {attribute_view_gui attribute=$prod.data_map.weight} {'lbs'|i18n("extension/xrowecommerce")}
+        {'Weight'|i18n("extension/xrowecommerce")}: {attribute_view_gui attribute=$prod.data_map.weight} {ezini( 'Settings', 'WeightUnit', 'shipping.ini' )|wash}
         </p>
     {/if}
 {/if}

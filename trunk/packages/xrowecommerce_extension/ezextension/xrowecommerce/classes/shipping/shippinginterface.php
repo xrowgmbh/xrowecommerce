@@ -19,7 +19,7 @@ class ShippingInterface
     public $license = "";
     public $userid = "";
     public $pass = "";
-    
+
     public $service = "";
     public $services = "";
     public $weight_unit = "";
@@ -27,12 +27,12 @@ class ShippingInterface
     public $order;
     public $PackagingType = "";
     public $PickupType = "";
-    
+
     public $length_unit = "";
     public $length = "0";
     public $width = "0";
     public $height = "0";
-    
+
     public $address_from = array();
     public $address_to = array();
     public $method;
@@ -46,11 +46,19 @@ class ShippingInterface
                 $name = $method['name'];
             }
         }
-        return $name . ' ( ' . $this->weight . ' lbs )';
+        $ini = eZINI::instance( 'shipping.ini' );
+        if ( $ini->variable( 'Settings', 'ShowShippingWeight' ) == 'enabled' )
+        {
+            return $name . ' ( ' . $this->weight . ' ' . $ini->variable( 'Settings', 'WeightUnit' ) . ' )';
+        }
+        else
+        {
+            return $name;
+        }
     }
 
     /* Checks if a method is valid for a destination
-     * 
+     *
      */
     function methodCheck( $country )
     {
@@ -110,7 +118,7 @@ class ShippingInterface
     }
 
     /* Checks if a destination is valid
-     * 
+     *
      */
     function destinationCheck()
     {
@@ -151,21 +159,21 @@ class ShippingInterface
 
     function setAddressTo( $to_country, $to_state, $to_zip, $to_city )
     {
-        $this->address_to = array( 
-            "country" => $to_country , 
-            "state" => $to_state , 
-            "zip" => $to_zip , 
-            "city" => $to_city 
+        $this->address_to = array(
+            "country" => $to_country ,
+            "state" => $to_state ,
+            "zip" => $to_zip ,
+            "city" => $to_city
         );
     }
 
     function setAddressFrom( $from_country, $from_state, $from_zip, $from_city )
     {
-        $this->address_from = array( 
-            "country" => $from_country , 
-            "state" => $from_state , 
-            "zip" => $from_zip , 
-            "city" => $from_city 
+        $this->address_from = array(
+            "country" => $from_country ,
+            "state" => $from_state ,
+            "zip" => $from_zip ,
+            "city" => $from_city
         );
     }
 
@@ -203,8 +211,8 @@ class ShippingInterface
     {
         return false;
     }
-    
-	function setAvailableFor( $availableFor ) 
+
+	function setAvailableFor( $availableFor )
 	{
          $this->availableFor = $availableFor;
     }
