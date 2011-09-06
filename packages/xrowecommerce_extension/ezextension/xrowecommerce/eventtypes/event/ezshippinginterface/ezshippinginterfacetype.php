@@ -95,7 +95,7 @@ class eZShippingInterfaceType extends eZWorkflowEventType
 
         // Fetch Workflow Settings
         $ini = eZINI::instance( 'shipping.ini' );
-        
+
         // Setting to control calculations (Product Option Attribute Processing)
         $settingUseeZoption2ProductVariations = ( $ini->variable( "Settings", "eZoption2ProductVariations" ) == 'Enabled' );
         $FreeShippingProducts = $ini->variable( "Settings", "FreeShippingProducts" );
@@ -181,7 +181,7 @@ class eZShippingInterfaceType extends eZWorkflowEventType
             $dm = $co->dataMap();
 
             // FreeShipping Item check
-            
+
             if (  in_array( $shippingtype, $FreeShippingHandlingGateways ) and in_array( $shipping_country, $FreeShippingHandlingCountries ) and in_array( $item->attribute( 'contentobject_id' ), $FreeShippingProducts ) )
             {
                 $freeshippingproduct = true;
@@ -190,7 +190,7 @@ class eZShippingInterfaceType extends eZWorkflowEventType
             {
                 $freeshippingproduct = false;
             }
-            
+
             if (  $item->ItemCount >= $FreeShippingProductConditions[$item->attribute( 'contentobject_id' )] and in_array( $shippingtype, $FreeShippingHandlingGateways ) and in_array( $shipping_country, $FreeShippingHandlingCountries ) and array_key_exists( 'freeshipping', $dm ) and $dm['freeshipping']->DataInt == 1 )
             {
                 $freeshippingproduct = true;
@@ -204,7 +204,7 @@ class eZShippingInterfaceType extends eZWorkflowEventType
             if ( in_array( $shippingtype, $FreeShippingHandlingGateways ) and in_array( $shipping_country, $FreeShippingHandlingCountries ) and array_key_exists( 'freehandling', $dm ) and $dm["freehandling"]->DataInt == 1 )
             {
                 if ( $item->ItemCount >= $FreeShippingProductConditions[$item->attribute( 'contentobject_id' )] )
-                {   
+                {
                     $freehandlingproduct = true;
                 }
                 elseif ( $FreeShippingAdditionalProducts != "enabled" )
@@ -310,7 +310,7 @@ class eZShippingInterfaceType extends eZWorkflowEventType
 
         // @TODO show template that hazardous items got removed
         /*
-        
+
         $tpl = eZTemplate::factory();
         $tpl->setVariable( "hazardous", $hazardousproducts );
     return eZWorkflowType::STATUS_ACCEPTED;
@@ -428,9 +428,15 @@ class eZShippingInterfaceType extends eZWorkflowEventType
             }
         }
 
+        $ini = eZINI::instance( 'shipping.ini' );
+        if ( $ini->variable( 'Settings', 'ShowShippingWeight' ) == 'enabled' )
+        {
+            $description .= ' ( ' . $totalweight . ' ' . $ini->variable( 'Settings', 'WeightUnit' ) . ' )';
+        }
+
         $orderItem = new eZOrderItem( array(
             'order_id' => $orderID ,
-            'description' => $description ." ( ".$totalweight." lbs)" ,
+            'description' => $description,
             'price' => $cost ,
             'vat_value' => $vat_value ,
             'type' => 'shippingcost'
