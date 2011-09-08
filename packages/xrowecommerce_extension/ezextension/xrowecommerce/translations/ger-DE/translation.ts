@@ -478,7 +478,7 @@
     </message>
     <message>
         <source>E-mail</source>
-        <translation>Email</translation>
+        <translation>E-Mail-Adresse</translation>
     </message>
     <message>
         <source>Packing slip</source>
@@ -972,80 +972,6 @@
     </message>
 </context>
 <context>
-    <name>extension/harley</name>
-    <message>
-        <source>Your Purchase Order</source>
-        <translation>Ihre Bestellung</translation>
-    </message>
-    <message>
-        <source>Items</source>
-        <translation>Artikel</translation>
-    </message>
-    <message>
-        <source>Total</source>
-        <translation>Gesamtsumme</translation>
-    </message>
-    <message>
-        <source>Tax</source>
-        <translation>MwSt</translation>
-    </message>
-    <message>
-        <source>Cancellation Policy</source>
-        <translation>Widerrufsbelehrung</translation>
-    </message>
-    <message>
-        <source>Right of Revocation</source>
-        <translation>Widerrufsrecht</translation>
-    </message>
-    <message>
-        <source>You may declare the revocation of your contractual statement in text form (e.g. letter, email) or by returning the merchandise within two weeks. The revocation does not have to contain any explanation. The revocation period commences the day following the receipt of merchandise and this revocation instruction in text form. The time-limit shall be deemed to be observed by the timely dispatch of the declaration of revocation or the returning of the shipment.The revocation is to be addressed to:</source>
-        <translation>Sie können Ihre Vertragserklärung innerhalb von zwei Wochen ohne Angabe von Gründen in Textform (z. B. Brief, Fax, E-Mail) oder, wenn Ihnen die Sache vor Fristablauf überlassen wird, durch Rücksendung der Sache widerrufen. Die Widerrufsfrist beginnt nach Erhalt dieser Belehrung, jedoch nicht vor Eingang der Ware beim Empfänger, (bei der wiederkehrenden Lieferung gleichartiger Waren nicht vor dem Eingang der ersten Teillieferung) und auch nicht vor Erfüllung unserer Informationspflichtengemäß Artikel 246 § 2 in Verbindung mit § 1 Abs. 1 und 2 EGBGB sowie unserer Pflichten gemäß § 312e Abs. 1 Satz 1 BGB in Verbindung mit Artikel 246 § 3 EGBGB. Zur Wahrung der Widerrufsfrist genügt die rechtzeitige Absendung des Widerrufs oder der Ware. Der Widerruf ist zu richten an:</translation>
-    </message>
-    <message>
-        <source>Consequences of Revocation</source>
-        <translation>Widerrufsfolgen</translation>
-    </message>
-    <message>
-        <source>In case of a valid revocation, all mutually received performances as well as emoluments taken (e.g. interest), if applicable, are to be restituted by either side. If you are unable or partially unable to restitute the merchandise to us or can only restitute it in a deteriorated condition, you have to insofar compensate for its value where applicable. This does not apply if the deterioration is exclusively due to examining the merchandise ? as for instance in a retail store ? or putting the merchandise to its intended use. Things that can be shipped by parcel are to be returned on our risk. Things that cannot be shipped by parcel will be picked up. You are obliged to bear the costs of the return shipment, if the merchandise delivered corresponds to the merchandise ordered, and if the price of the merchandise to be sent back does not exceed an amount of forty euros or if, where the price is higher, you have at the date of the revocation not yet rendered consideration or given a part payment. In all other cases, the returning of the shipment for you is free of charge. All reimbursement obligations must be fulfilled within 30 days of the declaration of revocation.</source>
-        <translation>Im Falle eines wirksamen Widerrufs sind die beiderseits empfangenen Leistungen zurückzugewähren und ggf. gezogene Nutzungen (z.B. Zinsen) herauszugeben. Können Sie House of FLames die empfangene Leistung ganz oder teilweise nicht oder nur in verschlechtertem Zustand zurückgewähren, müssen Sie House of Flames insoweit ggf. Wertersatz leisten. Bei der Überlassung von Sachen gilt dies insoweit nicht, als die Verschlechterung der Sache ausschließlich auf deren Prüfung - wie sie Ihnen etwa im Ladengeschäft möglich gewesen wäre - zurückzuführen ist. Im Übrigen können Sie die Pflicht zum Wertersatz für eine durch die bestimmungsgemäße Ingebrauchnahme der Sache entstandene Verschlechterung vermeiden, indem Sie die Sache nicht wie Ihr Eigentum in Gebrauch nehmen und alles unterlassen, was deren Wert beeinträchtigt. Paketversandfähige Waren sind auf unsere Gefahr zurückzusenden. Sie haben die Kosten der Rücksendung zu tragen, wenn die gelieferte Ware der bestellten entspricht und wenn der Preis der zurückzusendenden Sache einen Betrag von 40 Euro nicht übersteigt oder wenn Sie bei einem höheren Preis der Sache zum Zeitpunkt des Widerrufs noch nicht die Gegenleistung oder eine vertraglich vereinbarte Teilzahlung erbracht haben. Anderenfalls ist die Rücksendung für Sie kostenfrei. Nicht paketversandfähige Waren werden bei Ihnen abgeholt. Verpflichtungen zur Erstattung von Zahlungen müssen innerhalb von 30 Tagen erfüllt werden. Die Frist beginnt für Sie mit der Absendung Ihrer Widerrufserklärung oder der Sache, für uns mit deren Empfang.</translation>
-    </message>
-    <message>
-        <source>Hello</source>
-        <translation>Hallo</translation>
-    </message>
-    <message>
-        <source>many thanks for ordering at</source>
-        <translation>vielen Dank für Ihre Bestellung bei</translation>
-    </message>
-    <message>
-        <source>If you have any questions concerning your customer account or your order,</source>
-        <translation>Sollten Sie Fragen zu Ihrem Kundenkonto oder Ihrer Bestellung haben,</translation>
-    </message>
-    <message>
-        <source>please send an email to</source>
-        <translation>senden Sie uns bitte eine E-Mail an</translation>
-    </message>
-    <message>
-        <source>or call us by phone on </source>
-        <translation>oder rufen Sie uns unter der Nummer</translation>
-    </message>
-    <message>
-        <source>Below you can find your order confirmation, thank you!</source>
-        <translation>Nachfolgend finden Sie Ihre Bestellbestätigung, vielen Dank!</translation>
-    </message>
-    <message>
-        <source>SKU</source>
-        <translation>Artikelnummer</translation>
-    </message>
-</context>
-<context>
-    <name>extension/harley/email</name>
-    <message>
-        <source>Total</source>
-        <translation>Gesamtsumme</translation>
-    </message>
-</context>
-<context>
     <name>extension/recurringorders</name>
     <message>
         <source>Subscriptions</source>
@@ -1053,175 +979,14 @@
     </message>
 </context>
 <context>
+    <name>extension/xrowe&quot;extension/xrowecommerce/design/xrowecommerce/templates/shop/orderemail.tpl&quot;commerce</name>
+    <message>
+        <source>The details of the order are below.  If you have a question, please do not reply to this email.</source>
+        <translation>Die Details Ihrer Bestellung stehen unterhalb. Bei Fragen schreiben Sie bitte nicht an diese E-Mail-Adresse.</translation>
+    </message>
+</context>
+<context>
     <name>extension/xrowecommerce</name>
-    <message>
-        <source>Enter account information</source>
-        <translation>Accountinformation eingeben.</translation>
-    </message>
-    <message>
-        <source>Shipping destination is not allowed.</source>
-        <translation>Versandziel nicht erlaubt.</translation>
-    </message>
-    <message>
-        <source>Shipping method is not allowed for destination.</source>
-        <translation>Die Versandart ist für Ihr Ziel nicht verfügbar.</translation>
-    </message>
-    <message>
-        <source>The shipping fax number is not given.</source>
-        <translation>Die Versand-Faxnummer fehlt.</translation>
-    </message>
-    <message>
-        <source>The shipping phone number is not given.</source>
-        <translation>Die Versand-Telefonnummer fehlt.</translation>
-    </message>
-    <message>
-        <source>No shipping state has been selected.</source>
-        <translation>Der Versand-Bundesland fehlt.</translation>
-    </message>
-    <message>
-        <source>No shipping country has been selected.</source>
-        <translation>Das Versand-Land fehlt.</translation>
-    </message>
-    <message>
-        <source>The shipping zip is not given.</source>
-        <translation>Der Versand-PLZ fehlt.</translation>
-    </message>
-    <message>
-        <source>The shipping city is not given.</source>
-        <translation>Die Versand-Stadt fehlt.</translation>
-    </message>
-    <message>
-        <source>The shipping address 2 is not given</source>
-        <translation>Die Versand-Adresse 2 fehlt.</translation>
-    </message>
-    <message>
-        <source>The shipping address is not given.</source>
-        <translation>Die Versand-Adresse fehlt.</translation>
-    </message>
-    <message>
-        <source>The shipping email address is not valid</source>
-        <translation>Der Versand-Emailadresse ist ungültig.</translation>
-    </message>
-    <message>
-        <source>The shipping email address is not given.</source>
-        <translation>Die Versand-Emailadresse fehlt.</translation>
-    </message>
-    <message>
-        <source>The shipping mi is not given.</source>
-        <translation>Der Versand-Zweitname fehlt.</translation>
-    </message>
-    <message>
-        <source>The shipping last name is not given.</source>
-        <translation>Der Versand-Nachname fehlt.</translation>
-    </message>
-    <message>
-        <source>The shipping first name is not given.</source>
-        <translation>Der Versand-Vorname fehlt.</translation>
-    </message>
-    <message>
-        <source>The shipping title is not given.</source>
-        <translation>Die Versand-Anrede fehlt.</translation>
-    </message>
-    <message>
-        <source>The shipping company additional field is not given.</source>
-        <translation>Der Versand-Firmenzusatz fehlt.</translation>
-    </message>
-    <message>
-        <source>The shipping company name is not given.</source>
-        <translation>Der Versand-Firmenname fehlt.</translation>
-    </message>
-    <message>
-        <source>Please select a proper shipping method for your destination.</source>
-        <translation>Bitte wählen Sie eine passende Versandmethode für Ihr Ziel.</translation>
-    </message>
-    <message>
-        <source>The shipping type is not given.</source>
-        <translation>Die Versandart fehlt.</translation>
-    </message>
-    <message>
-        <source>The billing fax number is not given.</source>
-        <translation>Die Rechnungs-Faxnummer fehlt.</translation>
-    </message>
-    <message>
-        <source>The billing phone number is not given.</source>
-        <translation>Die Rechnungs-Telefonnummer fehlt.</translation>
-    </message>
-    <message>
-        <source>TAX ID Validation problem.</source>
-        <translation>Problem bei der Gültigkeitsüberprüfung der Steuernummer.</translation>
-    </message>
-    <message>
-        <source>Your companies tax ID number is not valid.</source>
-        <translation>Die Steuernummer ist ungültig.</translation>
-    </message>
-    <message>
-        <source>Country doesn`t match tax ID number.</source>
-        <translation>Das Land entspricht nicht der Steuernummer</translation>
-    </message>
-    <message>
-        <source>The companies tax ID number is not given.</source>
-        <translation>Die Steuernummer fehlt.</translation>
-    </message>
-    <message>
-        <source>The billing zip is not given.</source>
-        <translation>Das Rechnungs-PLZ fehlt.</translation>
-    </message>
-    <message>
-        <source>The billing city is not given.</source>
-        <translation>Das Rechnungs-Stadt fehlt.</translation>
-    </message>
-    <message>
-        <source>No billing state has been selected.</source>
-        <translation>Das Rechnungs-Staat fehlt.</translation>
-    </message>
-    <message>
-        <source>No billing country has been selected.</source>
-        <translation>Das Rechnungs-Land fehlt.</translation>
-    </message>
-    <message>
-        <source>The billing address is not given.</source>
-        <translation>Die Rechnungsadresse fehlt.</translation>
-    </message>
-    <message>
-        <source>The billing email address is not valid.</source>
-        <translation>Die Rechnungs-Emailadresse ist ungültig.</translation>
-    </message>
-    <message>
-        <source>The email address is not valid.</source>
-        <translation>Die Emailadresse ist ungültig.</translation>
-    </message>
-    <message>
-        <source>The billing email address is not given.</source>
-        <translation>Die Rechnungs-Emailadresse fehlt.</translation>
-    </message>
-    <message>
-        <source>The email address is not given.</source>
-        <translation>Die Emailadresse fehlt.</translation>
-    </message>
-    <message>
-        <source>The billing mi is not given</source>
-        <translation>Der Rechnungs-Zweitname fehlt.</translation>
-    </message>
-    <message>
-        <source>The billing last name is not given.</source>
-        <translation>Der Rechnungs-Nachname fehlt.</translation>
-    </message>
-    <message>
-        <source>The billing first name is not given.</source>
-        <translation>Der Rechnungs-Vorname fehlt.</translation>
-    </message>
-    <message>
-        <source>The billing title is not given.</source>
-        <translation>Die Rechnungs-Anrede fehlt.</translation>
-    </message>
-    <message>
-        <source>The billing company name is not given.</source>
-        <translation>Der Rechnungs-Firmenname fehlt.</translation>
-    </message>
-    <message>
-        <source>The billing company additional is not given.</source>
-        <translation>Der Rechnungs-Firmenzusatz fehlt.</translation>
-    </message>
     <message>
         <source>Fraud detected</source>
         <translation>Betrug festgestellt</translation>
@@ -1393,7 +1158,7 @@
     </message>
     <message>
         <source>Email</source>
-        <translation>Email</translation>
+        <translation>E-Mail-Adresse</translation>
     </message>
     <message>
         <source>Address</source>
@@ -1423,11 +1188,6 @@
         <source>Already a user?</source>
         <comment>User name</comment>
         <translation>Bereits Kunde?</translation>
-    </message>
-    <message>
-        <source>Login</source>
-        <comment>Button</comment>
-        <translation>Anmelden</translation>
     </message>
     <message>
         <source>Order</source>
@@ -1479,7 +1239,7 @@
     </message>
     <message>
         <source>E-mail</source>
-        <translation>Email</translation>
+        <translation>E-Mail-Adresse</translation>
     </message>
     <message>
         <source>Coupon</source>
@@ -1507,7 +1267,7 @@
     </message>
     <message>
         <source>Enter your username or email address and password below to sign-in.</source>
-        <translation>Geben Sie Ihren Benutzernamen oder Ihre Emailadresse zusammen mit Ihrem Passwort unten ein um sich einzuloggen.</translation>
+        <translation>Geben Sie Ihren Benutzernamen oder Ihre E-Mail-Adresse zusammen mit Ihrem Passwort unten ein um sich einzuloggen.</translation>
     </message>
     <message>
         <source>Could not login</source>
@@ -1577,10 +1337,6 @@
     <message>
         <source>Form of company</source>
         <translation>Unternehmensform</translation>
-    </message>
-    <message>
-        <source>City / Town</source>
-        <translation>Stadt</translation>
     </message>
     <message>
         <source>Zip / Postcode</source>
@@ -1711,10 +1467,6 @@
         <translation>Gewicht</translation>
     </message>
     <message>
-        <source>lbs</source>
-        <translation>Pfund</translation>
-    </message>
-    <message>
         <source>My Account</source>
         <translation>Mein Konto</translation>
     </message>
@@ -1812,7 +1564,7 @@
     </message>
     <message>
         <source>Search for customer in the system via e-mail address</source>
-        <translation>Kundensuche im System via Emailadresse</translation>
+        <translation>Kundensuche im System via E-Mail-Adresse</translation>
     </message>
     <message>
         <source>Edit shippingcosts with this order number:</source>
@@ -1820,7 +1572,7 @@
     </message>
     <message>
         <source>E-mail address or Order No</source>
-        <translation>Emailadresse oder Bestellnummer</translation>
+        <translation>E-Mail-Adresse oder Bestellnummer</translation>
     </message>
     <message>
         <source>Link</source>
@@ -1908,7 +1660,7 @@
     </message>
     <message>
         <source>Although your Login User Name must be kept the same, you can update your Email Address and/or change your Password by entering new information in the appropriate field.  When complete, click the &quot;Update&quot; button at the bottom of the page.</source>
-        <translation>Obwohl Ihr Benutzername für den Login gleich bleiben muss, können Sie Ihre Emailadresse und/oder Ihr Passwort ändern, indem Sie die neuen Informationen in das zutreffende Feld schreiben. Wenn Sie fertig sind, clicken Sie den Button unten auf der Seite um die Informationen abzusenden.</translation>
+        <translation>Obwohl Ihr Benutzername für den Login gleich bleiben muss, können Sie Ihre E-Mail-Adresse und/oder Ihr Passwort ändern, indem Sie die neuen Informationen in das zutreffende Feld schreiben. Wenn Sie fertig sind, clicken Sie den Button unten auf der Seite um die Informationen abzusenden.</translation>
     </message>
     <message>
         <source>Username</source>
@@ -1992,7 +1744,7 @@
     </message>
     <message>
         <source>Enter your email address, login and password.</source>
-        <translation>Geben Sie Ihre Emailadresse, den Benutzernamen und das Passwort ein.</translation>
+        <translation>Geben Sie Ihre E-Mail-Adresse, den Benutzernamen und das Passwort ein.</translation>
     </message>
     <message>
         <source>Use eZ Publish roles and policies for payment method selection.</source>
@@ -2538,7 +2290,7 @@
     </message>
     <message>
         <source>When you want to proceed your purchase as a guest please type in your name and email adress here.</source>
-        <translation>Wenn Sie den Einkauf als Gast fortsetzen wollen, dann geben Sie hier Name und Email-Adresse an. </translation>
+        <translation>Wenn Sie den Einkauf als Gast fortsetzen wollen, dann geben Sie hier Name und E-Mail-Adresse an. </translation>
     </message>
     <message>
         <source>Checkout as guest</source>
@@ -2567,6 +2319,42 @@
     <message>
         <source>Login &amp; Proceed</source>
         <translation>Einloggen &amp; Weiter</translation>
+    </message>
+    <message>
+        <source>Edit account information</source>
+        <translation>Kontoinformationen bearbeiten</translation>
+    </message>
+    <message>
+        <source>Order ID</source>
+        <translation>Bestell ID</translation>
+    </message>
+    <message>
+        <source>The Staff at</source>
+        <translation>Ihr Personal von</translation>
+    </message>
+    <message>
+        <source>Contact Us</source>
+        <translation>Kontaktieren Sie uns</translation>
+    </message>
+    <message>
+        <source>Shop</source>
+        <translation>Shop</translation>
+    </message>
+    <message>
+        <source>Thank you for ordering from</source>
+        <translation>Danke für Ihre Bestellung bei</translation>
+    </message>
+    <message>
+        <source>Rather, email</source>
+        <translation>Vielmehr mailen Sie</translation>
+    </message>
+    <message>
+        <source>or call</source>
+        <translation>oder rufen an </translation>
+    </message>
+    <message>
+        <source>Thank you again, and have a wonderful day!</source>
+        <translation>Erneut vielen Dank und einen wundervollen Tag!</translation>
     </message>
 </context>
 <context>
@@ -3033,21 +2821,6 @@ Es ist nicht möglich, den Datentyp danach zu ändern.</translation>
     <message>
         <source>validated by administration</source>
         <translation>Von Administrator überprüft </translation>
-    </message>
-</context>
-<context>
-    <name>kernel/classes/datatypes</name>
-    <message>
-        <source>Pay by invoice</source>
-        <translation>Rechnung</translation>
-    </message>
-    <message>
-        <source>Cash on delivery</source>
-        <translation>Nachnahme</translation>
-    </message>
-    <message>
-        <source>Advance payment</source>
-        <translation>Vorauskasse</translation>
     </message>
 </context>
 <context>
