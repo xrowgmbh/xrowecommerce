@@ -20,15 +20,11 @@
     {/foreach}
             {if $node.data_map.description.object.embedded_contentobject_array.0.current.data_map.image.content.is_valid|eq('1')}
             {elseif $node.data_map.image.has_content}
-	            <div class="attribute-image">
-	                <a href="javascript:;" onclick="return enlargeImage('/{$node.data_map.image.content.reference.full_path}',{$node.data_map.image.content.reference.width},{$node.data_map.image.content.reference.height},'{$node.data_map.image.content.reference.text|wash(javascript)}');" title="{$node.data_map.image.content.reference.text|wash} | {"A click on the image enlarges the image in a popup"|i18n( 'extension/xrowecommerce')}">
-	                    {attribute_view_gui
-	                            attribute=$node.data_map.image
-	                            image_class=medium
-	                            show_alt=false()
-	                    }
-	                </a>
-	            </div>
+                <div class="attribute-image">
+                   <a href="javascript:;" onclick="return enlargeImage('/{$node.data_map.image.content.original.full_path}',{$node.data_map.image.content.original.width},{$node.data_map.image.content.original.height},'{$node.data_map.image.content.original.text|wash(javascript)}');" title="{$node.data_map.image.content.original.text|wash} | {"A click on the image enlarges the image in a popup"|i18n( 'extension/xrowecommerce')}">
+                       {attribute_view_gui attribute=$node.data_map.image image_class=medium show_alt=false()}
+                   </a>
+               </div>
             {else}
                 <div class="nopic attribute-image"><img src={'nopic.gif'|ezimage()} alt="{'No image available'|i18n('extension/xrowecommerce')}" /></div>
             {/if}
@@ -38,7 +34,7 @@
                 {def $page_limit = first_set($node.data_map.show_children_pr_page.data_int, 16)
                      $children = array()
                      $children_count = ''}
-	                {def $classes = array( 'xrow_product_category', 'xrow_product' ) }
+                   {def $classes = array( 'xrow_product_category', 'xrow_product' ) }
 
                 {if is_set( $node.data_map.show_children_exclude )}
                     {set $classes = $node.data_map.show_children_exclude.content|explode(',')}

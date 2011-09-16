@@ -5,15 +5,15 @@
 {if ezini( 'Settings', 'ShowColumnTax', 'xrowecommerce.ini')|ne('enabled')}
 {set $cols=$cols|sub(1)}
 {/if}
-<script type="text/javascript">             
+<script type="text/javascript">
 {literal}
 function checkCOS( element )
 {
-	{/literal}
-	{if ezini( 'Settings', 'ConditionsOfService', 'xrowecommerce.ini')|ne('enabled')}
-    	{literal}
-        	element.form.submit();
-        	var fakebutton = document.createElement('input');
+    {/literal}
+    {if ezini( 'Settings', 'ConditionsOfService', 'xrowecommerce.ini')|ne('enabled')}
+        {literal}
+            element.form.submit();
+            var fakebutton = document.createElement('input');
             fakebutton.name = element.name;
             fakebutton.type = 'hidden'
             fakebutton.value = element.value;
@@ -22,27 +22,27 @@ function checkCOS( element )
         {/literal}
     {/if}
     {literal}
-	var container = document.getElementById( 'cos' );
-	if ( container )
-	{
-		if( container.checked )
-		{
-			var fakebutton = document.createElement('input');
-			fakebutton.name = element.name;
-			fakebutton.type = 'hidden'
-		    fakebutton.value = element.value;
-			element.parentNode.appendChild( fakebutton );
-			element.form.submit();
-			return true;
-		}
-		else
-		{
-			alert( '{/literal}{'Accept the terms and conditions to continue.'|i18n('extension/xrowecommerce')}{literal}' );
-			window.location.hash="cos-anchor";
-			YAHOO.util.Dom.setStyle( 'cos-content', 'display', 'block');
-			return false;
-		}
-	}
+    var container = document.getElementById( 'cos' );
+    if ( container )
+    {
+        if( container.checked )
+        {
+            var fakebutton = document.createElement('input');
+            fakebutton.name = element.name;
+            fakebutton.type = 'hidden'
+            fakebutton.value = element.value;
+            element.parentNode.appendChild( fakebutton );
+            element.form.submit();
+            return true;
+        }
+        else
+        {
+            alert( '{/literal}{'Accept the terms and conditions to continue.'|i18n('extension/xrowecommerce')}{literal}' );
+            window.location.hash="cos-anchor";
+            YAHOO.util.Dom.setStyle( 'cos-content', 'display', 'block');
+            return false;
+        }
+    }
 }
 {/literal}
 </script>
@@ -53,8 +53,8 @@ function checkCOS( element )
         {include uri="design:shop/basket_navigator.tpl" step='3'}
 
         <div id="buttonblock-top" class="buttonblock">
-			<input id="cancel-button" class="button left-arrow2 cancel-button" type="submit" name="CancelButton" value="{'Cancel'|i18n('extension/xrowecommerce')}" title="{'Cancel order'|i18n('extension/xrowecommerce')}"/>
-			{if count( $order.product_items )|gt(0)}
+            <input id="cancel-button" class="button left-arrow2 cancel-button" type="submit" name="CancelButton" value="{'Cancel'|i18n('extension/xrowecommerce')}" title="{'Cancel order'|i18n('extension/xrowecommerce')}"/>
+            {if count( $order.product_items )|gt(0)}
                 <input id="continue-button" class="button right-arrow2 continue-button" type="button" onclick="checkCOS(this);" name="ConfirmOrderButton" value="{'Confirm'|i18n('extension/xrowecommerce')}" title="{'Confirm order'|i18n('extension/xrowecommerce')}"/>
             {/if}
         </div>
@@ -140,8 +140,8 @@ function checkCOS( element )
          </tr>
          {/foreach}
      <tr class="subtotal-line">
-		<td colspan="{$cols|sub(1)}">
-         	{"Subtotal ex. tax"|i18n("extension/xrowecommerce")}
+        <td colspan="{$cols|sub(1)}">
+             {"Subtotal ex. tax"|i18n("extension/xrowecommerce")}
         </td>
         <td class="align_right basketspace totalprice">
              <strong class="price">{$order.product_total_ex_vat|l10n( 'currency', $locale, $symbol )}</strong>
@@ -183,10 +183,10 @@ function checkCOS( element )
     {/if}
         <div id="buttonblock-bottom" class="buttonblock">
             <input id="cancel-button2" class="button left-arrow2 cancel-button" type="submit" name="CancelButton" value="{'Cancel'|i18n('extension/xrowecommerce')}" title="{'Cancel order'|i18n('extension/xrowecommerce')}"/>
-	    {if count( $order.product_items )|gt(0)}
+        {if count( $order.product_items )|gt(0)}
             <input id="continue-button2" class="button right-arrow2 continue-button" type="button" onclick="checkCOS(this);" name="ConfirmOrderButton" value="{'Confirm'|i18n('extension/xrowecommerce')}" title="{'Confirm order'|i18n('extension/xrowecommerce')}"/>
             {/if}
-	</div>
+    </div>
     {else}
     {* If the shopping cart is empty after removing hazardous items... *}
     <h3>{"Sorry, there are no items left in your cart."|i18n("extension/xrowecommerce")}</h3>
