@@ -3,7 +3,7 @@
 {def $vary=$product_item.item_object.contentobject.data_map.variation.content.option_list[$ProductItem.item_object.option_list.0.option_item_id]}
 
 {if is_set($product_item.item_object.option_list.0.value)}
-    {'SKU'|i18n("extension/xrowecommerce")}: {*$product_item.item_object.contentobject.data_map.product_id.content|wash()*}{$product_item.item_object.option_list.0.value}
+    {'SKU'|i18n("extension/xrowecommerce")}: {$product_item.item_object.contentobject.data_map.product_id.content|wash()} / {$product_item.item_object.option_list.0.value}
 {else}
     {'SKU'|i18n("extension/xrowecommerce")}: {$prod.data_map.product_id.content|wash()}{$prod.data_map.variation.content.name|wash()}
 {/if}
