@@ -3,7 +3,9 @@
 $Path       = array();
 $Result     = array();
 
-if ( !eZUser::isAnonymous() )
+$ezuser = new eZUser();
+
+if ( !$ezuser->isAnonymous() )
 {
     $OrderList  = eZOrder::orderList( eZUser::currentUser()->ContentObjectID, false );
 }
