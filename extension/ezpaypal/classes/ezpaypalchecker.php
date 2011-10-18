@@ -82,7 +82,7 @@ class eZPaypalChecker extends eZPaymentCallbackChecker
             return true;
         }
 
-        $this->logger->writeTimedString( 'checkPaymentStatus faild' );
+        $this->logger->writeTimedString( 'checkPaymentStatus failed' );
         return false;
     }
 
