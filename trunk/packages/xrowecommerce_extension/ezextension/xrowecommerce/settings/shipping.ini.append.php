@@ -37,8 +37,8 @@ eZoption2ProductVariations=Enabled
 
 # Enter weight unit
 # Possible values: lbs | kg
-WeightUnit=lbs
-ShowShippingWeight=enabled
+WeightUnit=kg
+ShowShippingWeight=disabled
 
 [FixedPrice]
 Amount=6

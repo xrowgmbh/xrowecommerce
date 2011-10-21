@@ -987,6 +987,22 @@
 </context>
 <context>
     <name>extension/xrowecommerce</name>
+	<message>
+        <source>Cash on delivery fee</source>
+        <translation>Nachnahmegebühr</translation>
+    </message>
+	<message>
+        <source>plus %gateway_costs</source>
+        <translation>zzgl. %gateway_costs</translation>
+    </message>
+	<message>
+        <source>The companies tax ID number is not given.</source>
+        <translation>Die Steuernummer fehlt.</translation>
+    </message>
+    <message>
+        <source>Your companies tax ID number is not valid.</source>
+        <translation>Die Steuernummer ist ungültig.</translation>
+    </message>
     <message>
         <source>Fraud detected</source>
         <translation>Betrug festgestellt</translation>
@@ -2828,6 +2844,27 @@ Es ist nicht möglich, den Datentyp danach zu ändern.</translation>
     <message>
         <source>Not used</source>
         <translation>Ungenutzt</translation>
+    </message>
+</context>
+<context>
+    <name>kernel/classes/datatypes</name>
+    <message>
+        <source>Pay by invoice</source>
+        <translation>Rechnung</translation>
+    </message>
+</context>
+<context>
+    <name>kernel/classes/datatypes</name>
+    <message>
+        <source>Cash on delivery</source>
+        <translation>Nachnahme</translation>
+    </message>
+</context>
+<context>
+    <name>kernel/classes/datatypes</name>
+    <message>
+        <source>Advance payment</source>
+        <translation>Vorauskasse</translation>
     </message>
 </context>
 </TS>

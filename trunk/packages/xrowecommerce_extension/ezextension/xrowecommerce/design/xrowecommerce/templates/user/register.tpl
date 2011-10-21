@@ -77,13 +77,13 @@
                 <div class="address-selection">
                     <div class="comp">
                         <label for="company">
-                        <input id="company" type="radio" value="company" name="company" />
+                        <input {if $ca.company_name.content|ne('')}checked="checked"{/if} id="company" type="radio" value="company" name="company" />
                         {'Company'|i18n('extension/xrowecommerce')}
                         </label>
                     </div>
                     <div class="home">
                         <label for="home">
-                        <input checked="checked" id="home" type="radio" value="company" name="company" />
+                        <input {if $ca.company_name.content|eq('')}checked="checked"{/if} id="home" type="radio" value="company" name="company" />
                         {'Private person'|i18n('extension/xrowecommerce')}
                         </label>
                     </div>
@@ -257,18 +257,18 @@
                     <div class="s_address-selection">
                         <div class="s_comp">
                             <label for="s_company">
-                            <input id="s_company" type="radio" value="company" name="s_company" />
+                            <input {if $ca.s_company_name.content|eq('')}checked="checked"{/if} id="s_company" type="radio" value="company" name="s_company" />
                             {'Company'|i18n('extension/xrowecommerce')}
                             </label>
                         </div>
                         <div class="s_home">
                             <label for="s_home">
-                            <input checked="checked" id="s_home" type="radio" value="company" name="s_company" />
+                            <input {if $ca.s_company_name.content|eq('')}checked="checked"{/if} id="s_home" type="radio" value="company" name="s_company" />
                             {'Private person'|i18n('extension/xrowecommerce')}
                             </label>
                         </div>
                     </div>
-                    <div class="s_company">
+                    <div class="s_company" {if $s_company_name|ne('')}style="display: none;"{/if}>
                         {if ezini( 'Fields', 's_company_name', 'xrowecommerce.ini' ).enabled|eq("true")}
                         <div class="block s_company_name">
                             <label>{if ezini( 'Fields', 's_company_name', 'xrowecommerce.ini' ).required|eq("true")}<span class="required">*</span>{/if}{'Company name'|i18n('extension/xrowecommerce')}</label>

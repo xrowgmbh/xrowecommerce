@@ -130,7 +130,7 @@ class xrowEPayment
     Each gateway must call this function to become 'available'.
     */
     
-    static function registerGateway( $gateway, $class_name, $description )
+    static function registerGateway( $gateway, $class_name )
     {
         $gateways = & $GLOBALS["eZPaymentGateways"];
         if ( ! is_array( $gateways ) )
@@ -145,8 +145,7 @@ class xrowEPayment
         else
         {
             $gateways[$gateway] = array( 
-                "class_name" => $class_name , 
-                "description" => $description 
+                "class_name" => $class_name
             );
         }
     }
@@ -177,8 +176,10 @@ class xrowEPayment
         foreach ( $gatewaysTypes as $key )
         {
             $gateway = $availableGateways[$key];
-            $gateway['Name'] = $gateway['description'];
+			$object = new $availableGateways[$key]['class_name']();
+            $gateway['Name'] = $object->name();
             $gateway['value'] = $key;
+			$gateway['costs'] = $object->costs();
             $gateways[] = $gateway;
         }
         

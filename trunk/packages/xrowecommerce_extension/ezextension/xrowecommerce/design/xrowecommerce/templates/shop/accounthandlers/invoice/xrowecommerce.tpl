@@ -50,7 +50,13 @@
     <td>{$order.account_information.address1}
      {if $order.account_information.address2}<br />{$order.account_information.address2}{/if}
      <br />{$order.account_information.city}, {$order.account_information.state|get_state($order.account_information.country)} {$order.account_information.zip}<br />
-     {$order.account_information.country}
+    {foreach fetch( 'xrowecommerce', 'get_country_list') as $tmp_country}
+        {if $tmp_country.Alpha3|eq($order.account_information.country)}
+            {set $country=$tmp_country}
+            {break}
+        {/if}
+    {/foreach}
+    {$country}
      
      </td>
 </tr>
@@ -83,7 +89,13 @@
     <td>{$order.account_information.s_address1}
      {if $order.account_information.s_address2}<br />{$order.account_information.s_address2}{/if}
      <br />{$order.account_information.s_city}, {$order.account_information.s_state|get_state($order.account_information.s_country)} {$order.account_information.s_zip}<br />
-     {$order.account_information.s_country}
+    {foreach fetch( 'xrowecommerce', 'get_country_list') as $tmp_country}
+        {if $tmp_country.Alpha3|eq($order.account_information.s_country)}
+            {set $country=$tmp_country}
+            {break}
+        {/if}
+    {/foreach}
+    {$country}
      
      </td>
 </tr>
@@ -111,7 +123,13 @@
     <td>{$order.account_information.address1}
      {if $order.account_information.address2}<br />{$order.account_information.address2}{/if}
      <br />{$order.account_information.city}, {$order.account_information.state} {$order.account_information.zip}<br />
-     {$order.account_information.country}
+    {foreach fetch( 'xrowecommerce', 'get_country_list') as $tmp_country}
+        {if $tmp_country.Alpha3|eq($order.account_information.country)}
+            {set $country=$tmp_country}
+            {break}
+        {/if}
+    {/foreach}
+    {$country}
      
      </td>
 </tr>

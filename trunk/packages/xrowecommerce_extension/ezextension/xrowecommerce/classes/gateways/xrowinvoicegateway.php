@@ -4,7 +4,12 @@ class xrowInvoiceGateway extends xrowEPaymentGateway
 {
     const GATEWAY_STRING = "xrowInvoice";
     const AUTOMATIC_STATUS = false;
-
+	
+	function name()
+	{
+		return ezpI18n::tr( 'kernel/classes/datatypes', 'Pay by invoice' );
+	}
+	
     function execute( $process, $event )
     {
         $processParams = $process->attribute( 'parameter_list' );
@@ -26,5 +31,6 @@ class xrowInvoiceGateway extends xrowEPaymentGateway
         return eZWorkflowType::STATUS_ACCEPTED;
     }
 }
-xrowEPayment::registerGateway( xrowInvoiceGateway::GATEWAY_STRING, "xrowinvoicegateway", ezpI18n::tr( 'kernel/classes/datatypes', 'Pay by invoice' ) );
+xrowEPayment::registerGateway( xrowInvoiceGateway::GATEWAY_STRING, "xrowinvoicegateway" );
+
 ?>

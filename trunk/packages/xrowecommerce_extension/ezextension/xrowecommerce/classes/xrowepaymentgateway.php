@@ -5,9 +5,20 @@ class xrowEPaymentGateway extends eZPaymentGateway
     const AUTOMATIC_STATUS = true;
     // if a list of "after sale products" is not allowed set AFTER_SALE to false in your gateway
     const AFTER_SALE = true;
+	const GATEWAY_COSTS = 'gatewaycosts';
     
     private $td;
-
+    public $description;
+	public $costs;
+	
+	function name()
+	{
+	    return null;
+	}
+    function costs()
+	{
+	    return 0.00;
+	}
     /* Capture a payment
      * 
      * @returns boolean true on success

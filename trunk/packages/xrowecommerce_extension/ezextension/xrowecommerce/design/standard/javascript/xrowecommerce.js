@@ -7,6 +7,7 @@ $(document).ready(function() {
     }).mouseleave(function(){
         $('#AutomaticDeliveryTooltip').slideUp('300');
     });
+
     $('.shop-userregister input#company, .user_register input#company').click(function(){
         $('div.company').slideDown('slow');
     });
@@ -441,6 +442,12 @@ function changeShipping()
             }
 
             //document.register.s_country.selectedIndex = document.register.country.selectedIndex;
+            if ( Y.one( '#s_country' ) && Y.one( '#country' ) && Y.one( '#country' ).get( 'selectedIndex' ) != '' )
+            {
+                Y.one( '#s_country' ).set( 'selectedIndex', Y.one( '#country' ).get( 'selectedIndex' ) );
+                updateSubdivisions( Y.one( '#s_country' ) );
+            }
+            
             if ( Y.one( '#s_country' ) && Y.one( '#country' ) && Y.one( '#country' ).get( 'selectedIndex' ) != '' )
             {
                 Y.one( '#s_country' ).set( 'selectedIndex', Y.one( '#country' ).get( 'selectedIndex' ) );

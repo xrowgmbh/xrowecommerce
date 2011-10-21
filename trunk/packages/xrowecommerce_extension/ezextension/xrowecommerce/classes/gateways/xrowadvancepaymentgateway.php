@@ -5,6 +5,11 @@ class xrowAdvancepaymentGateway extends xrowEPaymentGateway
     const AUTOMATIC_STATUS = false;
     const GATEWAY_STRING = "xrowAdvancepayment";
 
+	function name()
+	{
+		return ezpI18n::tr( 'kernel/classes/datatypes', 'Advance payment' );
+	}
+	
     function execute( $process, $event )
     {
         $processParams = $process->attribute( 'parameter_list' );
@@ -26,5 +31,5 @@ class xrowAdvancepaymentGateway extends xrowEPaymentGateway
         return eZWorkflowType::STATUS_ACCEPTED;
     }
 }
-xrowEPayment::registerGateway( xrowAdvancepaymentGateway::GATEWAY_STRING, "xrowadvancepaymentgateway", ezpI18n::tr( 'kernel/classes/datatypes', 'Advance payment' ) );
+xrowEPayment::registerGateway( xrowAdvancepaymentGateway::GATEWAY_STRING, "xrowadvancepaymentgateway" );
 ?>
