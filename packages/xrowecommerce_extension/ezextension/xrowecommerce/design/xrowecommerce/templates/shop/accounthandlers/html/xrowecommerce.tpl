@@ -91,9 +91,16 @@
                     <td>{$order.account_information.state|wash()|get_state( $order.account_information.country )}</td>
                 </tr>
             {/if}
+            {foreach fetch( 'xrowecommerce', 'get_country_list') as $tmp_country}
+                {if $tmp_country.Alpha3|eq($order.account_information.country)}
+                    {set $country=$tmp_country}
+                    {break}
+                {/if}
+            {/foreach}
             <tr>
                 <th>{'Country'|i18n('extension/xrowecommerce')}:</th>
-                <td>{set $country=fetch( 'content', 'country_list', hash( 'filter', 'Alpha3', 'value', $order.account_information.country ) )}{$country.Name|wash}</td>
+                <td>{*set $country=fetch( 'content', 'country_list', hash( 'filter', 'Alpha3', 'value', $order.account_information.country ) )*}{$country.Name|wash}
+                </td>
             </tr>
             <tr>
                 <th>{'Phone'|i18n('extension/xrowecommerce')}:</th>
@@ -157,9 +164,16 @@
                 <td>{$order.account_information.state|wash()|get_state( $order.account_information.country )}</td>
             </tr>
             {/if}
+            {foreach fetch( 'xrowecommerce', 'get_country_list') as $tmp_country}
+                {if $tmp_country.Alpha3|eq($order.account_information.country)}
+                    {set $country=$tmp_country}
+                    {break}
+                {/if}
+            {/foreach}
             <tr>
                 <th>{'Country'|i18n('extension/xrowecommerce')}:</th>
-                <td>{set $country=fetch( 'content', 'country_list', hash( 'filter', 'Alpha3', 'value', $order.account_information.country ) )}{$country.Name|wash}</td>
+                <td>{*set $country=fetch( 'content', 'country_list', hash( 'filter', 'Alpha3', 'value', $order.account_information.country ) )*}{$country.Name|wash}
+                </td>
             </tr>
             <tr>
                 <th>{'Phone'|i18n('extension/xrowecommerce')}:</th>
@@ -227,9 +241,15 @@
                 </td>
             </tr>
             {/if}
+            {foreach fetch( 'xrowecommerce', 'get_country_list') as $tmp_country}
+                {if $tmp_country.Alpha3|eq($order.account_information.s_country)}
+                    {set $country=$tmp_country}
+                    {break}
+                {/if}
+            {/foreach}
             <tr>
                 <th>{'Country'|i18n('extension/xrowecommerce')}:</th>
-                <td>{set $country=fetch( 'content', 'country_list', hash( 'filter', 'Alpha3', 'value', $order.account_information.s_country ) )}{$country.Name|wash}</td>
+                <td>{*set $country=fetch( 'content', 'country_list', hash( 'filter', 'Alpha3', 'value', $order.account_information.s_country ) )*}{$country.Name|wash}</td>
             </tr>
             <tr>
                 <th>{'Phone'|i18n('extension/xrowecommerce')}:</th>
@@ -243,10 +263,12 @@
                     </tr>
                 {/if}
             {/if}
-            <tr>
-                <th>{'Email'|i18n('extension/xrowecommerce')}:</th>
-                <td>{$order.account_information.s_email|wash}</td>
-            </tr>
+            {if eq(ezini( 'Fields', 'Email', 'xrowecommerce.ini' ).enabled, 'true' )}
+                <tr>
+                    <th>{'Email'|i18n('extension/xrowecommerce')}:</th>
+                    <td>{$order.account_information.s_email|wash}</td>
+                </tr>
+            {/if}
         </table>
     {/if}
     <table id="additional-orderinformation-table" class="order_box" border="0" cellspacing="0" cellpadding="0">
