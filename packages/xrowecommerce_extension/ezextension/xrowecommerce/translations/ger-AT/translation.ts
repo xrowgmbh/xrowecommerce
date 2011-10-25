@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.0" language="de_AT">
+<TS version="2.0" language="de_DE" sourcelanguage="en">
+<context>
+    <name>content/datatype/edit/xrowbillingcycle</name>
+    <message>
+        <source>Quantity</source>
+        <translation>Anzahl</translation>
+    </message>
+    <message>
+        <source>Period</source>
+        <translation>Dauer</translation>
+    </message>
+</context>
 <context>
     <name>design/admin/class/edit_language</name>
     <message>
@@ -18,80 +29,8 @@
 <context>
     <name>design/admin/parts/shop/menu</name>
     <message>
-        <source>Shop</source>
-        <translation>Shop</translation>
-    </message>
-    <message>
-        <source>Customers</source>
-        <translation>Kunden</translation>
-    </message>
-    <message>
-        <source>Discounts</source>
-        <translation>Rabatte</translation>
-    </message>
-    <message>
-        <source>Orders</source>
-        <translation>Bestellungen</translation>
-    </message>
-    <message>
-        <source>Archive</source>
-        <translation>Archiv</translation>
-    </message>
-    <message>
-        <source>Order status</source>
-        <translation>Bestellstatus</translation>
-    </message>
-    <message>
-        <source>Product statistics</source>
-        <translation>Produktstatistiken</translation>
-    </message>
-    <message>
-        <source>VAT types</source>
-        <translation>Mehrwertsteuer</translation>
-    </message>
-    <message>
-        <source>VAT rules</source>
-        <translation>Mehrwertsteueregeln</translation>
-    </message>
-    <message>
-        <source>Product categories</source>
-        <translation>Produktkategorien</translation>
-    </message>
-    <message>
-        <source>Currencies</source>
-        <translation>Währungen</translation>
-    </message>
-    <message>
-        <source>Preferred currency</source>
-        <translation>Bevorzugte Währung</translation>
-    </message>
-    <message>
-        <source>Products overview</source>
-        <translation>Produktüberblick</translation>
-    </message>
-    <message>
         <source>Order statistics</source>
         <translation>Bestellstatistiken</translation>
-    </message>
-    <message>
-        <source>Customer Feedback</source>
-        <translation>Kundenrückmeldungen</translation>
-    </message>
-    <message>
-        <source>Google Analytics</source>
-        <translation>Google Analytics</translation>
-    </message>
-    <message>
-        <source>Payments Pending</source>
-        <translation>Ausstehende Zahlungen</translation>
-    </message>
-    <message>
-        <source>Payment Terminal</source>
-        <translation>Bezahlungsterminal</translation>
-    </message>
-    <message>
-        <source>Zero weight prods</source>
-        <translation>Produkte ohne Gewichtsangabe</translation>
     </message>
     <message>
         <source>Recurring order forecast</source>
@@ -100,10 +39,6 @@
     <message>
         <source>Recurring order history</source>
         <translation>Chronik wiederkehrender Bestellungen</translation>
-    </message>
-    <message>
-        <source>Product variation setup</source>
-        <translation>Produkt Variationen Setup</translation>
     </message>
     <message>
         <source>Product attributes</source>
@@ -122,12 +57,69 @@
         <translation>Preis Export</translation>
     </message>
     <message>
-        <source>Tax identification numbers</source>
-        <translation>Int. Steuernummern</translation>
-    </message>
-    <message>
         <source>Tax identification</source>
         <translation>Int. Steuernummer</translation>
+    </message>
+    <message>
+        <source>List subscriptions</source>
+        <translation>Abonnenten Liste</translation>
+    </message>
+</context>
+<context>
+    <name>design/admin/section/edit</name>
+    <message>
+        <source>Update</source>
+        <translation>Aktualisieren</translation>
+    </message>
+</context>
+<context>
+    <name>design/admin/shop/customerlist</name>
+    <message>
+        <source>Forecast [%forecast]</source>
+        <translation>Ausstehend [%forecast]</translation>
+    </message>
+    <message>
+        <source>The forecast list is empty.</source>
+        <translation>Es sind keine Kosten angefallen.</translation>
+    </message>
+    <message>
+        <source>Messages [%history]</source>
+        <translation>Nachrichten [%history]</translation>
+    </message>
+    <message>
+        <source>Text</source>
+        <translation>Text</translation>
+    </message>
+    <message>
+        <source>Type</source>
+        <translation>Typ</translation>
+    </message>
+    <message>
+        <source>Date</source>
+        <translation>Datum</translation>
+    </message>
+    <message>
+        <source>Order ID</source>
+        <translation>Auftragsnummer</translation>
+    </message>
+    <message>
+        <source>Collection ID</source>
+        <translation>Einzugsnummer</translation>
+    </message>
+    <message>
+        <source>User ID</source>
+        <translation>Benutzer ID</translation>
+    </message>
+    <message>
+        <source>The message list is empty.</source>
+        <translation>Die Nachrichten Liste ist leer.</translation>
+    </message>
+</context>
+<context>
+    <name>design/admin/shop/discountgroupmembershipview</name>
+    <message>
+        <source>Total recurring forecast on revenue</source>
+        <translation>Gesammtbetrag der ausstehenden Kosten</translation>
     </message>
 </context>
 <context>
@@ -250,11 +242,11 @@
     </message>
     <message>
         <source>Print invoice and packaging slip</source>
-        <translation type="unfinished"></translation>
+        <translation>Rechnung und Packschein drucken</translation>
     </message>
     <message>
         <source>Print shipping plan</source>
-        <translation type="unfinished"></translation>
+        <translation>Versandplan drucken</translation>
     </message>
 </context>
 <context>
@@ -358,6 +350,10 @@
     <message>
         <source>The list is empty.</source>
         <translation>Die Liste ist leer.</translation>
+    </message>
+    <message>
+        <source>Print</source>
+        <translation>Drucken</translation>
     </message>
 </context>
 <context>
@@ -484,7 +480,7 @@
     </message>
     <message>
         <source>E-mail</source>
-        <translation>Email</translation>
+        <translation>E-Mail-Adresse</translation>
     </message>
     <message>
         <source>Packing slip</source>
@@ -532,7 +528,30 @@
     </message>
     <message>
         <source>Shipping plan</source>
-        <translation type="unfinished"></translation>
+        <translation>Versandplan</translation>
+    </message>
+    <message>
+        <source>Bill to</source>
+        <translation>Rechnung an</translation>
+    </message>
+    <message>
+        <source>Company</source>
+        <translation>Firma</translation>
+    </message>
+</context>
+<context>
+    <name>design/admin/workflow/eventtype/edit</name>
+    <message>
+        <source>Node</source>
+        <translation>Knoten</translation>
+    </message>
+    <message>
+        <source>Remove selected</source>
+        <translation>Ausgewähltes entfernen</translation>
+    </message>
+    <message>
+        <source>Add objects</source>
+        <translation>Objekte hinzufügen</translation>
     </message>
 </context>
 <context>
@@ -540,6 +559,56 @@
     <message>
         <source>Homepage</source>
         <translation>Startseite</translation>
+    </message>
+</context>
+<context>
+    <name>design/ezwebin/collectedinfo/poll</name>
+    <message>
+        <source>%count total votes</source>
+        <translation>%count Stimmen gesamt</translation>
+    </message>
+</context>
+<context>
+    <name>design/ezwebin/full/article</name>
+    <message>
+        <source>Tip a friend</source>
+        <translation>Einem Freund empfehlen</translation>
+    </message>
+    <message>
+        <source>Related products</source>
+        <translation>Ähnliche Produkte</translation>
+    </message>
+    <message>
+        <source>Product reviews</source>
+        <translation>Kundenmeinungen</translation>
+    </message>
+</context>
+<context>
+    <name>design/ezwebin/full/forum</name>
+    <message>
+        <source>Create your review</source>
+        <translation>Eine Kundenmeinung schreiben</translation>
+    </message>
+</context>
+<context>
+    <name>design/ezwebin/full/poll</name>
+    <message>
+        <source>Vote</source>
+        <translation>Abstimmen</translation>
+    </message>
+</context>
+<context>
+    <name>design/ezwebin/full/product</name>
+    <message>
+        <source>Add to wish list</source>
+        <translation>Zur Wunschliste hinzufügen</translation>
+    </message>
+</context>
+<context>
+    <name>design/ezwebin/user/edit</name>
+    <message>
+        <source>My notification settings.</source>
+        <translation>Meine Benachrichtigungseinstellungen</translation>
     </message>
 </context>
 <context>
@@ -555,6 +624,26 @@
     <message>
         <source>disabled</source>
         <translation>gesperrt</translation>
+    </message>
+    <message>
+        <source>Multiple choice</source>
+        <translation>Mehrfachauswahl</translation>
+    </message>
+    <message>
+        <source>Default selection</source>
+        <translation>Standardauswahl</translation>
+    </message>
+    <message>
+        <source>Select which countries by default</source>
+        <translation>Wähle aus, welche Länder standardmäßig</translation>
+    </message>
+    <message>
+        <source>Unchecked</source>
+        <translation>Abgewählt</translation>
+    </message>
+    <message>
+        <source>Checked</source>
+        <translation>Ausgewählt</translation>
     </message>
 </context>
 <context>
@@ -627,6 +716,189 @@
         <source>Credit card number</source>
         <translation>Kreditkarten Nummer</translation>
     </message>
+    <message>
+        <source>Day</source>
+        <translation>Tag</translation>
+    </message>
+    <message>
+        <source>Code</source>
+        <translation>Code</translation>
+    </message>
+    <message>
+        <source>Discount</source>
+        <translation>Rabatt</translation>
+    </message>
+    <message>
+        <source>Type</source>
+        <translation>Typ</translation>
+    </message>
+    <message>
+        <source>Percent (basket)</source>
+        <translation>Prozent (Warenkorb)</translation>
+    </message>
+    <message>
+        <source>Flat (basket)</source>
+        <translation>Flach (Warenkorb)</translation>
+    </message>
+    <message>
+        <source>Free Shipping and Handling</source>
+        <translation>Kostenloser Versand und Verpackung</translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation>Name</translation>
+    </message>
+    <message>
+        <source>Options</source>
+        <translation>Optionen</translation>
+    </message>
+    <message>
+        <source>No</source>
+        <translation>Nein</translation>
+    </message>
+    <message>
+        <source>Description</source>
+        <translation>Beschreibung</translation>
+    </message>
+    <message>
+        <source>Additional price</source>
+        <translation>Zusätzlicher Preis</translation>
+    </message>
+    <message>
+        <source>Weight</source>
+        <translation>Gewicht</translation>
+    </message>
+    <message>
+        <source>Image</source>
+        <translation>Bild</translation>
+    </message>
+    <message>
+        <source>Select option for removal.</source>
+        <translation>Wählen Sie eine Option, die Sie entfernen wollen.</translation>
+    </message>
+    <message>
+        <source>Currency</source>
+        <translation>Währung</translation>
+    </message>
+    <message>
+        <source>Value</source>
+        <translation>Wert</translation>
+    </message>
+    <message>
+        <source>Select price for removal.</source>
+        <translation>Wählen Sie einen Preis, den Sie entfernen wollen.</translation>
+    </message>
+    <message>
+        <source>Auto</source>
+        <translation>Auto</translation>
+    </message>
+    <message>
+        <source>Remove selected</source>
+        <translation>Ausgewähltes entfernen</translation>
+    </message>
+    <message>
+        <source>Remove selected prices.</source>
+        <translation>Ausgewählte Preise entfernen.</translation>
+    </message>
+    <message>
+        <source>Price list is empty</source>
+        <translation>Die Preisliste ist leer</translation>
+    </message>
+    <message>
+        <source>No image</source>
+        <translation>Kein Bild</translation>
+    </message>
+    <message>
+        <source>Remove</source>
+        <translation>Entfernen</translation>
+    </message>
+    <message>
+        <source>Add</source>
+        <translation>Hinzufügen</translation>
+    </message>
+    <message>
+        <source>Set custom price</source>
+        <translation>Benutzerdefinierten Preis festlegen</translation>
+    </message>
+    <message>
+        <source>Set custom price.</source>
+        <translation>Benutzerdefinierten Preis festlegen.</translation>
+    </message>
+    <message>
+        <source>Remove custom price</source>
+        <translation>Benutzerdefinierten Preis entfernen</translation>
+    </message>
+    <message>
+        <source>There are no available currencies.</source>
+        <translation>Es sind keine Währungen verfügbar.</translation>
+    </message>
+    <message>
+        <source>There are no options.</source>
+        <translation>Es gibt keine Optionen.</translation>
+    </message>
+    <message>
+        <source>Remove selected options.</source>
+        <translation>Ausgewählte Optionen entfernen.</translation>
+    </message>
+    <message>
+        <source>Add option</source>
+        <translation>Option hinzufügen</translation>
+    </message>
+    <message>
+        <source>Add a new option.</source>
+        <translation>Eine neue Option hinzufügen</translation>
+    </message>
+    <message>
+        <source>Select option</source>
+        <translation>Option auswählen</translation>
+    </message>
+    <message>
+        <source>Not specified</source>
+        <translation>Nicht spezifiziert</translation>
+    </message>
+    <message>
+        <source>Email</source>
+        <translation type="obsolete">Email</translation>
+    </message>
+</context>
+<context>
+    <name>design/standard/ezoe</name>
+    <message>
+        <source>Upload new</source>
+        <translation>Neu hochladen</translation>
+    </message>
+    <message>
+        <source>File</source>
+        <translation>Datei</translation>
+    </message>
+    <message>
+        <source>Location</source>
+        <translation>Ort</translation>
+    </message>
+    <message>
+        <source>Automatic</source>
+        <translation>Automatisch</translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation>Name</translation>
+    </message>
+    <message>
+        <source>Caption</source>
+        <translation>Bildunterschrift</translation>
+    </message>
+    <message>
+        <source>Description</source>
+        <translation>Beschreibung</translation>
+    </message>
+    <message>
+        <source>Upload local file</source>
+        <translation>Lokale Datei hochladen</translation>
+    </message>
+    <message>
+        <source>Upload is in progress, it may take a few seconds...</source>
+        <translation>Hochladen ist im Gange, das kann einige Momente dauern...</translation>
+    </message>
 </context>
 <context>
     <name>design/standard/shop</name>
@@ -637,14 +909,6 @@
     <message>
         <source>Note</source>
         <translation>Hinweis</translation>
-    </message>
-    <message>
-        <source>The above is information from your last order.</source>
-        <translation>Oben sehen Sie die Informationen Ihrer letzten Bestellung.</translation>
-    </message>
-    <message>
-        <source>Order History</source>
-        <translation>Bestellverlauf</translation>
     </message>
     <message>
         <source>Order No</source>
@@ -671,74 +935,76 @@
         <translation>Drucken</translation>
     </message>
     <message>
-        <source>Billing Address</source>
-        <translation>Rechnungsadresse</translation>
-    </message>
-    <message>
-        <source>Shipping and Billing Address</source>
-        <translation>Liefer- und Rechnugnsadresse</translation>
-    </message>
-    <message>
-        <source>Name</source>
-        <translation>Name</translation>
-    </message>
-    <message>
-        <source>Email</source>
-        <translation>E-Mail</translation>
-    </message>
-    <message>
-        <source>Address</source>
-        <translation>Adresse</translation>
-    </message>
-    <message>
-        <source>City</source>
-        <translation>Ort</translation>
-    </message>
-    <message>
-        <source>State</source>
-        <translation>Bundesland</translation>
-    </message>
-    <message>
-        <source>Zip code</source>
-        <translation>Postleitzahl</translation>
-    </message>
-    <message>
-        <source>Country</source>
-        <translation>Land</translation>
-    </message>
-    <message>
-        <source>Phone</source>
-        <translation>Telefon</translation>
-    </message>
-    <message>
-        <source>Shipping</source>
-        <translation>Leiferung</translation>
-    </message>
-    <message>
-        <source>Shipping Address</source>
-        <translation>Lieferadresse</translation>
+        <source>The information above is from your last order.</source>
+        <translation>Die obige Information ist aus Ihrer letzten Bestellung.</translation>
     </message>
 </context>
 <context>
-    <name>extension/xrowcommerce/productvariation</name>
+    <name>design/standard/workflow</name>
     <message>
-        <source>yes</source>
-        <translation>ja</translation>
+        <source>Aftersale</source>
+        <translation>Nach Verkauf</translation>
     </message>
     <message>
-        <source>no</source>
-        <translation>nein</translation>
+        <source>Add to order</source>
+        <translation>Zur Bestellung hinzufügen</translation>
+    </message>
+    <message>
+        <source>No coupon</source>
+        <translation>Kein Gutschein</translation>
+    </message>
+    <message>
+        <source>Coupon validation</source>
+        <translation>Gutschein überprüfen</translation>
+    </message>
+    <message>
+        <source>Have coupon</source>
+        <translation>Habe Gutschein</translation>
+    </message>
+</context>
+<context>
+    <name>design/standard/workflow/eventtype</name>
+    <message>
+        <source>Node which includes shelf warmer</source>
+        <translation>Node, welche Ladenhüter beinhaltet</translation>
+    </message>
+    <message>
+        <source>No objects selected.</source>
+        <translation>Kein Objekt ausgewählt.</translation>
+    </message>
+</context>
+<context>
+    <name>extension/recurringorders</name>
+    <message>
+        <source>Subscriptions</source>
+        <translation>Abonnements</translation>
     </message>
 </context>
 <context>
     <name>extension/xrowe&quot;extension/xrowecommerce/design/xrowecommerce/templates/shop/orderemail.tpl&quot;commerce</name>
     <message>
         <source>The details of the order are below.  If you have a question, please do not reply to this email.</source>
-        <translation>Anbei die Details Ihrer Bestellung. Wenn Sie eine Frage haben, antworten Sie bitte nicht an diese Emailadresse.</translation>
+        <translation>Die Details Ihrer Bestellung stehen unterhalb. Bei Fragen schreiben Sie bitte nicht an diese E-Mail-Adresse.</translation>
     </message>
 </context>
 <context>
     <name>extension/xrowecommerce</name>
+    <message>
+        <source>Cash on delivery fee</source>
+        <translation type="obsolete">Nachnahmegebühr</translation>
+    </message>
+    <message>
+        <source>plus %gateway_costs</source>
+        <translation type="obsolete">zzgl. %gateway_costs</translation>
+    </message>
+    <message>
+        <source>The companies tax ID number is not given.</source>
+        <translation type="obsolete">Die Steuernummer fehlt.</translation>
+    </message>
+    <message>
+        <source>Your companies tax ID number is not valid.</source>
+        <translation type="obsolete">Die Steuernummer ist ungültig.</translation>
+    </message>
     <message>
         <source>Fraud detected</source>
         <translation>Betrug festgestellt</translation>
@@ -813,10 +1079,6 @@
         <translation>Sie haben keine Artikel im Warenkorb.</translation>
     </message>
     <message>
-        <source>Input did not validate, all fields marked with %mark% must be filled in.</source>
-        <translation>Eingabe ungültig, alle Felder mit %mark% müssen ausgefüllt werden.</translation>
-    </message>
-    <message>
         <source>Select a payment method</source>
         <translation>Wählen Sie eine Zahlungsmethode</translation>
     </message>
@@ -874,11 +1136,11 @@
     </message>
     <message>
         <source>Type</source>
-        <translation>Eintippen</translation>
+        <translation>Typ</translation>
     </message>
     <message>
         <source>Any</source>
-        <translation>Irgendwelche</translation>
+        <translation>Alle</translation>
     </message>
     <message>
         <source>Add to Automatic Delivery</source>
@@ -914,7 +1176,7 @@
     </message>
     <message>
         <source>Email</source>
-        <translation>Email</translation>
+        <translation>E-Mail-Adresse</translation>
     </message>
     <message>
         <source>Address</source>
@@ -922,7 +1184,7 @@
     </message>
     <message>
         <source>City</source>
-        <translation>Ort</translation>
+        <translation>Stadt</translation>
     </message>
     <message>
         <source>State</source>
@@ -944,11 +1206,6 @@
         <source>Already a user?</source>
         <comment>User name</comment>
         <translation>Bereits Kunde?</translation>
-    </message>
-    <message>
-        <source>Login</source>
-        <comment>Button</comment>
-        <translation>Anmelden</translation>
     </message>
     <message>
         <source>Order</source>
@@ -995,16 +1252,12 @@
         <translation>Bundesland</translation>
     </message>
     <message>
-        <source>ZIP</source>
-        <translation>PLZ</translation>
-    </message>
-    <message>
         <source>Fax</source>
         <translation>Fax</translation>
     </message>
     <message>
         <source>E-mail</source>
-        <translation>Email</translation>
+        <translation>E-Mail-Adresse</translation>
     </message>
     <message>
         <source>Coupon</source>
@@ -1032,7 +1285,7 @@
     </message>
     <message>
         <source>Enter your username or email address and password below to sign-in.</source>
-        <translation>Geben Sie Ihren Benutzernamen oder Ihre Emailadresse zusammen mit Ihrem Passwort unten ein um sich einzuloggen.</translation>
+        <translation>Geben Sie Ihren Benutzernamen oder Ihre E-Mail-Adresse zusammen mit Ihrem Passwort unten ein um sich einzuloggen.</translation>
     </message>
     <message>
         <source>Could not login</source>
@@ -1102,10 +1355,6 @@
     <message>
         <source>Form of company</source>
         <translation>Unternehmensform</translation>
-    </message>
-    <message>
-        <source>City / Town</source>
-        <translation>Stadt</translation>
     </message>
     <message>
         <source>Zip / Postcode</source>
@@ -1232,24 +1481,12 @@
         <translation>Zwischensumme exkl. USt.</translation>
     </message>
     <message>
-        <source>SKU number</source>
-        <translation>Artikelnummer</translation>
-    </message>
-    <message>
         <source>Weight</source>
         <translation>Gewicht</translation>
     </message>
     <message>
-        <source>lbs</source>
-        <translation>Pfund</translation>
-    </message>
-    <message>
         <source>My Account</source>
         <translation>Mein Konto</translation>
-    </message>
-    <message>
-        <source>Validation error</source>
-        <translation>Fehler bei der Gültigkeitsüberprüfung</translation>
     </message>
     <message>
         <source>Validation errors</source>
@@ -1345,7 +1582,7 @@
     </message>
     <message>
         <source>Search for customer in the system via e-mail address</source>
-        <translation>Kundensuche im System via Emailadresse</translation>
+        <translation>Kundensuche im System via E-Mail-Adresse</translation>
     </message>
     <message>
         <source>Edit shippingcosts with this order number:</source>
@@ -1353,7 +1590,7 @@
     </message>
     <message>
         <source>E-mail address or Order No</source>
-        <translation>Emailadresse oder Bestellnummer</translation>
+        <translation>E-Mail-Adresse oder Bestellnummer</translation>
     </message>
     <message>
         <source>Link</source>
@@ -1428,14 +1665,6 @@
         <translation>USt. gesamt</translation>
     </message>
     <message>
-        <source>Total NY Tax</source>
-        <translation>NY Steuern gesamt</translation>
-    </message>
-    <message>
-        <source>Total CT Tax</source>
-        <translation>CT Steuern gesamt</translation>
-    </message>
-    <message>
         <source>Total Products</source>
         <translation>Produkte gesamt</translation>
     </message>
@@ -1449,7 +1678,7 @@
     </message>
     <message>
         <source>Although your Login User Name must be kept the same, you can update your Email Address and/or change your Password by entering new information in the appropriate field.  When complete, click the &quot;Update&quot; button at the bottom of the page.</source>
-        <translation>Obwohl Ihr Benutzername für den Login gleich bleiben muss, können Sie Ihre Emailadresse und/oder Ihr Passwort ändern, indem Sie die neuen Informationen in das zutreffende Feld schreiben. Wenn Sie fertig sind, clicken Sie den Button unten auf der Seite um die Informationen abzusenden.</translation>
+        <translation>Obwohl Ihr Benutzername für den Login gleich bleiben muss, können Sie Ihre E-Mail-Adresse und/oder Ihr Passwort ändern, indem Sie die neuen Informationen in das zutreffende Feld schreiben. Wenn Sie fertig sind, clicken Sie den Button unten auf der Seite um die Informationen abzusenden.</translation>
     </message>
     <message>
         <source>Username</source>
@@ -1464,20 +1693,12 @@
         <translation>Ihre Kreditkarteninformation werden benötigt, wenn Sie die Option &quot;Wiederkehrenden Bestellungen&quot; nutzen möchten.</translation>
     </message>
     <message>
-        <source>Did you know about our...</source>
-        <translation>Kennen Sie schon unsere...</translation>
-    </message>
-    <message>
         <source>Add your selections to</source>
         <translation>Fügen Sie Ihre Bestellungen der</translation>
     </message>
     <message>
         <source>Automatic Delivery</source>
         <translation>Automatischen Auslieferung</translation>
-    </message>
-    <message>
-        <source>Note</source>
-        <translation>Hinweis</translation>
     </message>
     <message>
         <source>This product is available for</source>
@@ -1536,104 +1757,12 @@
         <translation>Gültig bis</translation>
     </message>
     <message>
-        <source>Thank you for ordering from</source>
-        <translation>Danke für Ihre Bestellung bei</translation>
-    </message>
-    <message>
-        <source>Rather, email</source>
-        <translation>Vielmehr, emailen Sie</translation>
-    </message>
-    <message>
-        <source>or call</source>
-        <translation>oder Rufen uns an unter</translation>
-    </message>
-    <message>
-        <source>Thank you again, and have a wonderful day!</source>
-        <translation>Abermals vielen Dank und einen schönen Tag!</translation>
-    </message>
-    <message>
-        <source>Order ID</source>
-        <translation>Bestellnummer</translation>
-    </message>
-    <message>
-        <source>The Staff at</source>
-        <translation>Das Personal bei</translation>
-    </message>
-    <message>
-        <source>Contact Us</source>
-        <translation>Kontaktieren Sie uns</translation>
-    </message>
-    <message>
-        <source>Shop</source>
-        <translation>Shop</translation>
-    </message>
-    <message>
-        <source>Payment Information</source>
-        <translation>Zahlungsart</translation>
-    </message>
-    <message>
-        <source>Please enter your credit card information</source>
-        <translation>Bitte geben Sie Ihre Kreditkarteninformationen ein</translation>
-    </message>
-    <message>
-        <source>There were errors on the form</source>
-        <translation>Es gab Fehler im Dokument</translation>
-    </message>
-    <message>
-        <source>Name on Card</source>
-        <translation>Name auf der Karte</translation>
-    </message>
-    <message>
-        <source>Card Type</source>
-        <translation>Kartentyp</translation>
-    </message>
-    <message>
-        <source>Card Number</source>
-        <translation>Kartennummer</translation>
-    </message>
-    <message>
-        <source>Security Number</source>
-        <translation>Sicherheitsnummer</translation>
-    </message>
-    <message>
-        <source>Expiration Date</source>
-        <translation>Gültig bis</translation>
-    </message>
-    <message>
-        <source>Help?</source>
-        <translation>Hilfe?</translation>
-    </message>
-    <message>
         <source>This table contains the specific product images, product id&apos;s, product names and links to the full view of the product</source>
         <translation>Diese Tabelle enhält die jeweiligen Produktbilder, Produktnummern, Produktnamen und den Links zur Vollansicht des Produktes</translation>
     </message>
     <message>
         <source>Enter your email address, login and password.</source>
-        <translation>Geben Sie Ihre Emailadresse, den Benutzernamen und das Passwort ein.</translation>
-    </message>
-    <message>
-        <source>Q: What are the advantages of security code verification?</source>
-        <translation>Q: Was sind die Vorteile der Prüfung des Sicherheitscodes?</translation>
-    </message>
-    <message>
-        <source>Please enter the last 3 digits of your credit card&apos;s security code, which is printed on the back of your card.</source>
-        <translation>Bitte geben Sie die letzten 3 Zeichen des Sicherheitscodes Ihrer Kreditkarte ein, welcher auf der Rückseite abgebildet ist.</translation>
-    </message>
-    <message>
-        <source>There are several advantages of security code verification</source>
-        <translation>Es gibt einige Vorzüge bei der Überprüfung des Sicherheitscodes</translation>
-    </message>
-    <message>
-        <source>Increased customer security</source>
-        <translation>Erhöhte Kundensicherheit</translation>
-    </message>
-    <message>
-        <source>Faster order fullfilment</source>
-        <translation>Schnellere Erfüllung der Bestellung</translation>
-    </message>
-    <message>
-        <source>Deters fraud</source>
-        <translation>Betrüger abschrecken</translation>
+        <translation>Geben Sie Ihre E-Mail-Adresse, den Benutzernamen und das Passwort ein.</translation>
     </message>
     <message>
         <source>Use eZ Publish roles and policies for payment method selection.</source>
@@ -1725,26 +1854,6 @@
         <translation>Sie haben keine Erlaubnis eine der verfügbaren Zahlungsmethoden zu nutzen.</translation>
     </message>
     <message>
-        <source>Please enter a your companies tax ID number.</source>
-        <translation>Bitte geben Sie die Steuernummer Ihres Unternehmens ein.</translation>
-    </message>
-    <message>
-        <source>Country doesn`t match tax ID number.</source>
-        <translation>Das Land entspricht nicht der Steuernummer.</translation>
-    </message>
-    <message>
-        <source>Your companies tax ID number is not valid.</source>
-        <translation>Ungültige Steuernummer.</translation>
-    </message>
-    <message>
-        <source>Shipping destionation is not allowed.</source>
-        <translation>Der Versand an Ihren Standort ist nicht erlaubt.</translation>
-    </message>
-    <message>
-        <source>Enter account information</source>
-        <translation>Geben Sie Ihre Benutzerdaten ein</translation>
-    </message>
-    <message>
         <source>Your notes on order</source>
         <translation>Ihre Anmerkung(en) zur Bestellung</translation>
     </message>
@@ -1775,14 +1884,6 @@
     <message>
         <source>Use this button to place your order.</source>
         <translation>Verwenden Sie diesen Button, um die Bestellung abzusenden.</translation>
-    </message>
-    <message>
-        <source>The email address isn&apos;t given.</source>
-        <translation>Die E-Mail Adresse wurde nicht angegeben.</translation>
-    </message>
-    <message>
-        <source>The email address isn&apos;t valid.</source>
-        <translation>Die E-Mail Adresse ist ungültig.</translation>
     </message>
     <message>
         <source>Empty cart</source>
@@ -1845,18 +1946,6 @@
         <translation>Diese Artikelnummern wurden nicht gefunden, Preise konnten nicht importiert werden:</translation>
     </message>
     <message>
-        <source>Cannot fetch uploaded file, please choose a valid CSV file.</source>
-        <translation>Konnte Datei nicht verarbeiten, bitte wählen Sie eine gültige CSV Datei aus.</translation>
-    </message>
-    <message>
-        <source>File has a wrong extension. Only CSV files are supported.</source>
-        <translation>Datei hat falsche Erweiterung. Nur CSV Dateien werden unterstützt.</translation>
-    </message>
-    <message>
-        <source>Empty file uploaded.</source>
-        <translation>Leere Datei hochgeladen.</translation>
-    </message>
-    <message>
         <source>Price export</source>
         <translation>Preis Export</translation>
     </message>
@@ -1875,10 +1964,6 @@
     <message>
         <source>unconfirmed</source>
         <translation>unbestätigt</translation>
-    </message>
-    <message>
-        <source>Order confirmation email from</source>
-        <translation>Bestellbestätigungsemail von</translation>
     </message>
     <message>
         <source>Order receipt #%order_id </source>
@@ -1922,10 +2007,6 @@
         <translation>Speichern</translation>
     </message>
     <message>
-        <source>A tax identification number in the Federal Republic of Germany consists of 10 or 11 digits, depending on the &quot;Bundesland&quot; (State). These are divided into groups of 2 - 5 by forward slashes or blanks (e.g. &quot;181/815/08155&quot;). A unified German tax identification number consists of 13 digits like &quot;2893081508152&quot;.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Tax identification numbers</source>
         <translation>Int. Steuernummern</translation>
     </message>
@@ -1950,12 +2031,381 @@
         <translation>Schritt zurück</translation>
     </message>
     <message>
-        <source>Send Order</source>
-        <translation>Bestellung absenden</translation>
+        <source>Destination</source>
+        <translation>Ziel</translation>
     </message>
     <message>
-        <source>Shipping mathod is not allowed for destionation.</source>
-        <translation type="unfinished"></translation>
+        <source>Net Sale</source>
+        <translation>Netz-Ausverkauf</translation>
+    </message>
+    <message>
+        <source>Order Total</source>
+        <translation>Bestellsumme</translation>
+    </message>
+    <message>
+        <source>There is no order in the selection for this period.</source>
+        <translation>Es gibt keine Bestellung im gewählten Zeitraum.</translation>
+    </message>
+    <message>
+        <source>What is a Security Code?</source>
+        <translation>Was ist ein Sicherheitscode?</translation>
+    </message>
+    <message>
+        <source>The Card Security Code is located on the back of MasterCard, Visa and Discover credit or debit cards and is typically a separate group of 3 digits to the right of the signature strip.</source>
+        <translation>Der Kartensicherheitscode findet sich auf der Rückseite der Master Card, Visa und Discover Kredit- oder Debitkarte und ist typischerweise eine seperate Gruppe dreier Zahlen rechts des Unterschriftenfeldes.</translation>
+    </message>
+    <message>
+        <source>On American Express cards, the Card Security Code is a printed (NOT embossed) group of four digits on the front towards the right.</source>
+        <translation>Bei American Express Karten ist der Sicherheitscode eine gedruckte (nicht geprägte) Gruppe vierer Ziffern auf der Vorderseite rechts.</translation>
+    </message>
+    <message>
+        <source>Settings</source>
+        <translation>Einstellungen</translation>
+    </message>
+    <message>
+        <source>Pause Automatic Delivery</source>
+        <translation>Automatische Auslieferung unterbrechen</translation>
+    </message>
+    <message>
+        <source>If you are away and you wish to not receive your orders please check this box. We will also pause your Automatic Delivery, if we notice problems with your order request.</source>
+        <translation>Wenn Sie abwensend sind und keine Bestellungen erhalten möchten, wählen Sie diese Box aus. Wir werden die automatische Auslieferung auch einstellen, wenn wir Probleme bei Ihren Bestellwunsch festestellen.</translation>
+    </message>
+    <message>
+        <source>Important Note</source>
+        <translation>Wichtiger Hinweis</translation>
+    </message>
+    <message>
+        <source>Items with the same &quot;Next order&quot; date will be combined on the same order.</source>
+        <translation>Artikel mit dem gleichen Datum der &quot;Nächsten Bestellung&quot;  werden mit der gleichen Bestellung kombiniert.</translation>
+    </message>
+    <message>
+        <source>Product name</source>
+        <translation>Produktname</translation>
+    </message>
+    <message>
+        <source>Variation</source>
+        <translation>Variation</translation>
+    </message>
+    <message>
+        <source>Date added</source>
+        <translation>Datum hinzugefügt</translation>
+    </message>
+    <message>
+        <source>Amount</source>
+        <translation>Menge</translation>
+    </message>
+    <message>
+        <source>Price per item</source>
+        <translation>Preis pro Artikel</translation>
+    </message>
+    <message>
+        <source>Frequency</source>
+        <translation>Frequenz</translation>
+    </message>
+    <message>
+        <source>Next order</source>
+        <translation>Nächste Bestellung</translation>
+    </message>
+    <message>
+        <source>Last order</source>
+        <translation>Letzte Bestellung</translation>
+    </message>
+    <message>
+        <source>All prices exclude tax, shipping and handling. Those will be added to your order once a new order is created.</source>
+        <translation>Alle Preise ohne MwSt., Versand und Verpackung. Diese werden Ihrer Bestellung hinzugefügt, wenn eine Bestellung erfolgt.</translation>
+    </message>
+    <message>
+        <source>View All Tags</source>
+        <translation>Alle Schlagworte ansehen</translation>
+    </message>
+    <message>
+        <source>Shipping Gateway</source>
+        <translation>Versand Gateway</translation>
+    </message>
+    <message>
+        <source>Error</source>
+        <translation>Fehler</translation>
+    </message>
+    <message>
+        <source>The shipping gateway can`t process your data. Please contact support.</source>
+        <translation>Der Versand-Gateway kann Ihre Eingabe nicht verarbeiten. Bitte kontaktieren Sie den Support.</translation>
+    </message>
+    <message>
+        <source>Back</source>
+        <translation>Zurück</translation>
+    </message>
+    <message>
+        <source>The shipping gateway provider has a problem. Please try again or contact support.</source>
+        <translation>Beim Anbieter des Versand-Gateways gibt es ein Problem. Bitte versuchen Sie es erneut oder kontaktieren Sie unseren Support.</translation>
+    </message>
+    <message>
+        <source>Take a look at our</source>
+        <translation>Betrachten Sie auch unsere</translation>
+    </message>
+    <message>
+        <source>Double click on above image to view full picture</source>
+        <translation>Doppelklicken Sie auf das obige Bild zur Vollansicht</translation>
+    </message>
+    <message>
+        <source>Basket items</source>
+        <translation>Warenkorb-Artikel</translation>
+    </message>
+    <message>
+        <source>There are no reviews yet.</source>
+        <translation>Es gibt noch keine Rezensionen.</translation>
+    </message>
+    <message>
+        <source>You need to be logged in to create reviews. You can do so %login_link_start%here%login_link_end%</source>
+        <translation>Sie müssen eingeloggt sein um Rezensionen erstellen zu können. Dies können Sie %login_link_start%hier%login_link_end% tun</translation>
+    </message>
+    <message>
+        <source>Customer Reviews</source>
+        <translation>Kundenrezensionen</translation>
+    </message>
+    <message>
+        <source>Rate this review:</source>
+        <translation>Benoten Sie diese Rezension:</translation>
+    </message>
+    <message>
+        <source>Create your review</source>
+        <translation>Eine Rezension schreiben</translation>
+    </message>
+    <message>
+        <source>Subtotal</source>
+        <translation>Zwischensumme</translation>
+    </message>
+    <message>
+        <source>User profile</source>
+        <translation>Benutzerprofil</translation>
+    </message>
+    <message>
+        <source>My Account:</source>
+        <translation>Mein Konto:</translation>
+    </message>
+    <message>
+        <source>Profile</source>
+        <translation>Profil</translation>
+    </message>
+    <message>
+        <source>Personal Information</source>
+        <translation>Persönliche Informationen</translation>
+    </message>
+    <message>
+        <source>Account Settings</source>
+        <translation>Kontoeinstellungen</translation>
+    </message>
+    <message>
+        <source>Change my billing and shipping address or your credit card information.</source>
+        <translation>Meine Versand- und Rechnungsadresse oder Kreditkarteninformationen ändern.</translation>
+    </message>
+    <message>
+        <source>Change my billing and shipping address or creditcard.</source>
+        <translation>Meine Versand- und Rechnungsadresse oder Kreditkarte ändern.</translation>
+    </message>
+    <message>
+        <source>Change my password</source>
+        <translation>Mein Passwort ändern</translation>
+    </message>
+    <message>
+        <source>Shop Features</source>
+        <translation>Shop Funktionen</translation>
+    </message>
+    <message>
+        <source>View my recent and current orders.</source>
+        <translation>Meine jüngsten und aktuellen Bestellungen ansehen.</translation>
+    </message>
+    <message>
+        <source>My orders.</source>
+        <translation>Meine Bestellungen.</translation>
+    </message>
+    <message>
+        <source>View my recurring orders.</source>
+        <translation>Meine Wiederkehrenden Bestellungen ansehen.</translation>
+    </message>
+    <message>
+        <source>My recurring orders.</source>
+        <translation>Meine Wiederkehrenden Bestellungen.</translation>
+    </message>
+    <message>
+        <source>Edit or view my wishlist.</source>
+        <translation>Meine Wunschliste ansehen oder bearbeiten.</translation>
+    </message>
+    <message>
+        <source>My wishlist.</source>
+        <translation>Meine Wunschliste.</translation>
+    </message>
+    <message>
+        <source>Edit or view your notification settings.</source>
+        <translation>Meine Notificationeinstellungen ansehen oder bearbeiten.</translation>
+    </message>
+    <message>
+        <source>Select a product</source>
+        <translation>Ein Produkt auswählen</translation>
+    </message>
+    <message>
+        <source>Errors</source>
+        <translation>Fehler</translation>
+    </message>
+    <message>
+        <source>Please select your product below.</source>
+        <translation>Bitte wählen Sie Ihr Produkt unten aus.</translation>
+    </message>
+    <message>
+        <source>Regular Retail Price</source>
+        <translation>Regulärer Einzelhandelspreis</translation>
+    </message>
+    <message>
+        <source>Our Thank You Price</source>
+        <translation>Unser Dankeschön-Preis</translation>
+    </message>
+    <message>
+        <source>Add to my order</source>
+        <translation>Meiner Bestellung hinzufügen</translation>
+    </message>
+    <message>
+        <source>No. Thanks</source>
+        <translation>Nein. Danke</translation>
+    </message>
+    <message>
+        <source>We&apos;ve found the following hazardous items from your shopping cart since we are not allowed to ship these items to your destination. For further questions please contact us.</source>
+        <translation>Wir haben folgende gesundheitsgefährdende Artikel gefunden. Es ist uns leider nicht erlaubt Ihnen diese an den gewählten Bestimmungsort zu liefern. Für weitere Fragen kontaktieren Sie uns.</translation>
+    </message>
+    <message>
+        <source>Enter different shipping address.</source>
+        <translation>Eine abweichende Lieferadresse eingeben.</translation>
+    </message>
+    <message>
+        <source>Private Person</source>
+        <translation>Privatperson</translation>
+    </message>
+    <message>
+        <source>Private person</source>
+        <translation>Privatperson</translation>
+    </message>
+    <message>
+        <source>Subscribe to newsletter</source>
+        <translation>Den Newsletter abonnieren</translation>
+    </message>
+    <message>
+        <source>Title</source>
+        <translation>Anrede</translation>
+    </message>
+    <message>
+        <source>Mr.</source>
+        <translation>Herr</translation>
+    </message>
+    <message>
+        <source>Mrs.</source>
+        <translation>Frau</translation>
+    </message>
+    <message>
+        <source>Subscription</source>
+        <translation type="obsolete">Anmelden</translation>
+    </message>
+    <message>
+        <source>Guest Login</source>
+        <translation type="obsolete">Gastlogin</translation>
+    </message>
+    <message>
+        <source>When you want to proceed your purchase as a guest please type in your name and email adress here.</source>
+        <translation type="obsolete">Wenn Sie den Einkauf als Gast fortsetzen wollen, dann geben Sie hier Name und E-Mail-Adresse an. </translation>
+    </message>
+    <message>
+        <source>Checkout as guest</source>
+        <translation type="obsolete">Als Gast einkaufen</translation>
+    </message>
+    <message>
+        <source>New Customer</source>
+        <translation type="obsolete">Neukunde</translation>
+    </message>
+    <message>
+        <source>You want to register as a new customer? Then type in your data and proceed.</source>
+        <translation type="obsolete">Sie wollen sich als neuer Kunde registrieren? Dann geben Sie Ihre Daten an und fahren sie fort.</translation>
+    </message>
+    <message>
+        <source>Register &amp; Proceed</source>
+        <translation type="obsolete">Registrieren &amp; Weiter</translation>
+    </message>
+    <message>
+        <source>Customer Login</source>
+        <translation type="obsolete">Kundenlogin</translation>
+    </message>
+    <message>
+        <source>You already are a customer? Then login here with your account data.</source>
+        <translation type="obsolete">Sie sind bereits Kunde? Loggen Sie sich hier mit Ihren Kontodaten ein. </translation>
+    </message>
+    <message>
+        <source>Login &amp; Proceed</source>
+        <translation type="obsolete">Einloggen &amp; Weiter</translation>
+    </message>
+    <message>
+        <source>Edit account information</source>
+        <translation>Kontoinformationen bearbeiten</translation>
+    </message>
+    <message>
+        <source>Order ID</source>
+        <translation>Bestell ID</translation>
+    </message>
+    <message>
+        <source>The Staff at</source>
+        <translation>Ihr Personal von</translation>
+    </message>
+    <message>
+        <source>Contact Us</source>
+        <translation>Kontaktieren Sie uns</translation>
+    </message>
+    <message>
+        <source>Shop</source>
+        <translation>Shop</translation>
+    </message>
+    <message>
+        <source>Thank you for ordering from</source>
+        <translation>Danke für Ihre Bestellung bei</translation>
+    </message>
+    <message>
+        <source>Rather, email</source>
+        <translation>Vielmehr mailen Sie</translation>
+    </message>
+    <message>
+        <source>or call</source>
+        <translation>oder rufen an </translation>
+    </message>
+    <message>
+        <source>Thank you again, and have a wonderful day!</source>
+        <translation>Erneut vielen Dank und einen wundervollen Tag!</translation>
+    </message>
+    <message>
+        <source>Product data export</source>
+        <translation>Produktdaten Export</translation>
+    </message>
+    <message>
+        <source>Attributes</source>
+        <translation>Attribute</translation>
+    </message>
+    <message>
+        <source>Which attributes should be exported?</source>
+        <translation>Welche Attribute sollen exportiert werden?</translation>
+    </message>
+    <message>
+        <source>Invert selection.</source>
+        <translation>Auswahl umkehren.</translation>
+    </message>
+    <message>
+        <source>Auswahl umkehren.</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>Start product data export</source>
+        <translation>Produktdaten Export starten</translation>
+    </message>
+    <message>
+        <source>Start the product data export.</source>
+        <translation>Den Produktdaten Export starten.</translation>
+    </message>
+    <message>
+        <source>Login</source>
+        <comment>Button</comment>
+        <translation>Anmelden</translation>
     </message>
 </context>
 <context>
@@ -2003,41 +2453,6 @@
     <message>
         <source>Add products to shopping cart</source>
         <translation>Fügen Sie Ihre gewünschten Produkte dem Warenkorb hinzu</translation>
-    </message>
-    <message>
-        <source>Direct order</source>
-        <translation>Direkt bestellen</translation>
-    </message>
-</context>
-<context>
-    <name>extension/xrowecommerce/epayment</name>
-    <message>
-        <source>Please enter a name</source>
-        <translation>Bitte geben Sie einen Namen ein</translation>
-    </message>
-    <message>
-        <source>Credit card number is not a number</source>
-        <translation>Die Kreditkartennummer ist keine Zahl</translation>
-    </message>
-    <message>
-        <source>Please enter the correct security code.</source>
-        <translation>Bitte geben Sie den gültigen Sicherheitsschlüssel an.</translation>
-    </message>
-    <message>
-        <source>Please enter the name of the card holder.</source>
-        <translation>Bitte geben Sie den Namen des Kreditkartenbesitzers ein.</translation>
-    </message>
-    <message>
-        <source>Please enter the correct account number</source>
-        <translation>Bitte geben Sie die korrekte Kontonummer ein</translation>
-    </message>
-    <message>
-        <source>Please enter the correct bank code</source>
-        <translation>Bitte geben Sie die korrekte Bankleitzahl ein</translation>
-    </message>
-    <message>
-        <source>The validity of your credit card has expired.</source>
-        <translation>Ihre Kreditkarte ist abgelaufen.</translation>
     </message>
 </context>
 <context>
@@ -2250,7 +2665,7 @@ Es ist nicht möglich, den Datentyp danach zu ändern.</translation>
     </message>
     <message>
         <source>Remove</source>
-        <translation>Löschen</translation>
+        <translation>Entfernen</translation>
     </message>
     <message>
         <source>Content class</source>
@@ -2401,124 +2816,6 @@ Es ist nicht möglich, den Datentyp danach zu ändern.</translation>
         <translation>Bitte geben Sie Text ein.</translation>
     </message>
     <message>
-        <source>Attribute edit</source>
-        <translation>Attribut bearbeiten</translation>
-    </message>
-    <message>
-        <source>Product variation - edit attribute</source>
-        <translation>Produkt Variation - Attribut bearbeiten</translation>
-    </message>
-    <message>
-        <source>Product variation attributes</source>
-        <translation>Produkt Variations Attribute</translation>
-    </message>
-    <message>
-        <source>Product variation columns</source>
-        <translation>Produkt Variations Spalten</translation>
-    </message>
-    <message>
-        <source>Template edit</source>
-        <translation>Vorlage bearbeiten</translation>
-    </message>
-    <message>
-        <source>Product variation - edit template</source>
-        <translation>Produkt Variation - Vorlage bearbeiten</translation>
-    </message>
-    <message>
-        <source>Product variation templates</source>
-        <translation>Produkt Variations Vorlagen</translation>
-    </message>
-    <message>
-        <source>Boolean</source>
-        <comment>Datatype name</comment>
-        <translation>Ja/Nein</translation>
-    </message>
-    <message>
-        <source>Stores true or false.</source>
-        <comment>Datatype description</comment>
-        <translation>Speichert &quot;wahr&quot; oder &quot;falsch&quot; Werte.</translation>
-    </message>
-    <message>
-        <source>Float</source>
-        <comment>Datatype name</comment>
-        <translation>Kommazahl</translation>
-    </message>
-    <message>
-        <source>Stores a floating-point number.</source>
-        <comment>Datatype description</comment>
-        <translation>Speichert Komma Zahlen.</translation>
-    </message>
-    <message>
-        <source>Integer</source>
-        <comment>Datatype name</comment>
-        <translation>Ganzzahl</translation>
-    </message>
-    <message>
-        <source>Stores an integer.</source>
-        <comment>Datatype description</comment>
-        <translation>Speichert ganze Zahlen.</translation>
-    </message>
-    <message>
-        <source>Price</source>
-        <comment>Datatype name</comment>
-        <translation>Preis</translation>
-    </message>
-    <message>
-        <source>Object relation</source>
-        <comment>Datatype name</comment>
-        <translation>Objekt Verknüpfung</translation>
-    </message>
-    <message>
-        <source>Stores an object relation. (e.g. to an image)</source>
-        <comment>Datatype description</comment>
-        <translation>Speichert eine Objekt Verknüpfung. (z.B. ein Bild)</translation>
-    </message>
-    <message>
-        <source>Selection</source>
-        <comment>Datatype name</comment>
-        <translation>Auswahl</translation>
-    </message>
-    <message>
-        <source>Stores a selection like colours green, blue, red....</source>
-        <comment>Datatype description</comment>
-        <translation>Speichert eine Auswahl vorhandener Werte wie z.B. Farben grün, blau, rot...</translation>
-    </message>
-    <message>
-        <source>stockkeeping unit</source>
-        <comment>Datatype name</comment>
-        <translation>Artikel Nummer</translation>
-    </message>
-    <message>
-        <source>Stores the stockkeeping unit of the variation</source>
-        <comment>Datatype description</comment>
-        <translation>Speichert die Artikelnummer der Variation</translation>
-    </message>
-    <message>
-        <source>Text line</source>
-        <comment>Datatype name</comment>
-        <translation>Textzeile</translation>
-    </message>
-    <message>
-        <source>Stores a line of text of the variation</source>
-        <comment>Datatype description</comment>
-        <translation>Speichert eine Zeile Text</translation>
-    </message>
-    <message>
-        <source>Text block</source>
-        <comment>Datatype name</comment>
-        <translation>Text Block</translation>
-    </message>
-    <message>
-        <source>Stores text of the variation</source>
-        <comment>Datatype description</comment>
-        <translation>Speichert einen Text Block, mehrzeilig</translation>
-    </message>
-    <message>
-        <source>Stores price of the variation</source>
-        <comment>Datatype description</comment>
-        <translation>Speichert den Preis der Variation</translation>
-    </message>
-    <message>
         <source>Column headline configuration</source>
         <translation>Konfiguration der Spalten Überschriften</translation>
     </message>
@@ -2546,39 +2843,24 @@ Es ist nicht möglich, den Datentyp danach zu ändern.</translation>
         <source>Please enter a valid date.</source>
         <translation>Bitten geben Sie ein korrektes Datum ein.</translation>
     </message>
+</context>
+<context>
+    <name>extension/xrowexommerce</name>
     <message>
-        <source>Date</source>
-        <comment>Datatype name</comment>
-        <translation>Datum</translation>
+        <source>Product review</source>
+        <translation>Produktrezension</translation>
     </message>
     <message>
-        <source>Stores a date value.</source>
-        <comment>Datatype description</comment>
-        <translation>Speichert ein Datum.</translation>
+        <source>Send</source>
+        <translation>Senden</translation>
+    </message>
+    <message>
+        <source>Discard</source>
+        <translation>Verwerfen</translation>
     </message>
 </context>
 <context>
     <name>extension/xrowtin</name>
-    <message>
-        <source>The class identifier name of the country field is incorrect in xrowecommerce.ini</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>The class identifier name of the company field is incorrect in xrowecommerce.ini</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Please provide a company name with your companies tax ID.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Country doesn`t match tax ID number.</source>
-        <translation>Das Land entspricht nicht der Steuernummer.</translation>
-    </message>
-    <message>
-        <source>Your companies tax ID number is not valid.</source>
-        <translation>Ungültige Steuernummer.</translation>
-    </message>
     <message>
         <source>not validated</source>
         <translation>nicht überprüft</translation>
@@ -2595,315 +2877,23 @@ Es ist nicht möglich, den Datentyp danach zu ändern.</translation>
 <context>
     <name>kernel/classes/datatypes</name>
     <message>
-        <source>Pay on delivery</source>
-        <translation>Nachnahme</translation>
+        <source>Pay by invoice</source>
+        <translation type="obsolete">Rechnung</translation>
     </message>
     <message>
-        <source>Pay by invoice</source>
-        <translation>Per Rechnung zahlen</translation>
+        <source>Cash on delivery</source>
+        <translation type="obsolete">Nachnahme</translation>
     </message>
     <message>
         <source>Advance payment</source>
-        <translation>Vorkasse</translation>
-    </message>
-    <message>
-        <source>Product variations</source>
-        <comment>Datatype name</comment>
-        <translation>Produkt Variationen</translation>
-    </message>
-    <message>
-        <source>Please choose a template for the product variation.</source>
-        <translation>Bitte wählen Sie eine Vorlage für die Produkt Variation.</translation>
-    </message>
-    <message>
-        <source>Please correct the input of product variations. The wrong or missing input is marked with a red border.</source>
-        <translation>Bitte korrigieren Sie die Eingabe bei den Produkt Variationen. Falsche Eingaben sind mit einem roten Rand markiert.</translation>
-    </message>
-    <message>
-        <source>Tax Identification Number</source>
-        <comment>Datatype name</comment>
-        <translation>Int. Steuernummer</translation>
-    </message>
-    <message>
-        <source>Input required.</source>
-        <translation>Eingabe erforderlich.</translation>
-    </message>
-    <message>
-        <source>Input is required, if you have active subscriptions or recurring orders.</source>
-        <translation>Eingabe ist erforderlich, falls Sie laufende Bestellungen oder ausstehende Kosten haben.</translation>
-    </message>
-    <message>
-        <source>Mastercard</source>
-        <translation>Mastercard</translation>
-    </message>
-    <message>
-        <source>Visa</source>
-        <translation>Visa</translation>
-    </message>
-    <message>
-        <source>Discover</source>
-        <translation>Discover</translation>
-    </message>
-    <message>
-        <source>American Express</source>
-        <translation>American Express</translation>
-    </message>
-    <message>
-        <source>Debit card</source>
-        <translation>Lastschrift</translation>
-    </message>
-    <message>
-        <source>Billing cycle</source>
-        <comment>Datatype name</comment>
-        <translation>Abrechnungszyklus</translation>
-    </message>
-    <message>
-        <source>Credit card</source>
-        <comment>Datatype name</comment>
-        <translation>Kreditkarte</translation>
-    </message>
-</context>
-<context>
-    <name>kernel/shop</name>
-    <message>
-        <source>Enter account information</source>
-        <translation>Geben Sie Ihre Benutzerdaten ein</translation>
-    </message>
-    <message>
-        <source>Order list</source>
-        <translation>Bestellliste</translation>
-    </message>
-    <message>
-        <source>Customer order view</source>
-        <translation>Bestellungsansicht</translation>
-    </message>
-    <message>
-        <source>Orderedit</source>
-        <translation>Bestellungen Bearbeiten</translation>
-    </message>
-    <message>
-        <source>Orderitem</source>
-        <translation>Bestellter Artikel</translation>
-    </message>
-    <message>
-        <source>Zero weight prods</source>
-        <translation>Produkte ohne Gewichtsangabe</translation>
-    </message>
-    <message>
-        <source>Tax listing</source>
-        <translation>Mehrwertsteuerliste</translation>
-    </message>
-    <message>
-        <source>Order #%order_id</source>
-        <translation>Bestellung Nr %order_id</translation>
-    </message>
-    <message>
-        <source>Statistics</source>
-        <translation>Statistiken</translation>
-    </message>
-    <message>
-        <source>Basket</source>
-        <translation>Warenkorb</translation>
-    </message>
-    <message>
-        <source>Order history</source>
-        <translation>Bestellverlauf</translation>
-    </message>
-    <message>
-        <source>Remove order</source>
-        <translation>Bestellung enfernen</translation>
-    </message>
-    <message>
-        <source>Shipping plan</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>kernel/workflow/event</name>
-    <message>
-        <source>Inventory Manager</source>
-        <translation>Warenbestands Manager</translation>
-    </message>
-    <message>
-        <source>xrow Ecommerce Payment Gateway</source>
-        <translation>xrow Ecommerce Zahlungsgateway</translation>
-    </message>
-</context>
-<context>
-    <name>content/datatype/edit/xrowbillingcycle</name>
-    <message>
-        <source>Quantity</source>
-        <translation>Anzahl</translation>
-    </message>
-    <message>
-        <source>Period</source>
-        <translation>Dauer</translation>
-    </message>
-</context>
-<context>
-    <name>design/admin/parts/visual/menu</name>
-    <message>
-        <source>Recurring orders</source>
-        <translation>Dauerauftrge</translation>
-    </message>
-</context>
-<context>
-    <name>design/admin/shop/customerlist</name>
-    <message>
-        <source>Forecast [%forecast]</source>
-        <translation>Ausstehend [%forecast]</translation>
-    </message>
-    <message>
-        <source>The forecast list is empty.</source>
-        <translation>Es sind keine Kosten angefallen.</translation>
-    </message>
-    <message>
-        <source>Messages [%history]</source>
-        <translation>Nachrichten [%history]</translation>
-    </message>
-    <message>
-        <source>Text</source>
-        <translation>Text</translation>
-    </message>
-    <message>
-        <source>Type</source>
-        <translation>Typ</translation>
-    </message>
-    <message>
-        <source>Date</source>
-        <translation>Datum</translation>
-    </message>
-    <message>
-        <source>Order ID</source>
-        <translation>Auftragsnummer</translation>
-    </message>
-    <message>
-        <source>Collection ID</source>
-        <translation>Einzugsnummer</translation>
-    </message>
-    <message>
-        <source>User ID</source>
-        <translation>Benutzer ID</translation>
-    </message>
-    <message>
-        <source>The message list is empty.</source>
-        <translation>Die Nachrichten Liste ist leer.</translation>
-    </message>
-</context>
-<context>
-    <name>design/admin/shop/discountgroupmembershipview</name>
-    <message>
-        <source>Total recurring forecast on revenue</source>
-        <translation>Gesammtbetrag der ausstehenden Kosten</translation>
-    </message>
-</context>
-<context>
-    <name>extension/recurringorders</name>
-    <message>
-        <source>Your input has been stored.</source>
-        <translation>Ihre Eingaben wurden gespeichert.</translation>
-    </message>
-    <message>
-        <source>We have encountered problems with your credit card. Please update your profile.</source>
-        <translation>Ihre Kreditkartendaten konntent nicht bestätigt werden. Aktualisieren Sie Ihr Profil.</translation>
-    </message>
-    <message>
-        <source>(period %startdate% till %enddate%)</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>kernel/classes/recurringordercollection</name>
-    <message>
-        <source>one time</source>
-        <translation>einmalig</translation>
-    </message>
-    <message>
-        <source>day(s)</source>
-        <translation>Tag(e)</translation>
-    </message>
-    <message>
-        <source>weeks(s)</source>
-        <translation>Woche(n)</translation>
-    </message>
-    <message>
-        <source>month(s)</source>
-        <translation>Monat(e)</translation>
-    </message>
-    <message>
-        <source>quarter(s)</source>
-        <translation>Quartal(e)</translation>
-    </message>
-    <message>
-        <source>year(s)</source>
-        <translation>Jahr(e)</translation>
-    </message>
-    <message>
-        <source>daily</source>
-        <translation>tglich</translation>
-    </message>
-    <message>
-        <source>weekly</source>
-        <translation>wchentlich</translation>
-    </message>
-    <message>
-        <source>monthly</source>
-        <translation>monatlich</translation>
-    </message>
-    <message>
-        <source>quarterly</source>
-        <translation>vierteljhrig</translation>
-    </message>
-    <message>
-        <source>yearly</source>
-        <translation>jhrlich</translation>
-    </message>
-    <message>
-        <source>days</source>
-        <translation>Tage</translation>
-    </message>
-    <message>
-        <source>day</source>
-        <translation>Tag</translation>
-    </message>
-    <message>
-        <source>weeks</source>
-        <translation>Wochen</translation>
-    </message>
-    <message>
-        <source>week</source>
-        <translation>Woche</translation>
-    </message>
-    <message>
-        <source>months</source>
-        <translation>Monate</translation>
-    </message>
-    <message>
-        <source>month</source>
-        <translation>Monat</translation>
-    </message>
-    <message>
-        <source>quarters</source>
-        <translation>Quartale</translation>
-    </message>
-    <message>
-        <source>quarter</source>
-        <translation>Quartal</translation>
-    </message>
-    <message>
-        <source>years</source>
-        <translation>Jahre</translation>
-    </message>
-    <message>
-        <source>year</source>
-        <translation>Jahr</translation>
+        <translation type="obsolete">Vorauskasse</translation>
     </message>
 </context>
 <context>
     <name>standard/datatype/ezcreditcard</name>
     <message>
         <source>Not used</source>
-        <translation>Nicht genutzt</translation>
+        <translation>Ungenutzt</translation>
     </message>
 </context>
 </TS>
