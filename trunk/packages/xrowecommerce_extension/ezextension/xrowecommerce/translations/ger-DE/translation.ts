@@ -1,4 +1,6 @@
-<!DOCTYPE TS><TS>
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.0" language="de_DE" sourcelanguage="en">
 <context>
     <name>content/datatype/edit/xrowbillingcycle</name>
     <message>
@@ -856,7 +858,7 @@
     </message>
     <message>
         <source>Email</source>
-        <translation>Email</translation>
+        <translation type="obsolete">Email</translation>
     </message>
 </context>
 <context>
@@ -987,21 +989,21 @@
 </context>
 <context>
     <name>extension/xrowecommerce</name>
-	<message>
+    <message>
         <source>Cash on delivery fee</source>
-        <translation>Nachnahmegebühr</translation>
+        <translation type="obsolete">Nachnahmegebühr</translation>
     </message>
-	<message>
+    <message>
         <source>plus %gateway_costs</source>
-        <translation>zzgl. %gateway_costs</translation>
+        <translation type="obsolete">zzgl. %gateway_costs</translation>
     </message>
-	<message>
+    <message>
         <source>The companies tax ID number is not given.</source>
-        <translation>Die Steuernummer fehlt.</translation>
+        <translation type="obsolete">Die Steuernummer fehlt.</translation>
     </message>
     <message>
         <source>Your companies tax ID number is not valid.</source>
-        <translation>Die Steuernummer ist ungültig.</translation>
+        <translation type="obsolete">Die Steuernummer ist ungültig.</translation>
     </message>
     <message>
         <source>Fraud detected</source>
@@ -2298,43 +2300,43 @@
     </message>
     <message>
         <source>Subscription</source>
-        <translation>Anmelden</translation>
+        <translation type="obsolete">Anmelden</translation>
     </message>
     <message>
         <source>Guest Login</source>
-        <translation>Gastlogin</translation>
+        <translation type="obsolete">Gastlogin</translation>
     </message>
     <message>
         <source>When you want to proceed your purchase as a guest please type in your name and email adress here.</source>
-        <translation>Wenn Sie den Einkauf als Gast fortsetzen wollen, dann geben Sie hier Name und E-Mail-Adresse an. </translation>
+        <translation type="obsolete">Wenn Sie den Einkauf als Gast fortsetzen wollen, dann geben Sie hier Name und E-Mail-Adresse an. </translation>
     </message>
     <message>
         <source>Checkout as guest</source>
-        <translation>Als Gast einkaufen</translation>
+        <translation type="obsolete">Als Gast einkaufen</translation>
     </message>
     <message>
         <source>New Customer</source>
-        <translation>Neukunde</translation>
+        <translation type="obsolete">Neukunde</translation>
     </message>
     <message>
         <source>You want to register as a new customer? Then type in your data and proceed.</source>
-        <translation>Sie wollen sich als neuer Kunde registrieren? Dann geben Sie Ihre Daten an und fahren sie fort.</translation>
+        <translation type="obsolete">Sie wollen sich als neuer Kunde registrieren? Dann geben Sie Ihre Daten an und fahren sie fort.</translation>
     </message>
     <message>
         <source>Register &amp; Proceed</source>
-        <translation>Registrieren &amp; Weiter</translation>
+        <translation type="obsolete">Registrieren &amp; Weiter</translation>
     </message>
     <message>
         <source>Customer Login</source>
-        <translation>Kundenlogin</translation>
+        <translation type="obsolete">Kundenlogin</translation>
     </message>
     <message>
         <source>You already are a customer? Then login here with your account data.</source>
-        <translation>Sie sind bereits Kunde? Loggen Sie sich hier mit Ihren Kontodaten ein. </translation>
+        <translation type="obsolete">Sie sind bereits Kunde? Loggen Sie sich hier mit Ihren Kontodaten ein. </translation>
     </message>
     <message>
         <source>Login &amp; Proceed</source>
-        <translation>Einloggen &amp; Weiter</translation>
+        <translation type="obsolete">Einloggen &amp; Weiter</translation>
     </message>
     <message>
         <source>Edit account information</source>
@@ -2371,6 +2373,39 @@
     <message>
         <source>Thank you again, and have a wonderful day!</source>
         <translation>Erneut vielen Dank und einen wundervollen Tag!</translation>
+    </message>
+    <message>
+        <source>Product data export</source>
+        <translation>Produktdaten Export</translation>
+    </message>
+    <message>
+        <source>Attributes</source>
+        <translation>Attribute</translation>
+    </message>
+    <message>
+        <source>Which attributes should be exported?</source>
+        <translation>Welche Attribute sollen exportiert werden?</translation>
+    </message>
+    <message>
+        <source>Invert selection.</source>
+        <translation>Auswahl umkehren.</translation>
+    </message>
+    <message>
+        <source>Auswahl umkehren.</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>Start product data export</source>
+        <translation>Produktdaten Export starten</translation>
+    </message>
+    <message>
+        <source>Start the product data export.</source>
+        <translation>Den Produktdaten Export starten.</translation>
+    </message>
+    <message>
+        <source>Login</source>
+        <comment>Button</comment>
+        <translation>Anmelden</translation>
     </message>
 </context>
 <context>
@@ -2477,7 +2512,7 @@
     <message>
         <source>You need to select a datatype for the attribute.
       It&apos;s not possible to change this afterwards.</source>
-        <translation>Sie müssen einen Datentyp für das Attribut auswählen.
+        <translation type="obsolete">Sie müssen einen Datentyp für das Attribut auswählen.
 Es ist nicht möglich, den Datentyp danach zu ändern.</translation>
     </message>
     <message>
@@ -2840,31 +2875,25 @@ Es ist nicht möglich, den Datentyp danach zu ändern.</translation>
     </message>
 </context>
 <context>
+    <name>kernel/classes/datatypes</name>
+    <message>
+        <source>Pay by invoice</source>
+        <translation type="obsolete">Rechnung</translation>
+    </message>
+    <message>
+        <source>Cash on delivery</source>
+        <translation type="obsolete">Nachnahme</translation>
+    </message>
+    <message>
+        <source>Advance payment</source>
+        <translation type="obsolete">Vorauskasse</translation>
+    </message>
+</context>
+<context>
     <name>standard/datatype/ezcreditcard</name>
     <message>
         <source>Not used</source>
         <translation>Ungenutzt</translation>
-    </message>
-</context>
-<context>
-    <name>kernel/classes/datatypes</name>
-    <message>
-        <source>Pay by invoice</source>
-        <translation>Rechnung</translation>
-    </message>
-</context>
-<context>
-    <name>kernel/classes/datatypes</name>
-    <message>
-        <source>Cash on delivery</source>
-        <translation>Nachnahme</translation>
-    </message>
-</context>
-<context>
-    <name>kernel/classes/datatypes</name>
-    <message>
-        <source>Advance payment</source>
-        <translation>Vorauskasse</translation>
     </message>
 </context>
 </TS>
