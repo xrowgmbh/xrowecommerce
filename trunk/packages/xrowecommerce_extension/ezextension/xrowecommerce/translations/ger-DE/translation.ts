@@ -2510,12 +2510,6 @@
         <translation>Es wurde kein Datentype ausgewählt.</translation>
     </message>
     <message>
-        <source>You need to select a datatype for the attribute.
-      It&apos;s not possible to change this afterwards.</source>
-        <translation type="obsolete">Sie müssen einen Datentyp für das Attribut auswählen.
-Es ist nicht möglich, den Datentyp danach zu ändern.</translation>
-    </message>
-    <message>
         <source>Cancel</source>
         <translation>Abbrechen</translation>
     </message>
@@ -2842,6 +2836,17 @@ Es ist nicht möglich, den Datentyp danach zu ändern.</translation>
     <message>
         <source>Please enter a valid date.</source>
         <translation>Bitten geben Sie ein korrektes Datum ein.</translation>
+    </message>
+    <message>
+        <source>You need to select a datatype for the attribute.
+      It&apos;s not possible to change this afterwards.</source>
+        <translation type="obsolete">Sie müssen einen Datentyp für das Attribut auswählen.
+Es ist nicht möglich, den Datentyp danach zu ändern.</translation>
+    </message>
+    <message>
+        <source>You need to select a datatype for the attribute.
+      It&apos;s not possible to change this afterwards.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
