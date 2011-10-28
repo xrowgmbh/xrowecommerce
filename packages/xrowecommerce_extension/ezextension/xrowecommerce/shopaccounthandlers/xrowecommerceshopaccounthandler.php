@@ -214,13 +214,13 @@ class xrowECommerceShopAccountHandler
             'no_partial_delivery' , 
             'coupon_code' ,
             xrowECommerce::ACCOUNT_KEY_PAYMENTMETHOD, 
-            xrowECommerce::ACCOUNT_KEY_TRANSACTIONID , 
-            xrowECommerce::ACCOUNT_KEY_NUMBER , 
-            xrowECommerce::ACCOUNT_KEY_BANKCODE , 
-            xrowECommerce::ACCOUNT_KEY_ACCOUNTNUMBER , 
-            xrowECommerce::ACCOUNT_KEY_MONTH , 
-            xrowECommerce::ACCOUNT_KEY_NAME , 
-            xrowECommerce::ACCOUNT_KEY_YEAR , 
+            xrowECommerce::ACCOUNT_KEY_TRANSACTIONID, 
+            xrowECommerce::ACCOUNT_KEY_NUMBER, 
+            xrowECommerce::ACCOUNT_KEY_BANKCODE, 
+            xrowECommerce::ACCOUNT_KEY_ACCOUNTNUMBER, 
+            xrowECommerce::ACCOUNT_KEY_MONTH, 
+            xrowECommerce::ACCOUNT_KEY_NAME, 
+            xrowECommerce::ACCOUNT_KEY_YEAR, 
             xrowECommerce::ACCOUNT_KEY_TYPE 
         );
         foreach ( $fields as $field )
@@ -228,7 +228,7 @@ class xrowECommerceShopAccountHandler
             $node = $dom->getElementsByTagName( $field )->item( 0 );
             if ( $node )
             {
-                $result[str_ireplace( '-', '_', $field )] = $node->textContent;
+                $result[str_ireplace( '-', '_', $field )] = xrowECommerce::decodeString( $node->textContent );
             }
         }
         

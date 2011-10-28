@@ -527,6 +527,26 @@ class xrowECommerce
             return false;
         }
     }
+    
+    /**
+	 * Encode a string
+	 * @param string $text
+     * @return string
+     */
+    public static function encodeString( $text )
+    {
+    	return htmlspecialchars( $text, ENT_QUOTES, 'UTF-8' );
+    }
+
+    /**
+	 * Decode a string
+	 * @param string $text
+     * @return string
+     */
+	public static function decodeString( $text )
+    {
+    	return html_entity_decode( $text, ENT_QUOTES, 'UTF-8' );
+    }
 }
 
 ?>
