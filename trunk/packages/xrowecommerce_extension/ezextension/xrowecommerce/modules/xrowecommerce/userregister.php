@@ -921,7 +921,7 @@ foreach ( $items as $item )
         }
     }
 
-    if ( $inputIsValid == true )
+    if ( $inputIsValid )
     {
         // Check for validation
         $basket = eZBasket::currentBasket();
@@ -937,13 +937,13 @@ foreach ( $items as $item )
 
         $root->appendChild( $siteaccessNode );
 
-        $company_nameNode = $doc->createElement( 'company_name', $company_name );
+        $company_nameNode = $doc->createElement( 'company_name', xrowECommerce::encodeString( $company_name ) );
         $root->appendChild( $company_nameNode );
 
-        $company_additionalNode = $doc->createElement( 'company_additional', $company_additional );
+        $company_additionalNode = $doc->createElement( 'company_additional', xrowECommerce::encodeString( $company_additional ) );
         $root->appendChild( $company_additionalNode );
 
-        $tax_idNode = $doc->createElement( 'tax_id', $tax_id );
+        $tax_idNode = $doc->createElement( 'tax_id', xrowECommerce::encodeString( $tax_id ) );
         $root->appendChild( $tax_idNode );
         if ( $tax_id and $tax_id_valid )
         {
@@ -956,58 +956,58 @@ foreach ( $items as $item )
             $root->appendChild( $tax_idNode );
         }
 
-        $titleNode = $doc->createElement( 'title', $title );
+        $titleNode = $doc->createElement( 'title', xrowECommerce::encodeString( $title ) );
         $root->appendChild( $titleNode );
 
-        $first_nameNode = $doc->createElement( 'first_name', $first_name );
+        $first_nameNode = $doc->createElement( 'first_name', xrowECommerce::encodeString( $first_name ) );
         $root->appendChild( $first_nameNode );
 
-        $miNode = $doc->createElement( 'mi', $mi );
+        $miNode = $doc->createElement( 'mi', xrowECommerce::encodeString( $mi ) );
         $root->appendChild( $miNode );
 
         $last_nameNode = $doc->createElement( 'last_name' );
-        $last_nameNode->appendChild( $doc->createTextNode( $last_name ) );
+        $last_nameNode->appendChild( $doc->createTextNode( xrowECommerce::encodeString(  $last_name ) ) );
         $root->appendChild( $last_nameNode );
 
         $address1Node = $doc->createElement( 'address1' );
-        $address1Node->appendChild( $doc->createTextNode( $address1 ) );
+        $address1Node->appendChild( $doc->createTextNode( xrowECommerce::encodeString(  $address1 ) ) );
         $root->appendChild( $address1Node );
 
         $address2Node = $doc->createElement( 'address2' );
-        $address2Node->appendChild( $doc->createTextNode( $address2 ) );
+        $address2Node->appendChild( $doc->createTextNode( xrowECommerce::encodeString( $address2 ) ) );
         $root->appendChild( $address2Node );
 
-        $cityNode = $doc->createElement( 'city', $city );
+        $cityNode = $doc->createElement( 'city', xrowECommerce::encodeString( $city ) );
         $root->appendChild( $cityNode );
 
-        $stateNode = $doc->createElement( 'state', $state );
+        $stateNode = $doc->createElement( 'state', xrowECommerce::encodeString( $state ) );
         $root->appendChild( $stateNode );
 
         $zipNode = $doc->createElement( 'zip', $zip );
         $root->appendChild( $zipNode );
 
-        $countryNode = $doc->createElement( 'country', $country );
+        $countryNode = $doc->createElement( 'country', xrowECommerce::encodeString( $country ) );
         $root->appendChild( $countryNode );
 
-        $phoneNode = $doc->createElement( 'phone', $phone );
+        $phoneNode = $doc->createElement( 'phone', xrowECommerce::encodeString( $phone ) );
         $root->appendChild( $phoneNode );
 
-        $faxNode = $doc->createElement( 'fax', $fax );
+        $faxNode = $doc->createElement( 'fax', xrowECommerce::encodeString(  $fax ) );
         $root->appendChild( $faxNode );
 
-        $emailNode = $doc->createElement( 'email', $email );
+        $emailNode = $doc->createElement( 'email', xrowECommerce::encodeString( $email ) );
         $root->appendChild( $emailNode );
 
-        $newsletter = $doc->createElement( 'newsletter', $newsletter );
+        $newsletter = $doc->createElement( 'newsletter', xrowECommerce::encodeString( $newsletter ) );
         $root->appendChild( $newsletter );
 
-        $shippingNode = $doc->createElement( 'shipping', $shipping );
+        $shippingNode = $doc->createElement( 'shipping', xrowECommerce::encodeString( $shipping ) );
         $root->appendChild( $shippingNode );
 
-        $shippingTypeNode = $doc->createElement( 'shippingtype', $shippingtype );
+        $shippingTypeNode = $doc->createElement( 'shippingtype', xrowECommerce::encodeString( $shippingtype ) );
         $root->appendChild( $shippingTypeNode );
 
-        $recaptacheNode = $doc->createElement( 'captcha', $captcha );
+        $recaptacheNode = $doc->createElement( 'captcha', xrowECommerce::encodeString( $captcha ) );
         $root->appendChild( $recaptacheNode );
         if ( ! empty( $payment_method ) )
         {
@@ -1016,7 +1016,7 @@ foreach ( $items as $item )
         }
         if ( $coupon_code )
         {
-            $coupon_codeNode = $doc->createElement( 'coupon_code', $coupon_code );
+            $coupon_codeNode = $doc->createElement( 'coupon_code', xrowECommerce::encodeString( $coupon_code ) );
             $root->appendChild( $coupon_codeNode );
         }
         else
@@ -1029,10 +1029,10 @@ foreach ( $items as $item )
             $partial_deliveryNode = $doc->createElement( 'no_partial_delivery', $no_partial_delivery );
             $root->appendChild( $partial_deliveryNode );
         }
-        $referenceNode = $doc->createElement( 'reference', $reference );
+        $referenceNode = $doc->createElement( 'reference', xrowECommerce::encodeString( $reference ) );
         $root->appendChild( $referenceNode );
 
-        $messageNode = $doc->createElement( 'message', $message );
+        $messageNode = $doc->createElement( 'message', xrowECommerce::encodeString( $message ) );
         $root->appendChild( $messageNode );
 
         if ( isset($_SERVER['REMOTE_ADDR']) )
@@ -1046,99 +1046,99 @@ foreach ( $items as $item )
         {
             /* Shipping address*/
 
-            $s_company_nameNode = $doc->createElement( 's_company_name', $s_company_name );
+            $s_company_nameNode = $doc->createElement( 's_company_name', xrowECommerce::encodeString( $s_company_name ) );
 
             $root->appendChild( $s_company_nameNode );
 
-            $s_company_additionalNode = $doc->createElement( 's_company_additional', $s_company_additional );
+            $s_company_additionalNode = $doc->createElement( 's_company_additional', xrowECommerce::encodeString( $s_company_additional ) );
             $root->appendChild( $s_company_additionalNode );
 
-            $s_titleNode = $doc->createElement( 's_title', $s_title );
+            $s_titleNode = $doc->createElement( 's_title', xrowECommerce::encodeString( $s_title ) );
             $root->appendChild( $s_titleNode );
 
-            $s_first_nameNode = $doc->createElement( 's_first_name', $s_first_name );
+            $s_first_nameNode = $doc->createElement( 's_first_name', xrowECommerce::encodeString( $s_first_name ) );
             $root->appendChild( $s_first_nameNode );
 
-            $s_miNode = $doc->createElement( 's_mi', $s_mi );
+            $s_miNode = $doc->createElement( 's_mi', xrowECommerce::encodeString( $s_mi ) );
             $root->appendChild( $s_miNode );
 
-            $s_last_nameNode = $doc->createElement( 's_last_name', $s_last_name );
+            $s_last_nameNode = $doc->createElement( 's_last_name', xrowECommerce::encodeString( $s_last_name ) );
             $root->appendChild( $s_last_nameNode );
 
-            $s_address1Node = $doc->createElement( 's_address1', $s_address1 );
+            $s_address1Node = $doc->createElement( 's_address1', xrowECommerce::encodeString( $s_address1 ) );
             $root->appendChild( $s_address1Node );
 
-            $s_address2Node = $doc->createElement( 's_address2', $s_address2 );
+            $s_address2Node = $doc->createElement( 's_address2', xrowECommerce::encodeString( $s_address2 ) );
             $root->appendChild( $s_address2Node );
 
-            $s_cityNode = $doc->createElement( 's_city', $s_city );
+            $s_cityNode = $doc->createElement( 's_city', xrowECommerce::encodeString( $s_city ) );
             $root->appendChild( $s_cityNode );
 
-            $s_stateNode = $doc->createElement( 's_state', $s_state );
+            $s_stateNode = $doc->createElement( 's_state', xrowECommerce::encodeString( $s_state ) );
             $root->appendChild( $s_stateNode );
 
-            $s_zipNode = $doc->createElement( 's_zip', $s_zip );
+            $s_zipNode = $doc->createElement( 's_zip', xrowECommerce::encodeString( $s_zip ) );
             $root->appendChild( $s_zipNode );
 
-            $s_countryNode = $doc->createElement( 's_country', $s_country );
+            $s_countryNode = $doc->createElement( 's_country', xrowECommerce::encodeString( $s_country ) );
             $root->appendChild( $s_countryNode );
 
-            $s_phoneNode = $doc->createElement( 's_phone', $s_phone );
+            $s_phoneNode = $doc->createElement( 's_phone', xrowECommerce::encodeString( $s_phone ) );
             $root->appendChild( $s_phoneNode );
 
-            $s_faxNode = $doc->createElement( 's_fax', $s_fax );
+            $s_faxNode = $doc->createElement( 's_fax', xrowECommerce::encodeString( $s_fax ) );
             $root->appendChild( $s_faxNode );
 
-            $s_emailNode = $doc->createElement( 's_email', $s_email );
+            $s_emailNode = $doc->createElement( 's_email', xrowECommerce::encodeString( $s_email ) );
             $root->appendChild( $s_emailNode );
 
         /* Shipping address*/
         } /* Shippingaddress is equal or not */
         else
         {
-            $s_company_nameNode = $doc->createElement( 's_company_name', $company_name );
+            $s_company_nameNode = $doc->createElement( 's_company_name', xrowECommerce::encodeString( $company_name ) );
             $root->appendChild( $s_company_nameNode );
 
-            $s_company_additionalNode = $doc->createElement( 's_company_additional', $company_additional );
+            $s_company_additionalNode = $doc->createElement( 's_company_additional', xrowECommerce::encodeString( $company_additional ) );
             $root->appendChild( $s_company_additionalNode );
 
-            $s_titleNode = $doc->createElement( 's_title', $title );
+            $s_titleNode = $doc->createElement( 's_title', xrowECommerce::encodeString( $title ) );
             $root->appendChild( $s_titleNode );
 
-            $s_first_nameNode = $doc->createElement( 's_first_name', $first_name );
+            $s_first_nameNode = $doc->createElement( 's_first_name', xrowECommerce::encodeString( $first_name ) );
             $root->appendChild( $s_first_nameNode );
 
             $s_miNode = $doc->createElement( 's_mi', $mi );
             $root->appendChild( $s_miNode );
 
-            $s_last_nameNode = $doc->createElement( 's_last_name', $last_name );
+            $s_last_nameNode = $doc->createElement( 's_last_name', xrowECommerce::encodeString( $last_name ) );
             $root->appendChild( $s_last_nameNode );
 
-            $s_address1Node = $doc->createElement( 's_address1', $address1 );
+            $s_address1Node = $doc->createElement( 's_address1', xrowECommerce::encodeString( $address1 ) );
             $root->appendChild( $s_address1Node );
 
-            $s_address2Node = $doc->createElement( 's_address2', $address2 );
+            $s_address2Node = $doc->createElement( 's_address2', xrowECommerce::encodeString( $address2 ) );
             $root->appendChild( $s_address2Node );
 
-            $s_cityNode = $doc->createElement( 's_city', $city );
+            $s_cityNode = $doc->createElement( 's_city', xrowECommerce::encodeString( $city ) );
             $root->appendChild( $s_cityNode );
 
-            $s_stateNode = $doc->createElement( 's_state', $state );
+            $s_stateNode = $doc->createElement( 's_state', xrowECommerce::encodeString( $state ) );
             $root->appendChild( $s_stateNode );
 
-            $s_zipNode = $doc->createElement( 's_zip', $zip );
+            $s_zipNode = $doc->createElement( 's_zip', xrowECommerce::encodeString( $zip ) );
             $root->appendChild( $s_zipNode );
 
-            $s_countryNode = $doc->createElement( 's_country', $country );
+            $s_countryNode = $doc->createElement( 's_country', xrowECommerce::encodeString( $country ) );
             $root->appendChild( $s_countryNode );
 
-            $s_phoneNode = $doc->createElement( 's_phone', $phone );
+            $s_phoneNode = $doc->createElement( 's_phone', xrowECommerce::encodeString( $phone ) );
             $root->appendChild( $s_phoneNode );
 
-            $s_faxNode = $doc->createElement( 's_fax', $fax );
+            $s_faxNode = $doc->createElement( 's_fax', xrowECommerce::encodeString( $fax ) );
             $root->appendChild( $s_faxNode );
 
-            $s_emailNode = $doc->createElement( 's_email', $email );
+            $s_emailNode = $doc->createElement( 's_email', xrowECommerce::encodeString( $email ) );
             $root->appendChild( $s_emailNode );
         }
 
