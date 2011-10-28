@@ -106,7 +106,7 @@ class xrowECommerceShopAccountHandler
             $dom = new DOMDocument( '1.0', 'utf-8' );
             $success = $dom->loadXML( $xmlString );
             $id = $dom->getElementsByTagName( xrowECommerce::ACCOUNT_KEY_TRANSACTIONID )->item( 0 );
-            return $id->textContent;
+            return xrowECommerce::decodeString( $id->textContent );
         }
         else
             return false;
@@ -125,7 +125,7 @@ class xrowECommerceShopAccountHandler
             $email = $dom->getElementsByTagName( "email" )->item( 0 );
             if ( $email )
             {
-                return $email->textContent;
+                return xrowECommerce::decodeString( $email->textContent );
             }
             else
             {
@@ -161,7 +161,7 @@ class xrowECommerceShopAccountHandler
                 $accountName = $firstName->textContent . " " . $lastName->textContent;
             }
         }
-        return $accountName;
+        return xrowECommerce::decodeString( $accountName );
     }
 
     function accountInformation( $order )
