@@ -9,10 +9,10 @@ class xrowECommerceVATHandler
             'DEU' => 19 , 
             'AUT' => 20 , 
             'IRL' => 21 , 
-            'USA' => array( 
-                'NY' => 8.875 , 
+            'USA' => array(
+                'NY' => 8.875 ,
                 'CT' => 6 ,
-                'PA' => 8                
+                'PA' => 8
             ) 
         );
     }
