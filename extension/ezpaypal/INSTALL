@@ -42,11 +42,11 @@ Introduction
 
    o  eZ publish version:
 
-      Make sure you use eZ publish version 3.5 or higher.
+      Make sure you use eZ publish version 4.0.1 or higher.
 
    o  PHP version:
 
-      Make sure you have PHP 4.3.2 or higher.
+      Make sure you have PHP 5.2 or higher.
 
    o  eZ publish must be reachable from the internet:
 
@@ -59,9 +59,9 @@ Getting eZ publish
 
 You can download a version of eZ publish from ez.no, you will find the
 various versions at:
-http://ez.no/ez_publish/download/all_releases/ez_publish_3_stable_releases
+http://ez.no/ezpublish
 
-NOTE: You will require eZ publish 3.5 or higher
+NOTE: You will require eZ publish 4.0.1 or higher
 
 Information on the installation of eZ publish can be found at:
 http://ez.no/ez_publish/documentation/installation
@@ -81,7 +81,7 @@ Installing eZ Paypal Payment Gateway extension
    [zip]:
    $ unzip ezpaypal-extension-[ExtensionVersion].zip
 
-3. We must now enable the extension in eZ publish. To do this edit site.ini.append(.php) in the 
+3. You must now enable the extension in eZ publish. To do this edit site.ini.append(.php) in the 
    folder root_of_ezpublish/settings. If this file does not exist; create it. Locate (or add)
    the block [ExtensionSettings] and add the line:
    ActiveExtensions[]=ezpaypal
@@ -108,5 +108,5 @@ Troubleshooting
    -------
 
    If you have find any problems not handled by this document or the FAQ you
-   can contact eZ system trough the support system:
-   http://ez.no/services/support
+   can contact eZ Systems trough the support system:
+   http://ez.no/support_and_services

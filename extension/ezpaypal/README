@@ -44,11 +44,11 @@ The following requirements exists for using eZ Paypal Payment Gateway extension:
 
 o  eZ publish version:
 
-   Make sure you use eZ publish version 3.5 or higher.
+   Make sure you use eZ publish version 4.0.1 or higher.
 
 o  PHP version:
 
-   Make sure you have PHP 4.3.2 or higher.
+   Make sure you have PHP 5.2 or higher.
 
 o  eZ publish must be reachable from the internet:
 
@@ -74,5 +74,5 @@ Troubleshooting
    -------
 
    If you have find any problems not handled by this document or the FAQ you
-   can contact eZ system trough the support system:
-   http://ez.no/services/support
+   can contact eZ Systems trough the support system:
+   http://ez.no/support_and_services
