@@ -21,6 +21,15 @@ class xrowRedirectEPaymentGateway extends xrowEPaymentGateway
 {
     const OBJECT_NOT_CREATED = 1;
     const OBJECT_CREATED = 2;
+    
+	function name()
+	{
+	    return null;
+	}
+    function costs()
+	{
+	    return 0.00;
+	}
 
     /*!
     Constructor.
