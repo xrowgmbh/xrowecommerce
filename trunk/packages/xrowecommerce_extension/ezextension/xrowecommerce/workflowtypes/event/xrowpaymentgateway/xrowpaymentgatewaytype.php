@@ -34,7 +34,7 @@ class xrowPaymentGatewayType extends eZWorkflowEventType
     function execute( $process, $event )
     {
         $GLOBALS['xrowPaymentGatewayFailedAttempt'] = true;
-        $this->logger->writeTimedString( 'execute' );
+        eZDebug::writeDebug( 'execute ' . __CLASS__ . '::' . __FUNCTION__ );
         // Captcha check begin
         $parameters = $process->attribute( 'parameters' );
         $parameters = unserialize( $parameters );
@@ -56,12 +56,19 @@ class xrowPaymentGatewayType extends eZWorkflowEventType
                 }
             }
         }
+
+        $payment = xrowPaymentObject::fetchByOrderID( $parameters["order_id"] );
+        if ( $order->attribute( 'is_temporary' ) == 1 and $payment instanceof xrowPaymentObject and $payment->approved() )
+        {
+            return eZWorkflowType::STATUS_ACCEPTED;
+        }
         
         $currentUser = eZUser::currentUser();
         $accessAllowed = $currentUser->hasAccessTo( 'xrowecommerce', 'bypass_captcha' );
         $fields_captcha = eZINI::instance( 'xrowecommerce.ini' )->variable( 'Fields', 'Captcha' ) == 'enabled';
         if ( $fields_captcha["enabled"] == "true"  and $accessAllowed["accessWord"] != 'yes' and ! $recaptcha and ! eZSys::isShellExecution() )
         {
+            eZDebug::writeDebug( "Process ". $process->ID." rejected." , __CLASS__ . "::" . __FUNCTION__ );
             return eZWorkflowType::STATUS_REJECTED;
         }
         $http = eZHTTPTool::instance();

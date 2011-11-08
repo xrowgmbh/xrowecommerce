@@ -36,6 +36,7 @@ $tpl->setVariable( "module_name", 'shop' );
 $orderID = $http->sessionVariable( 'MyTemporaryOrderID' );
 
 
+
 $order = eZOrder::fetch( $orderID );
 if ( !is_object( $order ) )
     return $module->handleError( eZError::KERNEL_NOT_AVAILABLE, 'kernel' );
@@ -130,11 +131,3 @@ switch( $operationResult['status'] )
     }
 
 }
-
-/*
-$Result = array();
-$Result['content'] = $tpl->fetch( "design:shop/confirmorder.tpl" );
-$Result['path'] = array( array( 'url' => false,
-                                'text' => ezpI18n::tr( 'kernel/shop', 'Confirm order' ) ) );
-*/
-?>

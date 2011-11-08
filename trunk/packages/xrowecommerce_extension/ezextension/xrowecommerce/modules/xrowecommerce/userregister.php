@@ -1219,17 +1219,38 @@ $tpl->setVariable( 'reference', $reference );
 $tpl->setVariable( 'message', $message );
 $tpl->setVariable( 'no_partial_delivery', $no_partial_delivery );
 $tpl->setVariable( 'fields', $fields );
-$tpl->setVariable( 'countries', xrowGeonames::getCountries() );
+        $ini = eZINI::instance( 'site.ini' );
+        $c_ini = eZINI::instance( 'country.ini' );
+        $settings = $ini->getNamedArray();
+        $locale = $settings["RegionalSettings"]["Locale"];
+        $filepath = "extension/xrowecommerce/share/geonames.org/countryInfoJSON/" . $locale . "/countryInfoJSON";
+        if (file_get_contents( $filepath ))
+        {
+            $json = json_decode(file_get_contents( $filepath ));
+            $country_array = $json->geonames;
+            foreach ( $country_array as $country )
+            {
+                $country = (array)$country;
+                $alpha2 = $country["countryCode"];
+                $c_ini->BlockValues[$alpha2]["Name"] = $country["countryName"];
+                $c_ini->BlockValues[$alpha2]["Alpha2"] = $country["countryCode"];
+                $c_ini->BlockValues[$alpha3]["Alpha3"] = $country["isoAlpha3"];
+            }
+        }
+        $countries = $c_ini->getNamedArray();
+        eZCountryType::fetchTranslatedNames( $countries );
+        $tpl->setVariable( 'countries', $countries );
+//xrowECommerceFunctionCollection::getCountryList()
 $tpl->setVariable( 'hazardous', $hazardous );
 if ( !isset( $country ) )
 {
-    $tmp = xrowGeonames::getCountries();
+    $tmp = xrowCountryType::fetchCountryList();
     $tmp = array_shift( $tmp );
     $country  = $tmp['Alpha3'];
 }
 if ( !isset( $s_country ) )
 {
-    $tmp = xrowGeonames::getCountries();
+    $tmp = xrowCountryType::fetchCountryList();
     $tmp = array_shift( $tmp );
     $s_country  = $tmp['Alpha3'];
 }
