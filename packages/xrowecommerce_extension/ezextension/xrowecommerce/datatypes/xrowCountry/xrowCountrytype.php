@@ -56,7 +56,7 @@ class xrowCountryType extends eZDataType
                 $alpha2 = $country["countryCode"];
                 $c_ini->BlockValues[$alpha2]["Name"] = $country["countryName"];
                 $c_ini->BlockValues[$alpha2]["Alpha2"] = $country["countryCode"];
-                $c_ini->BlockValues[$alpha3]["Alpha3"] = $country["isoAlpha3"];
+                $c_ini->BlockValues[$alpha2]["Alpha3"] = $country["isoAlpha3"];
             }
         }
         $countries = $c_ini->getNamedArray();

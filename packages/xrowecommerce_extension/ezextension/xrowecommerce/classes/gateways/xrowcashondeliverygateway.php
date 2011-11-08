@@ -27,9 +27,9 @@ class xrowCashOnDeliveryGateway extends xrowEPaymentGateway
 
 		if ( $this->costs() > 0)
 		{
-		   // Remove any existing order shipping item before appending a new item
+		   // Remove any existing order shipping item before appendeding a new item
 		    $class = new xrowEPaymentGateway();
-			$orderlist = eZOrderItem::fetchListByType( $orderID, constant( get_class( $class ) . '::GATEWAY_COSTS' ) );
+			$orderlist = eZOrderItem::fetchListByType( $orderID, $class::GATEWAY_COSTS );
 			if ( count( $orderlist ) > 0 )
 			{
 				foreach ( $orderlist as $item )
@@ -43,7 +43,7 @@ class xrowCashOnDeliveryGateway extends xrowEPaymentGateway
 				'description' => ezpI18n::tr( 'extension/xrowecommerce', 'Cash on delivery fee' ),
 				'price' => $this->costs() ,
 				'vat_value' => eZVATManager::getVAT( false, false ) ,
-				'type' => constant( get_class( $class ) . '::GATEWAY_COSTS' )
+				'type' => $class::GATEWAY_COSTS
 			) );
 			$orderItem->store();
 		}

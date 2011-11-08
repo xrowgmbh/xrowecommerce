@@ -21,13 +21,14 @@ class xrowEPayment
         $classname = $id . 'Gateway';
         if ( class_exists( $classname ) )
         {
-            return new $classname( );
+            return new $classname();
         }
         else
         {
             throw new Exception( "Gateway $classname does no longer exist." );
         }
     }
+
     /**
      * Wheater the gateways should store or not store payment information 
      *
@@ -44,17 +45,19 @@ class xrowEPayment
             return false;
         }
     }
+
     static function obscureString( $string, $length = 4, $char = '*' )
     {
-    	$amount = strlen( $string ) - $length;
-    	$result = '';
-    	for ( $i = $amount; $i > 0; $i-- )
-    	{
-    		$result .= $char;
-    	}
-    	$offset = $length * -1;
-    	return $result . substr( $string, $offset, $length);
+        $amount = strlen( $string ) - $length;
+        $result = '';
+        for ( $i = $amount; $i > 0; $i -- )
+        {
+            $result .= $char;
+        }
+        $offset = $length * - 1;
+        return $result . substr( $string, $offset, $length );
     }
+
     static function paymentRequestType()
     {
         $type = eZINI::instance( 'xrowecommerce.ini' )->variable( 'EPaymentSettings', 'PaymentRequestType' );
@@ -145,7 +148,7 @@ class xrowEPayment
         else
         {
             $gateways[$gateway] = array( 
-                "class_name" => $class_name
+                "class_name" => $class_name 
             );
         }
     }
@@ -176,10 +179,10 @@ class xrowEPayment
         foreach ( $gatewaysTypes as $key )
         {
             $gateway = $availableGateways[$key];
-			$object = new $availableGateways[$key]['class_name']();
+            $object = new $availableGateways[$key]['class_name']();
             $gateway['Name'] = $object->name();
             $gateway['value'] = $key;
-			$gateway['costs'] = $object->costs();
+            $gateway['costs'] = $object->costs();
             $gateways[] = $gateway;
         }
         
@@ -266,11 +269,11 @@ class xrowEPayment
             $errors[] = ezpI18n::tr( 'extension/xrowecommerce/epayment', 'Please enter the correct security code.' );
             $valid = false;
         }
-        $now = new DateTime( );
+        $now = new DateTime();
         $now->setTime( 0, 0, 0 );
         # Works from php5.3
         # $time = DateTime::createFromFormat( 'mY' . $data['month'] . $data['year'] );
-        $time = new DateTime( );
+        $time = new DateTime();
         $time->setDate( $data['year'], $data['month'], $now->format( 'd' ) );
         $time->setTime( 0, 0, 0 );
         
@@ -302,7 +305,7 @@ class xrowEPayment
             $classname = $name . 'Gateway';
             if ( class_exists( $classname ) )
             {
-                $test = new $classname( );
+                $test = new $classname();
                 if ( ! ( $test instanceof eZPaymentGateway ) )
                 {
                     throw new Exception( "'$name' isn't a valid payment gateway." );

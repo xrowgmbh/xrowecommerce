@@ -17,14 +17,25 @@ class xrowPaymentObject extends eZPersistentObject
      \static
     Creates new object.
     */
-    static function createNew( $orderID, $paymentType = 'xrowEPayment' )
+    static function createNew( $orderID, $paymentType = 'xrowEPayment', $data = array() )
     {
         return new xrowPaymentObject( array( 
             'order_id' => $orderID , 
-            'payment_string' => $paymentType 
+            'payment_string' => $paymentType ,
+            'data' => serialize( $data )
         ) );
     }
+    function approve()
+    {
+        $this->setAttribute( 'status', self::STATUS_APPROVED );
+        $this->store();
+    }
 
+    function approved()
+    {
+        return ( $this->attribute( 'status' ) == self::STATUS_APPROVED );
+    }
+    
     function modifyStatus( $id = false )
     {
         switch ( $id )

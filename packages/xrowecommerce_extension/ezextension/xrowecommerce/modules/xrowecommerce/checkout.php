@@ -1,33 +1,5 @@
 <?php
-//
-// Created on: <07-���-2003 14:21:36 sp>
-//
-// ## BEGIN COPYRIGHT, LICENSE AND WARRANTY NOTICE ##
-// SOFTWARE NAME: eZ Publish
-// SOFTWARE RELEASE: 4.1.x
-// COPYRIGHT NOTICE: Copyright (C) 1999-2010 eZ Systems AS
-// SOFTWARE LICENSE: GNU General Public License v2.0
-// NOTICE: >
-//   This program is free software; you can redistribute it and/or
-//   modify it under the terms of version 2.0  of the GNU General
-//   Public License as published by the Free Software Foundation.
-//
-//   This program is distributed in the hope that it will be useful,
-//   but WITHOUT ANY WARRANTY; without even the implied warranty of
-//   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-//   GNU General Public License for more details.
-//
-//   You should have received a copy of version 2.0 of the GNU General
-//   Public License along with this program; if not, write to the Free
-//   Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
-//   MA 02110-1301, USA.
-//
-//
-// ## END COPYRIGHT, LICENSE AND WARRANTY NOTICE ##
-//
 
-/*! \file
-*/
 $http = eZHTTPTool::instance();
 $module = $Params['Module'];
 
@@ -38,6 +10,7 @@ if ( $order instanceof eZOrder )
 {
     if ( $order->attribute( 'is_temporary' ) )
     {
+
         $paymentObj = eZPaymentObject::fetchByOrderID( $orderID );
         if ( $paymentObj != null )
         {
@@ -125,8 +98,10 @@ if ( $order instanceof eZOrder )
                 $attempt = $http->sessionVariable("CheckoutAttempt", 0 );
                 
                 // This attempt is for another order. So reset the attempt.
-                if ($attempt != 0) $attempt = 0;
-
+                if ($attempt != 0) 
+                {
+                    $attempt = 0;
+                }
                 $http->setSessionVariable("CheckoutAttempt", ++$attempt);
                 $http->setSessionVariable("CheckoutAttemptOrderID", $orderID);
 
@@ -165,5 +140,3 @@ if ( $order instanceof eZOrder )
    return;
 
 }
-
-?>
