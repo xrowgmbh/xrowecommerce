@@ -1,69 +1,35 @@
 <?php
-//
-// Definition of eZPaypalGateway class
-//
-// Created on: <18-Jul-2004 14:18:58 dl>
-//
-// ## BEGIN COPYRIGHT, LICENSE AND WARRANTY NOTICE ##
-// SOFTWARE NAME: eZ Paypal Payment Gateway
-// SOFTWARE RELEASE: 1.0
-// COPYRIGHT NOTICE: Copyright (C) 1999-2006 eZ Systems AS
-// SOFTWARE LICENSE: GNU General Public License v2.0
-// NOTICE: >
-//   This program is free software; you can redistribute it and/or
-//   modify it under the terms of version 2.0  of the GNU General
-//   Public License as published by the Free Software Foundation.
-//
-//   This program is distributed in the hope that it will be useful,
-//   but WITHOUT ANY WARRANTY; without even the implied warranty of
-//   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-//   GNU General Public License for more details.
-//
-//   You should have received a copy of version 2.0 of the GNU General
-//   Public License along with this program; if not, write to the Free
-//   Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
-//   MA 02110-1301, USA.
-//
-//
-// ## END COPYRIGHT, LICENSE AND WARRANTY NOTICE ##
-//
 
-/*! \file ezpaypalgateway.php
-*/
-
-/*!
-  \class eZPaypalGateway ezpaypalgateway.php
-  \brief The class eZPaypalGateway implements
-  functions to perform redirection to the PayPal
-  payment server.
-*/
-
-#define( "EZ_PAYMENT_GATEWAY_TYPE_PAYPAL", "ezpaypal" );
-
-class eZPaypalGateway extends eZRedirectGateway
+class eZPaypalGateway extends xrowRedirectEPaymentGateway
 {
-    const PaymentType = 'ezpaypal';
-    /*!
-        Constructor.
-    */
-    function eZPaypalGateway()
+    const GATEWAY_STRING = "eZPaypal";
+
+    function __construct()
     {
-        //__DEBUG__
             $this->logger   = eZPaymentLogger::CreateForAdd( "var/log/eZPaypalType.log" );
             $this->logger->writeTimedString( 'eZPaypalGateway::eZPaypalGateway()' );
-        //___end____
     }
-
+    function name()
+    {
+        return 'Paypal';
+    }
+    
+    function costs()
+    {
+    }
     /*!
         Creates new eZPaypalGateway object.
     */
     function createPaymentObject( $processID, $orderID )
     {
-        //__DEBUG__
-            $this->logger->writeTimedString("createPaymentObject");
-        //___end____
-
-        return eZPaymentObject::createNew( $processID, $orderID, 'Paypal' );
+        $list = eZPersistentObject::fetchObjectList( xrowPaymentObject::definition(), null, array( 
+            'order_id' => $orderID, 'status' => xrowPaymentObject::STATUS_NOT_APPROVED
+        ) );
+        foreach($list as $item)
+        {
+            $item->remove();
+        }
+        return xrowPaymentObject::createNew( $orderID, eZPaypalGateway::GATEWAY_STRING, array( 'workflowprocessid', $processID ) );
     }
 
     /*!
@@ -92,7 +58,6 @@ class eZPaypalGateway extends eZRedirectGateway
         $amount         = urlencode( $order->attribute( 'total_inc_vat' ) );
         $currency       = urlencode( $order->currencyCode() );
 
-//        include_once( 'lib/ezlocale/classes/ezlocale.php' );
         $locale         = eZLocale::instance();
 
         $countryCode    = urlencode( $locale->countryCode() );
@@ -101,12 +66,13 @@ class eZPaypalGateway extends eZRedirectGateway
         $itemName       = urlencode( $this->createShortDescription( $order, $maxDescLen ) );
 
         $accountInfo    = $order->attribute( 'account_information' );
+		
         $first_name     = urlencode( $accountInfo['first_name'] );
         $last_name      = urlencode( $accountInfo['last_name'] );
-        $street         = urlencode( $accountInfo['street2'] );
+        $street         = urlencode( $accountInfo['address1'] );
         $zip            = urlencode( $accountInfo['zip'] );
         $state          = urlencode( $accountInfo['state'] );
-        $place          = urlencode( $accountInfo['place'] );
+        $place          = urlencode( $accountInfo['city'] );
         $image_url      = "$localHost" . urlencode( $paypalINI->variable( 'PaypalSettings', 'LogoURI' ) );
         $background     = urlencode( $paypalINI->variable( 'PaypalSettings', 'BackgroundColor' ) );
         $pageStyle      = urlencode( $paypalINI->variable( 'PaypalSettings', 'PageStyle' ) );
@@ -114,12 +80,13 @@ class eZPaypalGateway extends eZRedirectGateway
         $noteLabel      = ($noNote == 1) ? '' : urlencode( $paypalINI->variable( 'PaypalSettings', 'NoteLabel' ) );
         $noShipping     = 1;
 
+        $custom = urlencode( serialize( array( 'order_id' => $orderID, 'process_id' => $process->ID ) ) );
         $url =  $paypalServer  . $requestURI    .
                 "?cmd=_ext-enter"               .
                 "&redirect_cmd=_xclick"         .
                 "&business=$business"           .
                 "&item_name=$itemName"          .
-                "&custom=$orderID"              .
+                "&custom=$custom"               .
                 "&amount=$amount"               .
                 "&currency_code=$currency"      .
                 "&first_name=$first_name"       .
@@ -133,16 +100,17 @@ class eZPaypalGateway extends eZRedirectGateway
                 "&page_style=$pageStyle"        .
                 "&no_shipping=$noShipping"      .
                 "&cn=$noteLabel"                .
+                "&transaction_subject=1233"     .
                 "&no_note=$noNote"              .
                 "&lc=$countryCode"              .
                 "&notify_url=$localHost" . $indexDir . "/paypal/notify_url/".
-                "&return=$localHost"     . $indexDir . "/shop/checkout/" .
-                "&cancel_return=$localHost" . $indexDir . "/shop/basket/";
+                "&return=$localHost"     . $indexDir . "/xrowecommerce/checkout/" .
+                "&cancel_return=$localHost" . $indexDir . "/xrowecommerce/cart/";
 
         //__DEBUG__
             $this->logger->writeTimedString("business       = $business");
             $this->logger->writeTimedString("item_name      = $itemName");
-            $this->logger->writeTimedString("custom         = $orderID");
+            $this->logger->writeTimedString("custom         = $custom");
             $this->logger->writeTimedString("no_shipping    = $noShipping");
             $this->logger->writeTimedString("localHost      = $localHost");
             $this->logger->writeTimedString("amount         = $amount");
@@ -156,6 +124,6 @@ class eZPaypalGateway extends eZRedirectGateway
     }
 }
 
-eZPaymentGatewayType::registerGateway( eZPaypalGateway::PaymentType, "ezpaypalgateway", "Paypal" );
+xrowEPayment::registerGateway( eZPaypalGateway::GATEWAY_STRING, "ezpaypalgateway" );
 
 ?>

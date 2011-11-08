@@ -15,7 +15,7 @@ Upgrades to the development format will not be supported.</warning>
   </ezpublish>
   <maintainers xmlns:ezmaintainer="http://ez.no/ezpackage">
     <maintainer>
-      <name>eZ Systems</name>
+      <name>eZ systems</name>
       <email>info@ez.no</email>
       <role>lead</role>
     </maintainer>
@@ -36,7 +36,7 @@ Upgrades to the development format will not be supported.</warning>
   </documents>
   <changelog xmlns:ezchangelog="http://ez.no/ezpackage"> <!-- Add new changelog entry for each release-->
     <entry timestamp="1101093193"
-           person="eZ Systems"
+           person="eZ systems"
            email="info@ez.no"
            release="1">
       <change>Creation of package</change>
