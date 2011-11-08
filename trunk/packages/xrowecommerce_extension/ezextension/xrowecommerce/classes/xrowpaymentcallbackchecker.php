@@ -54,7 +54,7 @@ class xrowPaymentCallbackChecker
     /*!
         Sends POST request.
     */
-    function sendPOSTRequest( $server, $port = 443, $serverMethod, $request, $timeout = 30 )
+    function sendPOSTRequest( $server, $port = 443, $request, $timeout = 30, $serverMethod = 'POST' )
     {
         $pos = strpos( $server, '://' );
         if ( $pos !== false )
@@ -68,14 +68,19 @@ class xrowPaymentCallbackChecker
         else {
             $fp = fsockopen( $server, $port, $errno, $errstr, $timeout );
         }
+        if( $serverMethod == 'POST' ){
+        	$m = 'POST';
+        }else {
+        	$m = 'GET';
+        }
         
         if ( $fp )
         {
-            $theCall = "POST $serverMethod HTTP/1.0\r\n" . "Host: $server\r\n" . "Content-Type: application/x-www-form-urlencoded\r\n" . "Content-Length: " . strlen( $request ) . "\r\n" . "Connection: Close\r\n" . "\r\n" . $request . "\r\n\r\n";
+            $theCall = "$m $request HTTP/1.0\r\n" . "Host: $server\r\n" . "Content-Type: application/x-www-form-urlencoded\r\n" . "Content-Length: " . strlen( $request ) . "\r\n" . "Connection: Close\r\n" . "\r\n" . $request . "\r\n\r\n";
             
             if ( ! fputs( $fp, "$theCall", strlen( $theCall ) ) )
             {
-                eZDebug::writeError( "Could not write to server socket: $server:$port", 'sendPOSTRequest failed' );
+                eZDebug::writeError( "Could not write to server socket: $server:$port", 'send Request failed' );
                 return null;
             }
             
