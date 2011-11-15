@@ -18,8 +18,8 @@
                 ({'plus %gateway_costs'|i18n('extension/xrowecommerce', '', hash( '%gateway_costs', $gateway.costs|l10n('currency')))})
             {/if}
         </span>
-        {if concat('gateway/', $gateway.value, '.png')|ezimage(no)|begins_with( '/extension' )}
-        <img src={concat('gateway/', $gateway.value, '.png')|ezimage} />
+        {if concat('gateway/', $gateway.value, '.png')|ezdesign(no)|begins_with( '/extension' )}
+        <img src={concat('gateway/', $gateway.value, '.png')|ezdesign} />
         {/if}
         </li>
     {/foreach}
