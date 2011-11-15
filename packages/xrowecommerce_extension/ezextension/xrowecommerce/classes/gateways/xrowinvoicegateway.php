@@ -4,12 +4,12 @@ class xrowInvoiceGateway extends xrowEPaymentGateway
 {
     const GATEWAY_STRING = "xrowInvoice";
     const AUTOMATIC_STATUS = false;
-	
-	function name()
-	{
-		return ezpI18n::tr( 'kernel/classes/datatypes', 'Pay by invoice' );
-	}
-	
+
+    function name()
+    {
+        return ezpI18n::tr( 'kernel/classes/datatypes', 'Pay by invoice' );
+    }
+
     function execute( $process, $event )
     {
         $processParams = $process->attribute( 'parameter_list' );
@@ -20,7 +20,7 @@ class xrowInvoiceGateway extends xrowEPaymentGateway
         $xmlstring = $order->attribute( 'data_text_1' );
         if ( $xmlstring != null )
         {
-            $doc = new DOMDocument( );
+            $doc = new DOMDocument();
             $doc->loadXML( $xmlstring );
             $root = $doc->documentElement;
             $invoice = $doc->createElement( xrowECommerce::ACCOUNT_KEY_PAYMENTMETHOD, xrowInvoiceGateway::GATEWAY_STRING );
