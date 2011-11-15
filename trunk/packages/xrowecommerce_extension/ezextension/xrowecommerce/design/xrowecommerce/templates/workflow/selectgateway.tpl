@@ -12,13 +12,12 @@
     <ul id="gateways">
     {foreach $gateways as $gateway}
         <li><input class="commerce_radiobutton" type="radio" name="SelectedGateway" value="{$gateway.value}" {run-once} checked="checked"  {/run-once}/>
-		<span>
-			{$gateway.Name|wash}
-			{if $gateway.costs|gt(0)}
-			{* EUR needs to be replaced with the current currency - read from local or ini? *}
-				({'plus %gateway_costs'|i18n('extension/xrowecommerce', '', hash( '%gateway_costs', $gateway.costs))} EUR)
-			{/if}
-		</span>
+        <span>
+            {$gateway.Name|wash}
+            {if $gateway.costs|gt(0)}
+                ({'plus %gateway_costs'|i18n('extension/xrowecommerce', '', hash( '%gateway_costs', $gateway.costs|l10n('currency')))})
+            {/if}
+        </span>
         {if concat('gateway/', $gateway.value, '.png')|ezimage(no)|begins_with( '/extension' )}
         <img src={concat('gateway/', $gateway.value, '.png')|ezimage} />
         {/if}

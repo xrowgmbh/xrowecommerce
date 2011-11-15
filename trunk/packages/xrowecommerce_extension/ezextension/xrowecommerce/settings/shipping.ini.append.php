@@ -1,3 +1,5 @@
+<?php /* #?ini charset="utf-8"?
+
 [Settings]
 ShippingGateways[]=UPS
 ShippingGateways[]=USPS
@@ -42,3 +44,5 @@ ShowShippingWeight=disabled
 
 [FixedPrice]
 Amount=6
+
+*/ ?>
