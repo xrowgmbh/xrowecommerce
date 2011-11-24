@@ -10,8 +10,31 @@ If you need to use all features of the extension, you need to patch
 some kernel files. A list of this files is in
 doc/kernelpatches.txt
 
+1. )
+[ContentSettings]
+CachedViewPreferences[full]=user_preferred_country=DEU;
+
+2. )
+if( php_sapi_name() != 'cli' )
+{
+    function xrowecommerceOnLoad( $className )
+    {
+        if ( isset($GLOBALS['eZDBGlobalInstance']) && $GLOBALS['eZDBGlobalInstance'] instanceof eZDBInterface )
+        {
+            spl_autoload_unregister( 'xrowecommerceOnLoad' );
+            xrowECommerce::onload();
+            return ezpAutoloader::autoload( $className );
+        }
+    }
+    spl_autoload_register( 'xrowecommerceOnLoad' );
+}
+
+Optional 
 The extension requires str_getcsv to be installed in php.
 If you don't have this function, put this to your config.php:
 include_once( 'extension/xrowecommerce/config.php' );
 
 Alternativly you can copy the code of extension/xrowecommerce/config.php to your config.php
+
+You can also set the default prefences for the user country. This is important for Tax calculations
+
