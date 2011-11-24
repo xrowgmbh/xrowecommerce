@@ -79,7 +79,14 @@ class xrowECommerce
         }
         return $access;
     }
-
+    static function onload()
+    {
+    if ( !eZPreferences::isStoredInSession( 'user_preferred_country' ) and eZINI::instance( 'xrowecommerce.ini' )->hasVariable( 'ShopAccountHandlerDefaults', 'DefaultCountryCode' ) )
+{
+    eZPreferences::setValue( 'user_preferred_country', eZINI::instance( 'xrowecommerce.ini' )->variable( 'ShopAccountHandlerDefaults', 'DefaultCountryCode' ) );
+}
+    }
+    
     static function merchantsLocations()
     {
         $ini = eZINI::instance( 'xrowecommerce.ini' );
