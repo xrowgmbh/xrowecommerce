@@ -82,12 +82,12 @@ class xrowTINType extends eZDataType
             $contentObjectAttribute->setValidationError( ezpI18n::tr( 'extension/xrowtin', 'The class identifier name of the company field is incorrect in xrowecommerce.ini' ) );
             return eZInputValidator::STATE_INVALID;
         }
-        if ( $tax_id and empty( $companyValue ) )
+        if ( $tax_id and trim($companyValue) == "" )
         {
             $contentObjectAttribute->setValidationError( ezpI18n::tr( 'extension/xrowtin', 'Please provide a company name with your companies tax ID.' ) );
             return eZInputValidator::STATE_INVALID;
         }
-        if ( $tax_id )
+        else if ( $tax_id )
         {
             $countryPrefix = substr( $tax_id, 0, 2 );
             $Alpha2 = $countryValue['Alpha2'];
@@ -129,7 +129,8 @@ class xrowTINType extends eZDataType
             if ( in_array( $Alpha2, $idsEU ) )
             {
                 $matches = array();
-                if ( preg_match( "/^(" . join( '|', $idsEU ) . ")([0-9]+)/i", $tax_id, $matches ) )
+                $tax_id = strtoupper( trim( $tax_id ) );
+                if ( preg_match( "/^(" . join( '|', $idsEU ) . ")[\s]?([a-z0-9]+)/i", $tax_id, $matches ) )
                 {
                     if ( $Alpha2 != $matches[1] )
                     {
