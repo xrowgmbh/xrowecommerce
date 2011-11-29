@@ -107,19 +107,6 @@ class eZPaypalGateway extends xrowRedirectEPaymentGateway
                 "&return=$localHost"     . $indexDir . "/xrowecommerce/checkout/" .
                 "&cancel_return=$localHost" . $indexDir . "/xrowecommerce/cart/";
 
-        //__DEBUG__
-            $this->logger->writeTimedString("business       = $business");
-            $this->logger->writeTimedString("item_name      = $itemName");
-            $this->logger->writeTimedString("custom         = $custom");
-            $this->logger->writeTimedString("no_shipping    = $noShipping");
-            $this->logger->writeTimedString("localHost      = $localHost");
-            $this->logger->writeTimedString("amount         = $amount");
-            $this->logger->writeTimedString("currency_code  = $currency");
-            $this->logger->writeTimedString("notify_url     = $localHost"    . $indexDir . "/paypal/notify_url/");
-            $this->logger->writeTimedString("return         = $localHost"    . $indexDir . "/shop/checkout/");
-            $this->logger->writeTimedString("cancel_return  = $localHost"    . $indexDir ."/shop/basket/");
-        //___end____
-
         return $url;
     }
 }

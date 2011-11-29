@@ -2,32 +2,26 @@
 
 class eZPaypalChecker extends xrowPaymentCallbackChecker
 {
-
-    function __construct( $iniFile )
-    {
-        parent::__construct( $iniFile );
-        $this->logger = eZPaymentLogger::CreateForAdd( 'var/log/payment.log' );
-    }
-
     /* Asks paypal's server to validate callback.
      * 
      */
     function requestValidation()
     {
-        $server     = $this->ini->variable( 'ServerSettings', 'ServerName');
-        $serverPort = 443;
-        $requestURI = $this->ini->variable( 'ServerSettings', 'RequestURI');
-        $request    = $this->buildRequestString();
-        eZDebug::writeDebug( $request, __CLASS__ . '::' . __FUNCTION__ );
-        $response   = $this->sendPOSTRequest( $server, $serverPort, $requestURI, $request);
-        eZDebug::writeDebug( $response, __CLASS__ . '::' . __FUNCTION__ );
+        $server     = eZINI::instance('paypal.ini')->variable( 'ServerSettings', 'ServerName');
+        $requestURI = eZINI::instance('paypal.ini')->variable( 'ServerSettings', 'RequestURI');
+        
+        $data   = $this->callbackData;
+        $data['cmd'] = "_notify-validate";
+        
+        eZDebug::writeDebug( $data, __METHOD__ );
+        $response = $this->sendPOSTRequest( $server, $requestURI, $data );
 
         if( $response && strpos( $response, 'VERIFIED' ) !== false )
         {
             return true;
         }
       
-        eZDebug::writeError( 'Invalid response' , __CLASS__ . '::' . __FUNCTION__ );
+        eZDebug::writeError( 'Invalid response ' . $response, __METHOD__ );
         return false;
     }
 
@@ -45,19 +39,6 @@ class eZPaypalChecker extends xrowPaymentCallbackChecker
             return true;
         }
         return false;
-    }
-
-    /* Creates resquest string which is used to 
-     * confirm paypal's callback.
-     */
-    function buildRequestString()
-    {
-        $request = "cmd=_notify-validate";
-        foreach( $this->callbackData as $key => $value )
-        {
-            $request .= "&$key=".urlencode( $value );
-        }
-        return $request;
     }
     
     function handleResponse( $socket )
