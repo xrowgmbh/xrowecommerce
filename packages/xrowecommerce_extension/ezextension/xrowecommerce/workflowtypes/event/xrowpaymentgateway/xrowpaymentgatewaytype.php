@@ -34,7 +34,7 @@ class xrowPaymentGatewayType extends eZWorkflowEventType
     function execute( $process, $event )
     {
         $GLOBALS['xrowPaymentGatewayFailedAttempt'] = true;
-        eZDebug::writeDebug( 'execute ' . __CLASS__ . '::' . __FUNCTION__ );
+        eZDebug::writeDebug( 'execute ', __METHOD__ );
         // Captcha check begin
         $parameters = $process->attribute( 'parameters' );
         $parameters = unserialize( $parameters );
@@ -97,7 +97,7 @@ class xrowPaymentGatewayType extends eZWorkflowEventType
             $process->Template['templateName'] = 'design:workflow/selectgateway.tpl';
             $process->Template['path'] = array( array( 'url' => false, 'text' => ezpI18n::tr( 'extension/xrowecommerce', 'Payment Information' ) ) );
             $process->Template['templateVars'] = array( 
-                'event' => $event 
+                'event' => $event, 'order' => $order
              );
                 
              return eZWorkflowType::STATUS_FETCH_TEMPLATE_REPEAT;
