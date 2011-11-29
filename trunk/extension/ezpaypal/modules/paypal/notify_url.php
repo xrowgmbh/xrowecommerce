@@ -1,10 +1,12 @@
 <?php
 
-$checker = new eZPaypalChecker( 'paypal.ini' );
+eZDebug::writeDebug( 'notify_url.php START' );
+
+$checker = new eZPaypalChecker( );
 
 if ( $checker->createDataFromPOST() )
 {
-    
+    eZDebug::writeDebug( 'createDataFromPOST success' );
     unset( $_POST );
     if ( $checker->requestValidation() && $checker->checkPaymentStatus() )
     {
