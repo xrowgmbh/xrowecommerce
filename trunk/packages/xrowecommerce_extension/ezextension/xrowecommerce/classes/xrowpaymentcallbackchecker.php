@@ -3,24 +3,14 @@
 class xrowPaymentCallbackChecker
 {
 
-    /*!
-        Constructor.
-    */
-    function __construct( $iniFile = 'site.ini' )
-    {
-        $this->logger = eZPaymentLogger::CreateForAdd( 'var/log/payment.log' );
-        $this->ini = eZINI::instance( $iniFile );
-    }
-
-    /*!
-        Parses 'POST' response and create array with received data.
-    */
+    /**
+     * Parses 'POST' response and create array with received data.
+     */
     function createDataFromPOST()
     {
         eZDebug::writeDebug( 'createDataFromPOST' );
         $this->callbackData = array();
         
-        eZSys::removeMagicQuotes();
         foreach ( $_POST as $key => $value )
         {
             $this->callbackData[$key] = $value;
@@ -29,9 +19,9 @@ class xrowPaymentCallbackChecker
         return ( count( $this->callbackData ) > 0 );
     }
 
-    /*!
-        Parses 'GET' response and create array with received data.
-    */
+    /**
+     * Parses 'GET' response and create array with received data.
+     */
     function createDataFromGET()
     {
         $this->callbackData = array();
@@ -51,11 +41,19 @@ class xrowPaymentCallbackChecker
         return ( count( $this->callbackData ) > 0 );
     }
 
-    /*!
-        Sends POST request.
-    */
-    function sendPOSTRequest( $server, $port = 443, $request, $timeout = 30, $serverMethod = 'POST' )
+    /**
+     * Sends POST request.
+     */
+    function sendPOSTRequest( $server, $requestURI = '/', $data = array(), $port = 443, $serverMethod = 'POST', $timeout = 30 )
     {
+        if ( ! empty( $data ) and is_array( $data ) )
+        {
+            foreach ( $data as $key => $value )
+            {
+                $data[$key] = "$key=" . urlencode( $value );
+            }
+            $request = join( '&', $data );
+        }
         $pos = strpos( $server, '://' );
         if ( $pos !== false )
         {
@@ -65,20 +63,23 @@ class xrowPaymentCallbackChecker
         {
             $fp = fsockopen( 'ssl://' . $server, $port, $errno, $errstr, $timeout );
         }
-        else {
+        else
+        {
             $fp = fsockopen( $server, $port, $errno, $errstr, $timeout );
         }
-        if( $serverMethod == 'POST' ){
-        	$m = 'POST';
-        }else {
-        	$m = 'GET';
+        if ( $serverMethod == 'POST' )
+        {
+            $m = 'POST';
+        }
+        else
+        {
+            $m = 'GET';
         }
         
         if ( $fp )
         {
-            $theCall = "$m $request HTTP/1.0\r\n" . "Host: $server\r\n" . "Content-Type: application/x-www-form-urlencoded\r\n" . "Content-Length: " . strlen( $request ) . "\r\n" . "Connection: Close\r\n" . "\r\n" . $request . "\r\n\r\n";
-            
-            if ( ! fputs( $fp, "$theCall", strlen( $theCall ) ) )
+            $theCall = "$m $requestURI HTTP/1.0\r\n" . "Host: $server\r\n" . "Content-Type: application/x-www-form-urlencoded\r\n" . "Content-Length: " . strlen( $request ) . "\r\n" . "Connection: Close\r\n" . "\r\n" . $request . "\r\n\r\n";
+            if ( ! fputs( $fp, $theCall, strlen( $theCall ) ) )
             {
                 eZDebug::writeError( "Could not write to server socket: $server:$port", 'send Request failed' );
                 return null;
@@ -130,31 +131,47 @@ class xrowPaymentCallbackChecker
     */
     function approvePayment( $continueWorkflow = true )
     {
-        eZDebug::writeDebug( "START" );
+        eZDebug::writeDebug( "START", __METHOD__ );
         if ( $this->paymentObject )
         {
-            eZDebug::writeDebug( "before approve(" );
+            eZDebug::writeDebug( "before approve", __METHOD__ );
             $this->paymentObject->approve();
-            eZDebug::writeDebug(   var_export($this->paymentObject, true). "before store(" );
+            eZDebug::writeDebug( var_export( $this->paymentObject, true ) . "before store", __METHOD__ );
             $this->paymentObject->store();
+            
+                    
+            $order = eZOrder::fetch( $this->paymentObject->OrderID );
+            
+            $xmlstring = $order->attribute( 'data_text_1' );
+            if ( $xmlstring != null )
+            {
+                $doc = new DOMDocument();
+                $doc->loadXML( $xmlstring );
+                $root = $doc->documentElement;
+                $invoice = $doc->createElement( xrowECommerce::ACCOUNT_KEY_PAYMENTMETHOD, $this->paymentObject->PaymentString );
+                $root->appendChild( $invoice );
+                $order->setAttribute( 'data_text_1', $doc->saveXML() );
+                $order->store();
+            }
 
-            eZDebug::writeDebug( 'payment was approved' );
-
+            eZDebug::writeDebug( 'payment was approved', __METHOD__ );
+            
             if ( $this->getFieldValue( 'custom' ) )
             {
                 $data = unserialize( $this->getFieldValue( 'custom' ) );
                 $workflowID = $data['process_id'];
             }
-            eZDebug::writeDebug( " continueWorkflow( $workflowID" );
+            eZDebug::writeDebug( " continueWorkflow( $workflowID )", __METHOD__ );
             return ( $continueWorkflow ? self::continueWorkflow( $workflowID ) : null );
         }
         eZDebug::writeError( "payment object is not set", 'approvePayment failed' );
         return null;
     }
+
     static function continueWorkflow( $workflowProcessID )
     {
-        $operationResult =  null;
-        $theProcess      = eZWorkflowProcess::fetch( $workflowProcessID );
+        $operationResult = null;
+        $theProcess = eZWorkflowProcess::fetch( $workflowProcessID );
         if ( $theProcess != null )
         {
             //restore memento and run it
@@ -164,34 +181,30 @@ class xrowPaymentCallbackChecker
                 eZDebug::writeError( $bodyMemento, "Empty body memento in workflow.php" );
                 return $operationResult;
             }
-            $bodyMementoData =  $bodyMemento->data();
-            $mainMemento     = $bodyMemento->attribute( 'main_memento' );
-            if ( !$mainMemento )
+            $bodyMementoData = $bodyMemento->data();
+            $mainMemento = $bodyMemento->attribute( 'main_memento' );
+            if ( ! $mainMemento )
             {
                 return $operationResult;
             }
-
+            
             $mementoData = $bodyMemento->data();
             $mainMementoData = $mainMemento->data();
             $mementoData['main_memento'] = $mainMemento;
             $mementoData['skip_trigger'] = false;
             $mementoData['memento_key'] = $theProcess->attribute( 'memento_key' );
             $bodyMemento->remove();
-
+            
             $operationParameters = array();
             if ( isset( $mementoData['parameters'] ) )
                 $operationParameters = $mementoData['parameters'];
-eZDebug::writeDebug(var_export( $mementoData, true ), __CLASS__ . "::" . __FUNCTION__ );
-            $operationResult = eZOperationHandler::execute( $mementoData['module_name'],
-                                                            $mementoData['operation_name'],
-                                                            $operationParameters,
-                                                            $mementoData );
-
-            eZDebug::writeDebug(var_export( $operationResult, true ), __CLASS__ . "::" . __FUNCTION__ );
+            eZDebug::writeDebug( var_export( $mementoData, true ), __METHOD__ );
+            $operationResult = eZOperationHandler::execute( $mementoData['module_name'], $mementoData['operation_name'], $operationParameters, $mementoData );
+            eZDebug::writeDebug( var_export( $operationResult, true ), __METHOD__ );
         }
-        else 
+        else
         {
-            eZDebug::writeError( "Continue Workflow failed", __CLASS__ . "::" . __FUNCTION__ );
+            eZDebug::writeError( "Continue Workflow failed", __METHOD__ );
         }
         return $operationResult;
     }
@@ -217,11 +230,11 @@ eZDebug::writeDebug(var_export( $mementoData, true ), __CLASS__ . "::" . __FUNCT
     function checkServerIP()
     {
         $remoteHostIP = eZSys::serverVariable( 'REMOTE_ADDR' );
-        $serverIPList = $this->ini->variable( 'ServerSettings', 'ServerIP' );
+        $serverIPList = eZINI::instance()->variable( 'ServerSettings', 'ServerIP' );
         
         if ( $serverIPList === false )
         {
-            $this->logger->writeTimedString( "Skipped the IP check because ServerIP is not set in the settings. Remote host is: $remoteHostIP.", 'checkServerIP' );
+            eZDebug::writeDebug( "Skipped the IP check because site.ini[ServerSettings].ServerIP is not set in the settings. Remote host is: $remoteHostIP.", __METHOD__ );
             return true;
         }
         
@@ -230,8 +243,8 @@ eZDebug::writeDebug(var_export( $mementoData, true ), __CLASS__ . "::" . __FUNCT
             return true;
         }
         
-        $this->logger->writeTimedString( "server with ip = $remoteHostIP does not exist.", 'checkServerIP failed' );
-        $this->logger->writeTimedString( $serverIPList, 'serverIPList from ini file is' );
+        eZDebug::writeDebug( "server with ip = $remoteHostIP does not exist.", __METHOD__ );
+        eZDebug::writeDebug( ' serverIPList from ini file is ' . join( ',', $serverIPList ), __METHOD__ );
         
         return false;
     }
@@ -300,8 +313,6 @@ eZDebug::writeDebug(var_export( $mementoData, true ), __CLASS__ . "::" . __FUNCT
     {
         throw new Exception( 'You must override this function.', 'handlePOSTResponse failed' );
     }
-    
-    public $logger;
     public $ini;
     public $callbackData;
     public $paymentObject;

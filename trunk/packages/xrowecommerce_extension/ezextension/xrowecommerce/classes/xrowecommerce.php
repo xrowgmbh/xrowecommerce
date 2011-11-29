@@ -31,7 +31,7 @@ class xrowECommerce
      * @return array First element country, Second state
      */
     
-    static function checkOrderAccess($module, $OrderID)
+    static function checkOrderAccess( $module, $OrderID )
     {
         $user = eZUser::currentUser();
         $order = eZOrder::fetch( $OrderID );
@@ -40,7 +40,6 @@ class xrowECommerce
         
         $accessToAdministrate = $user->hasAccessTo( 'shop', 'administrate' );
         $accessToAdministrateWord = $accessToAdministrate['accessWord'];
-        
         
         $accessToBuy = $user->hasAccessTo( 'shop', 'buy' );
         $accessToBuyWord = $accessToBuy['accessWord'];
@@ -53,7 +52,7 @@ class xrowECommerce
         {
             if ( $user->id() == $ini->variable( 'UserSettings', 'AnonymousUserID' ) )
             {
-                if( $OrderID != $http->sessionVariable( 'UserOrderID' ) )
+                if ( $OrderID != $http->sessionVariable( 'UserOrderID' ) )
                 {
                     $access = false;
                 }
@@ -73,20 +72,22 @@ class xrowECommerce
                     $access = false;
                 }
             }
-        } else 
+        }
+        else
         {
             $access = false;
         }
         return $access;
     }
+
     static function onload()
     {
-    if ( !eZPreferences::isStoredInSession( 'user_preferred_country' ) and eZINI::instance( 'xrowecommerce.ini' )->hasVariable( 'ShopAccountHandlerDefaults', 'DefaultCountryCode' ) )
-{
-    eZPreferences::setValue( 'user_preferred_country', eZINI::instance( 'xrowecommerce.ini' )->variable( 'ShopAccountHandlerDefaults', 'DefaultCountryCode' ) );
-}
+        if ( ! eZPreferences::isStoredInSession( 'user_preferred_country' ) and eZINI::instance( 'xrowecommerce.ini' )->hasVariable( 'ShopAccountHandlerDefaults', 'DefaultCountryCode' ) )
+        {
+            eZPreferences::storeInSession( 'user_preferred_country', eZINI::instance( 'xrowecommerce.ini' )->variable( 'ShopAccountHandlerDefaults', 'DefaultCountryCode' ) );
+        }
     }
-    
+
     static function merchantsLocations()
     {
         $ini = eZINI::instance( 'xrowecommerce.ini' );
@@ -117,7 +118,7 @@ class xrowECommerce
     {
         $return = array();
         $xmlstring = $order->attribute( 'data_text_1' );
-
+        
         $xml = new SimpleXMLElement( $xmlstring );
         if ( $xml )
         {
@@ -410,6 +411,87 @@ class xrowECommerce
     }
 
     /**
+     * Check if a country is in the EU
+     *
+     * @param string $country Country Code
+     * @return boolean
+     */
+    static function isEU( $country )
+    {
+        if ( strlen( $country ) == 2 )
+        {
+            $ids = array( 
+                "AT" , 
+                "BE" , 
+                "BG" , 
+                "CY" , 
+                "CZ" , 
+                "DE" , 
+                "DK" , 
+                "EE" , 
+                "ES" , 
+                "FI" , 
+                "FR" , 
+                "GB" , 
+                "HU" , 
+                "IE" , 
+                "IT" , 
+                "LT" , 
+                "LU" , 
+                "LV" , 
+                "MT" , 
+                "NL" , 
+                "PL" , 
+                "PT" , 
+                "RO" , 
+                "SE" , 
+                "SI" , 
+                "SK" 
+            );
+        }
+        else
+        {
+            $ids = array( 
+                "AUT" , 
+                "BEL" , 
+                "BGR" , 
+                "CYP" , 
+                "CZE" , 
+                "DEU" , 
+                "DNK" , 
+                "EST" , 
+                "ESP" , 
+                "FIN" , 
+                "FRA" , 
+                "GBR" , 
+                "HUN" , 
+                "IRL" , 
+                "ITA" , 
+                "LTU" , 
+                "LUX" , 
+                "LVA" , 
+                "MLT" , 
+                "NLD" , 
+                "POL" , 
+                "PRT" , 
+                "ROU" , 
+                "SWE" , 
+                "SVN" , 
+                "SVK" 
+            );
+        }
+        
+        if ( in_array( $country, $ids ) )
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    /**
      * Invoke the VIES service to check an EU VAT number
      *
      * @param string $cc Country Code
@@ -419,8 +501,11 @@ class xrowECommerce
     static function checkVat( $cc, $vat )
     {
         $wsdl = 'http://ec.europa.eu/taxation_customs/vies/checkVatService.wsdl';
-
-        $vies = new SoapClient( $wsdl, array( 'connection_timeout', 5 ) );
+        
+        $vies = new SoapClient( $wsdl, array( 
+            'connection_timeout' , 
+            5 
+        ) );
         
         $nii = new checkVat( $cc, $vat );
         
@@ -441,7 +526,7 @@ class xrowECommerce
                 'TIMEOUT' => 'The Member State service could not be reached in time, try again later or with another Member State' , 
                 'SERVER_BUSY' => 'Server Busy. The service cannot process your request. Try again later.' 
             );
-	    if( isset( $faults[$ret]  ) )
+            if ( isset( $faults[$ret] ) )
             {
                 throw new Exception( $faults[$ret] );
             }
@@ -534,25 +619,25 @@ class xrowECommerce
             return false;
         }
     }
-    
+
     /**
-	 * Encode a string
-	 * @param string $text
+     * Encode a string
+     * @param string $text
      * @return string
      */
     public static function encodeString( $text )
     {
-    	return htmlspecialchars( $text, ENT_QUOTES, 'UTF-8' );
+        return htmlspecialchars( $text, ENT_QUOTES, 'UTF-8' );
     }
 
     /**
-	 * Decode a string
-	 * @param string $text
+     * Decode a string
+     * @param string $text
      * @return string
      */
-	public static function decodeString( $text )
+    public static function decodeString( $text )
     {
-    	return html_entity_decode( $text, ENT_QUOTES, 'UTF-8' );
+        return html_entity_decode( $text, ENT_QUOTES, 'UTF-8' );
     }
 }
 

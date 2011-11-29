@@ -128,81 +128,6 @@ class xrowECommerceVATHandler
         return $percentage;
     }
 
-    function isEU( $country )
-    {
-        if ( strlen( $country ) == 2 )
-        {
-            $ids = array( 
-                "AT" , 
-                "BE" , 
-                "BG" , 
-                "CY" , 
-                "CZ" , 
-                "DE" , 
-                "DK" , 
-                "EE" , 
-                "ES" , 
-                "FI" , 
-                "FR" , 
-                "GB" , 
-                "HU" , 
-                "IE" , 
-                "IT" , 
-                "LT" , 
-                "LU" , 
-                "LV" , 
-                "MT" , 
-                "NL" , 
-                "PL" , 
-                "PT" , 
-                "RO" , 
-                "SE" , 
-                "SI" , 
-                "SK" 
-            );
-        }
-        else
-        {
-            $ids = array( 
-                "AUT" , 
-                "BEL" , 
-                "BGR" , 
-                "CYP" , 
-                "CZE" , 
-                "DEU" , 
-                "DNK" , 
-                "EST" , 
-                "ESP" , 
-                "FIN" , 
-                "FRA" , 
-                "GBR" , 
-                "HUN" , 
-                "IRL" , 
-                "ITA" , 
-                "LTU" , 
-                "LUX" , 
-                "LVA" , 
-                "MLT" , 
-                "NLD" , 
-                "POL" , 
-                "PRT" , 
-                "ROU" , 
-                "SWE" , 
-                "SVN" , 
-                "SVK" 
-            );
-        }
-        
-        if ( in_array( $country, $ids ) )
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-    }
-
     function getTAX( $country, $state = false, $taxid = false )
     {
         $percentage = 0;
@@ -225,7 +150,7 @@ class xrowECommerceVATHandler
             if ( ! $matched )
             {
                 
-                if( !$taxid and self::isEU( $country ) )
+                if( !$taxid and xrowECommerce::isEU( $country ) )
                 {
                     $percentage = $taxmap[$merchantitem[0]];
                     $matched = true;

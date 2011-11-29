@@ -11,7 +11,7 @@ if ( $order instanceof eZOrder )
     if ( $order->attribute( 'is_temporary' ) )
     {
 
-        $paymentObj = eZPaymentObject::fetchByOrderID( $orderID );
+        $paymentObj = xrowPaymentObject::fetchByOrderID( $orderID );
         if ( $paymentObj != null )
         {
             $startTime = time();
@@ -86,6 +86,7 @@ if ( $order instanceof eZOrder )
         }
         else
         {
+            die("sdasd");
             if ( $order->attribute( 'is_temporary' ) == 0 )
             {
                 $http->removeSessionVariable( "CheckoutAttempt" );

@@ -31,19 +31,9 @@ class xrowRedirectEPaymentGateway extends xrowEPaymentGateway
 	    return 0.00;
 	}
 
-    /*!
-    Constructor.
-    */
-    function eZRedirectGateway()
-    {
-        //__DEBUG__
-        $this->logger   = eZPaymentLogger::CreateForAdd( "var/log/eZRedirectGateway.log" );
-        $this->logger->writeTimedString( 'eZRedirectGateway::eZRedirectGateway()' );
-        //___end____
-    }
-
     function execute( $process, $event )
     {
+        
         //__DEBUG__
         $this->logger->writeTimedString("execute");
         //___end____
@@ -59,7 +49,7 @@ class xrowRedirectEPaymentGateway extends xrowEPaymentGateway
                 $this->logger->writeTimedString("case eZRedirectGateway::OBJECT_CREATED");
                 //___end____
 
-                $thePayment = eZPaymentObject::fetchByProcessID( $processID );
+                $thePayment = xrowPaymentObject::fetchByProcessID( $processID );
                 if ( is_object( $thePayment ) && $thePayment->approved() )
                 {
                     //__DEBUG__
@@ -104,9 +94,8 @@ class xrowRedirectEPaymentGateway extends xrowEPaymentGateway
             }break;
         }
 
-        //__DEBUG__
         $this->logger->writeTimedString("return eZWorkflowType::STATUS_REDIRECT_REPEAT");
-        //___end____
+
         return eZWorkflowType::STATUS_REDIRECT_REPEAT;
     }
 
@@ -120,16 +109,8 @@ class xrowRedirectEPaymentGateway extends xrowEPaymentGateway
     */
     function cleanup( $process, $event )
     {
-        //__DEBUG__
         $this->logger->writeTimedString("cleanup");
-        //___end____
 
-        $paymentObj = eZPaymentObject::fetchByProcessID( $process->attribute( 'id' ) );
-
-        if ( is_object( $paymentObj ) )
-        {
-            $paymentObj->remove();
-        }
     }
 
     /*!
