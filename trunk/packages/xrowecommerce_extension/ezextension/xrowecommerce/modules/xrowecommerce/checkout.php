@@ -86,7 +86,6 @@ if ( $order instanceof eZOrder )
         }
         else
         {
-            die("sdasd");
             if ( $order->attribute( 'is_temporary' ) == 0 )
             {
                 $http->removeSessionVariable( "CheckoutAttempt" );
