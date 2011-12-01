@@ -839,7 +839,7 @@ if ( $module->isCurrentAction( 'Store' ) )
             }
         }
         
-        if ( $fields['s_phone']['enabled'] == true )
+        if ( $fields['s_phone']['enabled'] == true and $fields['s_phone']['required'] == true)
         {
             $s_phone = trim( $http->postVariable( 's_phone' ) );
             if ( $s_phone == '' )

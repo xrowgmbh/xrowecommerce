@@ -17,14 +17,16 @@ class xrowPaymentObject extends eZPersistentObject
      \static
     Creates new object.
     */
-    static function createNew( $orderID, $paymentType = 'xrowEPayment', $data = array() )
+    static function createNew( $workflowprocessID, $orderID, $paymentType = 'xrowEPayment', $data = array() )
     {
         return new xrowPaymentObject( array( 
             'order_id' => $orderID , 
-            'payment_string' => $paymentType ,
-            'data' => serialize( $data )
+            'workflowprocess_id'  => $workflowprocessID,
+            'payment_string' => $paymentType , 
+            'data' => serialize( $data ) 
         ) );
     }
+
     function approve()
     {
         $this->setAttribute( 'status', self::STATUS_APPROVED );
@@ -35,7 +37,7 @@ class xrowPaymentObject extends eZPersistentObject
     {
         return ( $this->attribute( 'status' ) == self::STATUS_APPROVED );
     }
-    
+
     function modifyStatus( $id = false )
     {
         switch ( $id )
@@ -82,6 +84,15 @@ class xrowPaymentObject extends eZPersistentObject
                     'datatype' => 'integer' , 
                     'default' => 0 , 
                     'required' => true 
+                ) , 
+                'workflowprocess_id' => array( 
+                    'name' => 'WorkflowProcessID' , 
+                    'datatype' => 'integer' , 
+                    'default' => 0 , 
+                    'required' => true , 
+                    'foreign_class' => 'eZWorkflowProcess' , 
+                    'foreign_attribute' => 'id' , 
+                    'multiplicity' => '1..*' 
                 ) , 
                 'data' => array( 
                     'name' => 'Data' , 
@@ -157,9 +168,51 @@ class xrowPaymentObject extends eZPersistentObject
     */
     static function fetchByProcessID( $workflowprocessID )
     {
+        //@TODO rewrite
         return eZPersistentObject::fetchObject( xrowPaymentObject::definition(), null, array( 
             'workflowprocess_id' => $workflowprocessID 
         ) );
+    }
+
+    /*!
+     \static
+    Continues workflow after approvement.
+    */
+    static function continueWorkflow( $workflowProcessID )
+    {
+        $operationResult = null;
+        $theProcess = eZWorkflowProcess::fetch( $workflowProcessID );
+        if ( $theProcess != null )
+        {
+            //restore memento and run it
+            $bodyMemento = eZOperationMemento::fetchChild( $theProcess->attribute( 'memento_key' ) );
+            if ( $bodyMemento === null )
+            {
+                eZDebug::writeError( $bodyMemento, "Empty body memento in workflow.php" );
+                return $operationResult;
+            }
+            $bodyMementoData = $bodyMemento->data();
+            $mainMemento = $bodyMemento->attribute( 'main_memento' );
+            if ( ! $mainMemento )
+            {
+                return $operationResult;
+            }
+            
+            $mementoData = $bodyMemento->data();
+            $mainMementoData = $mainMemento->data();
+            $mementoData['main_memento'] = $mainMemento;
+            $mementoData['skip_trigger'] = false;
+            $mementoData['memento_key'] = $theProcess->attribute( 'memento_key' );
+            $bodyMemento->remove();
+            
+            $operationParameters = array();
+            if ( isset( $mementoData['parameters'] ) )
+                $operationParameters = $mementoData['parameters'];
+            
+            $operationResult = eZOperationHandler::execute( $mementoData['module_name'], $mementoData['operation_name'], $operationParameters, $mementoData );
+        }
+        
+        return $operationResult;
     }
 }
 ?>

@@ -59,9 +59,9 @@
 <h3>Please select one of the following users:</h3>
 <table class="list" cellspacing="0">
 <tr>
-	<th class="wide">{'Link'|i18n( 'extension/xrowecommerce')}</th>
-	<th class="wide">{'ID'|i18n( 'extension/xrowecommerce')}</th>
-	<th class="wide">{'E-mail'|i18n( 'extension/xrowecommerce')}</th>
+    <th class="wide">{'Link'|i18n( 'extension/xrowecommerce')}</th>
+    <th class="wide">{'ID'|i18n( 'extension/xrowecommerce')}</th>
+    <th class="wide">{'E-mail'|i18n( 'extension/xrowecommerce')}</th>
 </tr>
 {foreach $userid as $email_item}
     <tr><td><a href="/shop/customerorderview/{$email_item.user_id}/{$email}">{'Show user'|i18n( 'extension/xrowecommerce')}</a></td><td>{if $email_item.user_id|eq(10)}(anonymous){else}{$email_item.user_id}{/if}</td><td>{$email}</td></tr>
@@ -136,16 +136,16 @@
 <table class="list" cellspacing="0">
 <tr>
     <th class="tight"><img src={'toggle-button-16x16.gif'|ezimage} alt="{'Invert selection.'|i18n( 'design/admin/shop/orderlist' )}" title="{'Invert selection.'|i18n( 'design/admin/shop/orderlist' )}" onclick="ezjs_toggleCheckboxes( document.orderlist, 'OrderIDArray[]' ); return false;" /></th>
-	<th class="tight">{'ID'|i18n( 'design/admin/shop/orderlist' )}</th>
-	<th class="wide">{'Customer'|i18n( 'design/admin/shop/orderlist' )}</th>
-	<th class="tight">{'Total (ex. VAT)'|i18n( 'design/admin/shop/orderlist' )}</th>
-	<th class="tight">{'Total (inc. VAT)'|i18n( 'design/admin/shop/orderlist' )}</th>
-	<th class="wide">{'Time'|i18n( 'design/admin/shop/orderlist' )}</th>
-	<th class="wide">{'Order status'|i18n( 'design/admin/shop/orderlist' )}</th>
+    <th class="tight">{'ID'|i18n( 'design/admin/shop/orderlist' )}</th>
+    <th class="wide">{'Customer'|i18n( 'design/admin/shop/orderlist' )}</th>
+    <th class="tight">{'Total (ex. VAT)'|i18n( 'design/admin/shop/orderlist' )}</th>
+    <th class="tight">{'Total (inc. VAT)'|i18n( 'design/admin/shop/orderlist' )}</th>
+    <th class="wide">{'Time'|i18n( 'design/admin/shop/orderlist' )}</th>
+    <th class="wide">{'Order status'|i18n( 'design/admin/shop/orderlist' )}</th>
 {if $show_payment_status}
-	<th class="wide">{'Payment status'|i18n( 'design/admin/shop/orderlist' )}</th>
+    <th class="wide">{'Payment status'|i18n( 'design/admin/shop/orderlist' )}</th>
 {/if}
-	<th class="wide">{'Actions'|i18n( 'design/admin/shop/orderlist' )}</th>
+    <th class="wide">{'Actions'|i18n( 'design/admin/shop/orderlist' )}</th>
 </tr>
 {foreach $order_list as $order sequence array( bglight, bgdark ) as $seq}
 
@@ -160,23 +160,23 @@
 
 <tr class="{$seq}">
     <td><input type="checkbox" name="OrderIDArray[]" value="{$order.id}" title="{'Select order for removal.'|i18n( 'design/admin/shop/orderlist' )}" /></td>
-	<td><a href={concat( '/shop/orderview/', $order.id, '/' )|ezurl}>{$order.order_nr}</a></td>
-	<td>
-	{if is_null($order.account_name)}
-	    <s><i>{'( removed )'|i18n( 'design/admin/shop/orderlist' )}</i></s>
-	{else}
-	    <a href={concat( '/shop/customerorderview/', $order.user_id, '/', $order.account_email )|ezurl}>{$order.account_name}</a>
-	{/if}
-	</td>
+    <td><a href={concat( '/shop/orderview/', $order.id, '/' )|ezurl}>{$order.order_nr}</a></td>
+    <td>
+    {if is_null($order.account_name)}
+        <s><i>{'( removed )'|i18n( 'design/admin/shop/orderlist' )}</i></s>
+    {else}
+        <a href={concat( '/shop/customerorderview/', $order.user_id, '/', $order.account_email )|ezurl}>{$order.account_name}</a>
+    {/if}
+    </td>
 
 
     {* NOTE: These two attribute calls are slow, they cause the system to generate lots of SQLs.
              The reason is that their values are not cached in the order tables *}
-	<td class="number" align="right">{$order.total_ex_vat|l10n( 'currency', $locale, $symbol )}</td>
-	<td class="number" align="right">{$order.total_inc_vat|l10n( 'currency', $locale, $symbol )}</td>
+    <td class="number" align="right">{$order.total_ex_vat|l10n( 'currency', $locale, $symbol )}</td>
+    <td class="number" align="right">{$order.total_inc_vat|l10n( 'currency', $locale, $symbol )}</td>
 
-	<td>{$order.created|l10n( shortdatetime )}</td>
-	<td>
+    <td>{$order.created|l10n( shortdatetime )}</td>
+    <td>
 
     {if $order.status_modification_list|count|gt( 0 )}
         {set can_apply=true()}
@@ -193,9 +193,9 @@
         {$order.status_name|wash}
     {/if}
 
-	</td>
-	   {if $show_payment_status}
-	   <td>
+    </td>
+       {if $show_payment_status}
+       <td>
         {def $stati = hash( '0', 'unpaid'|i18n( 'design/admin/shop/orderlist' ),  '1', 'paid'|i18n( 'design/admin/shop/orderlist' ) )}
         {def $payment = fetch( 'xrowecommerce', 'payment_status', hash( 'id', $order.id ) )}
         <select {if or( $payment.status|eq('1'), $payment.automatic_status )} disabled{/if} name="PaymentStatusList[{$order.id}]" title="Payment via {$payment.payment_string}">
@@ -242,11 +242,11 @@
         {undef $payment $stati}
     </td>
     {/if}
-	<td>
-    <a href={concat( 'xrowecommerce/invoiceprint/', $order.id )|ezurl} target="_blank"><img src={'printer.png'|ezimage} height="28" width="28" alt="" title="{'Print invoice and packaging slip'|i18n( 'design/admin/shop/orderlist' )}"></a>
-	<a href={concat( 'xrowecommerce/shippingplanprint/', $order.id )|ezurl} target="_blank"><img src={'shipping_plan.png'|ezimage} height="28" width="28" alt="" title="{'Print shipping plan'|i18n( 'design/admin/shop/orderlist' )}"></a>
-	<a href={concat( 'orderedit/edit/', $order.order_nr)|ezurl}><img src={'images/txt2.png'|ezdesign}  alt="Edit shippingcosts" title="Edit shippingcosts"></a>
-	</td>
+    <td>
+        <a href={concat( 'xrowecommerce/invoiceprint/', $order.id )|ezurl} target="_blank"><img src={'printer.png'|ezimage} height="28" width="28" alt="" title="{'Print invoice and packaging slip'|i18n( 'design/admin/shop/orderlist' )}"></a>
+        <a href={concat( 'xrowecommerce/shippingplanprint/', $order.id )|ezurl} target="_blank"><img src={'shipping_plan.png'|ezimage} height="28" width="28" alt="" title="{'Print shipping plan'|i18n( 'design/admin/shop/orderlist' )}"></a>
+        <a href={concat( 'orderedit/edit/', $order.order_nr)|ezurl}><img src={'images/txt2.png'|ezdesign}  alt="Edit shippingcosts" title="Edit shippingcosts"></a>
+    </td>
 </tr>
 {/foreach}
 </table>

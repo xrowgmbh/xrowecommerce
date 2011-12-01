@@ -134,7 +134,7 @@ class xrowPaymentGatewayType extends eZWorkflowEventType
             
             $order = eZOrder::fetch( $parameters["order_id"] );
             $accountInfo = $order->accountInformation();
-            $payment = xrowPaymentObject::createNew( $parameters["order_id"], $accountInfo[xrowECommerce::ACCOUNT_KEY_PAYMENTMETHOD] );
+            $payment = xrowPaymentObject::createNew( $process->ID, $parameters["order_id"], $accountInfo[xrowECommerce::ACCOUNT_KEY_PAYMENTMETHOD] );
             $payment->store();
         }
         return $status;
