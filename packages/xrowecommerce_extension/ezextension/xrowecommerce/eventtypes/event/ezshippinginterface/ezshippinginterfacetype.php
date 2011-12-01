@@ -344,7 +344,6 @@ class eZShippingInterfaceType extends eZWorkflowEventType
                 }
                 $description = $gateway->getDescription( $shippingmethod );
                 $cost = $gateway->getPrice( $shippingmethod );
-                
                 if ( $freeshippingproduct )
                 {
                     $cost = 0.00;

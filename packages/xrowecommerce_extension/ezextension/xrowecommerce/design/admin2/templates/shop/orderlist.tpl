@@ -194,7 +194,7 @@
             <select name="StatusList[{$order.id}]">
             {foreach $order.status_modification_list as $Status}
                 <option value="{$Status.status_id}"
-                    {if ezini( 'StatusSettings', concat( 'StatusDisallowList-', $order.status_id) ,'xrowecommerce.ini' )|contains($Status.status_id)} disabled="disabled"{/if}{if eq( $Status.status_id, $order.status_id )} selected="selected"{/if}>
+                    {if and(ezini_hasvariable( 'StatusSettings', concat( 'StatusDisallowList-', $order.status_id) ,'xrowecommerce.ini' ), ezini( 'StatusSettings', concat( 'StatusDisallowList-', $order.status_id) ,'xrowecommerce.ini' )|contains($Status.status_id) )} disabled="disabled"{/if}{if eq( $Status.status_id, $order.status_id )} selected="selected"{/if}>
                     {$Status.name|wash}</option>
             {/foreach}
             </select>
