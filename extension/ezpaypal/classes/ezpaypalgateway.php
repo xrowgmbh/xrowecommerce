@@ -17,20 +17,7 @@ class eZPaypalGateway extends xrowRedirectEPaymentGateway
     function costs()
     {
     }
-    /*!
-        Creates new eZPaypalGateway object.
-    */
-    function createPaymentObject( $processID, $orderID )
-    {
-        $list = eZPersistentObject::fetchObjectList( xrowPaymentObject::definition(), null, array( 
-            'order_id' => $orderID, 'status' => xrowPaymentObject::STATUS_NOT_APPROVED
-        ) );
-        foreach($list as $item)
-        {
-            $item->remove();
-        }
-        return xrowPaymentObject::createNew( $orderID, eZPaypalGateway::GATEWAY_STRING, array( 'workflowprocessid', $processID ) );
-    }
+
 
     /*!
         Creates redirectional url to paypal server.
