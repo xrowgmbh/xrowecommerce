@@ -1,3 +1,5 @@
+<?php /* #?ini charset="utf-8"?
+
 [Leftmenu_shop]
 LinkNames[tin]=Tax identification
 LinkNames[taxes]=Order statistics
@@ -19,3 +21,5 @@ Links[attributelist]=productvariation/attributelist
 Links[templatelist]=productvariation/templatelist
 Links[priceimport]=xrowecommerce/priceimport
 Links[priceexport]=xrowecommerce/priceexport
+
+*/ ?>

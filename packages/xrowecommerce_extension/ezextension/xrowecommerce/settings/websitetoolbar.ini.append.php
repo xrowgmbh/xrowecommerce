@@ -1,3 +1,4 @@
+<?php /* #?ini charset="utf-8"?
 
 [WebsiteToolbarSettings]
 AvailableForClasses[]=xrow_product
@@ -8,3 +9,5 @@ ContentClassContainers[]=xrow_product_category
 
 ODFDisplayClasses[]=xrow_product
 ODFDisplayClasses[]=xrow_product_category
+
+*/ ?>

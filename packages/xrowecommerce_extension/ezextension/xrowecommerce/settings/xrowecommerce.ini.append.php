@@ -1,4 +1,5 @@
 <?php /* #?ini charset="utf-8"?
+
 [Fields]
 company_name[required]=false
 company_name[enabled]=true
@@ -228,12 +229,9 @@ ExportPriceLanguage=
 
 # only for xrowproductvariation
 ExportVariationFieldArray[]
-#ExportVariationFieldArray[h�he]=h�he
-#ExportVariationFieldArray[hoehe]=h�he
-#ExportVariationFieldArray[length]=l�nge
-#ExportVariationFieldArray[laenge]=l�nge
-#ExportVariationFieldArray[depth]=breite
-#ExportVariationFieldArray[tiefe]=breite
+#ExportVariationFieldArray[height]=height
+#ExportVariationFieldArray[length]=length
+#ExportVariationFieldArray[depth]=depth
 
 # Name of the description field
 DescField=description
@@ -241,17 +239,17 @@ DescField=description
 # export these attributes
 #GoogleAttributes[]
 #GoogleAttributes[id]=id
-#GoogleAttributes[h�he]=h�he
-#GoogleAttributes[l�nge]=l�nge
-#GoogleAttributes[breite]=breite
-#GoogleAttributes[preis]=preis
-#GoogleAttributes[bild_url]=bild_url
+#GoogleAttributes[height]=height
+#GoogleAttributes[length]=length
+#GoogleAttributes[depth]=depth
+#GoogleAttributes[price]=price
+#GoogleAttributes[image_url]=image_url
 
 #host for links
 #BaseURL=www.example.com
 
 #extended links with this siteaccess
-#ExportSiteaccess=/ger
+#ExportSiteaccess=/eng
 #input of product_type attribute
 GoogleProductType=new
 

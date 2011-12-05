@@ -7,4 +7,5 @@ ReturnType=NodeID
 TopLevelNodes[]
 TopLevelNodes[]=content
 TopLevelNodes[]=media
+
 */ ?>
