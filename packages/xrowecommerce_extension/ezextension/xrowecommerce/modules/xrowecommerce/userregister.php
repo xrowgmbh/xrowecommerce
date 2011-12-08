@@ -447,7 +447,7 @@ if ( $module->isCurrentAction( 'Store' ) )
     if ( $fields['state']['enabled'] == true and $fields['state']['required'] == true )
     {
         $state = trim( $http->postVariable( 'state' ) );
-        if ( $state == '' || ! xrowGeonames::getSubdivisionName( $country, $state ) )
+        if ( count( xrowGeonames::getSubdivisions( $country ) ) > 0 && ( $state == '' || ! xrowGeonames::getSubdivisionName( $country, $state ) ) )
         {
             $inputIsValid = false;
             $fields['state']['errors'][0] = ezpI18n::tr( 'extension/xrowecommerce', 'No billing state has been selected.' );
@@ -832,14 +832,14 @@ if ( $module->isCurrentAction( 'Store' ) )
         if ( $fields['s_state']['enabled'] == true and $fields['s_state']['required'] == true )
         {
             $s_state = trim( $http->postVariable( 's_state' ) );
-            if ( $s_state == '' || ! xrowGeonames::getSubdivisionName( $s_country, $s_state ) )
+            if ( count( xrowGeonames::getSubdivisions( $s_country ) ) > 0 && ( $s_state == '' || ! xrowGeonames::getSubdivisionName( $s_country, $s_state ) ) )
             {
                 $inputIsValid = false;
                 $fields['s_state']['errors'][0] = ezpI18n::tr( 'extension/xrowecommerce', 'No shipping state has been selected.' );
             }
         }
         
-        if ( $fields['s_phone']['enabled'] == true and $fields['s_phone']['required'] == true)
+        if ( $fields['s_phone']['enabled'] == true and $fields['s_phone']['required'] == true )
         {
             $s_phone = trim( $http->postVariable( 's_phone' ) );
             if ( $s_phone == '' )
