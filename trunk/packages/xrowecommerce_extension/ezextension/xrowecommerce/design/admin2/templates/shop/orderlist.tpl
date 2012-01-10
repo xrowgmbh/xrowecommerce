@@ -97,7 +97,7 @@
 
 {if is_set($email)|not}
 {let can_apply=false()}
-<form name="orderlist" method="post" action={concat( '/xrowecommerce/orderlist' )|ezurl}>
+<form name="orderlist" method="post" action={concat( '/xrowecommerce/orderlist', $view_parameters.offset|gt(0)|choose( '', concat( '/(offset)/', $view_parameters.offset ) ) )|ezurl}>
     <div class="context-block">
 
     {* DESIGN: Header START *}<div class="box-header"><div class="box-tc"><div class="box-ml"><div class="box-mr"><div class="box-tl"><div class="box-tr">
