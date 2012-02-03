@@ -2,11 +2,11 @@
 
 class eZCouponWorkflowType extends eZWorkflowEventType
 {
-	const WORKFLOW_TYPE_STRING = 'ezcouponworkflow';
-	const STATE_CANCEL = 2;
-	const STATE_INVALID_CODE = 3;
-	const STATE_VALID_CODE = 1;
-	const BASE = 'event_ezcoupon';
+    const WORKFLOW_TYPE_STRING = 'ezcouponworkflow';
+    const STATE_CANCEL = 2;
+    const STATE_INVALID_CODE = 3;
+    const STATE_VALID_CODE = 1;
+    const BASE = 'event_ezcoupon';
 
     /*!
      Constructor
@@ -14,45 +14,55 @@ class eZCouponWorkflowType extends eZWorkflowEventType
     function eZCouponWorkflowType()
     {
         $this->eZWorkflowEventType( eZCouponWorkflowType::WORKFLOW_TYPE_STRING, ezpI18n::tr( 'kernel/workflow/event', "Coupon" ) );
-        $this->setTriggerTypes( array( 'shop' => array( 'confirmorder' => array ( 'before' ) ) ) );
+        $this->setTriggerTypes( array( 
+            'shop' => array( 
+                'confirmorder' => array( 
+                    'before' 
+                ) 
+            ) 
+        ) );
     }
 
     function execute( $process, $event )
     {
         $http = eZHTTPTool::instance();
         $this->fetchInput( $http, eZCouponWorkflowType::BASE, $event, $process );
-        if( $process->attribute( 'event_state' ) == eZCouponWorkflowType::STATE_CANCEL )
+        if ( $process->attribute( 'event_state' ) == eZCouponWorkflowType::STATE_CANCEL )
         {
             return eZWorkflowEventType::STATUS_ACCEPTED;
         }
-        if( $process->attribute( 'event_state' ) != eZCouponWorkflowType::STATE_VALID_CODE )
+        if ( $process->attribute( 'event_state' ) != eZCouponWorkflowType::STATE_VALID_CODE )
         {
             $process->Template = array();
             $process->Template['templateName'] = 'design:workflow/coupon.tpl';
-            $process->Template['templateVars'] = array ( 'process' => $process, 'event' => $event, 'base'=> eZCouponWorkflowType::BASE );
-
+            $process->Template['templateVars'] = array( 
+                'process' => $process , 
+                'event' => $event , 
+                'base' => eZCouponWorkflowType::BASE 
+            );
+            
             return eZWorkflowType::STATUS_FETCH_TEMPLATE_REPEAT;
-
+        
         }
         $ini = eZINI::instance( 'xrowcoupon.ini' );
         $coupon = new xrowCoupon( $event->attribute( "data_text1" ) );
         $attribute = $coupon->fetchAttribute();
         $data = $attribute->content();
-
+        
         $description = $ini->variable( "CouponSettings", "Description" ) . " " . $event->attribute( "data_text1" );
-
+        
         $parameters = $process->attribute( 'parameter_list' );
         $orderID = $parameters['order_id'];
-
+        
         $order = eZOrder::fetch( $orderID );
         $orderItems = $order->attribute( 'order_items' );
         $addShipping = true;
         foreach ( array_keys( $orderItems ) as $key )
         {
-            $orderItem =& $orderItems[$key];
+            $orderItem = & $orderItems[$key];
             if ( $orderItem->attribute( 'type' ) == "shippingcost" )
             {
-                $shippingvalue = $orderItem->attribute('price');
+                $shippingvalue = $orderItem->attribute( 'price' );
             }
             if ( $orderItem->attribute( 'description' ) == $description )
             {
@@ -65,41 +75,43 @@ class eZCouponWorkflowType extends eZWorkflowEventType
             $price = 0;
             if ( $data['discount_type'] == ezCouponType::DISCOUNT_TYPE_FLAT )
             {
-                $price = $data['discount'] * -1;
+                $price = $data['discount'] * - 1;
             }
             elseif ( $data['discount_type'] == ezCouponType::DISCOUNT_TYPE_FREE_SHIPPING )
             {
-                $price = $shippingvalue * -1;
+                $price = $shippingvalue * - 1;
             }
             else
             {
-                $price = $order->attribute( 'product_total_ex_vat' ) * $data['discount'] / 100 * -1;
+                $price = $order->attribute( 'product_total_ex_vat' ) * $data['discount'] / 100 * - 1;
             }
             // Remove any existing order coupon before appending a new item
             $list = eZOrderItem::fetchListByType( $orderID, 'coupon' );
-            if( count( $list ) > 0 )
+            if ( count( $list ) > 0 )
             {
                 foreach ( $list as $item )
                 {
                     $item->remove();
                 }
-
-	        }
-            $orderItem = new eZOrderItem( array( 'order_id' => $orderID,
-                                                 'description' => $description,
-                                                 'price' => $price,
-                                                 'type' => 'coupon',
-                                                 'vat_is_included' => true,
-                                                 'vat_type_id' => 1 )
-                                          );
+            
+            }
+            $orderItem = new eZOrderItem( array( 
+                'order_id' => $orderID , 
+                'description' => $description , 
+                'price' => $price , 
+                'type' => 'coupon' , 
+                'vat_is_included' => true , 
+                'vat_type_id' => 1 
+            ) );
             $orderItem->store();
         }
-
+        
         return eZWorkflowEventType::STATUS_ACCEPTED;
     }
+
     function fetchInput( &$http, $base, &$event, &$process )
     {
-
+        
         $var = $base . "_code_" . $event->attribute( "id" );
         $cancel = $base . "_CancelButton_" . $event->attribute( "id" );
         $select = $base . "_SelectButton_" . $event->attribute( "id" );
@@ -124,47 +136,32 @@ class eZCouponWorkflowType extends eZWorkflowEventType
             }
         }
         $parameters = $process->attribute( 'parameter_list' );
-        $orderID = $parameters['order_id'];
-        $order = eZOrder::fetch( $orderID );
-        if ( is_object( $order ) )
+        
+        $order = eZOrder::fetch( $parameters['order_id'] );
+        if ( $order instanceof eZOrder )
         {
-        	$doc = new DOMDocument( '1.0', 'utf-8' );
-            $root = $doc->createElement( "data_text_1" );
-            $doc->appendChild( $root );
-        	
-           // $xml = new eZXML();
-           //$xmlDoc = $order->attribute( 'data_text_1' );
-            
+            $xml = new SimpleXMLElement( $order->attribute( 'data_text_1' ) );
 
-            if( $xmlDoc != null )
+            if ( $xml != null )
             {
-                //$dom = $xml->domTree( $xmlDoc );
-                //$id = $dom->elementsByName( "coupon_code" );
-                
-                $coupon_codeNode = $doc->createElement( "coupon_code", $id );
-                $root->appendChild( $coupon_codeNode );
-                
-                if ( is_object( $id[0] ) )
+                $code = (string) $xml->coupon_code;
+                // we have an empty code this mean a coupon has been supplied at the user register page, so we cancle here
+                if ( ! $code )
                 {
-                    $code = $id[0]->textContent();
-                    // we have an empty code this mean a coupon has been supplied at the user register page, so we cancle here
-                    if ( !$code )
-                    {
-                        $process->setAttribute( 'event_state', eZCouponWorkflowType::STATE_CANCEL );
-                        return;
-                    }
-                    $coupon = new xrowCoupon( $id[0]->textContent() );
-                    if ( $coupon->isValid() )
-                    {
-                        $process->setAttribute( 'event_state', eZCouponWorkflowType::STATE_VALID_CODE );
-                        $event->setAttribute( "data_text1", $coupon->code );
-                        return;
-                    }
-                    else
-                    {
-                        $process->setAttribute( 'event_state', eZCouponWorkflowType::STATE_INVALID_CODE );
-                        return;
-                    }
+                    $process->setAttribute( 'event_state', eZCouponWorkflowType::STATE_CANCEL );
+                    return;
+                }
+                $coupon = new xrowCoupon( $code );
+                if ( $coupon->isValid() )
+                {
+                    $process->setAttribute( 'event_state', eZCouponWorkflowType::STATE_VALID_CODE );
+                    $event->setAttribute( "data_text1", $coupon->code );
+                    return;
+                }
+                else
+                {
+                    $process->setAttribute( 'event_state', eZCouponWorkflowType::STATE_INVALID_CODE );
+                    return;
                 }
             }
         }
