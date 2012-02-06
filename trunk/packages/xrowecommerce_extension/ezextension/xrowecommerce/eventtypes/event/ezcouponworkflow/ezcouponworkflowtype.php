@@ -57,6 +57,8 @@ class eZCouponWorkflowType extends eZWorkflowEventType
         $order = eZOrder::fetch( $orderID );
         $orderItems = $order->attribute( 'order_items' );
         $addShipping = true;
+        $newxml = new SimpleXMLElement( $order->attribute( 'data_text_1' ) );
+        $shippintype = $newxml->shippingtype;
         foreach ( array_keys( $orderItems ) as $key )
         {
             $orderItem = & $orderItems[$key];
@@ -69,6 +71,13 @@ class eZCouponWorkflowType extends eZWorkflowEventType
                 $addShipping = false;
                 break;
             }
+        }
+        $shippingini = eZINI::instance( 'shipping.ini' );
+        $shippinggateways = array();
+        $shippinggateways = $shippingini->variable( "Settings", "FreeShippingHandlingGateways" );
+        if ( (count( $shippinggateways ) != '0') AND ( $data['discount_type'] == ezCouponType::DISCOUNT_TYPE_FREE_SHIPPING ) AND ( !in_array($shippintype, $shippinggateways) ) )
+        {
+            $addShipping = false;
         }
         if ( $addShipping )
         {
@@ -141,7 +150,7 @@ class eZCouponWorkflowType extends eZWorkflowEventType
         if ( $order instanceof eZOrder )
         {
             $xml = new SimpleXMLElement( $order->attribute( 'data_text_1' ) );
-
+            
             if ( $xml != null )
             {
                 $code = (string) $xml->coupon_code;

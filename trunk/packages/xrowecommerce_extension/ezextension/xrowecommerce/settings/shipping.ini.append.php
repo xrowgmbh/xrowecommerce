@@ -19,6 +19,7 @@ FreeShippingProductConditions[]
 ##FreeShippingProductConditions[1234]=2
 
 # List of gateways where free shipping and/or handling is allowed (gateway identifiers)
+# leave blanc if you want free shipping for all gateways
 FreeShippingHandlingGateways[]
 
 # List of countries where free shipping and/or handling is allowed (Alpha3)
