@@ -34,7 +34,7 @@
             <td>
                 {if and(is_set($order.account_information.title),$order.account_information.title|eq('0'))}
                     {'Mr.'|i18n('extension/xrowecommerce')}
-                {else}
+                {elseif and(is_set($order.account_information.title),$order.account_information.title|eq('1'))}
                     {'Mrs.'|i18n('extension/xrowecommerce')}
                 {/if}
                 {$order.account_information.first_name|wash}
@@ -60,7 +60,7 @@
                     {/if}
                     {if and(is_set($order.account_information.title),$order.account_information.title|eq('0'))}
                         {'Mr.'|i18n('extension/xrowecommerce')}
-                    {else}
+                    {elseif and(is_set($order.account_information.title),$order.account_information.title|eq('1'))}
                         {'Mrs.'|i18n('extension/xrowecommerce')}
                     {/if}
                     {$order.account_information.first_name|wash}
@@ -132,7 +132,7 @@
                     {else}
                         {if and(is_set($order.account_information.title),$order.account_information.title|eq('0'))}
                             {'Mr.'|i18n('extension/xrowecommerce')}
-                        {else}
+                        {elseif and(is_set($order.account_information.title),$order.account_information.title|eq('1'))}
                             {'Mrs.'|i18n('extension/xrowecommerce')}
                         {/if}
                         {$order.account_information.first_name|wash}
@@ -208,7 +208,7 @@
                     {/if}
                     {if and(is_set($order.account_information.s_title),$order.account_information.s_title|eq('0'))}
                         {'Mr.'|i18n('extension/xrowecommerce')}
-                    {else}
+                    {elseif and(is_set($order.account_information.s_title),$order.account_information.s_title|eq('1'))}
                         {'Mrs.'|i18n('extension/xrowecommerce')}
                     {/if}
                     {$order.account_information.s_first_name|wash}
