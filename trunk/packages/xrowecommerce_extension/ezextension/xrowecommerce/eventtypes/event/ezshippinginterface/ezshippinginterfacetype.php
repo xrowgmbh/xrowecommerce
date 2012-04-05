@@ -179,7 +179,6 @@ class eZShippingInterfaceType extends eZWorkflowEventType
             
             // Fetch object datamap
             $dm = $co->dataMap();
-            
             // FreeShipping Item check
             if ( in_array( $shippingtype, $FreeShippingHandlingGateways ) and in_array( $shipping_country, $FreeShippingHandlingCountries ) and in_array( $item->attribute( 'contentobject_id' ), $FreeShippingProducts ) )
             {
@@ -198,8 +197,12 @@ class eZShippingInterfaceType extends eZWorkflowEventType
             {
                 $freeshippingproduct = false;
             }
-            
+            elseif ( array_key_exists( 'freeshipping', $dm ) and $dm['freeshipping']->DataInt == 1 and in_array( $shippingtype, $FreeShippingHandlingGateways ) and in_array( $shipping_country, $FreeShippingHandlingCountries ) )
+            {
+                $freeshippingproduct = true;
+            }
             // FreeHandling Item check
+            
             if ( in_array( $shippingtype, $FreeShippingHandlingGateways ) and in_array( $shipping_country, $FreeShippingHandlingCountries ) and array_key_exists( 'freehandling', $dm ) and $dm["freehandling"]->DataInt == 1 )
             {
                 if ( $item->ItemCount >= $FreeShippingProductConditions[$item->attribute( 'contentobject_id' )] )
@@ -209,6 +212,10 @@ class eZShippingInterfaceType extends eZWorkflowEventType
                 elseif ( $FreeShippingAdditionalProducts != "enabled" )
                 {
                     $freehandlingproduct = false;
+                }
+                else
+                {
+                    $freehandlingproduct = true;
                 }
             }
             
