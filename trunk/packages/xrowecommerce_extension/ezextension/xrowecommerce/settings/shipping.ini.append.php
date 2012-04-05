@@ -11,7 +11,7 @@ FreeShippingProducts[]
 ##FreeShippingProducts[]=1234
 
 # Allows free shipping and/or handling even with additional non free shipping products
-FreeShippingAdditionalProducts=disabled
+#FreeShippingAdditionalProducts=disabled
 
 # Amount of products when shipping and/or handling is free
 FreeShippingProductConditions[]
@@ -20,12 +20,12 @@ FreeShippingProductConditions[]
 
 # List of gateways where free shipping and/or handling is allowed (gateway identifiers)
 # leave blanc if you want free shipping for all gateways
-FreeShippingHandlingGateways[]
+#FreeShippingHandlingGateways[]
 
 # List of countries where free shipping and/or handling is allowed (Alpha3)
-FreeShippingHandlingCountries[]
+#FreeShippingHandlingCountries[]
 ##example:
-##FreeShippingHandlingCountries[GER]
+##FreeShippingHandlingCountries[]=GER
 
 # Switch to enable or disable Handling
 HandlingFee=enabled
