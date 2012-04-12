@@ -103,8 +103,8 @@ ShowPriceAs=discount_price_inc_vat
 
 # Encrypt and decrypt secure data e.g. credit card data
 # please configurate, if you like, all settings in the section EncryptionSettings
-[EncryptionSettings]
-Key=YOURSECRETKEYFORENCRYPTANDDECRYPT
+#[EncryptionSettings]
+#Key=YOURSECRETKEYFORENCRYPTANDDECRYPT
 Algorithm=tripledes
 Mode=cfb
 
@@ -150,12 +150,12 @@ DisplayShipping=enabled
 DisplayPaymentmethod=enabled
 HazardousItems=disabled
 
-[InvoiceSettings]
-ShowFooter=enabled
+#[InvoiceSettings]
+#ShowFooter=enabled
 #CompanyName=Example Inc
 #CompanyAddress[]
-CompanyWebsite=http://www.example.com/
-CompanyPhone=+1 555 123456
+#CompanyWebsite=http://www.example.com/
+#CompanyPhone=+1 555 123456
 
 [ShopAccountHandlerDefaults]
 # set the country code to which the country select defaults to
