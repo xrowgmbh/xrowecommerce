@@ -87,6 +87,10 @@ class xrowECommerceVATHandler
                 
                 }
                 $percentage = xrowECommerceVATHandler::getTAX( $country, $state, $taxid );
+                if ( is_array($percentage) )
+                {
+                    $percentage = "0";
+                }
             }
             else
             {
@@ -102,7 +106,6 @@ class xrowECommerceVATHandler
                 $countries = eZCountryType::fetchCountryList();
                 foreach ( $countries as $countryItem )
                 {
-                    
                     if ( $countryItem['Alpha2'] == $country )
                     {
                         $country = $countryItem['Alpha3'];
@@ -111,6 +114,19 @@ class xrowECommerceVATHandler
             
             }
             $percentage = xrowECommerceVATHandler::getTAX( $country, false, false );
+            if ( is_array($percentage) )
+            {
+                $userstate = $object->DataMap();
+                $userstate = $userstate["state"];
+                $userstate = $userstate->DataText;
+                if ( $userstate )
+                {
+                    $percentage = xrowECommerceVATHandler::getTAX( $country, $userstate, false );
+                }
+                else {
+                    $percentage = "0";
+                }
+            }
             if ( is_object( $object ) )
             {
                 $dm = $object->dataMap();
@@ -138,7 +154,6 @@ class xrowECommerceVATHandler
         $country = strtoupper( $country );
         $taxmap = xrowECommerceVATHandler::taxMapping();
         $merchant = xrowECommerce::merchantsLocations();
-        
         if ( ! is_array( $merchant ) and count( $merchant ) > 0 )
         {
             throw new Exception( "Merchant locations not setup in xrowecommerce.ini." );
@@ -149,21 +164,18 @@ class xrowECommerceVATHandler
         {
             if ( ! $matched )
             {
-                
-                if( !$taxid and xrowECommerce::isEU( $country ) )
+                if( !$taxid and xrowECommerce::isEU( $country ) and xrowECommerce::isEU($merchantitem[0]))
                 {
                     $percentage = $taxmap[$merchantitem[0]];
                     $matched = true;
                 }
                 elseif ( ! is_array( $merchantitem ) and $merchantitem == $country )
                 {
-                    
                     $percentage = $taxmap[$merchantitem];
                     $matched = true;
                 }
                 elseif ( array_key_exists( $merchantitem[0], $taxmap ) and $merchantitem[0] == $country )
                 {
-                    
                     if ( is_numeric( $taxmap[$merchantitem[0]] ) )
                     {
                         $percentage = $taxmap[$merchantitem[0]];
@@ -179,6 +191,10 @@ class xrowECommerceVATHandler
                         $percentage = $taxmap[$merchantitem[0]][$state];
                         $matched = true;
                     }
+                }
+                elseif ( $country == null or trim($country) == "")
+                {
+                    $percentage = "0";
                 }
             }
         }

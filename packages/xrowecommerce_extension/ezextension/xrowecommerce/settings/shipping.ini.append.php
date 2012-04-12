@@ -6,7 +6,7 @@ ShippingGateways[]=USPS
 ShippingGateways[]=fixedprice
 
 # List of products that do not have shipping and/or handling costs (contentobject ID)
-FreeShippingProducts[]
+#FreeShippingProducts[]
 ##example:
 ##FreeShippingProducts[]=1234
 
@@ -14,7 +14,7 @@ FreeShippingProducts[]
 #FreeShippingAdditionalProducts=disabled
 
 # Amount of products when shipping and/or handling is free
-FreeShippingProductConditions[]
+#FreeShippingProductConditions[]
 ##example: Shipping is free, when 2 or more items from contentobject 1234 are in the cart
 ##FreeShippingProductConditions[1234]=2
 
@@ -28,22 +28,22 @@ FreeShippingProductConditions[]
 ##FreeShippingHandlingCountries[]=GER
 
 # Switch to enable or disable Handling
-HandlingFee=enabled
+#HandlingFee=enabled
 # Amount added to the cart
-HandlingFeeAmount=2.00
+#HandlingFeeAmount=2.00
 # Name displayed
-HandlingFeeName=Handling
+#HandlingFeeName=Handling
 # Defines if the handling fee should be included or not
-HandlingFeeInclude=disabled
-FreeShippingitemReduce=9.00
-eZoption2ProductVariations=Enabled
+#HandlingFeeInclude=disabled
+#FreeShippingitemReduce=9.00
+#eZoption2ProductVariations=Enabled
 
 # Enter weight unit
 # Possible values: lbs | kg
-WeightUnit=kg
-ShowShippingWeight=disabled
+#WeightUnit=kg
+#ShowShippingWeight=disabled
 
-[FixedPrice]
-Amount=6
+#[FixedPrice]
+#Amount=6
 
 */ ?>
