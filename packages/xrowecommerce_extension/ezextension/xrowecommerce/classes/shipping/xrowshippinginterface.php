@@ -46,6 +46,7 @@ class xrowShippingInterface
                 $return->loadConfiguration();
                 $return->method = $methodtype;
                 $return->name = $method['name'];
+                $return->is_air = $method['is_air'];
                 return $return;
             }
         }
