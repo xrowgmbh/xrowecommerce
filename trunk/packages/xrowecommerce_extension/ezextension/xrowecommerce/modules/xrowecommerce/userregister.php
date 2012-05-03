@@ -1047,7 +1047,14 @@ if ( $module->isCurrentAction( 'Store' ) )
         $messageNode = $doc->createElement( 'message', xrowECommerce::encodeString( $message ) );
         $root->appendChild( $messageNode );
         
-        if ( isset( $_SERVER['REMOTE_ADDR'] ) )
+        
+        if( isset($_SERVER["HTTP_X_FORWARDED_FOR"]))
+        {
+            $remote_address = $_SERVER["HTTP_X_FORWARDED_FOR"];
+            $client_ip = $doc->createElement( 'client_ip', $remote_address );
+            $root->appendChild( $client_ip );
+        }
+        elseif ( isset( $_SERVER['REMOTE_ADDR'] ) )
         {
             $remote_address = $_SERVER['REMOTE_ADDR'];
             $client_ip = $doc->createElement( 'client_ip', $remote_address );
