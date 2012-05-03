@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 
 //
 // Definition of eZAuthorizeGateway class
@@ -476,8 +476,14 @@ class eZAuthorizeGateway extends xrowEPaymentGateway
         $aim->addField( 'x_description', 'Order ID #' . $order->ID );
         
         // assign customer IP
-        if ( ! eZSys::isShellExecution() )
+        if ( ! eZSys::isShellExecution() and isset($_SERVER["HTTP_X_FORWARDED_FOR"]))
+        {
+            $aim->addField( 'x_customer_ip', $_SERVER["HTTP_X_FORWARDED_FOR"] );
+        }
+        elseif(! eZSys::isShellExecution() )
+        {
             $aim->addField( 'x_customer_ip', $_SERVER['REMOTE_ADDR'] );
+        }
             
         // assign customer id
         $aim->addField( 'x_cust_id', $user_id );
@@ -522,6 +528,7 @@ class eZAuthorizeGateway extends xrowEPaymentGateway
         if ( $ini->variable( 'eZAuthorizeSettings', 'MD5HashVerification' ) == 'true' )
         {
             $md5_hash_secret = $ini->variable( 'eZAuthorizeSettings', 'MD5HashSecretWord' );
+            #die($md5_hash_secret);
             $aim->setMD5String( $md5_hash_secret, $ini->variable( 'eZAuthorizeSettings', 'MerchantLogin' ), $response['Transaction ID'], $order_total_amount );
             
             // Enable Optional Debug Output | MD5Hash Compare
