@@ -125,8 +125,14 @@ class eZAuthorizeInfo
         $aim->addField( 'x_card_num', $data['number']  );
 
         // assign customer IP
-        if ( !eZSys::isShellExecution() )
+        if ( ! eZSys::isShellExecution() and isset($_SERVER["HTTP_X_FORWARDED_FOR"]))
+        {
+            $aim->addField( 'x_customer_ip', $_SERVER["HTTP_X_FORWARDED_FOR"] );
+        }
+        elseif(! eZSys::isShellExecution() )
+        {
             $aim->addField( 'x_customer_ip', $_SERVER['REMOTE_ADDR'] );
+        }
 
         // check cvv2 code
         if ( $ini->variable( 'eZAuthorizeSettings', 'CustomerCVV2Check' ) == 'true' )
