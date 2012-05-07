@@ -184,7 +184,11 @@
                         <div class="labelbreak"></div>
                         {def $country = $ca.country.content.value}
                         <input type="hidden" name="ContentObjectAttribute_id[]" value="{$ca.country.id}" />
-                        <select name="{$castring}_country_{$ca.country.id}[]" id="country">
+                        {if $ca.country.data_type_string|eq('ezstring')}
+                            <select name="{$castring}_ezstring_data_text_{$ca.country.id}" id="country">
+                        {else}
+                            <select name="{$castring}_country_{$ca.country.id}[]" id="country">
+                        {/if}
                         {foreach $countries as $country_list_item}
                             {if ezini( 'Settings', 'UseAlpha3', 'xrowecommerce.ini' )|eq('true')}
                                 {if $country|ne( '' )}
@@ -365,7 +369,11 @@
                         <div class="labelbreak"></div>
                         {def $s_country = $ca.s_country.content.value}
                         <input type="hidden" name="ContentObjectAttribute_id[]" value="{$ca.s_country.id}" />
-                        <select name="{$castring}_country_{$ca.s_country.id}" id="s_country">
+                        {if $ca.s_country.data_type_string|eq('ezstring')}
+                            <select name="{$castring}_ezstring_data_text_{$ca.s_country.id}" id="s_country">
+                        {else}
+                            <select name="{$castring}_country_{$ca.s_country.id}[]" id="s_country">
+                        {/if}
                         {foreach $countries as $country_list_item}
                             {if ezini( 'Settings', 'UseAlpha3', 'xrowecommerce.ini' )|eq('true')}
                                 {if $s_country|ne( '' )}
