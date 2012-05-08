@@ -2,18 +2,19 @@
 
 class XROWRecurringOrderCollection extends eZPersistentObject
 {
-	const CYCLE_ONETIME = 0;
-	const CYCLE_DAY = 1;
-	const CYCLE_WEEK = 2;
-	const CYCLE_MONTH = 3;
-	const CYCLE_QUARTER = 4;
-	const CYCLE_YEAR = 5;
+    const CYCLE_ONETIME = 0;
+    const CYCLE_DAY = 1;
+    const CYCLE_WEEK = 2;
+    const CYCLE_MONTH = 3;
+    const CYCLE_QUARTER = 4;
+    const CYCLE_YEAR = 5;
 
-	const STATUS_ACTIVE = 1;
-	const STATUS_DEACTIVATED = 0;
+    const STATUS_ACTIVE = 1;
+    const STATUS_DEACTIVATED = 0;
     const STATUSTYPE_SUCCESS = 1;
     const STATUSTYPE_CREDITCARD_EXPIRES = 2;
     const STATUSTYPE_FAILURE = 3;
+    const ERROR_CREDITCARD_MISSING = 0;
 
 
     function XROWRecurringOrderCollection( $row )
@@ -73,23 +74,27 @@ class XROWRecurringOrderCollection extends eZPersistentObject
     }
     function markRun()
     {
-    	$this->setAttribute( 'last_run', XROWRecurringOrderCollection::now() );
-    	$this->store();
+        $this->setAttribute( 'last_run', XROWRecurringOrderCollection::now() );
+        $this->store();
     }
 
     function getAllCycleTypes()
     {
-    	return array( XROWRecurringOrderCollection::CYCLE_ONETIME, XROWRecurringOrderCollection::CYCLE_DAY, XROWRecurringOrderCollection::CYCLE_WEEK, XROWRecurringOrderCollection::CYCLE_MONTH, XROWRecurringOrderCollection::CYCLE_QUARTER,XROWRecurringOrderCollection::CYCLE_YEAR);
+        return array( XROWRecurringOrderCollection::CYCLE_ONETIME, XROWRecurringOrderCollection::CYCLE_DAY, XROWRecurringOrderCollection::CYCLE_WEEK, XROWRecurringOrderCollection::CYCLE_MONTH, XROWRecurringOrderCollection::CYCLE_QUARTER,XROWRecurringOrderCollection::CYCLE_YEAR);
     }
 
     function checkCreditCard( $monthsToExpiryDate = 3)
     {
         $user = $this->attribute( 'user' );
         if ( !is_object( $user ) )
+        {
             return false;
+        }
         $list = $this->fetchList();
         if ( count( $list ) == 0 )
+        {
             return false;
+        }
 
         $userco = $user->attribute( 'contentobject' );
         $dm = $userco->attribute( 'data_map' );
@@ -124,7 +129,7 @@ class XROWRecurringOrderCollection extends eZPersistentObject
 
     function creditCardExpiryDate()
     {
-    	$user = $this->attribute( 'user' );
+        $user = $this->attribute( 'user' );
         if ( !is_object( $user ) )
             return false;
         $userco = $user->attribute( 'contentobject' );
@@ -293,7 +298,7 @@ class XROWRecurringOrderCollection extends eZPersistentObject
      */
     static function fetch( $collection_id )
     {
-    	return eZPersistentObject::fetchObject( XROWRecurringOrderCollection::definition(),
+        return eZPersistentObject::fetchObject( XROWRecurringOrderCollection::definition(),
                 null, array( "id" => $collection_id ), true );
     }
     /**
@@ -309,7 +314,7 @@ class XROWRecurringOrderCollection extends eZPersistentObject
         {
             if ( $item->isDue() )
             {
-            	$result[] = $item;
+                $result[] = $item;
             }
         }
         #var_dump( $result );
@@ -318,10 +323,10 @@ class XROWRecurringOrderCollection extends eZPersistentObject
 
     function isDue()
     {
-    	if ( count( $this->fetchDueList() ) > 0 )
-    	   return true;
-    	else
-    	   return false;
+        if ( count( $this->fetchDueList() ) > 0 )
+           return true;
+        else
+           return false;
     }
     /**
      *
@@ -416,7 +421,7 @@ class XROWRecurringOrderCollection extends eZPersistentObject
         $ini = eZINI::instance();
         include_once( "lib/ezutils/classes/ezmail.php" );
         include_once( "lib/ezutils/classes/ezmailtransport.php" );
-    	$mail = new eZMail();
+        $mail = new eZMail();
 
         $mail->setSender( $ini->variable( 'MailSettings', 'AdminEmail' ) );
         $mail->setReceiver( $user->attribute( 'email' ), $userobject->attribute( 'name' ) );
