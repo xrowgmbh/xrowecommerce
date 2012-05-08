@@ -19,23 +19,23 @@ class XROWRecurringordersCommonFunctions
     */
     static function createDOMTreefromArray( $name, $array, $root = false, $root_attributes = array() )
     {
-    	$doc = new DOMDocument( '1.0', 'utf-8' );
+        $doc = new DOMDocument( '1.0', 'utf-8' );
         if ( !$root )
         {
-        	$root = $doc->createElement( $name );
+            $root = $doc->createElement( $name );
         }
         $doc->appendChild( $root );
         
         if ( is_array( $root_attributes ) && count( $root_attributes ) > 0 )
         {
-        	foreach ( $root_attributes as $attributeKey => $attributeValue )
-        	{
-			    $root_attr = $doc->createAttribute( $attributeKey );
-			    $root->appendChild( $root_attr );
-			    
-			    $root_text = $doc->createTextNode( $attributeValue );
-    			$root_attr->appendChild( $root_text ); 
-        	}
+            foreach ( $root_attributes as $attributeKey => $attributeValue )
+            {
+                $root_attr = $doc->createAttribute( $attributeKey );
+                $root->appendChild( $root_attr );
+                
+                $root_text = $doc->createTextNode( $attributeValue );
+                $root_attr->appendChild( $root_text ); 
+            }
         }
         
         $keys = array_keys( $array );
@@ -48,8 +48,8 @@ class XROWRecurringordersCommonFunctions
             }
             else
             {
-            	$node = $doc->createElement( (string)$key, $array[$key] );
-        		$root->appendChild( $node );
+                $node = $doc->createElement( (string)$key, $array[$key] );
+                $root->appendChild( $node );
             }
             unset( $node );
         }
@@ -66,7 +66,7 @@ class XROWRecurringordersCommonFunctions
      * This can be called like XROWRecurringordersCommonFunctions::createArrayfromDOMNODE( $node )
      */
     static function createArrayfromDOMNODE( $xml )
-    {	
+    {
         if ($xml instanceof SimpleXMLElement) {
             $children = $xml->children();
             $return = null;
@@ -74,36 +74,36 @@ class XROWRecurringordersCommonFunctions
 
         if ( isset( $children ) )
         {
-	        foreach ($children as $element => $value) {
-	            if ($value instanceof SimpleXMLElement) {
-	                $values = (array)$value->children();
-	
-	                if (count($values) > 0) {
-	                    if (is_array($return[$element])) {
-	                        //hook
-	                        foreach ($return[$element] as $k=>$v) {
-	                            if (!is_int($k)) {
-	                                $return[$element][0][$k] = $v;
-	                                unset($return[$element][$k]);
-	                            }
-	                        }
-	                        $return[$element][] = self::createArrayfromDOMNODE($value);
-	                    } else {
-	                        $return[$element] = self::createArrayfromDOMNODE($value);
-	                    }
-	                } else {
-	                    if (!isset($return[$element])) {
-	                        $return[$element] = (string)$value;
-	                    } else {
-	                        if (!is_array($return[$element])) {
-	                            $return[$element] = array($return[$element], (string)$value);
-	                        } else {
-	                            $return[$element][] = (string)$value;
-	                        }
-	                    }
-	                }
-	            }
-	        }
+            foreach ($children as $element => $value) {
+                if ($value instanceof SimpleXMLElement) {
+                    $values = (array)$value->children();
+    
+                    if (count($values) > 0) {
+                        if (is_array($return[$element])) {
+                            //hook
+                            foreach ($return[$element] as $k=>$v) {
+                                if (!is_int($k)) {
+                                    $return[$element][0][$k] = $v;
+                                    unset($return[$element][$k]);
+                                }
+                            }
+                            $return[$element][] = self::createArrayfromDOMNODE($value);
+                        } else {
+                            $return[$element] = self::createArrayfromDOMNODE($value);
+                        }
+                    } else {
+                        if (!isset($return[$element])) {
+                            $return[$element] = (string)$value;
+                        } else {
+                            if (!is_array($return[$element])) {
+                                $return[$element] = array($return[$element], (string)$value);
+                            } else {
+                                $return[$element][] = (string)$value;
+                            }
+                        }
+                    }
+                }
+            }
         }
         if (is_array($return)) {
             return $return;

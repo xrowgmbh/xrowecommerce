@@ -60,8 +60,15 @@ if ($Module->isCurrentAction ( 'Cancel' )) {
     return $Module->redirectTo ( $http->sessionVariable ( "RedirectURI" ) );
 }
 
-if ($collection->checkCreditCard () !== true)
-    $messages [] = array ('type' => 'error', 'text' => ezpI18n::tr ( 'extension/recurringorders', 'We have encountered problems with your credit card. Please update your profile.' ) );
+$list_count = count(XROWRecurringOrderCollection::fetchList());
+
+if ( $collection->checkCreditCard () !== true )
+{
+    if ( $list_count != 0 )
+    {
+        $messages [] = array ('type' => 'error', 'text' => ezpI18n::tr ( 'extension/recurringorders', 'We have encountered problems with your credit card. Please update your profile.' ) );
+    }
+}
 $tpl->setVariable ( 'messages', $messages );
 $tpl->setVariable ( 'collection', $collection );
 $Result = array ();

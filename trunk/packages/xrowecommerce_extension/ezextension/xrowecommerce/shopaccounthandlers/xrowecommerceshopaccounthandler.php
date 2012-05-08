@@ -26,25 +26,43 @@ class xrowECommerceShopAccountHandler
     function fillAccountArray( $user = null )
     {
         if ( $user === null )
+        {
             $user = eZUser::currentUser();
+        }
         $userObject = $user->attribute( 'contentobject' );
         $userMap = $userObject->dataMap();
         $billing = array();
+        if (eZINI::instance( 'xrowecommerce.ini' )->BlockValues['Fields']['company_name']['enabled'] != 'false')
         $billing['company_name'] = $userMap['company_name']->content();
+        if (eZINI::instance( 'xrowecommerce.ini' )->BlockValues['Fields']['company_additional']['enabled'] != 'false')
         $billing['company_additional'] = $userMap['company_additional']->content();
+        if (eZINI::instance( 'xrowecommerce.ini' )->BlockValues['Fields']['tax_id']['enabled'] != 'false')
         $billing['tax_id'] = $userMap['tax_id']->content();
+        if (eZINI::instance( 'xrowecommerce.ini' )->BlockValues['Fields']['title']['enabled'] != 'false')
         $billing['title'] = $userMap['title']->content();
+        if (eZINI::instance( 'xrowecommerce.ini' )->BlockValues['Fields']['first_name']['enabled'] != 'false')
         $billing['first_name'] = $userMap['first_name']->content();
+        if (eZINI::instance( 'xrowecommerce.ini' )->BlockValues['Fields']['mi']['enabled'] != 'false')
         $billing['mi'] = $userMap['mi']->content();
+        if (eZINI::instance( 'xrowecommerce.ini' )->BlockValues['Fields']['last_name']['enabled'] != 'false')
         $billing['last_name'] = $userMap['last_name']->content();
+        if (eZINI::instance( 'xrowecommerce.ini' )->BlockValues['Fields']['address1']['enabled'] != 'false')
         $billing['address1'] = $userMap['address1']->content();
+        if (eZINI::instance( 'xrowecommerce.ini' )->BlockValues['Fields']['address2']['enabled'] != 'false')
         $billing['address2'] = $userMap['address2']->content();
+        if (eZINI::instance( 'xrowecommerce.ini' )->BlockValues['Fields']['state']['enabled'] != 'false')
         $billing['state'] = $userMap['state']->content();
+        if (eZINI::instance( 'xrowecommerce.ini' )->BlockValues['Fields']['zip_code']['enabled'] != 'false')
         $billing['zip'] = $userMap['zip_code']->content();
+        if (eZINI::instance( 'xrowecommerce.ini' )->BlockValues['Fields']['city']['enabled'] != 'false')
         $billing['city'] = $userMap['city']->content();
+        if (eZINI::instance( 'xrowecommerce.ini' )->BlockValues['Fields']['country']['enabled'] != 'false')
         $billing['country'] = $userMap['country']->content();
+        if (eZINI::instance( 'xrowecommerce.ini' )->BlockValues['Fields']['phone']['enabled'] != 'false')
         $billing['phone'] = $userMap['phone']->content();
+        if (eZINI::instance( 'xrowecommerce.ini' )->BlockValues['Fields']['fax']['enabled'] != 'false')
         $billing['fax'] = $userMap['fax']->content();
+        if (eZINI::instance( 'xrowecommerce.ini' )->BlockValues['Fields']['shippingaddress']['enabled'] != 'false')
         $billing['shipping'] = $userMap['shippingaddress']->content();
         $billing['shippingtype'] = $userMap['shippingtype']->content();
         if( is_object( $userMap[xrowECommerce::ACCOUNT_KEY_PAYMENTMETHOD] ) )
@@ -55,21 +73,36 @@ class xrowECommerceShopAccountHandler
         $shipping = array();
         if ( $shipping != "1" )
         {
+            if (eZINI::instance( 'xrowecommerce.ini' )->BlockValues['Fields']['s_companyname']['enabled'] != 'false')
             $shipping['s_companyname'] = $userMap['s_company_name']->content();
-            $shipping['s_companyadditional'] = $userMap['s_company_additional']->content();
+            if (eZINI::instance( 'xrowecommerce.ini' )->BlockValues['Fields']['s_company_additional']['enabled'] != 'false')
+            $shipping['s_company_additional'] = $userMap['s_company_additional']->content();
+            if (eZINI::instance( 'xrowecommerce.ini' )->BlockValues['Fields']['s_title']['enabled'] != 'false')
             $shipping['s_title'] = $userMap['s_title']->content();
-            $shipping['s_first-name'] = $userMap['s_first_name']->content();
-            $shipping['s_mi'] = $userMap['s_last_name']->content();
-            $shipping['s_last-name'] = $userMap['s_mi']->content();
+            if (eZINI::instance( 'xrowecommerce.ini' )->BlockValues['Fields']['s_first_name']['enabled'] != 'false')
+            $shipping['s_first_name'] = $userMap['s_first_name']->content();
+            if (eZINI::instance( 'xrowecommerce.ini' )->BlockValues['Fields']['s_mi']['enabled'] != 'false')
+            $shipping['s_mi'] = $userMap['s_mi']->content();
+            if (eZINI::instance( 'xrowecommerce.ini' )->BlockValues['Fields']['s_last_name']['enabled'] != 'false')
+            $shipping['s_last_name'] = $userMap['s_last_name']->content();
+            if (eZINI::instance( 'xrowecommerce.ini' )->BlockValues['Fields']['s_address1']['enabled'] != 'false')
             $shipping['s_address1'] = $userMap['s_address1']->content();
+            if (eZINI::instance( 'xrowecommerce.ini' )->BlockValues['Fields']['s_address2']['enabled'] != 'false')
             $shipping['s_address2'] = $userMap['s_address2']->content();
+            if (eZINI::instance( 'xrowecommerce.ini' )->BlockValues['Fields']['s_city']['enabled'] != 'false')
             $shipping['s_city'] = $userMap['s_city']->content();
+            if (eZINI::instance( 'xrowecommerce.ini' )->BlockValues['Fields']['s_state']['enabled'] != 'false')
             $shipping['s_state'] = $userMap['s_state']->content();
+            if (eZINI::instance( 'xrowecommerce.ini' )->BlockValues['Fields']['s_zip_code']['enabled'] != 'false')
             $shipping['s_zip'] = $userMap['s_zip_code']->content();
+            if (eZINI::instance( 'xrowecommerce.ini' )->BlockValues['Fields']['s_country']['enabled'] != 'false')
             $shipping['s_country'] = $userMap['s_country']->content();
+            if (eZINI::instance( 'xrowecommerce.ini' )->BlockValues['Fields']['s_phone']['enabled'] != 'false')
             $shipping['s_phone'] = $userMap['s_phone']->content();
+            if (eZINI::instance( 'xrowecommerce.ini' )->BlockValues['Fields']['s_fax']['enabled'] != 'false')
             $shipping['s_fax'] = $userMap['s_fax']->content();
-            $shipping['s_enail'] = $userMap['s_email']->content();
+            if (eZINI::instance( 'xrowecommerce.ini' )->BlockValues['Fields']['s_email']['enabled'] != 'false')
+            $shipping['s_email'] = $userMap['s_email']->content();
         }
         if( is_object( $userMap[xrowECommerce::ACCOUNT_KEY_CREDITCARD] ) )
         {
