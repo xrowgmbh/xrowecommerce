@@ -1,3 +1,5 @@
+<?php /* #?ini charset="utf-8"?
+
 [eZAuthorizeSettings]
 # Extension Debug
 Debug=false
@@ -13,7 +15,7 @@ SSLVerify=true
 #TransactionKey=false
 
 # Enable or Disable Authorize.Net Test Mode
-# TestMode disables charing credit card
+# TestMode disables charging credit card
 
 TestMode=false
 
@@ -95,3 +97,5 @@ RepostVariablesOnError=true
 
 # Display Payment Help
 DisplayHelp=false
+
+*/ ?>

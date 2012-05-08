@@ -42,13 +42,13 @@ class eZAuthorizeInfo
         $error = false;
         if ( $data['name'] == '' )
         {
-            $contentObjectAttribute->setValidationError( ezi18n( 'kernel/classes/datatypes',
+            $contentObjectAttribute->setValidationError( ezpI18n::tr( 'kernel/classes/datatypes',
                                                                  'Name on creditcard not given' ) );
             $error = true;
         }
         if ( !preg_match( "/^[0-9]+$/", $data['number'] )  )
         {
-            $contentObjectAttribute->setValidationError( ezi18n( 'kernel/classes/datatypes',
+            $contentObjectAttribute->setValidationError( ezpI18n::tr( 'kernel/classes/datatypes',
                                                                  'Creditcard number is not a number' ) );
             $error = true;
         }
@@ -59,7 +59,7 @@ class eZAuthorizeInfo
             $maxDigits = 3;
         if ( !preg_match( "/^[0-9]{3,$maxDigits}$/", $data['securitycode'] )  )
         {
-            $contentObjectAttribute->setValidationError( ezi18n( 'kernel/classes/datatypes',
+            $contentObjectAttribute->setValidationError( ezpI18n::tr( 'kernel/classes/datatypes',
                                                                  'Please enter the correct CVV2 code.' ) );
             $error = true;
         }
@@ -69,7 +69,7 @@ class eZAuthorizeInfo
         $now = new eZDateTime( false );
         if ( $now->isGreaterThan( $time ) )
         {
-            $contentObjectAttribute->setValidationError( ezi18n( 'kernel/classes/datatypes',
+            $contentObjectAttribute->setValidationError( ezpI18n::tr( 'kernel/classes/datatypes',
                                                                  'Your creditcard is expired.' ) );
             $error = true;
         }
@@ -81,7 +81,7 @@ class eZAuthorizeInfo
 
             if ( $result == false )
             {
-                $contentObjectAttribute->setValidationError( ezi18n( 'kernel/classes/datatypes',
+                $contentObjectAttribute->setValidationError( ezpI18n::tr( 'kernel/classes/datatypes',
                                                                  'The creditcard was not accepted.
                                                                   Please check the creditcard data.' ) );
                 $error = true;
@@ -185,18 +185,17 @@ class eZAuthorizeInfo
         {
             $md5pass = true;
         }
-
         eZDebug::writeDebug( $response, 'eZAuthorizeGateway response'  );
         if ( $aim->hasError() or !$md5pass )
         {
             if ( !$md5pass )
             {
-                $contentObjectAttribute->setValidationError( ezi18n( 'kernel/classes/datatypes', 'This transaction has failed to
+                $contentObjectAttribute->setValidationError( ezpI18n::tr( 'kernel/classes/datatypes', 'This transaction has failed to
                 verify that the use of a secure transaction (MD5 Hash Failed).
                 Please contact the site administrator and inform them of
                 this error. Please do not try to resubmit payment.' ) );
             }
-            $contentObjectAttribute->setValidationError( ezi18n( 'kernel/classes/datatypes', $response['Response Reason Text'] ) );
+            $contentObjectAttribute->setValidationError( ezpI18n::tr( 'kernel/classes/datatypes', $response['Response Reason Text'] ) );
             $error = true;
         }
 
