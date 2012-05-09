@@ -14,12 +14,16 @@ class eZCouponWorkflowType extends eZWorkflowEventType
     function eZCouponWorkflowType()
     {
         $this->eZWorkflowEventType( eZCouponWorkflowType::WORKFLOW_TYPE_STRING, ezpI18n::tr( 'kernel/workflow/event', "Coupon" ) );
-        $this->setTriggerTypes( array( 
-            'shop' => array( 
-                'confirmorder' => array( 
+        $this->setTriggerTypes( array(
+            'shop' => array(
+                'confirmorder' => array(
                     'before' 
-                ) 
-            ) 
+                )), 
+            'recurringorders' => array(
+                'checkout' => array(
+                    'before'
+                )
+            )
         ) );
     }
 
