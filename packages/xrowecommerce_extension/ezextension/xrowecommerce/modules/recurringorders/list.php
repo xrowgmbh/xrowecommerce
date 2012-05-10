@@ -93,6 +93,14 @@ if ( $collection->checkCreditCard() !== true )
     }
 }
 
+if ( XROWRecurringOrderCollection::validateShipping() !== true )
+{
+    $messages[] = array( 
+        'type' => 'error' , 
+        'text' => ezpI18n::tr( 'extension/recurringorders', 'We have encountered problems with your selected shipping type. Please update your profile.' ) 
+    );
+}
+
 $tpl->setVariable( 'messages', $messages );
 $tpl->setVariable( 'collection', $collection );
 $Result = array();
