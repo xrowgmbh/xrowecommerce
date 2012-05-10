@@ -316,6 +316,47 @@ class XROWRecurringOrderCollection extends eZPersistentObject
     
     }
 
+    static function validateShipping()
+    {
+        $user = eZContentObject::fetch( eZUser::currentUserID() );
+        $datamap = $user->DataMap;
+        foreach ( $datamap as $dm )
+        {
+            $datamap = $dm;
+        }
+        $siteini = eZINI::instance( 'site.ini' )->BlockValues;
+        $locale = $siteini["RegionalSettings"]["ContentObjectLocale"];
+        if ( isset( $datamap["$locale"] ) )
+        {
+            $datamap = $datamap["$locale"];
+        }
+        else
+        {
+            foreach ( $datamap as $language )
+            {
+                $datamap = $language;
+            }
+        }
+        if ( isset( $datamap["shippingtype"] ) )
+        {
+            $shippingtype = $datamap["shippingtype"]->DataText;
+            if ( isset( $shippingtype ) and trim( $shippingtype ) != "" )
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        else
+        {
+            eZDebug::writeError( "Attribute name 'shippingtype' not found in content class of current user. " . __METHOD__ );
+            return true;
+        }
+    
+    }
+
     /**
      *
      * @return array array of XROWRecurringOrderCollection
@@ -354,7 +395,7 @@ class XROWRecurringOrderCollection extends eZPersistentObject
                 $result[] = $item;
             }
         }
-        #var_dump( $result );
+
         return $result;
     }
 
@@ -567,8 +608,7 @@ class XROWRecurringOrderCollection extends eZPersistentObject
                     0 => ezpI18n::tr( 'kernel/classes/recurringordercollection', "years" ) , 
                     1 => ezpI18n::tr( 'kernel/classes/recurringordercollection', "year" ) 
                 ) 
-            )
-            ;
+            );
             $ini = eZINI::instance( 'recurringorders.ini' );
             foreach ( $ini->variable( 'RecurringOrderSettings', 'DisabledCycles' ) as $disabled )
             {
