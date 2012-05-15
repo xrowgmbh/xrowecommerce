@@ -655,6 +655,15 @@ if ( $module->isCurrentAction( 'Store' ) )
         $inputIsValid = false;
         $fields['shippingtype']['errors'][0] = ezpI18n::tr( 'extension/xrowecommerce', 'The shipping type is not given.' );
     }
+    elseif ( $shipping = '1' and ( $shippingtype == "usps_international" or $shippingtype == "usps_international_guaranteed" ) and $country == "USA" )
+    {
+        $inputIsValid = false;
+        $fields['shippingtype']['errors'][0] = ezpI18n::tr( 'extension/xrowecommerce', 'Please select a proper shipping method for your destination.' );
+    }
+    elseif ( $shipping = '1' and ( $shippingtype == "ups_ground" or $shippingtype == "ups_air_2ndday" or $shippingtype == "ups_air_nextday" ) and $country != "USA" )
+    {
+        $fields['shippingtype']['errors'][0] = ezpI18n::tr( 'extension/xrowecommerce', 'Please select a proper shipping method for your destination.' );
+    }
     elseif ( ( $shippingtype == "usps_international" or $shippingtype == "usps_international_guaranteed" ) and $s_country == "USA" )
     {
         $inputIsValid = false;
@@ -664,6 +673,7 @@ if ( $module->isCurrentAction( 'Store' ) )
     {
         $fields['shippingtype']['errors'][0] = ezpI18n::tr( 'extension/xrowecommerce', 'Please select a proper shipping method for your destination.' );
     }
+    
     $gateway = xrowShippingInterface::instanceByMethod( $shippingtype );
     
     $basket = eZBasket::currentBasket();
@@ -1047,8 +1057,7 @@ if ( $module->isCurrentAction( 'Store' ) )
         $messageNode = $doc->createElement( 'message', xrowECommerce::encodeString( $message ) );
         $root->appendChild( $messageNode );
         
-        
-        if( isset($_SERVER["HTTP_X_FORWARDED_FOR"]))
+        if ( isset( $_SERVER["HTTP_X_FORWARDED_FOR"] ) )
         {
             $remote_address = $_SERVER["HTTP_X_FORWARDED_FOR"];
             $client_ip = $doc->createElement( 'client_ip', $remote_address );
