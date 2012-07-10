@@ -16,6 +16,11 @@ class USPS extends ShippingInterface
     */
     function methods()
     {
+        if ( isset( eZBasket::currentBasket()->ProductCollectionID ) )
+        {
+            $productcollection_id = eZBasket::currentBasket()->ProductCollectionID;
+            $this->weight = flatrate::getWeight($productcollection_id);
+        }
         return array( 
             array( 
                 'identifier' => '6' , 
@@ -321,12 +326,12 @@ class USPS extends ShippingInterface
 
     function setPounds( $pounds )
     {
-        $this->pounds = $pounds;
+        $this->pounds = ceil($pounds);
     }
 
     function setOunces( $ounces )
     {
-        $this->ounces = $ounces;
+        $this->ounces = ceil($ounces);
     }
 
     function setMachinable( $mach )
