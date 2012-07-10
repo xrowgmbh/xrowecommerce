@@ -46,7 +46,9 @@
                         <h3>{"Shop Features"|i18n('extension/xrowecommerce')}</h3>
                         <ul>
                             <li><a title="{"View my recent and current orders."|i18n('extension/xrowecommerce')}" href={"/order/history"|ezurl}>{"My orders."|i18n('extension/xrowecommerce')}</a></li>
-                            <li><a title="{"View my recurring orders."|i18n('extension/xrowecommerce')}" href={"/recurringorders/list"|ezurl}>{"My recurring orders."|i18n('extension/xrowecommerce')}</a></li>
+                            {if ezini( 'RecurringOrderSettings', 'enabled', 'recurringorders.ini' )}
+                                <li><a title="{"View my recurring orders."|i18n('extension/xrowecommerce')}" href={"/recurringorders/list"|ezurl}>{"My recurring orders."|i18n('extension/xrowecommerce')}</a></li>
+                            {/if}
                             <li><a title="{"Edit or view my wishlist."|i18n('extension/xrowecommerce')}" href={"/shop/wishlist"|ezurl}>{"My wishlist."|i18n('extension/xrowecommerce')}</a></li>
                             <li><a title="{"Edit or view your notification settings."|i18n('extension/xrowecommerce')}" href={"notification/settings"|ezurl}>{"My notification settings."|i18n("design/ezwebin/user/edit")}</a></li>
                         </ul>
