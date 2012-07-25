@@ -130,7 +130,14 @@ foreach ( $nodeList as $node )
                 }break;
                 case 'ezobjectrelation':
                 {
-                    $content = $handler->Name;
+                    if( isset( $handler->Name ) )
+                    {
+                        $content = $handler->Name;
+                    }
+                    else
+                    {
+                        $content = '';
+                    }
                 }break;
                 case 'ezprice':
                 {
@@ -168,7 +175,7 @@ foreach ( $nodeList as $node )
                                                  'weight'=>'weight',
                                                  'image'=>'image',
                                                  'price'=>'multi_price' );
-
+            $default_name = '';
             foreach ( $option2_list as $option )
             {
                 foreach ( $exportVariationFieldsArray as $exportVariationFieldIndex => $exportVariationFieldName )

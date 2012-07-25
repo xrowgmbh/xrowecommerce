@@ -1,12 +1,13 @@
 <?php
 
-class xrowProductExport implements xrowExportProductPlugin
+class xrowProductExport implements xrowExportProductPluginAsFile
 {
-    function export( xrowExportProductList $list )
+    function export( xrowExportProductListAsFile $list )
     {
         // headline
         $counter = 0;
         $headline = array();
+        $data = '';
         foreach ( $list as $product )
         {
             foreach( $product as $key => $value )

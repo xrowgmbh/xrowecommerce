@@ -3,9 +3,9 @@
 /**
  *
  */
-interface xrowExportProductPlugin
+interface xrowExportProductAsFilePlugin
 {
-	public function export( xrowExportProductList $list );
+	public function export( xrowExportProductListAsFile $list );
 }
 
 ?>
