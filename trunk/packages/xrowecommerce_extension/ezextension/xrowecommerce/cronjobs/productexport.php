@@ -30,11 +30,11 @@ if ( $xrowIni->hasVariable( 'GoogleExportSettings', 'Country' ) )
 {
     $country = $xrowIni->variable( 'GoogleExportSettings', 'Country' );
 }
-
 if ( trim( $priceLang ) == '' )
 {
     $priceLang = 'EUR';
 }
+
 
 $list = new xrowExportProductList();
 $nodeDataMap = array();
@@ -64,7 +64,6 @@ if ( ! $isQuiet )
 
 // only export a product once
 $idArray = array();
-
 // xrowproductvariation settings
 $xINI = eZINI::instance( 'xrowproduct.ini' );
 $exportParentNodeID = $xINI->variable( 'ExportSettings', 'ExportNodeID' );
@@ -73,7 +72,6 @@ $skuField = $xINI->variable( 'ExportSettings', 'SKUIdentifier' );
 $priceField = $xINI->variable( 'PriceSettings', 'PriceIdentifier' );
 $decPoint = $xINI->variable( 'ExportSettings', 'DecimalPoint' );
 $exportClasses = $xINI->variable( 'ExportSettings', 'ExportClassArray' );
-
 $xFieldArray = $xrowIni->variable( 'GoogleExportSettings', 'ExportVariationFieldArray' );
 $skuArray = array();
 
@@ -98,11 +96,11 @@ foreach ( $nodeList as $node )
     $pathArray = array_reverse( $pathArray );
     foreach ( $pathArray as $pitem )
     {
-    	if ( mb_strlen( $title . ', ' . $pitem->attribute( 'name' ) ) > 70 or $pitem->attribute( 'depth' ) < 3 )
-    	{
-    		break;
-    	}
-    	$title .= ', ' . trim( $pitem->attribute( 'name' ) );
+        if ( mb_strlen( $title . ', ' . $pitem->attribute( 'name' ) ) > 70 or $pitem->attribute( 'depth' ) < 3 )
+        {
+            break;
+        }
+        $title .= ', ' . trim( $pitem->attribute( 'name' ) );
     }
 
     $exportFields['name'] = trim( $title, ', ' );
@@ -201,6 +199,7 @@ foreach ( $nodeList as $node )
                                 break;
 
                             case 'image_link':
+                            case 'image':
                                 $image_contentobject_attributes = $option[$exportVariationFieldName]->attribute( 'contentobject_attributes' );
                                 $image_handler = $image_contentobject_attributes[2]->attribute( 'content' );
                                 $exportFields['image_link'] = get_image_path( $image_handler, $baseUrl );
@@ -228,7 +227,7 @@ foreach ( $nodeList as $node )
     }
     elseif ( isset( $nodeDataMap[$variationFieldName] ) and $nodeDataMap[$variationFieldName]->attribute( 'data_type_string' ) == 'xrowproductvariation' )
     {
-        if ( !isset( $attributeID ) )
+        if ( !isset( $attributeID ) && isset( $exportClasses ) && is_array( $exportClasses ) )
         {
             $classIdentifier = $node->attribute( 'class_identifier' );
             $attributeID = $exportClasses[$classIdentifier];
@@ -255,7 +254,6 @@ foreach ( $nodeList as $node )
                 'version' => $version ,
                 'language_code' => $languageCode
             ), true, 0, 1, array( 'placement' => 'asc' ) );
-
 
             if ( count( $dataArray ) == 0 )
             {
@@ -326,11 +324,11 @@ foreach ( $nodeList as $node )
 }
 
 
-    if ( ! $isQuiet )
-    {
-        $bar->finish();
-        $output->outputLine();
-    }
+if ( ! $isQuiet )
+{
+    $bar->finish();
+    $output->outputLine();
+}
 
 $plugins = $xrowIni->variable( 'GoogleExportSettings', 'ActivePlugins' );
 if ( is_array( $plugins ) )

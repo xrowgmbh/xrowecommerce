@@ -20,17 +20,8 @@ NameDelimiter=,
 [PriceSettings]
 IsVATInclude=false
 VATTypeID=1
-
-# Which price of which country should be shown
-# PreferedCountry=AUT
-
-# Country which has the default price (input is required)
-#DefaultCountry=AUT
-
-# A list of countries for all supported currencies / values
-# CountryArray[GER]=EUR
-# CountryArray[AUT]=EUR
-#CountryArray[]
+DefaultCountry=USA
+CountryArray[USA]=USD
 
 # A list of priorized countries
 # PrioCountryArray[0]=GER

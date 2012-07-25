@@ -21,16 +21,18 @@ class xrowExportProduct extends ezcBaseStruct
     public $image_link = false;
     public $manufacturer = false;
     public $description = false;
+    public $short_description = false;
     public $price = false;
     public $color = false;
     public $model_number = false;
-    public $bild_url = false;
-    public $preis = false;
-    public $breite = false;
-    public $höhe = false;
-    public $länge = false;
-    public $beschreibung = false;
-
+    public $image = false;
+    public $weight = false;
+    public $height = false;
+    public $length = false;
+    public $keywords = false;
+    public $unicode = false;
+    public $comment = false;
+    public $value = false;
 
     /**
      * Simple constructor
