@@ -8,7 +8,7 @@ class USPS extends ShippingInterface
     var $container = "None";
     var $size = "REGULAR";
     var $machinable;
-    var $MailType = "Package";    
+    var $MailType = "Package";
     /*  USPS International Services
 
         Global Express Guaranteed
@@ -19,7 +19,8 @@ class USPS extends ShippingInterface
         if ( isset( eZBasket::currentBasket()->ProductCollectionID ) )
         {
             $productcollection_id = eZBasket::currentBasket()->ProductCollectionID;
-            $this->weight = flatrate::getWeight($productcollection_id);
+            $flatrate = new flatrate();
+            $this->weight = $flatrate->getWeight( $productcollection_id );
         }
         return array( 
             array( 
