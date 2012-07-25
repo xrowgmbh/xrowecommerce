@@ -207,6 +207,7 @@ ClassIdentifier=xrow_product
 # or
 # ExportPriceLanguage=GBR
 # if ExportPriceLanguage is emtpy, it will be set to EUR
+ExportPriceLanguage=
 
 # Which fields to export
 # you can only take this fields
