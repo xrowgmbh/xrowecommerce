@@ -5,38 +5,26 @@ $root_node = $contentIni->variable( 'NodeSettings', 'RootNode' );
 $siteIni = eZINI::instance( 'site.ini' );
 $xrowIni = eZINI::instance( 'xrowecommerce.ini' );
 
-if ( $xrowIni->hasVariable( 'GoogleExportSettings', 'BaseURL' ) )
-{
-    $baseUrl = $xrowIni->variable( 'GoogleExportSettings', 'BaseURL' );
-}
-else
-{
-    $baseUrl = $siteIni->variable( 'SiteSettings', 'SiteURL' );
-}
+$baseUrl = 'www.alconeco.com';
+$exportSiteAccess = '/alcone';
+$exportSettingsFieldsArray = array( 'id'=>'product_id',
+                                    'name'=>'name',
+                                    'short_description'=>'short_description',
+                                    'description'=>'description',
+                                    'keywords'=>'keywords',
+                                    'image'=>'image',
+                                    'image_link'=>'image_link',
+                                    'manufacturer'=>'manufacturer',
+                                    'price'=>'price',
+                                    'weight'=>'weight',
+                                    'unicode'=>'unicode' );
+$classIdentifier = 'xrow_product';
+$priceLang = 'USD';
+$vat = 1.08875;
+$country = 'USA';
 
-$exportSiteAccess = '';
-if ( $xrowIni->hasVariable( 'GoogleExportSettings', 'ExportSiteaccess' ) )
-{
-    $exportSiteAccess = $xrowIni->variable( 'GoogleExportSettings', 'ExportSiteaccess' );
-}
 
-$exportSettingsFieldsArray = $xrowIni->variable( 'GoogleExportSettings', 'ExportFieldsArray' );
-$classIdentifier = $xrowIni->variable( 'GoogleExportSettings', 'ClassIdentifier' );
-$priceLang = $xrowIni->variable( 'GoogleExportSettings', 'ExportPriceLanguage' );
-$vat = $xrowIni->variable( 'GoogleExportSettings', 'VAT' );
-
-$country = '';
-if ( $xrowIni->hasVariable( 'GoogleExportSettings', 'Country' ) )
-{
-    $country = $xrowIni->variable( 'GoogleExportSettings', 'Country' );
-}
-
-if ( trim( $priceLang ) == '' )
-{
-    $priceLang = 'EUR';
-}
-
-$list = new xrowExportProductList();
+$list = new xrowExportProductListAsFile();
 $nodeDataMap = array();
 $exportFields = array();
 
@@ -67,13 +55,11 @@ $idArray = array();
 
 // xrowproductvariation settings
 $xINI = eZINI::instance( 'xrowproduct.ini' );
-$exportParentNodeID = $xINI->variable( 'ExportSettings', 'ExportNodeID' );
 $precision = $xINI->variable( 'ExportSettings', 'Precision' );
 $skuField = $xINI->variable( 'ExportSettings', 'SKUIdentifier' );
 $priceField = $xINI->variable( 'PriceSettings', 'PriceIdentifier' );
 $decPoint = $xINI->variable( 'ExportSettings', 'DecimalPoint' );
 $exportClasses = $xINI->variable( 'ExportSettings', 'ExportClassArray' );
-
 $xFieldArray = $xrowIni->variable( 'GoogleExportSettings', 'ExportVariationFieldArray' );
 $skuArray = array();
 
@@ -166,7 +152,7 @@ foreach ( $nodeList as $node )
         }
     }
     // now check whether the product have options/variations
-    $variationFieldName = $xrowIni->variable( 'GoogleExportSettings', 'ExportVariationFieldName' );
+    $variationFieldName = 'options';
 
     if ( isset( $nodeDataMap[$variationFieldName] ) and $nodeDataMap[$variationFieldName]->attribute( 'data_type_string' ) == 'ezoption2' )
     {
@@ -175,7 +161,13 @@ foreach ( $nodeList as $node )
         if ( is_array( $option2_list ) && count( $option2_list ) > 0 )
         {
             $optionArray = array();
-            $exportVariationFieldsArray = $xrowIni->variable( 'GoogleExportSettings', 'ExportVariationFieldsArray' );
+            $exportVariationFieldsArray = array( 'id'=>'id',
+                                                 'value'=>'value',
+                                                 'description'=>'description',
+                                                 'comment'=>'comment',
+                                                 'weight'=>'weight',
+                                                 'image'=>'image',
+                                                 'price'=>'multi_price' );
 
             foreach ( $option2_list as $option )
             {
@@ -201,6 +193,7 @@ foreach ( $nodeList as $node )
                                 break;
 
                             case 'image_link':
+                            case 'image':
                                 $image_contentobject_attributes = $option[$exportVariationFieldName]->attribute( 'contentobject_attributes' );
                                 $image_handler = $image_contentobject_attributes[2]->attribute( 'content' );
                                 $exportFields['image_link'] = get_image_path( $image_handler, $baseUrl );
@@ -213,7 +206,7 @@ foreach ( $nodeList as $node )
 
                     }
                 }
-                $list->append( new xrowExportProduct( $exportFields ) );
+                $list->append( new xrowExportProductAsFile( $exportFields ) );
                 $exportFields['name'] = $default_name;
                 $exportFields['id'] = $default_id;
                 foreach ( $exportVariationFieldsArray as $exportVariationFieldIndex => $exportVariationFieldName )
@@ -256,7 +249,6 @@ foreach ( $nodeList as $node )
                 'language_code' => $languageCode
             ), true, 0, 1, array( 'placement' => 'asc' ) );
 
-
             if ( count( $dataArray ) == 0 )
             {
                 continue;
@@ -287,7 +279,7 @@ foreach ( $nodeList as $node )
                 ) );
 
             $price = $priceList[0]->attribute( 'price' ) * $vat;
-            $exportFields['preis'] = number_format( $price, $precision, $decPoint, '' );
+            $exportFields['price'] = number_format( $price, $precision, $decPoint, '' );
             foreach( $xFieldArray as $xkey => $xfield )
             {
                 if ( $variation->hasAttribute( $xkey ) )
@@ -300,7 +292,7 @@ foreach ( $nodeList as $node )
                 }
             }
 
-            $list->append( new xrowExportProduct( $exportFields ) );
+            $list->append( new xrowExportProductAsFile( $exportFields ) );
             foreach( $xFieldArray as $xkey => $xfield )
             {
                 if ( isset( $exportFields[$xfield] ) )
@@ -314,7 +306,7 @@ foreach ( $nodeList as $node )
     }
     else
     {
-        $list->append( new xrowExportProduct( $exportFields ) );
+        $list->append( new xrowExportProductAsFile( $exportFields ) );
     }
     if ( ! $isQuiet )
     {
@@ -331,17 +323,8 @@ if ( ! $isQuiet )
     $bar->finish();
     $output->outputLine();
 }
-
-$plugins = $xrowIni->variable( 'GoogleExportSettings', 'ActivePlugins' );
-if ( is_array( $plugins ) )
-{
-    foreach ( $plugins as $plugin )
-    {
-        $export = new $plugin();
-        $export->export( $list );
-        unset( $export );
-    }
-}
+$export = new xrowProductExport();
+$export->export( $list );
 
 /**
  * get the xml data an convert it to strin
