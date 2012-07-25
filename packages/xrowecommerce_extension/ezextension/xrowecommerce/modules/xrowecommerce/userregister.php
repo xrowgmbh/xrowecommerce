@@ -83,7 +83,7 @@ if ( $user->isLoggedIn() and in_array( $userobject->attribute( 'class_identifier
         }
         else
         {
-            if ( key_exists( 'value', $country ) )
+            if ( is_array( $country ) && key_exists( 'value', $country ) )
             {
                 $country = $country['value'];
             }
@@ -179,7 +179,7 @@ if ( $user->isLoggedIn() and in_array( $userobject->attribute( 'class_identifier
             }
             else
             {
-                if ( key_exists( 'value', $s_country ) )
+                if ( is_array( $country ) && key_exists( 'value', $s_country ) )
                 {
                     $s_country = $s_country['value'];
                 }
@@ -272,8 +272,7 @@ $field_keys = array(
     's_country' , 
     's_phone' , 
     's_fax' , 
-    's_email' , 
-    'client_ip' 
+    's_email'
 );
 foreach ( $field_keys as $key )
 {
@@ -927,7 +926,7 @@ if ( $module->isCurrentAction( 'Store' ) )
     $accessAllowed = $currentUser->hasAccessTo( 'xrowecommerce', 'bypass_captcha' );
     /* Captcha check */
     $fields_captcha = $xini->variable( 'Fields', 'Captcha' );
-    if ( class_exists( 'xrowVerification' ) and $fields_captcha['enabled'] == 'true' and $accessAllowed['accessWord'] != 'yes' and empty( $_SESSION['xrowCaptchaSolved'] ) )
+    if ( class_exists( 'xrowVerification' ) and $fields_captcha['enabled'] == 'true' and $accessAllowed['accessWord'] != 'yes' and isset( $_SESSION['xrowCaptchaSolved'] ) && empty( $_SESSION['xrowCaptchaSolved'] ) )
     {
         $captcha = true;
         $verification = new xrowVerification();
@@ -1190,16 +1189,19 @@ if ( $module->isCurrentAction( 'Store' ) )
         $tpl->setVariable( 'input_error', true );
     }
 }
-
 $tpl->setVariable( 'company_name', $company_name );
 $tpl->setVariable( 'company_additional', $company_additional );
 $tpl->setVariable( 'tax_id', $tax_id );
+if( !isset( $tax_id_valid ) )
+    $tax_id_valid = 0;
 $tpl->setVariable( 'tax_id_valid', $tax_id_valid );
 $tpl->setVariable( 'first_name', $first_name );
 $tpl->setVariable( 'title', $title );
 $tpl->setVariable( 'mi', $mi );
 $tpl->setVariable( 'last_name', $last_name );
 $tpl->setVariable( 'email', $email );
+if( !isset( $newsletter ) )
+    $newsletter = '';
 $tpl->setVariable( 'newsletter', $newsletter );
 $tpl->setVariable( 'address1', $address1 );
 $tpl->setVariable( 'address2', $address2 );
@@ -1209,6 +1211,8 @@ $tpl->setVariable( 'zip', $zip );
 $tpl->setVariable( 'country', $country );
 $tpl->setVariable( 'phone', $phone );
 $tpl->setVariable( 'fax', $fax );
+if( !isset( $remote_address ) )
+    $remote_address = '';
 $tpl->setVariable( 'client_ip', $remote_address );
 
 // default value for shipping
@@ -1241,6 +1245,8 @@ $tpl->setVariable( 's_zip', $s_zip );
 $tpl->setVariable( 's_country', $s_country );
 $tpl->setVariable( 's_phone', $s_phone );
 $tpl->setVariable( 's_fax', $s_fax );
+if( !isset( $errors ) )
+    $errors = '';
 $tpl->setVariable( 'errors', $errors );
 $tpl->setVariable( 'coupon_code', $coupon_code );
 $tpl->setVariable( 'reference', $reference );
@@ -1255,20 +1261,28 @@ $filepath = "extension/xrowecommerce/share/geonames.org/countryInfoJSON/" . $loc
 if ( file_get_contents( $filepath ) )
 {
     $json = json_decode( file_get_contents( $filepath ) );
-    $country_array = $json->geonames;
-    foreach ( $country_array as $country )
+    if( isset( $json->geonames ) )
     {
-        $country = (array) $country;
-        $alpha2 = $country["countryCode"];
-        $c_ini->BlockValues[$alpha2]["Name"] = $country["countryName"];
-        $c_ini->BlockValues[$alpha2]["Alpha2"] = $country["countryCode"];
-        $c_ini->BlockValues[$alpha2]["Alpha3"] = $country["isoAlpha3"];
+        $country_array = $json->geonames;
+        if( is_array( $country_array ) && count( $country_array ) > 0 )
+        {
+            foreach ( $country_array as $country )
+            {
+                $country = (array) $country;
+                $alpha2 = $country["countryCode"];
+                $c_ini->BlockValues[$alpha2]["Name"] = $country["countryName"];
+                $c_ini->BlockValues[$alpha2]["Alpha2"] = $country["countryCode"];
+                $c_ini->BlockValues[$alpha2]["Alpha3"] = $country["isoAlpha3"];
+            }
+        }
     }
 }
 $countries = $c_ini->getNamedArray();
 eZCountryType::fetchTranslatedNames( $countries );
 $tpl->setVariable( 'countries', $countries );
 //xrowECommerceFunctionCollection::getCountryList()
+if( !isset( $hazardous ) )
+    $hazardous = '';
 $tpl->setVariable( 'hazardous', $hazardous );
 if ( ! isset( $country ) )
 {

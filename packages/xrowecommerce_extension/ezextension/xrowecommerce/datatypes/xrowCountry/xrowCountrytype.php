@@ -49,14 +49,20 @@ class xrowCountryType extends eZDataType
         if (file_get_contents( $filepath ))
         {
             $json = json_decode(file_get_contents( $filepath ));
-            $country_array = $json->geonames;
-            foreach ( $country_array as $country )
+            if( isset( $json->geonames ) )
             {
-                $country = (array)$country;
-                $alpha2 = $country["countryCode"];
-                $c_ini->BlockValues[$alpha2]["Name"] = $country["countryName"];
-                $c_ini->BlockValues[$alpha2]["Alpha2"] = $country["countryCode"];
-                $c_ini->BlockValues[$alpha2]["Alpha3"] = $country["isoAlpha3"];
+                $country_array = $json->geonames;
+                if( is_array( $country_array ) && count( $country_array ) > 0 )
+                {
+                    foreach ( $country_array as $country )
+                    {
+                        $country = (array)$country;
+                        $alpha2 = $country["countryCode"];
+                        $c_ini->BlockValues[$alpha2]["Name"] = $country["countryName"];
+                        $c_ini->BlockValues[$alpha2]["Alpha2"] = $country["countryCode"];
+                        $c_ini->BlockValues[$alpha2]["Alpha3"] = $country["isoAlpha3"];
+                    }
+                }
             }
         }
         $countries = $c_ini->getNamedArray();
