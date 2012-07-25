@@ -33,6 +33,12 @@ class xrowExportProduct extends ezcBaseStruct
     public $unicode = false;
     public $comment = false;
     public $value = false;
+    public $bild_url = false;
+    public $preis = false;
+    public $breite = false;
+    public $höhe = false;
+    public $länge = false;
+    public $beschreibung = false;
 
     /**
      * Simple constructor

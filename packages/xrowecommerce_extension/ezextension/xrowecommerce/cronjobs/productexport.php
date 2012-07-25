@@ -64,6 +64,7 @@ if ( ! $isQuiet )
 
 // only export a product once
 $idArray = array();
+
 // xrowproductvariation settings
 $xINI = eZINI::instance( 'xrowproduct.ini' );
 $exportParentNodeID = $xINI->variable( 'ExportSettings', 'ExportNodeID' );
@@ -72,6 +73,7 @@ $skuField = $xINI->variable( 'ExportSettings', 'SKUIdentifier' );
 $priceField = $xINI->variable( 'PriceSettings', 'PriceIdentifier' );
 $decPoint = $xINI->variable( 'ExportSettings', 'DecimalPoint' );
 $exportClasses = $xINI->variable( 'ExportSettings', 'ExportClassArray' );
+
 $xFieldArray = $xrowIni->variable( 'GoogleExportSettings', 'ExportVariationFieldArray' );
 $skuArray = array();
 
@@ -227,7 +229,7 @@ foreach ( $nodeList as $node )
     }
     elseif ( isset( $nodeDataMap[$variationFieldName] ) and $nodeDataMap[$variationFieldName]->attribute( 'data_type_string' ) == 'xrowproductvariation' )
     {
-        if ( !isset( $attributeID ) && isset( $exportClasses ) && is_array( $exportClasses ) )
+        if ( !isset( $attributeID ) )
         {
             $classIdentifier = $node->attribute( 'class_identifier' );
             $attributeID = $exportClasses[$classIdentifier];
