@@ -5,7 +5,7 @@
  */
 interface xrowExportProductAsFilePlugin
 {
-	public function export( xrowExportProductListAsFile $list );
+    public function export( xrowExportProductListAsFile $list );
 }
 
 ?>
