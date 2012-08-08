@@ -16,12 +16,6 @@ class USPS extends ShippingInterface
     */
     function methods()
     {
-        if ( isset( eZBasket::currentBasket()->ProductCollectionID ) )
-        {
-            $productcollection_id = eZBasket::currentBasket()->ProductCollectionID;
-            $flatrate = new flatrate();
-            $this->weight = $flatrate->getWeight( $productcollection_id );
-        }
         return array( 
             array( 
                 'identifier' => '6' , 
