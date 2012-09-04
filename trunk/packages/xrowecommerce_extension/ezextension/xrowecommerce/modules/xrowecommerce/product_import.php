@@ -1,6 +1,6 @@
 <?php
 
-
+set_time_limit( 0 );
 
 $http = eZHTTPTool::instance();
 $Module = $Params['Module'];
