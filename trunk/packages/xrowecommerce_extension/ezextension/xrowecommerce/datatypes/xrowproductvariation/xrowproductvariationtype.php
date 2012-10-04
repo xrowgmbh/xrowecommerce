@@ -101,7 +101,7 @@ class xrowProductVariationType extends eZDataType
         $cObj = $contentObjectAttribute->content();
         $content = $cObj->attribute( 'content' );
 
-    	$id = $contentObjectAttribute->attribute( 'id' );
+        $id = $contentObjectAttribute->attribute( 'id' );
         $version = $contentObjectAttribute->attribute( 'version' );
         $languageCode = $contentObjectAttribute->attribute( 'language_code' );
 
@@ -138,12 +138,12 @@ class xrowProductVariationType extends eZDataType
             $columnDefDescKey = 'XrowProductColumnDescArray';
             if ( $http->hasPostVariable( $columnDefDescKey ) )
             {
-            	$columnDescArray = $http->postVariable( $columnDefDescKey );
-            	$columndef['column_desc_array'] = $columnDescArray[$id];
+                $columnDescArray = $http->postVariable( $columnDefDescKey );
+                $columndef['column_desc_array'] = $columnDescArray[$id];
             }
             $contentObjectAttribute->setAttribute( 'data_text', serialize( $columndef ) );
 
-        	$dataKey = "XrowProductVariation";
+            $dataKey = "XrowProductVariation";
             if ( $http->hasPostVariable( $dataKey ) )
             {
                 $variationAllArray = $http->postVariable( $dataKey );
@@ -277,24 +277,24 @@ class xrowProductVariationType extends eZDataType
                             }
 
                             // update Content
-	                        foreach ( $template->AttributeList as $key => $item )
-	                        {
-	                            if ( is_object( $item['attribute'] ) )
-	                            {
-	                                $identifier = $item['attribute']->Identifier;
-	                                $dataType = $item['attribute']->dataType();
-	                                if ( $dataType )
-	                                {
-	                                    $content['data'][$placement][$identifier]['template_item'] = $item;
-	                                    $content['data'][$placement][$identifier]['raw'] = $currentData->attribute( $identifier );
-	                                    $content['data'][$placement][$identifier]['content'] = $dataType->variationContent( $currentData,
-	                                                                                                                        $identifier );
-	                                }
-	                            }
-	                        }
-	                        self::fillVariationData( $currentData, $content['data'][$placement] );
+                            foreach ( $template->AttributeList as $key => $item )
+                            {
+                                if ( is_object( $item['attribute'] ) )
+                                {
+                                    $identifier = $item['attribute']->Identifier;
+                                    $dataType = $item['attribute']->dataType();
+                                    if ( $dataType )
+                                    {
+                                        $content['data'][$placement][$identifier]['template_item'] = $item;
+                                        $content['data'][$placement][$identifier]['raw'] = $currentData->attribute( $identifier );
+                                        $content['data'][$placement][$identifier]['content'] = $dataType->variationContent( $currentData,
+                                                                                                                            $identifier );
+                                    }
+                                }
+                            }
+                            self::fillVariationData( $currentData, $content['data'][$placement] );
 
-	                        $placement++;
+                            $placement++;
                         }
                     }
                 }
@@ -317,98 +317,98 @@ class xrowProductVariationType extends eZDataType
 
         if ( count( $content['data'] ) > 0 )
         {
-        	$placement = 0;
-        	$template =& $content['template'];
+            $placement = 0;
+            $template =& $content['template'];
 
-        	foreach ( $content['data'] as $newPlacement => $variation )
-        	{
-        		if ( isset( $variation['obj'] ) )
-        		{
+            foreach ( $content['data'] as $newPlacement => $variation )
+            {
+                if ( isset( $variation['obj'] ) )
+                {
                     $currentData =& $variation['obj'];
 
-        			$newLine = false;
+                    $newLine = false;
                     if ( !$currentData->attribute( 'id' ) )
                        $newLine = true;
-        		}
-        		else
+                }
+                else
                     continue;
 
                 if ( $newLine )
                 {
                     # getting no id here...
-                	#$currentData->setAttribute( 'placement', $placement );
-                	#$currentData->store();
-                	#eZDebug::writeDebug( $currentData->attribute( 'id' ), 'id' );
+                    #$currentData->setAttribute( 'placement', $placement );
+                    #$currentData->store();
+                    #eZDebug::writeDebug( $currentData->attribute( 'id' ), 'id' );
                 }
 
                 // update translations...
                 $langArray = xrowProductData::fetchLanguageArray( $attribute );
                 if ( count( $langArray ) > 0 )
-	            {
-		            if ( $newLine )
-		            {
-		                // clone the current entry for the other translations
-		                foreach ( $langArray as $langItem )
-		                {
-		                    $currentLang = $langItem['language_code'];
-		                    $attrID = $langItem['id'];
-		                    $langVariation = $currentData->cloneVariation( $currentLang, $attrID );
-		                    $langVariation->setAttribute( 'placement', $placement );
-		                    $langVariation->store();
-		                }
-		            }
-		            else
-		            {
-		                // update existing translations of the variation
-		                $dataID = $currentData->attribute( 'id' );
+                {
+                    if ( $newLine )
+                    {
+                        // clone the current entry for the other translations
+                        foreach ( $langArray as $langItem )
+                        {
+                            $currentLang = $langItem['language_code'];
+                            $attrID = $langItem['id'];
+                            $langVariation = $currentData->cloneVariation( $currentLang, $attrID );
+                            $langVariation->setAttribute( 'placement', $placement );
+                            $langVariation->store();
+                        }
+                    }
+                    else
+                    {
+                        // update existing translations of the variation
+                        $dataID = $currentData->attribute( 'id' );
 
-		                // fetch translations of current variation
-		                $objectID = $contentObjectAttribute->attribute( 'contentobject_id' );
-		                $contentClassAtributeID = $contentObjectAttribute->attribute( 'contentclassattribute_id' );
-		                $translationArrayResult = xrowProductData::fetchObjectList( xrowProductData::definition(),
-		                                                                            null,
-		                                                                            array( 'attribute_id' => array( '!=', $dataID ),
-		                                                                                   'placement' => $currentData->attribute( 'placement' ),
-		                                                                                   'object_id' => $objectID,
-		                                                                                   'contentclassattribute_id' => $contentClassAtributeID ) );
-		                $translationArray = array();
+                        // fetch translations of current variation
+                        $objectID = $contentObjectAttribute->attribute( 'contentobject_id' );
+                        $contentClassAtributeID = $contentObjectAttribute->attribute( 'contentclassattribute_id' );
+                        $translationArrayResult = xrowProductData::fetchObjectList( xrowProductData::definition(),
+                                                                                    null,
+                                                                                    array( 'attribute_id' => array( '!=', $dataID ),
+                                                                                           'placement' => $currentData->attribute( 'placement' ),
+                                                                                           'object_id' => $objectID,
+                                                                                           'contentclassattribute_id' => $contentClassAtributeID ) );
+                        $translationArray = array();
                         if ( count( $translationArrayResult ) > 0 )
-		                {
+                        {
                             foreach( $translationArrayResult as $item )
                             {
-                            	$translationArray[$item->attribute( 'language_locale' )] = $item;
+                                $translationArray[$item->attribute( 'language_locale' )] = $item;
                             }
-		                }
+                        }
 
                         foreach ( $langArray as $currentLang )
-		                {
-		                    if ( !isset( $translationArray[$currentLang] ) )
-		                    {
-		                        $translationArray[$currentLang['language_code']] = $currentData->cloneVariation( $currentLang['language_code'],
-		                                                                                                         $currentLang['id'] );
-		                    }
-		                    else
-		                    {
-		                        // update non-translatable attributes
-		                        $translationArray[$currentLang['language_code']]->setAttribute( 'placement', $placement );
-		                        foreach( $template->AttributeList as $attribute )
-		                        {
-		                            $dataType = $attribute['attribute']->dataType();
-		                            $column = $attribute['attribute']->Identifier;
-		                            if ( $dataType )
-		                            {
-		                                $dataType->updateVariationInput( $currentData,
-		                                                                 $translationArray[$currentLang['language_code']],
-		                                                                 $attribute,
-		                                                                 $column );
+                        {
+                            if ( !isset( $translationArray[$currentLang] ) )
+                            {
+                                $translationArray[$currentLang['language_code']] = $currentData->cloneVariation( $currentLang['language_code'],
+                                                                                                                 $currentLang['id'] );
+                            }
+                            else
+                            {
+                                // update non-translatable attributes
+                                $translationArray[$currentLang['language_code']]->setAttribute( 'placement', $placement );
+                                foreach( $template->AttributeList as $attribute )
+                                {
+                                    $dataType = $attribute['attribute']->dataType();
+                                    $column = $attribute['attribute']->Identifier;
+                                    if ( $dataType )
+                                    {
+                                        $dataType->updateVariationInput( $currentData,
+                                                                         $translationArray[$currentLang['language_code']],
+                                                                         $attribute,
+                                                                         $column );
 
-		                            }
-		                        }
-		                    }
-		                    $translationArray[$currentLang['language_code']]->setAttribute( 'placement', $placement );
-		                    $translationArray[$currentLang['language_code']]->store();
-		                }
-		            }
+                                    }
+                                }
+                            }
+                            $translationArray[$currentLang['language_code']]->setAttribute( 'placement', $placement );
+                            $translationArray[$currentLang['language_code']]->store();
+                        }
+                    }
                 }
 
                 # save a 2nd time
@@ -453,12 +453,12 @@ class xrowProductVariationType extends eZDataType
                 $columnTemp = $contentObjectAttribute->attribute( 'data_text' );
                 if ( strlen( $columnTemp ) > 0 )
                 {
-                	$columndef = @unserialize( $columnTemp );
+                    $columndef = @unserialize( $columnTemp );
                 }
                 $content['column_name_array'] = $columndef['column_name_array'];
                 $content['column_desc_array'] = $columndef['column_desc_array'];
 
-            	$content['template'] = xrowProductTemplate::fetch( $content['template_id'] );
+                $content['template'] = xrowProductTemplate::fetch( $content['template_id'] );
                 $template =& $content['template'];
                 if ( $template )
                 {
@@ -470,7 +470,7 @@ class xrowProductVariationType extends eZDataType
                     }
                     else
                     {
-                    	$sortBy = array( 'placement' => 'asc' );
+                        $sortBy = array( 'placement' => 'asc' );
                     }
 
                     $data = xrowProductData::fetchList( array( 'attribute_id' => $id,
@@ -529,20 +529,20 @@ class xrowProductVariationType extends eZDataType
             if ( $contentObjectAttribute->attribute( 'contentobject_id' ) == $originalContentObjectAttribute->attribute( 'contentobject_id' ) )
             {
 
-	            foreach( $data as $currentData )
-	            {
-					$newData = $currentData->cloneVariation( $contentObjectAttribute->attribute( 'language_code' ),
-					                                         $contentObjectAttribute->attribute( 'id' ),
-					                                         $contentObjectAttribute->attribute( 'version' ) );
-					$newData->store();
-	            }
+                foreach( $data as $currentData )
+                {
+                    $newData = $currentData->cloneVariation( $contentObjectAttribute->attribute( 'language_code' ),
+                                                             $contentObjectAttribute->attribute( 'id' ),
+                                                             $contentObjectAttribute->attribute( 'version' ) );
+                    $newData->store();
+                }
             }
         }
     }
 
     function fillVariationData( xrowProductData $variation, &$content )
     {
-    	$content['obj'] = $variation;
+        $content['obj'] = $variation;
         $content['id'] = $variation->attribute( 'id' );
         $content['placement'] = $variation->attribute( 'placement' );
         $content['version'] = $variation->attribute( 'version' );
@@ -587,7 +587,7 @@ class xrowProductVariationType extends eZDataType
                 {
                     $this->updateTemplateID( $templateID, $contentObjectAttribute, $version );
                     if ( isset( $GLOBALS['xrowProductVariation'][$id] ) )
-            			unset( $GLOBALS['xrowProductVariation'][$id] );
+                        unset( $GLOBALS['xrowProductVariation'][$id] );
                 }
 
             }break;
@@ -608,15 +608,15 @@ class xrowProductVariationType extends eZDataType
         $attributeID = $contentObjectAttribute->attribute( 'id' );
         $classAttributeID = $contentObjectAttribute->attribute( 'contentclassattribute_id' );
         $objectID = $contentObjectAttribute->attribute( 'contentobject_id' );
-    	$contentObjectAttribute->setAttribute( 'data_int', $templateID );
-		$contentObjectAttribute->store();
+        $contentObjectAttribute->setAttribute( 'data_int', $templateID );
+        $contentObjectAttribute->store();
 
-    	$db = eZDB::instance();
+        $db = eZDB::instance();
         $db->begin();
         $sql = "UPDATE
-        			ezcontentobject_attribute
+                    ezcontentobject_attribute
                 SET
-        			data_int = '$templateID'
+                    data_int = '$templateID'
                 WHERE
                     id != $attributeID
                     AND contentobject_id = '$objectID'
@@ -680,16 +680,16 @@ class xrowProductVariationType extends eZDataType
     function metaData( $contentObjectAttribute )
     {
        $result = array();
-    	if ( $contentObjectAttribute->hasContent() )
+        if ( $contentObjectAttribute->hasContent() )
         {
             $cObj = $contentObjectAttribute->content();
             $content = $cObj->attribute( 'content' );
             foreach ( $content['data'] as $data )
             {
-            	if ( $data['obj'] )
-            	{
-            	    $result = array_merge( $result, $data['obj']->metaData() );
-            	}
+                if ( $data['obj'] )
+                {
+                    $result = array_merge( $result, $data['obj']->metaData() );
+                }
             }
         }
         $final = array();
@@ -697,8 +697,8 @@ class xrowProductVariationType extends eZDataType
         {
             if ( $item != '' )
             {
-            	$final[] = $item;
-            }   
+                $final[] = $item;
+            }
         }
         return $final;
     }
@@ -745,15 +745,16 @@ class xrowProductVariationType extends eZDataType
         $variation = xrowProductData::fetch( $optionID );
         if ( $variation )
         {
-        	$template = $variation->fetchTemplate();
-        	$priceIdentifier = $template->findPriceAttributeIdentifier();
-        	if ( $priceIdentifier != '' )
-        	{
-        		$priceID = $variation->attribute( $priceIdentifier );
-        		//eZDebug::writeDebug( $amount, 'amount' );
-        		$price = xrowProductPrice::fetchPriceByAmount( $priceID, $amount );
-        	}
-        	$name = $variation->getVariationName();
+            $template = $variation->fetchTemplate();
+            $priceIdentifier = $template->findPriceAttributeIdentifier();
+            if ( $priceIdentifier != '' )
+            {
+                $priceID = $variation->attribute( $priceIdentifier );
+                $amount = $productItem->attribute( 'item_count' );
+                #eZDebug::writeDebug( $amount, 'amount' );
+                $price = xrowProductPrice::fetchPriceByAmount( $priceID, $amount );
+            }
+            $name = $variation->getVariationName();
         }
         $result['value'] = $value;
         $result['name'] = $name;
