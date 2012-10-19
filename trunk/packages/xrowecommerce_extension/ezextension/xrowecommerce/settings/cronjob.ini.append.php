@@ -9,4 +9,7 @@ Scripts[]=recurringorders.php
 [CronjobPart-productexport]
 Scripts[]=productexport.php
 
+[CronjobPart-feedbackmail]
+Scripts[]=feedbackmail.php
+
 */ ?>

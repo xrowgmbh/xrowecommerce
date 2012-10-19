@@ -1,12 +1,38 @@
 <div class="shop shop-userregister">
-
+    <h1>{'My Account'|i18n('extension/xrowecommerce')}</h1>
+    {include uri="design:shop/basket_navigator.tpl" step='2'}
+    {include uri="design:shop/userregister_preface.tpl"}
+    {if and( fetch( 'user', 'current_user' ).is_logged_in|not(), ezini( 'Settings', 'ForceUserRegBeforeCheckout', 'xrowecommerce.ini' )|eq('true'))}
+        <h2>{'Bought from us before?'|i18n('extension/xrowecommerce')}</h2>
+        <div id="checkoutLogin">
+            <p>{'If you have previously purchased from us, please login using the below fields'|i18n('extension/xrowecommerce')}:</p>
+            <form method="post" action={"user/login"|ezurl}">
+                <div class="inputGroup text">
+                    <label for="id1">{'Email address'|i18n('extension/xrowecommerce')}:</label>
+                    <input type="text" name="Login" id="id1" value="" tabindex="1" />
+                </div>
+                <div class="inputGroup text">
+                    <label for="id2">{'Password'|i18n('extension/xrowecommerce')}:</label>
+                    <input type="password" name="Password" id="id2" value="" tabindex="1" />
+                </div>
+                <div class="login-button">
+                    <input class="button" type="submit" name="LoginButton" value="{'Login'|i18n('extension/xrowecommerce')}" tabindex="1">
+                </div>
+                <input type="hidden" name="RedirectURI" value={"xrowecommerce/userregister"|ezroot} />
+                <p><a href={'user/forgotpassword/'|ezurl()}>{'Forgotten password?'|i18n('extension/xrowecommerce')}</a></p>
+                <input type="hidden" value="xrowecommerce/userregister" name="RedirectAfterLogin" />
+             </form>
+        </div>
+        <h2 id="newCustReg">{"If you're a new customer, registering only takes a few seconds"|i18n('extension/xrowecommerce')}:</h2>
+        <p>{'Please enter your billing address exactly as it appears on your credit card statement.'|i18n('extension/xrowecommerce')}</p>
+    {/if}
+    
     <form method="post" action={"xrowecommerce/userregister/"|ezurl} name='register' >
         <input type="submit" class="hide" style="display: hide;" name="StoreButton" value="{'Continue'|i18n('extension/xrowecommerce')}" />
-        <h1>{'My Account'|i18n('extension/xrowecommerce')}</h1>
-
-        {include uri="design:shop/basket_navigator.tpl" step='2'}
-        {include uri="design:shop/userregister_preface.tpl"}
         {def $country_default_ini=ezini( 'ShopAccountHandlerDefaults', 'DefaultCountryCode', 'xrowecommerce.ini' )}
+        {if $country|trim()|ne('')}
+            {set $country_default_ini = $country} 
+        {/if}
             {if count($hazardous)|gt(0)}
                 <div class="warning">
                     <h2>{'Hazardous item(s) found in your cart.'|i18n('extension/xrowecommerce')}</h2>
@@ -51,20 +77,22 @@
                 <h2>{'Billing Information'|i18n('extension/xrowecommerce')}</h2>
                 <p><span class="required">* <i>{'Required field'|i18n('extension/xrowecommerce')}</i></span></p>
                 <div class="labelbreak"></div>
-                <div class="address-selection">
-                    <div class="comp">
-                        <label for="company">
-                        <input id="company" type="radio" value="company" name="company" />
-                        {'Company'|i18n('extension/xrowecommerce')}
-                        </label>
+                {if or($fields.company_name.enabled, $fields.company_additional.enabled, $fields.tax_id.enabled)}
+                    <div class="address-selection">
+                        <div class="comp">
+                            <label for="company">
+                            <input id="company" type="radio" value="company" name="company" />
+                            {'Company'|i18n('extension/xrowecommerce')}
+                            </label>
+                        </div>
+                        <div class="home">
+                            <label for="home">
+                            <input checked="checked" id="home" type="radio" value="company" name="company" />
+                            {'Private person'|i18n('extension/xrowecommerce')}
+                            </label>
+                        </div>
                     </div>
-                    <div class="home">
-                        <label for="home">
-                        <input checked="checked" id="home" type="radio" value="company" name="company" />
-                        {'Private person'|i18n('extension/xrowecommerce')}
-                        </label>
-                    </div>
-                </div>
+                 {/if}
                 <div class="company">
                     {if $fields.company_name.enabled}
                         <div class="ur_companyname block{if is_set($fields.company_name.errors)} error{/if}">
@@ -195,9 +223,23 @@
                     <div class="block{if is_set($fields.email.errors)} error{/if}">
                         <label>{'E-mail'|i18n('extension/xrowecommerce')}{if $fields.email.required}<span class="required">*</span>{/if}</label>
                         <div class="labelbreak"></div>
-                        <input class="phone" type="text" name="email" id="email" value="{$email|wash}" />
+                        <input class="email" type="text" name="email" id="email" value="{$email|wash}" />
                     </div>
                     <div class="break"></div>
+                {/if}
+                {if and( fetch( 'user', 'current_user' ).is_logged_in|not(), ezini( 'Settings', 'ForceUserRegBeforeCheckout', 'xrowecommerce.ini' )|eq('true'))}
+                    {if $fields.password.enabled }
+                        <div class="block{if is_set($fields.password.errors)} error{/if}">
+                            <label>{'Password'|i18n('extension/xrowecommerce')}{if $fields.password.required}<span class="required">*</span>{/if}</label>
+                            <div class="labelbreak"></div>
+                            <input class="password" type="password" name="password" id="password" value="" />
+                            
+                            <label>{'Confirm Password'|i18n('extension/xrowecommerce')}{if $fields.password.required}<span class="required">*</span>{/if}</label>
+                            <div class="labelbreak"></div>
+                            <input class="password_confirm" type="password" name="passwordConfirm" id="password_confirm" value="" />
+                        </div>
+                        <div class="break"></div>
+                    {/if}
                 {/if}
                 
                 {if ezini('Fields','Newsletter','xrowecommerce.ini').enabled|eq('true')}
@@ -240,37 +282,40 @@
 
                 <div class="block" id="shippinginfo"{if $shipping} style="display: none;"{else} style="display: block;"{/if}>
                     <p><span class="required">* {'Required field'|i18n('extension/xrowecommerce')}</span></p>
-                <div class="s_address-selection">
-                    <div class="s_comp">
-                        <label for="s_company">
-                        <input id="s_company" type="radio" value="company" name="s_company" />
-                        {'Company'|i18n('extension/xrowecommerce')}
-                        </label>
-                    </div>
-                    <div class="s_home">
-                        <label for="s_home">
-                        <input checked="checked" id="s_home" type="radio" value="company" name="s_company" />
-                        {'Private Person'|i18n('extension/xrowecommerce')}
-                        </label>
-                    </div>
-                </div>
-                <div class="s_company">
-                    {if $fields.s_company_name.enabled}
-                        <div class="ur_companyname block{if is_set($fields.s_company_name.errors)} error{/if}">
-                            <label>{'Company name'|i18n('extension/xrowecommerce')}{if $fields.s_company_name.required}<span class="required">*</span>{/if}</label>
-                            <div class="labelbreak"></div>
-                            <input type="text" name="s_company_name" id="s_company_name" value="{$s_company_name|wash}" />
+                    
+                    {if or( $fields.s_company_name.enabled, $fields.s_company_additional.enabled)}
+                        <div class="s_address-selection">
+                            <div class="s_comp">
+                                <label for="s_company">
+                                <input id="s_company" type="radio" value="company" name="s_company" />
+                                {'Company'|i18n('extension/xrowecommerce')}
+                                </label>
+                            </div>
+                            <div class="s_home">
+                                <label for="s_home">
+                                <input checked="checked" id="s_home" type="radio" value="company" name="s_company" />
+                                {'Private Person'|i18n('extension/xrowecommerce')}
+                                </label>
+                            </div>
                         </div>
                     {/if}
-
-                    {if $fields.s_company_additional.enabled}
-                        <div class="ur_company_additional block{if is_set($fields.s_company_additional.errors)} error{/if}">
-                            <label>{'Company additional information'|i18n('extension/xrowecommerce')}{if $fields.s_company_additional.required}<span class="required">*</span>{/if}</label>
-                            <div class="labelbreak"></div>
-                            <input type="text" name="s_company_additional" id="s_company_additional" value="{$s_company_additional|wash}" />
-                        </div>
-                    {/if}
-                </div>
+                    <div class="s_company">
+                        {if $fields.s_company_name.enabled}
+                            <div class="ur_companyname block{if is_set($fields.s_company_name.errors)} error{/if}">
+                                <label>{'Company name'|i18n('extension/xrowecommerce')}{if $fields.s_company_name.required}<span class="required">*</span>{/if}</label>
+                                <div class="labelbreak"></div>
+                                <input type="text" name="s_company_name" id="s_company_name" value="{$s_company_name|wash}" />
+                            </div>
+                        {/if}
+    
+                        {if $fields.s_company_additional.enabled}
+                            <div class="ur_company_additional block{if is_set($fields.s_company_additional.errors)} error{/if}">
+                                <label>{'Company additional information'|i18n('extension/xrowecommerce')}{if $fields.s_company_additional.required}<span class="required">*</span>{/if}</label>
+                                <div class="labelbreak"></div>
+                                <input type="text" name="s_company_additional" id="s_company_additional" value="{$s_company_additional|wash}" />
+                            </div>
+                        {/if}
+                    </div>
 
                     {if $fields.s_title.enabled}
                         <div class="ur_title block{if is_set($fields.s_title.errors)} error{/if}">
@@ -397,7 +442,7 @@
 
             {* / left column *}
             </div>
-
+            
             {if ezini('Fields','Coupon','xrowecommerce.ini').enabled|eq('true')}
                 <div class="coupon">
                     <h2>{'Coupon'|i18n('extension/xrowecommerce')}</h2>
@@ -409,34 +454,34 @@
                     </div>
                 </div>
             {/if}
-
+            
             <div class="additional-information">
                 <h2>{'Additional Information'|i18n( 'extension/xrowecommerce' )}</h2>
-
+                
                 {* Captcha Start *}
-                    {def $access=fetch( 'user', 'has_access_to',
-                                        hash( 'module',   'xrowecommerce',
-                                              'function', 'bypass_captcha' ) )}
-
-                    {if and( ezini('Fields','Captcha','xrowecommerce.ini').enabled|eq('true'), $access|not, ezhttp( 'xrowCaptchaSolved', 'session' )|not)}
-                        <div class="block">
-                            <label>{'Verification'|i18n('extension/xrowecommerce')}<span class="required">*</span></label>
-                            <div class="labelbreak"></div>
-                            {def $lang=ezini('Display','OverrideLang','recaptcha.ini')}
-                            {if $lang|eq('')}{set $lang="en"}{/if}
-                            <script type="text/javascript">
-                                RecaptchaTheme='{ezini('Display','Theme','recaptcha.ini')}';
-                                RecaptchaLang='{$lang}';
-                                {literal}
-                                var RecaptchaOptions = {
-                                theme: RecaptchaTheme,
-                                lang: RecaptchaLang,
-                                };
-                                {/literal}
-                            </script>
-                            {recaptcha_get_html()}
-                        </div>
-                    {/if}
+                {def $access=fetch( 'user', 'has_access_to',
+                                    hash( 'module',   'xrowecommerce',
+                                          'function', 'bypass_captcha' ) )}
+                
+                {if and( ezini('Fields','Captcha','xrowecommerce.ini').enabled|eq('true'), $access|not, ezhttp( 'xrowCaptchaSolved', 'session' )|not)}
+                    <div class="block">
+                        <label>{'Verification'|i18n('extension/xrowecommerce')}<span class="required">*</span></label>
+                        <div class="labelbreak"></div>
+                        {def $lang=ezini('Display','OverrideLang','recaptcha.ini')}
+                        {if $lang|eq('')}{set $lang="en"}{/if}
+                        <script type="text/javascript">
+                            RecaptchaTheme='{ezini('Display','Theme','recaptcha.ini')}';
+                            RecaptchaLang='{$lang}';
+                            {literal}
+                            var RecaptchaOptions = {
+                            theme: RecaptchaTheme,
+                            lang: RecaptchaLang,
+                            };
+                            {/literal}
+                        </script>
+                        {recaptcha_get_html()}
+                    </div>
+                {/if}
                 {* Captcha End *}
 
                 {* Your No Partial Delivery *}
@@ -473,7 +518,7 @@
         {literal}
             <script type="text/javascript">
                 // removed because it updates the values, if we already have data for shipping.
-                // Idea only update if we have no data fopr shipping and data for billing.
+                // Idea only update if we have no data for shipping and data for billing.
                 // changeShipping();
                 updateShipping();
             </script>

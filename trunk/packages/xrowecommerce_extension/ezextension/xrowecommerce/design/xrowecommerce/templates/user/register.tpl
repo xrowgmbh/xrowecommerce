@@ -3,7 +3,6 @@
      $countries = fetch( 'content', 'country_list')
      $castring = 'ContentObjectAttribute'
      $country_default_ini = ezini( 'ShopAccountHandlerDefaults', 'DefaultCountryCode', 'xrowecommerce.ini' )}
-{*ezhttp()|attribute(show)*}
 <div class="shop-basket user_register">
     <form enctype="multipart/form-data"  action={"/user/register/"|ezurl} method="post" name="Register" id="register">
 
