@@ -14,7 +14,7 @@ if ( $module->isCurrentAction( 'Cancel' ) )
 $user = eZUser::currentUser();
 
 // Initialize variables
-$email = $title = $s_title = $first_name = $last_name = $shippingtype = $shipping = $s_email = $s_last_name = $s_first_name = $s_address1 = $s_address2 = $s_zip = $s_city = $s_state = $s_country = $s_phone = $s_mi = $address1 = $address2 = $zip = $city = $state = $country = $phone = $recaptcha = $mi = null;
+$email = $title = $s_title = $first_name = $last_name = $shippingtype = $shipping = $s_email = $s_last_name = $s_first_name = $s_address1 = $s_address2 = $s_zip = $s_city = $s_state = $s_country = $s_phone = $s_mi = $address1 = $address2 = $zip = $city = $state = $country = $phone = $recaptcha = $mi = $password = null;
 $userobject = $user->attribute( 'contentobject' );
 $xini = eZINI::instance( 'xrowecommerce.ini' );
 if ( $xini->hasVariable( 'ShopAccountHandlerDefaults', 'CountryCode' ) )
@@ -272,7 +272,8 @@ $field_keys = array(
     's_country' , 
     's_phone' , 
     's_fax' , 
-    's_email'
+    's_email',
+    'password'
 );
 foreach ( $field_keys as $key )
 {
@@ -600,6 +601,32 @@ if ( $module->isCurrentAction( 'Store' ) )
         {
             $inputIsValid = false;
             $fields['fax']['errors'][0] = ezpI18n::tr( 'extension/xrowecommerce', 'The billing fax number is not given.' );
+        }
+    }
+    
+    $tmpuser = eZUser::currentUser();
+    $userlogin = eZUser::isUserLoggedIn($tmpuser->ContentObjectID);
+    unset($tmpuser);
+    
+    if ( $userlogin == null && $fields['password']['enabled'] == true && $fields['email']['enabled'] == true)
+    {
+        $password = $http->postVariable( 'password' );
+        $password = eZUser::createHash( $email, $password, eZUser::site(), eZUser::hashType() );
+        
+        if( trim( $http->postVariable( 'password' ) ) != trim( $http->postVariable( 'passwordConfirm' ) ))
+        {
+            $inputIsValid = false;
+            $fields['password']['errors'][0] = ezpI18n::tr( 'extension/xrowecommerce', 'The password does not match confirm password.' );
+        }
+        if ( $password == '' and $fields['password']['required'] == true )
+        {
+            $inputIsValid = false;
+            $fields['password']['errors'][0] = ezpI18n::tr( 'extension/xrowecommerce', 'The password is not given.' );
+        }
+        if( eZUser::fetchByEmail($email) != null)
+        {
+            $inputIsValid = false;
+            $fields['email']['errors'][0] = ezpI18n::tr( 'extension/xrowecommerce', 'An user with this email already exists.' );
         }
     }
     
@@ -1019,6 +1046,9 @@ if ( $module->isCurrentAction( 'Store' ) )
         $emailNode = $doc->createElement( 'email', xrowECommerce::encodeString( $email ) );
         $root->appendChild( $emailNode );
         
+        $passwordNode = $doc->createElement( 'password', xrowECommerce::encodeString( $password ) );
+        $root->appendChild( $passwordNode );
+        
         $newsletter = $doc->createElement( 'newsletter', xrowECommerce::encodeString( $newsletter ) );
         $root->appendChild( $newsletter );
         
@@ -1202,6 +1232,8 @@ $tpl->setVariable( 'last_name', $last_name );
 $tpl->setVariable( 'email', $email );
 if( !isset( $newsletter ) )
     $newsletter = '';
+$tpl->setVariable( 'password', $password );
+$tpl->setVariable( 'password', $password_confirm );
 $tpl->setVariable( 'newsletter', $newsletter );
 $tpl->setVariable( 'address1', $address1 );
 $tpl->setVariable( 'address2', $address2 );

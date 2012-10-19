@@ -59,6 +59,8 @@ s_fax[required]=false
 s_fax[enabled]=false
 email[required]=true
 email[enabled]=true
+password[required]=true
+password[enabled]=true
 s_email[required]=true
 s_email[enabled]=true
 NoPartialDelivery[enabled]=true
@@ -107,6 +109,7 @@ ShowPriceAs=discount_price_inc_vat
 #Key=YOURSECRETKEYFORENCRYPTANDDECRYPT
 Algorithm=tripledes
 Mode=cfb
+ForceUserRegBeforeCheckout=false
 
 [ShippingSettings]
 #fields can be disabled / enabled in the shipping information
@@ -136,6 +139,8 @@ Email=
 #Define if mail should be send out on checkout
 SendOrderEmail=enabled
 HTMLEmail=disabled
+#Feedback mail will be sent x Days after the first order
+FirstOrderDelay=90
 
 # one ore more bcc receiver of the order confirmation
 EmailBCCReceiver[]
