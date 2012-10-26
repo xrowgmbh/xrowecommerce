@@ -1,0 +1,15 @@
+Installation
+
+Active the extension
+
+Configure your settings
+
+settings/override/xrowsagepay.ini.append.php
+
+<?php /* #?ini charset="utf-8"?
+
+[Settings]
+VendorName=YOURACCOUNT
+EncryptionPassword=YOURPASSWORD
+
+*/ ?>
