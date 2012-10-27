@@ -151,7 +151,7 @@ class xrowSagePayGateway extends xrowEPaymentGateway
         $PaymentVars['AllowGiftAid'] = '0';
         $PaymentVars['ApplyAVSCV2'] = '0';
         $PaymentVars['Apply3DSecure'] = '0';
-        
+
         // not needed for implementation
         #$PaymentVars['Basket'] = '2:Shaolin Soccer:1:8.47:1.48:9.95:9.95:Delivery:1:1.50:---:1.50:1.50';
         //Basket Syntax:
@@ -165,8 +165,8 @@ class xrowSagePayGateway extends xrowEPaymentGateway
         {
             $tempateVars['Crypt'] .= $key . '=' . $value . '&';
         }
-        rtrim( $tempateVars['Crypt'], '&' );
-        
+        $tempateVars['Crypt'] = rtrim( $tempateVars['Crypt'], '&' );
+
         $tempateVars['Crypt'] = self::encryptAndEncode( $tempateVars['Crypt'] );
         
         $process->Template = array();
