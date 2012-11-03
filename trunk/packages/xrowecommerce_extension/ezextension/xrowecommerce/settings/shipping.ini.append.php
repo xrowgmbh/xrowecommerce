@@ -4,6 +4,7 @@
 ShippingGateways[]=UPS
 ShippingGateways[]=USPS
 ShippingGateways[]=fixedprice
+ShippingGateways[]=rangedfixedprice
 
 # List of products that do not have shipping and/or handling costs (contentobject ID)
 #FreeShippingProducts[]

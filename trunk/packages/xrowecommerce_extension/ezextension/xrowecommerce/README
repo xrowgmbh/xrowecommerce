@@ -38,3 +38,9 @@ Alternativly you can copy the code of extension/xrowecommerce/config.php to your
 
 You can also set the default prefences for the user country. This is important for Tax calculations
 
+
+Optional Setup
+
+Shipping 
+
+Active the shipping workflow in the admin interface under setup->workflows. Select the desired shipping options for your customer. Assign it to the trigger "confirmorder.before".
