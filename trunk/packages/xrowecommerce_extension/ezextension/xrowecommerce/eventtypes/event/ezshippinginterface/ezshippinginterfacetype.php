@@ -247,8 +247,8 @@ class eZShippingInterfaceType extends eZWorkflowEventType
         {
             $impl = new xrowDefaultShipping();
         }
-        
-        if ( $impl instanceof xrowShipment )
+
+        if ( $impl instanceof xrowShipment and count( $impl->getBoxes( $order ) ) > 0 )
         {
             $boxes = $impl->getBoxes( $order );
             foreach ( $boxes as $box )
@@ -310,10 +310,7 @@ class eZShippingInterfaceType extends eZWorkflowEventType
             $order->setAttribute( 'data_text_1', $doc->saveXML() );
             $order->store();
         }
-        else
-        {
-            throw new Exception( "Shipping Interface not set. xrowecommerce.ini[ShippingInterfaceSettings][ShippingInterface] " );
-        }
+        
 
         // @TODO show template that hazardous items got removed
         /*
