@@ -26,6 +26,13 @@ class rangedfixedprice extends ShippingInterface
     function getPrice( $shippingmethod )
     {
         $config = new SimpleXMLElement( file_get_contents( self::CONFIG_FILE ) );
+        
+        $option = $config->xpath( "/shipping/option[ @id = '" . $this->method . "' ]" );
+
+        if( isset( $option[0]['free_shipping'] ) and $this->order->totalExVAT() >= (float) $option[0]['free_shipping'] )
+        {
+        	return 0.00;
+        }
         $list = $config->xpath( "/shipping/option[ @id = '" . $this->method . "' ]/policy" );
 
         foreach ( $list as $policy )

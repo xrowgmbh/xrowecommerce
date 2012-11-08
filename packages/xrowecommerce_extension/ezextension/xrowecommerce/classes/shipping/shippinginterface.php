@@ -19,7 +19,7 @@ class ShippingInterface
     public $license = "";
     public $userid = "";
     public $pass = "";
-
+    
     public $service = "";
     public $services = "";
     public $weight_unit = "";
@@ -27,16 +27,62 @@ class ShippingInterface
     public $order;
     public $PackagingType = "";
     public $PickupType = "";
-
+    
     public $length_unit = "";
     public $length = "0";
     public $width = "0";
     public $height = "0";
-
+    
     public $address_from = array();
     public $address_to = array();
     public $method;
     public $is_air = false;
+
+    function getWeight()
+    {
+        // Order product total weight calculation
+        $ini = eZINI::instance( 'xrowecommerce.ini' );
+        
+        // ABSTRACTION LAYER FOR WEIGHT
+        // Also builds Packagelist
+        $totalweight = 0;
+        if ( $ini->hasVariable( 'ShippingInterfaceSettings', 'ShippingInterface' ) and class_exists( $ini->variable( 'ShippingInterfaceSettings', 'ShippingInterface' ) ) )
+        {
+            $interfaceName = $ini->variable( 'ShippingInterfaceSettings', 'ShippingInterface' );
+            $impl = new $interfaceName();
+        }
+        else
+        {
+            $impl = new xrowDefaultShipping();
+        }
+        
+        if ( $impl instanceof xrowShipment and count( $impl->getBoxes( $order ) ) > 0 )
+        {
+            $boxes = $impl->getBoxes( $this->order );
+            foreach ( $boxes as $box )
+            {
+                $boxweight += $box->totalWeight();
+            }
+            eZDebug::writeDebug( $boxweight, 'Weight of Packages' );
+            $products = $impl->getProducts( $this->order );
+            $packlist = $impl->compute( $boxes, $products );
+            $totalweight = 0;
+            foreach ( $packlist as $package )
+            {
+                $totalweight += $package->totalWeight();
+            }
+        }
+        elseif ( $impl instanceof xrowShipment and count( $impl->getBoxes( $order ) ) == 0 )
+        {
+            $products = $impl->getProducts( $this->order );
+            foreach ( $products as $product )
+            {
+                $totalweight += $product->weight;
+            }
+        }
+        return $totalweight;
+    }
+
     function description()
     {
         foreach ( $this->methods() as $method )
@@ -63,7 +109,7 @@ class ShippingInterface
     function methodCheck( $country )
     {
         $list = self::getCountryList();
-
+        
         if ( in_array( $country, $list ) )
         {
             return true;
@@ -127,7 +173,7 @@ class ShippingInterface
 
     static function &instance( $name )
     {
-        $return = new $name( );
+        $return = new $name();
         $return->loadConfiguration();
         return $return;
     }
@@ -159,21 +205,21 @@ class ShippingInterface
 
     function setAddressTo( $to_country, $to_state, $to_zip, $to_city )
     {
-        $this->address_to = array(
-            "country" => $to_country ,
-            "state" => $to_state ,
-            "zip" => $to_zip ,
-            "city" => $to_city
+        $this->address_to = array( 
+            "country" => $to_country , 
+            "state" => $to_state , 
+            "zip" => $to_zip , 
+            "city" => $to_city 
         );
     }
 
     function setAddressFrom( $from_country, $from_state, $from_zip, $from_city )
     {
-        $this->address_from = array(
-            "country" => $from_country ,
-            "state" => $from_state ,
-            "zip" => $from_zip ,
-            "city" => $from_city
+        $this->address_from = array( 
+            "country" => $from_country , 
+            "state" => $from_state , 
+            "zip" => $from_zip , 
+            "city" => $from_city 
         );
     }
 
@@ -212,9 +258,9 @@ class ShippingInterface
         return false;
     }
 
-	function setAvailableFor( $availableFor )
-	{
-         $this->availableFor = $availableFor;
+    function setAvailableFor( $availableFor )
+    {
+        $this->availableFor = $availableFor;
     }
 
     function convert_country( $country, $input_type = "Alpha2", $output_type = "Alpha3" )
