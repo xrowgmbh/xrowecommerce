@@ -310,6 +310,15 @@ class eZShippingInterfaceType extends eZWorkflowEventType
             $order->setAttribute( 'data_text_1', $doc->saveXML() );
             $order->store();
         }
+        elseif( $impl instanceof xrowShipment and count( $impl->getBoxes( $order ) ) == 0 )
+        {
+        	$products = $impl->getProducts( $order );
+        	foreach( $products as  $product )
+        	{
+        		$totalweight += $product->weight;
+        	}
+        }
+        
         
 
         // @TODO show template that hazardous items got removed
