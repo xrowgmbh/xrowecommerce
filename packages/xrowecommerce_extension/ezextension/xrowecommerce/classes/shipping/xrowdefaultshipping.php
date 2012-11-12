@@ -82,7 +82,7 @@ class xrowDefaultShipping implements xrowShipment
                     $query = "SELECT option_item_id FROM ezproductcollection_item_opt WHERE item_id = '$temp_item'";
                     $sql = $db->arrayQuery($query);
                     $xml = simplexml_load_string($dm['options']->DataText);
-                    $has_options = simplexml_load_string( $dm[options]->DataText )->options->option;
+                    $has_options = simplexml_load_string( $dm['options']->DataText )->options->option;
                     if ( isset($dm["options"]) and $dm["options"]->DataTypeString == (string)"ezoption2" and trim($has_options) != "")
                     {
                         foreach($xml->options->option as $option)
