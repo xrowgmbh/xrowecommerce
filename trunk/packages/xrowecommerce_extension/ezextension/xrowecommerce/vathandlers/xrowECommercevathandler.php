@@ -6,7 +6,8 @@ class xrowECommerceVATHandler
     static function taxMapping()
     {
         return array( 
-            'DEU' => 19 , 
+            'DEU' => 19 ,
+            'GBR' => 20 , 
             'AUT' => 20 , 
             'IRL' => 21 , 
             'USA' => array( 
