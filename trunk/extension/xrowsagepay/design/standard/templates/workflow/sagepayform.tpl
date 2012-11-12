@@ -11,6 +11,18 @@
 
 <p>{"You will now leave this website an continue your payment on Sage Pay."|i18n("extension/xrowsagepay")}</p>
 
+{if $errors|count|eq( 0 )}
+<p>{"You will be automaticly redirected to Sage Pay."|i18n("extension/xrowsagepay")}</p>
+{literal}
+  <script>
+  $(document).ready(function () {
+  $("#SagePayForm").submit();
+});
+  </script>
+{/literal}
+{/if}
+
+
 <form name="SagePayForm" id="SagePayForm" method="POST" action="{ezini( 'Settings', 'ServiceURL', 'xrowsagepay.ini' )}"> 
 <input type="hidden" value="" name="navigate">
 <input type="hidden" value="2.23" name="VPSProtocol">
