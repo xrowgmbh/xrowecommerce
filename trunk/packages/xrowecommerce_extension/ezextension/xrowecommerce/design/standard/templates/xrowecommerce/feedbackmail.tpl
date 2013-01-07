@@ -1,7 +1,7 @@
 {set-block scope=root variable=sender-mail}sender@example.com{/set-block}
 {set-block scope=root variable=sender-name}Your Company Team{/set-block}
 {set-block scope=root variable=receiver-name}{$order.first_name} {$order.last_name}{/set-block}
-{set-block scope=root variable=receiver-mail}receiver@example.com{/set-block}
+{set-block scope=root variable=receiver-mail}{$email}{/set-block}
 {set-block scope=root variable=subject}We hope you were satisfied{/set-block}
 Dear {$order.first_name} {$order.last_name},
 

@@ -41,6 +41,10 @@ You can also set the default prefences for the user country. This is important f
 
 Optional Setup
 
-Shipping 
+ Shipping 
+  Active the shipping workflow in the admin interface under setup->workflows. Select the desired shipping options for your customer. Assign it to the trigger "confirmorder.before".
 
-Active the shipping workflow in the admin interface under setup->workflows. Select the desired shipping options for your customer. Assign it to the trigger "confirmorder.before".
+
+ Feed back mail cronjob
+  You can set up the cronjob "feedbackmail" which sends a feedback mail after X days. This "FirstOrderDelay" can be set in xrowecommerce.ini in MailSettings / FirstOrderDelay.
+  You should override the default template located here: <docroot> /extension/xrowecommerce/design/standard/templates/xrowecommerce/feedbackmail.tpl
