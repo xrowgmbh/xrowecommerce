@@ -385,7 +385,7 @@ class USPS extends ShippingInterface
         {
             $str = $this->server . "?API=IntlRate&XML=<IntlRateRequest%20USERID=\"";
             $str .= $this->userid . "\"%20PASSWORD=\"" . $this->pass . "\"><Package%20ID=\"0\">";
-            $str .= "<Pounds>" . $this->pounds . "</Pounds><Ounces>" . $this->ounces . "</Ounces>";
+            $str .= "<Pounds>" . $this->pounds . "</Pounds><Ounces>0</Ounces>";
             $str .= "<MailType>" . $this->MailType . "</MailType><Country>" . urlencode( $this->countryConvert( $this->address_to["country"] ) ) . "</Country></Package></IntlRateRequest>";
         }
         ezDebug::writeDebug( $str, 'USPS Request' );
