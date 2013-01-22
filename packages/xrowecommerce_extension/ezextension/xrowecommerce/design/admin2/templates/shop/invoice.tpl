@@ -10,4 +10,5 @@
 {include uri="design:shop/invoicepart.tpl"}
 <p style="clear:both;page-break-after:always">&nbsp;</p>
 {include uri="design:shop/invoicepart.tpl" packingslip=true()}
+<p style="clear:both;page-break-after:always">&nbsp;</p>
 </div>

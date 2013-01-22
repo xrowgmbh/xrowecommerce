@@ -26,3 +26,26 @@ div.shop-account table caption
     font-size: 14px;
     padding: 1em 0 0.5em 0;
 }
+
+span.button
+{
+    text-decoration: none;
+    background: #445C89;
+    background: linear-gradient(center top , #5D7DB1, #445C89) repeat scroll 0 0 padding-box #516E9E;
+    background: -o-linear-gradient(center top , #5D7DB1, #445C89) repeat scroll 0 0 padding-box #516E9E;
+    background: -moz-linear-gradient(center top , #5D7DB1, #445C89) repeat scroll 0 0 padding-box #516E9E;
+    background: -webkit-gradient(linear,0% 0%,0% 100%,from(#5d7db1),to(#445c89));
+    -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr='#5D7DB1', endColorstr='#445C89')";
+    border: 1px solid #AAAAAA;
+    border-radius: 3px 3px 3px 3px;
+    color: #FFFFFF;
+    overflow: visible;
+    padding: 0.26em 0.7em;
+    width: auto;
+    cursor: pointer;
+    font-family: Verdana,Arial,Helvetica,sans-serif;
+    font-size: 0.9em;
+    font-weight: normal;
+    text-align: center;
+    vertical-align: middle;
+}

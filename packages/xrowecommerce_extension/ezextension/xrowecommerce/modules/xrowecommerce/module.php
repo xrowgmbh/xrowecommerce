@@ -76,6 +76,13 @@ $ViewList["invoiceprint"] = array(
     "default_navigation_part" => 'ezshopnavigationpart',
     "params" => array( "OrderID" ) );
 
+$ViewList["printinvoices"] = array(
+"functions" => array( 'administrate' ),
+'ui_component' => 'shop',
+"script" => "printinvoices.php",
+"default_navigation_part" => 'ezshopnavigationpart',
+"params" => array( ) );
+
 $ViewList["shippingplanprint"] = array(
     "functions" => array( 'administrate' ),
     'ui_component' => 'shop',

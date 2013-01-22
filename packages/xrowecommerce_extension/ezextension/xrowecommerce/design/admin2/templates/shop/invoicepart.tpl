@@ -43,18 +43,18 @@ thead {
     <td class="number" align="right">{$ProductItem.item_count}</td>
     {if $ProductItem.item_object.option_list}
         {foreach $ProductItem.item_object.option_list as $Options}
-	        <td align="left">{$Options.value|wash}</td>
-	        <td>{$ProductItem.item_object.name|wash}
-	        {foreach $ProductItem.item_object.contentobject.data_map.options.content.option_list as $option}
-	        	{if $option.id|eq($ProductItem.item_object.option_list.0.option_item_id)}
-	        		{set $vary=$option}
-	        	{/if}
-	        {/foreach}
-	        {if and(is_set($vary),is_set($vary.comment))}
-	            <br />{'Variation'i18n('extension/xrowecommerce')}: {$vary.comment}
-	        {/if}
-	        </td>
-	        {undef $vary}
+            <td align="left">{$Options.value|wash}</td>
+            <td>{$ProductItem.item_object.name|wash}
+            {foreach $ProductItem.item_object.contentobject.data_map.options.content.option_list as $option}
+                {if $option.id|eq($ProductItem.item_object.option_list.0.option_item_id)}
+                    {set $vary=$option}
+                {/if}
+            {/foreach}
+            {if and(is_set($vary),is_set($vary.comment))}
+                <br />{'Variation'i18n('extension/xrowecommerce')}: {$vary.comment}
+            {/if}
+            </td>
+            {undef $vary}
         {/foreach}
     {else}
     <td align="left">

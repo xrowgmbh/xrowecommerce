@@ -137,7 +137,7 @@
     </div>
 
     <div class="break"></div>
-
+    <span class="button" id="MarkPendingOrdersButton">Mark all pending orders</span>
     </div>
     </div>
 
@@ -299,5 +299,12 @@
     </div>
 
 </form>
+<div class="block">
+    <form id="printmarkedinvoices" action="/xrowecommerce/printinvoices" target="_blank" method="post">
+        <input type="submit" class="button" id="PrintMarkedOrdersButton" value="{'Print selected'|i18n( 'design/admin/shop/orderlist' )}" />
+        <span class="button" id="SetToProcessingButton">{'Set selected to processing'|i18n( 'design/admin/shop/orderlist' )}</span>
+        <div id="printidarray"></div>
+    </form>
+</div>
 {/let}
 {/if}
