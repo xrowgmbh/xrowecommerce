@@ -1,6 +1,6 @@
 {def $shiplist=fetch( 'shipping', 'list_all_methods' )}
 {def $gateways=fetch( 'xrowecommerce', 'list_all_gateways' )}
-<div style="width:30%;float: right;">
+<div style="width:30%;float: right; clear: right;">
 <table  class="list" width="100%" cellspacing="0" cellpadding="0" border="0" align="right">
 <caption style="font-size: 12pt;"><b>
 {if $packingslip}

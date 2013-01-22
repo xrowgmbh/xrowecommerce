@@ -11,6 +11,7 @@ FrontendJavaScriptList[]=xrowproductvariation.js
 
 BackendJavaScriptList[]=xrowproductvariation.js
 BackendJavaScriptList[]=xrowecommerce.js
+BackendJavaScriptList[]=xrowecommerce_backend.js
 
 [StylesheetSettings]
 BackendCSSFileList[]=xrowproductvariation.css
