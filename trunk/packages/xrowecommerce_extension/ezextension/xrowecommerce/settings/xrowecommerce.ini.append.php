@@ -161,6 +161,7 @@ HazardousItems=disabled
 #CompanyAddress[]
 #CompanyWebsite=http://www.example.com/
 #CompanyPhone=+1 555 123456
+#CompanyEmail=service@example.com
 
 [ShopAccountHandlerDefaults]
 # set the country code to which the country select defaults to
