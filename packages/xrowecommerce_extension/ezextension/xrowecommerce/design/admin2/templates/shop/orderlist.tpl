@@ -3,7 +3,14 @@
 <link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/2.8.1/build/container/assets/skins/sam/container.css" />
 <script type="text/javascript" src="http://yui.yahooapis.com/2.8.1/build/yahoo-dom-event/yahoo-dom-event.js"></script>
 <script type="text/javascript" src="http://yui.yahooapis.com/2.8.1/build/container/container-min.js"></script>
-
+{if $order_list}
+    {foreach $order_list as $order}
+        {if $order.status_modification_list|count|gt( 0 )}
+            {def $order_states = $order.status_modification_list}
+            {break}
+        {/if}
+    {/foreach}
+{/if}
 
 {literal}
 
@@ -137,7 +144,16 @@
     </div>
 
     <div class="break"></div>
-    <span class="button" id="MarkPendingOrdersButton">Mark all pending orders</span>
+    {if is_set($order_states)}
+        <span class="button" id="MarkOrdersButton">Mark all pending orders</span>
+        <select id="MarkOrdersSelection">
+            {foreach $order_states as $Status}
+                <option value="{$Status.status_id}" {if eq( $Status.status_id, '2' )} selected="selected"{/if}>
+                    {$Status.name|wash}
+                </option>
+            {/foreach}
+        </select>
+    {/if}
     </div>
     </div>
 
@@ -302,7 +318,17 @@
 <div class="block">
     <form id="printmarkedinvoices" action="/xrowecommerce/printinvoices" target="_blank" method="post">
         <input type="submit" class="button" id="PrintMarkedOrdersButton" value="{'Print selected'|i18n( 'design/admin/shop/orderlist' )}" />
-        <span class="button" id="SetToProcessingButton">{'Set selected to processing'|i18n( 'design/admin/shop/orderlist' )}</span>
+        <span class="button" id="SetToButton">{'Set selected to'|i18n( 'design/admin/shop/orderlist' )}</span>
+        {if is_set($order_states)}
+            <select id="SetToSelection">
+                {foreach $order_states as $Status}
+                    <option value="{$Status.status_id}" {if eq( $Status.status_id, '2' )} selected="selected"{/if}>
+                        {$Status.name|wash}
+                    </option>
+                {/foreach}
+            </select>
+            {undef $order_states}
+        {/if}
         <div id="printidarray"></div>
     </form>
 </div>
