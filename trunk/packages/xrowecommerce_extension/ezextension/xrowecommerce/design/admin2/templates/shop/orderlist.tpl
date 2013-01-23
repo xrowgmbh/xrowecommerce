@@ -148,7 +148,7 @@
         <span class="button" id="MarkOrdersButton">Mark all pending orders</span>
         <select id="MarkOrdersSelection">
             {foreach $order_states as $Status}
-                <option value="{$Status.status_id}" {if eq( $Status.status_id, '2' )} selected="selected"{/if}>
+                <option value="{$Status.status_id}" {if eq( $Status.status_id, '1' )} selected="selected"{/if}>
                     {$Status.name|wash}
                 </option>
             {/foreach}
