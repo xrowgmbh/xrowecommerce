@@ -49,3 +49,8 @@ span.button
     text-align: center;
     vertical-align: middle;
 }
+
+#SetToButton
+{
+    margin-left: 50px;
+}
