@@ -5,7 +5,7 @@ $Module = array( "name" => "Order",
 $ViewList = array();
 
 $ViewList["history"] = array(
-    "functions" => array( 'invoice' ),
+    "functions" => array( 'history' ),
     "script" => "history.php",
     "default_navigation_part" => 'ezcontentnavigationpart',
     "unordered_params" => array( 'offset' => 'Offset' ),
@@ -18,4 +18,5 @@ $ViewList["invoice"] = array(
     "params" => array( "OrderID", "includePackingSlip" ) );
 
 $FunctionList['invoice'] = array( );
+$FunctionList['history'] = array( );
 ?>
