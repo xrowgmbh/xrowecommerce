@@ -26,7 +26,7 @@ $(document).ready(function() {
     
 
 });
-YUI().use( 'node', function(Y)
+YUI(YUI3_config).use( 'node', function(Y)
 {
     Y.on( 'domready', function() 
     {
@@ -71,7 +71,7 @@ YUI().use( 'node', function(Y)
     });
 });
 
-YUI().use("node", "event-mouseenter", function(Y) {
+YUI(YUI3_config).use("node", "event-mouseenter", function(Y) {
     if ( Y.one("#AutomaticDeliveryTooltip")) {
         var nodeTip = Y.one("#AutomaticDeliveryTooltip")
         Y.on("mouseenter", function (e) {
@@ -105,7 +105,7 @@ new Y.Console({
 
 function ShowHide(id)
 {
-    YUI().use( 'node', function(Y)
+    YUI(YUI3_config).use( 'node', function(Y)
     { 
         var node = Y.one( id );
         if ( node.hasClass( 'hide') )
@@ -124,7 +124,7 @@ function ShowHide(id)
 function ezjson(uri, callback, args) 
 {
     // Create business logic in a YUI sandbox using the 'io' and 'json' modules
-    YUI().use('node', 'io', 'io-ez', 'dump', 'json-parse', function(Y) 
+    YUI(YUI3_config).use('node', 'io', 'io-ez', 'dump', 'json-parse', function(Y) 
     {
         function onFailure(transactionid, response)
         {
@@ -162,7 +162,7 @@ function ezjson(uri, callback, args)
 
 function updateSubdivisions( country_node ) 
 {
-    YUI().use( 'node', 'io', 'io-ez', function( Y )
+    YUI(YUI3_config).use( 'node', 'io', 'io-ez', function( Y )
     {
         var country = country_node.get( 'options' ).item( country_node.get( 'selectedIndex' ) ).get( 'value' );
         if( Y.one( '#s_state' ) )
@@ -180,7 +180,7 @@ function updateSubdivisions( country_node )
             {
                 success: function( id, r, country_node)
                 {
-                    YUI().use('node', function(Y) 
+                    YUI(YUI3_config).use('node', function(Y) 
                     {
                         var data = r.responseJSON.content;
 
@@ -256,7 +256,7 @@ function updateSubdivisions( country_node )
 
 function updateShipping() 
 {
-    YUI().use( 'node', 'io', 'io-ez', 'dump', 'json-parse', function( Y ) 
+    YUI(YUI3_config).use( 'node', 'io', 'io-ez', 'dump', 'json-parse', function( Y ) 
     {
         if ( !Y.one('#shippingtype') )
         {
@@ -340,7 +340,7 @@ function updateShipping()
 
 function ez18nAlert(text, args) 
 {
-    YUI().use( 'node', 'io-ez', function(Y) 
+    YUI(YUI3_config).use( 'node', 'io-ez', function(Y) 
     {
         Y.io.ez( 'xrowecommerce::translate::', 
         {
@@ -351,7 +351,7 @@ function ez18nAlert(text, args)
                 success: function( id, r, args)
                 {
                     var data = r.responseJSON.content;
-                    YUI().use('node', function(Y) 
+                    YUI(YUI3_config).use('node', function(Y) 
                     {
                         for ( var x in args) 
                         {
@@ -367,7 +367,7 @@ function ez18nAlert(text, args)
     
 function changeShipping() 
 {
-    YUI().use( 'node', function(Y) 
+    YUI(YUI3_config).use( 'node', function(Y) 
     {
         if (Y.one( '#shipping-checkbox' ).get( 'checked' ) ) 
         {
@@ -490,7 +490,7 @@ function changeShipping()
 
 function toggleCOS()
 {
-    YUI().use( 'node', function(Y) 
+    YUI(YUI3_config).use( 'node', function(Y) 
     { 
         var container = Y.one('#cos-content');
         if ( container )
@@ -532,7 +532,7 @@ function enlargeImage( imsrc, ww, wh, alttext )
  */
 function generatePopup(node, image, imagetext, doubleclick) 
 {
-    YUI().use('node', 'overlay', 'imageloader', function(Y) 
+    YUI(YUI3_config).use('node', 'overlay', 'imageloader', function(Y) 
     {
         var xy = Y.one(node).getXY();
         imageNode = Y.Node.create('<img />');
