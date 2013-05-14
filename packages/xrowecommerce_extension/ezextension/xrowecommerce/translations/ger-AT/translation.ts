@@ -862,6 +862,13 @@
     </message>
 </context>
 <context>
+    <name>design/standard/error/kernel</name>
+    <message>
+        <source>Your current user does not have the proper privileges to access this page.</source>
+        <translation>Der aktuelle Benutzer hat derzeit keine Rechte, auf diese Seite zuzugreifen.</translation>
+    </message>
+</context>
+<context>
     <name>design/standard/ezoe</name>
     <message>
         <source>Upload new</source>
@@ -898,6 +905,14 @@
     <message>
         <source>Upload is in progress, it may take a few seconds...</source>
         <translation>Hochladen ist im Gange, das kann einige Momente dauern...</translation>
+    </message>
+    <message>
+        <source>Invalid or missing parameter: %parameter</source>
+        <translation>Falscher oder fehlender Parameter: %parameter</translation>
+    </message>
+    <message>
+        <source>Invalid parameter: %parameter = %value</source>
+        <translation>Ungültiger Paramter: %parameter = %value</translation>
     </message>
 </context>
 <context>
@@ -979,6 +994,40 @@
         <source>Subscriptions</source>
         <translation>Abonnements</translation>
     </message>
+    <message>
+        <source>(period %startdate% till %enddate%)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Your input has been stored.</source>
+        <translation>Eingabe erfolgreich gespeichert.</translation>
+    </message>
+    <message>
+        <source>We have encountered problems with your credit card. Please update your profile.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>We have encountered problems with your selected shipping type. Please update your profile.</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>extension/shippinginterface</name>
+    <message>
+        <source>Standard Shipping</source>
+        <translation>Standard Versand</translation>
+    </message>
+</context>
+<context>
+    <name>extension/xrowcommerce/productvariation</name>
+    <message>
+        <source>yes</source>
+        <translation>ja</translation>
+    </message>
+    <message>
+        <source>no</source>
+        <translation>nein</translation>
+    </message>
 </context>
 <context>
     <name>extension/xrowe&quot;extension/xrowecommerce/design/xrowecommerce/templates/shop/orderemail.tpl&quot;commerce</name>
@@ -991,19 +1040,19 @@
     <name>extension/xrowecommerce</name>
     <message>
         <source>Cash on delivery fee</source>
-        <translation type="obsolete">Nachnahmegebühr</translation>
+        <translation>Nachnahmegebühr</translation>
     </message>
     <message>
         <source>plus %gateway_costs</source>
-        <translation type="obsolete">zzgl. %gateway_costs</translation>
+        <translation>zzgl. %gateway_costs</translation>
     </message>
     <message>
         <source>The companies tax ID number is not given.</source>
-        <translation type="obsolete">Die Steuernummer fehlt.</translation>
+        <translation>Die Steuernummer fehlt.</translation>
     </message>
     <message>
         <source>Your companies tax ID number is not valid.</source>
-        <translation type="obsolete">Die Steuernummer ist ungültig.</translation>
+        <translation>Die Steuernummer ist ungültig.</translation>
     </message>
     <message>
         <source>Fraud detected</source>
@@ -2376,36 +2425,220 @@
     </message>
     <message>
         <source>Product data export</source>
-        <translation>Produktdaten Export</translation>
+        <translation type="obsolete">Produktdaten Export</translation>
     </message>
     <message>
         <source>Attributes</source>
-        <translation>Attribute</translation>
+        <translation type="obsolete">Attribute</translation>
     </message>
     <message>
         <source>Which attributes should be exported?</source>
-        <translation>Welche Attribute sollen exportiert werden?</translation>
+        <translation type="obsolete">Welche Attribute sollen exportiert werden?</translation>
     </message>
     <message>
         <source>Invert selection.</source>
-        <translation>Auswahl umkehren.</translation>
-    </message>
-    <message>
-        <source>Auswahl umkehren.</source>
-        <translation></translation>
+        <translation type="obsolete">Auswahl umkehren.</translation>
     </message>
     <message>
         <source>Start product data export</source>
-        <translation>Produktdaten Export starten</translation>
+        <translation type="obsolete">Produktdaten Export starten</translation>
     </message>
     <message>
         <source>Start the product data export.</source>
-        <translation>Den Produktdaten Export starten.</translation>
+        <translation type="obsolete">Den Produktdaten Export starten.</translation>
     </message>
     <message>
         <source>Login</source>
         <comment>Button</comment>
         <translation>Anmelden</translation>
+    </message>
+    <message>
+        <source>The shipping method &apos;%old%&apos; is not available for your country of destination and was changed to &apos;%new%&apos;.</source>
+        <translation>Die Versandmethode &apos;%old%&apos; ist für das Land nicht verfügbar und geändert zu: &apos;%new&apos;.</translation>
+    </message>
+    <message>
+        <source>A tax identification number in the Federal Republic of Germany consists of 10 or 11 digits, depending on the &quot;Bundesland&quot; (State). These are divided into groups of 2 - 5 by forward slashes or blanks (e.g. &quot;181/815/08155&quot;). A unified German tax identification number consists of 13 digits like &quot;2893081508152&quot;.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Sorry, the shipping method you have selected is no longer supported. Vendor will call you to calculate the shipping price.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Cannot fetch uploaded file, please choose a valid CSV file.</source>
+        <translation>Die hochgeladene Datei konnte nicht verarbeitet werden. Bitte laden Sie eine gültige CSV Datei hoch.</translation>
+    </message>
+    <message>
+        <source>File has a wrong extension. Only CSV files are supported.</source>
+        <translation>Die Datei hat eine falsche Erweiterung. Nur CSV Dateien werden unterstützt.</translation>
+    </message>
+    <message>
+        <source>Empty file uploaded.</source>
+        <translation>Leere Datei hochgeladen.</translation>
+    </message>
+    <message>
+        <source>The billing company name is not given.</source>
+        <translation>Der Firmenname bei der Rechnungsadresse fehlt.</translation>
+    </message>
+    <message>
+        <source>The billing company additional is not given.</source>
+        <translation>Der Firmenzusatz bei der Rechnungsadresse fehlt.</translation>
+    </message>
+    <message>
+        <source>The billing title is not given.</source>
+        <translation>Der Titel bei der Rechnungsadresse fehlt.</translation>
+    </message>
+    <message>
+        <source>The billing first name is not given.</source>
+        <translation>Der Vorname bei der Rechnungsadresse fehlt.</translation>
+    </message>
+    <message>
+        <source>The billing last name is not given.</source>
+        <translation>Der Nachname bei der Rechnungsadresse fehlt.</translation>
+    </message>
+    <message>
+        <source>The billing mi is not given</source>
+        <translation>Der Mittelname bei der Rechnungsadresse fehlt.</translation>
+    </message>
+    <message>
+        <source>The email address is not given.</source>
+        <translation>Die E-Mail Adresse fehlt.</translation>
+    </message>
+    <message>
+        <source>The billing email address is not given.</source>
+        <translation>Die E-Mail Adresse bei der Rechnungsadresse fehlt.</translation>
+    </message>
+    <message>
+        <source>The email address is not valid.</source>
+        <translation>Die E-Mail Adresse ist ungültig.</translation>
+    </message>
+    <message>
+        <source>The billing email address is not valid.</source>
+        <translation>Die E-Mail Adresse bei der Rechnungsadresse ist ungültig.</translation>
+    </message>
+    <message>
+        <source>The billing address is not given.</source>
+        <translation>Die Straße bei der Rechnungsadresse fehlt.</translation>
+    </message>
+    <message>
+        <source>The billing address 2 is not given.</source>
+        <translation>Der Adressenzusatz bei der Rechnungsadresse fehlt.</translation>
+    </message>
+    <message>
+        <source>No billing country has been selected.</source>
+        <translation>Es wurde kein Land bei der Rechnungsadresse ausgewählt.</translation>
+    </message>
+    <message>
+        <source>No billing state has been selected.</source>
+        <translation>Es wurde kein Bundesland bei der Rechnungsadresse ausgewählt.</translation>
+    </message>
+    <message>
+        <source>The billing city is not given.</source>
+        <translation>Der Ort der Rechnungsadresse fehlt.</translation>
+    </message>
+    <message>
+        <source>The billing zip is not given.</source>
+        <translation>Die PLZ bei der Rechnungsadresse fehlt.</translation>
+    </message>
+    <message>
+        <source>Country doesn`t match tax ID number.</source>
+        <translation>Das Land stimmt nicht mit dem bei der Steuernummer überein.</translation>
+    </message>
+    <message>
+        <source>The billing phone number is not given.</source>
+        <translation>Die Telefonnummer fehlt bei der Rechnungsadresse.</translation>
+    </message>
+    <message>
+        <source>The billing fax number is not given.</source>
+        <translation>Das Fax fehlt bei der Rechnungsadresse.</translation>
+    </message>
+    <message>
+        <source>The shipping type is not given.</source>
+        <translation>Die Versandart wurde nicht angegeben.</translation>
+    </message>
+    <message>
+        <source>Please select a proper shipping method for your destination.</source>
+        <translation>Bitte wählen Sie eine Versandmethode aus.</translation>
+    </message>
+    <message>
+        <source>The shipping company name is not given.</source>
+        <translation>Der Firmenname bei der Lieferadresse fehlt.</translation>
+    </message>
+    <message>
+        <source>The shipping company additional field is not given.</source>
+        <translation>Der Firmen-Zusatz bei der Lieferadresse fehlt.</translation>
+    </message>
+    <message>
+        <source>The shipping title is not given.</source>
+        <translation>Der Titel bei der Lieferadresse fehlt.</translation>
+    </message>
+    <message>
+        <source>The shipping first name is not given.</source>
+        <translation>Der Vorname bei der Lieferadresse fehlt.</translation>
+    </message>
+    <message>
+        <source>The shipping last name is not given.</source>
+        <translation>Der Nachname bei der Lieferadresse fehlt.</translation>
+    </message>
+    <message>
+        <source>The shipping mi is not given.</source>
+        <translation>Der Mittelname bei der Lieferadresse fehlt.</translation>
+    </message>
+    <message>
+        <source>The shipping email address is not given.</source>
+        <translation>Die E-Mail bei der Lieferadresse fehlt.</translation>
+    </message>
+    <message>
+        <source>The shipping email address is not valid</source>
+        <translation>Die E-Mail bei der Lieferadresse ist ungültig.</translation>
+    </message>
+    <message>
+        <source>The shipping address is not given.</source>
+        <translation>Die Straße bei der Lieferadresse fehlt.</translation>
+    </message>
+    <message>
+        <source>The shipping address 2 is not given.</source>
+        <translation>Der Straßenzusatz bei der Lieferadresse fehlt.</translation>
+    </message>
+    <message>
+        <source>The shipping city is not given.</source>
+        <translation>Der Ort fehlt bei der Lieferadresse.</translation>
+    </message>
+    <message>
+        <source>The shipping zip is not given.</source>
+        <translation>Die PLZ fehlt bei der Lieferadresse.</translation>
+    </message>
+    <message>
+        <source>No shipping country has been selected.</source>
+        <translation>Es wurde kein Land bei der Lieferadresse ausgewählt.</translation>
+    </message>
+    <message>
+        <source>No shipping state has been selected.</source>
+        <translation>Es wurde kein Bundesland bei der Lieferadresse ausgewählt.</translation>
+    </message>
+    <message>
+        <source>The shipping phone number is not given.</source>
+        <translation>Es fehlt die Telefonnummer bei der Lieferadresse.</translation>
+    </message>
+    <message>
+        <source>The shipping fax number is not given.</source>
+        <translation>Es fehlt die Fax Nummer bei der Lieferadresse.</translation>
+    </message>
+    <message>
+        <source>Shipping method is not allowed for destination.</source>
+        <translation>Die Versandmethode ist für das Ziel nicht erlaubt.</translation>
+    </message>
+    <message>
+        <source>Shipping destination is not allowed.</source>
+        <translation>Das Lieferziel ist nicht erlaubt.</translation>
+    </message>
+    <message>
+        <source>Enter account information</source>
+        <translation>Kontodaten eingeben</translation>
+    </message>
+    <message>
+        <source>Payment Information</source>
+        <translation>Bezahl-Informationen</translation>
     </message>
 </context>
 <context>
@@ -2453,6 +2686,41 @@
     <message>
         <source>Add products to shopping cart</source>
         <translation>Fügen Sie Ihre gewünschten Produkte dem Warenkorb hinzu</translation>
+    </message>
+    <message>
+        <source>Direct order</source>
+        <translation>Direkt bestellen</translation>
+    </message>
+</context>
+<context>
+    <name>extension/xrowecommerce/epayment</name>
+    <message>
+        <source>Please enter the name of the card holder.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please enter the correct account number</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please enter the correct bank code</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please enter a name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Credit card number is not a number</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please enter the correct security code.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The validity of your credit card has expired.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2508,12 +2776,6 @@
     <message>
         <source>No datatype was selected.</source>
         <translation>Es wurde kein Datentype ausgewählt.</translation>
-    </message>
-    <message>
-        <source>You need to select a datatype for the attribute.
-      It&apos;s not possible to change this afterwards.</source>
-        <translation type="obsolete">Sie müssen einen Datentyp für das Attribut auswählen.
-Es ist nicht möglich, den Datentyp danach zu ändern.</translation>
     </message>
     <message>
         <source>Cancel</source>
@@ -2843,6 +3105,140 @@ Es ist nicht möglich, den Datentyp danach zu ändern.</translation>
         <source>Please enter a valid date.</source>
         <translation>Bitten geben Sie ein korrektes Datum ein.</translation>
     </message>
+    <message>
+        <source>You need to select a datatype for the attribute.
+      It&apos;s not possible to change this afterwards.</source>
+        <translation type="obsolete">Sie müssen einen Datentyp für das Attribut auswählen.
+Es ist nicht möglich, den Datentyp danach zu ändern.</translation>
+    </message>
+    <message>
+        <source>Attribute edit</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Product variation - edit attribute</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Product variation attributes</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Product variation columns</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Template edit</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Product variation - edit template</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Product variation templates</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Boolean</source>
+        <comment>Datatype name</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Stores true or false.</source>
+        <comment>Datatype description</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Date</source>
+        <comment>Datatype name</comment>
+        <translation>Datum</translation>
+    </message>
+    <message>
+        <source>Stores a date value.</source>
+        <comment>Datatype description</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Float</source>
+        <comment>Datatype name</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Stores a floating-point number.</source>
+        <comment>Datatype description</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Integer</source>
+        <comment>Datatype name</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Stores an integer.</source>
+        <comment>Datatype description</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Price</source>
+        <comment>Datatype name</comment>
+        <translation>Preis</translation>
+    </message>
+    <message>
+        <source>Stores price of the variation</source>
+        <comment>Datatype description</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Object relation</source>
+        <comment>Datatype name</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Stores an object relation. (e.g. to an image)</source>
+        <comment>Datatype description</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Selection</source>
+        <comment>Datatype name</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Stores a selection like colours green, blue, red....</source>
+        <comment>Datatype description</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>stockkeeping unit</source>
+        <comment>Datatype name</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Stores the stockkeeping unit of the variation</source>
+        <comment>Datatype description</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Text line</source>
+        <comment>Datatype name</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Stores a line of text of the variation</source>
+        <comment>Datatype description</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Text block</source>
+        <comment>Datatype name</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Stores text of the variation</source>
+        <comment>Datatype description</comment>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>extension/xrowexommerce</name>
@@ -2873,20 +3269,332 @@ Es ist nicht möglich, den Datentyp danach zu ändern.</translation>
         <source>validated by administration</source>
         <translation>Von Administrator überprüft </translation>
     </message>
+    <message>
+        <source>The class identifier name of the country field is incorrect in xrowecommerce.ini</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The class identifier name of the company field is incorrect in xrowecommerce.ini</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please provide a company name with your companies tax ID.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Country doesn`t match tax ID number.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Your companies tax ID number is not valid.</source>
+        <translation type="unfinished">Die Steuernummer ist ungültig.</translation>
+    </message>
 </context>
 <context>
     <name>kernel/classes/datatypes</name>
     <message>
         <source>Pay by invoice</source>
-        <translation type="obsolete">Rechnung</translation>
+        <translation>Rechnung</translation>
     </message>
     <message>
         <source>Cash on delivery</source>
-        <translation type="obsolete">Nachnahme</translation>
+        <translation>Nachnahme</translation>
     </message>
     <message>
         <source>Advance payment</source>
-        <translation type="obsolete">Vorauskasse</translation>
+        <translation>Vorauskasse</translation>
+    </message>
+    <message>
+        <source>Coupon</source>
+        <comment>Datatype name</comment>
+        <translation>Gutschein</translation>
+    </message>
+    <message>
+        <source>Date is not valid.</source>
+        <translation>Datum ist nicht gültig.</translation>
+    </message>
+    <message>
+        <source>Missing date input.</source>
+        <translation>Es fehlt das Datum.</translation>
+    </message>
+    <message>
+        <source>Expiry date incorrect.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>No discount set.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Invalid discount.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Give a discount value between nero and 100.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Invalid coupon code.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Credit card</source>
+        <comment>Datatype name</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Input is required, if you have active subscriptions or recurring orders.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Input required.</source>
+        <translation>Eingabe erforderlich.</translation>
+    </message>
+    <message>
+        <source>Mastercard</source>
+        <translation>Mastercard</translation>
+    </message>
+    <message>
+        <source>Visa</source>
+        <translation>Visa</translation>
+    </message>
+    <message>
+        <source>Discover</source>
+        <translation>Discover</translation>
+    </message>
+    <message>
+        <source>American Express</source>
+        <translation>American Express</translation>
+    </message>
+    <message>
+        <source>Debit card</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Option2</source>
+        <comment>Datatype name</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>NAME is required.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The option value must be provided.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The Additional price value is not valid.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>At least one option is required.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Billing cycle</source>
+        <comment>Datatype name</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>xrow Country</source>
+        <comment>Datatype name</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Product variations</source>
+        <comment>Datatype name</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please choose a template for the product variation.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please correct the input of product variations. The wrong or missing input is marked with a red border.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Tax Identification Number</source>
+        <comment>Datatype name</comment>
+        <translation>Steuernummer</translation>
+    </message>
+</context>
+<context>
+    <name>kernel/classes/recurringordercollection</name>
+    <message>
+        <source>one time</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>day(s)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>weeks(s)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>month(s)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>quarter(s)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>year(s)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>daily</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>weekly</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>monthly</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>quarterly</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>yearly</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>days</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>day</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>weeks</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>week</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>months</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>month</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>quarters</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>quarter</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>years</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>year</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>kernel/shop</name>
+    <message>
+        <source>Enter account information</source>
+        <translation>Kontodaten eingeben</translation>
+    </message>
+    <message>
+        <source>Order list</source>
+        <translation>Bestellungen</translation>
+    </message>
+    <message>
+        <source>Customer order view</source>
+        <translation>Bestellansicht für Kunden</translation>
+    </message>
+    <message>
+        <source>Order history</source>
+        <translation>Bestellverlauf</translation>
+    </message>
+    <message>
+        <source>Order #%order_id</source>
+        <translation>Bestellung #%order_id</translation>
+    </message>
+    <message>
+        <source>Orderedit</source>
+        <translation>Bestellung bearbeiten</translation>
+    </message>
+    <message>
+        <source>Orderitem</source>
+        <translation>Bestellter Artikel</translation>
+    </message>
+    <message>
+        <source>Zero weight prods</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Tax listing</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Basket</source>
+        <translation>Warenkorb</translation>
+    </message>
+    <message>
+        <source>Checkout</source>
+        <translation>Kasse</translation>
+    </message>
+    <message>
+        <source>Confirm order</source>
+        <translation>Jetzt kaufen</translation>
+    </message>
+    <message>
+        <source>The confirm order operation was canceled. Try to checkout again.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Statistics</source>
+        <translation>Statistiken</translation>
+    </message>
+    <message>
+        <source>Remove order</source>
+        <translation>Bestellung löschen</translation>
+    </message>
+    <message>
+        <source>Shipping plan</source>
+        <translation>Versandplan</translation>
+    </message>
+</context>
+<context>
+    <name>kernel/workflow/event</name>
+    <message>
+        <source>Coupon</source>
+        <translation>Gutschein</translation>
+    </message>
+    <message>
+        <source>Shipping Interface</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Inventory Manager</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>After Sale</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>xrow Ecommerce Payment Gateway</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
