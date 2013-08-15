@@ -262,7 +262,13 @@ if ( $http->hasPostVariable( "CheckoutButton" ) or ( $doCheckout === true ) )
 
         if ( $verifyResult === true )
         {
-            $order = $basket->createOrder();
+            $orderID = $http->sessionVariable( 'MyTemporaryOrderID' );
+            eZDebug::writeDebug( $orderID, 'orderID' );
+            $order = eZOrder::fetch( $orderID );
+            if ( !($order instanceof eZOrder ) || !$order->attribute( 'is_temporary' ) )
+            {
+                $order = $basket->createOrder();
+            }
             $order->setAttribute( 'account_identifier', "default" );
             $order->store();
 
