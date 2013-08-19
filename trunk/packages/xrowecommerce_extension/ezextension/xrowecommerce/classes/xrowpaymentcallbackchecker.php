@@ -10,12 +10,12 @@ class xrowPaymentCallbackChecker
     {
         eZDebug::writeDebug( 'createDataFromPOST' );
         $this->callbackData = array();
-        
+
         foreach ( $_POST as $key => $value )
         {
             $this->callbackData[$key] = $value;
         }
-        
+
         return ( count( $this->callbackData ) > 0 );
     }
 
@@ -25,19 +25,19 @@ class xrowPaymentCallbackChecker
     function createDataFromGET()
     {
         $this->callbackData = array();
-        
+
         $query_string = eZSys::serverVariable( 'QUERY_STRING' );
         if ( $query_string )
         {
             $key_value_pairs = explode( '&', $query_string );
-            
+
             foreach ( $key_value_pairs as $key_value )
             {
                 $data = explode( '=', $key_value );
                 $this->callbackData[$data[0]] = $data[1];
             }
         }
-        
+
         return ( count( $this->callbackData ) > 0 );
     }
 
@@ -75,7 +75,7 @@ class xrowPaymentCallbackChecker
         {
             $m = 'GET';
         }
-        
+
         if ( $fp )
         {
             $theCall = "$m $requestURI HTTP/1.0\r\n" . "Host: $server\r\n" . "Content-Type: application/x-www-form-urlencoded\r\n" . "Content-Length: " . strlen( $request ) . "\r\n" . "Connection: Close\r\n" . "\r\n" . $request . "\r\n\r\n";
@@ -84,10 +84,10 @@ class xrowPaymentCallbackChecker
                 eZDebug::writeError( "Could not write to server socket: $server:$port", 'send Request failed' );
                 return null;
             }
-            
+
             return $this->handleResponse( $fp );
         }
-        
+
         eZDebug::writeError( "Unable to open socket on $server:$port. errno = $errno, errstr = $errstr", 'sendPOSTRequest failed' );
         return null;
     }
@@ -138,10 +138,10 @@ class xrowPaymentCallbackChecker
             $this->paymentObject->approve();
             eZDebug::writeDebug( var_export( $this->paymentObject, true ) . "before store", __METHOD__ );
             $this->paymentObject->store();
-            
-                    
+
+
             $order = eZOrder::fetch( $this->paymentObject->OrderID );
-            
+
             $xmlstring = $order->attribute( 'data_text_1' );
             if ( $xmlstring != null )
             {
@@ -155,11 +155,15 @@ class xrowPaymentCallbackChecker
             }
 
             eZDebug::writeDebug( 'payment was approved', __METHOD__ );
-            
+
             if ( $this->getFieldValue( 'custom' ) )
             {
                 $data = unserialize( $this->getFieldValue( 'custom' ) );
                 $workflowID = $data['process_id'];
+            }
+            else
+            {
+                $workflowID = $this->paymentObject->WorkflowProcessID;
             }
             eZDebug::writeDebug( " continueWorkflow( $workflowID )", __METHOD__ );
             return ( $continueWorkflow ? self::continueWorkflow( $workflowID ) : null );
@@ -187,14 +191,14 @@ class xrowPaymentCallbackChecker
             {
                 return $operationResult;
             }
-            
+
             $mementoData = $bodyMemento->data();
             $mainMementoData = $mainMemento->data();
             $mementoData['main_memento'] = $mainMemento;
             $mementoData['skip_trigger'] = false;
             $mementoData['memento_key'] = $theProcess->attribute( 'memento_key' );
             $bodyMemento->remove();
-            
+
             $operationParameters = array();
             if ( isset( $mementoData['parameters'] ) )
                 $operationParameters = $mementoData['parameters'];
@@ -218,7 +222,7 @@ class xrowPaymentCallbackChecker
         {
             return $this->callbackData[$field];
         }
-        
+
         eZDebug::writeError( "field $field does not exist.", 'getFieldValue failed' );
         return null;
     }
@@ -231,21 +235,21 @@ class xrowPaymentCallbackChecker
     {
         $remoteHostIP = eZSys::serverVariable( 'REMOTE_ADDR' );
         $serverIPList = eZINI::instance()->variable( 'ServerSettings', 'ServerIP' );
-        
+
         if ( $serverIPList === false )
         {
             eZDebug::writeDebug( "Skipped the IP check because site.ini[ServerSettings].ServerIP is not set in the settings. Remote host is: $remoteHostIP.", __METHOD__ );
             return true;
         }
-        
+
         if ( is_array( $serverIPList ) && in_array( $remoteHostIP, $serverIPList ) )
         {
             return true;
         }
-        
+
         eZDebug::writeDebug( "server with ip = $remoteHostIP does not exist.", __METHOD__ );
         eZDebug::writeDebug( ' serverIPList from ini file is ' . join( ',', $serverIPList ), __METHOD__ );
-        
+
         return false;
     }
 
@@ -255,7 +259,7 @@ class xrowPaymentCallbackChecker
     function checkAmount( $amount )
     {
         $orderAmount = $this->order->attribute( 'total_inc_vat' );
-        
+
         // To avoid floating errors, round the value down before checking.
         $shopINI = eZINI::instance( 'shop.ini' );
         $precisionValue = (int) $shopINI->variable( 'MathSettings', 'RoundingPrecision' );
@@ -263,7 +267,7 @@ class xrowPaymentCallbackChecker
         {
             return true;
         }
-        
+
         eZDebug::writeError( "Order amount ($orderAmount) and received amount ($amount) do not match.", 'checkAmount failed' );
         return false;
     }
@@ -277,12 +281,12 @@ class xrowPaymentCallbackChecker
         //get the order currency
         $productCollection = $this->order->productCollection();
         $orderCurrency = $productCollection->attribute( 'currency_code' );
-        
+
         if ( $orderCurrency == $currency )
         {
             return true;
         }
-        
+
         eZDebug::writeError( "Order currency ($orderCurrency) and received currency ($currency).", 'checkCurrency failed' );
         return false;
     }
@@ -290,7 +294,7 @@ class xrowPaymentCallbackChecker
     function checkDataField( $field, $value )
     {
         $isValid = false;
-        
+
         if ( isset( $this->callbackData[$field] ) )
         {
             $isValid = ( $this->callbackData[$field] == $value );
