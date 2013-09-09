@@ -24,8 +24,7 @@ if ( $http->hasPostVariable( 'ExportButton' ) )
     $params = array( 'email' => $email, 
                      'country' => $country );
     $params = $db->escapeString( serialize( $params ) );
-    $email = $db->escapeString( $email );
-    
+        
     $sql = "INSERT INTO ezpending_actions ( action, param, created ) VALUES ( '$action', '$params', '" . time() . "' )";
     $db->query( $sql );
     

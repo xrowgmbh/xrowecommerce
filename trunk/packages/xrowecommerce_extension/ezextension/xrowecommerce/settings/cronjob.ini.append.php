@@ -15,4 +15,7 @@ Scripts[]=feedbackmail.php
 [CronjobPart-priceexport]
 Scripts[]=priceexport.php
 
+[CronjobPart-priceimport]
+Scripts[]=priceimport.php
+
 */ ?>

@@ -17,136 +17,89 @@ $reportArray = array( 'total_lines' => 0,
                       'new_sliding_price' => 0
                         );
 $tpl = eZTemplate::factory();
+$result = false;
+$email = "";
 
 if ( $http->hasPostVariable( 'ImportButton' ) )
 {
     if ( !eZHTTPFile::canFetch( 'UploadCSVFile' ) )
     {
-    	$errorArray[] = ezpI18n::tr( 'extension/xrowecommerce', 'Cannot fetch uploaded file, please choose a valid CSV file.' );
+        $errorArray[] = ezpI18n::tr( 'extension/xrowecommerce', 'Cannot fetch uploaded file, please choose a valid CSV file.' );
     }
     else
     {
-		$binaryFile = eZHTTPFile::fetch( 'UploadCSVFile' );
-	    $content = file_get_contents( $binaryFile->attribute( 'filename' ) );
+        $binaryFile = eZHTTPFile::fetch( 'UploadCSVFile' );
+        $content = file_get_contents( $binaryFile->attribute( 'filename' ) );
         $extension = eZFile::suffix( $binaryFile->attribute( "original_filename" ) );
 
         if ( strtolower( $extension ) != 'csv' )
         {
-        	$errorArray[] = ezpI18n::tr( 'extension/xrowecommerce', 'File has a wrong extension. Only CSV files are supported.' );
+            $errorArray[] = ezpI18n::tr( 'extension/xrowecommerce', 'File has a wrong extension. Only CSV files are supported.' );
         }
         else
         {
-        	$country = $http->postVariable( 'Country' );
-        	if ( mb_strlen( $content ) > 0 )
-        	{
-                $content = str_replace( "\r\n", "\n", $content );
-                $content = mb_convert_encoding( $content, 'UTF-8', mb_detect_encoding( $content, 'UTF-8, ISO-8859-1', true ) );
-                $contentArray = explode( "\n", $content );
-                $reportArray['total_lines'] = count( $contentArray );
-                $xINI = eZINI::instance( 'xrowproduct.ini' );
-                $separator = $xINI->variable( 'ImportSettings', 'Separator' );
-                $locale = eZLocale::instance();
-                $validator = new eZFloatValidator( false, false );
+            $sys = eZSys::instance();
+            $storage_dir = $sys->cacheDirectory() . '/priceupload';
+            
+            if ( !file_exists( $storage_dir ) )
+            {
+                eZDir::mkdir( $storage_dir, false, true );
+            }
+            
+            $fileName = $binaryFile->attribute( "filename" );
 
-                $priceIdentifier = xrowProductTemplate::findPriceAttributeIdentifier();
+            $file = eZClusterFileHandler::instance( $fileName );
+            
+            // create dest filename in the same manner as eZHTTPFile::store()
+            // grab file's suffix
+            $fileSuffix = eZFile::suffix( $binaryFile->attribute( "original_filename" ) );
+            eZDebug::writeDebug( $fileSuffix );
+            // prepend dot
+            if ( $fileSuffix )
+                $fileSuffix = '.' . $fileSuffix;
+            // grab filename without suffix
+            $fileBaseName = basename( $fileName, $fileSuffix );
+            // create dest filename
+            $newFileName = md5( $fileBaseName . microtime() . mt_rand() ) . $fileSuffix;
+            eZDebug::writeDebug( $newFileName );
 
-                foreach ( $contentArray as $line )
-                {
-                    $lineArray = explode( $separator, $line );
-                    if ( count( $lineArray ) >= 2 )
-                    {
-                    	$sku = $lineArray[0];
-                    	$productVariations = xrowProductData::fetchList( array( 'sku' => $sku ) );
-                    	if ( count( $productVariations ) > 0 )
-                    	{
-	                    	foreach ( $productVariations as $variation )
-	                        {
-	                            $priceID = $variation->attribute( $priceIdentifier );
-	                            $priceList = xrowProductPrice::fetchList( array( 'price_id' => $priceID, 'country' => $country ),
-	                                                                      true,
-											                              false,
-											                              false,
-											                              array( 'amount' => 'asc' ) );
-
-                                #eZDebug::writeDebug( $priceList, 'price list' );
-                                for ( $i = 1; $i < count( $lineArray ); $i++ )
-	                            {
-	                                $price = $locale->internalNumber( $lineArray[$i] );
-	                                #eZDebug::writeDebug( $price, 'new price' );
-
-							        $ok = $validator->validate( $price );
-							        if ( $ok !== eZInputValidator::STATE_ACCEPTED )
-							        {
-							            $reportArray['no_number']++;
-							        }
-							        else
-							        {
-								        if ( isset( $priceList[$i-1] ) )
-	                                    {
-	                                        #eZDebug::writeDebug( $priceList[$i-1]->attribute( 'price' ), 'old price' );
-	                                    	if ( $priceList[$i-1]->attribute( 'price' ) != $price )
-	                                        {
-	                                           $priceList[$i-1]->setAttribute( 'price', $price );
-	                                           $priceList[$i-1]->store();
-	                                           $reportArray['update_ok']++;
-	                                        }
-	                                        else
-	                                        {
-	                                            $reportArray['same_price']++;
-	                                        }
-	                                    }
-	                                    else
-	                                    {
-	                                        /*
-	                                         * Only import normal prices with 1 amount...
-	                                         */
-	                                        if ( count( $lineArray ) == 2 )
-	                                        {
-	                                            $row = array (
-	                                                 'price_id' => $priceID,
-	                                                 'amount' => 1,
-	                                                 'country' => $country,
-	                                                 'price' => $price
-	                                            );
-	                                            $priceObj = new xrowProductPrice( $row );
-	                                            $priceObj->store();
-	                                            $reportArray['new_price']++;
-	                                        }
-	                                        else
-	                                        {
-	                                        	$reportArray['new_sliding_price']++;
-	                                        }
-	                                    }
-							        }
-	                            }
-	                        }
-                    	}
-                    	else
-                    	{
-                    		$reportArray['sku_not_found']++;
-                    		$reportArray['sku_not_found_array'][] = $sku;
-                    	}
-                    }
-                    else
-                    {
-                    	$reportArray['empty_line']++;
-                    }
-                }
-                eZContentCacheManager::clearAllContentCache();
-        	}
-        	else
-        	{
-        		$errorArray[] = ezpI18n::tr( 'extension/xrowecommerce', 'Empty file uploaded.' );
-        	}
+            // rename the file, and update the database data
+            $newFilePath = $storage_dir . '/' . $newFileName;
+            $file->move( $newFilePath );
+            
+            $country = $http->postVariable( 'Country' );
+            $email = $http->postVariable( "Email" );
+            
+            if ( mb_strlen( $content ) > 0 )
+            {
+                $db = eZDB::instance();
+                $action = "xrowpriceimport";
+                $params = array( 'email' => $email, 
+                                 'country' => $country,
+                                 'file' => $newFilePath );
+                
+                $params = $db->escapeString( serialize( $params ) );
+                
+                $sql = "INSERT INTO ezpending_actions ( action, param, created ) VALUES ( '$action', '$params', '" . time() . "' )";
+                $db->query( $sql );
+                
+                $result = true;
+            }
+            else
+            {
+                $errorArray[] = ezpI18n::tr( 'extension/xrowecommerce', 'Empty file uploaded.' );
+            }
         }
 
-	    #eZDebug::writeDebug( $content, 'content' );
-	    $upload = true;
-	    #$tpl->setVariable( "view_parameters", $viewParameters );
-	    #$tpl->setVariable( "section", $section );
+        #eZDebug::writeDebug( $content, 'content' );
+        $upload = true;
+        #$tpl->setVariable( "view_parameters", $viewParameters );
+        #$tpl->setVariable( "section", $section );
     }
 }
 
+$tpl->setVariable( "result", $result );
+$tpl->setVariable( "email", $email );
 $tpl->setVariable( "upload", $upload );
 $tpl->setVariable( "error_array", $errorArray );
 $tpl->setVariable( "report_array", $reportArray );
