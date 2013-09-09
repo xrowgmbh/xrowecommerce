@@ -53,7 +53,7 @@ if ( $http->hasPostVariable( 'ImportButton' ) )
             // create dest filename in the same manner as eZHTTPFile::store()
             // grab file's suffix
             $fileSuffix = eZFile::suffix( $binaryFile->attribute( "original_filename" ) );
-            eZDebug::writeDebug( $fileSuffix );
+            #eZDebug::writeDebug( $fileSuffix );
             // prepend dot
             if ( $fileSuffix )
                 $fileSuffix = '.' . $fileSuffix;
@@ -66,6 +66,7 @@ if ( $http->hasPostVariable( 'ImportButton' ) )
             // rename the file, and update the database data
             $newFilePath = $storage_dir . '/' . $newFileName;
             $file->move( $newFilePath );
+            chmod($newFilePath, 0666);
             
             $country = $http->postVariable( 'Country' );
             $email = $http->postVariable( "Email" );
