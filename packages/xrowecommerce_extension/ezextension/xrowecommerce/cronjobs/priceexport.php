@@ -5,7 +5,7 @@ $db = eZDB::instance();
 $sql = "SELECT * FROM ezpending_actions where action LIKE 'xrowpriceexport'";
 $res = $db->arrayQuery( $sql );
 
-if ( true or isset( $res[0] ) )
+if ( isset( $res[0] ) )
 {
     $params = unserialize( $res[0]['params'] );
     $email = $params['email'];
@@ -176,6 +176,8 @@ if ( true or isset( $res[0] ) )
             }
         }
     }
+    $sql = "DELETE FROM ezpending_actions where id = '" . $res['id'] . "'";
+    $db->query( $sql );
 
 }
 
