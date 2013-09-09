@@ -176,7 +176,7 @@ if ( isset( $res[0] ) )
             }
         }
     }
-    $sql = "DELETE FROM ezpending_actions where id = '" . $res['id'] . "'";
+    $sql = "DELETE FROM ezpending_actions where id = '" . $res[0]['id'] . "'";
     $db->query( $sql );
 
 }
