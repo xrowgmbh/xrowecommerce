@@ -20,6 +20,9 @@
 </div>
 </div>
 
+{if $result}
+<p>{"The price export is scheduled. An email will be send soon."|i18n( 'extension/xrowecommerce' )}</p>
+{/if}
 
     {if $error_array|count|gt(0)}
         <h2>{"Export error"|i18n( 'extension/xrowecommerce' )}</h2>
@@ -39,7 +42,9 @@
     <option value="{$country|wash}">{$country|wash}</option>
 {/foreach}
 </select>
-
+<br /><br />
+<label>{'email'|i18n( 'extension/xrowecommerce' )}:</label>
+<input class="halfbox" type="email" name="Email" value="{$email|wash}" />
 </div>
 
 {* DESIGN: Content END *}</div></div></div>

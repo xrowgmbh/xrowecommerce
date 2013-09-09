@@ -12,4 +12,7 @@ Scripts[]=productexport.php
 [CronjobPart-feedbackmail]
 Scripts[]=feedbackmail.php
 
+[CronjobPart-priceexport]
+Scripts[]=priceexport.php
+
 */ ?>
