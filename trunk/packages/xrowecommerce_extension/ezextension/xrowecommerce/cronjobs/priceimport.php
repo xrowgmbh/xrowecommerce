@@ -112,7 +112,7 @@ if ( isset( $res[0] ) )
     eZContentCacheManager::clearAllContentCache();
     
     $sql = "DELETE FROM ezpending_actions where id = '" . $res[0]['id'] . "'";
-    #$db->query( $sql );
+    $db->query( $sql );
 
     $ini = eZINI::instance();
     $xrowINI = eZINI::instance( 'xrowecommerce.ini' );
