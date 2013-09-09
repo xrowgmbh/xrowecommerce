@@ -7,7 +7,7 @@ $res = $db->arrayQuery( $sql );
 
 if ( isset( $res[0] ) )
 {
-    $params = unserialize( $res[0]['params'] );
+    $params = unserialize( $res[0]['param'] );
     $email = $params['email'];
     $country = $params['country'];
 
