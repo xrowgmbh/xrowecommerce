@@ -19,11 +19,11 @@
 <div class="element">
 <select id="ezcoa-{if ne( $attribute_base, 'ContentObjectAttribute' )}{$attribute_base}-{/if}{$attribute.contentclassattribute_id}_{$attribute.contentclass_attribute_identifier}" class=" ezcc-{$attribute.object.content_class.identifier} ezcca-{$attribute.object.content_class.identifier}_{$attribute.contentclass_attribute_identifier}" size="1" name="{$attribute_base}_xrowtin_status_{$attribute.id}">
 <option value="0"{if $attribute.data_int|eq('0')} selected{/if}>{'not validated'|i18n( 'extension/xrowtin' )}</option>
-<option value="1"{if $attribute.data_int|eq('1')} selected{/if} disabled>{'validated'|i18n( 'extension/xrowtin' )}</option>
+<option value="1"{if $attribute.data_int|eq('1')} selected{/if} disabled="disabled">{'validated'|i18n( 'extension/xrowtin' )}</option>
 <option value="2"{if $attribute.data_int|eq('2')} selected{/if}>{'validated by administration'|i18n( 'extension/xrowtin' )}</option>
 </select>
 </div>
 {/if}
 </div>
-{/undef}
+{undef $access}
 
