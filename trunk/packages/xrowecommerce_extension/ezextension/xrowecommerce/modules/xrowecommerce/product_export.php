@@ -16,8 +16,8 @@ $languageCode = $defaultLanguage->attribute( 'locale' );
 $attributeList = xrowProductAttribute::fetchList( array(), true, false, false, array( 'name' => 'asc' ) );
 $attributeCount = xrowProductAttribute::fetchListCount();
 
-if ( $http->hasPostVariable( 'ExportButton' ) )
-{
+#if ( $http->hasPostVariable( 'ExportButton' ) )
+#{
     $export = false;
     if ( isset( $Params['ObjectID'] ) && is_numeric( $Params['ObjectID'] ) )
     {
@@ -122,7 +122,7 @@ if ( $http->hasPostVariable( 'ExportButton' ) )
         eZURI::transformURI( $url );
         return $http->redirect( $url );
     }
-}
+#}
 
 $http->redirect( '/content/view/full/2' );
 
