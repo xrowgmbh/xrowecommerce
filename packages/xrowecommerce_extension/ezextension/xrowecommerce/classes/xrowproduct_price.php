@@ -112,10 +112,19 @@ class xrowProductPrice extends eZPersistentObject
             'amount' => 'desc' 
         );
         
-        $countryList = xrowProductPriceType::countryList();
-        foreach ( $countryList as $key )
+        # fetch priorized price
+        $ini = eZINI::instance( 'xrowproduct.ini' );
+        $prioCountryArray = $ini->variable( "PriceSettings", "PrioCountryArray" );
+                
+        if ( count( $prioCountryArray ) == 0 )
+        {
+            $prioCountryArray = xrowProductPriceType::countryList();
+            eZDebug::writeError( "No PrioCountryArray defined in xrowproduct.ini", 'config error' );
+        }
+        foreach ( $prioCountryArray as $key )
         {
             $conditions['country'] = $key;
+            $conditions['price'] = array( '!=', '' );
             $rows = eZPersistentObject::fetchObjectList( self::definition(), array( 
                 'price' 
             ), $conditions, $sortBy, $limitation, false );
@@ -152,5 +161,3 @@ class xrowProductPrice extends eZPersistentObject
         return $result;
     }
 }
-
-?>
