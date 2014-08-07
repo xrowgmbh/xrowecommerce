@@ -168,93 +168,96 @@ function updateSubdivisions( country_node )
 {
     YUI(YUI3_config).use( 'node', 'io', 'io-ez', function( Y )
     {
-        var country = country_node.get( 'options' ).item( country_node.get( 'selectedIndex' ) ).get( 'value' );
-        if( Y.one( '#s_state' ) )
+        if( country_node.get('id') == 'state' || country_node.get('id') == 's_state')
         {
-            Y.one( '#s_state' ).set( 'disabled', 'disabled' );
-        }
-        if( Y.one( '#state' ) )
-        {
-            Y.one( '#state' ).set( 'disabled', 'disabled' );
-        }
-        Y.io.ez( 'xrowecommerce::getSubdivisions::' + country, 
-        {
-            arguments: country_node,
-            on: 
+            var country = country_node.get( 'options' ).item( country_node.get( 'selectedIndex' ) ).get( 'value' );
+            if( Y.one( '#s_state' ) )
             {
-                success: function( id, r, country_node)
-                {
-                    YUI(YUI3_config).use('node', function(Y) 
-                    {
-                        var data = r.responseJSON.content;
-
-                        if( country_node.get('id') == 'country' )
-                        {
-                            var subdivision_node = Y.one( '#state' );
-                        }
-                        else
-                        {
-                            var subdivision_node = Y.one( '#s_state' );
-                        }
-
-                        // If state is selected: get the old value for checking it later
-                        if ( subdivision_node.get( 'selectedIndex' ) > 0 )
-                        {
-                            var stateSelIndex = subdivision_node.get( 'selectedIndex' );
-                            var oldStateValue = subdivision_node.get( 'options' ).item( stateSelIndex ).get( 'value' );
-                        }
-
-                        if ( !oldStateValue )
-                        {
-                            if( country_node.get('id') == 'country' && Y.one( '#hidden_state' ) )
-                            {
-                                var oldStateValue = Y.one( '#hidden_state' ).get( 'value' );
-                            }
-                            else if ( country_node.get('id') == 's_country' && Y.one( '#hidden_s_state' ) )
-                            {
-                                var oldStateValue = Y.one( '#hidden_s_state' ).get( 'value' );
-                            }
-                        }
-
-                        var nodes = subdivision_node.all( 'option' );
-                        var deleteNodes = function(n, a, b)
-                        {
-                            n.get( 'parentNode' ).removeChild(n);
-                        };
-                        nodes.each(deleteNodes);
-                        var node = Y.Node.create( '<option>&nbsp;</option>' );
-                        subdivision_node.appendChild(node);
-                        var index = 0;
-                        for (i in data ) 
-                        {
-                            index++;
-                            if (oldStateValue == i) 
-                            {
-                                var stateSelected = index;
-                            }
-                            var node = Y.Node.create( '<option value="' + i + '">' + data[i] + '</option>' );
-                            subdivision_node.appendChild(node);
-                        }
-                        if ( typeof( stateSelected ) != 'undefined' ) 
-                        {
-                            subdivision_node.set( 'selectedIndex', stateSelected );
-                        }
-                        else
-                        {
-                            subdivision_node.set('selectedIndex', 0);
-                        }
-                        if( Y.one( '#s_state' ) )
-                        {
-                            Y.one( '#s_state' ).removeAttribute( 'disabled' );
-                        }
-                        if( Y.one( '#state' ) )
-                        {
-                            Y.one( '#state' ).removeAttribute( 'disabled' );
-                        }
-                    });
-                }
+                Y.one( '#s_state' ).set( 'disabled', 'disabled' );
             }
-        });
+            if( Y.one( '#state' ) )
+            {
+                Y.one( '#state' ).set( 'disabled', 'disabled' );
+            }
+            Y.io.ez( 'xrowecommerce::getSubdivisions::' + country, 
+            {
+                arguments: country_node,
+                on: 
+                {
+                    success: function( id, r, country_node)
+                    {
+                        YUI(YUI3_config).use('node', function(Y) 
+                        {
+                            var data = r.responseJSON.content;
+    
+                            if( country_node.get('id') == 'country' )
+                            {
+                                var subdivision_node = Y.one( '#state' );
+                            }
+                            else
+                            {
+                                var subdivision_node = Y.one( '#s_state' );
+                            }
+    
+                            // If state is selected: get the old value for checking it later
+                            if ( subdivision_node.get( 'selectedIndex' ) > 0 )
+                            {
+                                var stateSelIndex = subdivision_node.get( 'selectedIndex' );
+                                var oldStateValue = subdivision_node.get( 'options' ).item( stateSelIndex ).get( 'value' );
+                            }
+    
+                            if ( !oldStateValue )
+                            {
+                                if( country_node.get('id') == 'country' && Y.one( '#hidden_state' ) )
+                                {
+                                    var oldStateValue = Y.one( '#hidden_state' ).get( 'value' );
+                                }
+                                else if ( country_node.get('id') == 's_country' && Y.one( '#hidden_s_state' ) )
+                                {
+                                    var oldStateValue = Y.one( '#hidden_s_state' ).get( 'value' );
+                                }
+                            }
+    
+                            var nodes = subdivision_node.all( 'option' );
+                            var deleteNodes = function(n, a, b)
+                            {
+                                n.get( 'parentNode' ).removeChild(n);
+                            };
+                            nodes.each(deleteNodes);
+                            var node = Y.Node.create( '<option>&nbsp;</option>' );
+                            subdivision_node.appendChild(node);
+                            var index = 0;
+                            for (i in data ) 
+                            {
+                                index++;
+                                if (oldStateValue == i) 
+                                {
+                                    var stateSelected = index;
+                                }
+                                var node = Y.Node.create( '<option value="' + i + '">' + data[i] + '</option>' );
+                                subdivision_node.appendChild(node);
+                            }
+                            if ( typeof( stateSelected ) != 'undefined' ) 
+                            {
+                                subdivision_node.set( 'selectedIndex', stateSelected );
+                            }
+                            else
+                            {
+                                subdivision_node.set('selectedIndex', 0);
+                            }
+                            if( Y.one( '#s_state' ) )
+                            {
+                                Y.one( '#s_state' ).removeAttribute( 'disabled' );
+                            }
+                            if( Y.one( '#state' ) )
+                            {
+                                Y.one( '#state' ).removeAttribute( 'disabled' );
+                            }
+                        });
+                    }
+                }
+            });
+        }
     });
 }
 
