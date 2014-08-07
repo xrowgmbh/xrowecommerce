@@ -19,4 +19,3 @@
             <div>5. {'Completion'|i18n('extension/xrowecommerce')}</div>
             {*if ezini( 'ShopSettings', 'SendOrderEmail')|eq('enabled')}<div>6. {'Reciept'|i18n('extension/xrowecommerce')}</div>{/if*}
 </div>
-<div class="break"></div>

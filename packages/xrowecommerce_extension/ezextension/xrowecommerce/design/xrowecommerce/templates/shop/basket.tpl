@@ -43,7 +43,6 @@
     <h1>{"Shopping Cart"|i18n("extension/xrowecommerce")}</h1>
 
     {include uri="design:shop/basket_navigator.tpl" step='1'}
-    <div class="break"></div>
 
     {if ezini( 'Settings', 'Catalogueorder', 'xrowecommerce.ini' )|eq('enabled')}
         {include uri="design:shop/basket_catalogue_order.tpl"}
@@ -102,7 +101,6 @@
                 <input id="checkout-button" type="submit" class="button right-arrow2 continue-button" name="CheckoutButton" value="{'Checkout'|i18n( 'extension/xrowecommerce' )|wash()}" title="{'Use this button to place your order.'|i18n( 'extension/xrowecommerce' )|wash}" />
             </div>
     
-            <div class="break"></div>
 
             {def $currency = fetch( 'shop', 'currency', hash( 'code', $basket.productcollection.currency_code ) )
                  $locale = false()
