@@ -1039,6 +1039,10 @@
 <context>
     <name>extension/xrowecommerce</name>
     <message>
+        <source>Confirm E-mail</source>
+        <translation>Email bestätigen</translation>
+    </message>
+    <message>
         <source>Cash on delivery fee</source>
         <translation>Nachnahmegebühr</translation>
     </message>

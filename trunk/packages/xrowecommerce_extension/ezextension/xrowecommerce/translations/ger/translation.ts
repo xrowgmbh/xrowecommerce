@@ -740,6 +740,10 @@
 <context>
     <name>extension/xrowecommerce</name>
     <message>
+        <source>Confirm E-mail</source>
+        <translation>Email bestätigen</translation>
+    </message>
+    <message>
         <source>Fraud detected</source>
         <translation>Betrug festgestellt</translation>
     </message>
