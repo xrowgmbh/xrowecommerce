@@ -21,7 +21,7 @@ if ( $xini->hasVariable( 'ShopAccountHandlerDefaults', 'CountryCode' ) )
 {
     $country = $xini->variable( 'ShopAccountHandlerDefaults', 'DefaultCountryCode' );
 }
-if ( $user->isLoggedIn() and in_array( $userobject->attribute( 'class_identifier' ), $xini->variable( 'Settings', 'ShopUserClassList' ) ) )
+if ( $user->isUserLoggedIn($user->ContentObjectID) and in_array( $userobject->attribute( 'class_identifier' ), $xini->variable( 'Settings', 'ShopUserClassList' ) ) )
 {
     $userObject = $user->attribute( 'contentobject' );
     $userMap = $userObject->dataMap();
@@ -234,7 +234,7 @@ if ( $order instanceof eZOrder )
 /*
 // Check if user has an earlier order, copy order info from that one
 $orderList = eZOrder::activeByUserID( $user->attribute( 'contentobject_id' ) );
-if ( count( $orderList ) > 0 and $user->isLoggedIn() )
+if ( count( $orderList ) > 0 and $user->isUserLoggedIn($user->ContentObjectID) )
 {
     $accountInfo = $orderList[0]->accountInformation();
 }
@@ -605,7 +605,7 @@ if ( $module->isCurrentAction( 'Store' ) )
     }
 
     $tmpuser = eZUser::currentUser();
-    $userlogin = eZUser::isUserLoggedIn($tmpuser->ContentObjectID);
+    $userlogin = $tmpuser->isUserLoggedIn($tmpuser->ContentObjectID);
     unset($tmpuser);
     
     if ( $userlogin == null && $fields['password']['enabled'] == true && $fields['email']['enabled'] == true)
