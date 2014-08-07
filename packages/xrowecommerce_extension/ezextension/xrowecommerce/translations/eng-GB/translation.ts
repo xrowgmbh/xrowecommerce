@@ -578,6 +578,10 @@
 <context>
     <name>extension/xrowecommerce</name>
     <message>
+        <source>Confirm E-mail</source>
+        <translation>Confirm E-mail</translation>
+    </message>
+    <message>
         <source>Shopping Cart</source>
         <translation type="unfinished"></translation>
     </message>

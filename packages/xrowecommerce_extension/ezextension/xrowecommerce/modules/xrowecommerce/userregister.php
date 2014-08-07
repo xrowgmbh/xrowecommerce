@@ -14,7 +14,7 @@ if ( $module->isCurrentAction( 'Cancel' ) )
 $user = eZUser::currentUser();
 
 // Initialize variables
-$email = $title = $s_title = $first_name = $last_name = $shippingtype = $shipping = $s_email = $s_last_name = $s_first_name = $s_address1 = $s_address2 = $s_zip = $s_city = $s_state = $s_country = $s_phone = $s_mi = $address1 = $address2 = $zip = $city = $state = $country = $phone = $recaptcha = $mi = $password = null;
+$email = $email_confirm = $title = $s_title = $first_name = $last_name = $shippingtype = $shipping = $s_email = $s_email_confirm = $s_last_name = $s_first_name = $s_address1 = $s_address2 = $s_zip = $s_city = $s_state = $s_country = $s_phone = $s_mi = $address1 = $address2 = $zip = $city = $state = $country = $phone = $recaptcha = $mi = $password = null;
 $userobject = $user->attribute( 'contentobject' );
 $xini = eZINI::instance( 'xrowecommerce.ini' );
 if ( $xini->hasVariable( 'ShopAccountHandlerDefaults', 'CountryCode' ) )
@@ -127,6 +127,11 @@ if ( $user->isUserLoggedIn($user->ContentObjectID) and in_array( $userobject->at
         $payment_method = $userMap['payment_method']->content();
     }
     $email = $user->attribute( 'email' );
+    if ( array_key_exists( 'email_confirm', $userMap ) )
+    {
+        $email_confirm = $userMap['email_confirm']->content();
+    }
+    
 
     if ( $shipping != '1' )
     {
@@ -214,6 +219,10 @@ if ( $user->isUserLoggedIn($user->ContentObjectID) and in_array( $userobject->at
         {
             $s_email = $userMap['s_email']->content();
         }
+        if ( isset( $userMap['s_email'] ) )
+        {
+            $s_email_confirm = $userMap['s_email_confirm']->content();
+        }
     }
 }
 
@@ -258,6 +267,7 @@ $field_keys = array(
     'phone' ,
     'fax' ,
     'email' ,
+    'email_confirm' ,
     's_company_name' ,
     's_company_additional' ,
     's_title' ,
@@ -273,6 +283,7 @@ $field_keys = array(
     's_phone' ,
     's_fax' ,
     's_email',
+    's_email_confirm',
     'password'
 );
 foreach ( $field_keys as $key )
@@ -395,6 +406,15 @@ if ( $module->isCurrentAction( 'Store' ) )
                     $inputIsValid = false;
                     $errors[] = ezpI18n::tr( 'extension/xrowecommerce', 'The email address is not valid.' );
                     $fields['email']['errors'][0] = ezpI18n::tr( 'extension/xrowecommerce', 'The billing email address is not valid.' );
+                }
+            }
+            if( $fields['email_confirm']['enabled'] == true ) {
+                $email_confirm = trim( $http->postVariable( 'email_confirm' ) );
+                if ( $email != $email_confirm )
+                {
+                    $inputIsValid = false;
+                    $errors[] = ezpI18n::tr( 'extension/xrowecommerce', 'The email addresses do not match.' );
+                    $fields['email_confirm']['errors'][0] = ezpI18n::tr( 'extension/xrowecommerce', 'The billing email address do not match.' );
                 }
             }
         }
@@ -805,6 +825,15 @@ if ( $module->isCurrentAction( 'Store' ) )
                     $fields['s_email']['errors'][0] = ezpI18n::tr( 'extension/xrowecommerce', 'The shipping email address is not valid' );
                 }
             }
+            if( $fields['s_email_confirm']['enabled'] == true ) {
+                $s_email_confirm = trim( $http->postVariable( 's_email_confirm' ) );
+                if ( $s_email != $s_email_confirm )
+                {
+                    $inputIsValid = false;
+                    $errors[] = ezpI18n::tr( 'extension/xrowecommerce', 'The email addresses do not match.' );
+                    $fields['s_email_confirm']['errors'][0] = ezpI18n::tr( 'extension/xrowecommerce', 'The shipping email address do not match.' );
+                }
+            }
         }
 
         if ( $fields['s_address1']['enabled'] == true )
@@ -1048,6 +1077,9 @@ if ( $module->isCurrentAction( 'Store' ) )
 
         $emailNode = $doc->createElement( 'email', xrowECommerce::encodeString( $email ) );
         $root->appendChild( $emailNode );
+        
+        $email_confirmNode = $doc->createElement( 'email_confirm', xrowECommerce::encodeString( $email_confirm ) );
+        $root->appendChild( $email_confirmNode );
 
         $passwordNode = $doc->createElement( 'password', xrowECommerce::encodeString( $password ) );
         $root->appendChild( $passwordNode );
@@ -1151,7 +1183,9 @@ if ( $module->isCurrentAction( 'Store' ) )
 
             $s_emailNode = $doc->createElement( 's_email', xrowECommerce::encodeString( $s_email ) );
             $root->appendChild( $s_emailNode );
-
+            
+            $s_email_confirmNode = $doc->createElement( 's_email_confirm', xrowECommerce::encodeString( $s_email_confirm ) );
+            $root->appendChild( $s_email_confirmNode );
         /* Shipping address*/
         } /* Shippingaddress is equal or not */
         else
@@ -1200,6 +1234,9 @@ if ( $module->isCurrentAction( 'Store' ) )
 
             $s_emailNode = $doc->createElement( 's_email', xrowECommerce::encodeString( $email ) );
             $root->appendChild( $s_emailNode );
+            
+            $s_email_confirmNode = $doc->createElement( 's_email_confirm', xrowECommerce::encodeString( $email_confirm ) );
+            $root->appendChild( $s_email_confirmNode );
         }
 
         $order->setAttribute( 'data_text_1', $doc->saveXML() );
@@ -1233,6 +1270,7 @@ $tpl->setVariable( 'title', $title );
 $tpl->setVariable( 'mi', $mi );
 $tpl->setVariable( 'last_name', $last_name );
 $tpl->setVariable( 'email', $email );
+$tpl->setVariable( 'email_confirm', $email_confirm );
 if( !isset( $newsletter ) )
     $newsletter = '';
 $tpl->setVariable( 'password', $password );
@@ -1272,6 +1310,7 @@ $tpl->setVariable( 's_first_name', $s_first_name );
 $tpl->setVariable( 's_mi', $s_mi );
 $tpl->setVariable( 's_last_name', $s_last_name );
 $tpl->setVariable( 's_email', $s_email );
+$tpl->setVariable( 's_email_confirm', $s_email_confirm );
 $tpl->setVariable( 's_address1', $s_address1 );
 $tpl->setVariable( 's_address2', $s_address2 );
 $tpl->setVariable( 's_city', $s_city );

@@ -1039,6 +1039,18 @@
 <context>
     <name>extension/xrowecommerce</name>
     <message>
+        <source>The billing email address do not match.</source>
+        <translation>Die Rechnungsemailadressen stimmen nicht überein.</translation>
+    </message>
+    <message>
+        <source>The shipping email address do not match.</source>
+        <translation>Die Versandemailadressen stimmen nicht überein.</translation>
+    </message>
+    <message>
+        <source>Confirm E-mail</source>
+        <translation>Email bestätigen</translation>
+    </message>
+    <message>
         <source>Cash on delivery fee</source>
         <translation>Nachnahmegebühr</translation>
     </message>

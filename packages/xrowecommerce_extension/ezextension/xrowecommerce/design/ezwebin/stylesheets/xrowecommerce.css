@@ -198,7 +198,7 @@ div.warning p
     font-weight: bold;
 }
 
-div.coupon
+.coupon
 {
     border: 1px solid #d3d5d6;
     padding: 12px;
@@ -283,10 +283,10 @@ ul#gateways li *
     vertical-align: middle;
 }
 div.form,
-div.billing,
-div.shipping,
-div.additional-information,
-div.coupon,
+.billing,
+.shipping,
+.additional-information,
+.coupon,
 div.accountinfo
 {
     margin-top: 15px;
@@ -295,8 +295,8 @@ div.accountinfo
     background-color:#ffe;
 }
 
-div.billing label,
-div.shipping label
+.billing label,
+.shipping label
 {
     font-size: 0.9em;
 }
@@ -716,11 +716,11 @@ div.shop .continue-button
     background: url(../images/button_orange_bg.jpg) #F08908;
 }
 
-div.billing,
-div.shipping,
-div.additional-information,
+.billing,
+.shipping,
+.additional-information,
 div.accountinfo,
-div.coupon
+.coupon
 {
     width: 360px;
 }
@@ -751,7 +751,7 @@ div.shop-userregister input.shipping-checkbox
     margin-right: 0.5em;
 }
 
-div.billing
+.billing
 {
     float: left;
     clear: left;
@@ -762,19 +762,19 @@ div.accountinfo
     float: left;
 }
 
-div.coupon
+.coupon
 {
     float: left;
     clear: left;
 }
 
-div.shipping
+.shipping
 {
     float: right;
     clear: right;
 }
 
-div.additional-information
+.additional-information
 {
     float: left;
     clear: left;

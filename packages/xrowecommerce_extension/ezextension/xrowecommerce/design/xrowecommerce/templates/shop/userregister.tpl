@@ -74,8 +74,8 @@
             </div>
         {/if}
         {undef $error_count}
-        <div class="billing">
-            <h2>{'Billing Information'|i18n('extension/xrowecommerce')}</h2>
+        <fieldset class="billing">
+            <legend>{'Billing Information'|i18n('extension/xrowecommerce')}</legend>
             <p><span class="required">* <i>{'Required field'|i18n('extension/xrowecommerce')}</i></span></p>
             {if or($fields.company_name.enabled, $fields.company_additional.enabled, $fields.tax_id.enabled)}
                 <div class="address-selection">
@@ -95,56 +95,56 @@
              {/if}
             <div class="company">
                 {if $fields.company_name.enabled}
-                    <div class="ur_companyname block{if is_set($fields.company_name.errors)} error{/if}">
+                    <div class="companyname block{if is_set($fields.company_name.errors)} error{/if}">
                         <label>{'Company name'|i18n('extension/xrowecommerce')}{if $fields.company_name.required}<span class="required">*</span>{/if}</label>
                         <input type="text" name="company_name" id="company_name" value="{$company_name|wash}" />
                     </div>
                 {/if}
                 {if $fields.company_additional.enabled}
-                    <div class="ur_company_additional block{if is_set($fields.company_additional.errors)} error{/if}">
+                    <div class="company_additional block{if is_set($fields.company_additional.errors)} error{/if}">
                         <label>{'Company additional information'|i18n('extension/xrowecommerce')}{if $fields.company_additional.required}<span class="required">*</span>{/if}</label>
                         <input type="text" name="company_additional" id="company_additional" value="{$company_additional|wash}" />
                     </div>
                 {/if}
                 {if $fields.tax_id.enabled}
-                    <div class="ur_taxid block{if is_set($fields.tax_id.errors)} error{/if}">
+                    <div class="taxid block{if is_set($fields.tax_id.errors)} error{/if}">
                         <label>{'Tax ID'|i18n('extension/xrowecommerce')}{if $fields.tax_id.required}<span class="required">*</span>{/if}</label>
                         <input type="text" name="tax_id" {if and( $tax_id, $tax_id_valid|eq('2') )} readonly="readonly" disabled{/if} value="{$tax_id|wash}" />
                     </div>
                 {/if}
             </div>
             {if $fields.title.enabled}
-                <div class="ur_title block{if is_set($fields.title.errors)} error{/if}">
+                <div class="title block{if is_set($fields.title.errors)} error{/if}">
                     <label>{'Title'|i18n('extension/xrowecommerce')}</label>
                     <input type="text" name="title" id="title" value="{$title|wash}" />
                 </div>
             {/if}
             {if $fields.first_name.enabled}
-                <div class="ur_firstname block{if is_set($fields.first_name.errors)} error{/if}">
+                <div class="firstname block{if is_set($fields.first_name.errors)} error{/if}">
                     <label>{'First name'|i18n('extension/xrowecommerce')}{if $fields.first_name.required}<span class="required">*</span>{/if}</label>
                     <input type="text" name="first_name" id="first_name" value="{$first_name|wash}" />
                 </div>
             {/if}
             {if $fields.mi.enabled}
-                <div class="ur_mi block{if is_set($fields.mi.errors)} error{/if}">
+                <div class="mi block{if is_set($fields.mi.errors)} error{/if}">
                     <label>{'MI'|i18n('extension/xrowecommerce')}{if $fields.mi.required}<span class="required">*</span>{/if}</label>
                     <input class="halfbox" type="text" name="mi" id="mi" size="2" value="{$mi|wash}" />
                 </div>
             {/if}
             {if $fields.last_name.enabled}
-                <div class="ur_lastname block{if is_set($fields.last_name.errors)} error{/if}">
+                <div class="lastname block{if is_set($fields.last_name.errors)} error{/if}">
                     <label>{'Last name'|i18n('extension/xrowecommerce')}{if $fields.last_name.required}<span class="required">*</span>{/if}</label>
                     <input type="text" name="last_name" id="last_name" value="{$last_name|wash}" />
                 </div>
             {/if}
             {if $fields.address1.enabled}
-                <div class="block{if is_set($fields.address1.errors)} error{/if}">
+                <div class="address1 block{if is_set($fields.address1.errors)} error{/if}">
                     <label>{'Address 1'|i18n('extension/xrowecommerce')}{if $fields.address1.required}<span class="required">*</span>{/if}</label>
                     <input type="text" name="address1" id="address1" size="20" value="{$address1|wash}" title="{'Street address, P.O. box, company name, c/o'|i18n('extension/xrowecommerce')}" />
                 </div>
             {/if}
             {if $fields.address2.enabled}
-                <div class="block{if is_set($fields.address2.errors)} error{/if}">
+                <div class="address2 block{if is_set($fields.address2.errors)} error{/if}">
                     <label>{'Address 2'|i18n('extension/xrowecommerce')}{if $fields.address2.required}<span class="required">*</span>{/if}</label>
                     <input type="text" name="address2" id="address2" size="20" value="{$address2|wash}" title="{'Apartment, suite, unit, building, floor, etc.'|i18n('extension/xrowecommerce')}" />
                 </div>
@@ -181,7 +181,6 @@
                 <div class="state block{if is_set($fields.state.errors)} error{/if}">
                     <label>{'State / Province'|i18n('extension/xrowecommerce')}{if $fields.state.required}<span class="required">*</span>{/if}</label>
                     <select name="state" id="state">
-                        <option>&nbsp;</option>
                         {foreach $states as $key => $state_item}
                             <option {if eq( $state, $key )} selected="selected" {/if} value="{$key}">{$state_item|wash}</option>
                         {/foreach}
@@ -189,26 +188,32 @@
                 </div>
             {/if}
             {if $fields.phone.enabled}
-                <div class="block{if is_set($fields.phone.errors)} error{/if}">
+                <div class="phone block{if is_set($fields.phone.errors)} error{/if}">
                     <label>{'Phone'|i18n('extension/xrowecommerce')}{if $fields.phone.required}<span class="required">*</span>{/if}</label>
                     <input type="text" name="phone" class="phone" id="phone" value="{$phone|wash}" />
                 </div>
             {/if}
             {if $fields.fax.enabled}
-                <div class="block{if is_set($fields.fax.errors)} error{/if}">
+                <div class="fax block{if is_set($fields.fax.errors)} error{/if}">
                     <label>{'Fax'|i18n('extension/xrowecommerce')}{if $fields.fax.required}<span class="required">*</span>{/if}</label>
                     <input type="text" name="fax" id="fax" class="fax" value="{$fax|wash}" />
                 </div>
             {/if}
             {if $fields.email.enabled}
-                <div class="block{if is_set($fields.email.errors)} error{/if}">
+                <div class="email block{if is_set($fields.email.errors)} error{/if}">
                     <label>{'E-mail'|i18n('extension/xrowecommerce')}{if $fields.email.required}<span class="required">*</span>{/if}</label>
                     <input class="email" type="text" name="email" id="email" value="{$email|wash}" />
                 </div>
+                {if $fields.email_confirm.enabled}
+                    <div class="email_confirm block{if is_set($fields.email.errors)} error{/if}">
+                        <label>{'Confirm E-mail'|i18n('extension/xrowecommerce')}{if $fields.email.required}<span class="required">*</span>{/if}</label>
+                        <input class="email_confirm" type="text" name="email_confirm" id="email_confirm" value="{$email_confirm|wash}" />
+                    </div>
+                {/if}
             {/if}
             {if and( fetch( 'user', 'current_user' ).is_logged_in|not(), ezini( 'Settings', 'ForceUserRegBeforeCheckout', 'xrowecommerce.ini' )|eq('true'))}
                 {if $fields.password.enabled }
-                    <div class="block{if is_set($fields.password.errors)} error{/if}">
+                    <div class="password block{if is_set($fields.password.errors)} error{/if}">
                         <label>{'Password'|i18n('extension/xrowecommerce')}{if $fields.password.required}<span class="required">*</span>{/if}</label>
                         <input class="password" type="password" name="password" id="password" value="" />
                         <label>{'Confirm Password'|i18n('extension/xrowecommerce')}{if $fields.password.required}<span class="required">*</span>{/if}</label>
@@ -218,13 +223,13 @@
             {/if}
             
             {if ezini('Fields','Newsletter','xrowecommerce.ini').enabled|eq('true')}
-                <div class="block">
+                <div class="newsletter block">
                     <label class="newsletter" for="newsletter"><input class="newsletter" type="checkbox" name="newsletter" id="newsletter" {if is_set($newsletter)} checked="checked" {/if} value="1" />{'Subscribe to newsletter'|i18n('extension/xrowecommerce')}</label>
                 </div>
             {/if}
 
             {def $shipping_methods=fetch( 'shipping', 'list_methods' )}
-            <div class="block {if is_set($fields.shippingtype.errors)} error{/if}">
+            <div class="shippingtype block {if is_set($fields.shippingtype.errors)} error{/if}">
             {if $shipping_methods|count|gt(1)}
                 <label>{'Shipping'|i18n('extension/xrowecommerce')}<span class="required">*</span></label>
                 <div class="labelbreak"></div>
@@ -238,11 +243,11 @@
                 <input id="shippingtype" name="shippingtype" value="{$shipping_methods.0.identifier}" type="hidden" />
             {/if}
             </div>
-        </div> {*LEFT COL END*}
+        </fieldset> {*LEFT COL END*}
 
         {* right column *}
-        <div class="shipping">
-            <h2>{'Shipping Information'|i18n( 'extension/xrowecommerce' )}</h2>
+        <fieldset class="shipping">
+            <legend>{'Shipping Information'|i18n( 'extension/xrowecommerce' )}</legend>
             <label class="shipping-checkbox" for="shipping-checkbox">
             <p id="shipping-checkbox-text">
                 <a id="shipping-link" href="#">
@@ -274,14 +279,14 @@
                 {/if}
                 <div class="s_company">
                     {if $fields.s_company_name.enabled}
-                        <div class="ur_companyname block{if is_set($fields.s_company_name.errors)} error{/if}">
+                        <div class="companyname block{if is_set($fields.s_company_name.errors)} error{/if}">
                             <label>{'Company name'|i18n('extension/xrowecommerce')}{if $fields.s_company_name.required}<span class="required">*</span>{/if}</label>
                             <input type="text" name="s_company_name" id="s_company_name" value="{$s_company_name|wash}" />
                         </div>
                     {/if}
 
                     {if $fields.s_company_additional.enabled}
-                        <div class="ur_company_additional block{if is_set($fields.s_company_additional.errors)} error{/if}">
+                        <div class="company_additional block{if is_set($fields.s_company_additional.errors)} error{/if}">
                             <label>{'Company additional information'|i18n('extension/xrowecommerce')}{if $fields.s_company_additional.required}<span class="required">*</span>{/if}</label>
                             <input type="text" name="s_company_additional" id="s_company_additional" value="{$s_company_additional|wash}" />
                         </div>
@@ -289,42 +294,42 @@
                 </div>
 
                 {if $fields.s_title.enabled}
-                    <div class="ur_title block{if is_set($fields.s_title.errors)} error{/if}">
+                    <div class="title block{if is_set($fields.s_title.errors)} error{/if}">
                         <label>{'Title'|i18n('extension/xrowecommerce')}{if $fields.s_title.required}<span class="required">*</span>{/if}</label>
                         <input type="text" name="s_title" id="s_title" value="{$s_title|wash}" />
                     </div>
                 {/if}
 
                 {if $fields.s_first_name.enabled}
-                    <div class="ur_firstname block{if is_set($fields.s_first_name.errors)} error{/if}">
+                    <div class="firstname block{if is_set($fields.s_first_name.errors)} error{/if}">
                         <label>{'First name'|i18n('extension/xrowecommerce')}{if $fields.s_first_name.required}<span class="required">*</span>{/if}</label>
                         <input type="text" name="s_first_name" id="s_first_name" value="{$s_first_name|wash}" />
                     </div>
                 {/if}
 
                 {if $fields.s_mi.enabled}
-                    <div class="ur_mi block{if is_set($fields.s_mi.errors)} error{/if}">
+                    <div class="mi block{if is_set($fields.s_mi.errors)} error{/if}">
                         <label>{'MI'|i18n('extension/xrowecommerce')}{if $fields.s_mi.required}<span class="required">*</span>{/if}</label>
                         <input class="halfbox" type="text" name="s_mi" id="s_mi" size="2" value="{$s_mi|wash}" />
                     </div>
                 {/if}
 
                 {if $fields.s_last_name.enabled}
-                    <div class="ur_lastname block{if is_set($fields.s_last_name.errors)} error{/if}">
+                    <div class="lastname block{if is_set($fields.s_last_name.errors)} error{/if}">
                         <label>{'Last name'|i18n('extension/xrowecommerce')}{if $fields.s_last_name.required}<span class="required">*</span>{/if}</label>
                         <input type="text" name="s_last_name" id="s_last_name" value="{$s_last_name|wash}" />
                     </div>
                 {/if}
 
                 {if $fields.s_address1.enabled}
-                    <div class="block{if is_set($fields.s_address1.errors)} error{/if}">
+                    <div class="address1 block{if is_set($fields.s_address1.errors)} error{/if}">
                         <label>{'Address 1'|i18n('extension/xrowecommerce')}{if $fields.s_address1.required}<span class="required">*</span>{/if}</label>
                         <input type="text" name="s_address1" id="s_address1" size="20" value="{$s_address1|wash}" />
                     </div>
                 {/if}
 
                 {if $fields.s_address2.enabled}
-                    <div class="block{if is_set($fields.s_address2.errors)} error{/if}">
+                    <div class="address2 block{if is_set($fields.s_address2.errors)} error{/if}">
                         <label>{'Address 2'|i18n('extension/xrowecommerce')}{if $fields.s_address2.required}<span class="required">*</span>{/if}</label>
                         <input type="text" name="s_address2" size="20" id="s_address2" value="{$s_address2|wash}" />
                     </div>
@@ -373,43 +378,49 @@
                 {/if}
 
                 {if $fields.s_phone.enabled}
-                    <div class="block{if is_set($fields.s_phone.errors)} error{/if}">
+                    <div class="block phone{if is_set($fields.s_phone.errors)} error{/if}">
                         <label>{'Phone'|i18n('extension/xrowecommerce')}{if $fields.s_phone.required}<span class="required">*</span>{/if}</label>
-                        <input class="phone" type="text" id="s_phone" name="s_phone" value="{$s_phone|wash}" />
+                        <input class="s_phone" type="text" id="s_phone" name="s_phone" value="{$s_phone|wash}" />
                     </div>
                 {/if}
 
                 {if $fields.s_fax.enabled}
-                    <div class="block{if is_set($fields.s_fax.errors)} error{/if}">
+                    <div class="block fax{if is_set($fields.s_fax.errors)} error{/if}">
                         <label>{'Fax'|i18n('extension/xrowecommerce')}{if $fields.s_fax.required}<span class="required">*</span>{/if}</label>
-                        <input class="phone" type="text" id="s_fax" name="s_fax" value="{$s_fax|wash}" />
+                        <input class="s_fax" type="text" id="s_fax" name="s_fax" value="{$s_fax|wash}" />
                     </div>
                 {/if}
 
                 {if $fields.s_email.enabled}
-                    <div class="block{if is_set($fields.s_email.errors)} error{/if}">
+                    <div class="block email{if is_set($fields.s_email.errors)} error{/if}">
                         <label>{'E-mail'|i18n('extension/xrowecommerce')}{if $fields.s_email.required}<span class="required">*</span>{/if}</label>
-                        <input class="phone" type="text" name="s_email" id="s_email" value="{$s_email|wash}" />
+                        <input class="s_email" type="text" name="s_email" id="s_email" value="{$s_email|wash}" />
                     </div>
+                    {if $fields.s_email_confirm.enabled}
+                        <div class="s_email_confirm block{if is_set($fields.s_email_confirm.errors)} error{/if}">
+                            <label>{'Confirm E-mail'|i18n('extension/xrowecommerce')}{if $fields.s_email.required}<span class="required">*</span>{/if}</label>
+                            <input class="s_email_confirm" type="text" name="s_email_confirm" id="s_email_confirm" value="{$s_email_confirm|wash}" />
+                        </div>
+                    {/if}
                 {/if}
             </div>
 
         {* / left column *}
-        </div>
+        </fieldset>
         
         {if ezini('Fields','Coupon','xrowecommerce.ini').enabled|eq('true')}
-            <div class="coupon">
-                <h2>{'Coupon'|i18n('extension/xrowecommerce')}</h2>
+            <fieldset class="coupon">
+                <legend>{'Coupon'|i18n('extension/xrowecommerce')}</legend>
                 <p>{'Please enter your coupon code exactly as it appears on your promotion.'|i18n('extension/xrowecommerce')}</p>
                 <div class="block">
                     <label>{'Coupon'|i18n('extension/xrowecommerce')}</label>
                     <input type="text" name="coupon_code" id="coupon_code" value="{$coupon_code|wash}" size="20" />
                 </div>
-            </div>
+            </fieldset>
         {/if}
         
-        <div class="additional-information">
-            <h2>{'Additional Information'|i18n( 'extension/xrowecommerce' )}</h2>
+        <fieldset class="additional-information">
+            <legend>{'Additional Information'|i18n( 'extension/xrowecommerce' )}</legend>
             
             {* Captcha Start *}
             {def $access=fetch( 'user', 'has_access_to',
@@ -458,7 +469,7 @@
                     <textarea class="message" name="message" id="message" rows="10" cols="50">{$message|wash}</textarea>
                 </div>
             {/if}
-        </div>
+        </fieldset>
 
         <div class="buttonblock">
             <input id="cancel-button" class="button" type="submit" name="CancelButton" value="{'Cancel'|i18n('extension/xrowecommerce')}" title="{'Cancel order'|i18n('extension/xrowecommerce')}" />

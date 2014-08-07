@@ -15,7 +15,7 @@ $(document).ready(function() {
         }
     });
 
-    CompanyPrivatChange( $(".shop-userregister input[id$='company'], .shop-userregister input[id$='home']") );
+    CompanyPrivateChange( $(".shop-userregister input[id$='company'], .shop-userregister input[id$='home']") );
 
     if( $(".shop-userregister").length ) {
         updateShipping();
@@ -555,12 +555,10 @@ function generatePopup(node, image, imagetext, doubleclick)
         {
             overlay.set('footerContent', imagetext);
         }
-        var myFirstGroup = new Y.ImgLoadGroup( 
-        {
+        var myFirstGroup = new Y.ImgLoadGroup({
             timeLimit : 2
         });
-        myFirstGroup.registerImage( 
-        {
+        myFirstGroup.registerImage({
             domId : imageNode.get('id'),
            srcUrl : image
         });
@@ -584,16 +582,16 @@ function generatePopup(node, image, imagetext, doubleclick)
     });
 };
 
-function CompanyPrivatChange(element) {
+function CompanyPrivateChange(element) {
     $(element).each(function(){
-        if( $(element).is("#home:checked", "#s_home:checked") ) {
-            $("div." + $(element).attr("name")).hide();
+        if( $(this).is("#home:checked, #s_home:checked") ) {
+            $("div." + $(this).attr("name")).hide();
         } else {
-            $("div." + $(element).attr("name")).show();
+            $("div." + $(this).attr("name")).show();
         }
     });
     $(element).click( function(){
-        if( $(this).is("#home:checked", "#s_home:checked") ) {
+        if( $(this).is("#home:checked, #s_home:checked") ) {
             $("div." + $(this).attr("name")).slideUp('fast');
         } else {
             $("div." + $(this).attr("name")).slideDown('fast');
