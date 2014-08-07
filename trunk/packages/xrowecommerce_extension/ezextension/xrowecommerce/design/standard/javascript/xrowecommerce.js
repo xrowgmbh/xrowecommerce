@@ -7,24 +7,33 @@ $(document).ready(function() {
     }).mouseleave(function(){
         $('#AutomaticDeliveryTooltip').slideUp('300');
     });
+    $(".shop-userregister input[type=radio][name=company]").click( function(){
+        if ($(this).is(":checked")) {
+            $('div.company').slideDown('slow');
+        } else {
+            $('div.company').slideUp('slow');
+        }
+    });
 
-    $('.shop-userregister input#company, .user_register input#company').click(function(){
-        $('div.company').slideDown('slow');
-    });
-    $('.shop-userregister input#home, .user_register input#home').click(function(){
-        $('div.company').slideUp('slow');
-    });
-    $('.shop-userregister input#s_company, .user_register input#s_company').click(function(){
-        $('div.s_company').slideDown('slow');
-    });
-    $('.shop-userregister input#s_home, .user_register input#s_home').click(function(){
-        $('div.s_company').slideUp('slow');
-    });
-    $('#shipping-link').mousedown(function(){
-        $('input#shipping-checkbox').trigger('click');
-    });
-    
+    CompanyPrivatChange( $(".shop-userregister input[id$='company'], .shop-userregister input[id$='home']") );
 
+    if( $(".shop-userregister").length ) {
+        updateShipping();
+    }
+    $('#shipping-checkbox').each(function(){
+        var this_checkbox = $(this);
+        if ( this_checkbox.is(":checked") ) {
+            $('#shippinginfo').hide();
+        } else {
+            $('#shippinginfo').show();
+        }
+        $('#shipping-link').mousedown(function(){
+            this_checkbox.trigger('click');
+        }).click(function(e){
+            e.preventDefault();
+        });
+        //change event is still yui
+    });
 });
 YUI(YUI3_config).use( 'node', function(Y)
 {
@@ -105,20 +114,15 @@ new Y.Console({
 
 function ShowHide(id)
 {
-    YUI(YUI3_config).use( 'node', function(Y)
-    { 
-        var node = Y.one( id );
-        if ( node.hasClass( 'hide') )
-        {
-            node.removeClass('hide');
-            node.addClass('show');
-        }
-        else
-        {
-            node.removeClass('show');
-            node.addClass('hide');
-        }
-    });
+    var node = $(id);
+    if ( node.hasClass( 'hide') )
+    {
+        node.removeClass('hide').addClass('show');
+    }
+    else
+    {
+        node.removeClass('show').addClass('hide');
+    }
 }
 
 function ezjson(uri, callback, args) 
@@ -580,14 +584,19 @@ function generatePopup(node, image, imagetext, doubleclick)
     });
 };
 
-function change()
-{
-    if (document.getElementById( 'shipping-checkbox' ).checked)
-    {
-        document.getElementById( 'shippinginfo' ).style.display = 'none';
-    }
-    else
-    {
-        document.getElementById( 'shippinginfo' ).style.display = 'block';
-    }
-};
+function CompanyPrivatChange(element) {
+    $(element).each(function(){
+        if( $(element).is("#home:checked", "#s_home:checked") ) {
+            $("div." + $(element).attr("name")).hide();
+        } else {
+            $("div." + $(element).attr("name")).show();
+        }
+    });
+    $(element).click( function(){
+        if( $(this).is("#home:checked", "#s_home:checked") ) {
+            $("div." + $(this).attr("name")).slideUp('fast');
+        } else {
+            $("div." + $(this).attr("name")).slideDown('fast');
+        }
+    });
+}
