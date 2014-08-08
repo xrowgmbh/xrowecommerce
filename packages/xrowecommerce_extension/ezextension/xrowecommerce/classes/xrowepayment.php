@@ -180,9 +180,10 @@ class xrowEPayment
         {
             $gateway = $availableGateways[$key];
             $object = new $availableGateways[$key]['class_name']();
-            $gateway['Name'] = $object->name();
             $gateway['value'] = $key;
-            $gateway['costs'] = $object->costs();
+            $gateway['Name'] = $object->name();
+            if(method_exists($object, 'costs'))
+                $gateway['costs'] = $object->costs();
             $gateways[] = $gateway;
         }
         

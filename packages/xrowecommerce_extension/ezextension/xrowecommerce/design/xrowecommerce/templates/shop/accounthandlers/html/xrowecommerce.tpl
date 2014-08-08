@@ -271,6 +271,13 @@
             {/if}
         </table>
     {/if}
+    {if or( 
+        and(ezini( 'Fields', 'Message', 'xrowecommerce.ini' ).enabled|eq('true'), $order.account_information.message)
+        ezini( 'BasketInformation', 'DisplayPaymentmethod', 'xrowecommerce.ini' )|eq( 'enabled' )
+        ezini( 'Fields', 'NoPartialDelivery', 'xrowecommerce.ini' ).enabled|eq('true')
+        and(ezini( 'Fields', 'Reference', 'xrowecommerce.ini' ).enabled|eq('true'), $order.account_information.reference)
+        and(ezini( 'Fields', 'Message', 'xrowecommerce.ini' ).enabled|eq('true'), $order.account_information.message)
+        )}
     <table id="additional-orderinformation-table" class="order_box" border="0" cellspacing="0" cellpadding="0">
         <caption>{"Additional Orderinformation"|i18n("extension/xrowecommerce")}</caption>
         {if ezini( 'Fields', 'NoPartialDelivery', 'xrowecommerce.ini' ).enabled|eq('true')}

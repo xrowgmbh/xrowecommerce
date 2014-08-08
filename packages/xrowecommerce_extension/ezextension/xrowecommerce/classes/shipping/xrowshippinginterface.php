@@ -2,37 +2,6 @@
 
 class xrowShippingInterface
 {
-    /*static function getShippingMethods( $gateway )
-    {
-        $list = self::fetchAll();
-        foreach ( $list as $key => $method )
-        {
-            if ( $method == $gateway )
-            {
-                $name = $method['gateway'];
-                $return = new $name( );
-                $return->loadConfiguration();
-                return $return;
-            }
-        }
-        return false;
-    }
-
-    static function instanceByIdentifier( $gateway )
-    {
-        $list = self::fetchAll();
-        foreach ( $list as $key => $method )
-        {
-            if ( $method['gateway'] == $gateway )
-            {
-                $name = $method['gateway'];
-                $return = new $name( );
-                $return->loadConfiguration();
-                return $return;
-            }
-        }
-        return false;
-    }*/
 
     static function instanceByMethod( $methodtype )
     {

@@ -1,4 +1,8 @@
 $(document).ready(function() {
+    if( $("#confirmorder").length ) {
+        checkCOS($("form[data-checkcos]"));
+        toggleCOS($("#cos-content-label a"));
+    }
     $('#show_auto_tip').mouseenter(function(){
         if ( !$('#AutomaticDeliveryTooltip').is(':animated') )
         {
@@ -164,7 +168,7 @@ function ezjson(uri, callback, args)
     });
 }
 
-function updateSubdivisions( country_node ) 
+function updateSubdivisions( country_node )
 {
     YUI(YUI3_config).use( 'node', 'io', 'io-ez', function( Y )
     {
@@ -495,22 +499,14 @@ function changeShipping()
     });
 };
 
-function toggleCOS()
+function toggleCOS( element )
 {
-    YUI(YUI3_config).use( 'node', function(Y) 
-    { 
-        var container = Y.one('#cos-content');
-        if ( container )
-        {
-            if ( container.getStyle('display') == 'block' )
-            {
-                container.setStyle('display', 'none');
-            }
-            else
-            {
-                container.setStyle('display', 'block');
-            }
+    $(element).click(function(e){
+        if( !$("#cos:checked").length ) {
+            $("#cos").trigger("click");
         }
+        $("#cos-content").slideToggle();
+        e.preventDefault();
     });
 };
 
@@ -600,4 +596,17 @@ function CompanyPrivateChange(element) {
             $("div." + $(this).attr("name")).slideDown('fast');
         }
     });
+}
+
+function checkCOS( element )
+{
+    if( $("input#cos[type=checkbox]").length && $(element).data("checkcos") == '1' ) {
+        $("#continue-button, #continue-button2").attr("type", "submit"); //only submittable if js is active
+        $(element).submit(function(e){
+            if( !$("input#cos[type=checkbox]:checked").length ) {
+                alert( $(element).data("errortext") );
+                e.preventDefault();
+            }
+        });
+    }
 }

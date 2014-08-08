@@ -6,15 +6,15 @@ class rangedfixedprice extends ShippingInterface
 
     function methods()
     {
-        return array( 
-            array( 
-                'identifier' => 'standard' , 
-                'name' => ezpI18n::tr( 'extension/shippinginterface', 'Standard Shipping' ) 
-            ) , 
-            array( 
-                'identifier' => 'express' , 
-                'name' => ezpI18n::tr( 'extension/shippinginterface', 'Express Shipping' ) 
-            ) 
+        return array(
+            array(
+                'identifier' => 'standard' ,
+                'name' => ezpI18n::tr( 'extension/shippinginterface', 'Standard Shipping' )
+            ),
+            array(
+                'identifier' => 'express' ,
+                'name' => ezpI18n::tr( 'extension/shippinginterface', 'Express Shipping' )
+            )
         );
     }
 
