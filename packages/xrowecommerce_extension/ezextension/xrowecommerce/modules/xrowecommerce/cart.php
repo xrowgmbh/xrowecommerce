@@ -8,6 +8,24 @@ if ( !eZPreferences::isStoredInSession( 'user_preferred_country' ) and eZINI::in
 $http = eZHTTPTool::instance();
 $module = $Params['Module'];
 
+if ( $http->hasPostVariable( "StoreChangesButton" ) )
+{
+    $itemCountList = $http->postVariable( "ProductItemCountList" );
+    $itemIDList = $http->postVariable( "ProductItemIDList" );
+
+    // We should check item count, all itemcounts must be greater than 0
+    foreach ( $itemCountList as $itemCount )
+    {
+        // If item count of product <= 0 we should show the error
+        if ( !is_numeric( $itemCount ) or $itemCount < 0 )
+        {
+            // Redirect to basket
+            $module->redirectTo( $module->functionURI( "cart" ) . "/(error)/invaliditemcount" );
+            return;
+        }
+    }
+    eZShopOperationCollection::updateBasket( $itemCountList, $itemIDList );
+}
 
 $basket = eZBasket::currentBasket();
 $basket->updatePrices(); // Update the prices. Transaction not necessary.
@@ -105,30 +123,6 @@ if ( $http->hasPostVariable( "RemoveProductItemButton" ) )
         $module->redirectTo( $module->functionURI( "cart" ) . "/" );
         return;
     }
-}
-
-if ( $http->hasPostVariable( "StoreChangesButton" ) )
-{
-    $itemCountList = $http->postVariable( "ProductItemCountList" );
-    $itemIDList = $http->postVariable( "ProductItemIDList" );
-
-    // We should check item count, all itemcounts must be greater than 0
-    foreach ( $itemCountList as $itemCount )
-    {
-        // If item count of product <= 0 we should show the error
-        if ( !is_numeric( $itemCount ) or $itemCount < 0 )
-        {
-            // Redirect to basket
-            $module->redirectTo( $module->functionURI( "cart" ) . "/(error)/invaliditemcount" );
-            return;
-        }
-    }
-
-    $http->setSessionVariable( 'ProductItemCountList', $itemCountList );
-    $http->setSessionVariable( 'ProductItemIDList', $itemIDList );
-
-    $module->redirectTo( '/shop/updatebasket/' );
-    return;
 }
 
 if ( $http->hasPostVariable( "ContinueShoppingButton" ) )
@@ -263,16 +257,14 @@ if ( $http->hasPostVariable( "CheckoutButton" ) or ( $doCheckout === true ) )
         if ( $verifyResult === true )
         {
             $orderID = $http->sessionVariable( 'MyTemporaryOrderID' );
-            eZDebug::writeDebug( $orderID, 'orderID' );
             $order = eZOrder::fetch( $orderID );
             if ( !($order instanceof eZOrder ) || !$order->attribute( 'is_temporary' ) )
             {
                 $order = $basket->createOrder();
+                $http->setSessionVariable( 'MyTemporaryOrderID', $order->attribute( 'id' ) );
             }
             $order->setAttribute( 'account_identifier', "default" );
             $order->store();
-
-            $http->setSessionVariable( 'MyTemporaryOrderID', $order->attribute( 'id' ) );
 
             $db->commit();
             $module->redirectTo( '/shop/confirmorder/' );

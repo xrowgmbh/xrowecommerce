@@ -99,8 +99,7 @@ if ( $order instanceof eZOrder )
                                 $viewParameters = array();
                                 $viewParameters = array_merge( $viewParameters, $UserParameters );
 
-#USER REGISTER START
-
+                                #USER REGISTER START
 
                                 $xini = eZINI::instance('xrowecommerce.ini');
                                 if ( $xini->variable( "Settings", "ForceUserRegBeforeCheckout" ) == "true" )
@@ -655,7 +654,7 @@ if ( $order instanceof eZOrder )
             }
         }
     }
-    $Module->redirectTo( '/xrowecommerce/orderview/' . $orderID );
+    $Module->redirectTo('/xrowecommerce/orderview/' . $orderID);
     return;
 
 }
