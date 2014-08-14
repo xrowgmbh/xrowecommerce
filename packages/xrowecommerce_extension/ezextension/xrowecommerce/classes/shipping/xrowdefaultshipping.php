@@ -31,15 +31,21 @@ class xrowDefaultShipping implements xrowShipment
         
         $boxes = eZContentObjectTreeNode::subTreeByNodeID( $treeParameters, 2 );
         
-        foreach ( $boxes as $item )
+        if ( is_array($boxes) )
         {
-            $object = $item->object();
-            $dm = $object->dataMap();
-            
-            $tmp = new xrowPackage( $dm['length']->content(), $dm['width']->content(), $dm['height']->content() );
-            $tmp->name = $object->name();
-            $tmp->id = $object->ID;
-            $return[] = $tmp;
+            foreach ( $boxes as $item )
+            {
+                $object = $item->object();
+                $dm = $object->dataMap();
+                $tmp = new xrowPackage( $dm['length']->content(), $dm['width']->content(), $dm['height']->content() );
+                $tmp->name = $object->name();
+                $tmp->id = $object->ID;
+                $return[] = $tmp;
+            }
+        }
+        else
+        {
+            eZDebug::writeWarning( "No shipping boxes of class xrow_package found!", __METHOD__ );
         }
         return $return;
     

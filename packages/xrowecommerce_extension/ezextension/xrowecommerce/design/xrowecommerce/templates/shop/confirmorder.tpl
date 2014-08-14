@@ -88,11 +88,12 @@
                             {if $product_item.discount_percent}
                                 {def $discount = $product_item.price_ex_vat|div(100)|mul($product_item.discount_percent)
                                      $price = $product_item.price_ex_vat|sub($discount)}
+                                 {undef $discount}
                             {else}
                                 {def $price = $product_item.price_ex_vat}
                             {/if}
                             {$price|l10n( 'currency', $locale, $symbol )}
-                            {undef $discount $price}
+                            {undef $price}
                         </td>
                         <td class="align_right product-name basketspace totalprice">
                             {$product_item.total_price_ex_vat|l10n( 'currency', $locale, $symbol )}</td>
@@ -119,7 +120,7 @@
                 {def $taxpercent = mul( div(sub($order.total_inc_vat, $order.total_ex_vat), $order.total_ex_vat), 100)
                      $percentage = mul( div(sub($order.total_inc_vat, $order.total_ex_vat), $order.total_ex_vat), 100)|l10n('number') }
                 {if $taxpercent|eq(0)|not}
-                    <tr class="{$sequence} tax-line">
+                    <tr class="tax-line">
                         <td class="line" colspan ="{$cols|sub(1)}">
                             {"Tax"|i18n("extension/xrowecommerce")}
                         </td>
