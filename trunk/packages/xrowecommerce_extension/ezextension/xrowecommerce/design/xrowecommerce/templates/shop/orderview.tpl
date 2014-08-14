@@ -78,11 +78,12 @@
                     {if $product_item.discount_percent}
                         {def $discount = $product_item.price_ex_vat|div(100)|mul($product_item.discount_percent)
                              $price = $product_item.price_ex_vat|sub($discount)}
+                         {undef $discount}
                     {else}
                         {def $price = $product_item.price_ex_vat}
                     {/if}
                     {$price|l10n( 'currency', $locale, $symbol )}
-                    {undef $discount $price}
+                    {undef $price}
                 </td>
                 <td class="align_right basketspace totalprice">
                 {$product_item.total_price_ex_vat|l10n( 'currency', $locale, $symbol )}
@@ -110,7 +111,7 @@
         {def $taxpercent = mul( div(sub($order.total_inc_vat, $order.total_ex_vat), $order.total_ex_vat), 100)
              $percentage = mul( div(sub($order.total_inc_vat, $order.total_ex_vat), $order.total_ex_vat), 100)|l10n('number') }
         {if $taxpercent|eq(0)|not}
-            <tr class="{$sequence}">
+            <tr class="">
                 <td class="line" colspan ="{$cols|sub(1)}">
                     {'Tax'|i18n('extension/xrowecommerce')}
                 </td>
@@ -136,58 +137,60 @@
                 </div>
         </form>
     </div>
-    {def $user_city=fetch( 'xrowecommerce', 'get_shopaccount_value', hash( 'name','city', 'order', $order) )}
-    {def $user_state=fetch( 'xrowecommerce', 'get_shopaccount_value', hash( 'name','state', 'order', $order) )}
-    {def $user_country=fetch( 'xrowecommerce', 'get_shopaccount_value', hash( 'name','country', 'order', $order) )}
+    {if ezini_hasvariable( 'GoogleAnalyticsWorkflow', 'Urchin', 'googleanalytics.ini' )}
+        {def $user_city=fetch( 'xrowecommerce', 'get_shopaccount_value', hash( 'name','city', 'order', $order) )}
+        {def $user_state=fetch( 'xrowecommerce', 'get_shopaccount_value', hash( 'name','state', 'order', $order) )}
+        {def $user_country=fetch( 'xrowecommerce', 'get_shopaccount_value', hash( 'name','country', 'order', $order) )}
+        
+        <script type="text/javascript">
+            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+        </script>
     
-    <script type="text/javascript">
-        var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
-        document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
-    </script>
-
-    <script type="text/javascript">
-      try {ldelim}
-
-      var pageTracker = _gat._getTracker("{ezini( 'GoogleAnalyticsWorkflow', 'Urchin', 'googleanalytics.ini'  )}");
-      pageTracker._initData();
-      pageTracker._trackPageview();
-
-      pageTracker._addTrans(
-        "{$order.order_nr}",                                          // Order ID
-        "{ezini( 'InvoiceSettings', 'CompanyName', 'xrowecommerce.ini'  )}", // Affiliation
-        "{$order.total_ex_vat}",                                    // Total
-        "{$order.order_info.total_price_info.total_price_vat}",    // Tax
-        "{$order.account_information.shipping}",                  // Shipping
-        "{$user_city}",                                          // City
-        "{$user_state}",                                        // State
-        "{$user_country}"                                      // Country
-      );
-     {foreach $order.product_items as $product_item}
-     {def $prod=fetch( 'content', 'node', hash( 'node_id', $product_item.node_id ) )}
-        {if and( is_set($prod.data_map.variation), $prod.data_map.variation.content.option_list|count|gt(0) )}
-            {foreach $product_item.item_object.option_list as $option_item}
-            {def $vary=$product_item.item_object.contentobject.data_map.variation.content.option_list[$product_item.item_object.option_list.0.option_item_id]}
-            pageTracker._addItem(
-                        "{$order.order_nr}",                                                     // Order ID
-                        "{$option_item.value} - {$prod.name|wash()}",                           // SKU
-                        "{$vary.comment}",                                                 // Product Name
-                        "{$product_item.item_object.contentobject.main_node.parent.name}",    // Category
-                        "{$product_item.price_ex_vat|l10n( 'currency', $locale, $symbol )}", // Price
-                        "{$product_item.item_count}"                                        // Quantity
-                      );
-            {/foreach}
-        {else}
-                      pageTracker._addItem(
-                        "{$order.order_nr}",                                                     // Order ID
-                        "{$product_item.object_name|wash()}",     // SKU
-                        "{$product_item.object_name|wash()}",                                                 // Product Name
-                        "{$product_item.item_object.contentobject.main_node.parent.name}",    // Category
-                        "{$product_item.price_ex_vat|l10n( 'currency', $locale, $symbol )}", // Price
-                        "{$product_item.item_count}"                                        // Quantity
-                      );
-        {/if}
-    {/foreach}
-      pageTracker._trackTrans();
-      {rdelim} catch(err) {ldelim}{rdelim}
-    </script>
+        <script type="text/javascript">
+          try {ldelim}
+    
+          var pageTracker = _gat._getTracker("{ezini( 'GoogleAnalyticsWorkflow', 'Urchin', 'googleanalytics.ini'  )}");
+          pageTracker._initData();
+          pageTracker._trackPageview();
+    
+          pageTracker._addTrans(
+            "{$order.order_nr}",                                          // Order ID
+            "{ezini( 'InvoiceSettings', 'CompanyName', 'xrowecommerce.ini'  )}", // Affiliation
+            "{$order.total_ex_vat}",                                    // Total
+            "{$order.order_info.total_price_info.total_price_vat}",    // Tax
+            "{$order.account_information.shipping}",                  // Shipping
+            "{$user_city}",                                          // City
+            "{$user_state}",                                        // State
+            "{$user_country}"                                      // Country
+          );
+         {foreach $order.product_items as $product_item}
+         {def $prod=fetch( 'content', 'node', hash( 'node_id', $product_item.node_id ) )}
+            {if and( is_set($prod.data_map.variation), $prod.data_map.variation.content.option_list|count|gt(0) )}
+                {foreach $product_item.item_object.option_list as $option_item}
+                {def $vary=$product_item.item_object.contentobject.data_map.variation.content.option_list[$product_item.item_object.option_list.0.option_item_id]}
+                pageTracker._addItem(
+                            "{$order.order_nr}",                                                     // Order ID
+                            "{$option_item.value} - {$prod.name|wash()}",                           // SKU
+                            "{$vary.comment}",                                                 // Product Name
+                            "{$product_item.item_object.contentobject.main_node.parent.name}",    // Category
+                            "{$product_item.price_ex_vat|l10n( 'currency', $locale, $symbol )}", // Price
+                            "{$product_item.item_count}"                                        // Quantity
+                          );
+                {/foreach}
+            {else}
+                          pageTracker._addItem(
+                            "{$order.order_nr}",                                                     // Order ID
+                            "{$product_item.object_name|wash()}",     // SKU
+                            "{$product_item.object_name|wash()}",                                                 // Product Name
+                            "{$product_item.item_object.contentobject.main_node.parent.name}",    // Category
+                            "{$product_item.price_ex_vat|l10n( 'currency', $locale, $symbol )}", // Price
+                            "{$product_item.item_count}"                                        // Quantity
+                          );
+            {/if}
+        {/foreach}
+          pageTracker._trackTrans();
+          {rdelim} catch(err) {ldelim}{rdelim}
+        </script>
+    {/if}
 </div>

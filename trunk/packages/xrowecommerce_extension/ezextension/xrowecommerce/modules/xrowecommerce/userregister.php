@@ -630,23 +630,31 @@ if ( $module->isCurrentAction( 'Store' ) )
     
     if ( $userlogin == null && $fields['password']['enabled'] == true && $fields['email']['enabled'] == true)
     {
-        $password = $http->postVariable( 'password' );
-        $password = eZUser::createHash( $email, $password, eZUser::site(), eZUser::hashType() );
-        
-        if( trim( $http->postVariable( 'password' ) ) != trim( $http->postVariable( 'passwordConfirm' ) ))
+        if ( $http->hasPostVariable( 'PaymentMethod' ) )
         {
-            $inputIsValid = false;
-            $fields['password']['errors'][0] = ezpI18n::tr( 'extension/xrowecommerce', 'The password does not match confirm password.' );
+            $password = $http->postVariable( 'password' );
+            $password = eZUser::createHash( $email, $password, eZUser::site(), eZUser::hashType() );
+            if( trim( $http->postVariable( 'password' ) ) != trim( $http->postVariable( 'passwordConfirm' ) ))
+            {
+                $inputIsValid = false;
+                $fields['password']['errors'][0] = ezpI18n::tr( 'extension/xrowecommerce', 'The password does not match confirm password.' );
+            }
+            if ( $password == '' and $fields['password']['required'] == true )
+            {
+                $inputIsValid = false;
+                $fields['password']['errors'][0] = ezpI18n::tr( 'extension/xrowecommerce', 'The password is not given.' );
+            }
+            if( eZUser::fetchByEmail($email) != null)
+            {
+                $inputIsValid = false;
+                $fields['email']['errors'][0] = ezpI18n::tr( 'extension/xrowecommerce', 'An user with this email already exists.' );
+            }
         }
-        if ( $password == '' and $fields['password']['required'] == true )
+        else
         {
-            $inputIsValid = false;
-            $fields['password']['errors'][0] = ezpI18n::tr( 'extension/xrowecommerce', 'The password is not given.' );
-        }
-        if( eZUser::fetchByEmail($email) != null)
-        {
-            $inputIsValid = false;
-            $fields['email']['errors'][0] = ezpI18n::tr( 'extension/xrowecommerce', 'An user with this email already exists.' );
+            //disable field "password" or add post variable "passwordConfirm" and "password" to your form
+            $password = false;
+            eZDebug::writeError( "Password postVarible is missing", __METHOD__ );
         }
     }
     

@@ -156,14 +156,18 @@ $product_item is the current product in the cart
         {'SKU'|i18n("extension/xrowecommerce")}:
         {if and(is_set($prod.data_map.variation.content.name), $prod.data_map.variation.content.name|ne(''))}
             {$prod.data_map.variation.content.name|wash()}
-        {else}
+        {elseif is_set($prod.data_map.product_id)}
             {$prod.data_map.product_id.content|wash()}
+        {else}
+            {$prod.name|wash()}
         {/if}
     </p>
-    <p class="product-description">
-        {def $vary=$product_item.item_object.contentobject.data_map.options.content.option_list[$product_item.item_object.option_list.0.option_item_id]}
-        {$vary.comment}
-    </p>
+    {if is_set($product_item.item_object.contentobject.data_map.options)}
+        <p class="product-description">
+            {def $vary=$product_item.item_object.contentobject.data_map.options.content.option_list[$product_item.item_object.option_list.0.option_item_id]}
+            {$vary.comment}
+        </p>
+    {/if}
     {if $prod.data_map.weight}
         <p class="product-weight">
         {'Weight'|i18n("extension/xrowecommerce")}: {attribute_view_gui attribute=$prod.data_map.weight} {ezini( 'Settings', 'WeightUnit', 'shipping.ini' )|wash}
