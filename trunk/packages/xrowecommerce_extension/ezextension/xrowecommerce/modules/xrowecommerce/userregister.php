@@ -1013,9 +1013,12 @@ if ( $module->isCurrentAction( 'Store' ) )
 
         $db = eZDB::instance();
         $db->begin();
-        if ( !$order )
+        $orderID = $http->sessionVariable( 'MyTemporaryOrderID' );
+        $order = eZOrder::fetch( $orderID );
+        if ( !($order instanceof eZOrder ) || !$order->attribute( 'is_temporary' ) )
         {
             $order = $basket->createOrder();
+            $http->setSessionVariable( 'MyTemporaryOrderID', $order->attribute( 'id' ) );
         }
 
         $doc = new DOMDocument( '1.0', 'utf-8' );
@@ -1256,8 +1259,6 @@ if ( $module->isCurrentAction( 'Store' ) )
 
         $order->store();
         $db->commit();
-
-        $http->setSessionVariable( 'MyTemporaryOrderID', $order->attribute( 'id' ) );
 
         $module->redirectTo( '/xrowecommerce/confirmorder/' );
         return;

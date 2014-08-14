@@ -47,11 +47,10 @@ if ( $order instanceof eZOrder )
     {
         $order->detachProductCollection();
         $ini = eZINI::instance();
-        if ( $ini->variable( 'ShopSettings', 'ClearBasketOnCheckout' ) == 'enabled' )
-        {
-            $basket = eZBasket::currentBasket();
-            $basket->remove();
-        }
+
+        $basket = eZBasket::currentBasket();
+        $basket->remove();
+
         $module->redirectTo( '/xrowecommerce/checkout/' );
         return;
     }
