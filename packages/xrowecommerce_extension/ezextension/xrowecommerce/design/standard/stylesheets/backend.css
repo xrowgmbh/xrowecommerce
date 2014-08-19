@@ -5,6 +5,13 @@
     display: none;
   }
 }
+
+.shop-account shop_account,
+.shop-account shop_account *
+{
+    display: block;
+}
+
 div.shop-account table th
 {
     text-align: left;
