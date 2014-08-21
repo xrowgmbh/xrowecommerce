@@ -1039,6 +1039,10 @@
 <context>
     <name>extension/xrowecommerce</name>
     <message>
+        <source>Buy now</source>
+        <translation>Jetzt kaufen</translation>
+    </message>
+    <message>
         <source>The billing email address do not match.</source>
         <translation>Die Rechnungsemailadressen stimmen nicht überein.</translation>
     </message>

@@ -14,7 +14,7 @@
         <div id="buttonblock-top" class="buttonblock">
             <input id="cancel-button" class="button left-arrow2 cancel-button" type="submit" name="CancelButton" value="{'Cancel'|i18n('extension/xrowecommerce')}" title="{'Cancel order'|i18n('extension/xrowecommerce')}"/>
             {if count( $order.product_items )|gt(0)}
-                <input id="continue-button" class="button right-arrow2 continue-button" type="button" name="ConfirmOrderButton" value="{'Confirm'|i18n('extension/xrowecommerce')}" title="{'Confirm order'|i18n('extension/xrowecommerce')}"/>
+                <input id="continue-button2" class="button right-arrow2 continue-button" type="button" name="ConfirmOrderButton" value="{'Buy now'|i18n('extension/xrowecommerce')}" title="{'Confirm order'|i18n('extension/xrowecommerce')}"/>
             {/if}
         </div>
 
@@ -144,7 +144,7 @@
             <div id="buttonblock-bottom" class="buttonblock">
                 <input id="cancel-button2" class="button left-arrow2 cancel-button" type="submit" name="CancelButton" value="{'Cancel'|i18n('extension/xrowecommerce')}" title="{'Cancel order'|i18n('extension/xrowecommerce')}"/>
                 {if count( $order.product_items )|gt(0)}
-                    <input id="continue-button2" class="button right-arrow2 continue-button" type="button" name="ConfirmOrderButton" value="{'Confirm'|i18n('extension/xrowecommerce')}" title="{'Confirm order'|i18n('extension/xrowecommerce')}"/>
+                    <input id="continue-button2" class="button right-arrow2 continue-button" type="button" name="ConfirmOrderButton" value="{'Buy now'|i18n('extension/xrowecommerce')}" title="{'Confirm order'|i18n('extension/xrowecommerce')}"/>
                 {/if}
             </div>
         {else}
