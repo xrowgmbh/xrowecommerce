@@ -58,7 +58,7 @@ if ( $order instanceof eZOrder )
     if ( $http->hasPostVariable( "CancelButton" ) )
     {
         $order->purge( false );
-        $module->redirectTo( '/xrowecommerce/basket/' );
+        $module->redirectTo( '/xrowecommerce/cart/' );
         return;
     }
 

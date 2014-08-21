@@ -19,7 +19,7 @@ $(document).ready(function() {
         }
     });
 
-    CompanyPrivateChange( $(".shop-userregister input[id$='company'], .shop-userregister input[id$='home']") );
+    CompanyPrivateChange( $(".shop-userregister input[id$='company'], .shop-userregister input[id$='home'], #register input[id$='company'], #register input[id$='home']") );
 
     if( $(".shop-userregister").length ) {
         updateShipping();

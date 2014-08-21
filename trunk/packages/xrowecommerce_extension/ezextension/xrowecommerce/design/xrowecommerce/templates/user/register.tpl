@@ -33,8 +33,8 @@
         {/if}
         {/section}
 
-        <div class="accountinfo">
-            <h2>{'Account Information'|i18n( 'extension/xrowecommerce' )}</h2>
+        <fieldset class="accountinfo">
+            <legend>{'Account Information'|i18n( 'extension/xrowecommerce' )}</legend>
             <p>{'Enter your email address, login and password.'|i18n( 'extension/xrowecommerce' )}</p>
             <p>
                 <span class="required">* {'Required field'|i18n("extension/xrowecommerce")}</span>
@@ -65,12 +65,11 @@
                 <input class="box" type="password" name="ContentObjectAttribute_data_user_password_confirm_{$ca.user_account.id}" value="{section show=$ca.user_account.content.original_password_confirm}{$ca.user_account.content.original_password_confirm}{section-else}{section show=$ca.user_account.content.has_stored_login}_ezpassword{/section}{/section}" size="20" />
             </div>
             <div class="break"></div>
-        </div>
+        </fieldset>
 
         <div class="billing_shipping">
-
-            <div class="billing">
-                <h2>{'Billing Information'|i18n('extension/xrowecommerce')}</h2>
+            <fieldset class="billing">
+                <legend>{'Billing Information'|i18n('extension/xrowecommerce')}</legend>
                 <p>{'Please enter your billing address exactly as it appears on your credit card statement.'|i18n('extension/xrowecommerce')}</p>
                 <p><span class="required">* {'Required field'|i18n('extension/xrowecommerce')}</span></p>
                 <div class="address-selection">
@@ -115,13 +114,14 @@
                         {/if}
                     </div>
 
-                    <div class="block title">
-                        <label>{if ezini( 'Fields', 'title', 'xrowecommerce.ini' ).required|eq("true")}<span class="required">*</span>{/if}{'Title'|i18n('extension/xrowecommerce')}</label>
-                        <div class="labelbreak"></div>
-                        <input type="text" id="title" name="{$castring}_ezstring_data_text_{$ca.title.id}" value="{$ca.title.content|wash()}" />
-                        <input type="hidden" name="ContentObjectAttribute_id[]" value="{$ca.title.id}" />
-                    </div>
-
+                    {if ezini( 'Fields', 'title', 'xrowecommerce.ini' ).enabled|eq("true")}
+                        <div class="block title">
+                            <label>{if ezini( 'Fields', 'title', 'xrowecommerce.ini' ).required|eq("true")}<span class="required">*</span>{/if}{'Title'|i18n('extension/xrowecommerce')}</label>
+                            <div class="labelbreak"></div>
+                            <input type="text" id="title" name="{$castring}_ezstring_data_text_{$ca.title.id}" value="{$ca.title.content|wash()}" />
+                            <input type="hidden" name="ContentObjectAttribute_id[]" value="{$ca.title.id}" />
+                        </div>
+                    {/if}
                     <div class="block first_name">
                         <label>{if ezini( 'Fields', 'first_name', 'xrowecommerce.ini' ).required|eq("true")}<span class="required">*</span>{/if}{'First name'|i18n('extension/xrowecommerce')}</label>
                         <div class="labelbreak"></div>
@@ -247,9 +247,9 @@
                     </div>
                     {/if}
                 </div>
-            </div>
-            <div class="shipping">
-                <h2>{'Shipping Information'|i18n('extension/xrowecommerce')}</h2>
+            </fieldset>
+            <fieldset class="shipping">
+                <legend>{'Shipping Information'|i18n('extension/xrowecommerce')}</legend>
                 <input type="hidden" name="ContentObjectAttribute_id[]" value="{$ca.shippingaddress.id}" />
                 <label class="shipping-checkbox" for="shipping-checkbox">
                     <input class="shipping-checkbox" id="shipping-checkbox"  name="ContentObjectAttribute_data_boolean_{$ca.shippingaddress.id}" value="" type="checkbox" {$ca.shippingaddress.data_int|choose( '', 'checked="checked"' )} />
@@ -446,7 +446,7 @@
                     {/if}
 
                 </div>
-            </div>
+            </fieldset>
         </div>
             <div class="break"></div>
             <div class="buttonblock">

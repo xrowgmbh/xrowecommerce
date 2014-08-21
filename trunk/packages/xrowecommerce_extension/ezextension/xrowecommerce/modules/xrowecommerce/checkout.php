@@ -5,7 +5,7 @@ $Module = $Params['Module'];
 
 $orderID = $http->sessionVariable( 'MyTemporaryOrderID' );
 $order = eZOrder::fetch( $orderID );
-$test = $order;
+
 if ( $order instanceof eZOrder )
 {
     if ( $order->attribute( 'is_temporary' ) )
