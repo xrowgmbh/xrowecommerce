@@ -21,7 +21,6 @@
             </label>
         {/foreach}
         <div id="buttonblock-bottom" class="buttonblock">
-            <input id="cancel-button" class="button left-arrow2" type="submit" name="CancelButton" value="{'One step back'|i18n('extension/xrowecommerce')}" title="{'One step back'|i18n('extension/xrowecommerce')}"/>
             <input id="continue-button" class="button right-arrow2" type="submit" name="SelectButton" value="{'Continue'|i18n('extension/xrowecommerce')}" title="{'Continue'|i18n('extension/xrowecommerce')}"/>
         </div>
     </form>

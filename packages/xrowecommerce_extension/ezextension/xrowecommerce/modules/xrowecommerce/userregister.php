@@ -7,7 +7,7 @@ $tpl = eZTemplate::factory();
 
 if ( $module->isCurrentAction( 'Cancel' ) )
 {
-    $module->redirectTo( 'shop/basket' );
+    $module->redirectTo( 'xrowecommerce/cart' );
     return;
 }
 
