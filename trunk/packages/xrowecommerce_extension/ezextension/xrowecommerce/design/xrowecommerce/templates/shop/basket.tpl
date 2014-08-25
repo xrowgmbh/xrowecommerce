@@ -50,7 +50,7 @@
     {/if}
     {if $removed_items}
         <div class="warning">
-        <h2>{"The following items were removed from your cart, because the products were changed"|i18n("extension/xrowecommerce",,)}</h2>
+            <h2>{"The following items were removed from your cart, because the products were changed"|i18n("extension/xrowecommerce",,)}</h2>
             <ul>
                 {foreach $removed_items as $item}
                 <li>
@@ -227,7 +227,6 @@
                             </td>
                         </tr>
                     {/if}
-            
                     <tr class="subtotal-line">
                          <td colspan="{if ezini( 'Settings', 'ShowColumnPosition', 'xrowecommerce.ini' )|eq('enabled')}{$cols|sub(2)}{else}{$cols|sub(3)}{/if}" class="align_right">
                             {"Subtotal ex. tax"|i18n("extension/xrowecommerce")}
@@ -237,7 +236,6 @@
                          </td>
                          <td class="noborder">&nbsp;</td>
                     </tr>
-            
                     {if eq(ezini( 'BasketInformation', 'DisplayShipping', 'xrowecommerce.ini' ), 'enabled' )}
                         <tr class="orderitem-line">
                             <td colspan="{if ezini( 'Settings', 'ShowColumnPosition', 'xrowecommerce.ini' )|eq('enabled')}{$cols|sub(2)}{else}{$cols|sub(3)}{/if}" class="align_right">
@@ -249,7 +247,6 @@
                             <td class="noborder">&nbsp;</td>
                         </tr>
                     {/if}
-            
                     {if eq(ezini( 'BasketInformation', 'DisplayTax', 'xrowecommerce.ini' ), 'enabled' )}
                         <tr class="tax-line">
                             <td colspan="{if ezini( 'Settings', 'ShowColumnPosition', 'xrowecommerce.ini' )|eq('enabled')}{$cols|sub(2)}{else}{$cols|sub(3)}{/if}" class="align_right">
@@ -261,7 +258,6 @@
                             <td class="noborder">&nbsp;</td>
                         </tr>
                     {/if}
-            
                     <tr class="grandtotal-line">
                         <td colspan="{if ezini( 'Settings', 'ShowColumnPosition', 'xrowecommerce.ini' )|eq('enabled')}{$cols|sub(2)}{else}{$cols|sub(3)}{/if}" class="align_right">
                             <strong>
@@ -273,9 +269,7 @@
                         </td>
                         <td class="noborder">&nbsp;</td>
                     </tr>
-            
                 </table>
-            
                 <div id="buttonblock-bottom" class="buttonblock">
                     <input id="continue-shopping-button-2" class="button right-arrow" type="submit" name="ContinueShoppingButton" value="{'Continue shopping'|i18n("extension/xrowecommerce")}" title="{'Continue Shopping'|i18n("extension/xrowecommerce")}"/>
                     <input id="empty-cart-button-2" type="button" onclick="empty_basket.submit();" class="button small-action" name="EmptyShoppingCartButton" value="{'Empty Cart'|i18n( 'extension/xrowecommerce' )}" title="{'Use this button to empty your shopping cart.'|i18n( 'extension/xrowecommerce' )|wash}" />
@@ -286,29 +280,34 @@
         </form>
  
         {* ####### Login Box ######## *}
- 
+
         {if eq(ezini( 'BasketInformation', 'DisplayLogin', 'xrowecommerce.ini' ), 'enabled' )}
-             {def $user=fetch( 'user', 'current_user' )}
-             {if $user.is_logged_in|not()}
+            {def $user=fetch( 'user', 'current_user' )}
+            {if $user.is_logged_in|not()}
                 <div class="loginbox">
-                    <p>{'Already a user?'|i18n("extension/xrowecommerce",'User name')}</p>
                     <form method="post" action={"user/login"|ezurl}>
-                        <div class="wrap">
-                            <label for="id1">{"Username"|i18n("extension/xrowecommerce",'Username')}</label><div class="labelbreak"></div>
-                            <input type="text" name="Login" id="id1" value="" tabindex="1" />
-                        </div>
-                        <div class="wrap">
-                            <label for="id2">{"Password"|i18n("extension/xrowecommerce")}</label><div class="labelbreak"></div>
-                            <input type="password" name="Password" id="id2" value="" tabindex="1" />
-                        </div>
-                        <div class="login-button">
-                            <input class="button" type="submit" name="LoginButton" value="{'Login'|i18n('extension/xrowecommerce')}" tabindex="1" />
-                        </div>
-                        <input type="hidden" name="RedirectURI" value={"xrowecommerce/userregister"|ezroot} />
-                     </form>
+                        <fieldset>
+                            <legend>
+                                {'Already a user?'|i18n("extension/xrowecommerce",'User name')}
+                            </legend>
+                            <div class="wrap">
+                                <label for="id1">{"Username"|i18n("extension/xrowecommerce",'Username')}</label>
+                                <input type="text" name="Login" id="id1" value="" tabindex="1" />
+                            </div>
+                            <div class="wrap">
+                                <label for="id2">{"Password"|i18n("extension/xrowecommerce")}</label>
+                                <input type="password" name="Password" id="id2" value="" tabindex="1" />
+                            </div>
+                            <div class="login-button">
+                                <input class="button" type="submit" name="LoginButton" value="{'Login'|i18n('extension/xrowecommerce')}" tabindex="1" />
+                            </div>
+                            <input type="hidden" name="RedirectURI" value={"xrowecommerce/userregister"|ezroot} />
+                        </fieldset>
+                    </form>
                 </div>
-                {/if}
             {/if}
+            {undef $user}
+        {/if}
 
         {undef $currency $locale $symbol}
         {include uri="design:shop/basket_hint_bottom.tpl"}
