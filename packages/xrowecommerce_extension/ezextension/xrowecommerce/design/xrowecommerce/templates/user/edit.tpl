@@ -3,9 +3,6 @@
      $tipafriend_access=fetch( 'user', 'has_access_to', hash( 'module', 'content',
                                                            'function', 'tipafriend' ) )}
 <div class="full-user-edit">
-<div class="border-box">
-<div class="border-tl"><div class="border-tr"><div class="border-tc"></div></div></div>
-<div class="border-ml"><div class="border-mr"><div class="border-mc float-break">
     <form action={concat($module.functions.edit.uri,"/",$userID)|ezurl} method="post" name="Edit">
         <input type="hidden" name="ContentObjectLanguageCode" value="{$language}" />
 
@@ -57,7 +54,4 @@
             </table>
         </div>
     </form>
-</div></div></div>
-<div class="border-bl"><div class="border-br"><div class="border-bc"></div></div></div>
-</div>
 </div>

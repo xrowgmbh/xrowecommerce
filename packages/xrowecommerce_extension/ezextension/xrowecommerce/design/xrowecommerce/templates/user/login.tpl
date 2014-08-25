@@ -2,9 +2,9 @@
 <div class="content-login">
 <form method="post" action={"/user/login/"|ezurl}>
     <div id="login_full">
-        <h2>{'My Account'|i18n("extension/xrowecommerce")}</h2>
-        <div class="xrow-loginbox">
-            <span class="heading1">{'Already Registered?'|i18n("extension/xrowecommerce")}</span><br />
+        <h1>{'My Account'|i18n("extension/xrowecommerce")}</h1>
+        <fieldset class="xrow-loginbox">
+            <legend>{'Already Registered?'|i18n("extension/xrowecommerce")}</legend>
             <p>
                 {'Enter your username or email address and password below to sign-in.'|i18n("extension/xrowecommerce")}
             </p>
@@ -46,14 +46,14 @@
             <input name="Last_{$postData:key}" value="{$postData:item}" type="hidden" />
             {/section}
             {/section}
-        </div>
-        <div class="xrow-registerbox">
-            <span class="heading1">{'New Customer?'|i18n("extension/xrowecommerce")}</span>
+        </fieldset>
+        <fieldset class="xrow-registerbox">
+            <legend>{'New Customer?'|i18n("extension/xrowecommerce")}</legend>
             <p>{'Create an account to save your shipping and billing information.'|i18n("extension/xrowecommerce")}</p>
             <div class="buttonblock">
                 <input class="button" type="submit" name="RegisterButton" value="{'Sign Up'|i18n('extension/xrowecommerce','Button')}" tabindex="1">
             </div>
-        </div>
+        </fieldset>
     </div>
 </form>
 </div>

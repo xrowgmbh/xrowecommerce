@@ -207,7 +207,7 @@
                 {if $fields.email_confirm.enabled}
                     <div class="email_confirm block{if is_set($fields.email.errors)} error{/if}">
                         <label>{'Confirm E-mail'|i18n('extension/xrowecommerce')}{if $fields.email.required}<span class="required">*</span>{/if}</label>
-                        <input class="email_confirm" type="text" name="email_confirm" id="email_confirm" value="{$email_confirm|wash}" />
+                        <input class="email_confirm" type="text" name="email_confirm" id="email_confirm" value="{cond($email|ne(''), $email, $email_confirm)|wash}" />
                     </div>
                 {/if}
             {/if}
@@ -450,7 +450,7 @@
             {* Your No Partial Delivery *}
             {if ezini('Fields','NoPartialDelivery','xrowecommerce.ini').enabled|eq('true')}
                 <div class="block">
-                        <label class="no_partial_delivery" for="no_partial_delivery"><input class="no_partial_delivery" type="checkbox" name="no_partial_delivery" id="no_partial_delivery" {if is_set($no_partial_delivery)} checked="checked" {/if} value="1" />{'No partial delivery'|i18n('extension/xrowecommerce')}</label>
+                    <label class="no_partial_delivery" for="no_partial_delivery"><input class="no_partial_delivery" type="checkbox" name="no_partial_delivery" id="no_partial_delivery" {if is_set($no_partial_delivery)} checked="checked" {/if} value="1" />{'No partial delivery'|i18n('extension/xrowecommerce')}</label>
                 </div>
             {/if}
 

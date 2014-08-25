@@ -19,7 +19,7 @@ $(document).ready(function() {
         }
     });
 
-    CompanyPrivateChange( $(".shop-userregister input[id$='company'], .shop-userregister input[id$='home'], #register input[id$='company'], #register input[id$='home']") );
+    CompanyPrivateChange( $(".shop-userregister input[id$='company'], .shop-userregister input[id$='home'], #register input[id$='company'], #register input[id$='home'], .billing_shipping input[id$='company'], .billing_shipping input[id$='home']") );
 
     if( $(".shop-userregister").length ) {
         updateShipping();
@@ -605,6 +605,8 @@ function checkCOS( element )
         $(element).submit(function(e){
             if( !$("input#cos[type=checkbox]:checked").length ) {
                 alert( $(element).data("errortext") );
+                window.scrollTo( 0, $("input#cos[type=checkbox]").position().top );
+                $("#cos-content").slideDown();
                 e.preventDefault();
             }
         });
