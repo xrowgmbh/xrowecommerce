@@ -703,7 +703,8 @@ class xrowProductVariationType extends eZDataType
                 $final[] = $item;
             }
         }
-        return $final;
+        # array is not supported, needs to be a string
+        return implode( " ", $final );
     }
 
     /*!
