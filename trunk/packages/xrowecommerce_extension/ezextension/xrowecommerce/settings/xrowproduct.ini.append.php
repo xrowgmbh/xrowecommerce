@@ -1,5 +1,10 @@
 <?php /* #?ini charset="utf-8"?
 
+[XrowProductSettings]
+# As default you can't copy product data to prevent double entries
+# If you want to enabled this feature, set the value to "enabled"
+AllowDataCopying=disabled
+
 [XrowProductDataTypes]
 ProductDataTypeArray[]
 ProductDataTypeArray[string]=xrowProductStringType
