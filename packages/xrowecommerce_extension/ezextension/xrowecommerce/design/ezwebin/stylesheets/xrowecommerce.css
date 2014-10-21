@@ -2,6 +2,12 @@
 
 /*Layout with toolbar*/
 
+#cos-content
+{
+    height: 250px;
+    overflow-y: scroll;
+}
+
 div#page
 {
     width: 960px;
