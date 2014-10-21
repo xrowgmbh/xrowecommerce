@@ -70,7 +70,6 @@
         <div class="billing_shipping">
             <fieldset class="billing">
                 <legend>{'Billing Information'|i18n('extension/xrowecommerce')}</legend>
-                <p>{'Please enter your billing address exactly as it appears on your credit card statement.'|i18n('extension/xrowecommerce')}</p>
                 <p><span class="required">* {'Required field'|i18n('extension/xrowecommerce')}</span></p>
                 <div class="address-selection">
                     <div class="comp">
