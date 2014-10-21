@@ -602,7 +602,7 @@ function checkCOS( element )
 {
     if( $("input#cos[type=checkbox]").length && $(element).data("checkcos") == '1' ) {
         $("#continue-button, #continue-button2").attr("type", "submit"); //only submittable if js is active
-        $(element).submit(function(e){
+        $(element).find("#continue-button2").click(function(e){
             if( !$("input#cos[type=checkbox]:checked").length ) {
                 alert( $(element).data("errortext") );
                 window.scrollTo( 0, $("input#cos[type=checkbox]").position().top );
