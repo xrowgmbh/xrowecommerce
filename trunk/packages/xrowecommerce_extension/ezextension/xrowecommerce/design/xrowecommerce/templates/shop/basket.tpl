@@ -219,7 +219,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td class="product-subtotal" colspan="{if ezini( 'Settings', 'ShowColumnPosition', 'xrowecommerce.ini' )|eq('enabled')}{$cols|sub(1)}{else}{$cols|sub(2)}{/if}"><b>{'Order total'|i18n( 'extension/xrowecommerce' )}</b>:
+                            <td class="product-subtotal" colspan="{if ezini( 'Settings', 'ShowColumnPosition', 'xrowecommerce.ini' )|eq('enabled')}{$cols|sub(1)}{else}{$cols|sub(2)}{/if}"><strong>{'Order total'|i18n( 'extension/xrowecommerce' )}</strong>:
                                 {$total_inc_shipping_inc_vat|l10n( 'currency', $locale, $symbol )}
                             </td>
                             <td class="product-subtotal">
@@ -232,7 +232,7 @@
                             {"Subtotal ex. tax"|i18n("extension/xrowecommerce")}
                          </td>
                          <td class="totalprice">
-                             <b class="price">{$basket.total_ex_vat|l10n( 'currency', $locale, $symbol )}</b>
+                             <strong class="price">{$basket.total_ex_vat|l10n( 'currency', $locale, $symbol )}</strong>
                          </td>
                          <td class="noborder">&nbsp;</td>
                     </tr>
@@ -314,7 +314,7 @@
     {else}
         <div class="feedback">
             <form method="post" name="basket" action={"xrowecommerce/basket"|ezurl}>
-                <p><b>{"You have no items in your shopping cart"|i18n("extension/xrowecommerce")|wash()}</b></p>
+                <p><strong>{"You have no items in your shopping cart"|i18n("extension/xrowecommerce")|wash()}</strong></p>
                 <div class="buttonblock">
                     <input id="continue-button" class="button right-arrow " type="submit" name="ContinueShoppingButton" value="{'Continue shopping'|i18n("extension/xrowecommerce")}" />
                 </div>
