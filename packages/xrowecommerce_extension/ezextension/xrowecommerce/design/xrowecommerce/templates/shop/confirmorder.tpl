@@ -45,7 +45,7 @@
                 <tr class="lightbg">
                     {if ezini( 'Settings', 'ShowColumnPosition', 'xrowecommerce.ini' )|eq('enabled')}
                     <th class="position">
-                    <abbr title="{"Position"|i18n("extension/xrowecommerce")}">{"Pos."|i18n("extension/xrowecommerce")}</abbr>
+                        <abbr title="{"Position"|i18n("extension/xrowecommerce")}">{"Pos."|i18n("extension/xrowecommerce")}</abbr>
                     </th>
                     {/if}
                     <th>
@@ -55,9 +55,9 @@
                         {"Item"|i18n("extension/xrowecommerce")}
                     </th>
                     {if ezini( 'Settings', 'ShowColumnTax', 'xrowecommerce.ini')|eq('enabled')}
-                    <th>
-                        {"Tax"|i18n("extension/xrowecommerce")}
-                    </th>
+                        <th>
+                            {"Tax"|i18n("extension/xrowecommerce")}
+                        </th>
                     {/if}
                     <th>
                         {"Unit Price"|i18n("extension/xrowecommerce")}

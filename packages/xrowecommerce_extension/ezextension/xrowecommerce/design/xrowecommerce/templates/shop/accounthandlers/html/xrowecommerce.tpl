@@ -50,7 +50,7 @@
     {if eq($order.account_information.shipping,1)}
         <table id="combined-address-table" border="0" cellspacing="0"
             cellpadding="0" class="order_box">
-            <caption>{"Billing & shipping address"|i18n("extension/xrowecommerce")|wash}</caption>
+            <caption>{"Billing & shipping address"|i18n("extension/xrowecommerce")|wash} ( <a href={'/xrowecommerce/userregister'|ezurl()}>{'Edit'|i18n('extension/xrowecommerce')}</a> )</caption>
             <tr>
                 <th>{'To'|i18n('extension/xrowecommerce')}:</th>
                 <td>
