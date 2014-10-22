@@ -1039,6 +1039,10 @@
 <context>
     <name>extension/xrowecommerce</name>
     <message>
+        <source>Edit</source>
+        <translation>Ändern</translation>
+    </message>
+    <message>
         <source>Cancel order and return to basket</source>
         <translation>Bestellung abbrechen und zurück zum Warenkorb</translation>
     </message>
