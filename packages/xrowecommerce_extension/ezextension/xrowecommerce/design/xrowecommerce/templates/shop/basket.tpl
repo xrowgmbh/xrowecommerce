@@ -248,7 +248,7 @@
                         <td class="totalprice">
                             <strong class="price">
                                 {if eq(ezini( 'BasketInformation', 'ShowPricesIncludingTax', 'xrowecommerce.ini' ), 'enabled' )}
-                                    {$basket.total_inc_vat|l10n( 'currency', $locale, $symbol )}</strong>
+                                    {$basket.total_inc_vat|l10n( 'currency', $locale, $symbol )}
                                 {else}
                                     {$basket.total_ex_vat|l10n( 'currency', $locale, $symbol )}
                                 {/if}
@@ -275,13 +275,19 @@
                         <tr class="tax-line">
                             <td colspan="{if ezini( 'Settings', 'ShowColumnPosition', 'xrowecommerce.ini' )|eq('enabled')}{$cols|sub(2)}{else}{$cols|sub(3)}{/if}" class="align_right">
                                 {if eq(ezini( 'BasketInformation', 'ShowPricesIncludingTax', 'xrowecommerce.ini' ), 'enabled' )}
-                                    {"Tax contained therein"|i18n("extension/xrowecommerce")}
+                                    <i>{"Tax contained therein"|i18n("extension/xrowecommerce")}</i>
                                 {else}
                                     {"Estimated Tax"|i18n("extension/xrowecommerce")}
                                 {/if}
                             </td>
                             <td class="price totalprice">
+                                {if eq(ezini( 'BasketInformation', 'ShowPricesIncludingTax', 'xrowecommerce.ini' ), 'enabled' )}
+                                    <i>
+                                {/if}
                                 {$basket.items_info.total_price_info.price_vat|l10n( 'currency', $locale, $symbol )}
+                                {if eq(ezini( 'BasketInformation', 'ShowPricesIncludingTax', 'xrowecommerce.ini' ), 'enabled' )}
+                                    </i>
+                                {/if}
                             </td>
                             <td class="noborder">&nbsp;</td>
                         </tr>
