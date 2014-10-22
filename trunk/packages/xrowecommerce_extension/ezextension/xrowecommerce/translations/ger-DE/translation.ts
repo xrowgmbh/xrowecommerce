@@ -1039,6 +1039,10 @@
 <context>
     <name>extension/xrowecommerce</name>
     <message>
+        <source>Tax contained therein</source>
+        <translation>Darin enthaltene USt.</translation>
+    </message>
+    <message>
         <source>Edit</source>
         <translation>Ändern</translation>
     </message>
@@ -1101,6 +1105,10 @@
     <message>
         <source>Subtotal Ex. Tax</source>
         <translation>Zwischensumme exkl. USt.</translation>
+    </message>
+    <message>
+        <source>Subtotal inc. tax</source>
+        <translation>Zwischensumme incl. USt.</translation>
     </message>
     <message>
         <source>Estimated Tax</source>
