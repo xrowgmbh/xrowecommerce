@@ -69,7 +69,6 @@
             {'Tax percentage is not yet known for some of the items being purchased.'|i18n( 'extension/xrowecommerce' )}
             {'This probably means that some information about you is not yet available and will be obtained during checkout.'|i18n( 'extension/xrowecommerce' )}
         </div>
-
     {/if}
 
     {section show=$error}
@@ -91,16 +90,15 @@
     {if $basket.items}
         <form method="post" name="basket" action={"shop/basket/"|ezurl}>
             <input type="submit" class="hide" style="display: hide;" name="CheckoutButton" value="{'Checkout'|i18n( 'extension/xrowecommerce' )|wash()}" />
-    
+
             {include uri="design:shop/basket_hint.tpl"}
-    
+
             <div id="buttonblock-top" class="buttonblock">
                 <input id="continue-shopping-button" class="button right-arrow" type="submit" name="ContinueShoppingButton" value="{'Continue shopping'|i18n("extension/xrowecommerce")}" title="{'Continue shopping'|i18n("extension/xrowecommerce")|wash}"/>
                 <input id="empty-cart-button" type="button" onclick="empty_basket.submit();" class="button small-action" name="EmptyShoppingCartButton" value="{'Empty cart'|i18n( 'extension/xrowecommerce' )}" title="{'Use this button to empty your shopping cart.'|i18n( 'extension/xrowecommerce' )|wash}" />
                 <input id="store-button" type="submit" class="button right-arrow " name="StoreChangesButton" value="{'Update'|i18n( 'extension/xrowecommerce' )|wash}" title="{'Use this button to update your shopping cart.'|i18n( 'extension/xrowecommerce' )|wash}" />
                 <input id="checkout-button" type="submit" class="button right-arrow2 continue-button" name="CheckoutButton" value="{'Checkout'|i18n( 'extension/xrowecommerce' )|wash()}" title="{'Use this button to place your order.'|i18n( 'extension/xrowecommerce' )|wash}" />
             </div>
-    
 
             {def $currency = fetch( 'shop', 'currency', hash( 'code', $basket.productcollection.currency_code ) )
                  $locale = false()
@@ -125,9 +123,9 @@
                             {"Item"|i18n("extension/xrowecommerce")}
                         </th>
                         {if and( eq(ezini( 'BasketInformation', 'DisplayTax', 'xrowecommerce.ini' ), 'enabled' ), ezini( 'Settings', 'ShowColumnTax', 'xrowecommerce.ini' )|eq('enabled') )}
-                        <th>
-                            {"Tax"|i18n("extension/xrowecommerce")}
-                        </th>
+                            <th>
+                                {"Tax"|i18n("extension/xrowecommerce")}
+                            </th>
                         {/if}
                         <th>
                             {"Unit price"|i18n("extension/xrowecommerce")}
@@ -151,18 +149,17 @@
                                 </td>
                             {/if}
 
-                            <td class="basketspace quantity">
+                            <td class="quantity">
                                 <input type="hidden" name="ProductItemIDList[]" value="{$product_item.id}" />
                                 <input class="quantity" type="text" name="ProductItemCountList[]" value="{$product_item.item_count}" size="5" maxlength="4" />
                             </td>
                             
-                            <td class="cart_item basketspace">
+                            <td class="cart_item">
                                 {include uri="design:shop/product_cell_view.tpl" view="basket"}
                             </td>
                             
                             {if and( eq(ezini( 'BasketInformation', 'DisplayTax', 'xrowecommerce.ini' ), 'enabled' ), ezini( 'Settings', 'ShowColumnTax', 'xrowecommerce.ini' )|eq('enabled') )}
-                                <td class="basketspace">
-
+                                <td class="vat">
                                     {if ne( $product_item.vat_value, -1 )}
                                         {$product_item.vat_value} %
                                     {else}
@@ -171,24 +168,37 @@
                                 </td>
                             {/if}
 
-                            <td class="basketspace price">
-                                {if $product_item.discount_percent}
-                                    {def $discount = $product_item.price_ex_vat|div(100)|mul($product_item.discount_percent)
-                                         $price = $product_item.price_ex_vat|sub($discount)}
+                            <td class="price">
+                                {if eq(ezini( 'BasketInformation', 'ShowPricesIncludingTax', 'xrowecommerce.ini' ), 'enabled' )}
+                                    {if $product_item.discount_percent}
+                                        {def $discount = $product_item.price_inc_vat|div(100)|mul($product_item.discount_percent)
+                                             $price = $product_item.price_inc_vat|sub($discount)}
+                                    {else}
+                                        {def $price = $product_item.price_inc_vat}
+                                    {/if}
                                 {else}
-                                    {def $price = $product_item.price_ex_vat}
+                                    {if $product_item.discount_percent}
+                                        {def $discount = $product_item.price_ex_vat|div(100)|mul($product_item.discount_percent)
+                                             $price = $product_item.price_ex_vat|sub($discount)}
+                                    {else}
+                                        {def $price = $product_item.price_ex_vat}
+                                    {/if}
                                 {/if}
                                 {$price|l10n( 'currency', $locale, $symbol )}
                                 {if is_set($discount)}{undef $discount}{/if}
                                 {if is_set($price)}{undef $price}{/if}
                             </td>
 
-                            <td class="basketspace totalprice">
-                                {$product_item.total_price_ex_vat|l10n( 'currency', $locale, $symbol )}
+                            <td class="totalprice">
+                                {if eq(ezini( 'BasketInformation', 'ShowPricesIncludingTax', 'xrowecommerce.ini' ), 'enabled' )}
+                                    {$product_item.total_price_inc_vat|l10n( 'currency', $locale, $symbol )}
+                                {else}
+                                    {$product_item.total_price_ex_vat|l10n( 'currency', $locale, $symbol )}
+                                {/if}
                             </td>
 
                             {if ezini( 'Settings', 'ShowColumnRemove', 'xrowecommerce.ini')|eq('enabled')}
-                                <td class="delete basketspace">
+                                <td class="delete">
                                     <div class="basket_remove_item" id="basket_remove_item_{$product_item.id}">
                                         <input id="delete-button_{$product_item.id}" class="icon basket_remove_item" type="image" name="RemoveProductItemButton" src={'shop/basket-delete-icon.gif'|ezimage} value="{'Delete'|i18n( 'extension/xrowecommerce' )}" title="{'Use this button to remove items from your shopping cart.'|i18n( 'extension/xrowecommerce' )}" />
                                     </div>
@@ -228,13 +238,23 @@
                         </tr>
                     {/if}
                     <tr class="subtotal-line">
-                         <td colspan="{if ezini( 'Settings', 'ShowColumnPosition', 'xrowecommerce.ini' )|eq('enabled')}{$cols|sub(2)}{else}{$cols|sub(3)}{/if}" class="align_right">
-                            {"Subtotal ex. tax"|i18n("extension/xrowecommerce")}
-                         </td>
-                         <td class="totalprice">
-                             <strong class="price">{$basket.total_ex_vat|l10n( 'currency', $locale, $symbol )}</strong>
-                         </td>
-                         <td class="noborder">&nbsp;</td>
+                        <td colspan="{if ezini( 'Settings', 'ShowColumnPosition', 'xrowecommerce.ini' )|eq('enabled')}{$cols|sub(2)}{else}{$cols|sub(3)}{/if}" class="align_right">
+                            {if eq(ezini( 'BasketInformation', 'ShowPricesIncludingTax', 'xrowecommerce.ini' ), 'enabled' )}
+                                {"Subtotal inc. tax"|i18n("extension/xrowecommerce")}
+                            {else}
+                                {"Subtotal ex. tax"|i18n("extension/xrowecommerce")}
+                            {/if}
+                        </td>
+                        <td class="totalprice">
+                            <strong class="price">
+                                {if eq(ezini( 'BasketInformation', 'ShowPricesIncludingTax', 'xrowecommerce.ini' ), 'enabled' )}
+                                    {$basket.total_inc_vat|l10n( 'currency', $locale, $symbol )}</strong>
+                                {else}
+                                    {$basket.total_ex_vat|l10n( 'currency', $locale, $symbol )}
+                                {/if}
+                            </strong>
+                        </td>
+                        <td class="noborder"></td>
                     </tr>
                     {if eq(ezini( 'BasketInformation', 'DisplayShipping', 'xrowecommerce.ini' ), 'enabled' )}
                         <tr class="orderitem-line">
@@ -242,7 +262,11 @@
                                 {"Estimated shipping and handling"|i18n("extension/xrowecommerce")}
                             </td>
                             <td class="price totalprice">
-                                {$basket.items_info.additional_info.shipping_total.total_price_inc_vat|l10n( 'currency', $locale, $symbol )}
+                                {if eq(ezini( 'BasketInformation', 'ShowPricesIncludingTax', 'xrowecommerce.ini' ), 'enabled' )}
+                                    {$basket.items_info.additional_info.shipping_total.total_price_inc_vat|l10n( 'currency', $locale, $symbol )}
+                                {else}
+                                    {$basket.items_info.additional_info.shipping_total.total_price_ex_vat|l10n( 'currency', $locale, $symbol )}
+                                {/if}
                             </td>
                             <td class="noborder">&nbsp;</td>
                         </tr>
@@ -250,10 +274,14 @@
                     {if eq(ezini( 'BasketInformation', 'DisplayTax', 'xrowecommerce.ini' ), 'enabled' )}
                         <tr class="tax-line">
                             <td colspan="{if ezini( 'Settings', 'ShowColumnPosition', 'xrowecommerce.ini' )|eq('enabled')}{$cols|sub(2)}{else}{$cols|sub(3)}{/if}" class="align_right">
-                                {"Estimated Tax"|i18n("extension/xrowecommerce")}
+                                {if eq(ezini( 'BasketInformation', 'ShowPricesIncludingTax', 'xrowecommerce.ini' ), 'enabled' )}
+                                    {"Tax contained therein"|i18n("extension/xrowecommerce")}
+                                {else}
+                                    {"Estimated Tax"|i18n("extension/xrowecommerce")}
+                                {/if}
                             </td>
                             <td class="price totalprice">
-                                 {$basket.items_info.total_price_info.price_vat|l10n( 'currency', $locale, $symbol )}
+                                {$basket.items_info.total_price_info.price_vat|l10n( 'currency', $locale, $symbol )}
                             </td>
                             <td class="noborder">&nbsp;</td>
                         </tr>
@@ -265,7 +293,9 @@
                             </strong>
                         </td>
                         <td class="price totalprice">
-                            {$basket.total_inc_vat|l10n( 'currency', $locale, $symbol )}
+                            <strong>
+                                {$basket.total_inc_vat|l10n( 'currency', $locale, $symbol )}
+                            </strong>
                         </td>
                         <td class="noborder">&nbsp;</td>
                     </tr>
@@ -301,7 +331,7 @@
                             <input type="submit" class="button" name="LoginButton" value="{'Login'|i18n('extension/xrowecommerce','Button')}" tabindex="1">
                         </div>
                         {section show=ezini( 'SiteSettings', 'LoginPage' )|eq( 'custom' )}
-                        <p><a href={'/user/forgotpassword'|ezurl}>{'Forgot your password?'|i18n( 'extension/xrowecommerce' )}</a></p>
+                            <p><a href={'/user/forgotpassword'|ezurl}>{'Forgot your password?'|i18n( 'extension/xrowecommerce' )}</a></p>
                         {/section}
                         <input type="hidden" name="RedirectURI" value="{$User:redirect_uri|wash}" />
                         {section show=and( is_set( $User:post_data ), is_array( $User:post_data ) )}

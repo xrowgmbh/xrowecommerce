@@ -87,6 +87,7 @@ ShopUserClassList[]=client
 # Please use an override instead
 Wishlist=enabled
 
+
 #use Alpha3 or Alpha2 for country datatype
 UseAlpha3=true
 
@@ -157,6 +158,7 @@ DisplayLogin=enabled
 DisplayShipping=enabled
 DisplayPaymentmethod=enabled
 HazardousItems=disabled
+ShowPricesIncludingTax=disabled
 
 #[InvoiceSettings]
 #ShowFooter=enabled
