@@ -1,13 +1,10 @@
 {def $user=fetch( 'content', 'object', hash( 'object_id', $userID ) )
      $language=$user.initial_language.locale
-     $tipafriend_access=fetch( 'user', 'has_access_to', hash( 'module', 'shop',
-                                                              'function', 'wishlist' ) )
-     $wishlist_access  = fetch( 'user', 'has_access_to', hash( 'module', 'content',
-                                                            'function', 'read' ) )
+     $tipafriend_access=fetch( 'user', 'has_access_to', hash( 'module', 'content', 'function', 'tipafriend' ) )
+     $wishlist_access  = fetch( 'user', 'has_access_to', hash( 'module', 'content', 'function', 'read' ) )
      $orderhistory_access  = fetch( 'user', 'has_access_to', hash( 'module', 'order',
                                                             'function', 'history' ) )
-     $notification_access  = fetch( 'user', 'has_access_to', hash( 'module', 'notification',
-                                                            'function', 'settings' ) )}
+     $notification_access  = fetch( 'user', 'has_access_to', hash( 'module', 'notification', 'function', 'settings' ) )}
 <div class="full-user-edit">
     <form action={concat($module.functions.edit.uri,"/",$userID)|ezurl} method="post" name="Edit">
         <input type="hidden" name="ContentObjectLanguageCode" value="{$language}" />
@@ -70,7 +67,7 @@
                                     </a>
                                 </li>
                             {/if}
-                            {if $wishlist_access}
+                            {if and( $wishlist_access, ezini( 'Settings', 'Wishlist', 'xrowecommerce.ini' )|eq("enabled") )}
                                 <li>
                                     <a title="{"Edit or view my wishlist."|i18n('extension/xrowecommerce')}" href={"/shop/wishlist"|ezurl}>
                                         {"My wishlist."|i18n('extension/xrowecommerce')}
