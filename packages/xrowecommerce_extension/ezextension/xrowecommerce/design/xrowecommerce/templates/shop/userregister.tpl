@@ -26,9 +26,49 @@
              </form>
         </div>
         <h2 id="newCustReg">{"If you're a new customer, registering only takes a few seconds"|i18n('extension/xrowecommerce')}:</h2>
-        <p>{'Please enter your billing address exactly as it appears on your credit card statement.'|i18n('extension/xrowecommerce')}</p>
     {/if}
-    
+    {if eq(ezini( 'BasketInformation', 'DisplayLogin', 'xrowecommerce.ini' ), 'enabled' )}
+        {def $user=fetch( 'user', 'current_user' )}
+        {if $user.is_logged_in|not()}
+            <form method="post" action={"/user/login/"|ezurl}>
+                <fieldset class="loginbox">
+                    <legend>{'Already a user?'|i18n("extension/xrowecommerce",'User name')}</legend>
+                    <p>
+                        {'Enter your username or email address and password below to sign-in.'|i18n("extension/xrowecommerce")}
+                    </p>
+                    <div class="block">
+                        <label for="id1">{"Username"|i18n("extension/xrowecommerce",'User name')}</label><div class="labelbreak"></div>
+                        <input type="text" size="15" name="Login" id="id1" value="{$User:login|wash}" tabindex="1" />
+                    </div>
+                    <div class="block">
+                        <label for="id2">{"Password"|i18n("extension/xrowecommerce")}</label><div class="labelbreak"></div>
+                        <input type="password" size="15" name="Password" id="id2" value="" tabindex="1" />
+                    </div>
+                    <p><a href={"/user/forgotpassword"|ezurl()}>{'Forgot Password?'|i18n("extension/xrowecommerce")}</a></p>
+                    <div class="buttonblock">
+                        <input type="submit" class="button" name="LoginButton" value="{'Login'|i18n('extension/xrowecommerce','Button')}" tabindex="1">
+                    </div>
+                    {section show=ezini( 'SiteSettings', 'LoginPage' )|eq( 'custom' )}
+                        <p><a href={'/user/forgotpassword'|ezurl}>{'Forgot your password?'|i18n( 'extension/xrowecommerce' )}</a></p>
+                    {/section}
+                    <input type="hidden" name="RedirectURI" value="{$User:redirect_uri|wash}" />
+                    {section show=and( is_set( $User:post_data ), is_array( $User:post_data ) )}
+                    {section name=postData loop=$User:post_data }
+                    <input name="Last_{$postData:key}" value="{$postData:item}" type="hidden" />
+                    {/section}
+                    {/section}
+                </fieldset>
+                <fieldset class="xrow-registerbox">
+                    <legend>{'New Customer?'|i18n("extension/xrowecommerce")}</legend>
+                    <p>{'Create an account to save your shipping and billing information.'|i18n("extension/xrowecommerce")}</p>
+                    <div class="buttonblock">
+                        <input class="button" type="submit" name="RegisterButton" value="{'Sign Up'|i18n('extension/xrowecommerce','Button')}" tabindex="1">
+                    </div>
+                </fieldset>
+            </form>
+        {/if}
+        {undef $user}
+    {/if}
     <form method="post" action={"xrowecommerce/userregister/"|ezurl} name='register' >
         <input type="submit" class="hide" style="display: hide;" name="StoreButton" value="{'Continue'|i18n('extension/xrowecommerce')}" />
         {def $country_default_ini=ezini( 'ShopAccountHandlerDefaults', 'DefaultCountryCode', 'xrowecommerce.ini' )}
