@@ -4,29 +4,6 @@
     
     {include uri="design:shop/userregister_preface.tpl"}
     
-    {if and( fetch( 'user', 'current_user' ).is_logged_in|not(), ezini( 'Settings', 'ForceUserRegBeforeCheckout', 'xrowecommerce.ini' )|eq('true'))}
-        <h2>{'Bought from us before?'|i18n('extension/xrowecommerce')}</h2>
-        <div id="checkoutLogin">
-            <p>{'If you have previously purchased from us, please login using the below fields'|i18n('extension/xrowecommerce')}:</p>
-            <form method="post" action={"user/login"|ezurl}">
-                <div class="inputGroup text">
-                    <label for="id1">{'Email address'|i18n('extension/xrowecommerce')}:</label>
-                    <input type="text" name="Login" id="id1" value="" tabindex="1" />
-                </div>
-                <div class="inputGroup text">
-                    <label for="id2">{'Password'|i18n('extension/xrowecommerce')}:</label>
-                    <input type="password" name="Password" id="id2" value="" tabindex="1" />
-                </div>
-                <div class="login-button">
-                    <input class="button" type="submit" name="LoginButton" value="{'Login'|i18n('extension/xrowecommerce')}" tabindex="1" />
-                </div>
-                <input type="hidden" name="RedirectURI" value={"xrowecommerce/userregister"|ezroot} />
-                <p><a href={'user/forgotpassword/'|ezurl()}>{'Forgotten password?'|i18n('extension/xrowecommerce')}</a></p>
-                <input type="hidden" value="xrowecommerce/userregister" name="RedirectAfterLogin" />
-             </form>
-        </div>
-        <h2 id="newCustReg">{"If you're a new customer, registering only takes a few seconds"|i18n('extension/xrowecommerce')}:</h2>
-    {/if}
     {if eq(ezini( 'BasketInformation', 'DisplayLogin', 'xrowecommerce.ini' ), 'enabled' )}
         {def $user=fetch( 'user', 'current_user' )}
         {if $user.is_logged_in|not()}
@@ -51,7 +28,6 @@
                     {section show=ezini( 'SiteSettings', 'LoginPage' )|eq( 'custom' )}
                         <p><a href={'/user/forgotpassword'|ezurl}>{'Forgot your password?'|i18n( 'extension/xrowecommerce' )}</a></p>
                     {/section}
-                    <input type="hidden" name="RedirectURI" value="{$User:redirect_uri|wash}" />
                     {section show=and( is_set( $User:post_data ), is_array( $User:post_data ) )}
                     {section name=postData loop=$User:post_data }
                     <input name="Last_{$postData:key}" value="{$postData:item}" type="hidden" />
