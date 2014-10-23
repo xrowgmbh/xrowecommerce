@@ -65,6 +65,7 @@
                         <input class="button" type="submit" name="RegisterButton" value="{'Sign Up'|i18n('extension/xrowecommerce','Button')}" tabindex="1">
                     </div>
                 </fieldset>
+                <input type="hidden" name="RedirectURI" value={"xrowecommerce/userregister"|ezroot} />
             </form>
         {/if}
         {undef $user}
