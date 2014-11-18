@@ -48,9 +48,8 @@
     </table>
 
     {if eq($order.account_information.shipping,1)}
-        <table id="combined-address-table" border="0" cellspacing="0"
-            cellpadding="0" class="order_box">
-            <caption>{"Billing & shipping address"|i18n("extension/xrowecommerce")|wash} ( <a href={'/xrowecommerce/userregister'|ezurl()}>{'Edit'|i18n('extension/xrowecommerce')}</a> )</caption>
+        <table id="combined-address-table" border="0" cellspacing="0" cellpadding="0" class="order_box">
+            <caption>{"Billing & shipping address"|i18n("extension/xrowecommerce")|wash}{if module_params().function_name|ne("orderview")} ( <a href={'/xrowecommerce/userregister'|ezurl()}>{'Edit'|i18n('extension/xrowecommerce')}</a> ){/if}</caption>
             <tr>
                 <th>{'To'|i18n('extension/xrowecommerce')}:</th>
                 <td>
@@ -122,7 +121,7 @@
         </table>
     {else}
         <table id="billing-address-table" class="order_box" border="0" cellspacing="0" cellpadding="0">
-            <caption>{"Billing Address"|i18n("extension/xrowecommerce")}</caption>
+            <caption>{"Billing Address"|i18n("extension/xrowecommerce")}{if module_params().function_name|ne("orderview")} ( <a href={'/xrowecommerce/userregister'|ezurl()}>{'Edit'|i18n('extension/xrowecommerce')}</a> ){/if}</caption>
             <tr>
                 <th>{'Name'|i18n('extension/xrowecommerce')}:</th>
                 <td>
@@ -198,7 +197,7 @@
             {/if}
         </table>
         <table id="shipping-address-table" valign="top" class="order_box" border="0" cellspacing="0" cellpadding="0">
-            <caption>{"Shipping Address"|i18n("extension/xrowecommerce")}</caption>
+            <caption>{"Shipping Address"|i18n("extension/xrowecommerce")}{if module_params().function_name|ne("orderview")} ( <a href={'/xrowecommerce/userregister'|ezurl()}>{'Edit'|i18n('extension/xrowecommerce')}</a> ){/if}</caption>
             <tr>
                 <th>{'To'|i18n('extension/xrowecommerce')}:</th>
                 <td>

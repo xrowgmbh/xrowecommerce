@@ -273,13 +273,23 @@
                     {/if}
                     {if eq(ezini( 'BasketInformation', 'DisplayTax', 'xrowecommerce.ini' ), 'enabled' )}
                         <tr class="tax-line">
-                            <td colspan="{if ezini( 'Settings', 'ShowColumnPosition', 'xrowecommerce.ini' )|eq('enabled')}{$cols|sub(2)}{else}{$cols|sub(3)}{/if}" class="align_right">
+                            {def $colsub = 1}
+                            {if ezini( 'Settings', 'ShowColumnPosition', 'xrowecommerce.ini' )|eq('enabled')}
+                                {set $colsub = $colsub|inc}
+                            {/if}
+                            {if eq(ezini( 'BasketInformation', 'ShowPricesIncludingTax', 'xrowecommerce.ini' ), 'enabled' )}
+                                {set $colsub = $colsub|sum(2)}
+                            {/if}
+                            <td colspan="{$cols|sub($colsub)}">
                                 {if eq(ezini( 'BasketInformation', 'ShowPricesIncludingTax', 'xrowecommerce.ini' ), 'enabled' )}
                                     <i>{"Tax contained therein"|i18n("extension/xrowecommerce")}</i>
                                 {else}
                                     {"Estimated Tax"|i18n("extension/xrowecommerce")}
                                 {/if}
                             </td>
+                            {if eq(ezini( 'BasketInformation', 'ShowPricesIncludingTax', 'xrowecommerce.ini' ), 'enabled' )}
+                                <td colspan="2">({"net"|i18n("extension/xrowecommerce")} {$basket.total_ex_vat|l10n( 'currency', $locale, $symbol )})</td>
+                            {/if}
                             <td class="price totalprice">
                                 {if eq(ezini( 'BasketInformation', 'ShowPricesIncludingTax', 'xrowecommerce.ini' ), 'enabled' )}
                                     <i>

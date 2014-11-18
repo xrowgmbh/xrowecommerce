@@ -2027,6 +2027,10 @@
         <translation>Diese Artikelnummern wurden nicht gefunden, Preise konnten nicht importiert werden:</translation>
     </message>
     <message>
+        <source>net</source>
+        <translation>Netto</translation>
+    </message>
+    <message>
         <source>Price export</source>
         <translation>Preis Export</translation>
     </message>
