@@ -565,9 +565,9 @@ function generatePopup(node, image, imagetext, doubleclick)
         overlay.render();
 
         Y.on('click', Y.bind(overlay.hide, overlay), overlay.get('contentBox'));
-        if (doubleclick) 
+        if (doubleclick)
         {
-            Y.on('dblclick', function(e) 
+            Y.on('dblclick', function(e)
             {
                 overlay.show();
             }, node);
@@ -601,8 +601,8 @@ function CompanyPrivateChange(element) {
 function checkCOS( element )
 {
     if( $("input#cos[type=checkbox]").length && $(element).data("checkcos") == '1' ) {
-        $("#continue-button, #continue-button2").attr("type", "submit"); //only submittable if js is active
-        $(element).find("#continue-button2").click(function(e){
+      //only submittable if js is active
+        $("#continue-button, #continue-button2").attr("type", "submit").click(function(e){
             if( !$("input#cos[type=checkbox]:checked").length ) {
                 alert( $(element).data("errortext") );
                 window.scrollTo( 0, $("input#cos[type=checkbox]").position().top );
