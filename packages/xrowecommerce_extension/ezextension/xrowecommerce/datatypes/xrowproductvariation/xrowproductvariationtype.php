@@ -526,12 +526,9 @@ class xrowProductVariationType extends eZDataType
                                                 array( 'placement' => 'asc' ) );
 
             // prevent copying of date
-            $ini = eZINI::instance( 'xrowproduct.ini' );
-            if ( ( $ini->hasVariable( 'XrowProductSettings', 'AllowDataCopying' ) 
-                   && $ini->variable( 'XrowProductSettings', 'AllowDataCopying' ) == 'enabled' ) 
-                  || $contentObjectAttribute->attribute( 'contentobject_id' ) == $originalContentObjectAttribute->attribute( 'contentobject_id' )
-            )
+            if ( $contentObjectAttribute->attribute( 'contentobject_id' ) == $originalContentObjectAttribute->attribute( 'contentobject_id' ) )
             {
+
                 foreach( $data as $currentData )
                 {
                     $newData = $currentData->cloneVariation( $contentObjectAttribute->attribute( 'language_code' ),
@@ -770,3 +767,5 @@ class xrowProductVariationType extends eZDataType
 
 }
 eZDataType::register( xrowProductVariationType::DATA_TYPE_STRING, "xrowProductVariationType" );
+
+?>
