@@ -159,7 +159,9 @@ class xrowProductData extends eZPersistentObject
         $newVariation->setAttribute( 'attribute_id', $newAttributeID );
         $newVariation->setAttribute( 'language_code', $languageCode );
         if ( $version !== false )
+        {
             $newVariation->setAttribute( 'version', $version );
+        }
 
         $template = $this->attribute( 'template' );
         if ( $template )
@@ -171,7 +173,11 @@ class xrowProductData extends eZPersistentObject
                 $field = $attribute['attribute']->Identifier;
                 if ( $dataType )
                 {
-                    $newVariation->setAttribute( $field, $dataType->cloneVariation( $this->attribute( $field ), $this, $attribute['attribute'], $template ) );
+                    $newVariation->setAttribute( $field, 
+                                                 $dataType->cloneVariation( $this->attribute( $field ), 
+                                                                            $this, 
+                                                                            $attribute['attribute'], 
+                                                                            $template ) );
                 }
             }
         }

@@ -318,20 +318,25 @@ class xrowProductVariationType extends eZDataType
         if ( count( $content['data'] ) > 0 )
         {
             $placement = 0;
-            $template =& $content['template'];
+            $template = $content['template'];
 
             foreach ( $content['data'] as $newPlacement => $variation )
             {
                 if ( isset( $variation['obj'] ) )
                 {
-                    $currentData =& $variation['obj'];
+                    $currentData = $variation['obj'];
 
                     $newLine = false;
                     if ( !$currentData->attribute( 'id' ) )
-                       $newLine = true;
+                    {
+                        $newLine = true;
+                    }
                 }
                 else
+                {
                     continue;
+                }
+
 
                 if ( $newLine )
                 {
@@ -363,14 +368,14 @@ class xrowProductVariationType extends eZDataType
                         $dataID = $currentData->attribute( 'id' );
 
                         // fetch translations of current variation
-                        $objectID = $contentObjectAttribute->attribute( 'contentobject_id' );
-                        $contentClassAtributeID = $contentObjectAttribute->attribute( 'contentclassattribute_id' );
+                        $objectID = $attribute->attribute( 'contentobject_id' );
+                        $contentClassAttributeID = $attribute->attribute( 'contentclassattribute_id' );
                         $translationArrayResult = xrowProductData::fetchObjectList( xrowProductData::definition(),
                                                                                     null,
                                                                                     array( 'attribute_id' => array( '!=', $dataID ),
                                                                                            'placement' => $currentData->attribute( 'placement' ),
                                                                                            'object_id' => $objectID,
-                                                                                           'contentclassattribute_id' => $contentClassAtributeID ) );
+                                                                                           'contentclassattribute_id' => $contentClassAttributeID ) );
                         $translationArray = array();
                         if ( count( $translationArrayResult ) > 0 )
                         {
@@ -418,16 +423,12 @@ class xrowProductVariationType extends eZDataType
             }
         }
         if ( isset( $GLOBALS['xrowProductVariation'][$id] ) )
+        {
             unset( $GLOBALS['xrowProductVariation'][$id] );
+        }
 
         $attribute->setContent( null );
     }
-/*
-    function onPublish( $contentObjectAttribute, $contentObject, $publishedNodes )
-    {
-
-    }
-*/
 
     /*!
      Returns the content.
@@ -526,16 +527,18 @@ class xrowProductVariationType extends eZDataType
                                                 array( 'placement' => 'asc' ) );
 
             // prevent copying of date
-            if ( $contentObjectAttribute->attribute( 'contentobject_id' ) == $originalContentObjectAttribute->attribute( 'contentobject_id' ) )
+            
+            foreach( $data as $currentData )
             {
-
-                foreach( $data as $currentData )
+                $newData = $currentData->cloneVariation( $contentObjectAttribute->attribute( 'language_code' ),
+                                                         $contentObjectAttribute->attribute( 'id' ),
+                                                         $contentObjectAttribute->attribute( 'version' ) );
+                if ( $contentObjectAttribute->attribute( 'contentobject_id' ) != $originalContentObjectAttribute->attribute( 'contentobject_id' ) )
                 {
-                    $newData = $currentData->cloneVariation( $contentObjectAttribute->attribute( 'language_code' ),
-                                                             $contentObjectAttribute->attribute( 'id' ),
-                                                             $contentObjectAttribute->attribute( 'version' ) );
-                    $newData->store();
+                    # data is copied, need to change the object id
+                    $newData->setAttribute( 'object_id', $contentObjectAttribute->attribute( 'contentobject_id' ) );
                 }
+                $newData->store();
             }
         }
     }
@@ -662,7 +665,9 @@ class xrowProductVariationType extends eZDataType
         $params['contentclassattribute_id'] = $contentClassAttributeID;
         $params['object_id'] = $objectID;
         if ( $version !== null )
+        {
             $params['version'] = $version;
+        }
 
         $variationList = xrowProductData::fetchList( $params, true );
         if ( count( $variationList ) > 0 )
