@@ -501,11 +501,29 @@ class xrowECommerce
     static function checkVat( $cc, $vat )
     {
         $wsdl = 'http://ec.europa.eu/taxation_customs/vies/checkVatService.wsdl';
-        
-        $vies = new SoapClient( $wsdl, array( 
-            'connection_timeout' , 
-            5 
-        ) );
+
+        $soap_settings = array( 'connection_timeout' => 5 );
+        // Get proxy
+        $ini = eZINI::instance();
+        $proxy = $ini->hasVariable( 'ProxySettings', 'ProxyServer' ) ? $ini->variable( 'ProxySettings', 'ProxyServer' ) : false;
+        if ( $proxy )
+        {
+            $proxy_parts = explode(":", $proxy);
+            
+            $soap_settings[] = array('proxy_host' => $proxy_parts[0] . ":" . $proxy_parts[1]);
+            $soap_settings[] = array('proxy_port' => $proxy_parts[2]);
+            
+            if ( $ini->hasVariable( 'ProxySettings', 'User' ) && $ini->variable( 'ProxySettings', 'User' ) != "" )
+            {
+                $soap_settings[] = array( 'proxy_login' => $ini->variable( 'ProxySettings', 'User' ) ); 
+            }
+            
+            if ( $ini->hasVariable( 'ProxySettings', 'Password' ) && $ini->variable( 'ProxySettings', 'Password' ) != "" )
+            {
+                $soap_settings[] = array( 'proxy_login' => $ini->variable( 'ProxySettings', 'Password' ) );
+            }
+        }
+        $vies = new SoapClient( $wsdl, $soap_settings );
         
         $nii = new checkVat( $cc, $vat );
         
