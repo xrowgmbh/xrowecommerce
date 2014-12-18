@@ -180,7 +180,7 @@ class xrowEPayment
         {
             if (!isset($availableGateways[$key]))
             {
-                throw new Exception( "Gateway $key does no longer exist." );
+                continue;
             }
             $gateway = $availableGateways[$key];
             $object = new $availableGateways[$key]['class_name']();
