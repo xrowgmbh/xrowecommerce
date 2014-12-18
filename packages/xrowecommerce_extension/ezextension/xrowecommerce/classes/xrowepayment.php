@@ -178,6 +178,10 @@ class xrowEPayment
         
         foreach ( $gatewaysTypes as $key )
         {
+            if (!isset($availableGateways[$key]))
+            {
+                throw new Exception( "Gateway $key does no longer exist." );
+            }
             $gateway = $availableGateways[$key];
             $object = new $availableGateways[$key]['class_name']();
             $gateway['value'] = $key;
