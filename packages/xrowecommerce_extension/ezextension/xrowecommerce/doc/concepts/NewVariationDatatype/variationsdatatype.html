@@ -1,0 +1,409 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Unbenanntes Dokument</title>
+<style type="text/css">
+<!--
+.Stil1 {color: #FF0000}
+-->
+</style>
+</head>
+
+<body>
+<h1>New Product Variation Datatype</h1>
+<p>After creating several e-commerce websites in eZ publish we figured out that most of them lack certain e-commerce features realted to properly handling products in eZ Publish. This datatype should improve this situtation. </p>
+<h2>Functions relevant for price calculations.</h2>
+<h3>eZDataType::productOptionInformation()</h3>
+<p>$optionData = $dataType-&gt;productOptionInformation( $attribute, $optionString, $item );</p>
+<p>return array( 'id' =&gt; $option['option_id'],<br />
+'name' =&gt; $multioptionElement['name'],<br />
+'value' =&gt; $option['value'],<br />
+'additional_price' =&gt; $option['additional_price'] );</p>
+<p>This structure should be changed. It could have but we should only keep that for legacy</p>
+<p>array( 'id' =&gt; $option['option_id'],<br />
+'name' =&gt; $multioptionElement['name'],<br />
+'value' =&gt; $option['value'],<br />
+'price_quantifier' =&gt; $option['price_quantifier'], (a constant for fixed, percent, amount) <br />
+'price_factor' =&gt; $option['price_factor'] );</p>
+<h3>eZShopFunctions::convertAdditionalPrice( $currency, $optionData['additional_price'] );</h3>
+<p>Should be renamed  and marked deprecated. eZShopFunctions::convertPrice( $currency, $price );</p>
+<h3>eZShopOperationCollection::addToBasket( $objectID, $optionList )</h3>
+<p>This function requires a lager rewrite. </p>
+<p>We should drop the price from the ezproductcollection_item item table. Though we can keep it for legacy.</p>
+<p>We should add a new functions to eZ that con compute the product price as a whole from the selected options and  </p>
+<p>eZProductCollectionItem::addOption( $optionData );</p>
+<p>Calulates the price for the collection including all options. </p>
+<p>eZProductCollectionItem:computePrice( ); parameters yet unknown </p>
+<h2>Variation Templates </h2>
+<p>A variation template will add pre defined attributes to product. They could be configured over an additional interface. </p>
+<h2>Variation Identifiers</h2>
+<p>Are used to group variations of product. It is intended that you might be able to to do comparsions or selection based on groups.</p>
+<p>Examples:</p>
+<ul>
+  <li>Show me other Products that have a green color.</li>
+  <li>Show me products that costs less then $ 20 and have the size XL. </li>
+</ul>
+<h2>Fucntions that can be added later</h2>
+<ul>
+  <li>Multi curreny support, through automatic conversion can work.</li>
+</ul>
+<h2>Notes</h2>
+<ul>
+  <li>Translations can work through the regluar ez publish translations. Only Variation names can be translated. </li>
+</ul>
+
+<h1>Views</h1>
+<h2>Product Template Creator</h2>
+<table width="100%" border="1">
+  <tr>
+    <th colspan="2" scope="col"> <label> [ <span class="Stil1">Product Definition</span> ] </label></th>
+  </tr>
+  <tr>
+    <td>Template Name 
+    <input name="textfield52" type="text" id="textfield5" value="Color 1" /></td>
+    <td>Avialable Sets / Tempaltes </td>
+  </tr>
+  <tr>
+    <td><p>
+      <label for="textfield">Name</label>
+      <input name="textfield5" type="text" id="textfield3" value="Color 1" />
+      <label for="label8">Identifier
+        <input name="textfield25" type="text" id="label8" value="color" disabled="disabled"/>
+        </label>
+      [ <a href="./#up">up</a> / <a href="./#down">down</a> ]
+      <input type="submit" name="Submit22332" value="Remove" id="Submit22332" />
+      <em>(Predefined attribute)</em></p>
+        <p>
+          <label for="textfield">Name</label>
+          <input name="textfield" type="text" id="textfield" value="Color" />
+          <label for="label">Identifier
+            <input name="textfield2" type="text" id="label" value="custom_color" />
+          </label>
+          [ <a href="./#up">up</a> / <a href="./#down">down</a> ]
+          <input type="submit" name="Submit2233" value="Remove" id="Submit2233" />
+          <em>(Custom attribute)</em></p>
+      <table width="100%" border="1">
+          <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Identifier</th>
+          </tr>
+          <tr>
+            <td><input name="textfield42" type="text" id="textfield4" value="Green" /></td>
+            <td><input name="textfield4" type="text" id="textfield2" value="green" /></td>
+          </tr>
+          <tr>
+            <td><input name="textfield422" type="text" id="textfield42" value="Blue" /></td>
+            <td><input name="textfield43" type="text" id="textfield43" value="blue" /></td>
+          </tr>
+        </table>
+      <p>
+          <input type="submit" name="Submit2" value="Add" id="Submit2" />
+        </p>
+      <label for="label2">Name</label>
+        <input name="textfield3" type="text" id="label2" value="Hazard" disabled="disabled"/>
+        <label for="label3">Identifier</label>
+        <input name="textfield22" type="text" id="label3" value="hazard" disabled="disabled"/>
+      [ <a href="./#up">up</a> / <a href="./#down">down</a> ]
+      <input type="submit" name="Submit2232" value="Remove" id="Submit2232" />
+      <em>(Predefined attribute) </em>
+      <p>
+        <label for="label2">Name</label>
+        <input name="textfield3" type="text" id="label2" value="Packing" />
+        <label for="label3">Identifier</label>
+        <input name="textfield22" type="text" id="label3" value="packing"/>
+        [ <a href="./#up">up</a> / <a href="./#down">down</a> ]
+        <input type="submit" name="Submit223" value="Remove" id="Submit223" />
+        <em>(Custom attribute) </em></p>
+      <p>&nbsp;</p></td>
+    <td><table width="100%" border="1">
+      <tr>
+        <td><label for="select">Product Attributes</label>
+              <p>
+                <select name="select" size="10" id="select">
+                  <option value="Hight">Hight</option>
+                  <option value="Color">Color</option>
+                  <option value="Size">Size</option>
+                  <option value="Hazard">Hazard</option>
+                </select>
+                <br />
+                <input type="submit" name="Submit43" value="Add to Base Product" id="Submit42" />
+                <input type="submit" name="Submit" value="Add to Variation" id="Submit" />
+              </p>
+          <label for="label8"></label></td>
+        <td><label for="label6">Product Attribute Sets</label>
+              <p>
+                <select name="select10" size="10" id="label6">
+                  <option value="Hight">Meta Information</option>
+                  <option value="Hight">Dimensions</option>
+                </select>
+                <br />
+                <input type="submit" name="Submit4" value="Add to Base Product" id="label7" />
+                <input type="submit" name="Submit42" value="Add to Variation" id="Submit4" />
+            </p></td>
+      </tr>
+    </table>
+        <label for="select"><br />
+        </label>
+        <p>Changing the identifiers name will be disabled, when adding it from a template.</p>
+      <p>
+          <select name="select9" id="select10">
+            <option value="Textline">Textline</option>
+            <option value="Text">Text</option>
+            <option value="Dropdown">Dropdown</option>
+            <option value="Integer">Integer</option>
+            <option value="Float">Float</option>
+            <option value="Boolean">Boolean</option>
+          </select>
+          <input type="submit" name="Submit3" value="Custom Product Attribute" id="Submit3" />
+        </p>
+      <p>When adding a Custom Variation a non template based Variation will be added. </p>
+      <p>
+          <input type="submit" name="Submit32" value="Autobuild Variations" id="Submit32" />
+          <br />
+        Creates all Variations out of all possible combinations </p></td>
+  </tr>
+</table>
+<h2>Edit Product </h2>
+<p>[<span class="Stil1">Base Attributes</span>] [ Variations ] [ other ] </p>
+<table width="100%" border="1">
+  <tr>
+    <th scope="col">Configuration</th>
+    <th scope="col">Value</th>
+  </tr>
+  <tr>
+    <td>Product Template </td>
+    <td><select name="select8" id="select5">
+      <option value="Simple" selected="selected">Simple</option>
+      <option value="Text">Complex</option>
+        </select></td>
+  </tr>
+  <tr>
+    <td>Base product number </td>
+    <td><input name="textfield23" type="text" id="textfield22" value="ABCDEK" /></td>
+  </tr>
+  <tr>
+    <td>Base product price </td>
+    <td><input name="textfield2323" type="text" id="textfield2322" value="234" /></td>
+  </tr>
+  <tr>
+    <td>Has variations </td>
+    <td><input type="checkbox" name="checkbox222" value="checkbox" id="checkbox222" /></td>
+  </tr>
+  <tr>
+    <td>Manage Stock </td>
+    <td><input type="checkbox" name="checkbox2222" value="checkbox" id="checkbox2222" /></td>
+  </tr>
+  <tr>
+    <td>Default sorting</td>
+    <td><input name="textfield2322" type="text" id="textfield232" value="size, color" /></td>
+  </tr>
+</table>
+<p>&nbsp;</p>
+<table width="100%" border="1">
+  <tr>
+    <th width="38%" scope="col">Size / Weight /Volume </th>
+    <th width="31%" scope="col">Price</th>
+    <th width="31%" scope="col">Inventory</th>
+  </tr>
+  <tr>
+    <td><input name="textfield453" type="text" id="textfield453" value="123" />
+        <select name="select7" id="select7">
+          <option value="KG">KG</option>
+          <option value="Onze">Onze</option>
+      </select></td>
+    <td><select name="select7" id="select8">
+      <option value="same" selected="selected">same</option>
+      <option value="Percent">Percent</option>
+      <option value="Add">Add</option>
+    </select>
+    <input name="textfield45222" type="text" id="textfield45222" value="234" disabled="disabled"/></td>
+    <td><input name="textfield4522" type="text" id="textfield4522" value="234" /></td>
+  </tr>
+</table>
+<p> [Base Attributes] [ <span class="Stil1">Variations</span> ] [ other ] </p>
+<table width="100%" border="1">
+  <tr>
+    <th scope="col"> <label></label></th>
+  </tr>
+  <tr>
+    <td><label></label></td>
+  </tr>
+  <tr>
+    <td> Variations 
+    <input type="submit" name="Submit222" value="Add Variation" id="Submit222" /></td>
+  </tr>
+  <tr>
+    <td><label for="label4"></label>
+      <table width="100%" border="1">
+          <tr>
+            <th width="31%" scope="col">SKU</th>
+            <th width="31%" scope="col">Name</th>
+            <th width="38%" scope="col">Description</th>
+            <th width="38%" scope="col">Size / Weight / Volume </th>
+            <th width="31%" scope="col">Price</th>
+            <th width="31%" scope="col">Inventory</th>
+          </tr>
+          <tr>
+            <td height="93"><label for="label4">Internal</label>
+              <input name="textfield24" type="text" id="label4" value="1231231232" disabled/>
+              <label for="label5">Custom</label>
+                <input name="textfield242" type="text" id="label5" value="ABCDEKGFDS"/>            </td>
+            <td><input name="textfield433322" type="text" id="textfield433322" value="Green XL" /></td>
+            <td>
+            <label for="checkbox"></label>
+            <label for="textarea"></label>            <textarea name="textarea" id="textarea"></textarea>
+            <br />            </td>
+            <td><input name="textfield43332" type="text" id="textfield43332" value="123" />
+              <select name="select2" id="select2">
+                <option value="KG">KG</option>
+                <option value="Onze">Onze</option>
+              </select></td>
+            <td><p>
+              <select name="select6" id="select6">
+                <option value="same as base" selected="selected">same</option>
+                <option value="Percent">Percent</option>
+                <option value="Amount">Amount</option>
+                <option value="Fixed price">Fixed price</option>
+              </select>
+              <input name="textfield452" type="text" id="textfield452" value="234" DISABLED/>
+            Percent and Amount will also Allow negativ Values  </p>            </td>
+            <td><p>
+              <select name="select3" id="select4">
+                <option value="same as base" selected="selected">In Stock</option>
+                <option value="same as base" selected="selected">Out of Stock</option>
+              </select>
+            </p>
+            <p>
+              <input name="textfield433323" type="text" id="textfield433323" value="123" />
+</p></td>
+          </tr>
+      </table>
+      <p>Variation Attributes</p>
+      <table width="100%" border="1">
+        <tr>
+          <th width="31%" scope="col">Color</th>
+          <th width="31%" scope="col">Size</th>
+          <th width="38%" scope="col">Packing size</th>
+          <th width="38%" scope="col">Hazard </th>
+        </tr>
+        <tr>
+          <td><label for="label8"></label>
+            <select name="select4" id="select11">
+                <option value="Blue">Blue</option>
+                <option value="Green">Green</option>
+            </select>          </td>
+          <td> <select name="select5" id="select3">
+              <option value="Blue">XL</option>
+              <option value="Green">L</option>
+            </select></td>
+          <td><label for="checkbox"></label>
+            <label for="checkbox">
+            <input name="textfield454" type="text" id="textfield454" value="4" />
+            </label>
+              <br />          </td>
+          <td><p>
+            <label>
+              <input type="radio" name="Optionsschaltergruppe1" value="optionsschalter" />
+              yes</label>
+            <label>
+              <input name="Optionsschaltergruppe1" type="radio" value="optionsschalter" checked="checked" />
+              no</label>
+            <br />
+          </p></td>
+        </tr>
+      </table>      
+      <p>&nbsp;</p></td>
+  </tr>
+</table>
+<p>&nbsp;</p>
+<h2>Database tables</h2>
+<p>There is a seperate SQL file attached for testing the conpect of storing data. </p>
+<pre>
+BEGIN;
+DROP TABLE IF EXISTS `ezx_xrow_variation`;
+CREATE TABLE `ezx_xrow_variation` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `price` int(10) unsigned NOT NULL COMMENT 'Foreign Key Multiprice data',
+  `sku` varchar(45) NOT NULL,
+  `sorting` varchar(45) NOT NULL,
+  `stock` int(10) unsigned NOT NULL,
+  `contentobject_id` int(10) unsigned NOT NULL,
+  `version_id` int(10) unsigned NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Variations Table';
+DROP TABLE IF EXISTS `ezx_xrow_product`;
+CREATE TABLE  `ezx_xrow_product` (
+  `contentobject_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `version_id` int(10) unsigned NOT NULL,
+  `base_price` varchar(45) NOT NULL,
+  `base_product_number` varchar(45) NOT NULL,
+  `has_variations` int(10) unsigned NOT NULL,
+  `manage_stock` varchar(45) NOT NULL,
+  PRIMARY KEY (`contentobject_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+DROP TABLE IF EXISTS ezx_xrow_attribute;
+CREATE TABLE  ezx_xrow_attribute (
+  `contentobject_id` int(10) unsigned NOT NULL,
+  `version` int(10) unsigned NOT NULL,
+  `identifier` varchar(45) NOT NULL DEFAULT 'default',
+  `data_text` text,
+  `data_int` int(10) unsigned DEFAULT NULL,
+  `data_float` float DEFAULT NULL,
+  `variation_id` int(10) unsigned NOT NULL,
+  PRIMARY KEY (`variation_id`,`version`,`contentobject_id`,`identifier`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+DROP TABLE IF EXISTS `ezx_xrow_attribute`;
+CREATE TABLE `ezx_xrow_attribute` (
+  `contentobject_id` int(10) unsigned NOT NULL,
+  `version` int(10) unsigned NOT NULL,
+  `identifier` varchar(45) NOT NULL DEFAULT 'default',
+  `data_text` text,
+  `data_int` int(10) unsigned DEFAULT NULL,
+  `data_float` float DEFAULT NULL,
+  `variation_id` int(10) unsigned NOT NULL,
+  PRIMARY KEY (`variation_id`,`version`,`contentobject_id`,`identifier`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+/*FILLSOME DEMO DATA*/
+INSERT INTO `ezx_xrow_attribute` (`contentobject_id`,`version`,`identifier`,`data_text`,`data_int`,`data_float`,`variation_id`) VALUES
+ (1,1,'price',NULL,NULL,12,1),
+ (1,1,'type','bla',NULL,NULL,1),
+ (1,1,'price',NULL,NULL,13,2),
+ (1,1,'type','bla',NULL,NULL,2),
+ (1,1,'price',NULL,NULL,5,3),
+ (1,1,'type','bla2',NULL,NULL,3);
+INSERT INTO `ezx_xrow_product` (`contentobject_id`,`version_id`,`base_price`,`base_product_number`,`has_variations`,`manage_stock`) VALUES
+ (1,1,'30','aaa',1,'1');
+INSERT INTO `ezx_xrow_variation` (`id`,`price`,`sku`,`sorting`,`stock`,`contentobject_id`,`version_id`) VALUES
+ (1,11,'asdasd','sddsada',23321,1,1),
+ (2,12,'asdasdasd','asss',11,1,1),
+ (3,14,'aaaaaaaaaaaaa','aaaaaaaaaaaa',222,1,1);
+ 
+/* CREATING A TEMPORARY TABLE FOR SORTING RESULTS*/
+DROP TABLE IF EXISTS test_sort;
+CREATE TABLE test_sort (
+  `id` int(11) UNIQUE NOT NULL default '0',
+  `sort1` VARCHAR(11) default NULL,
+  `sort2` FLOAT(11) default NULL
+);
+
+INSERT INTO `test_sort` ( id, `sort1` )
+SELECT    variation_id, data_text
+FROM      ezx_xrow_attribute a
+WHERE     a.identifier = 'type';
+
+
+UPDATE `test_sort` t, ezx_xrow_attribute a
+    SET t.sort2=a.data_float
+    WHERE a.identifier = 'price' AND
+          a.variation_id = t.id;
+
+/* GET SORTED VARIATIONS by 2 sort params */
+SELECT DISTINCT t.* FROM ezx_xrow_attribute a, test_sort t WHERE a.variation_id=t.id ORDER BY t.sort1 asc, t.sort2 desc;
+
+COMMIT;
+</pre>
+</body>
+</html>
