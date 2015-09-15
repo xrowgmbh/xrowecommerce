@@ -193,7 +193,9 @@
         {if is_null($order.account_name)}
             <s><i>{'( removed )'|i18n( 'design/admin/shop/orderlist' )}</i></s>
         {else}
-            <a href={concat( '/shop/customerorderview/', $order.user_id, '/', $order.account_email )|ezurl}>{$order.account_name}</a>
+            <a href={concat( '/shop/customerorderview/', $order.user_id, '/', $order.account_email )|ezurl}>
+                {cond($order.account_name|trim()|ne(''), $order.account_name, $order.account_email)}
+            </a>
         {/if}
         </td>
 
