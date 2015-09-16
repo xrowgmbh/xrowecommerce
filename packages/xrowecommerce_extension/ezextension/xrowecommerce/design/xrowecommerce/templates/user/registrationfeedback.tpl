@@ -7,11 +7,17 @@
     - email_receiver (default is site.ini/[UserSettings].RegistrationEmail. If not set, it is site.ini/[MailSettings].AdminEmail
 *}
 {set-block scope=root variable=subject}{'New user registered at %siteurl'|i18n('design/standard/user/register',,hash('%siteurl',ezini('SiteSettings','SiteURL')))}{/set-block}
+{def $username = cond(is_set($object.data_map.user_data), $object.data_map.user_data.content.login, $object.data_map.user_account.content.login)
+     $email = cond(is_set($object.data_map.user_data), $object.data_map.user_data.content.email, $object.data_map.user_account.content.email)}
 {'A new user has registered.'|i18n('design/standard/user/register')}
 
 {'Account information.'|i18n('design/standard/user/register')}
-{'Username'|i18n('design/standard/user/register','Login name')}: {$object.data_map.user_data.content.login}
-{'Email'|i18n('design/standard/user/register')}: {$object.data_map.user_data.content.email}
+{'Username'|i18n('design/standard/user/register','Login name')}: {$username}
+{'Email'|i18n('design/standard/user/register')}: {$email}
 
 {'Link to user information'|i18n('design/standard/user/register')}:
+{if is_set($object.main_node_id)}
 http://{$hostname}{concat('content/view/full/',$object.main_node_id)|ezurl(no)}
+{else}
+http://{$hostname}/user/unactivated
+{/if}

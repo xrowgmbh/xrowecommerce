@@ -1043,6 +1043,18 @@
         <translation>Darin enthaltene USt.</translation>
     </message>
     <message>
+        <source>Thank you for registering at %siteurl.</source>
+        <translation>Danke für Ihre Registrierung bei %siteurl.</translation>
+    </message>
+    <message>
+        <source>Click the following URL to login:</source>
+        <translation>Klicken Sie folgende URL um sich einzuloggen:</translation>
+    </message>
+    <message>
+        <source>Your registration has been approved. You can login with your account %username.</source>
+        <translation>Ihre Registrierung wurde bestätigt. Sie können sich nun mit Ihrem Account %username einloggen.</translation>
+    </message>
+    <message>
         <source>Edit</source>
         <translation>Ändern</translation>
     </message>

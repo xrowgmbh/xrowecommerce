@@ -7,11 +7,13 @@
     - email_sender (default is site.ini/[MailSettings].AdminEmail)
 *}
 {set-block scope=root variable=subject}{'%1 registration info'|i18n('design/standard/user/register',,array($site_url))}{/set-block}
+{def $username = cond(is_set($object.data_map.user_data), $object.data_map.user_data.content.login, $object.data_map.user_account.content.login)
+     $email = cond(is_set($object.data_map.user_data), $object.data_map.user_data.content.email, $object.data_map.user_account.content.email)}
 {'Thank you for registering at %siteurl.'|i18n('design/standard/user/register',,hash('%siteurl',$site_url))}
 
 {'Your account information'|i18n('design/standard/user/register')}
-{'Username'|i18n('design/standard/user/register')}: {$object.data_map.user_data.content.login}
-{'Email'|i18n('design/standard/user/register')}: {$object.data_map.user_data.content.email}
+{'Username'|i18n('design/standard/user/register')}: {$username}
+{'Email'|i18n('design/standard/user/register')}: {$email}
 
 {if and( is_set( $password ), ezini( 'UserSettings', 'PasswordInRegistrationEmail' )|eq( 'enabled' ) )}
 {'Password'|i18n('design/standard/user/register')}: {$password}
