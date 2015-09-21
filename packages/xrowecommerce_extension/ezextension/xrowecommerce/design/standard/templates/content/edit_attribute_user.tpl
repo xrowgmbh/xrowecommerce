@@ -18,20 +18,22 @@
             <legend>{'Billing Information'|i18n('extension/xrowecommerce')}</legend>
             {include uri="design:content/edit_attribute_user_pretext.tpl"}
             <input type="hidden" name="MainNodeID" value="{$main_node_id}" />
-            <div class="address-selection">
-                <div class="comp">
-                    <label>
-                        <input {if $ca.company_name.content|ne('')}checked="checked"{/if} id="company" type="radio" value="company" name="company" />
-                        {'Company'|i18n('extension/xrowecommerce')}
-                    </label>
+            {if or($fields.company_name.enabled, $fields.company_additional.enabled, $fields.tax_id.enabled)}
+                <div class="address-selection">
+                    <div class="comp">
+                        <label>
+                            <input {if $ca.company_name.content|ne('')}checked="checked"{/if} id="company" type="radio" value="company" name="company" />
+                            {'Company'|i18n('extension/xrowecommerce')}
+                        </label>
+                    </div>
+                    <div class="home">
+                        <label>
+                            <input {if $ca.company_name.content|eq('')}checked="checked"{/if} id="home" type="radio" value="company" name="company" />
+                            {'Private person'|i18n('extension/xrowecommerce')}
+                        </label>
+                    </div>
                 </div>
-                <div class="home">
-                    <label>
-                        <input {if $ca.company_name.content|eq('')}checked="checked"{/if} id="home" type="radio" value="company" name="company" />
-                        {'Private person'|i18n('extension/xrowecommerce')}
-                    </label>
-                </div>
-            </div>
+            {/if}
             <div class="company" {if $ca.company_name.content|ne('')}style="display: none;"{/if}>
                 {if ezini('Fields','company_name','xrowecommerce.ini').enabled|eq('true')}
                     <div class="block company_name">
@@ -155,20 +157,22 @@
             </label>
 
             <div id="shippinginfo">
-                <div class="s_address-selection">
-                    <div class="s_comp">
-                        <label for="s_company">
-                        <input id="s_company" type="radio" value="company" name="s_company" />
-                        {'Company'|i18n('extension/xrowecommerce')}
-                        </label>
+                {if or($fields.company_name.enabled, $fields.company_additional.enabled, $fields.tax_id.enabled)}
+                    <div class="s_address-selection">
+                        <div class="s_comp">
+                            <label for="s_company">
+                            <input id="s_company" type="radio" value="company" name="s_company" />
+                            {'Company'|i18n('extension/xrowecommerce')}
+                            </label>
+                        </div>
+                        <div class="s_home">
+                            <label for="s_home">
+                            <input {if $ca.company_name.content|ne('')}checked="checked"{/if} id="s_home" type="radio" value="company" name="s_company" />
+                            {'Private person'|i18n('extension/xrowecommerce')}
+                            </label>
+                        </div>
                     </div>
-                    <div class="s_home">
-                        <label for="s_home">
-                        <input {if $ca.company_name.content|ne('')}checked="checked"{/if} id="s_home" type="radio" value="company" name="s_company" />
-                        {'Private person'|i18n('extension/xrowecommerce')}
-                        </label>
-                    </div>
-                </div>
+                {/if}
                 <div class="s_company" {if $ca.company_name.content|ne('')}style="display: none;"{/if}>
                     {if ezini('Fields','s_company_name','xrowecommerce.ini').enabled|eq('true')}
                     <div class="block s_company_name">
