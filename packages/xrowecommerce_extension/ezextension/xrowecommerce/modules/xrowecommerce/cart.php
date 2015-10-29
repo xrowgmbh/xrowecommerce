@@ -30,7 +30,6 @@ if ( $http->hasPostVariable( "StoreChangesButton" ) )
 $basket = eZBasket::currentBasket();
 $basket->updatePrices(); // Update the prices. Transaction not necessary.
 
-
 if ( $http->hasPostVariable( "ActionAddToBasket" ) )
 {
     $objectID = $http->postVariable( "ContentObjectID" );
@@ -183,6 +182,9 @@ $removedItems = array();
 
 if ( $http->hasPostVariable( "CheckoutButton" ) or ( $doCheckout === true ) )
 {
+    if ($http->hasSessionVariable( 'MyTemporaryOrderID' )) {
+        $http->removeSessionVariable('MyTemporaryOrderID');
+    }
     if ( $http->hasPostVariable( "ProductItemIDList" ) )
     {
         $itemCountList = $http->postVariable( "ProductItemCountList" );

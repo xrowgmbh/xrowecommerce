@@ -27,18 +27,18 @@
     {if $order_list}
         <table class="list" width="100%" cellspacing="0" cellpadding="0" border="0">
             <tr>
-            	<th>
-            	   {"Order No"|i18n("design/standard/shop")}
-            	</th>
-            	<th>
-            	   {"Date"|i18n("design/standard/shop")}
-            	</th>
-            	<th>
-            	   {"Status"|i18n("design/standard/shop")}
-            	</th>
-            	<th>
-            	   {"Total inc. TAX"|i18n("design/standard/shop")}
-            	</th>
+                <th>
+                   {"Order No"|i18n("design/standard/shop")}
+                </th>
+                <th>
+                   {"Date"|i18n("design/standard/shop")}
+                </th>
+                <th>
+                   {"Status"|i18n("design/standard/shop")}
+                </th>
+                <th>
+                   {"Total inc. TAX"|i18n("design/standard/shop")}
+                </th>
                 <th>
                     {"View"|i18n("design/standard/shop")}
                 </th>
@@ -52,22 +52,22 @@
                 {/if}
         
                 <tr>
-                	<td class="{$style}">
-                	{$Order.order_nr}
-                	</td>
-                	<td class="{$style}">
-                	   {$Order.created|l10n(shortdatetime)}
-                	</td>
-                	<td class="{$style}">
-                	   {$Order.status_name}
-                	</td>
-                	<td class="{$style}" align="right">
-                	   {$Order.total_inc_vat|l10n( 'currency', $locale, $symbol )}
-                	</td>
-                	<td class="{$style}" align="right">
-                	   <a href={concat("/order/invoice/",$Order.id,"/0")|ezurl} target="_blank"><img src={"orderhistory/view.gif"|ezimage()} title="{"View"|i18n("design/standard/shop")}"></a>
-                	   <a href={concat("/order/invoice/",$Order.id,"/0")|ezurl} target="_blank" onclick="OpenPrintWindow(this.href); return false" ><img src={"orderhistory/printer.png"|ezimage()} title="{"Print"|i18n("design/standard/shop")}"></a>
-                	</td>
+                    <td class="{$style}">
+                    {$Order.order_nr}
+                    </td>
+                    <td class="{$style}">
+                       {$Order.created|l10n(shortdatetime)}
+                    </td>
+                    <td class="{$style}">
+                       {$Order.status_name}
+                    </td>
+                    <td class="{$style}" align="right">
+                       {$Order.total_inc_vat|l10n( 'currency', $locale, $symbol )}
+                    </td>
+                    <td class="{$style}" align="right">
+                       <a href={concat("/order/invoice/",$Order.id,"/0")|ezurl} target="_blank"><img src={"orderhistory/view.gif"|ezimage()} title="{"View"|i18n("design/standard/shop")}"></a>
+                       <a href={concat("/order/invoice/",$Order.id,"/0")|ezurl} target="_blank" onclick="OpenPrintWindow(this.href); return false" ><img src={"orderhistory/printer.png"|ezimage()} title="{"Print"|i18n("design/standard/shop")}"></a>
+                    </td>
                 </tr>
             {/foreach}
         </table>

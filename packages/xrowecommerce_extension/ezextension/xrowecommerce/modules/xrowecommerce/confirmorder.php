@@ -29,14 +29,10 @@
 $http = eZHTTPTool::instance();
 $module = $Params['Module'];
 
-
 $tpl = eZTemplate::factory();
 $tpl->setVariable( "module_name", 'shop' );
 
 $orderID = $http->sessionVariable( 'MyTemporaryOrderID' );
-
-
-
 $order = eZOrder::fetch( $orderID );
 if ( !is_object( $order ) )
     return $module->handleError( eZError::KERNEL_NOT_AVAILABLE, 'kernel' );

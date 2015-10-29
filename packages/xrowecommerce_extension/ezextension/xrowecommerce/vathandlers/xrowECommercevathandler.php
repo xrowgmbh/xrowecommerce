@@ -2,14 +2,22 @@
 
 class xrowECommerceVATHandler
 {
-
     static function taxMapping()
     {
-        return array( 
+        return array(
+            'DE' => 19,
+            'GB' => 20 ,
+            'AT' => 20 ,
+            'IE' => 21 ,
+            'US' => array(
+                'NY' => 8.875 ,
+                'CT' => 6 ,
+                'PA' => 8
+            ),
             'DEU' => 19 ,
-            'GBR' => 20 , 
-            'AUT' => 20 , 
-            'IRL' => 21 , 
+            'GBR' => 20 ,
+            'AUT' => 20 ,
+            'IRL' => 21 ,
             'USA' => array( 
                 'NY' => 8.875 , 
                 'CT' => 6 , 
@@ -36,7 +44,6 @@ class xrowECommerceVATHandler
         {
             $order = false;
         }
-        
         if ( $order instanceof eZOrder )
         {
             $xmlDoc = $order->attribute( 'data_text_1' );
@@ -98,10 +105,10 @@ class xrowECommerceVATHandler
                 eZDebug::writeError( 'XML is broken', 'xrowECommerceVATHandler' );
             }
         }
-        elseif ( $order === false and ! $user->isAnonymous() )
+        elseif ( ($order === false || $order === NULL) and ! $user->isAnonymous() )
         {
             $object = $user->attribute( 'contentobject' );
-            $country = eZVATManager::getUserCountry( $user, false );
+            $country = xrowVATManager::getUserCountry( $user, false );
             if ( strlen( $country ) == 2 )
             {
                 $countries = eZCountryType::fetchCountryList();
@@ -139,7 +146,20 @@ class xrowECommerceVATHandler
         }
         elseif ( $order === false and $user->isAnonymous() )
         {
-            $country = eZShopFunctions::getPreferredUserCountry();
+            if ( !isset($country) || trim($country) == "" || strlen( $country ) > 3) {
+                $country = eZShopFunctions::getPreferredUserCountry();
+                if ( strlen( $country ) == 2 )
+                {
+                    $countries = eZCountryType::fetchCountryList();
+                    foreach ( $countries as $countryItem )
+                    {
+                        if ( $countryItem['Alpha2'] == $country )
+                        {
+                            $country = $countryItem['Alpha3'];
+                        }
+                    }
+                }
+            }
             $percentage = xrowECommerceVATHandler::getTAX( $country, false, false );
         }
         return $percentage;

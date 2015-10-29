@@ -276,4 +276,7 @@ plugins[facebook]=enabled
 plugins[twitter]=enabled
 account[twitter]=
 
+[VATSettings]
+UserCountryAttribute=s_country;country
+
 */ ?>

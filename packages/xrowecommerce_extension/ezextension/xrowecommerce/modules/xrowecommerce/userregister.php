@@ -131,7 +131,6 @@ if ( $user->isUserLoggedIn($user->ContentObjectID) and in_array( $userobject->at
     {
         $email_confirm = $userMap['email_confirm']->content();
     }
-    
 
     if ( $shipping != '1' )
     {
@@ -662,7 +661,7 @@ if ( $module->isCurrentAction( 'Store' ) )
     {
         $payment_method = $http->postVariable( 'PaymentMethod' );
     }
-
+    
     if ( $http->hasPostVariable( 'reference' ) )
     {
         $reference = $http->postVariable( 'reference' );
@@ -1309,7 +1308,6 @@ $tpl->setVariable( 'shippingtype', $shippingtype );
 if ( isset( $payment_method ) )
 {
     $tpl->setVariable( 'payment_method', $payment_method );
-
 }
 $tpl->setVariable( 'recaptcha', $recaptcha );
 $tpl->setVariable( 's_company_name', $s_company_name );
@@ -1390,4 +1388,3 @@ $Result['path'] = array(
         'text' => ezpI18n::tr( 'extension/xrowecommerce', 'Enter account information' )
     )
 );
-?>

@@ -109,7 +109,7 @@
                                                 {/if}
                                             </td>
                                             <td>
-                                                {$Options.item.value}                  
+                                                {$Options.item.value}
                                             </td>
                                             <td>
                                                 {$Options.item.comment|wash()}
